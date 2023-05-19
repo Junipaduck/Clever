@@ -26,22 +26,22 @@
                             <div id="top_header_menu" class="row justify-content-between">
                                 <div class="col-4 top_header_icon">
                                     <a href="#">
-                                        <img src="${pageContext.request.contextPath }/resources/images/market/download.svg" alt="앱 다운로드"> 앱다운로드
+<%--                                         <img src="${pageContext.request.contextPath }/resources/images/market/download.svg" alt="앱 다운로드"> 앱다운로드 --%>
                                     </a>
                                     <a href="#">
-                                        <img src="${pageContext.request.contextPath }/resources/images/market/bookmark.svg" alt="즐겨찾기"> 즐겨찾기
+<%--                                         <img src="${pageContext.request.contextPath }/resources/images/market/bookmark.svg" alt="즐겨찾기"> 즐겨찾기 --%>
                                     </a>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <div class="row justify-content-end top_header_login">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                로그인/회원가입
+                                        <div class="col-2">
+                                            <a href="loginForm.me">
+                                                로그인
                                             </a>
                                         </div>
-                                        <div class="col-4">
-                                            <a href="내상점">
-                                                내상점
+                                        <div class="col-2" style="text-align: left;">
+                                            <a href="#">
+                                                고객센터
                                             </a>
                                         </div>
                                     </div>
@@ -57,8 +57,8 @@
                     <div class="row justify-content-start">
                         <div class="col-3 header_logo">
                             <h1 class="hidden">로고</h1>
-                            <a href="">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/logo.svg" alt="번개장터 로고">
+                            <a href="./">
+                                <img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" alt="클레버 로고" width="130px;" height="40px;">
                             </a>
                         </div>
                         <div class="col-6 top_searh_area">
@@ -74,15 +74,15 @@
                             </a>
                         </div>
                         <div class="col-1 b_h_left_menu store">
-                            <a href="내상점">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/my_store.png" alt="내상점">
-                                내상점
+                            <a href="myPage.me">
+                                <img src="${pageContext.request.contextPath }/resources/images/market/my_store.png" alt="마이페이지">
+                                마이페이지
                             </a>
                         </div>
                         <div class="col-1 b_h_left_menu">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/talk.png" alt="번개톡">
-                                번개톡
+                            <a href="매핑주소">
+                                <img src="${pageContext.request.contextPath }/resources/images/market/talk.png" alt="1:1문의">
+                                채팅
                             </a>
                         </div>
                     </div>
@@ -94,9 +94,10 @@
                         </div>
                         <div class="col-md-4 sell_center">
                             <p>
-                                번개장터 판매자센터
-                                <img src="${pageContext.request.contextPath }/resources/images/market/new_img.png" alt="새로워졌어요">
-                            </p>
+	                            <a href="매핑주소" style="color: black;">중고거래　</a>
+	                            <a href="매핑주소" style="color: black;">경매하기　</a>
+	                            <a href="매핑주소" style="color: black;">스토어　</a>
+	                        </p>
                         </div>
                         <!-- 메뉴 호버 -->
                         <div id="test_area">
@@ -126,19 +127,19 @@
                         <p><img src="${pageContext.request.contextPath }/resources/images/market/heart.png" alt="찜 하트"> 0</p>
                     </div>
                     <div id="goods">
-                        <p>최근본상품</p>
+                        <p>여기뭐하기로했더라</p>
                         <p id="dotted"></p>
                         <p>
                             <img src="${pageContext.request.contextPath }/resources/images/market/eyes.png" alt="눈표시">
                             <p>최근 본 상품<br>이<br>없습니다.</p>
                         </p>
                     </div>
-                    <div id="QR_code">
-                        <p>앱 다운로드</p>
-                        <p>
-                            <img src="${pageContext.request.contextPath }/resources/images/market/QR_code.png" alt="QR 코드">
-                        </p>
-                    </div>
+<!--                     <div id="QR_code"> -->
+<!--                         <p>앱 다운로드</p> -->
+<!--                         <p> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/market/QR_code.png" alt="QR 코드"> --%>
+<!--                         </p> -->
+<!--                     </div> -->
                     <div id="top_btn">
                         <button>
                             <a href="#top_header">TOP</a>

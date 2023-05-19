@@ -233,7 +233,7 @@ header, #bot_header_border {
     width: 445px;
     height: 36px;
     padding: 18px 15px;
-    border: 2px solid rgb(247, 47, 51);
+    border: 2px solid #0d41fd;
 }
 #top_searh > img {
     position: relative;

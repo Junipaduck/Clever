@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<title>클레버 - 메인</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -113,9 +113,9 @@
 
             <!--앱 다운 배너-->
             <div class="banner_wrap">
-                <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_banner.png" alt="번개장터 앱 qr이 있는 배너" width="100%">
+                <img src="${pageContext.request.contextPath }/resources/images/ejclxm.png" onclick="location.href='https://thecheat.co.kr/rb/?mod=_search'" alt="더치트배너" width="100%">
                 <div class="qr_wrap">
-                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_qr.png" alt="번개장터 앱 다운로드 qr 코드" class="image_qr">
+                    <img src="${pageContext.request.contextPath }/resources/images/ejclxmQR.png" alt="더치트 앱 다운로드 qr 코드" class="image_qr">
                 </div>
             </div>
 
@@ -130,6 +130,48 @@
                                 <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
                             </div>
                             <div class="goods_info">
+                                <p class="goods_title">핸드메이드 롱코트 브라운</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">15,000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="goods_product_detail.html">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="goods_product_detail.html">
+                            <div class="goods_image">
+                                <img src="https://img2.quasarzone.com/editor/2021/07/05/d5e46e5d97c11769965e45af8bd017ba.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">엠스톤 키보드</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">110,000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="goods_product_detail.html">
+                            <div class="goods_image">
+                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
                                 <p class="goods_title">상품명</p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
@@ -152,7 +194,22 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                    <div class="goods">
+                        <a href="goods_product_detail.html">
+                            <div class="goods_image">
+                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">상품명</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">4일 전</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div> 
             </section>
         </div>
         <!-- // main_content 영역 -->
