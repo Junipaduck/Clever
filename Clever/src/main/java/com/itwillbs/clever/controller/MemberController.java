@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 	
 	// 로그인 페이지 포워딩 
-	@GetMapping(value = "loginForm.me")
+	@GetMapping("/loginForm.me")
 	public String loginForm() {
 		return "member/login_form";
 	}
 	
 	// 회원가입 페이지 포워딩
-	@GetMapping(value = "joinForm.me")
+	@GetMapping("/joinForm.me")
 	public String joinForm() {
 		return "member/join_form";
 	}
 	
 	// 마이페이지 포워딩
-	@GetMapping(value = "myPage.me")
+	@GetMapping("/myPage.me")
 	public String myPage() {
-		return "member/my_page";
+		return "mypage/my_page";
 	}
 	
 

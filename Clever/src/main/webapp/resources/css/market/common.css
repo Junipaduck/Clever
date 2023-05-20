@@ -338,12 +338,14 @@ header, #bot_header_border {
 #test_cates > h2 > span {
     float: right;
     margin-right: 10px;
-    color: rgb(246, 68, 72);
+/*     color: rgb(246, 68, 72); */
+    color: #87bef5;
     display: none;
 }
 
 #test_area a:hover {
-    background-color: rgb(246, 68, 72);
+/*     background-color: rgb(246, 68, 72); */
+    background-color: #87bef5;
     color: white;
 }
 /* // 햄버거 메뉴 호버 */

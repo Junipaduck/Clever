@@ -206,7 +206,8 @@
     margin-bottom: 20px;
 }
 .common_menu > div:nth-child(1) > p:nth-child(1) > span {
-    color: #F72F33;
+/*     color: #F72F33; */
+    color: #87bef5;
 }
 #goods_menu_area > div > ul {
     float: right;
@@ -231,7 +232,8 @@
     display: none;
     border: 1px solid rgb(238, 238, 238);
     background-color: white;
-    color: #F72F33;
+/*     color: #F72F33; */
+    color: #87bef5;
 }
 
 .common_menu > div:nth-child(2) {
