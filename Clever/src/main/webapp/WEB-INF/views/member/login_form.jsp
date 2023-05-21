@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
 <!-- 네이버 로그인 css 링크 -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/neverlogin.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/naverlogin.css">
 
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
