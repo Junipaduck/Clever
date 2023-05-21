@@ -124,7 +124,7 @@
                 <h2>오늘의 상품 추천</h2>
                 <div class="goods_wrap">
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                                 <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
@@ -139,7 +139,7 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
@@ -153,7 +153,7 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="https://img2.quasarzone.com/editor/2021/07/05/d5e46e5d97c11769965e45af8bd017ba.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
@@ -167,7 +167,7 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
@@ -181,7 +181,7 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
@@ -195,7 +195,7 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="goods_product_detail.html">
+                        <a href="product_detail">
                             <div class="goods_image">
                                 <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                             </div>

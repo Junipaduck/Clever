@@ -103,18 +103,18 @@
                         <div id="test_area">
                             <ul id="test_cates">
                                 <h2>전체 카테고리<span> ></span></h2>
-                                <li id="clothes"><a href="#">의류</a></li>
-                                <li id="acc"><a href="#">악세서리</a></li>
+                                <li id="clothes"><a href="product_list">의류</a></li>
+                                <li id="acc"><a href="product_list">악세서리</a></li>
                             </ul>
                             <ul id="test_clos">
                                 <h3>의류</h3>
-                                <li><a href="#">남성의류</a></li>
-                                <li><a href="#">여성의류</a></li>
+                                <li><a href="product_list">남성의류</a></li>
+                                <li><a href="product_list">여성의류</a></li>
                             </ul>
                             <ul id="test_accs">
                                 <h3>악세서리</h3>
-                                <li><a href="#">시계/쥬얼리</a></li>
-                                <li><a href="#">패션 악세서리</a></li>
+                                <li><a href="product_list">시계/쥬얼리</a></li>
+                                <li><a href="product_list">패션 악세서리</a></li>
                             </ul>
                         </div>
                         <!-- // 메뉴 호버 -->
