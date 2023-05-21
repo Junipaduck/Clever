@@ -23,8 +23,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="header.jsp" />
-	<!-- main_content 영역 -->
+	<header>
+		<jsp:include page="./inc/header.jsp" />
+	</header>	<!-- main_content 영역 -->
         <header>
         <div>
             <i class="bi bi-chevron-left"></i>
@@ -136,6 +137,7 @@
     </div>
     <!-- // wrapper -->
 	<!-- 풋터 시작 -->
-	<jsp:include page="footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="./inc/footer.jsp" />
+	</footer></body>
 </html>

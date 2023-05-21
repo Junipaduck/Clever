@@ -31,7 +31,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="../header.jsp" />
+	<header>
+		<jsp:include page="../inc/header.jsp" />
+	</header>
 	
 	
 	
@@ -44,6 +46,8 @@
 	
 	
 	<!-- 푸터 시작 -->
-	<jsp:include page="../footer.jsp" />
+	<footer>
+		<jsp:include page="../inc/footer.jsp" />
+	</footer>
 </body>
 </html>

@@ -8,7 +8,7 @@ public class MainController {
 	
 	@GetMapping(value = "/")
 	public String main() {
-		return "메인";
+		return "index";
 	}
 	
 	@GetMapping(value = "1대1문의")

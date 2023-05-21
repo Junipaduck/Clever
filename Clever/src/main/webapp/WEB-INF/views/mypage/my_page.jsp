@@ -220,6 +220,7 @@
         <!-- // main_content 영역 -->
 	
 	<!-- 푸터 시작 -->
-	<jsp:include page="../footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="../inc/footer.jsp" />
+	</footer></body>
 </html>

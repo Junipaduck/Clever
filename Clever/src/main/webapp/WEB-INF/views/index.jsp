@@ -33,7 +33,8 @@
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="./inc/header.jsp" />
-	</header>	<!--로그아웃 확인 모달창-->
+	</header>
+	<!--로그아웃 확인 모달창-->
         <div class="logout_modal_wrap hidden">
             <div class="logout_bg bg"></div>
             <div class="logout_modal">
@@ -217,5 +218,6 @@
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="./inc/footer.jsp" />
-	</footer></body>
+	</footer>
+</body>
 </html>

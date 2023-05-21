@@ -19,8 +19,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="header.jsp" />
-	<div id="wrapper">
+	<header>
+		<jsp:include page="./inc/header.jsp" />
+	</header>	<div id="wrapper">
         <div id="title">
             내상점 제재내역
         </div>
@@ -57,6 +58,7 @@
         </div>
     </div>
 	<!-- 풋터 시작 -->
-	<jsp:include page="footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="./inc/footer.jsp" />
+	</footer></body>
 </html>

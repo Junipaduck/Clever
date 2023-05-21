@@ -31,8 +31,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="header.jsp" />
-    <!-- main_content 영역 -->
+	<header>
+		<jsp:include page="./inc/header.jsp" />
+	</header>    <!-- main_content 영역 -->
         <div id="main_content">
             <!--하위 메뉴-->
             <nav class="content_nav">
@@ -114,6 +115,7 @@
         </div>
         <!-- // main_content 영역 -->
 	<!-- 풋터 시작 -->
-	<jsp:include page="footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="./inc/footer.jsp" />
+	</footer></body>
 </html>

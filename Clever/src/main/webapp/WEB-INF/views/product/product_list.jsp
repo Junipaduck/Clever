@@ -32,7 +32,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="../header.jsp" />
+	<header>
+		<jsp:include page="../inc/header.jsp" />
+	</header>
 	
     <!-- main_content 영역 -->
         <div id="background_main">
@@ -123,6 +125,8 @@
         <!-- // main_content 영역 -->
 
 	<!-- 풋터 시작 -->
-	<jsp:include page="../footer.jsp" />
+	<footer>
+		<jsp:include page="../inc/footer.jsp" />
+	</footer>
 </body>
 </html>

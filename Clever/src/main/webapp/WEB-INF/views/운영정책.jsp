@@ -24,8 +24,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="header.jsp" />
-	
+	<header>
+		<jsp:include page="./inc/header.jsp" />
+	</header>	
     <!-- main_content 영역 -->
         <header>
         <div>
@@ -112,6 +113,7 @@
     <!-- // wrapper 영역 -->
 
 	<!-- 풋터 시작 -->
-	<jsp:include page="footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="./inc/footer.jsp" />
+	</footer></body>
 </html>

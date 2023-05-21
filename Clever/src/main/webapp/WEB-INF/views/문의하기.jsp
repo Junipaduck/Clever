@@ -148,8 +148,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="header.jsp" />
-    <header>
+	<header>
+		<jsp:include page="./inc/header.jsp" />
+	</header>    <header>
         <div>
             <a href="customer_inquiry.html">
                 <i class="bi bi-chevron-left"></i>
@@ -290,6 +291,7 @@
         <p>서비스제안</p>
     </div>
 	<!-- 풋터 시작 -->
-	<jsp:include page="footer.jsp" />
-</body>
+	<footer>
+		<jsp:include page="./inc/footer.jsp" />
+	</footer></body>
 </html>
