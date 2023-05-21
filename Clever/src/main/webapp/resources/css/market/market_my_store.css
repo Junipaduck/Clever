@@ -179,12 +179,13 @@
     margin-left: 10px;
 }
 
-.goods_menu {
+.sales_menu {
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-left: 1px solid black;
 }
-.review_menu, .recommend_menu, .following_menu, .follower_menu {
+
+.purchases_menu, .secondhandLike_menu, .auction_menu, .auctionLike_menu {
     border-right: 1px solid rgb(238, 238, 238);
     border-bottom: 1px solid black;
     background-color: #FAFAFA;
@@ -209,14 +210,38 @@
 /*     color: #F72F33; */
     color: #87bef5;
 }
-#goods_menu_area > div > ul {
+#sales_menu_area > div > ul {
     float: right;
     border: 1px solid rgb(238, 238, 238);
     width: 140px;
     height: 28px;
     font-size: 12px;
 }
-#goods_menu_area > div > ul > li {
+#sales_menu_area > div > ul > li {
+    padding: 5px 0 5px 5px;
+    width: 140px;
+    height: 100%;
+}
+#purchases_menu_area > div > ul {
+    float: right;
+    border: 1px solid rgb(238, 238, 238);
+    width: 140px;
+    height: 28px;
+    font-size: 12px;
+}
+#purchases_menu_area > div > ul > li {
+    padding: 5px 0 5px 5px;
+    width: 140px;
+    height: 100%;
+}
+#auction_menu_area > div > ul {
+    float: right;
+    border: 1px solid rgb(238, 238, 238);
+    width: 140px;
+    height: 28px;
+    font-size: 12px;
+}
+#auction_menu_area > div > ul > li {
     padding: 5px 0 5px 5px;
     width: 140px;
     height: 100%;
@@ -242,7 +267,7 @@
     color: #888;
 }
 
-#review_menu_area, #recommend_menu_area, #following_menu_area, #follower_menu_area {
+#purchases_menu_area, #secondhandLike_menu_area, #auction_menu_area, #auctionLike_menu_area {
     display: none;
 }
 /* // 내 상점 메뉴 */
