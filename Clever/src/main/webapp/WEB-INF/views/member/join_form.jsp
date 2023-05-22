@@ -203,7 +203,6 @@ window.onload = function(){
 						        <td class="col1">아이디</td>
 						        <td class="col2">
 						            <input type="text" name="id" maxlength="10">
-						            <input class='but1' type="button" value="중복확인" onclick="">
 						        </td>
 						    </tr>
 						    <tr>
@@ -231,16 +230,21 @@ window.onload = function(){
 						                <option value="da">daum.com</option>
 						                <option value="yah">yahoo.com</option>
 						            </select>
-						            <input class='but2' type="button" value="이메일 중복확인" onclick="">
 						        </td>
 						    </tr>
 						     <tr>
 						        <td class="col1">연락처</td>
-						        <td class="col2"><input type="text" name=""></td>
+						        <td class="col2">
+							        <input type="text" name="">
+							        <input class='but1' type="button" value="인증하기" onclick="">
+						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">생년월일</td>
-						        <td class="col2"><input type="text" name=""></td>
+						        <td class="col2">
+						        	<input type="text" name=""> <span class="a"> - </span><input type="text" name="" style="width: 30px;">
+							        <p>※생년월일은 <span class="num">주민번호 앞 6자리 - 주민번호 뒤 1자리</span>로 입력해주세요.</p>
+						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">주소</td>
