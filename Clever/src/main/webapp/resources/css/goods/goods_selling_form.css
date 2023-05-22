@@ -13,7 +13,7 @@
     padding-right: 0;
 }
 .content_nav > a.active {
-    color: rgb(255, 80, 88);
+    color: rgb(88, 80, 255);
 }
 .content_nav > a:first-child {
     padding-left: 0;
@@ -31,7 +31,7 @@
 
 /*판매폼*/
 .red {
-    color: rgb(255, 80, 88);
+    color: rgb(88, 80, 255);
 }
 #main_content h2 > .red {
     font-size: 1rem;
@@ -196,7 +196,7 @@ form > div:not(.fast_selling_area) > div {
 .goods_category + p + p {
     margin-top: 1.5rem;
     font-size: 16px;
-    color: rgb(255, 80, 88);
+    color: rgb(88, 80, 255);
 }
 .goods_category + p + p > span.selected_category {
     font-weight: 600;

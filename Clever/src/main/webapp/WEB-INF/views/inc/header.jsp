@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col-1 b_h_left_menu">
-                            <a href="상품등록">
+                            <a href="product_upload">
                                 <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="판매하기">
                                 판매하기
                             </a>

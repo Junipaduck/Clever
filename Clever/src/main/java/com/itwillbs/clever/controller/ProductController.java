@@ -18,5 +18,17 @@ public class ProductController {
 		return "product/product_detail";
 	}
 	
+	// 상품 등록하기
+	@GetMapping("/product_upload")
+	public String productUpload() {
+		return "product/product_upload";
+	}
+	
+	// 상품 등록하기
+	@GetMapping("/product_management")
+	public String productManagement() {
+		return "product/product_management";
+	}
+	
 	
 }
