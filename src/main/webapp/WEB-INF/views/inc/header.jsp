@@ -85,7 +85,7 @@
                             </a>
                         </div>
                         <div class="col-1 b_h_left_menu">
-                            <a href="매핑주소">
+                            <a href="chatting">
                                 <img src="${pageContext.request.contextPath }/resources/images/market/talk.png" alt="1:1문의">
                                 채팅
                             </a>
