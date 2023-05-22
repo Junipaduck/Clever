@@ -224,61 +224,7 @@
                                             <div class="timeline-badge primary"></div>
                                             <a class="timeline-panel text-muted" href="#">
                                                 <span>10 minutes ago</span>
-                                                <h6 class="m-t-5">Youtube, a video-sharing website, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge warning">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge danger">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>30 minutes ago</span>
-                                                <h6 class="m-t-5">Google acquires Youtube.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge success">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>15 minutes ago</span>
-                                                <h6 class="m-t-5">StumbleUpon is acquired by eBay. </h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge warning">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge dark">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge info">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>30 minutes ago</span>
-                                                <h6 class="m-t-5">Google acquires Youtube.</h6>
+                                                <h6 class="m-t-5">000님 5000원 충전</h6>
                                             </a>
                                         </li>
                                     </ul>
@@ -289,7 +235,7 @@
                     <div class="col-xl-4 col-lg-6 col-xxl-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Notice Board</h4>
+                                <h4 class="card-title">음 여긴 뭐하지</h4>
                             </div>
                             <div class="card-body">
                                 <div class="recent-comment m-t-15">
@@ -298,59 +244,9 @@
                                             <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/4.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/2.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-success">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">1 hour ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/3.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-danger">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <div class="comment-date">Yesterday</div>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">10 min ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/2.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-success">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <p class="comment-date">1 hour ago</p>
-                                        </div>
-                                    </div>
-                                    <div class="media no-border">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/3.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-info">Mr. John</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla.</p>
-                                            <div class="comment-date">Yesterday</div>
+                                            <h4 class="media-heading text-primary">양선정</h4>
+                                            <p>배고파요</p>
+                                            <p class="comment-date">10분전</p>
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +256,7 @@
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Todo</h4>
+                                <h4 class="card-title">처리해야할 일</h4>
                             </div>
                             <div class="card-body px-0">
                                 <div class="todo-list">
