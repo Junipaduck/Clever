@@ -21,7 +21,6 @@
 <!--css-->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_comon.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_history.css">
 
 <!-- js -->
@@ -85,15 +84,15 @@
 	<!-- main_content 영역 -->
 	<div id="wrapper">
         <div id="main_content">
-	        <header>
+	        <div id="header">
 	            <h1>나의 구매내역</h1>
 	            <!--메뉴-->
 	            <nav class="content_nav" style="font-weight: bold;">
-	                <a href="goods_buy_history.html" class="active">거래중 2</a>
-	                <a href="goods_sell_history.html">거래완료 1</a>
-	                <a href="goods_account.html">숨김 3</a>
+	                <a href="#" class="active">거래중 2</a>
+	                <a href="#">거래완료 1</a>
+	                <a href="#">숨김 3</a>
 	            </nav>
-	        </header>
+	        </div>
 	        
 	        
 	        

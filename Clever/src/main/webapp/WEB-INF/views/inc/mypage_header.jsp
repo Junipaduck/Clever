@@ -102,7 +102,7 @@
                         <!-- 메뉴 호버 -->
                         <div id="test_area">
                             <ul id="test_cates" style="height: 250px;">
-                                <h2>마이페이지<span> ></span></h2>
+                                <h2><a href="myPage.me" style="color: black;">마이페이지</a><span> ></span></h2>
                                 <li id="clothes"><a href="#">거래내역</a></li>
                                 <li id="acc"><a href="#">경매내역</a></li>
                                 <li id="acc"><a href="#">관심목록</a></li>
@@ -112,7 +112,7 @@
                             </ul>
                             <ul id="test_clos">
                                 <h3>거래내역</h3>
-                                <li><a href="shPurchaseList.my">판매내역</a></li>
+                                <li><a href="shBuyList.my">판매내역</a></li>
                                 <li><a href="#">구매내역</a></li>
                             </ul>
                             <ul id="test_accs">
