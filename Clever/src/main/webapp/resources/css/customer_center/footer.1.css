@@ -1,0 +1,33 @@
+/* BASIC css start */
+.scrTop {position: fixed;bottom: 35px;right: 40px;z-index: 2;}
+.scrTop .scrTopStyle>p {
+width: 50px;
+    height: 50px;
+    text-indent: -9999em;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    /* margin-left: 70px; */
+    margin-bottom: 10px;
+    border-radius: 100px;
+    margin-left: 8px;
+    margin-right: 0;
+}
+.scrTop .scrTopStyle>p.btn-page-up, .scrTop p.btn-page-dw{border-bottom:1px solid transparent;opacity:1 !important;}
+.scrTop .scrTopStyle>p.btn-page-up.hi, .scrTop p.btn-page-dw.hi{opacity:1}
+.scrTop .scrTopStyle>p.btn-page-up,.scrTop p.btn-page-dw {position:relative; background-color: #ebebeb;}
+.scrTop .scrTopStyle>p.btn-page-up:before{color:#000;font-family:xeicon; content: "\e946";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-indent:0 !important;font-size:20px;}
+.scrTop .scrTopStyle>p.btn-page-up:hover {opacity:0.6;cursor:pointer}
+.scrTop .scrTopStyle>p.btn-page-dw:before{color:#000;content: "\e943";;font-family:xeicon;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-indent:0 !important;font-size:20px;}
+.scrTop .scrTopStyle>p.btn-page-dw:hover {opacity:0.6;cursor:pointer}
+.scrTop .scrTopStyle>a.kakaocs {   
+width: 62px;
+    height: 70px;
+    background: url(//mulawear.jpg3.kr/test/20221117/icon_kakao_chat.png) 10px 10px no-repeat;
+    /* background-size: contain; */
+    opacity: 1;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: #ffffff85;
+    }
+/* BASIC css end */
+

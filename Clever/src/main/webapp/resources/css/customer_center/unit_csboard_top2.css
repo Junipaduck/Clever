@@ -1,0 +1,51 @@
+/* BASIC css start */
+/*커뮤니티 공통 최상단*/
+.bbs-cate{width: 100%; margin-bottom: 70px; background: #fff; border-top: 1px solid #111; border-bottom: 1px solid #111;}
+.bbs-cate ul{ width: 1200px; margin: 0 auto; text-align: center;}
+.bbs-cate ul li {display: inline-block;position: relative;width: 14%;text-align: center;}
+.bbs-cate li a.active {/*font-weight: 500; color: #111;border-bottom: 2px solid #f96713;*/}
+.bbs-cate li a {display: block;height: 50px;background: no-repeat center 32px;color: #111;font-size: 15px;font-weight: 400;line-height: 50px;}
+.bbs-cate li:first-child:after{display:none}
+.bbs-cate li:after {display: block;content: '';position: absolute;top: 0;left: 0;z-index: 1;width: 1px;height: 16px;top: 17px;background: #dfdfdf;}
+
+/*공통 CSS 변경*/
+#content {position: relative; width: 1340px; margin-left: auto; margin-right: auto; float: none; padding-top: 0 !important;}
+#contentWrap { width: 100% !important;}
+.cstopwrap.off {display:none; }
+.qnaBoardWrap{position: relative; display:flex; border-top: 1px solid #e8e8e8; border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8;}
+.qnaBoardWrap:after { display:block; clear:both; content:'' }
+.qnaBoardWrap .listWrap{background:#fff; display: flex; justify-content: space-between; width: 100%;}
+.qnaBoardWrap .listWrap:first-child{}
+.qnaBoardWrap .listWrap:last-child{}
+.qnaBoardWrap .listWrap li:last-child{margin-right:0;}
+.qnaBoardWrap .listWrap li a{display: block;  padding: 13px 0;}
+
+.qnaBoardWrap .listWrap .list { text-align: center; width: 100%; }
+.qnaBoardWrap .listWrap .list a{border-right:1px solid #e8e8e8;}
+.qnaBoardWrap .listWrap .list a.active{background:#464646;}
+.qnaBoardWrap .listWrap .list span.active{color:#fff}
+.qnaBoardWrap .listWrap .qna_ico01{display: block;}
+.qnaBoardWrap .listWrap .qna_tit{display: block; font-size:15px; color:#555;font-weight:400;letter-spacing:-1px}
+
+.qnaBoardWrap .listWrap .listMain{background:#b49664;  }
+.qnaBoardWrap .listWrap .qna_tx01{    text-align: left;  font-size: 15px; color: #fff;  display: block;      padding: 30px 20px 20px;}
+.qnaBoardWrap .listWrap .qna_tx02{text-align: left; color: #fff;  display: block;     padding: 20px 20px 30px;  font-size: 15px;    font-family: 'verlag';}
+    
+.listWrap li:first-child a.active{background:#000;/*border:1px solid #000*/}
+#bbsData .bbs-table-list .bbs-link-btm{margin: 59px 0; text-align: center;}
+
+/*안내 및 유의사항*/
+.qa_contents{background: #fafafa;font-size: 13px;color: #555;text-align:center}
+.qa_tit{background: #111;color: #fff;font-size: 14px;font-weight: 500;text-align: center;width: 146px;}
+.qa_txt{line-height: 1;text-align: left;box-sizing: border-box;padding: 50px 50px 52px;display: flex;justify-content: space-between;margin-top: 50px;}
+.qa_txt .csContent{line-height:20px;font-size:13px;color:#666;letter-spacing: -0.25px;}
+.qa_txt .csContent:nth-child(1) {width: 350px;}
+.qa_txt .csContent:nth-child(2) {width: 750px;}
+.qa_txt .csContent .time{font-weight:400;font-size:16px;color:#111;line-height: 1;padding-bottom: 4px;font-weight:600;}
+.qa_txt .csContent .csTitle{font-size:14px;font-weight:bold;color:#222;padding-bottom: 13px;border-bottom:1px solid #ddd;line-height: 1;margin-bottom: 20px;}
+.qa_txt .csContent .csCaution li {position:relative;font-size:13px;color:#666;line-height: 20px;padding: 0 0 0 10px;letter-spacing: -.25px;word-break: keep-all;}
+.qa_txt .csContent .csCaution li:before {content:"-";position: absolute;left: 0;}
+.qa_txt .csContent .csCaution li .cautionTxt {color:#111;font-weight:600;display: inline;}
+
+/* BASIC css end */
+

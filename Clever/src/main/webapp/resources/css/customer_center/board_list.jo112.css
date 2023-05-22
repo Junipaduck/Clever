@@ -1,0 +1,20 @@
+/* BASIC css start */
+#content{padding-top:0 !important}
+#scroll{display:none}
+#bbsData .bbs-link { position: relative; }
+#bbsData .bbs-link-top { margin-top: 10px; margin-bottom: -40px;margin-right: 400px; text-align: left; margin-left: 18px; }
+#bbsData .bbs-link-btm { margin: 59px 0; text-align: center; }
+
+#contentWrapper {top:-110px;}
+.bbs-table-list tbody td a.list-subject {margin-left:0px}
+
+.qna-infos{display:none !important}
+
+.bbs-link a{color:#fff}
+
+/*.qnaBoardWrap .listWrap li:nth-child(3){display:none;}*/
+
+
+
+/* BASIC css end */
+
