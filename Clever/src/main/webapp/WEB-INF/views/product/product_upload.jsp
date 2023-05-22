@@ -51,7 +51,8 @@ font-family: 'SUITE-Regular';
             <nav class="content_nav">
                 <a href="product_upload" class="active">상품등록</a>
                 <a href="product_management">상품관리</a>
-                <a href="goods_buyer_ordersheet.html">구매/판매 내역</a>
+                <a href="product_buy">구매 내역</a>
+                <a href="product_sell">판매 내역</a>
             </nav>
             
             <!--판매 폼-->
@@ -86,7 +87,6 @@ font-family: 'SUITE-Regular';
                         <div class="goods_title">
                             <input type="text" name="goodsTitle" id="goods_title" maxlength="40"
                                 placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
-                            <a href="#">거래금지 품목</a>
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
                     </div>

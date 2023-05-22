@@ -33,16 +33,16 @@
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
-	</header>    <!-- main_content 영역 -->
+	</header>    
+	<!-- 구매 상품 리스트 영역 -->
         <div id="main_content">
             <!--하위 메뉴-->
             <nav class="content_nav">
                 <a href="product_upload">상품등록</a>
-                <a href="product_management" class="active">상품관리</a>
+                <a href="product_management">상품관리</a>
                 <a href="product_buy">구매 내역</a>
-                <a href="product_sell">판매 내역</a>
+                <a href="product_sell" class="active">판매 내역</a>
             </nav>
-            
             <!--본문 내용-->
             <section class="goods_filter_area">
                 <form class="my_goods_search">
@@ -77,9 +77,9 @@
                             <th>판매상태</th>
                             <th>상품명</th>
                             <th>가격</th>
-                            <th>안전결제 환영</th>
-                            <th>찜</th>
-                            <th>최근수정일</th>
+                            <th>결제 수단</th>
+                            <th>구매자</th>
+                            <th>판매일</th>
                             <th>기능</th>
                         </tr>
                     </thead>
@@ -87,24 +87,15 @@
                         <tr>
                             <td><img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" alt="상품 사진"></td>
                             <td>
-                                <ul class="goods_status_show">
-                                    <li class="show"><span>판매중</span><span class="gray_arrow"></span></li>
-                                    <div>
-                                        <li class="option">판매 중</li>
-                                        <li class="option">예약 중</li>
-                                        <li class="option">삭제</li>
-                                        <li class="option">판매완료</li>
-                                    </div>
-                                </ul>
+                                    <span>판매 완료</span>
                             </td>
                             <td><a href="goods_product_detail.html">상품명</a></td>
                             <td>1,111원</td>
-                            <td>O</td>
-                            <td>1</td>
+                            <td>포인트 거래</td>
+                            <td>이순신</td>
                             <td>2022-12-16<br>16:14</td>
                             <td>
-                                <button type="button">UP</button><br>
-                                <a href="goods_selling_form.html">수정</a>
+                                <a href="goods_selling_form.html">삭제</a>
                             </td>
                         </tr>
                     </tbody>
@@ -114,7 +105,7 @@
                 <a href="#" class="active_page" style="color: #f4f4f4;">1</a>
             </section>
         </div>
-        <!-- // main_content 영역 -->
+        <!-- // 구매 상품 리스트 영역 -->
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
