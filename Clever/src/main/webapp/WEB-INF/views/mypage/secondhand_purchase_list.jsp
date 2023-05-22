@@ -13,103 +13,91 @@
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<!--부트스트랩-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 부트스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<!-- 부트스트랩 icon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
-<!-- css -->
+<!--css-->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_comon.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_history.css">
 
-<!-- JS -->
+<!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_history_common.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_buy_history.js"></script>
 </head>
 <body>
-   <!-- 헤더 시작 -->
+	<!-- 헤더 시작 -->
 	<jsp:include page="../inc/mypage_header.jsp" />
+	
+	<!-- 모달창 시작 -->
+	<!--반품 모달-->
+	<div class="modal_return_area hidden">
+	    <div class="return_bg bg"></div>
+	    <div class="return_modal">
+	        <h2>알림</h2>
+	        <p>반품신청 하시겠습니까?</p>
+	        <div class="btn_area">
+	            <button type="button" class="btn_no">아니요</button>
+	            <button type="button" class="btn_yes">네</button>
+	        </div>
+	    </div>
+	</div>
+	<!--상품수령 모달-->
+	<div class="modal_decide_area hidden">
+	    <div class="decide_bg bg"></div>
+	    <div class="decide_modal">
+	        <div class="decide_content">
+	            <h2>상품을 수령하셨나요?</h2>
+	            <p>
+	                구매확정 후에는 취소할 수 없습니다.<br>
+	                만약 상품 수령 전에 미리 구매확정을 할 경우 사기 위험에 노출될 수 있습니다.<br>
+	                (불법적 금융대출 목적으로 이용 시 금융거래에 불이익을 받을 수 있습니다.)
+	            </p>
+	        </div>
+	        <div class="btn_area">
+	            <button type="button" class="btn_no">아니요</button>
+	            <button type="button" class="btn_yes">네</button>
+	        </div>
+	    </div>
+	</div>
+	<!--리뷰 모달-->
+	<div class="modal_review_area hidden">
+	    <div class="review_bg bg"></div>
+	    <div class="review_modal">
+	        <h2>알림</h2>
+	        <p>
+	            후기는 앱에서만 작성할 수 있습니다 <br>
+	            작성하시겠습니까?
+	        </p>
+	        <div class="btn_area">
+	            <button type="button" class="btn_no">아니요</button>
+	            <button type="button" class="btn_yes">네</button>
+	        </div>
+	    </div>
+	</div>
+	<!-- 모달창 끝 -->
 	
 	
 	<!-- main_content 영역 -->
-    <div id="main_content">
-        <div>
-            <h1>거래내역</h1>
-            <!--메뉴-->
-            <nav class="content_nav">
-                <a href="goods_buy_history.html" class="active">구매</a>
-                <a href="goods_sell_history.html">판매</a>
-                <a href="goods_account.html">정산</a>
-            </nav>
-        </div>
-
-        <!--반품 모달-->
-        <div class="modal_return_area hidden">
-            <div class="return_bg bg"></div>
-            <div class="return_modal">
-                <h2>알림</h2>
-                <p>반품신청 하시겠습니까?</p>
-                <div class="btn_area">
-                    <button type="button" class="btn_no">아니요</button>
-                    <button type="button" class="btn_yes">네</button>
-                </div>
-            </div>
-        </div>
-        <!--상품수령 모달-->
-        <div class="modal_decide_area hidden">
-            <div class="decide_bg bg"></div>
-            <div class="decide_modal">
-                <div class="decide_content">
-                    <h2>상품을 수령하셨나요?</h2>
-                    <p>
-                        구매확정 후에는 취소할 수 없습니다.<br>
-                        만약 상품 수령 전에 미리 구매확정을 할 경우 사기 위험에 노출될 수 있습니다.<br>
-                        (불법적 금융대출 목적으로 이용 시 금융거래에 불이익을 받을 수 있습니다.)
-                    </p>
-                </div>
-                <div class="btn_area">
-                    <button type="button" class="btn_no">아니요</button>
-                    <button type="button" class="btn_yes">네</button>
-                </div>
-            </div>
-        </div>
-        <!--리뷰 모달-->
-        <div class="modal_review_area hidden">
-            <div class="review_bg bg"></div>
-            <div class="review_modal">
-                <h2>알림</h2>
-                <p>
-                    후기는 앱에서만 작성할 수 있습니다 <br>
-                    작성하시겠습니까?
-                </p>
-                <div class="btn_area">
-                    <button type="button" class="btn_no">아니요</button>
-                    <button type="button" class="btn_yes">네</button>
-                </div>
-            </div>
-        </div>
-
-        <!--메인 컨텐츠-->
+	<div id="wrapper">
         <div id="main_content">
-            <!--필터-->
-            <nav class="filter_nav">
-                <div class="status_filter">
-                    <button type="button" class="all_buy_status active">전체 상태</button>
-                    <button type="button" class="buying_status">진행중</button>
-                    <button type="button" class="bought_status">완료</button>
-                    <button type="button" class="cancle_status">취소/환불</button>
-                </div>
-                <div class="pay_filter">
-                    <button type="button" class="pay_filter">
-                        <svg width="20" height="20" fill="#000" viewBox="0 0 20 20">
-                            <path d="M0 3a1 1 0 011-1h3.185A2.995 2.995 0 017 0a2.995 2.995 0 012.815 2H19a1 1 0 010 2H9.815A2.995 2.995 0 017 6a2.995 2.995 0 01-2.815-2H1a1 1 0 01-1-1zm20 14a1 1 0 01-1 1H9.815A2.995 2.995 0 017 20a2.995 2.995 0 01-2.815-2H1a1 1 0 010-2h3.185A2.995 2.995 0 017 14a2.995 2.995 0 012.815 2H19a1 1 0 011 1zm0-7a1 1 0 01-1 1h-3.185A2.995 2.995 0 0113 13a2.995 2.995 0 01-2.815-2H1a1 1 0 010-2h9.185A2.995 2.995 0 0113 7a2.995 2.995 0 012.815 2H19a1 1 0 011 1zM6 3a1 1 0 102 0 1 1 0 00-2 0zm2 14a1 1 0 10-2 0 1 1 0 002 0zm6-7a1 1 0 10-2 0 1 1 0 002 0z" fill-rule="evenodd" fill="#000">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-            </nav>
-            <!--상품 내용-->
+	        <header>
+	            <h1>나의 구매내역</h1>
+	            <!--메뉴-->
+	            <nav class="content_nav" style="font-weight: bold;">
+	                <a href="goods_buy_history.html" class="active">거래중 2</a>
+	                <a href="goods_sell_history.html">거래완료 1</a>
+	                <a href="goods_account.html">숨김 3</a>
+	            </nav>
+	        </header>
+	        
+	        
+	        
+            <!-- 상품 목록 시작 -->
             <div class="goods">
                 <div class="goods_one">
                     <a href="goods_buyer_ordersheet.html">
@@ -154,12 +142,12 @@
                     <button type="button" class="btn_review_modal">후기작성</button>
                 </div>
             </div>
+            <!-- 상품 목록 끝 -->
         </div>
     </div>
+    <!-- main_content 영역 끝 -->
 	
-	
-	<!-- 풋터 시작 -->
+	<!-- 푸터 시작 -->
 	<jsp:include page="../inc/footer.jsp" />
-
 </body>
 </html>
