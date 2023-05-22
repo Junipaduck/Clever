@@ -172,29 +172,7 @@
 								<p>카톡상담</p>
 							</div>
 						</a>
-						<table summary="No, content,Name,Data,Hits">
-							<caption>일반게시판 게시글</caption>
-							<colgroup>
-								<col width="150" />
-								<col width="100" />
-								<col width="100" />
-								<col width="*" />
-								<col width="150" />
-								<col width="150" />
-							</colgroup>
-							<thead>
-								<tr>
-									<th scope="col"><div class="tb-center">번호</div></th>
-									<th scope="col"><div class="tb-center"></div></th>
-									<th scope="col"><div class="tb-center"></div></th>
-									<th scope="col"><div class="tb-left">
-											<span style="padding-left: 37px;">제목</span>
-										</div></th>
-									<th scope="col"><div class="tb-center">날짜</div></th>
-									<th scope="col"><div class="tb-center">이름</div></th>
-								</tr>
-							</thead>
-							<tbody>
+
 
 
 
