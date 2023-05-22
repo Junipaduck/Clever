@@ -40,7 +40,7 @@
                                             </a>
                                         </div>
                                         <div class="col-2" style="text-align: left;">
-                                            <a href="#">
+                                            <a href="CustomerCenter.ad">
                                                 고객센터
                                             </a>
                                         </div>

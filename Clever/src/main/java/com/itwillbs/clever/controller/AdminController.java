@@ -53,6 +53,12 @@ public class AdminController {
 	public String reportPro() {
 		return "admin/report_pro";
 	}
+	
+	// 고객센터 매핑
+	@GetMapping(value = "/CustomerCenter.ad")
+	public String customerCenter() {
+		return "customer_center/center_main";
+	}
 }
 
 
