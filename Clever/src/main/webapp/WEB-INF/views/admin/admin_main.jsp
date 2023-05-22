@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>관리자페이지</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo2.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <link href="${pageContext.request.contextPath }/resources/vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <!-- Datatable -->

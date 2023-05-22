@@ -24,7 +24,7 @@
     <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
     <!-- 파비콘 -->
-    <link rel="icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 </head>
 <body>
 	<!-- 헤더 시작 -->
