@@ -129,10 +129,6 @@
         ***********************************-->
 
 
-		<!-- footer 시작 -->
-		<footer>
-			<jsp:include page="../inc/admin_footer.jsp"></jsp:include>
-		</footer>
 		<!-- footer 끝 -->
 
         <!--**********************************
@@ -145,6 +141,11 @@
 
         
     </div>
+    
+	<!-- footer 시작 -->
+	<footer>
+		<jsp:include page="../inc/admin_footer.jsp"></jsp:include>
+	</footer>
     <!--**********************************
         Main wrapper end
     ***********************************-->

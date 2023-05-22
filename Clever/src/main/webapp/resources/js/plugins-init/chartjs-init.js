@@ -11,7 +11,7 @@
         type: 'bar',
         data: {
             defaultFontFamily: 'Poppins',
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+            labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월"],
             datasets: [
                 {
                     label: "My First dataset",
@@ -39,7 +39,6 @@
     });
 
 
-
 //gradient bar chart
     const barChart_2 = document.getElementById("barChart_2").getContext('2d');
     //generate gradient
@@ -53,7 +52,7 @@
         type: 'bar',
         data: {
             defaultFontFamily: 'Poppins',
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+            labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월"],
             datasets: [
                 {
                     label: "My First dataset",

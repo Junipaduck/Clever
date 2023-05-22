@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo2.png">
     <link href="${pageContext.request.contextPath }/resources/vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/vendor/chartist/css/chartist.min.css" rel="stylesheet">
+    <!-- Datatable -->
+    <link href="${pageContext.request.contextPath }/resources/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
@@ -57,9 +59,7 @@
 		</header>
 		<!-- 사이드바 끝 -->
 
-        <!--**********************************
-            Content body start
-        ***********************************-->
+		<!-- 바디 시작 -->
         <div class="content-body">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
@@ -131,68 +131,91 @@
                         </div>
                     </div>
                 </div>
+                <!-- 차트 -->
                 <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Fee Collections and Expenses</h4>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">상품 거래량</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="barChart_1"></canvas>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="ct-bar-chart mt-5"></div>
+  							<div class="col-lg-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">경매 거래량</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="barChart_2"></canvas>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="ct-pie-chart"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+				<!-- 최근 신고 접수 내역 -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">All Exam Result</h4>
+                                <h4 class="card-title">최근 신고 접수 내역</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table student-data-table m-t-20">
+                                    <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>Subject</th>
-                                                <th>Grade Point</th>
-                                                <th>Percent Form</th>
-                                                <th>Percent Upto</th>
-                                                <th>Date</th>
+                                                <th>신고번호</th>
+                                                <th>구매자아이디</th>
+                                                <th>판매자아이디</th>
+                                                <th>신고날짜</th>
+                                                <th>신고사유</th>
+                                                <th>상품가격</th>
+                                                <th>상품사진</th>
+                                                <th>신고처리결과</th>
+                                                <th>누적신고횟수</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Class Test</td>
-                                                <td>Mathmatics</td>
-                                                <td>
-                                                    4.00
-                                                </td>
-                                                <td>
-                                                    95.00
-                                                </td>
-                                                <td>
-                                                    100
-                                                </td>
-                                                <td>20/04/2017</td>
+                                                <td>1</td>
+                                                <td>hello</td>
+                                                <td>hello</td>
+                                                <td>2023-05-22</td>
+                                                <td>벽돌이 왔어요</td>
+                                                <td>5000원</td>
+                                                <td>사진</td>
+                                                <td>처리완료</td>
+                                                <td>1회</td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>신고번호</th>
+                                                <th>구매자아이디</th>
+                                                <th>판매자아이디</th>
+                                                <th>신고날짜</th>
+                                                <th>신고사유</th>
+                                                <th>상품가격</th>
+                                                <th>상품사진</th>
+                                                <th>신고처리결과</th>
+                                                <th>누적신고횟수</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Timeline</h4>
+                                <h4 class="card-title">최근 입금 내역</h4>
                             </div>
                             <div class="card-body">
                                 <div class="widget-timeline">
@@ -368,94 +391,7 @@
                     </div>
 
                     <div class="col-xl-12 col-xxl-6 col-lg-6 col-md-12">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-facebook">
-                                        <span class="s-icon"><i class="fa fa-facebook"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-linkedin">
-                                        <span class="s-icon"><i class="fa fa-linkedin"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-googleplus">
-                                        <span class="s-icon"><i class="fa fa-google-plus"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-twitter">
-                                        <span class="s-icon"><i class="fa fa-twitter"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+ 
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card">
@@ -582,9 +518,7 @@
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
+		<!-- 바디 시작 -->
 
 
 		<!-- footer 시작 -->
@@ -617,6 +551,14 @@
 
     <script src="${pageContext.request.contextPath }/resources/js/dashboard/dashboard-2.js"></script>
     <!-- Circle progress -->
+    
+    <!-- Chartjs -->
+    <script src="${pageContext.request.contextPath }/resources/vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/plugins-init/chartjs-init.js"></script>
+    
+    <!-- Datatable -->
+    <script src="${pageContext.request.contextPath }/resources/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/plugins-init/datatables.init.js"></script>
 
 </body>
 
