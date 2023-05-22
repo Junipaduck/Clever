@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클레버 - 로그인</title>
+<title>클레버 - 비밀번호찾기</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -64,12 +64,7 @@
 							                        <!--[주] 탭메뉴 활성화시(=선택시) "on"을 추가해주세요. 접근성: aria-selected는 탭 선택시 true, 미선택시 false로 적용-->
 							                        <!--[주:접근성] 탭메뉴의 id 값과 탭내용의 aria-controls를 연결하고 있습니다. -->
 							                        <a href="#none" id="loinid" class="menu_id on" role="tab" aria-selected="true">
-							                            <span class="menu_text"><span class="text">ID 로그인</span></span>
-							                        </a>
-							                    </li>
-							                    <li class="menu_item" role="presentation">
-							                        <a href="#none" id="ones" class="menu_ones" role="tab" aria-selected="false">
-<!-- 							                            <span class="menu_text"><span class="text">일회용 번호</span></span> -->
+							                            <span class="menu_text"><span class="text">비밀번호찾기</span></span>
 							                        </a>
 							                    </li>
 							                    <li class="menu_item" role="presentation">
@@ -112,11 +107,9 @@
 							                                    </div>
 							                                    <div class="input_row" id="pw_line">
 							                                        <div class="icon_cell" id="pw_cell">
-							                                            <span class="icon_pw">
-							                                                <span class="blind">비밀번호</span>
-							                                            </span>
+							                                                <span class="blind">연락처</span>
 							                                        </div>
-							                                        <input type="password" id="pw" name="pw" placeholder="비밀번호" title="비밀번호"
+							                                        <input type="password" id="pw" name="pw" placeholder="연락처" title="연락처"
 							                                               class="input_text" maxlength="16">
 							                                        <span role="button" class="btn_delete" id="pw_clear" style="display: none;">
 							                                            <span class="icon_delete">
@@ -169,7 +162,7 @@
 							                                <div class="btn_login_wrap">
 							
 							                                    <button type="submit" class="btn_login" id="log.login">
-							                                        <span class="btn_text">로그인</span>
+							                                        <span class="btn_text">비밀번호찾기</span>
 							                                    </button>
 							
 							                                </div>
@@ -180,10 +173,8 @@
 							            </div>
 							            <ul class="find_wrap" id="find_wrap">
 							
-							                <li><a target="_blank" href=""
-							                       class="find_text">비밀번호 찾기</a></li>
-							                <li><a target="_blank" href=""
-							                       class="find_text">아이디 찾기</a></li>
+							                <li><a target="_blank" href="findId.me"
+							                       class="find_text">아이디찾기</a></li>
 							                <li><a href="joinForm.me" class="find_text">회원가입</a>
 							                </li>
 							

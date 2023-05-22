@@ -18,6 +18,19 @@ public class MemberController {
 		return "member/join_form";
 	}
 	
+	// 아이디찾기 페이지 포워딩
+	@GetMapping("/findId.me")
+	public String findId() {
+		return "member/find_id_form";
+	}
+	
+	
+	// 비밀번호찾기 페이지 포워딩
+	@GetMapping("/findPasswd.me")
+	public String findPasswd() {
+		return "member/find_passwd_form";
+	}
+	
 	// 마이페이지 포워딩
 	@GetMapping("/myPage.me")
 	public String myPage() {

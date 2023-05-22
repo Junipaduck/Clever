@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클레버 - 로그인</title>
+<title>클레버 - 아이디찾기</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -64,7 +64,7 @@
 							                        <!--[주] 탭메뉴 활성화시(=선택시) "on"을 추가해주세요. 접근성: aria-selected는 탭 선택시 true, 미선택시 false로 적용-->
 							                        <!--[주:접근성] 탭메뉴의 id 값과 탭내용의 aria-controls를 연결하고 있습니다. -->
 							                        <a href="#none" id="loinid" class="menu_id on" role="tab" aria-selected="true">
-							                            <span class="menu_text"><span class="text">ID 로그인</span></span>
+							                            <span class="menu_text"><span class="text">아이디찾기</span></span>
 							                        </a>
 							                    </li>
 							                    <li class="menu_item" role="presentation">
@@ -93,10 +93,10 @@
 							                                    <div class="input_row" id="id_line">
 							                                        <div class="icon_cell" id="id_cell">
 							                                            <span class="icon_id">
-							                                                <span class="blind">아이디</span>
+							                                                <span class="blind">이름</span>
 							                                            </span>
 							                                        </div>
-							                                        <input type="text" id="id" name="id" placeholder="아이디" title="아이디"
+							                                        <input type="text" id="id" name="id" placeholder="이름" title="이름"
 							                                               class="input_text" maxlength="41"
 							                                               value="">
 							                                        <span role="button" class="btn_delete" id="id_clear" style="display: none;">
@@ -107,11 +107,9 @@
 							                                    </div>
 							                                    <div class="input_row" id="pw_line">
 							                                        <div class="icon_cell" id="pw_cell">
-							                                            <span class="icon_pw">
-							                                                <span class="blind">비밀번호</span>
-							                                            </span>
+							                                                <span class="blind">연락처</span>
 							                                        </div>
-							                                        <input type="password" id="pw" name="pw" placeholder="비밀번호" title="비밀번호"
+							                                        <input type="password" id="pw" name="pw" placeholder="연락처" title="연락처"
 							                                               class="input_text" maxlength="16">
 							                                        <span role="button" class="btn_delete" id="pw_clear" style="display: none;">
 							                                            <span class="icon_delete">
@@ -164,7 +162,7 @@
 							                                <div class="btn_login_wrap">
 							
 							                                    <button type="submit" class="btn_login" id="log.login">
-							                                        <span class="btn_text">로그인</span>
+							                                        <span class="btn_text">아이디찾기</span>
 							                                    </button>
 							
 							                                </div>
@@ -174,19 +172,13 @@
 							                </form>
 							            </div>
 							            <ul class="find_wrap" id="find_wrap">
-							           		 <li><a target="_blank" href="findId.me"
-							                       class="find_text">아이디 찾기</a></li>
+							
 							                <li><a target="_blank" href="findPasswd.me"
 							                       class="find_text">비밀번호 찾기</a></li>
 							                <li><a href="joinForm.me" class="find_text">회원가입</a>
 							                </li>
 							
 							            </ul>
-							            
-							            <img src="${pageContext.request.contextPath }/resources/images/kakaoBtn.png" onclick="location.href='kakaoLogin.me'" width="50px;" style="margin-right: 40px;">
-							            <img src="${pageContext.request.contextPath }/resources/images/naverBtn.png" onclick="location.href='naverLogin.me'" width="50px;" style="margin-left: 10px;">
-							            <br>카카오로그인　　네이버로그인
-							            
 							            <!--배너-->
 							            <div id="gladbanner" class="banner_wrap">
 							                &nbsp;
