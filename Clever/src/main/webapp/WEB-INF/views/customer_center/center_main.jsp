@@ -48,6 +48,8 @@
 	href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/customer_center/unit_csboard_top2.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/customer_center/faq.css">
 
 
 
@@ -162,7 +164,7 @@
 						<dl class="bbs-link bbs-link-btm animated">
 							<dd>
 								<a href="/board/board.html?code=jo112&page=1&board_cate=&type=i"
-									class="CMbutton1">글쓰기</a>
+									class="CMbutton1" style="color: white;">글쓰기</a>
 							</dd>
 						</dl>
 						<a
@@ -173,91 +175,274 @@
 							</div>
 						</a>
 
+						<script type="text/javascript"
+							src="/shopimages/jo112/template/unit/48/unit_csboard_top2.js"></script>
+
+						<div id="faqWrap">
+							<div class="page-body">
+								<div class="faqtopwrap">
+									<div id="faq-category">
+										<ul class="faq-menu">
+											<li><a href="javascript:faqSearch('category','ALL');">전체보기</a></li>
+											<li><a href="javascript:faqSearch('category','3');">주문</a></li>
+											<li><a href="javascript:faqSearch('category','4');">배송</a></li>
+											<li><a href="javascript:faqSearch('category','5');">상품</a></li>
+											<li><a href="javascript:faqSearch('category','1');">반품/교환</a></li>
+											<li><a href="javascript:faqSearch('category','2');">회원정보</a></li>
+											<li><a href="javascript:faqSearch('category','6');">적립금/쿠폰</a></li>
+										</ul>
+										<!-- .faq-menu-->
+									</div>
+									<!-- .faq-category-->
+									<div class="faq-search">
+										<div class="search-wrap">
+
+											<fieldset>
+												<legend>FAQ 검색 폼</legend>
+												<select class="MS_input_select select-category"
+													id="search-category">
+													<option value="">전체검색</option>
+													<option value="3">주문</option>
+													<option value="4">배송</option>
+													<option value="5">상품</option>
+													<option value="1">반품/교환</option>
+													<option value="2">회원정보</option>
+													<option value="6">적립금/쿠폰</option>
+												</select> <span class="keyword"> <input id='faqSearch'
+													class="MS_input_txt"
+													onKeyPress='javascript:faqEnter(event);' type='text'
+													value='' />
+												</span> <a class="searchbt" href="javascript:faqSearch('keyword')"><img
+													src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif"
+													alt="검색" title="검색"></a>
+											</fieldset>
+											<dl class="best-keyword" style="display: none;">
+												<dt>
+													<strong>자주 찾는 검색어</strong> :
+												</dt>
+												<dd>
+													<ul class="list">
+													</ul>
+												</dd>
+											</dl>
+										</div>
+										<!-- .search-wrap -->
+										</form>
+									</div>
+									<!-- .faq-search-->
+								</div>
+
+								<div id="faqTable">
+									<table summary="분류 제목">
+										<caption>질문/답변</caption>
+										<colgroup>
+											<col width="100" />
+											<col width="200" />
+											<col width="*" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">
+													<div class="tb-center">번호</div>
+												</th>
+												<th scope="col">
+													<div class="tb-center">분류</div>
+												</th>
+												<th scope="col">
+													<div class="tb-left" style="font-weight: 400;">제목</div>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr uid="6">
+												<td>
+													<div class="tb-center">64</div>
+												</td>
+												<td>
+													<div class="tb-center">주문</div>
+												</td>
+												<td>
+													<div class="tb-left">제가 구매하고 나서 이벤트가 진행되었어요! 행사가격으로
+														변경 해주세요!</div>
+												</td>
+											</tr>
+											<tr class="slide-hide">
+												<td colspan="3">
+													<div class="tb-slide">
+														<dl class="qst">
+															<dt>Q</dt>
+															<dd>제가 구매하고 나서 이벤트가 진행되었어요! 행사가격으로 변경 해주세요!</dd>
+														</dl>
+														<dl class="adv">
+															<dt>A</dt>
+															<dd>
+																이벤트의 경우 서프라이즈성 이벤트로 사전 공지 없이 진행이 되는 부분 깊은 양해 부탁드리며. <br>할인
+																적용된 상품으로 구매 원하실 경우, 기존 상품 반품 후 재구매해주셔야 하는 점 참고
+																부탁드립니다.&nbsp;&nbsp;: )<br> ( 반품 왕복 배송비 발생합니다. ) <br>*임의
+																상품 가격 조정 처리는 어려운 점 깊은 양해 부탁드립니다.
+															</dd>
+														</dl>
+													</div>
+												</td>
+											</tr>
+											<tr uid="24">
+												<td>
+													<div class="tb-center">63</div>
+												</td>
+												<td>
+													<div class="tb-center">반품/교환</div>
+												</td>
+												<td>
+													<div class="tb-left">교환 배송비는 얼마인가요?</div>
+												</td>
+											</tr>
+											<tr class="slide-hide">
+												<td colspan="3">
+													<div class="tb-slide">
+														<dl class="qst">
+															<dt>Q</dt>
+															<dd>
+																<p>
+																	<span data-sheets-value="{" 1":2,"2":"교환="" 배송비는=""
+																		얼마인가요?"}"="" data-sheets-userformat="{"
+																		2":513,"3":{"1":0},"12":0}"=""
+																		style="font-size: 10pt; font-family: Arial;">교환
+																		배송비는 얼마인가요?</span>&nbsp;
+																</p>
+															</dd>
+														</dl>
+														<dl class="adv">
+															<dt>A</dt>
+															<dd>
+																<p>
+																	<span data-sheets-value="{" 1":2,"2":"교환="" 배송비는=""
+																		회수비용과="" 재출고비용이="" 발생하여="" 5,000원이="" 발생합니다.=""
+																		"}"="" data-sheets-userformat="{"
+																		2":513,"3":{"1":0},"12":0}"=""
+																		style="font-size: 10pt; font-family: Arial;">교환
+																		배송비는 회수비용과 재출고비용이 발생하여 6,000원이 발생합니다. : )</span>&nbsp;
+																</p>
+																<p>&nbsp;</p>
+																<p>입금주명 : 주식회사뮬라</p>
+																<p>계좌 : 신한 100-029-277534</p>
+																<p>&nbsp;</p>
+																<p>가상 계좌가 아니기 때문에 주문자, 수령자 성함과 일치해야 확인이 가능하며</p>
+																<p>정확한 확인을 위하여 입금자명 뒤에 연락처 뒷자리 기재 부탁드립니다.</p>
+																<p>ex)&nbsp; 김뮬라4540</p>
+															</dd>
+														</dl>
+													</div>
+												</td>
+											</tr>
+	
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- .page-body -->
+							<div>
+								<ol class="paging">
+									<li><strong>1</strong></li>
+									<li><a href="/shop/faq.html?page=2">2</a></li>
+									<li><a href="/shop/faq.html?page=3">3</a></li>
+									<li><a href="/shop/faq.html?page=4">4</a></li>
+									<li class="last"><a href="/shop/faq.html?page=4"><img
+											src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif"
+											alt="끝" title="" /></a></li>
+								</ol>
+							</div>
+						</div>
+						<!-- #faqWrap -->
+
+					</div>
+					<!-- #contentWrap -->
+				</div>
+				<!-- #contentWrapper-->
+				<hr />
 
 
 
+				<!-- main_content 영역 끝 -->
 
-	<!-- main_content 영역 끝 -->
-
-	<!-- 푸터 시작 -->
-	<jsp:include page="../inc/footer.jsp" />
+				<!-- 푸터 시작 -->
+				<jsp:include page="../inc/footer.jsp" />
 
 
-	<!-- js -->
-	<script
-		src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/market/market_intro_modify.js"></script>
+				<!-- js -->
+				<script
+					src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/market/market_intro_modify.js"></script>
 
-	<!-- customer_center 외부 js -->
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/all.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/analytics.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/bigin.sdk.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/board_list.jo112.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/bookmark.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/click.euc-kr.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/common.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/cookie.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/detailpage.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/fbevents.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/flash.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/footer.1.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/genesis.common.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/gtm.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.bxslider.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/jquery-1.7.2.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/kp.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/lazyload.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/ld.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/mslog.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/owl.carousel.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/prototype.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/referer_cookie.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/remind.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/rightbanner.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/script.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/slick.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/swiper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/unit_csboard_top2.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/util-min-2.0.1.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/wcslog.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/js/customer_center/wp_astg_2.0_shop.js"></script>
+				<!-- customer_center 외부 js -->
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/all.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/analytics.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/bigin.sdk.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/board_list.jo112.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/bookmark.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/click.euc-kr.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/common.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/cookie.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/detailpage.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/fbevents.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/flash.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/footer.1.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/genesis.common.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/gtm.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.bxslider.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery-1.7.2.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/kp.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/lazyload.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/ld.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/mslog.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/owl.carousel.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/prototype.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/referer_cookie.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/remind.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/rightbanner.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/script.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/slick.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/swiper.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/unit_csboard_top2.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/util-min-2.0.1.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/wcslog.js"></script>
+				<script
+					src="${pageContext.request.contextPath }/resources/js/customer_center/wp_astg_2.0_shop.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,86 @@
+/* BASIC css start */
+/*#contentWrapper {top:70px;}*/
+div#contentWrapper {margin-top:250px;}
+#faqWrap{width:1340px;margin: 0 auto 200px;}
+#MS_WritenBySEB P { margin-top:7px; margin-bottom:7px;}
+#faqWrap BLOCKQUOTE { margin-left:15px; }
+#faqWrap BLOCKQUOTE.q1,
+#faqWrap BLOCKQUOTE.q2,
+#faqWrap BLOCKQUOTE.q3,
+#faqWrap BLOCKQUOTE.q4,
+#faqWrap BLOCKQUOTE.q5,
+#faqWrap BLOCKQUOTE.q6,
+#faqWrap BLOCKQUOTE.q7{ padding:10px; margin-left:15px; margin-right:15px;}
+#faqWrap BLOCKQUOTE.q1{ padding:0 10px; border-left:2px solid #ccc;}
+#faqWrap BLOCKQUOTE.q2{ padding:0 10px; background:url(/images/d3/modern_simple/common/bg_qmark.gif) no-repeat;}
+#faqWrap BLOCKQUOTE.q3{ border:1px solid #d9d9d9;}
+#faqWrap BLOCKQUOTE.q4{ border:1px solid #d9d9d9; background:#fbfbfb;}
+#faqWrap BLOCKQUOTE.q5{ border:2px solid #707070;}
+#faqWrap BLOCKQUOTE.q6{ border:1px dashed #707070;}
+#faqWrap BLOCKQUOTE.q7{ border:1px dashed #707070; background:#fbfbfb;}
+/* FAQ검색 폼 */
+#faqWrap .faqtopwrap{display: flex; justify-content: space-between; flex-wrap:wrap;}
+#faqWrap .faq-search {}
+#faqWrap .search-wrap {width: 383px; text-align: left;}
+#faqWrap .search-wrap .keyword {display: inline-block; width: 250px; height: 32px; line-height: 29px; box-sizing: border-box; padding-left: 10px; border-bottom: 1px solid #555; margin-left: 10px;}
+#faqWrap .search-wrap .keyword input {width: 100%;box-sizing: border-box;border: 0; font-size: 14px; padding: 0 10px 0 0; line-height: normal;}
+#faqWrap .search-wrap .searchbt{width: 18px; height: 18px; display: inline-block;}
+#faqWrap .search-wrap .searchbt img{width: 100%;}
+#faqWrap .search-wrap .select-category {width:93px; height: 30px; line-height: 30px; padding-left: 5px; box-sizing: border-box; border: none; border-bottom: 1px solid #555; font-size: 14px;background-color:#fff}
+select {background-position:center right 12px !important;}
+#faqWrap .search-wrap .btn-submit { left: 390px; top: 23px; }
+#faqWrap .search-wrap .best-keyword {margin: 10px 0;}
+#faqWrap .search-wrap .best-keyword:after{content:""; display:block; clear:both;}
+#faqWrap .search-wrap .best-keyword dt,
+#faqWrap .search-wrap .best-keyword dd,
+#faqWrap .search-wrap .best-keyword dd ul,
+#faqWrap .search-wrap .best-keyword dd ul li { display: inline; float: left; width: auto; height: 17px; line-height: 17px; }
+#faqWrap .search-wrap .best-keyword dt strong {color: #333; font-weight: 400; font-size: 14px; }
+#faqWrap .search-wrap .best-keyword dd ul li { margin-left: 7px; }
+#faqWrap .search-wrap .best-keyword dd ul li a { white-space: nowrap; color: #999; }
+/* faq 메뉴 */
+#faq-category {margin: 0 0 20px; }
+#faqWrap .faq-menu { *zoom: 1; overflow: hidden; display: flex; justify-content: center; flex-wrap: wrap;}
+#faqWrap .faq-menu li,
+#faqWrap .faq-menu li a {width: auto; height: 35px;line-height: 35px; }
+#faqWrap .faq-menu li { padding: 0 10px; /*background: url(/images/d3/modern_simple/common/bull_faq_link.gif) no-repeat 0 57%;*/ }
+#faqWrap .faq-menu li a { color: #555; font-weight: 500; padding-right: 20px; white-space: nowrap; font-size: 14px; }
+#faqWrap .faq-menu li.now a { color: #555; }
+/* faq 리스트 */
+#faqWrap #faqTable { border-top: 1px solid #dadada; border-bottom: 1px solid #dadada; }
+#faqWrap #faqTable th{ padding: 15px 0; line-height: 2.2; color: #111; border-bottom: 1px dotted #dcdcdc;}
+#faqWrap #faqTable tr td { padding: 15px 0; line-height: 2.2; color: #111; border-bottom: 1px dotted #dcdcdc;}
+#faqWrap #faqTable tr.slide-hide td { border-bottom: 0px; }
+#faqWrap #faqTable th { background-color: #f8f8f8; }
+#faqWrap #faqTable td,
+#faqWrap #faqTable td a { color: #555; }
+#faqWrap #faqTable td { cursor: pointer; }
+#faqWrap #faqTable tr.slide-hide,
+#faqWrap #faqTable tr.slide-hide dl { display: none; }
+#faqWrap #faqTable tr.slide-show { display: table-rows; *display: block; }
+#faqWrap #faqTable tr.slide-show dl { display: block; overflow:hidden;}
+#faqWrap #faqTable tr.slide-show dl:after{ content: ""; clear: both; display: block;}
+#faqWrap #faqTable tr.slide-hide td,
+#faqWrap #faqTable tr.slide-show td { cursor: default; background-color: #f8f8f8; }
+#faqWrap #faqTable .tb-slide { padding: 0 20px; }
+#faqWrap #faqTable .tb-slide a { text-decoration: underline; color : #800080; }
+#faqWrap #faqTable .tb-slide ol,
+#faqWrap #faqTable .tb-slide ul { margin-left:35px; }
+#faqWrap #faqTable .tb-slide dl { position: relative; width: 100%; }
+#faqWrap #faqTable td .tb-slide dl dt {float: left; margin-left: 25px; padding: 10px 0 15px;}
+#faqWrap #faqTable td .tb-slide dl.qst dt{}
+#faqWrap #faqTable td .tb-slide dl.adv dt{padding: 15px 0 10px;}
+#faqWrap #faqTable td .tb-slide dl dd {float: left; margin-left: 35px; padding: 15px 0 15px;}
+#faqWrap #faqTable td .tb-slide dl.qst{background:#fff;}
+#faqWrap #faqTable td .tb-slide dl.adv { }
+#faqWrap #faqTable td .tb-slide dl.adv dd{padding: 15px 0 10px;}
+#faqWrap #faqTable td .tb-slide dl *{font-family:'Noto Sans KR', 'Noto Sans', sans-serif !important; font-size: 14px !important;}
+#faqWrap .pager { text-align: center; margin-top: 20px; }
+#faqWrap .pager ol li { display: inline; padding: 0px 5px; }
+#faqWrap .pager ol li img { margin-top: 2px; }
+#faqWrap .pager ol li.first,
+#faqWrap .pager ol li.next { padding-right: 0; }
+#faqWrap .pager ol li.last,
+#faqWrap .pager ol li.prev { padding-left: 0; }
+/* BASIC css end */
+
