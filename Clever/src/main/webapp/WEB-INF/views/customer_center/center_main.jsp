@@ -167,14 +167,7 @@
 									class="CMbutton1" style="color: white;">글쓰기</a>
 							</dd>
 						</dl>
-						<a
-							onclick="javascript:void(window.open('https://lc-api.lunasoft.co.kr/lunachat/api-connect/@뮬라웨어/main/no_gid','win0','width=775,height=662,status=no,toolbar=no,scrollbars=yes'))">
-							<div class="kakaocsbt">
-								<img src="//mulawear.jpg3.kr//phps/kakaoicon/mulacskakao.png">
-								<p>카톡상담</p>
-							</div>
-						</a>
-
+						<!-- 자주묻는 질문 시작 -->
 						<script type="text/javascript"
 							src="/shopimages/jo112/template/unit/48/unit_csboard_top2.js"></script>
 
@@ -256,14 +249,13 @@
 										<tbody>
 											<tr uid="6">
 												<td>
-													<div class="tb-center">64</div>
+													<div class="tb-center">1</div>
 												</td>
 												<td>
 													<div class="tb-center">주문</div>
 												</td>
 												<td>
-													<div class="tb-left">제가 구매하고 나서 이벤트가 진행되었어요! 행사가격으로
-														변경 해주세요!</div>
+													<div class="tb-left">물건이 도착하지 않으면 어떻게 해야 하나요</div>
 												</td>
 											</tr>
 											<tr class="slide-hide">
@@ -287,13 +279,13 @@
 											</tr>
 											<tr uid="24">
 												<td>
-													<div class="tb-center">63</div>
+													<div class="tb-center">2</div>
 												</td>
 												<td>
-													<div class="tb-center">반품/교환</div>
+													<div class="tb-center">반품</div>
 												</td>
 												<td>
-													<div class="tb-left">교환 배송비는 얼마인가요?</div>
+													<div class="tb-left">중고 거래도 반품 가능한가요?</div>
 												</td>
 											</tr>
 											<tr class="slide-hide">
