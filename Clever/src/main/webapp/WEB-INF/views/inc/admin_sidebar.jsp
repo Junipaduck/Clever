@@ -48,7 +48,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-plug"></i><span class="nav-text">신고 처리 결과</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">신고뭐하지</a></li>
+                            <li><a href="adminReportPro.ad">신고 처리 현황</a></li>
                         </ul>
                     </li>
 
@@ -104,15 +104,9 @@
                     </li>
                     <li class="nav-label">경매관리</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-copy-06"></i><span class="nav-text">경매상품목록</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="adminAuction.ad">경매 목록 조회</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">경매현황</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-register.html">질문뭐하지</a></li>
+                            <li><a href="adminAuction.ad">경매 상품 목록 조회</a></li>
                         </ul>
                     </li>
                 </ul>

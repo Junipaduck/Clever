@@ -39,13 +39,19 @@ public class AdminController {
 	// 경매 목록 조회
 	@GetMapping(value = "/adminAuction.ad")
 	public String autionList() {
-		return "admin/aution_list";
+		return "admin/auction_list";
 	}
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
 	public String reportList() {
 		return "admin/report_list";
+	}
+	
+	//신고 처리 결과 페이지 
+	@GetMapping(value = "/adminReportPro.ad")
+	public String reportPro() {
+		return "admin/report_pro";
 	}
 }
 
