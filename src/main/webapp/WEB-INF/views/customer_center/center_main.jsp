@@ -78,8 +78,7 @@
 			</div>
 			<div class="bbs-cate">
 				<ul>
-					<li><a href="/board/board.html?code=jo112_board1"
-						data-link="jo112_board1">공지사항</a></li>
+					<li><a href="noticeMain.ad">공지사항</a></li>
 					<li><a href="/shop/faq.html">자주묻는질문</a></li>
 					<li><a href="/board/board.html?code=jo112" data-link="jo112">고객문의</a></li>
 					<li><a href="/shop/page.html?id=30" data-link="jo112">쇼핑가이드</a></li>
