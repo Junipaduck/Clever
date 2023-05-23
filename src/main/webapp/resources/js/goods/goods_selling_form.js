@@ -13,7 +13,7 @@ $(document).ready(function ( ) {
             
             document.querySelector("div.goods_Scategory").classList.add("hidden");
 
-            if(lcategory.innerText === "의류"){
+            if(lcategory.innerText === "의류/잡화"){
                 document.querySelector("div.goods_Scategory_acc").classList.add("hidden");
                 const classList = document.querySelector("div.goods_Scategory_cloth").classList;
                 classList.remove("hidden");
@@ -43,8 +43,8 @@ $(document).ready(function ( ) {
         });
     });
 
-    document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
-    document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
+//    document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
+//    document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
 });
 
 function setImages(event){

@@ -90,21 +90,41 @@ font-family: 'SUITE-Regular';
                     </div>
                     <div class="goods_category_area">
                         <p>카테고리<span class="red">*</span></p>
-                        <div>
-                            <div class="goods_category">
-                                <div class="goods_Lcategory">
-                                    <div>의류/잡화</div>
-                                    <div>디지털/가전</div>
-                                    <div>도서/티켓/문구</div>
-                                    <div>뷰티/미용</div>
-                                    <div>식품</div>
-                                    <div>반려동물용품</div>
-                                    <div>기타</div>
-                                </div>
-                                <div class="goods_Scategory_cloth hidden">
-                                    <div>의류</div>
-                                    <div>잡화</div>
-                                </div>
+                        	<select class="form-select" aria-label="Default select example" style="width: 244px; height: 48px;">
+							  <option selected>카테고리 선택</option>
+							  <option value="1">의류/잡화</option>
+							  <option value="2">디지털/가전</option>
+							  <option value="3">도서/티켓/문구</option>
+							  <option value="3">뷰티/미용</option>
+							  <option value="3">식품</option>
+							  <option value="3">반려동물용품</option>
+							  <option value="3">기타</option>
+							</select>
+                        
+<!--                           <p id="category_clothes"> -->
+<!--                         <span> -->
+<!--                             <i class="bi bi-chevron-right"></i> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <ul class="category_clothes_bar"> -->
+<!--                                 <li><a href="#">남성의류</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">여성의류</a></li> -->
+<!--                             </ul> -->
+<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
+<!--                         </span> -->
+<!--                     	</p> -->
+                    	
+<!--                         <div> -->
+<!--                             <div class="goods_category"> -->
+<!--                                 <div class="goods_Lcategory"> -->
+<!--                                     <div>의류/잡화</div> -->
+<!--                                     <div>디지털/가전</div> -->
+<!--                                     <div>도서/티켓/문구</div> -->
+<!--                                     <div>뷰티/미용</div> -->
+<!--                                     <div>식품</div> -->
+<!--                                     <div>반려동물용품</div> -->
+<!--                                     <div>기타</div> -->
+<!--                                 </div> -->
 <!--                                 <div class="goods_Scategory_cloth hidden"> -->
 <!--                                     <div>디지털</div> -->
 <!--                                     <div>가전</div> -->
@@ -113,12 +133,12 @@ font-family: 'SUITE-Regular';
 <!--                                     <div>시계/쥬얼리</div> -->
 <!--                                     <div>패션악세서리</div> -->
 <!--                                 </div> -->
-                            </div>
-                            <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
-                            <p>선택한 카테고리 : <span class="selected_category"></span></p>
-                            <input type="hidden" name="Lcategory">
-                            <input type="hidden" name="Scategory">
-                        </div>
+<!--                             </div> -->
+<!--                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p> -->
+<!--                             <p>선택한 카테고리 : <span class="selected_category"></span></p> -->
+<!--                             <input type="hidden" name="Lcategory"> -->
+<!--                             <input type="hidden" name="Scategory"> -->
+<!--                         </div> -->
                     </div>
                     <div class="goods_location_area">
                         <p>거래지역<span class="red">*</span></p>
