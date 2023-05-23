@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-md-4 sell_center">
                             <p>
-	                            <a href="매핑주소" style="color: black;">중고거래　</a>
+	                            <a href="product_list" style="color: black;">중고거래　</a>
 	                            <a href="auction" style="color: black;">경매하기　</a>
 	                            <a href="goodsStore.ad" style="color: black;">스토어　</a>
 	                        </p>

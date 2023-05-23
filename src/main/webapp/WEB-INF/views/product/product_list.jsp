@@ -88,8 +88,10 @@
                 <!--상품 영역-->
                 <section class="main_goods">
                     <div class="goods_wrap">
+                    
+                   		<!-- 상품 1개 카드 -->
                         <div class="goods">
-                            <a href="goods_product_detail.html">
+                            <a href="product_detail">
                                 <div class="goods_image">
                                     <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                                     <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
@@ -104,8 +106,11 @@
                                 </div>
                             </a>
                         </div>
+                        <!-- //상품 1개 카드 -->
+                        
+                        <!-- 상품 1개 카드 -->
                         <div class="goods">
-                            <a href="goods_product_detail.html">
+                            <a href="product_detail">
                                 <div class="goods_image">
                                     <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
                                 </div>
@@ -118,6 +123,9 @@
                                 </div>
                             </a>
                         </div>
+                        <!-- //상품 1개 카드 -->
+                        
+                        
                     </div>
                 </section>
             </div>
