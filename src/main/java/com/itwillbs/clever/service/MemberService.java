@@ -13,6 +13,11 @@ public class MemberService {
 	@Autowired
 	private MemberMapper mapper;
 
+	//회원가입
+	public int insertMember(MemberVO member) {
+		return mapper.insertMember(member);
+	}
+	
 	public boolean loginSuccess(MemberVO member) {
 		return mapper.loginSuccess(member);
 	}

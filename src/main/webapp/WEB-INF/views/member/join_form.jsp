@@ -161,12 +161,12 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 window.onload = function(){
-    document.getElementById("address1").addEventListener("click", function(){ //주소입력칸을 클릭하면
+    document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
         //카카오 지도 발생
         new daum.Postcode({
             oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("address1").value = data.address; // 주소 넣기
-                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
+                document.getElementById("member_address").value = data.address; // 주소 넣기
+                document.querySelector("input[name=member_address2]").focus(); //상세입력 포커싱
             }
         }).open();
     });
@@ -180,8 +180,6 @@ window.onload = function(){
 			  <div class="row">
 			    <div class="col"></div>
 			    <div class="col"><!-- 그리드 중간부분 시작 -->
-			    
-			    
 			    
 				     <header class="header" role="banner" >
 				        <div class="header_inner">
@@ -197,32 +195,32 @@ window.onload = function(){
 					    <table>
 						    <tr>
 						        <td class="col1">이름</td>
-						        <td class="col2"><input type="text" name="name" maxlength="5"></td>
+						        <td class="col2"><input type="text" id="member_name" name="member_name"  maxlength="5"></td>
 						    </tr>
 						    <tr>
 						        <td class="col1">아이디</td>
 						        <td class="col2">
-						            <input type="text" name="id" maxlength="10">
+						            <input type="text" id="member_id" name="member_id" maxlength="10">
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호</td>
 						        <td class="col2">
-						            <input type="password" name="pwd" maxlength="16">
+						            <input type="password" id="member_passwd" name="member_passwd" maxlength="16">
 						            <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
 						            10 ~ 16자리</span>로 입력이 가능합니다.</p>
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호 확인</td>
-						        <td class="col2"><input type="password" name="pwdCheck" maxlength="16"></td>
+						        <td class="col2"><input type="password" id="member_passwd2" name="member_passwd2" maxlength="16"></td>
 						    </tr>
 						    <tr>
 						        <td class="col1">이메일</td>
 						        <td class="col2">
-						            <input type="text" name="mailid">
+						            <input type="text" name="member_email">
 						            <span class="a">@</span>
-						            <input type="text" name="email">
+						            <input type="text" name="member_email2">
 						            <select name="mailslc">
 						                <option value="self" selected>직접입력</option>
 						                <option value="naver">naver.com</option>
@@ -235,32 +233,32 @@ window.onload = function(){
 						     <tr>
 						        <td class="col1">연락처</td>
 						        <td class="col2">
-							        <input type="text" name="">
+							        <input type="text" id="member_phone" name="member_phone">
 							        <input class='but1' type="button" value="인증하기" onclick="">
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">생년월일</td>
 						        <td class="col2">
-						        	<input type="text" name=""> <span class="a"> - </span><input type="text" name="" style="width: 30px;">
+						        	<input type="text" id="member_birth" name="member_birth"> <span class="a"> - </span><input type="text" id="member_birth2" name="member_birth2" style="width: 30px;">
 							        <p>※생년월일은 <span class="num">주민번호 앞 6자리 - 주민번호 뒤 1자리</span>로 입력해주세요.</p>
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">주소</td>
-						        <td class="col2"><input type="text" id="address1" name="address1" placeholder="도로명주소 검색"><span class="a"> & </span><input type="text" id="address2" name="address2" placeholder="상세주소"></td>
+						        <td class="col2"><input type="text" id="member_address" name="member_address" placeholder="도로명주소 검색"><span class="a"> & </span><input type="text" id="member_address2" name="member_address2" placeholder="상세주소"></td>
 						    </tr>
 						    <tr>
 						        <td class="col1">관심카테고리</td>
-						        <td class="col2"><select name="grade">
+						        <td class="col2"><select name="member_interest" id="member_interest">
 						            <option value="slc1" selected>선택</option>
-						            <option value="g1">의류/잡화</option>
-						            <option value="g2">디지털/가전</option>
-						            <option value="g3">도서/티켓/문구</option>
-						            <option value="g4">뷰티/미용</option>
-						            <option value="g5">식품</option>
-						            <option value="g6">반려동물용품</option>
-						            <option value="g6">기타</option>
+						            <option value="의류/잡화">의류/잡화</option>
+						            <option value="디지털/가전">디지털/가전</option>
+						            <option value="도서/티켓/문구">도서/티켓/문구</option>
+						            <option value="뷰티/미용">뷰티/미용</option>
+						            <option value="식품">식품</option>
+						            <option value="반려동물용품">반려동물용품</option>
+						            <option value="기타">기타</option>
 						        </select>
 						    </tr>
 					    </table>
@@ -268,7 +266,7 @@ window.onload = function(){
 					  </div>
 					 
 					  <div class="create">
-					        <input class="but4" type="button" value="회원가입" onclick="">
+					        <input class="but4" type="submit" value="회원가입">
 					  </div>
 					  </div>
 				  </form>
