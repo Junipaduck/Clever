@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,13 @@
 <link rel="icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
 </head>
 <body>
+<script type="text/javascript">
+	function confirmLogout(){
+		let result = confirm("로그아웃 하시겠습니까?");	
+		return result;
+	}
+</script>
+
 <!-- header 영역 -->
         <header>
             <div id="top_header_bot_border">
@@ -34,21 +42,20 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="row justify-content-end top_header_login">
-                                        <div class="col-2">
-                                            <a href="loginForm.me">
-                                                로그인
-                                            </a>
-                                        </div>
-                                        <div class="col-2" style="text-align: left;">
-                                            <a href="CustomerCenter.ad">
-                                                고객센터
-                                            </a>
-                                        </div>
-                                        <div class="col-2" style="text-align: left;">
-                                            <a href="adminMain.ad">
-                                               	임시관리자페이지
-                                            </a>
-                                        </div>
+                                    	<c:choose>
+                                    		<c:when test="${empty sessionScope.sId }">
+		                                        <div class="col-2"><a href="loginForm.me">로그인</a></div>
+		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div>
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			<div class="col-2"><a href="myPage.me">${sessionScope.sId }님</a></div>
+                                    			<div class="col-2"><a href="logout.me" onclick="return confirmLogout()">로그아웃</a></div>
+		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div>
+		                                        	<c:if test="${sessionScope.sId eq 'admin' }">
+			                                        	<div class="col-3" style="text-align: left;"><a href="adminMain.ad">관리자페이지</a></div>
+		                                        	</c:if>
+                                    		</c:otherwise>
+                                    	</c:choose>
                                     </div>
                                 </div>
                             </div>
