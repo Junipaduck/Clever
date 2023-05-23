@@ -91,9 +91,5 @@ public class MainController {
 		return "카테고리리스트";
 	}
 	
-	@GetMapping(value = "chatting")
-	public String chatting() {
-		return "chatting/chatting";
-	}
 	
 }

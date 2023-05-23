@@ -1,6 +1,9 @@
 package com.itwillbs.clever.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -20,7 +23,13 @@ public class ProductController {
 	
 	// 상품 등록하기
 	@GetMapping("/product_upload")
-	public String productUpload() {
+	public String productUpload(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("target", "loginForm.me");
+			return "success";
+		}
 		return "product/product_upload";
 	}
 	
