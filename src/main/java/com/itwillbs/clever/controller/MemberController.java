@@ -44,7 +44,14 @@ public class MemberController {
 	
 	// 마이페이지 포워딩
 	@GetMapping("/myPage.me")
-	public String myPage() {
+	public String myPage(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("target", "loginForm.me");
+			return "success";
+		}
+		
 		return "mypage/my_page";
 	}
 	
@@ -74,6 +81,17 @@ public class MemberController {
 		return "redirect:/"; // 로그아웃 후 메인화면으로 리다이렉트 이동 
 	}
 
+	
+	// 채팅 폼 포워딩
+	@GetMapping(value = "chatting")
+	public String chatting(HttpSession session, Model model) {
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg","로그인 후 이용해주세요.");
+			model.addAttribute("target","loginForm.me");
+			return "success";
+		}
+		return "chatting/chatting";
+	}
 	
 
 	
