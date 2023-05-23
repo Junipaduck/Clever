@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.clever.mapper.MemberMapper">
+
+
+	<!-- 로그인 -->
+	<select id="loginSuccess" parameterType="String" resultType="boolean">
+		SELECT IF(COUNT(*) = 1, 1, 0)
+		FROM member
+		WHERE member_id = #{member_id} AND member_passwd = #{member_passwd}
+	</select>
+	
+
+
+</mapper>

@@ -74,18 +74,6 @@
 							                    </li>
 							                </ul>
 							                <form action="loginPro.me" method="POST">
-							                    <input type="hidden" id="localechange" name="localechange" value="">
-							                    <input type="hidden" name="dynamicKey" id="dynamicKey" value="yof65-ms19PMu12I7ERX9NK_bo70mtLLDhrOpKL8WQOoh7PKDn0WWnUnh2maVur-Eq-p6To3HetGHjFR_eQiMZeayILhXOFK3AreSVv9j54">
-							                    <input type="hidden" name="encpw" id="encpw" value="">
-												<input type="hidden" name="enctp" id="enctp" value="1">
-												<input type="hidden" name="svctype" id="svctype" value="1">
-												<input type="hidden" name="smart_LEVEL" id="smart_LEVEL" value="1">
-												<input type="hidden" name="bvsd" id="bvsd" value="">
-												<input type="hidden" name="encnm" id="encnm" value="">
-												<input type="hidden" name="locale" id="locale" value="ko_KR">
-												<input type="hidden" name="url" id="url" value="https://www.naver.com/">
-							
-							
 							                    <ul class="panel_wrap">
 							                        <li class="panel_item" style="display: block;">
 							                            <div class="panel_inner" role="tabpanel" aria-controls="loinid">
@@ -96,7 +84,7 @@
 							                                                <span class="blind">아이디</span>
 							                                            </span>
 							                                        </div>
-							                                        <input type="text" id="id" name="id" placeholder="아이디" title="아이디"
+							                                        <input type="text" id="member_id" name="member_id" placeholder="아이디" title="아이디"
 							                                               class="input_text" maxlength="41"
 							                                               value="">
 							                                        <span role="button" class="btn_delete" id="id_clear" style="display: none;">
@@ -111,7 +99,7 @@
 							                                                <span class="blind">비밀번호</span>
 							                                            </span>
 							                                        </div>
-							                                        <input type="password" id="pw" name="pw" placeholder="비밀번호" title="비밀번호"
+							                                        <input type="password" id="member_passwd" name="member_passwd" placeholder="비밀번호" title="비밀번호"
 							                                               class="input_text" maxlength="16">
 							                                        <span role="button" class="btn_delete" id="pw_clear" style="display: none;">
 							                                            <span class="icon_delete">
