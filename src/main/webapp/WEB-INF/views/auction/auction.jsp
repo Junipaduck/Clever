@@ -24,15 +24,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
+
 <!-- js -->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
+
+
+<!-- auction -->
+<link rel="stylesheet" type="text/css" href="//script.auction.co.kr/style/css/used/used.css">
+<script type="text/javascript" src="//script.auction.co.kr/style/js/used.js"></script>
 </head>
 <body>
 	<!-- 헤더 시작 -->
 	<header>
-		<jsp:include page="../inc/header.jsp" />
+		<jsp:include page="auction_header.jsp" />
 	</header>
 	<!--로그아웃 확인 모달창-->
         <div class="logout_modal_wrap hidden">
@@ -81,67 +87,266 @@
         </div>
     <!-- main_content 영역 -->
         <div id="main_content">
-            <!--메인 슬라이드-->
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider1.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider3.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider4.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider5.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider6.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+			<div id="header" class="used_head">
+    <div class="headinside">
+        <script type="text/javascript" src="//script.auction.co.kr/listing/UsedMarketHeader.js?ver=20220318"></script>
+		<!-- 카테고리 -->
+		<div class="tab_umarket">
+			<!-- 대대분류 -->
+			<ul class="tablist">
 
-            <!--앱 다운 배너-->
-            <div class="banner_wrap">
-                <img src="${pageContext.request.contextPath }/resources/images/ejclxm.png" onclick="location.href='https://thecheat.co.kr/rb/?mod=_search'" alt="더치트배너" width="100%">
-                <div class="qr_wrap">
-                    <img src="${pageContext.request.contextPath }/resources/images/ejclxmQR.png" alt="더치트 앱 다운로드 qr 코드" class="image_qr">
-                </div>
-            </div>
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_01.png" alt="패션의류"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_02.png" alt="패션잡화"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_03.png" alt="유아용품"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_04.png" alt="가구/생활/식품"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_05.png" alt="취미/컬렉션"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_06.png" alt="디지털"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_07.png" alt="컴퓨터"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_08.png" alt="스포츠/레저"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_09.png" alt="뷰티"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_10.png" alt="생활가전"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_11.png" alt="자동차/공구"></a>
+				</li>
+    
+				<li class="dep1">
+				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_12.png" alt="도서/기타"></a>
+				</li>
+    
+			</ul>		
+			<!-- //대대분류 -->
+            <!-- 대분류 -->
+
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=12000000">여성의류</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=13000000">남성의류</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=40000000">언더웨어</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=30000000">신발</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=16000000">가방/잡화</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=17000000">쥬얼리/시계</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=52000000">수입명품</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=31000000">출산/육아</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=20000000">장난감/완구</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=32000000">유아동의류</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=49000000">유아동신발/잡화</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=27000000">가구/DIY</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=23000000">조명/인테리어</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=75000000">침구/커튼</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=28000000">생활용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=44000000">주방용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=51000000">신선식품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=19000000">건강식품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=38000000">커피/음료</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=64000000">가공식품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=39000000">생필품</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=33000000">건강/의료용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=45000000">반려동물용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=46000000">악기/취미</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=10000000">문구/사무용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=99000000">꽃/이벤트용품</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=02000000">카메라</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=14000000">음향기기</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=15000000">게임</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=07000000">모바일/태블릿</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=22000000">노트북/데스크탑</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=01000000">모니터/프린터</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=50000000">PC주변기기</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=43000000">저장장치</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=21000000">휘트니스/수영</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=37000000">스포츠의류/운동화</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=08000000">골프</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=48000000">등산/아웃도어</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=72000000">캠핑/낚시</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=73000000">구기/라켓</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=76000000">자전거/보드/기타레저</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=18000000">화장품/향수</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=05000000">바디/헤어</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=29000000">영상가전</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=34000000">계절가전</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=03000000">주방가전</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=71000000">생활/미용가전</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=04000000">자동차용품</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=55000000">공구/안전/산업용품</a></li>
+                
+				</ul>
+			</div>
+    
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=36000000">도서/교육/음반</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=41000000">백화점/제화상품권</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=24000000">여행/항공권</a></li>
+                
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=86000000">e쿠폰/모바일상품권</a></li>
+                
+				</ul>
+			</div>
+    
+			<!-- //대분류 -->
+			
+			<!-- 중소분류 -->
+			<div class="used_locbar popular_locbar">
+			   
+			</div>
+			<!-- categoryBox -->
+			
+			<!-- //categoryBox -->
+			<!-- //중소분류 -->
+		</div>
+		<!-- //카테고리 -->	
+    </div>
+</div>
+
 
             <!--상품 영역-->
             <section class="main_goods">
-                <h2>오늘의 상품 추천</h2>
+                <h2 align="center" style="color: red;">마감 임박 상품</h2>
                 <div class="goods_wrap">
                     <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">핸드메이드 롱코트 브라운</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">15,000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
+                        <a href="auction_detail">
                             <div class="goods_image">
                                 <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
@@ -155,57 +360,133 @@
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="product_detail">
+                        <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="https://img2.quasarzone.com/editor/2021/07/05/d5e46e5d97c11769965e45af8bd017ba.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">엠스톤 키보드</p>
+                                <p class="goods_title">JSP책 팝니다</p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">110,000원</span>
+                                    <span class="goods_date_before">9000원</span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="product_detail">
+                        <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">상품명</p>
+                                <p class="goods_title">JSP책 팝니다</p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
+                                    <span class="goods_date_before">9000원</span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="product_detail">
+                        <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">상품명</p>
+                                <p class="goods_title">JSP책 팝니다</p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
+                                    <span class="goods_date_before">9000원</span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="goods">
-                        <a href="product_detail">
+                        <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">상품명</p>
+                                <p class="goods_title">JSP책 팝니다</p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div> 
+            </section>
+            <section class="main_goods">
+                <h2 align="center">신규 등록 순</h2>
+                <div class="goods_wrap">
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
                                 </div>
                             </div>
                         </a>

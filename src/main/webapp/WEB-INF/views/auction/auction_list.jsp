@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터</title>
+<title>클레버 - 경매리스트</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
 
 <!--아이콘-->
@@ -88,6 +88,54 @@
                 <!--상품 영역-->
                 <section class="main_goods">
                     <div class="goods_wrap">
+                        <div class="goods">
+                            <a href="goods_product_detail.html">
+                                <div class="goods_image">
+                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
+                                    <span>배송비포함</span>
+                                </div>
+                                <div class="goods_info">
+                                    <p class="goods_title">상품명</p>
+                                    <div class="goods_price_date">
+                                        <span class="goods_price">가격</span>
+                                        <span class="goods_date_before">4일 전</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="goods">
+                            <a href="goods_product_detail.html">
+                                <div class="goods_image">
+                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
+                                    <span>배송비포함</span>
+                                </div>
+                                <div class="goods_info">
+                                    <p class="goods_title">상품명</p>
+                                    <div class="goods_price_date">
+                                        <span class="goods_price">가격</span>
+                                        <span class="goods_date_before">4일 전</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="goods">
+                            <a href="goods_product_detail.html">
+                                <div class="goods_image">
+                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
+                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
+                                    <span>배송비포함</span>
+                                </div>
+                                <div class="goods_info">
+                                    <p class="goods_title">상품명</p>
+                                    <div class="goods_price_date">
+                                        <span class="goods_price">가격</span>
+                                        <span class="goods_date_before">4일 전</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                         <div class="goods">
                             <a href="goods_product_detail.html">
                                 <div class="goods_image">

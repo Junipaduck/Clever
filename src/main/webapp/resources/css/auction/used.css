@@ -1,0 +1,1799 @@
+@charset "euc-kr";  
+
+/* include style sheet */
+@import url("//script.auction.co.kr/style/css/frame/list_all.css");
+
+/* 개편, kimmiok */
+/* based on header.css */
+/* header width */
+#header_wrap {
+min-width:900px !important;
+min-height:87px;
+}
+.footer {
+min-width:900px !important;
+}
+/* //개편, kimmiok */
+
+/* 개편, kimmiok
+.footer 삭제
+//개편, kimmiok */
+
+/* 코너 - 최저가 */
+h2.maintitle{
+	height:60px;
+	overflow:hidden;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_title_lp.gif) no-repeat;
+}
+h2.maintitle div.flash{
+	float:left;
+}
+h2.maintitle div.image{
+	float:right;
+}
+
+div.gdorloc{
+	width:100%;
+	display:table;
+}
+div.gdorloc h3{
+	float:left;
+	padding:12px 13px 12px 15px;
+}
+div.gdorloc h3.std{
+	padding:9px 25px 8px 18px;
+}
+div.gdorloc h3 img{
+	display:block;
+}
+div.gdorloc div.cate{
+	float:left;
+	padding-top:9px;
+}
+div.gdorloc div.cate .txt{
+	float:left;
+	font-size:0.9em;
+	color:#444;
+	line-height:1em;
+	letter-spacing:-0.1em;
+	padding-top:5px;
+}
+div.gdorloc div.cate .c{
+	color:#666;
+}
+div.gdorloc div.cate span.arrow{
+	padding:5px 4px 0;
+}
+div.gdorloc div.cate span.home,
+div.gdorloc div.cate span.sarrow,
+div.gdorloc div.cate span.tarrow{
+	margin-right:-1px;
+}
+div.gdorloc div.cate span.home{
+	padding-left:16px;
+	background:url(//pics.auction.co.kr/css/used/img/bg_udot01.gif) no-repeat 10px 8px;
+}
+div.gdorloc div.cate span.tarrow{
+	margin-left:-2px;
+}
+div.gdorloc div.cate div.select{
+	float:left;
+	width:141px;
+	position:relative; /* edge725.2015-07-02 */
+	z-index:999;
+}
+div.gdorloc div.cate div.godirect{
+	float:left;
+	padding-left:5px;
+}
+div.gdorloctop div.cate{
+	padding-top:0;
+	padding-bottom:6px;
+}
+div.gdorloctop div.cate .txt{
+	font-size:12px !important;/* ie11호환성 725.2015-05-06 */
+}
+div.allcates{
+	width:900px;
+	margin-bottom:-3px;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd01m.gif) repeat-y;
+	overflow:hidden;
+}
+div.allcates div.rdt{
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd01t.gif) no-repeat;
+}
+/* 2011-11-23 sh */
+div.allcates div.rdb{
+	padding:6px 15px 12px;
+	width:97%; /* 중고장터오류개선 725.2014-11-13 */
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd01b.gif) no-repeat 0 100%;
+	overflow:hidden;
+}
+div.allcates div.inside{
+	width:870px;
+	/*background:url(//pics.auction.co.kr/css/corner/img/bg_allcates.gif) no-repeat;*/
+	overflow:hidden;
+}
+div.allcates div.items{
+	float:left;
+	display:inline;
+	width:121px;
+	padding-bottom:6px;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_allcates.gif) repeat-y right 0;
+}
+div.allcates div.items1{
+	width:172px;
+}
+div.allcates div.items2,
+div.allcates div.items4{
+	width:179px;
+}
+div.allcates div.items3{
+	width:181px;
+}
+div.allcates div.items5{
+	width:165px;
+}
+div.allcates div.items-type1 {
+	width:124px;
+}
+div.allcates div.items-last {
+	width:138px;
+	background:none; 
+}
+	div.allcates div.items-last h4 {
+		border-right:0;
+	}
+	div.allcates div.items-last ul {
+		background:0;
+	}
+div.allcates .itembox {
+	overflow:hidden;
+}
+	div.allcates .itembox ul li a {
+		font-size:11px;
+		letter-spacing:-1px;
+	}
+div.allcates h4{
+	font-size:1em;
+	color:#4A4A4A;
+	line-height:1.35em;
+	letter-spacing:-0.1em;
+	margin-right:5px;
+	padding:4px 2px 4px 8px;
+	border-bottom:1px solid #e5e5e5;
+}
+div.allcates h4 span{
+	font-weight:normal;
+}
+div.allcates ul{
+	padding:0 5px 12px 5px;
+}
+/* //2011-11-23 sh */
+div.allcates ul li{
+	line-height:1.35em;
+	letter-spacing:-0.1em;
+	padding:2px 0 0 7px;
+	background:url(//pics.auction.co.kr/css/corner/img/icn_dot01.gif) no-repeat 0 7px;
+}
+div.allcates ul li a{
+	color:#4A4A4A;
+}
+div.allcates div.srhincorner{
+	clear:both;
+	margin-right:0; /* 2011-11-23 sh */
+	padding:6px 6px 0;
+	border-top:1px solid #E7E7E7;
+}
+div.allcates div.srhincorner strong.srh{
+	float:left;
+	font-size:1em;
+	color:#575757;
+	line-height:1.35em;
+	padding:3px 7px 0 16px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot02.gif) no-repeat 8px 8px;
+	display:block;
+}
+div.allcates div.srhincorner div.srh{
+	float:left;
+}
+*html div.allcates div.srhincorner div.srh{margin:-1px 0}
+*:first-child+html div.allcates div.srhincorner div.srh{margin:-1px 0}
+div.allcates div.srhincorner div.srh input{
+	vertical-align:middle;
+}
+div.allcates div.srhincorner div.srh input.txt{
+	width:180px;
+	margin-right:5px;
+}
+/*
+div.allcates div.srhincorner input,
+div.allcates div.srhincorner img{
+	vertical-align:middle;
+}
+div.allcates div.srhincorner input.txt{
+	width:210px;
+}*/
+
+h3.ttitle{
+	font-size:1.2em;
+	line-height:1.35em;
+	letter-spacing:-0.1em;
+	padding:9px 8px 7px;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_ttitle.gif) repeat-x 0 100%;
+}
+h3.ttitle span{
+	color:#FF6C00;
+}
+h3.bestttitle span{
+	color:#856BF0;
+}
+
+/* */
+ul.viewmethod{
+	margin:0 0 -30px 14px;
+	padding:13px 3px 0;
+}
+ul.viewmethod li.nbg{
+	background:none;
+}
+
+div.sellistnum{
+	padding-right:3px;
+}
+div.pgdirectlisttop{
+	margin-top:2px;
+}
+ul.listsort{
+	height:24px
+	padding-left:4px;
+}
+
+div.enddorwtime{
+	position:relative;
+	float:right;
+	width:70px;
+	margin:3px 0 -23px 0; /* 2011-04-27 ock */
+	padding-right:3px;
+}
+div.enddorwtime div.combo_option{
+	left:0 !important;
+	top:19px !important;
+}
+
+table.pdlist td.price{
+	text-align:center;
+}
+table.pdlist img.prepay{
+	margin:2px 0 3px;
+}
+
+div.catelists{
+	width:100%;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd01m.gif) repeat-y;
+}
+div.catelists div.rounding{
+	padding:5px 0 0;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd01t.gif) no-repeat;
+}
+div.catelists div.line{
+	padding-bottom:6px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd01bg.gif) no-repeat 0 100%;
+	display:table-cell;
+}
+div.catelists div.name h2{
+	color:#FF6C00;
+	padding-left:13px;
+}
+div.catelists div.bestname h2{
+	color:#856BF0;
+}
+div.catelists div.srdt{
+	margin:-4px 0 6px;
+}
+div.catelists div.option strong.srh{
+	color:#333;
+	padding-left:16px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot02.gif) no-repeat 8px 8px;
+}
+div.srhoption ul.option li strong{
+	letter-spacing:-0.1em;
+}
+div.srhoption ul.option li ul li label{
+	color:#4D4D4D;
+	letter-spacing:-0.1em;
+}
+div.srhoption ul.option div.priceinput{
+	float:right;
+	width:743px;
+}
+div.srhoption ul.option div.priceinput span{
+	font-size:0.9em;
+	padding:0 4px;
+}
+div.srhoption ul.option div.priceinput input.txt{
+	width:61px;
+	color:#4D4D4D;
+	vertical-align:0px;
+	border-color:#B9B9B9;
+}
+*html div.srhoption ul.option div.priceinput input.txt{vertical-align:-2px}
+*:first-child+html div.srhoption ul.option div.priceinput input.txt{vertical-align:-2px}
+div.srhoption ul.option div.priceinput img{
+	vertical-align:-4px;
+	margin-left:-4px;
+}
+
+div.onlycatelists div.line{
+	width:900px;
+	padding:0 0 6px 0;
+	overflow:hidden;
+}
+div.onlycatelists ul.lists{
+	float:none;
+	width:900px;
+	padding:8px 0 6px 18px;
+	overflow:hidden;
+}
+div.onlycatelists ul.lists li{
+	float:left;
+	width:160px;
+	line-height:1.15em;
+	padding:0 15px 0 4px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot01.gif) no-repeat 0 7px;
+}
+div.onlycatelists ul.lists li a{
+	color:#666;
+}
+div.onlycatelists div.option{
+	width:880px;
+	margin:13px 10px 0;
+}
+
+div.catelists div.option{
+	padding-bottom:3px;
+}
+
+
+div.godirect{
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd02m.gif) repeat-y;
+}
+div.godirect div.rdt{
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd02t.gif) no-repeat;
+}
+div.godirect div.rdb{
+	width:100%;
+	padding-bottom:12px;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_rd02b.gif) no-repeat 0 100%;
+	display:table;
+}
+div.godirect h3{
+	font-size:14px;
+	color:#333;
+	line-height:1.35em;
+	letter-spacing:-0.05em;
+	padding:12px 0 6px 25px;
+}
+div.godirect div.image{
+	float:left;
+	margin-left:14px;
+	display:inline;
+}
+div.godirect div.image a{
+	width:134px;
+	height:134px;
+	padding:1px;
+	background:#E4DEDA;
+	display:block;
+}
+div.godirect div.image a img{
+	width:130px;
+	height:130px;
+	border:2px solid #E4DEDA;
+}
+div.godirect div.image a:hover img{
+	border:2px solid #B7B7B7;
+}
+div.godirect div.info{
+	float:right;
+	width:722px;
+	margin-right:13px;
+	display:inline;
+}
+div.godirect div.info ul li{
+	width:100%;
+	line-height:1.35em;
+	vertical-align:top;
+	border-bottom:1px solid #F1F1F1;
+	overflow:auto;
+}
+div.godirect div.info ul li strong{
+	float:left;
+	width:87px;
+	font-weight:normal;
+	padding:5px 0 3px 7px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_line08.gif) no-repeat 100% 5px;
+	display:block;
+}
+div.godirect div.info ul li span{
+	float:right;
+	width:605px;
+	color:#888;
+	padding:5px 5px 3px 0;
+	display:block;
+}
+div.godirect div.info div.goprevpage{
+	text-align:right;
+	margin-top:-7px;
+}
+
+
+/* SRP에서 가져옴 */
+div.srhresult div.rdt{
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd08t.gif) no-repeat;
+}
+div.srhresult div.rdb{
+	width:100%;
+	padding:5px 0;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd08b.gif) no-repeat 0 100%;
+}
+div.srhresult div.rdline{
+	width:896px;
+	padding:0 2px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd08m.gif) repeat-y;
+}
+*html div.srhresult div.rdline{height:1px}
+
+div.srhresult div.padding{
+	padding:0 10px 6px;
+}
+div.srhresult h3{
+	font-size:1em;
+	font-weight:normal;
+	line-height:1.35em;
+	padding:10px 12px 4px;
+	border-bottom:1px solid #E2E2E2;
+	text-align:left;
+}
+div.srhresult div.forh3line{
+	width:100%;
+	border-bottom:1px solid #E2E2E2;
+	display:table;
+}
+div.srhresult h3.case2{
+	float:left;
+	padding-right:5px;
+	padding-bottom:5px;
+	border:none;
+}
+div.srhresult div.topbd{
+	border-top:3px solid #F6F6F6;
+}
+div.srhresult div.topcates{
+	padding-top:4px;
+	border-top:3px solid #F6F6F6;
+}
+div.srhresult div.topcates div.item{
+	width:100%;
+	line-height:1.35em;
+	border-bottom:1px solid #F1F1F1;
+	display:table;
+}
+div.srhresult div.topcates div.item h4{
+	float:left;
+	width:185px;
+	font-size:1em;
+	padding:8px 6px 5px 26px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_srpcate.gif) no-repeat 100% 7px;
+	text-align:left; /* 중고장터오류개선 725.2014-11-13 */
+}
+div.srhresult div.topcates div.item h4 span{
+	font-size:0.9em;
+	font-weight:normal;
+}
+div.srhresult div.topcates div.item div.oncbtn{
+	float:right;
+	width:63px;
+	text-align:center;
+	margin:7px 0 0 -5px;
+	padding-bottom:1px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_line06.gif) no-repeat;
+}
+div.srhresult div.topcates div.item ul{
+	float:left;
+	width:600px;
+	height:21px;
+	padding-top:7px;
+	overflow:hidden;
+}
+div.srhresult div.topcates div.item ul li{
+	float:left;
+	white-space:nowrap;
+	margin:0 9px 0 -1px;
+	padding:1px 0 5px 8px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_line06.gif) no-repeat;
+}
+div.srhresult div.topcates div.item ul li a{
+	color:#666;
+}
+div.srhresult div.topcates div.item ul li a span{
+	color:#999;
+}
+
+div.srhresult div.catescr{
+	width:100%;
+	line-height:1.35em;
+	border-bottom:3px solid #F6F6F6;
+	background:#F9F9F9;
+	overflow:hidden;
+}
+div.srhresult div.catescr ul{
+	width:876px;
+	padding-left:3px;
+	border-bottom:1px solid #E2E2E2;
+	display:table-cell;
+}
+div.srhresult div.catescr ul li{
+	float:left;
+	width:151px;
+	padding:9px 0 4px 23px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot05.gif) no-repeat 10px 11px;
+	text-align:left; /* 중고장터오류개선 725.2014-11-13 */
+}
+div.srhresult div.catescr ul li a strong{
+	letter-spacing:-0.1em;
+}
+div.srhresult div.catescr ul li a span{
+	font-size:0.9em;
+}
+
+div.srhresult div.catesels{
+	float:left;
+	line-height:1.35em;
+	padding-top:8px;
+	overflow:hidden;
+}
+*html div.srhresult div.catesels{padding-top:7px}
+*:first-child+html div.srhresult div.catesels{padding-top:7px}
+div.srhresult div.catesels span.map{
+	float:left;
+	font-size:0.9em;
+	letter-spacing:-0.05em;
+	padding:2px 3px 0;
+	display:block;
+}
+div.srhresult div.catesels div.selarea{
+	float:left;
+	width:141px;
+}
+div.srhresult div.cateselssh{
+	height:18px;
+	margin-top:-18px;
+}
+
+div.srhresult div.catessub{
+	width:100%;
+	line-height:1.35em;
+	overflow:hidden;
+}
+div.srhresult div.catessub ul{
+	width:880px;
+	padding:9px 0 10px 2px;
+	overflow:auto;
+}
+div.srhresult div.catessub ul li{
+	float:left;
+	width:175px;
+	line-height:1.15em;
+	margin-bottom:3px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot06.gif) no-repeat 0 8px;
+}
+div.srhresult div.catessub ul li a{
+	color:#666;
+	padding:3px 0 0 4px;
+	display:block;
+	text-align:left;
+}
+div.srhresult div.catessub ul li a span{
+	color:#999;
+}
+div.srhresult div.catessub ul li.haschild a{
+	font-weight:bold;
+	color:#333;
+	letter-spacing:-0.1em;
+	background:#ECECEC;
+}
+div.srhresult div.catessub ul li.haschild a span{
+	font-weight:normal;
+	letter-spacing:0;
+}
+div.srhresult div.catessub ul li img{
+	vertical-align:-1px;
+	margin-top:-1px;
+	margin-left:-2px;
+}
+
+div.srhresult div.catessubnodot ul li{
+	background:none;
+}
+
+div.srhresult div.srdt{
+	margin:1px 0 4px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd09t.gif) no-repeat;
+}
+div.srhresult div.srdb{
+	width:100%;
+	padding:3px 0;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd09b.gif) no-repeat 0 100%;
+}
+div.srhresult div.srdline{
+	font-size:0.9em;
+	line-height:1.35em;
+	padding:0 20px;
+	border:solid #D8D8D8;
+	border-width:0 1px;
+	background:#FAFAFA;
+}
+div.srhresult div.srdline div.sscate{
+	width:100%;
+	letter-spacing:-0.1em;
+	padding:4px 0 2px;
+	display:table-cell;
+}
+div.srhresult div.srdline div.sscate span.title{
+	float:left;
+	width:48px;
+	color:#666;
+	white-space:nowrap;
+	overflow:hidden;
+}
+div.srhresult div.srdline div.sscate ul{
+	float:right;
+	width:786px;
+	overflow:hidden;
+}
+div.srhresult div.srdline div.sscate ul li{
+	float:left;
+	letter-spacing:-0.05em;
+	white-space:nowrap;
+	padding:0 7px;
+	margin-left:-1px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_line07.gif) no-repeat 0 1px;
+}
+div.srhresult div.srdline div.sscate ul li a{
+	color:#666;
+}
+
+div.noresult{
+	line-height:1.35em;
+	min-height:130px;
+	padding-left:336px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_noresult.gif) no-repeat 201px 0;
+}
+*html div.noresult{height:130px}
+div.noresult h2{
+	font-size:1.2em;
+	padding-top:26px;
+}
+div.noresult h2 span{
+	color:#FD5A2E;
+}
+div.noresult p{
+	color:#666;
+	padding-top:3px;
+}
+
+div.powerlists h3{
+	padding:10px 16px;
+	border:none;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_ttitle.gif) repeat-x 0 100%;
+}
+div.powerlists div.galleryview{
+	border:none;
+}
+div.powerlists div.galleryview div.line{
+	border-top:none;
+}
+div.powerlists div.galleryview ul.pdlist{
+	padding-top:6px;
+}
+div.powerlists div.addbtn{
+	margin-top:-28px;
+}
+
+/* 선납금 레이어 */
+#prepaylayer{
+	position:absolute;
+	width:225px;
+	padding:0;
+	background:#E5E5E5;
+	display:none;
+}
+#prepaylayer div.inside{
+	position:relative;
+	left:-2px;
+	top:-3px;
+	font-size:0.9em;
+	color:#666;
+	line-height:1.2em;
+	letter-spacing:-0.1em;
+	padding:9px 10px 7px;
+	border:1px solid #999;
+	background:#FFF;
+}
+#prepaylayer div.inside strong{
+	margin-left:-2px;
+}
+#prepaylayer div.inside p{
+	margin-top:2px;
+	padding-top:7px;
+	border-top:1px solid #C6C6C6;
+}
+
+div.bestimg{position:relative}
+div.bestimg img.line{width:130px; height:130px}
+div.bestimg div.ranking{
+	position:absolute;
+	left:2px;
+	top:85px;
+	width:36px;
+	height:36px;
+	padding:9px 0 1px 10px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_lpbest100.png) no-repeat;
+}
+*html div.bestimg div.ranking{background-image:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='//pics.auction.co.kr/css/frame/img/bg_lpbest100.png', sizingMethod='crop')}
+
+div.bestimgs{position:relative}
+div.bestimgs img.line{width:130px; height:130px}
+div.bestimgs div.ranking{
+	position:absolute;
+	left:2px;
+	top:91px;
+	width:34px;
+	height:30px;
+	padding:10px 0 0 6px;
+	background:url(//pics.auction.co.kr/css/corner/img/bg_lpbest100s.png) no-repeat;
+}
+*html div.bestimgs div.ranking{background-image:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='//pics.auction.co.kr/css/corner/img/bg_lpbest100s.png', sizingMethod='crop')}
+
+div.ngraybox{
+	border:1px solid #e0e0e0;
+	background:#f6f6f6
+}
+div.galleryview{
+	border:none;
+}
+div.galleryview div.line{
+	border-top:1px solid #e1e1e1
+}
+div.galleryview div.luxuryline{
+	margin-top:2px;
+	padding:10px 0 0 0;
+	border-top:1px solid #e1e1e1;
+}
+div.galleryview div.bestmask{
+	margin-top:-10px;
+}
+div.galleryview ul.pdlist{
+	padding-bottom:10px;
+}
+div.galleryview ul.pdlist{
+	border-bottom:1px solid #ECECEC;
+}
+div.galleryview div.ngraybox{
+	margin-top:15px;
+}
+div.galleryview div.ngraybox ul.pdlist{
+	padding-top:8px;
+	padding-bottom:2px;
+	border-bottom:none;
+}
+div.galleryview div.ngraybox ul.pdlist li{
+	background:none;
+}
+
+/* 1028 원아이템 */
+div.usedbest5{
+	clear:both;
+	width:900px;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest_upline.gif) no-repeat;
+}
+div.usedbest5 div.rounding{
+	padding:10px 0;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest_dwline.gif) no-repeat 0 100%;
+}
+div.usedbest5 div.line{
+	border:solid #e5e5e5;
+	border-width:0 1px;
+	overflow:hidden;
+	width:898px;
+}
+div.usedbest5 h3{
+	margin:0 auto;
+	width:879px;
+	padding:3px 0;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest_stitbg.gif) repeat-x 0 100%;
+}
+div.usedbest5 div.galleryview ul.pdlist{
+	border:none;
+	padding:0;
+	margin-top:10px;
+}
+div.galleryview ul.pdlist li div.oclock{
+	margin-left:2px;
+	background:url(//pics.auction.co.kr/listing/listings/oclock_bg.gif) no-repeat;
+	width:129px;
+	height:22px;
+}
+div.galleryview ul.pdlist li div.oclock span{
+	display:block;
+	padding:5px 0 0 31px;
+}
+/* 1126 원아이템중고수수료 */
+table.pdlist td.tlt02{
+	background:url(//pics.auction.co.kr/itempage/product_tlt02_bg.gif) repeat-x 0 0;
+	padding:14px 0 16px 0;
+	vertical-align:top;
+	border-bottom:none;
+}
+
+/* 1216 중고장터_1109 item리스팅에 수수료 별도 과금 */
+div.lstused01{
+	width:100%;
+	overflow:hidden;
+	padding-bottom:5px;
+	text-align:left; /* 중고장터오류개선 725.2014-11-13 */
+}
+
+/* 20090427 오수연 임직원중고장터 */
+div.tit_staff{
+	background:url(//pics.auction.co.kr/listing/used/tit_staff03.gif) no-repeat;
+	width:422px;
+	height:33px;
+	text-align:right;
+	padding:27px 6px 0 0;
+}
+div.staff_mail{
+	background:url(//pics.auction.co.kr/listing/used/staff_mail02.gif) no-repeat;
+	width:353px;
+	height:65px;
+	text-align:right;
+	padding:16px 15px 0 0;
+}
+div.allcates div.items1 span.staff,
+div.allcates div.items2 span.staff,
+div.allcates div.items3 span.staff,
+div.allcates div.items4 span.staff,
+div.allcates div.items5 span.staff{
+	color:#f3712a;
+}
+
+div.usedbest3{
+	float:left;
+	width:540px;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest3_upline.gif) no-repeat;
+}
+div.usedbest3 div.rounding{
+	padding:10px 0;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest3_dwline.gif) no-repeat 0 100%;
+}
+div.usedbest3 div.line{
+	border:solid #d1d1d1;
+	border-width:0 1px;
+	overflow:hidden;
+	width:538px;
+}
+div.usedbest3 h3{
+	margin:0 auto;
+	width:529px;
+	padding:3px 0;
+	background:url(//pics.auction.co.kr/listing/listings/usedbest_stitbg.gif) repeat-x 0 100%;
+}
+div.usedbest3 div.galleryview ul.pdlist{
+	border:none;
+	padding:0;
+	margin-top:10px;
+}
+
+
+div.staff_con01{
+	float:left;
+	padding:0 0 0 5px;
+	width:175px;
+	background:url(//pics.auction.co.kr/listing/listings/staff_con_upline.gif) 5px 0 no-repeat;
+}
+div.staff_con01 div.rounding{
+	padding:5px 0;
+	background:url(//pics.auction.co.kr/listing/listings/staff_con_dwline.gif) no-repeat 0 100%;
+}
+div.staff_con01 div.line{
+	border:solid #d1d1d1;
+	border-width:0 1px;
+	overflow:hidden;
+	width:173px;
+}
+div.staff_con01 h3{
+	margin:0 auto;
+	width:164px;
+	padding:3px 0;
+}
+div.staff_con01 div.galleryview ul.pdlist{
+	border:none;
+	padding:0;
+	margin-top:10px;
+}
+
+div.staff_con01 table.staff_con{
+	margin:0 5px;
+	width:95%;
+	height:255px;
+}
+div.staff_con01 table.staff_con table{
+	border:solid 1px #d6d6d6;
+	width:100%;
+}
+div.staff_con01 table.staff_con table td{
+	padding:0 0 0 5px;
+	color:#656565;
+	height:20px;
+}
+div.staff_con01 table.staff_con table td.num{
+	color:#949494;
+	text-align:right;
+	padding:0 3px 0 0;
+}
+div.staff_con01 table.staff_con table div{
+	margin:3px 0;
+	width:1px;
+	background-color:#d6d6d6;
+}
+
+div.staff_con01 table.staff_con table.tit{
+	border:solid 1px #d6d6d6;
+	background-color:#f8f8f8;
+	color:#333;
+	width:100%;
+}
+div.staff_con01 table.staff_con table.tit td{
+	padding:0;
+}
+
+div.staff_con01 table.staff_con table.num1{
+	border:solid 1px #d6d6d6;
+	width:100%;
+}
+div.staff_con01 table.staff_con table.num1 td{
+	color:#f94209;
+}
+
+/* 20090427 오수연 임직원중고장터 //*/
+
+/* 0512 중고장터 카테고리수정 */
+div.catelists ul.lists_f01{
+	position:relative;  /* edge725.2015-07-02 */
+	width:860px;
+	/* overflow:hidden; edge725.2015-07-02 */
+	padding:8px 8px 9px 8px;
+}
+div.catelists ul.lists_f01:after{display: block;content: '';clear: both} /* edge725.2015-07-02 */
+div.catelists ul.lists_f01 li{
+	float:left;
+	width:200px;
+	line-height:1.15em;
+	padding:0 10px 2px 5px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_dot01.gif) no-repeat 0 7px;
+	text-align:left; /* 중고장터오류개선 725.2014-11-13 */
+}
+div.catelists ul.lists_f01 li a{
+	padding:3px 4px 0;
+	display:block;
+	font-weight:bold;
+}
+div.catelists ul.lists_f01 li strong{
+	letter-spacing:-0.1em;
+}
+div.catelists ul.lists_f01 li a span{
+	font-weight:normal;
+	letter-spacing:0;
+	color:#999;
+}
+div.catelists ul.lists_f01 li img{
+	vertical-align:-1px;
+}
+div.catelists ul.lists_f01 li.haschild a{
+	font-weight:bold;
+	letter-spacing:-0.1em;
+	background:#ECECEC;
+}
+ul.wnewt{
+	width:196px !important;
+}
+
+div.catelists div.srdt01{
+	width:860px;
+	margin:-3px 8px 7px 8px;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd12t01.gif) no-repeat;
+}
+div.catelists div.srdb01{
+	width:100%;
+	padding:3px 0;
+	background:url(//pics.auction.co.kr/css/frame/img/bg_rd12b01.gif) no-repeat 0 100%;
+}
+div.catelists div.srdline div.sscate ul.wnewt01{
+	width:790px;
+}
+
+/* 0708 중고장터수정 */
+div.bdline01{
+	border-bottom:1px solid #E2E2E2;
+}
+
+div#ucSelectedCategoryBar_divLargeBlock,
+div#ucSelectedCategoryBar_divMiddleBlock,
+div#ucSelectedCategoryBar_SCategory{
+	float:left;
+}
+
+/* BC_2187 */
+div.uxb-sort-wrap {
+	float:right;
+	width:470px;
+	margin-top:-27px;
+}
+div.uxb-sort div.uxa-slank {
+	float:left;
+	width:90px;
+}
+div.uxb-sort div.uxb-view{
+	float:left;
+	width:60px;
+	position:relative; /* edge725.2015-07-02 */
+}
+div.uxb-sort ul {
+	padding:0;
+}
+div.uxb-sort ul li {
+	width:auto;
+	float:none;
+	padding:0;
+	background:none;
+}
+ul.uxb-listsort{
+	float:left;
+	height:25px;
+	padding-left:5px;
+}
+ul.uxb-listsort li{
+	float:left;
+	padding-right:1px;
+	background:url(//pics.auction.co.kr/css/frame/img/icn_line04.gif) no-repeat 100% 6px;
+}
+ul.uxb-listsort li.last{
+	background:none;
+	padding-bottom:0;
+}
+div.type-optionbox,
+ul.type-option {
+	border-bottom: none;
+}
+	ul.uxb-viewmethod li{float:left}
+/* //BC_2187 */
+
+/* 2011-04-14 sh 중고장터-개편 */
+div.uxc-used-marketly {
+	padding:10px 0 6px; /* 2011-05-11 ock */
+	margin-top:10px; /* 2011-05-09 ock */
+	border:2px solid #bebebe;
+	_zoom:1;
+}
+	div.uxc-used-marketly ul {
+		overflow:hidden;
+	}
+		div.uxc-used-marketly ul li {
+			float:left;
+			padding:10px 0 0 15px;
+			width:208px;
+			border-left:1px solid #deddda;
+			line-height:18px;
+		}
+			div.uxc-used-marketly ul li.first {
+				border:0;
+			}
+				div.uxc-used-marketly ul li strong.stit {
+					display:block;
+					margin-bottom:8px;
+					height:13px;
+					font-size:0;
+					line-height:0;
+				}
+				/* 2011-05-09 ock */
+				div.uxc-used-marketly ul li div.link {
+					width:207px;
+					height:34px;
+					margin-bottom:9px; /* 2011-05-11 ock */
+					overflow:hidden;
+				}
+				div.uxc-used-marketly ul li div.link p {
+					/* margin-bottom:12px; */
+					font-size:12px;
+					line-height:16px;
+					letter-spacing:-1px;
+					color:#999;
+				}
+				/* //2011-05-09 ock */
+					div.uxc-used-marketly ul li p a {color:#999}
+h3.uxc-stit-used {
+	font-size:0;
+	line-height:0;
+	margin:20px 0 0 21px; /* 2011-05-09 ock */
+}
+div.uxc-cate-plpro {margin-top:9px}
+div.uxc-cate-plpro ul.tabs {
+	overflow:hidden;
+	width:100%;
+	height:35px;
+	background:url(//pics.auction.co.kr/listing/used/bg_uxccate_tab.gif) no-repeat 0 0;
+}
+	div.uxc-cate-plpro ul.tabs li {
+		float:left;
+		font-size:11px;
+		font-weight:bold;
+		letter-spacing:-1px;
+		text-align:center;
+	}
+		div.uxc-cate-plpro ul.tabs li a {
+			display:block;
+			padding-top:12px;
+			width:179px;
+			height:22px;
+			border-top:1px solid #bebebe;
+			border-right:1px solid #bebebe;
+			color:#999;
+		}
+			div.uxc-cate-plpro ul.tabs li.fir a {
+				width:178px;
+				padding-left:1px;
+			}
+				div.uxc-cate-plpro ul.tabs li a.on,
+				div.uxc-cate-plpro ul.tabs a:hover {
+					margin-left:-1px;
+					background-color:#fff;
+					border:1px solid #bebebe;
+					border-bottom:0;
+					text-decoration:none;
+					color:#333;
+				}
+				div.uxc-cate-plpro ul.tabs li.fir a.on,
+				div.uxc-cate-plpro ul.tabs li.fir a:hover {
+					margin-left:0;
+					padding-left:0;
+				}
+				div.uxc-cate-plpro ul.tabs li.end a {
+					width:111px;
+					border-right:0;
+				}
+div.uxcucate-view {
+	padding:16px 0 0 25px;
+	width:873px;
+	height:262px; /* 중고장터오류개선 725.2014-11-13 */
+	border-right:1px solid #bebebe;
+	border-bottom:1px solid #bebebe;
+	border-left:1px solid #bebebe;
+}
+	div.uxcucate-view .button {
+		margin-right:14px;
+		text-align:right;
+	}
+	div.uxcucate-view .uxcucate-vlist {
+		overflow:hidden;
+		margin-top:5px;
+	}
+		div.uxcucate-view .uxcucate-vlist li {
+			float:left;
+			margin:0 6px;
+			padding-top:15px;
+			width:130px;
+			text-align:center;
+			position:relative; /* 중고장터오류개선 725.2014-11-13 */
+		}
+			div.uxcucate-view .uxcucate-vlist li.no01 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no01.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li.no02 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no02.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li.no03 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no03.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li.no04 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no04.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li.no05 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no05.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li.no06 {background:url(//pics.auction.co.kr/listing/used/bg_uxccate_no06.gif) no-repeat 10px 0}
+			div.uxcucate-view .uxcucate-vlist li .img img {
+				width:110px;
+				height:110px;
+				border:1px solid #f1f1f1;
+			}
+			div.uxcucate-view .uxcucate-vlist li .view-sl {
+				display:block;
+				margin-top:10px;
+			}
+				div.uxcucate-view .uxcucate-vlist li .view-sl span {
+					font-size:11px;
+					line-height:0;
+					letter-spacing:-1px;
+				}
+				div.uxcucate-view .uxcucate-vlist li .view-sl span.line {
+					padding-right:6px;
+					margin-right:4px;
+					background:url(//pics.auction.co.kr/listing/used/line_viewsl.gif) no-repeat 100% 0;
+				}
+					div.uxcucate-view .uxcucate-vlist li .view-sl span a {color:#777}
+			div.uxcucate-view .uxcucate-vlist li em {
+				display:block;
+				overflow:hidden;
+				margin-top:9px;
+				height:28px;
+				letter-spacing:-1px;
+			}
+			div.uxcucate-view .uxcucate-vlist li strong {
+				display:block;
+				margin-top:8px;
+			}
+			/* 중고장터오류개선:신규 725.2014-11-13 */
+			div.uxcucate-view .uxcucate-vlist li .bidding{position:absolute;top:111px;right:10px;height:15px;padding-left:6px;color:#ffffff;vertical-align:top;z-index:10}
+			div.uxcucate-view .uxcucate-vlist li .bidding.timebar{padding-right:6px;background:#6a6861}
+			div.uxcucate-view .uxcucate-vlist li .bidding.timebar .clock{display:inline-block;width:9px;height:9px;margin-top:0;padding-right:2px;vertical-align:middle;background:url(//pics.auction.co.kr/listing/used/2014/icon_clock1.png) no-repeat 0 0}
+			@media screen and (-webkit-min-device-pixel-ratio:0){.uxcucate-view .uxcucate-vlist li .bidding.timebar .clock{margin-top:-1px !important}}
+			@media screen and (-webkit-min-device-pixel-ratio:0){div.uxcucate-view .uxcucate-vlist li .bidding.timebar .time_wrap{display:inline-block;margin-top:-1px !important}}
+			div.uxcucate-view .uxcucate-vlist li .bidding.timebar_near{padding-right:14px;background:#ff644c}
+			div.uxcucate-view .uxcucate-vlist li .bidding.timebar_near .clock_near{display:inline-block;width:9px;height:9px;margin-top:2px;padding-right:5px;vertical-align:middle;background:url(//pics.auction.co.kr/listing/used/2014/icon_clock2.png) no-repeat 0 0}
+			html>body div.uxcucate-view .uxcucate-vlist li .bidding.timebar_near .clock_near{margin-top:0}
+			@media screen and (-webkit-min-device-pixel-ratio:0){.uxcucate-view .uxcucate-vlist li .bidding.timebar_near .clock_near{margin-top:2px !important}}
+			div.uxcucate-view .uxcucate-vlist li .bidding .icon_near{position:absolute;top:-14px;right:-17px;width:34px;height:33px;color:transparent;text-indent:-999px;background:url(//pics.auction.co.kr/listing/used/2014/icon_drawnear.png) no-repeat 0 0;z-index:999}
+			div.uxcucate-view .uxcucate-vlist li .bidding .time{font-size:11px;font-family:Tahoma,Gulim,굴림;vertical-align:middle}
+			div.uxcucate-view .uxcucate-vlist li .bidding .txt_time{vertical-align:middle}
+			div.uxcucate-view .uxcucate-vlist li .bidding .txt_finish{margin-top:3px}
+			div.uxcucate-view .uxcucate-vlist .icon_auction{position:absolute;top:20px;right:7px}
+			h3.bestttitle .desc{display:inline-block;margin-left:11px;font-size:11px;color:#666666;font-weight:normal;font-family:dotum,'돋움';vertical-align:middle}
+			@media screen and (-webkit-min-device-pixel-ratio:0){h3.bestttitle .desc{vertical-align:top}}
+			.uxcucate-vlist .price_value{margin-top:7px;text-align:left}
+			.uxcucate-vlist .price_value .price_item{margin-top:3px;text-align:left}
+			.uxcucate-vlist .price_value .tit{display:inline-block;margin-right:4px;font-size:11px;color:#999999}
+			.uxcucate-vlist .price_value .price_num{font-weight:bold}
+			/* //중고장터오류개선:신규 725.2014-11-13 */
+h3.uxc-stit-used02 {
+	margin-top:40px;  /* 2011-05-09 ock */
+	font-size:0;
+	line-height:0;
+	text-align:center;
+}
+div.uxc-cate-slt {
+	margin-top:10px;
+	width:900px;
+	height:272px;
+	background:url(//pics.auction.co.kr/listing/used/bg_uxc_cate_slt.gif) no-repeat 0 0;
+}
+	div.uxc-cate-slt .uxc-cate-top {
+		height:37px;
+		text-align:center;
+	}
+	div.uxc-cate-slt .uxc-cate-view {
+		overflow:hidden;
+		padding:20px 0 0 35px;
+	}
+		div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort {
+			float:left;
+			width:178px;
+		}
+			div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort strong {
+				display:inline-block;
+				padding-left:12px;
+				margin-bottom:4px;
+				color:#666;
+			}
+			div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort .uxc-cate-scroll {
+				border:1px solid #808080;
+				padding:2px;
+			}
+				div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort .uxc-cate-scroll ul {
+					overflow-x:none;
+					overflow-y:scroll;
+					scrollbar-face-color:#EEEEEE;
+					scrollbar-highlight-color:#a6a6a6;
+					scrollbar-3dlight-color:#FFFFFF;
+					scrollbar-darkshadow-color:#FFFFFF;
+					scrollbar-shadow-color:#a6a6a6;
+					scrollbar-arrow-color:#a5a5a5;
+					scrollbar-track-color:#EEEEEE;
+					padding:2px 1px 1px 2px;
+					height:161px;
+					font-size:11px;
+					letter-spacing:-1px;
+				}
+					div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort .uxc-cate-scroll ul li a {
+						display:inline-block;
+						padding:4px 0 0 7px;
+						width:144px;
+						height:14px;
+						color:#666;
+					}
+						div.uxc-cate-slt .uxc-cate-view .uxc-cate-sort .uxc-cate-scroll ul li a:hover {
+							background-color:#eee;
+							text-decoration:none;
+						}
+		div.uxc-cate-slt .uxc-cate-view .button {
+			float:left;
+			padding:90px 0 0 16px;
+			width:24px;
+		}
+h3.uxc-tit-use {
+	padding:0 0 15px 22px;
+	margin-top:30px;  /* 2011-05-09 ock */
+	font-size:0;
+	line-height:0;
+}
+/* //2011-04-14 sh 중고장터-개편 */
+
+/* 중고장터 header */
+#wrap {
+	background:#fff !important;
+}
+div.wrap-used {background:0!important}
+div.uxc-usedtop .headerinside {
+	position:relative;
+	width:900px;
+	margin:0 auto;
+	z-index:10001;
+}
+div.uxc-usedtop {
+	height:133px;
+	margin-top:15px;
+	background:url(//pics.auction.co.kr/listing/used/bg_usedtop.gif) repeat-x 0 0 !important;
+}
+.wrap-used #header {
+	position:static;
+	width:auto;
+	min-width:0;
+	max-width:none;
+	margin:0;
+}
+div.umarket-top {
+	margin:0 auto;
+	position:relative;
+	width:100%;
+	height:58px;
+}
+	div.umarket-top .hleft {
+		float:left;
+		padding-top:7px;
+		width:397px;
+	}
+		div.umarket-top .hleft h1 {
+			float:left;
+			padding:0 7px 0 38px;
+			background:url(//pics.auction.co.kr/listing/used/bg_umarket_h1.gif) no-repeat 100% 28px;
+		}
+		div.umarket-top .hleft h2 {
+			float:left;
+			padding:0 4px 0 13px;
+			_padding:0 0 0 12px;
+		}
+		div.umarket-top .hleft a.btn-find {
+			display:inline-block;
+			margin-top:30px;
+		}
+	div.umarket-top .hright {
+		float:right;
+		width:432px;
+		_width:440px;
+	}
+		div.umarket-top .hright .layerbox {
+			margin-right:145px;
+		}
+		div.umarket-top .hright .auc-home {
+			float:left;
+			padding-top:6px;
+		}
+		div.umarket-top .hright ul.myamenu {
+			overflow:hidden;
+			float:left;
+			padding:6px 7px 0 0;
+		}
+			div.umarket-top .hright ul.myamenu li {
+				float:left;
+				padding-left:6px;
+				margin-left:6px;
+				background:url(//pics.auction.co.kr/listing/used/bar_myamenu.gif) no-repeat 0 2px;
+				font-size:11px;
+				letter-spacing:-1px;
+			}
+				div.umarket-top .hright ul.myamenu li.fir {background:0}
+				div.umarket-top .hright ul.myamenu li a {color:#707070}
+				div.umarket-top .hright ul.myamenu li img {
+					vertical-align:middle;
+				}
+	div.umarket-top .hright .t-search {
+		overflow:hidden;
+		float:left;
+		padding:1px 0 0 11px;
+		width:94px;
+		height:21px;
+		background:url(//pics.auction.co.kr/listing/used/bg_tsearch.gif) no-repeat 0 1px;
+	}
+		div.umarket-top .hright .t-search input.ttext {
+			float:left;
+			display:inline-block;
+			border:0;
+			background:0;
+			margin-top:5px;
+			height:11px;
+			font-size:11px;
+			line-height:12px;
+			letter-spacing:-1px;
+			color:#949494;
+			vertical-align:0;
+			*vertical-align:0;
+		}
+		div.umarket-top .hright .t-search input.img {
+			float:right;
+			vertical-align:middle;
+		}
+div.umarket-sbox {
+	clear:both;
+	width:900px;
+	height:75px;
+	background:url(//pics.auction.co.kr/listing/used/bg_umarket_sbox.gif) no-repeat 0 0;
+}
+	div.umarket-sbox ul.umarket-tab {
+		float:left;
+		overflow:hidden;
+		padding-left:293px;
+	}
+		div.umarket-sbox ul.umarket-tab li {
+			float:left;
+		}
+			div.umarket-sbox ul.umarket-tab li.fir {
+				padding-right:15px;
+				margin-right:21px;
+				background:url(//pics.auction.co.kr/listing/used/bg_umarket_tab.gif) no-repeat 100% 11px;
+			}
+	div.umarket-sbox .mypr-sell {
+		float:right;
+	}
+div.umarket-search {
+	clear:both;
+	padding:5px 0 0 290px;
+}
+	div.umarket-search .glink {
+		float:left;
+		width:83px;
+		height:23px;
+		background:url(//pics.auction.co.kr/listing/used/bg_glink.gif) no-repeat 0 0;
+	}
+		div.umarket-search .glink a {
+			display:block;
+			padding:5px 0 0 10px;
+			height:14px;
+			color:#666;
+		}
+			div.umarket-search .glink .globurls {
+				display:none;
+				padding-top:7px;
+				background:url(//pics.auction.co.kr/listing/used/bg_globurls.gif) no-repeat 0 0;
+			}
+				div.umarket-search .glink .globurls div {
+					background:url(//pics.auction.co.kr/listing/used/bg_globurls_bgy.gif) repeat-y 0 0;
+				}
+				div.umarket-search .glink .globurls ul {
+					background:url(//pics.auction.co.kr/listing/used/bg_globurls_bg.gif) no-repeat 0 100%;
+					padding-bottom:5px;
+				}
+	div.umarket-search .um-search {
+		padding-left:8px;
+		width:285px;
+		height:23px;
+		background:url(//pics.auction.co.kr/listing/used/bg_um_search.gif) no-repeat 0 0;
+	}
+		div.umarket-search .um-search input.text {
+			border:0;
+			height:14px;
+			vertical-align:middle;
+			*vertical-align:4px;
+		}
+		div.umarket-search .um-search input.image {
+			vertical-align:middle;
+			*vertical-align:-2px;
+		}
+/* //중고장터 header */
+
+/* RVI */
+div.rvi {
+	top:10px;
+}
+/* 중고장터상단UI개선 725.2014-10-21 리뉴얼후 삭제 */
+/*.uxc_usedtop {height:280px}
+.uxc_usedtop .headinside {width:900px;margin:0 auto}
+.uxc_usedtop .umarket_head{width:100%;height:110px}
+.uxc_usedtop .umarket_head .h_left {float:left}
+.uxc_usedtop .umarket_head .h_left .tit_h1 {float:left;padding:21px 35px 0 33px}
+.uxc_usedtop .umarket_head .h_left .search_inner {float:left;position:relative;width:260px;height:60px;margin-top:24px;border:2px solid #d9d9d9}
+.uxc_usedtop .umarket_head .h_left .search_input_keyword {width:200px;margin:0;padding:22px 20px 20px;border:0 none;outline:0 none;color:#777;font-size:14px;line-height:1.2em;font-weight:bold}
+.uxc_usedtop .umarket_head .h_left .search_btn_ok {position:absolute;right:0;top:0;display:block;width:55px;height:60px;border:none;background:url('//pics.auction.co.kr/listing/used/2014/btn_srch.gif') 0 0 no-repeat;text-indent:-10000em;overflow:hidden;cursor:pointer;-webkit-appearance:none;-webkit-border-radius:0}
+.uxc_usedtop .umarket_head .umarket_side {float:right;margin:42px 14px 0 0}
+.uxc_usedtop .umarket_head .umarket_side li{float:left;height:30px;padding:12px 7px 0 8px;background:url(//pics.auction.co.kr/listing/used/2014/bg_line_01.gif) 0 11px no-repeat}
+.uxc_usedtop .umarket_head .umarket_side li a{display:inline-block}
+.uxc_usedtop .umarket_head .umarket_side li:first-child{background:none}
+.uxc_usedtop .umarket_head .umarket_side li.mypr_sell{margin-top:-7px;padding-left:19px;background:url(//pics.auction.co.kr/listing/used/2014/bg_line_02.gif) 0 19px no-repeat}*/
+.tab_umarket{width:900px;margin:0 auto}
+.tab_umarket .tabpanel-active {display:block !important}
+.tab_umarket .tablist{position:relative}
+.tab_umarket .on{display:block !important}
+.tab_umarket .tablist li.dep1 a.dep1_mn{display:block;position:absolute;top:0;width:76px;height:108px;font-size:0;color:transparent;background:url(//pics.auction.co.kr/listing/used/2014/sp_cate.jpg) 0 0 no-repeat}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn1{left:0;background-position:0 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn2{left:75px;background-position:-75px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn3{left:150px;background-position:-150px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn4{left:225px;background-position:-225px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn5{left:300px;background-position:-300px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn6{left:375px;background-position:-375px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn7{left:449px;background-position:-449px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn8{left:524px;background-position:-524px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn9{left:599px;background-position:-599px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn10{left:674px;background-position:-674px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn11{left:749px;background-position:-749px 0}
+.tab_umarket .tablist li.dep1 a.dep1_mn.mn12{left:824px;background-position:-824px 0}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn1,.tab_umarket .tablist li.dep1 a.dep1_mn.mn1.on{background-position:0 -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn2,.tab_umarket .tablist li.dep1 a.dep1_mn.mn2.on{background-position:-75px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn3,.tab_umarket .tablist li.dep1 a.dep1_mn.mn3.on{background-position:-150px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn4,.tab_umarket .tablist li.dep1 a.dep1_mn.mn4.on{background-position:-225px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn5,.tab_umarket .tablist li.dep1 a.dep1_mn.mn5.on{background-position:-300px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn6,.tab_umarket .tablist li.dep1 a.dep1_mn.mn6.on{background-position:-375px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn7,.tab_umarket .tablist li.dep1 a.dep1_mn.mn7.on{background-position:-449px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn8,.tab_umarket .tablist li.dep1 a.dep1_mn.mn8.on{background-position:-524px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn9,.tab_umarket .tablist li.dep1 a.dep1_mn.mn9.on{background-position:-599px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn10,.tab_umarket .tablist li.dep1 a.dep1_mn.mn10.on{background-position:-674px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn11,.tab_umarket .tablist li.dep1 a.dep1_mn.mn11.on{background-position:-749px -112px}
+.tab_umarket .tablist li.dep1 a:hover.dep1_mn.mn12,.tab_umarket .tablist li.dep1 a.dep1_mn.mn12.on{background-position:-824px -112px}
+.tab_umarket .tablist li.dep1 div.dep2{display:none;position:absolute;top:108px;left:0;width:900px;border-top:0}
+.tab_umarket .tablist li.dep1 div.dep2 ul.dep2_list{width:900px;height:40px;padding-top:23px;background:#ffffff;overflow:hidden}
+.tab_umarket .tablist li.dep1 div.dep2 ul.dep2_list li.dep2_mn{float:left;margin-left:12px}
+.tab_umarket .tablist li.dep1 div.dep2 ul.dep2_list li.dep2_mn a{color:#666666}
+.tab_umarket .tablist li.dep1 div.dep2 ul.dep2_list li.dep2_mn a:hover{color:#ff644c;text-decoration:none}
+.tab_umarket .tablist li.dep1 div.dep2 ul.dep2_list li.dep2_mn.on a{color:#ff644c;text-decoration:none}
+/* //중고장터상단UI개선 725.2014-10-21 */
+
+/* 중고장터개선 725.2015-06-19 */
+/* 공통:헤더 */
+.used_contents{overflow:visible !important}
+.used_head .headinside {width:980px;margin:0 auto}
+.umarket_head{width:100%;height:76px;background:#ffffff}
+.umarket_head .h_left {float:left}
+.umarket_head .h_left .tit_h1 {float:left;padding:13px 12px 0 0}
+.umarket_head .h_left .search_inner {float:left;position:relative;width:260px;height:27px;margin-top:25px;background:#ffffff;border-bottom:4px solid #fb6e00}
+.umarket_head .h_left .search_input_keyword{width:238px;margin:0;padding:2px 0;border:0 none;outline:0 none;color:#777;font-size:14px;line-height:1.2em;font-weight:bold}
+input[type=text]::-ms-clear {display:block}
+.umarket_head .h_left .search_btn_ok {position:absolute;right:0;top:0;display:block;width:21px;height:27px;border:none;background:url('//pics.auction.co.kr/listing/used/2014/btn_srch_2015.gif') 0 0 no-repeat;text-indent:-10000em;overflow:hidden;cursor:pointer;-webkit-appearance:none;-webkit-border-radius:0}
+.umarket_head .umarket_side {float:left;margin:31px 14px 0 12px}
+.umarket_head .umarket_side li{float:left;height:30px;padding:0px 12px 0 12px;background:url(//pics.auction.co.kr/listing/used/2014/bg_line_03.gif) 0 2px no-repeat}
+.umarket_head .umarket_side li a{display:inline-block}
+.umarket_head .umarket_side li:first-child{background:none}
+.used_head .tab_umarket{width:980px;min-height:94px;margin:0 auto}
+.used_head .tab_umarket .tablist{overflow:hidden}
+.used_head .tab_umarket .tablist li.dep1{float:left}
+.used_head .tab_umarket .tablist li.dep1 a{overflow:hidden;float:left;position:relative;height:94px}
+.used_head .tab_umarket .tablist li.active a,
+.used_head .tab_umarket .tablist li.hover a {height:94px;margin-bottom:-10px;border:0;color:#FF6E00}
+.used_head .tab_umarket .tablist li.hover a span {display:block}
+.used_head .tab_umarket .tablist li.on img,
+.used_head .tab_umarket .tablist li.active img,
+.used_head .tab_umarket .tablist li.hover img {margin-top:-94px}
+.used_head .tabpanel{display:none;width:950px;margin-top:-3px;padding:15px 9px 13px 19px;border:1px solid #eaeaea;border-top:0}
+.used_head .tabpanel-active{display:block !important}
+.used_head .tabpanel ul{width:100%;overflow:hidden}
+.used_head .tabpanel ul li{float:left;width:190px}
+.used_head .tabpanel ul li a{float:left;padding:2px 0 2px 7px;background:url('//pics.auction.co.kr/listing/2012/bul_square.gif') no-repeat 0 6px}
+.used_head .tabpanel ul li.active a,
+.used_head .tabpanel ul li a:hover{color:#FF6E00;background-image:url('//pics.auction.co.kr/listing/2012/bul_square02.gif');text-decoration:none}
+/* 공통:좌배너,페이지넘,하단배너 */
+.used_head .uxc-myc-lbn{top:276px !important;margin-left:-581px}
+.paging .more a strong,.paginate_wrap .form a{text-decoration:none}
+.paging .more_wrap .page{top:23px}
+.paginate .arr{*display:inline;*margin:-4px 3px 0 0}
+.paginate .prv .arr{padding-right:4px;*padding-right:1px}
+:root .paginate .prv .arr{padding-right:1px \0/IE9}
+@media screen and (-webkit-min-device-pixel-ratio: 0){.paginate .prv .arr{padding-right:1px}}
+.paginate .next .arr{padding-left:1px}
+.use_bnr{margin-top:50px}
+.use_bnr img{width:980px}
+
+/* 공통:타이틀,입찰시간 */
+.used_body{width:980px !important}
+.used_prod_wrap{width:944px;padding:32px 16px 0 20px}
+.used_prod_wrap.used_lp,.used_prod_wrap.used_srp{margin:30px 0 0;padding:22px 15px 0 20px;border-top:1px solid #000000}
+.used_prod_wrap.used_lp .title_tab,.used_prod_wrap.used_srp .title_tab{height:27px}
+.used_prod_wrap.used_lp .title_tab .title,.used_prod_wrap.used_lp .title_tab .title{padding-top:3px}
+.used_prod_wrap .remain_time{display:inline-block;height:14px;padding-top:2px;padding-left:17px;background:url('//pics.auction.co.kr/listing/used/2014/txt2_watch.gif') 0 3px no-repeat;font-family:Tahoma;font-size:10px;color:#666666;vertical-align:top}
+.used_prod_wrap .remain_time .txt_day,
+.used_prod_wrap .remain_time .txt_hour,
+.used_prod_wrap .remain_time .txt_remain{margin:0 4px 0 2px;padding-top:3px;vertical-align:top}
+/* LP,SRP:카테고리 */
+#locbar{padding:3px 0 !important;border-bottom:none !important}
+#locbar .holder{width: 980px !important}
+@media all and (max-width: 1108px){
+	#locbar .holder{width: 980px !important}
+	.srp_category .main-block{width:776px}
+}
+.srp_category .main-block{position:relative;*zoom:1;z-index:3;float:left;width: 776px}
+.srp_category{width: 980px;position: relative;color: #000;z-index:6}
+.srp_category strong{width: 140px !important;float: left;letter-spacing: -1px;color: #333}
+.srp_category .search{float:left;position: relative}
+.search_field strong{padding-top: 6px}
+.search .search_inner{position:relative;float: left;width: 227px;padding-left: 6px;border:1px solid #e0e0e0;font-family: "굴림", Gulim, Tahoma, sans-serif;font: 11px}
+.search input.cg_sc{width: 190px;padding: 6px 4px 2px;border: 0 none;outline: none;font-family: "굴림", Gulim, Tahoma, sans-serif;font: 11px}
+.search .btn_cg_sc{display:inline-block;position: absolute;top: 0; right: 0;width:31px;height:23px;background:url('//pics.auction.co.kr/renewal/button/btn_cg_sc.gif') 8px 4px no-repeat;text-indent:-10000em;border: 0 none}
+.search .search_inner:hover,
+.search .search_inner.on{border:1px solid #454c5f}
+.search_drop{position:absolute;border:1px solid #e0e0e0;border-top: 0 none;width: 233px;padding: 5px 0;left: 0;top: 27px;background: #fff;z-index: 3}
+@-moz-document url-prefix(){.search_drop{top: 26px}}
+@media screen and (-webkit-min-device-pixel-ratio:0){.search_drop{top: 25px}}
+.search_drop span{font-weight: bold;color: #FF6E00}
+.search_drop p{padding: 5px 10px 2px}
+.search_drop p:hover,.search_drop p.on{background: #ebebeb}
+.sale_field{border-bottom: 1px solid #e6e6e6;padding: 10px 20px 8px;position: relative}
+.sale_field strong{padding-top:4px}
+.title_wrap .more{right: 4px}
+.reaper_wrap{float:left;position:relative}
+#locbar .search-result .name strong{color:#FF6E00 !important}
+#locbar .search-result .count em{color:#FF6E00 !important}
+.category_list .cate_list .option_layer li a:hover span{text-decoration:none}
+/* LP,SRP:판매방식-전체,고정가,경매 */
+.btns_wrap{float: left;height: 25px;margin: -1px 0 0 0;*zoom: 1}
+.btns_wrap a{float: left;height: 25px;background:url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_off.gif') 100% 0 no-repeat;margin: 0 0 0 -2px;padding: 0 2px 0 0;color: #999999;font-family: "돋움", Dotum, Tahoma, sans-serif;font-size: 11px;letter-spacing: -1px;text-align:center;text-decoration: none}
+.btns_wrap a .bg{float: left;height: 16px;min-width:25px;padding:6px 10px 3px 10px;background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_off.gif') 0 0 no-repeat;cursor: pointer}
+@-moz-document url-prefix(){.btns_wrap a .bg{padding: 7px 10px 5px 10px}}
+.btns_wrap a:hover{position: relative;z-index: 3;background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_over.gif') 100% 0 no-repeat;color: #999999}
+.btns_wrap a:hover .bg{background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_over.gif') 0 0 no-repeat;text-decoration:none}
+.btns_wrap a.on{position: relative;z-index: 2;background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_on.gif') 100% 0 no-repeat;color: #ffffff}
+.btns_wrap a.on .bg{background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_on.gif') 0 0 no-repeat}
+.btns_wrap a.on:hover{background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_on.gif') 100% 0 no-repeat;color: #ffffff}
+.btns_wrap a.on:hover .bg{background: url('//pics.auction.co.kr/listing/used/2014/bg_sell_btn_on.gif') 0 0 no-repeat}
+.layer_select .selected a span,.layer_select .selected a:hover span,.layer_select .option a span,.layer_select .option a:hover span{text-decoration:none}
+/* 메인:신규등록순,마감임박순 */
+.used_prod_wrap .tit_wrap{overflow:hidden;padding:0 0 8px 0}
+.used_prod_wrap .tit_wrap .tit_h3{float:left}
+.used_prod_wrap .tit_wrap .sort_list{float:left;margin-left:20px}
+.used_prod_wrap .tit_wrap .sort_list li{float:left}
+.used_prod_wrap .tit_wrap .sort_list .sort_item{display:inline-block;background:#ffffff;border-top:1px solid #e0e0e0;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;color:#999999;text-decoration:none}
+.used_prod_wrap .tit_wrap .sort_list .sort_item:first-child{border-left:1px solid #e0e0e0}
+.used_prod_wrap .tit_wrap .sort_list .sort_item a{display:inline-block;padding:5px 11px 1px 12px;color:#999999;line-height:18px;vertical-align:top;text-decoration:none}
+@media screen and (-webkit-min-device-pixel-ratio:0){.used_prod_wrap .tit_wrap .sort_list .sort_item a{padding:3px 11px 3px 12px}}
+.used_prod_wrap .tit_wrap .sort_list .sort_item.on{margin-left:-1px;background:#FF6E00;border:1px solid #CE732D;color:#ffffff}
+.used_prod_wrap .tit_wrap .sort_list .sort_item.on a{color:#ffffff;text-decoration:none}
+/* 홈,인기경매:로케이션바 */
+.used_locbar {position: relative;margin:12px 0 3px 0 !important;font: 12px/1.25 '굴림',Gulim;z-index: 25}
+@media screen and (-webkit-min-device-pixel-ratio:0){.used_locbar {margin:12px 0 5px 0 !important}}
+.used_locbar a {text-decoration: none}
+.used_locbar img {border: 0 none}
+.used_locbar .category_home{border-top:1px solid #2f3345;border-bottom:1px solid #e0e0e0}
+.used_locbar .for-a11y {border: 0 none;clip: rect(0px, 0px, 0px, 0px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px}
+.used_locbar .holder {position: relative;width:980px;height: 24px;margin: 0;padding: 8px 0 3px 3px}
+.used_locbar.home_locbar .holder {padding-left:19px}
+.used_locbar #locbar{margin:0}
+.used_locbar .loc > a {color: #666}
+.used_locbar .loc > a strong {color: #FF6E00;text-decoration: none}
+.used_locbar .loc > a .all {color: #666666;font-weight:bold;text-decoration: none}
+/* 인기경매:드롭다운 오프너 */
+.used_locbar .holder #locbar .dropdown {display:inline-block;height:15px;padding:1px 19px 0 0;background: url("//pics.auction.co.kr/renewal/lp/loc_sprite.gif") no-repeat scroll 100% -25px;cursor: pointer}
+.used_locbar .holder #locbar .categorylayer {display: none;position: absolute;left: 0;top: 0;z-index: 0;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #898989}
+.used_locbar .holder #locbar .categorylayer .categorylayerin:after{content: "";display: table;clear:both}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul{float: left;margin:0;width:133px;margin:10px 0 6px;padding:0;*padding:0 0 8px 0;background:none;border-left:1px solid #ededed}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul:first-child{border-left:0}
+@media screen and (-webkit-min-device-pixel-ratio:0){.used_locbar .holder #locbar .categorylayer .categorylayerin ul {margin:9px 0 7px}}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul li {overflow:hidden;width:110px;height:12px;text-overflow:ellipsis;white-space:nowrap;display:block;padding:4px 0 4px 8px;font: 11px/14px Dotum,'돋움',sans-serif}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul a {color: #363636;display: inline-block;padding: 3px 0 3px 9px;text-overflow: ellipsis}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul a:hover, 
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul a:focus, 
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul a:active{background:none;color: #FF6E00;font-weight:bold;letter-spacing:-1px}
+.used_locbar .holder #locbar .categorylayer .categorylayerin ul .now {color: #FF6E00;font-weight: bold;letter-spacing:-1px}
+/* 인기경매:네비게이션>대중소분류 */
+.category_list.note_category{padding:19px 0 13px;*padding:17px 0 14px;border:1px solid #d9d9d9;*overflow:hidden}
+.category_list:after{content: "";display: block;clear: both}
+@media screen and (-webkit-min-device-pixel-ratio:0){.category_list{padding:16px 0 18px}}
+.category_list.note_category .cate_list{width:940px;padding:0 0 0 20px;position: relative} 
+.category_list.note_category .cate_list:after{content: "";display: block;clear: both}
+.category_list.note_category .cate_list li{float:left;position:relative;width:188px;padding:2px 0}
+.category_list.note_category .cate_list li a{padding:2px 0 2px 6px;background:url('//pics.auction.co.kr/listing/2012/bul_square.gif') no-repeat;background-position:0 6px}
+.category_list.note_category .cate_list li a:hover{color:#FF6E00;text-decoration:none;font-weight:normal;background:url('//pics.auction.co.kr/listing/2012/bul_square02.gif') no-repeat 0 6px}
+.category_list.note_category .cate_list li.on a{display: inline-block;position: relative;color:#FF6E00;font-weight: bold;background:url('//pics.auction.co.kr/listing/2012/bul_square02.gif') no-repeat 0 6px}
+.category_list.note_category .cate_list li.on_under {display: inline-block;position: relative;color:#FF6E00;font-weight: bold;background:url('//pics.auction.co.kr/listing/2012/bul_square02.gif') no-repeat 0 7px}
+.category_list.note_category .cate_list li.on_under a{color:#FF6E00;font-weight: bold;text-decoration:none;background:url('//pics.auction.co.kr/listing/2012/bul_square02.gif') no-repeat 0 7px}
+.category_list.note_category .cate_list li.on_under a:hover{text-decoration:none}
+.category_list.note_category input.view, .srp_category input.view {width:15px;height:15px;margin-top:0;*margin-top:-2px;margin-top:-2px /*\**/;border: 0 none;text-indent: -99999px;cursor: pointer;vertical-align:top;background:url('//pics.auction.co.kr/renewal/button/btn_cate_drop.gif') no-repeat 0 0}
+.category_list.note_category .cate_list li.on input.view{margin-top:0}
+.category_list.note_category .cate_list .option_layer{position: absolute;top:20px;left: 0;width: 220px;max-height: 130px;overflow: auto;-webkit-overflow-scrolling:touch;z-index: 19;padding: 8px 0 10px;border:1px solid #bbb;background:#fff}
+.category_list.note_category .cate_list .option_layer li {width:100%;margin:0;padding:0;background:none;overflow:hidden}
+.category_list.note_category .cate_list .option_layer li a{display:block;padding:4px 9px;color:#333333;font-weight: lighter;text-decoration: none;background:none}
+.category_list.note_category .cate_list .option_layer li a:hover span{color:#FF6E00;text-decoration:none;background:none}
+.note_category{padding-left:0px}
+/* 인기경매:네비게이션>세분류 */
+.category_list.note_category .cate_under{width:908px;margin:4px 0 10px 20px;padding:10px 15px;background:#f5f5f5}
+.category_list.note_category .cate_under .under_layer{overflow: hidden}
+.category_list.note_category .cate_under .under_layer li{float: left;width:168px;padding:2px 8px 2px 5px;background:url('//pics.auction.co.kr/listing/2014/bl_cate.gif') 0 7px no-repeat}
+.category_list.note_category .cate_under .under_layer li a{color: #333333}
+.category_list.note_category .cate_under .under_layer li a:hover{color:#FF6E00;text-decoration:none}
+.category_list.note_category .cate_under .under_layer li.on a{font-weight: bold;color:#FF6E00}
+.category_list.note_category .cate_under .under_layer li.on a:hover{color:#FF6E00;text-decoration:none}
+/* 컨텐츠상단라인 */
+.used_contents.subline{border-top:1px solid #d9d9d9}
+/* 갤러리뷰 */
+.used_prod_wrap.used_hp .used_galleryview_wrap {margin-top:0px}
+.used_prod_wrap .used_galleryview_wrap {margin-top:0}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list{padding-top:15px;border-top:1px solid #e6e6e6;*zoom: 1}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list:first-child{border-top:0}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list:after{display: block;content: '';clear: both}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view{float:left;width:200px;margin-left:47px;padding:0 0 13px 0}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view.fst{margin-left:0 !important}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_img{position:relative;z-index:0}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_img .icon_near{position:absolute;bottom:-11px;right:-17px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_img .icon_auction{position:absolute;top:6px;right:-4px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_buttons{height:11px;margin-top:13px;font-family:dotum;font-size:11px;color:#333333}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_buttons a{letter-spacing:-1px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_buttons a.preview{height:11px;margin-left:2px;padding-left:9px;background:url('//pics.auction.co.kr/listing/2010/bl_line.gif') no-repeat left 1px;font-size:11px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_tit{overflow:hidden;height:32px;margin-top:13px;font-family:dotum;font-size:12px;color:#333333;line-height:17px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price{height:45px;margin:11px 0 7px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .tit{font-family:dotum;font-size:11px;color:#a9a9a9}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .cost{font-family:dotum;font-size:12px;color:#000000}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .cost strong{font-family:Tahoma}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_sell .sell_cost .sell_up{margin:-3px 0 0 3px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_buy{margin-top:2px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_buy .cost,
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_buy .won{font-size:12px;color:#666666}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_bidder{margin-top:0}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_bidder .bidder{display:inline-block;padding-top:3px;font-family:dotum;font-size:11px;color:#a9a9a9;vertical-align:top}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_price .item_bidder .bidder_num{display:inline-block;padding:2px 7px 0 4px;font-family:Tahoma;font-size:11px;color:#666666}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_icons{overflow:visible !important;height:16px;margin-top:10px;*zoom: 1}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_icons:after{display: table;content: '';clear: both}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_icons .qst_wrap{float:left;position:relative}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_icons .qst_wrap .ico_qst{margin-top:-1px;cursor:pointer}
+.layerDisplayReper{display:block;position:absolute;top:16px;left:51px;z-index:10;width:205px;padding:11px 9px 10px 10px;background:#ffffff;border:1px solid #bbbbbb}
+.used_listview_wrap .layerDisplayReper{top:31px;left:197px}
+.layerDisplayReper.pos2{top:20px;left:151px}
+.layerDisplayReper .tit{font-family:"돋움", Dotum;font-size:11px;color:#333333;font-weight:bold}
+.layerDisplayReper .con{padding:15px 0 0 34px;font-family:"돋움", Dotum;font-size:11px;color:#666666;text-indent:-34px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_seller{height:15px;margin-top:12px !important;line-height:16px}
+.used_prod_wrap .used_galleryview_wrap .used_prod_list .gallery_view .item_seller .home{display: inline-block;width:13px;height:11px;margin:-2px 4px 0 0;background: url('//pics.auction.co.kr/renewal/icon/ico_sprite_20141113.png') -220px -24px no-repeat;vertical-align:middle}
+/* 리스트뷰 */
+.used_prod_wrap .used_listview_wrap .list_view{padding: 15px 0 15px 0;border-bottom: 1px solid #e6e6e6;*zoom: 1;position: relative}
+.used_prod_wrap .used_listview_wrap .list_view .image_info{float: left;position:relative;width: 130px;margin:0}
+.used_prod_wrap .used_listview_wrap .list_view .image_info .icon_near{position:absolute;bottom:-11px;right:-17px}
+.used_prod_wrap .used_listview_wrap .list_view .image_info .icon_auction{position:absolute;top:0;right:-4px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info{float: left;width: 350px;height: 130px;margin: 0 91px 0 16px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_icons{position:relative;margin: 0 0 15px;height: 15px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_icons .layerDisplayReper{top:17px;left:51px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_title_wrap{height:57px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_title{overflow: hidden;height:30px;line-height:16px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .promotion{height: 14px;margin: 8px 0 0 0;color: #666;overflow: hidden}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_category{height: 14px;margin:9px 0 0 0;font-family:dotum,'돋움';color: #999;letter-spacing:-1px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_category a{color: #999}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_buttons{margin:0;padding:8px 0 0 0;font-size:11px}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_buttons .btn_item{padding:0 6px 0 8px;background:url('//pics.auction.co.kr/listing/2010/bl_line.gif') 0 1px no-repeat}
+.used_prod_wrap .used_listview_wrap .list_view .item_title_info .item_buttons .btn_item:first-child{padding-left:0;background:none}
+.used_prod_wrap .used_listview_wrap .list_view .market_info{overflow: hidden;float: left;width: 138px;margin:29px 0 0 0}
+.used_prod_wrap .used_listview_wrap .list_view .market_info strong{color: #666;font-family: Tahoma;font-weight: normal;letter-spacing: 0}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .tit{margin-right:5px;color: #a9a9a9;font-family: "돋움", Dotum, Tahoma, sans-serif;font-size: 11px;letter-spacing: -1px}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .now{color: #000;font-weight: bold;font-size: 13px}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .now strong{color: #000;font-size: 14px;font-weight: bold;padding-right: 0}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .won{color:#666666}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .market{margin-top:3px}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .market strong > span{color:#666666;font-size:10px !important}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .market strong > span img{margin:0 2px}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .buy strong,.used_prod_wrap .used_listview_wrap .list_view .market_info .buy .won{font-size:11px}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .clock{display: inline-block;zoom: 1;*display: inline;width: 13px;height: 13px;margin: -2px 0 0 0;background: url('//pics.auction.co.kr/renewal/lp/icon_clock.gif') 0 0 no-repeat;vertical-align: middle;overflow: hidden}
+.used_prod_wrap .used_listview_wrap .list_view .market_info .up{display: inline-block;zoom: 1;*display: inline;width: 7px;height: 10px;margin: -3px 0 0 4px;background: url('//pics.auction.co.kr/listing/used/2014/arrow_up.gif') 0 0 no-repeat;vertical-align: middle;overflow: hidden}
+.used_prod_wrap .used_listview_wrap .list_view .icon_info{float: left;width: 114px;margin-top:29px;font-size:11px}
+.used_prod_wrap .used_listview_wrap .list_view .icon_info .icon span{float: left}
+.used_prod_wrap .used_listview_wrap .list_view .icon_info .icon strong{float: left;font-family: Tahoma;font-weight: normal;margin: 0 0 0 6px}
+.used_prod_wrap .used_listview_wrap .list_view .item_seller_info{float: left;width:87px;padding-left:15px;text-indent:-15px} 
+.used_prod_wrap .used_listview_wrap .list_view .item_seller_info .ic_shop{display:inline-block;width: 13px;height: 13px;padding-right: 2px;background: url('//pics.auction.co.kr/renewal/icon/ico_sprite_20141113.png') -220px -22px no-repeat;text-indent: -99999px}
+.used_prod_wrap .layer_guide iframe{position:absolute;top:0;left:100%;z-index:10}
+.used_prod_wrap .list_view .item_title_info div.category{z-index:0 !important}
+/* 인기경매 */
+.used_prod_wrap.used_popular .tit_wrap{padding-bottom:13px}
+@media screen and (-webkit-min-device-pixel-ratio:0){.used_prod_wrap.used_popular .tit_wrap{padding-bottom:11px}}
+.ranking_num{height:26px;padding-left:14px;font-family:Tahoma;font-size:18px;color:#000000}
+/* //중고장터개선 725.2015-06-19 */
+/* 스폰서슬롯 */
+.sponsor_slot{margin-top:20px;padding:22px 20px 20px;border-top:1px solid #2f3345}
