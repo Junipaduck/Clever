@@ -56,7 +56,9 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<jsp:include page="../inc/mypage_header.jsp" />
+	<header>
+		<jsp:include page="../inc/header.jsp" />
+	</header>
 
 	<!-- main_content 영역 -->
 
