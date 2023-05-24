@@ -2,12 +2,19 @@ package com.itwillbs.clever.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.itwillbs.clever.service.ProductService;
+import com.itwillbs.clever.vo.ProductVO;
+
 @Controller
 public class ProductController {
+	
+	@Autowired
+	private ProductService productService;
 	
 	// 상품 리스트 
 	@GetMapping("/product_list")
@@ -51,5 +58,43 @@ public class ProductController {
 		return "product/product_sell";
 	}
 	
+	// 중고 상품 등록 INSERT (썸네일)
+	@PostMapping("/productUploadPro")
+	public String productUproadPro(ProductVO product, HttpSession session, Model model) {
+		System.out.println(product);
+		
+		int insertCount = productService.insertProduct(product);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg", "등록이 완료되었습니다.");
+			model.addAttribute("target", "product_list");
+			return "success";
+		} else {
+			model.addAttribute("msg", "등록이 실패하였습니다.");
+			return "fail_back";
+		}
+	}
 	
-}
+	
+	
+	
+} //끝
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

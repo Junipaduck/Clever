@@ -56,7 +56,7 @@ font-family: 'SUITE-Regular';
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="" class="frm_selling_goods">
+                <form action="productUploadPro" method="POST" class="frm_selling_goods">
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
                             <span class="image_limit">(<span class="image_num"></span>/4)</span>
@@ -65,7 +65,7 @@ font-family: 'SUITE-Regular';
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="goodsImage" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="product_file" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -83,22 +83,22 @@ font-family: 'SUITE-Regular';
                     <div class="goods_title_area">
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
-                            <input type="text" name="goodsTitle" id="goods_title" maxlength="40"
+                            <input type="text" name="product_subject" id="product_subject" maxlength="40"
                                 placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
                     </div>
                     <div class="goods_category_area">
                         <p>카테고리<span class="red">*</span></p>
-                        	<select class="form-select" aria-label="Default select example" style="width: 244px; height: 48px;">
+                        	<select class="form-select" name="product_category" aria-label="Default select example" style="width: 244px; height: 48px;">
 							  <option selected>카테고리 선택</option>
-							  <option value="1">의류/잡화</option>
-							  <option value="2">디지털/가전</option>
-							  <option value="3">도서/티켓/문구</option>
-							  <option value="3">뷰티/미용</option>
-							  <option value="3">식품</option>
-							  <option value="3">반려동물용품</option>
-							  <option value="3">기타</option>
+							  <option value="의류/잡화">의류/잡화</option>
+							  <option value="디지털/가전">디지털/가전</option>
+							  <option value="도서/티켓/문구">도서/티켓/문구</option>
+							  <option value="뷰티/미용">뷰티/미용</option>
+							  <option value="식품">식품</option>
+							  <option value="반려동물용품">반려동물용품</option>
+							  <option value="기타">기타</option>
 							</select>
                         
 <!--                           <p id="category_clothes"> -->
@@ -155,7 +155,7 @@ font-family: 'SUITE-Regular';
 										        //카카오 지도 발생
 										        new daum.Postcode({
 										            oncomplete: function(data) { //선택시 입력값 세팅
-										                document.getElementById("product_address").value = data.sido + " " + data.sigungu + " " + data.query; // 주소 넣기
+										                document.getElementById("sale_location").value = data.sido + " " + data.sigungu + " " + data.query; // 주소 넣기
 										            }
 										        }).open();
 										    });
@@ -163,22 +163,22 @@ font-family: 'SUITE-Regular';
 										</script>
                                 <button onclick="return false;">지역설정안함</button>
                             </div>
-                            <input type="text" id="product_address" name="product_address" readonly>
+                            <input type="text" id="sale_location" name="sale_location" readonly>
                         </div>
                     </div>
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="status" value="used" id="used">
+                            <input type="radio" name="product_status" value="중고" id="used">
                             <label for="used">중고</label>
-                            <input type="radio" name="status" value="new" id="new">
+                            <input type="radio" name="product_status" value="미개봉" id="new">
                             <label for="new">미개봉</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
                             <input type="checkbox" name="deliveryPrice" id="deliveryPrice">
                             <label for="deliveryPrice">배송비 포함</label>
                              <input type="checkbox" name="priceOffer" id="priceOffer">
@@ -188,7 +188,7 @@ font-family: 'SUITE-Regular';
                     <div class="goods_info_area">
                         <p>설명<span class="red">*</span></p>
                         <div>
-                            <textarea name="goodsInfo" id="goodsInfo" cols="30" rows="10"
+                            <textarea name="product_content" id="product_content" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ font-family: 'SUITE-Regular';
                                     <button onclick="return false;">#태그1</button>
                                     <button onclick="return false;" ><i class="fas fa-times"></i></button>
                                 </div>
-                                <input type="text" name="tag" id="tag" 
+                                <input type="text" name="product_tag" id="product_tag" 
                                     placeholder="연관태그를 입력해주세요. (최대5개)"
                                 >
                             </div>
@@ -222,28 +222,28 @@ font-family: 'SUITE-Regular';
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
-		                            <input type="radio" name="status" value="account" id="account">
+		                            <input type="radio" name="sale_pay" value="계좌이체" id="sale_pay1">
 		                            <label for="account">계좌 이체</label>
-		                            <input type="radio" name="status" value="" id="">
-		                            <label for="point">?</label>
+		                            <input type="radio" name="sale_pay" value="옵션2" id="sale_pay2">
+		                            <label for="point">옵션2</label>
 		                        </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-4" style="margin-left: 650px;">
-                        <div class="p-3 info_btn3" style="text-align: center;">바로구매</div>
-                        <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px">돌아가기</div>
+<!--                         <div class="p-3 info_btn3" style="text-align: center;">바로구매</div> -->
+                        <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px" onclick="javascript:history.back()">돌아가기</div>
                     </div>
+			        <div class="btn_submit_area">
+				        <div class="inner_submit" style="margin-left: 650px;">
+				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+				            <input type="submit" class="p-3 info_btn3" value="등록하기">
+				        </div>
+			    	</div>
                 </form>
             </section>
         </div>
-        <div class="btn_submit_area">
-        <div class="inner_submit">
-            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-            <input type="submit" class="btn_goods_submit" value="등록하기">
-        </div>
-    </div>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
