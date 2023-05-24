@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="col-1 b_h_left_menu">
-                            <a href="product_upload">
+                            <a href="product_upload?member_id=${sessionScope.sId }">
                                 <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="판매하기">
                                 판매하기
                             </a>

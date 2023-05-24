@@ -57,6 +57,7 @@ font-family: 'SUITE-Regular';
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
                 <form action="productUploadPro" method="POST" class="frm_selling_goods">
+                	<input type="hidden" name="member_id" value="${sessionScope.sId }">
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
                             <span class="image_limit">(<span class="image_num"></span>/4)</span>
