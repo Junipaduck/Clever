@@ -26,7 +26,27 @@
     <!-- 파비콘 -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 </head>
+
 <body>
+<script type="text/javascript">
+
+	function inputNumberFormat(obj) {
+		
+	    obj.value = comma(uncomma(obj.value));
+	}
+	
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
+	
+
+</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
@@ -122,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col detail_content_info">
-                            <h2>상품명 : <span>어케아노</span> </h2>
+                            <h2>상품명 : <span>내가 어캐아노</span> </h2>
                             <p> 18,000,000<span>원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
@@ -158,7 +178,8 @@
                                 </p>
                             </div>
                             <div style="height: 50px;">
-                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="경매가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>
+                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                            	style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>
                             </div>
                             <div>
                                 <div class="container text-center detail_content_info_btn">
@@ -371,7 +392,7 @@
             
              <div id="side_bar2">
                     <div style="border:4px solid" id="auctionDiv">
-                        <p style="font-size: 15px;">경매 입찰 내용</p>
+                        <p style="font-size: 15px;">실시간 &nbsp; 경매 입찰 &nbsp; 내용</p>
                         <div style="border:1px solid;  font-size: 20px; height: 465px;">
                         	 <p>xxxxxx님이 xxxx원에 입찰</p>
                         </div>
