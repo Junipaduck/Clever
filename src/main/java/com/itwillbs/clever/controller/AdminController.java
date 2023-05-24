@@ -1,13 +1,22 @@
 package com.itwillbs.clever.controller;
 
+import java.util.*;
+
 import javax.servlet.http.*;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import com.itwillbs.clever.service.*;
+import com.itwillbs.clever.vo.*;
+
 @Controller
 public class AdminController {
+	
+	@Autowired
+	private AdminService adminService;
 	
 	
 	@GetMapping(value = "/adminMain.ad")
@@ -15,6 +24,7 @@ public class AdminController {
 		
 		String id = (String)session.getAttribute("sId");
 		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
 		if(id == null || !id.equals("admin")) {
 			model.addAttribute("msg", "접근 권한이 없습니다!");
 			return "fail_back";
@@ -25,7 +35,11 @@ public class AdminController {
 	
 	// 회원 목록 조회 
 	@GetMapping(value = "/adminMember.ad")
-	public String memberList() {
+	public String memberList(HttpSession httpSession, Model model) {
+		
+		List<MemberVO> memberList = adminService.selectMember();
+		model.addAttribute("memberList", memberList);
+		
 		return "admin/admin_member";
 	}
 	

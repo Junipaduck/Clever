@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,19 +100,27 @@
                                                 <th>생년월일(성별)</th>
                                                 <th>이메일</th>
                                                 <th>관심분야</th>
+                                                <th>등급</th>
+                                                <th>포인트</th>
+                                                <th>가입일</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>관리자</td>
-                                                <td>admin</td>
-                                                <td>010-1234-5678</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                            </tr>
+                                        	<c:forEach items="${memberList }" var="member">
+	                                            <tr>
+	                                                <td>${member.member_idx }</td>
+	                                                <td>${member.member_name }</td>
+	                                                <td>${member.member_id }</td>
+	                                                <td>${member.member_phone }</td>
+	                                                <td>${member.member_address }</td>
+	                                                <td>${member.member_birth }</td>
+	                                                <td>${member.member_email }</td>
+	                                                <td>${member.member_interest }</td>
+	                                                <td>${member.member_rank }</td>
+	                                                <td>${member.member_point }</td>
+	                                                <td>${member.member_date }</td>
+	                                            </tr>
+                                        	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -123,6 +132,9 @@
                                                 <th>생년월일(성별)</th>
                                                 <th>이메일</th>
                                                 <th>관심분야</th>
+                                                <th>등급</th>
+                                                <th>포인트</th>
+                                                <th>가입일</th>
                                             </tr>
                                         </tfoot>
                                     </table>
