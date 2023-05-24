@@ -4,6 +4,9 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember">
+	<selectKey keyProperty="member_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(member_idx), 0) FROM member
+	</selectKey>
 		INSERT
 			INTO member
 			VALUES (
@@ -13,7 +16,7 @@
 				#{member_passwd}, -- 암호문
 				#{member_phone},
 				CONCAT(#{member_address},' ',#{member_address2}),
-				#{member_birth},
+				CONCAT(#{member_birth}, '-', #{member_birth2}), 
 				CONCAT(#{member_email}, '@', #{member_email2}), -- email 문자열 결합
 				#{member_interest},
 				'Y',

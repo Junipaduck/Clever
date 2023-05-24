@@ -35,6 +35,7 @@ public class MemberVO {
 	private String member_address;
 	private String member_address2;
 	private String member_birth;
+	private String member_birth2;
 	private String member_email;
 	private String member_email2;
 	private String member_interest;
