@@ -123,7 +123,6 @@ font-family: 'SUITE-Regular';
                                 <button onclick="return false;">내위치</button>
                                 <button id="btnAddress" onclick="return false;">주소검색</button>
                                 <!-- 주소 입력 받는 api -->
-				              	<small id="small6" class="form-text text-muted">거래 지역을 입력해주세요</small>
 						               <!-- 주소 API 스크립트 -->
 						                <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 										<script>

@@ -245,7 +245,7 @@ div.pgdirectlisttop{
 	margin-top:2px;
 }
 ul.listsort{
-	height:24px
+	height:24px;
 	padding-left:4px;
 }
 
@@ -1575,11 +1575,8 @@ input[type=text]::-ms-clear {display:block}
 .used_head .tab_umarket .tablist li.dep1{float:left}
 .used_head .tab_umarket .tablist li.dep1 a{overflow:hidden;float:left;position:relative;height:94px}
 .used_head .tab_umarket .tablist li.active a,
-.used_head .tab_umarket .tablist li.hover a {height:94px;margin-bottom:-10px;border:0;color:#FF6E00}
+.used_head .tab_umarket .tablist li.hover a {height:94px; border:0;color:#FF6E00}
 .used_head .tab_umarket .tablist li.hover a span {display:block}
-.used_head .tab_umarket .tablist li.on img,
-.used_head .tab_umarket .tablist li.active img,
-.used_head .tab_umarket .tablist li.hover img {margin-top:-94px}
 .used_head .tabpanel{display:none;width:950px;margin-top:-3px;padding:15px 9px 13px 19px;border:1px solid #eaeaea;border-top:0}
 .used_head .tabpanel-active{display:block !important}
 .used_head .tabpanel ul{width:100%;overflow:hidden}

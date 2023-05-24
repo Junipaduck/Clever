@@ -32,8 +32,15 @@
 
 
 <!-- auction -->
-<link rel="stylesheet" type="text/css" href="//script.auction.co.kr/style/css/used/used.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
 <script type="text/javascript" src="//script.auction.co.kr/style/js/used.js"></script>
+<style type="text/css">
+.dep1 img {
+width: 81px;
+height: 94px;
+margin-right: 25px;
+}
+</style>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -94,55 +101,50 @@
 		<div class="tab_umarket">
 			<!-- 대대분류 -->
 			<ul class="tablist">
-
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_01.png" alt="패션의류"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/tshirt.png" alt="패션의류"></a><br>
+				  <div align="center">패션의류</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_02.png" alt="패션잡화"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/box.png" alt="패션잡화"></a>
+				  <div align="center">패션잡화</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_03.png" alt="유아용품"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/hobbies.png" alt="취미/컬렉션"></a>
+				  <div align="center">취미/컬렉션</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_04.png" alt="가구/생활/식품"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/cross-platform.png" alt="디지털"></a>
+				  <div align="center">디지털</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_05.png" alt="취미/컬렉션"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/sport.png" alt="스포츠/레저"></a>
+				  <div align="center">스포츠/레저</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_06.png" alt="디지털"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/cosmetics.png" alt="뷰티"></a>
+				  <div align="center">뷰티</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_07.png" alt="컴퓨터"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/furniture.png" alt="생활가전"></a>
+				  <div align="center">생활가전</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_08.png" alt="스포츠/레저"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/electric-car.png" alt="자동차/공구"></a>
+				  <div align="center">자동차/공구</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_09.png" alt="뷰티"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/open-book.png" alt="도서/기타"></a>
+				  <div align="center">도서/기타</div>
 				</li>
-    
-				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_10.png" alt="생활가전"></a>
-				</li>
-    
-				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_11.png" alt="자동차/공구"></a>
-				</li>
-    
-				<li class="dep1">
-				   <a href="#"><img src="//pics.auction.co.kr/listing/used/2014/cate_12.png" alt="도서/기타"></a>
-				</li>
-    
 			</ul>		
 			<!-- //대대분류 -->
             <!-- 대분류 -->
