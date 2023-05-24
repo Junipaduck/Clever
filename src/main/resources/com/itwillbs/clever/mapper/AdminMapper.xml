@@ -6,6 +6,13 @@
 	<select id="selectMember" resultType="com.itwillbs.clever.vo.MemberVO">
 		SELECT *
 			FROM member
+			WHERE member_id != 'admin'
+	</select>
+	
+	<select id="selectMemberCount" resultType="int">
+		SELECT COUNT(*)
+			FROM member
+			WHERE member_id != 'admin'	
 	</select>
 
 </mapper>

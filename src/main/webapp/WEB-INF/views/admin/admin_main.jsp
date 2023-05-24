@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="stat-content d-inline-block">
                                     <div class="stat-text">회원 수</div>
-                                    <div class="stat-digit">961</div>
+                                    <div class="stat-digit">${memberCount }</div>
                                 </div>
                             </div>
                         </div>

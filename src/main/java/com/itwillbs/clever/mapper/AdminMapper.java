@@ -8,4 +8,6 @@ public interface AdminMapper {
 
 	List<MemberVO> selectMember();
 
+	int selectMemberCount();
+
 }

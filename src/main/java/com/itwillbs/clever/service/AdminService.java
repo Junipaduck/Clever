@@ -19,4 +19,9 @@ public class AdminService {
 		return mapper.selectMember();
 	}
 
+	public int selectMemberCount() {
+		
+		return mapper.selectMemberCount();
+	}
+
 }

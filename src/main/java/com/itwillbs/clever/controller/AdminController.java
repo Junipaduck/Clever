@@ -29,6 +29,12 @@ public class AdminController {
 			model.addAttribute("msg", "접근 권한이 없습니다!");
 			return "fail_back";
 		}
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+		// 관리자 메인 페이지 차트 
+		
+		// 가입 회원 수 계산 
+		int memberCount = adminService.selectMemberCount();
+		model.addAttribute("memberCount", memberCount);
 		
 		return "admin/admin_main";
 	}
