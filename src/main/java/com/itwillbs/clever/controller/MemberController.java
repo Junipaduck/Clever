@@ -123,7 +123,7 @@ public class MemberController {
 	@GetMapping(value = "chatting")
 	public String chatting(HttpSession session, Model model) {
 		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg","로그인 후 이용해주세요.");
+			model.addAttribute("msg","로그인 후 이용해주세요!");
 			model.addAttribute("target","loginForm.me");
 			return "success";
 		}
