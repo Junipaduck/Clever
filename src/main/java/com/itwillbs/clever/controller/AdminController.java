@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
 
+import retrofit2.http.*;
+
 @Controller
 public class AdminController {
 	
@@ -49,6 +51,13 @@ public class AdminController {
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/admin_member";
+	}
+	
+	
+	// 회원 가입 휴대폰 인증 
+	@GetMapping(value = "/authPhone.ad")
+	public String authPhone() {
+		return "member/member_auth_form";
 	}
 	
 	// 굿즈 등록 페이지 

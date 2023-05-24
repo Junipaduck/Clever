@@ -234,7 +234,7 @@ window.onload = function(){
 						        <td class="col1">연락처</td>
 						        <td class="col2">
 							        <input type="text" id="member_phone" name="member_phone">
-							        <input class='but1' type="button" value="인증하기" onclick="">
+							        <input class='but1' type="button" value="인증하기" onclick="location.href='authPhone.ad'">
 						        </td>
 						    </tr>
 						    <tr>
