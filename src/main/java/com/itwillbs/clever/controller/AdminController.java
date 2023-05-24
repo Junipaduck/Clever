@@ -43,7 +43,9 @@ public class AdminController {
 	@GetMapping(value = "/adminMember.ad")
 	public String memberList(HttpSession httpSession, Model model) {
 		
-		List<MemberVO> memberList = adminService.selectMember();
+//		List<MemberVO> memberList = adminService.selectMember();
+//		model.addAttribute("memberList", memberList);
+		List<HashMap<String, String>> memberList = adminService.selectMember();
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/admin_member";

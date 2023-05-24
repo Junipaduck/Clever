@@ -14,7 +14,7 @@ public class AdminService {
 	@Autowired
 	private AdminMapper mapper;
 	
-	public List<MemberVO> selectMember() {
+	public List<HashMap<String, String>> selectMember() {
 		
 		return mapper.selectMember();
 	}

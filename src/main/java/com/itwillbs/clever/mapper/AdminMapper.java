@@ -6,7 +6,7 @@ import com.itwillbs.clever.vo.*;
 
 public interface AdminMapper {
 
-	List<MemberVO> selectMember();
+	List<HashMap<String, String>> selectMember();
 
 	int selectMemberCount();
 
