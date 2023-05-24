@@ -30,7 +30,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
 <style type="text/css">
 @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
 @font-face {

@@ -51,22 +51,39 @@ function setImages(event){
     let cnt = document.querySelector(".image_num").innerText
 
     for(var image of event.target.files){
-        var reader = new FileReader();
-        
-        reader.onload = function(event){
-            var img = document.createElement("img");
-            img.setAttribute("src", event.target.result);
-            img.setAttribute("class", "preview");
-            document.querySelector("div.preview_wrap").appendChild(img);
-            cnt++;
-            document.querySelector(".image_num").innerText = cnt;
-        };
-        
-        reader.readAsDataURL(image);
-        if(cnt >= 4){
+        if(cnt >= 8){ // 이미지 파일 4개 카운팅 되면 나감
             break;
-        }
-    }
+        } else {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function(event){
+	            var li = document.createElement("li");
+	            li.setAttribute("draggable","false");
+	            li.setAttribute("class","sc-gkFcWv iiYIYa");
+	            var img = document.createElement("img");
+//	            var img = ''
+	            img.setAttribute("src", event.target.result);
+	            img.setAttribute("class", "preview");
+	            var button = document.createElement("button");
+	            button.setAttribute("class", "eHGbgX");
+	            button.setAttribute("type", "button");
+	            button.addEventListener("click", function () {
+		          li.remove();
+		          cnt--;
+		          document.querySelector(".image_num").innerText = cnt;
+		        });
+	            li.appendChild(img);
+				li.appendChild(button);
+	            document.querySelector("div.preview_wrap").appendChild(li);
+	            cnt++;
+	            document.querySelector(".image_num").innerText = cnt;
+	            
+//	            
+	        };
+	        
+	        reader.readAsDataURL(image);
+		}
+    } // 포문 끝
 }
 
 function countTitleLength(event) {

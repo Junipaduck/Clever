@@ -80,9 +80,9 @@
                             </div>
                         </div>
                         <div class="col-1 b_h_left_menu">
-                            <a href="auction._upload">
+                            <a href="auction_upload">
                                 <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="판매하기">
-                                판매하기
+                                경매하기
                             </a>
                         </div>
                         <div class="col-1 b_h_left_menu store">

@@ -34,11 +34,45 @@
 <!-- auction -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
 <script type="text/javascript" src="//script.auction.co.kr/style/js/used.js"></script>
+<!-- 경매 남은 시간 함수 -->
+<script>
+window.onload=function(){
+	function countdown(elementId, seconds){
+	  var element, endTime, hours, mins, msLeft, time;
+
+	  function updateTimer(){
+		msLeft = endTime - (+new Date);
+		if ( msLeft < 0 ) {
+		  console.log('done');
+		} else {
+		  time = new Date( msLeft );
+		  hours = time.getUTCHours();
+		  mins = time.getUTCMinutes();
+		  element.innerHTML = "남은시간 : "+(hours ? hours + ':' + ('0' + mins).slice(-2) : mins) + ':' + ('0' + time.getUTCSeconds()).slice(-2);
+		  setTimeout( updateTimer, time.getUTCMilliseconds());
+		}
+	  }
+
+	  element = document.getElementById(elementId);
+	  endTime = (+new Date) + 1000 * seconds;
+	  updateTimer();
+	}
+	countdown('countdown', 300);	 
+}
+</script>
 <style type="text/css">
 .dep1 img {
 width: 81px;
 height: 94px;
-margin-right: 25px;
+margin-left: 13px;
+margin-right: 13px;
+}
+.goods_info  {
+height: 90px;
+}
+#countdown {
+color: red;
+text-align: right;
 }
 </style>
 </head>
@@ -94,7 +128,10 @@ margin-right: 25px;
         </div>
     <!-- main_content 영역 -->
         <div id="main_content">
-			<div id="header" class="used_head">
+        <br>
+        <br>
+        <br>
+<div id="header" class="used_head">
     <div class="headinside">
         <script type="text/javascript" src="//script.auction.co.kr/listing/UsedMarketHeader.js?ver=20220318"></script>
 		<!-- 카테고리 -->
@@ -358,6 +395,84 @@ margin-right: 25px;
                                     <span class="goods_price">가격</span>
                                     <span class="goods_date_before">9000원</span>
                                 </div>
+                                <div id="countdown"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div> 
+            </section>
+            <!--상품 영역-->
+            <section class="main_goods">
+                <h2 align="center" style="color: red;">핫 한 경매 물품</h2>
+                <div class="goods_wrap">
+                    <div class="goods">
+                        <a href="auction_detail">
+                            <div class="goods_image">
+                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                            </div>
+                            <div class="goods_info">
+                                <p class="goods_title">JSP책 팝니다</p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">9000원</span>
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -497,7 +612,9 @@ margin-right: 25px;
                 </div> 
             </section>
         </div>
-        <!-- // main_content 영역 -->
+        
+			
+			
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />

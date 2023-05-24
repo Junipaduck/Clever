@@ -21,4 +21,24 @@ public class AuctionController {
 		return "auction/auction_detail";
 	}
 	
+	@GetMapping(value = "auction_upload")
+	public String auction_upload() {
+		return "auction/auction_upload";
+	}
+	
+	@GetMapping(value = "auction_management")
+	public String auction_management() {
+		return "auction/auction_management";
+	}
+	
+	@GetMapping(value = "auction_sell")
+	public String auction_sell() {
+		return "auction/auction_sell";
+	}
+	
+	@GetMapping(value = "auction_buy")
+	public String auction_buy() {
+		return "auction/auction_buy";
+	}
+	
 }

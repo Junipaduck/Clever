@@ -26,7 +26,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
 <style type="text/css">
 @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
 @font-face {
@@ -38,7 +38,34 @@
 body {
 font-family: 'SUITE-Regular';
 }
+.eHGbgX {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuODQ4IDZsMy43NzYtMy43NzZhLjYuNiAwIDEgMC0uODQ4LS44NDhMNiA1LjE1IDIuMjI0IDEuMzc2YS42LjYgMCAwIDAtLjg0OC44NDhMNS4xNTIgNiAxLjM3NiA5Ljc3NWEuNi42IDAgMSAwIC44NDguODQ5TDYgNi44NDhsMy43NzYgMy43NzZhLjU5OC41OTggMCAwIDAgMS4wMjQtLjQyNS42LjYgMCAwIDAtLjE3Ni0uNDI0TDYuODQ4IDZ6IiBvcGFjaXR5PSIuNjQiLz4KPC9zdmc+Cg==);
+    background-color: rgba(30, 29, 41, 0.32);
+    border-radius: 50%;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+.iiYIYa {
+    width: 202px; 
+    height: 202px; 
+    border: 1px solid rgb(230, 229, 239); 
+    margin-right: 1rem; 
+    margin-bottom: 1rem; 
+    list-style-type: none; 
+    position: relative;
+    display: flex;
+    cursor: pointer;
+}
 
+.preview_wrap {
+	display: flex;
+	}
 </style>
 </head>
 <body>
@@ -49,10 +76,10 @@ font-family: 'SUITE-Regular';
         <div id="main_content">
             <!--하위 메뉴-->
             <nav class="content_nav">
-                <a href="product_upload" class="active">상품등록</a>
-                <a href="product_management">상품관리</a>
-                <a href="product_buy">구매 내역</a>
-                <a href="product_sell">판매 내역</a>
+                <a href="auction_upload" class="active">경매등록</a>
+                <a href="auction_management">경매관리</a>
+                <a href="auction_buy">낙찰 내역</a>
+                <a href="auction_sell">판매 내역</a>
             </nav>
             
             <!--판매 폼-->
@@ -154,11 +181,21 @@ font-family: 'SUITE-Regular';
                         </div>
                     </div>
                     <div class="goods_price_area">
-                        <p>가격<span class="red">*</span></p>
+                        <p>즉시 구매 액<span class="red">*</span></p>
                         <div class="goods_price">
                             <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
-                            <input type="checkbox" name="deliveryPrice" id="deliveryPrice">
-                            <label for="deliveryPrice">배송비 포함</label>
+                        </div>
+                    </div>
+                    <div class="goods_price_area">
+                        <p>입찰 시작 액<span class="red">*</span></p>
+                        <div class="goods_price">
+                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                        </div>
+                    </div>
+                    <div class="goods_price_area">
+                        <p>입찰 최소 증가 액<span class="red">*</span></p>
+                        <div class="goods_price">
+                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
                         </div>
                     </div>
                     <div class="goods_info_area">
