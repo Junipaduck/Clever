@@ -170,8 +170,8 @@
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="p-3 info_btn2">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="번개톡"> 번개톡
+                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
+                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="클레버톡"> 클레버톡
                                             </div>
                                         </div>
                                         <div class="col-4">

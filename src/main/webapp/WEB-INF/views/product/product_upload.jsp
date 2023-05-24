@@ -22,6 +22,10 @@
 
 <!--CSS-->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
+
+<!-- 상세페이지 CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_product_detail.css">
+
 <!-- 햄버거 메뉴 호버시 -->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
@@ -47,13 +51,7 @@ font-family: 'SUITE-Regular';
 		<jsp:include page="../inc/header.jsp" />
 	</header>    <!--메인 컨텐츠-->
         <div id="main_content">
-            <!--하위 메뉴-->
-            <nav class="content_nav">
-                <a href="product_upload" class="active">상품등록</a>
-                <a href="product_management">상품관리</a>
-                <a href="product_buy">구매 내역</a>
-                <a href="product_sell">판매 내역</a>
-            </nav>
+            
             
             <!--판매 폼-->
             <section class="goods_form">
@@ -92,29 +90,55 @@ font-family: 'SUITE-Regular';
                     </div>
                     <div class="goods_category_area">
                         <p>카테고리<span class="red">*</span></p>
-                        <div>
-                            <div class="goods_category">
-                                <div class="goods_Lcategory">
-                                    <div>의류</div>
-                                    <div>악세서리</div>
-                                </div>
-                                <div class="goods_Scategory">
-                                    중분류 선택
-                                </div>
-                                <div class="goods_Scategory_cloth hidden">
-                                    <div>남성의류</div>
-                                    <div>여성의류</div>
-                                </div>
-                                <div class="goods_Scategory_acc hidden">
-                                    <div>시계/쥬얼리</div>
-                                    <div>패션악세서리</div>
-                                </div>
-                            </div>
-                            <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
-                            <p>선택한 카테고리 : <span class="selected_category"></span></p>
-                            <input type="hidden" name="Lcategory">
-                            <input type="hidden" name="Scategory">
-                        </div>
+                        	<select class="form-select" aria-label="Default select example" style="width: 244px; height: 48px;">
+							  <option selected>카테고리 선택</option>
+							  <option value="1">의류/잡화</option>
+							  <option value="2">디지털/가전</option>
+							  <option value="3">도서/티켓/문구</option>
+							  <option value="3">뷰티/미용</option>
+							  <option value="3">식품</option>
+							  <option value="3">반려동물용품</option>
+							  <option value="3">기타</option>
+							</select>
+                        
+<!--                           <p id="category_clothes"> -->
+<!--                         <span> -->
+<!--                             <i class="bi bi-chevron-right"></i> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <ul class="category_clothes_bar"> -->
+<!--                                 <li><a href="#">남성의류</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">여성의류</a></li> -->
+<!--                             </ul> -->
+<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
+<!--                         </span> -->
+<!--                     	</p> -->
+                    	
+<!--                         <div> -->
+<!--                             <div class="goods_category"> -->
+<!--                                 <div class="goods_Lcategory"> -->
+<!--                                     <div>의류/잡화</div> -->
+<!--                                     <div>디지털/가전</div> -->
+<!--                                     <div>도서/티켓/문구</div> -->
+<!--                                     <div>뷰티/미용</div> -->
+<!--                                     <div>식품</div> -->
+<!--                                     <div>반려동물용품</div> -->
+<!--                                     <div>기타</div> -->
+<!--                                 </div> -->
+<!--                                 <div class="goods_Scategory_cloth hidden"> -->
+<!--                                     <div>디지털</div> -->
+<!--                                     <div>가전</div> -->
+<!--                                 </div> -->
+<!--                                 <div class="goods_Scategory_acc hidden"> -->
+<!--                                     <div>시계/쥬얼리</div> -->
+<!--                                     <div>패션악세서리</div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p> -->
+<!--                             <p>선택한 카테고리 : <span class="selected_category"></span></p> -->
+<!--                             <input type="hidden" name="Lcategory"> -->
+<!--                             <input type="hidden" name="Scategory"> -->
+<!--                         </div> -->
                     </div>
                     <div class="goods_location_area">
                         <p>거래지역<span class="red">*</span></p>
@@ -146,11 +170,9 @@ font-family: 'SUITE-Regular';
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
                             <input type="radio" name="status" value="used" id="used">
-                            <label for="used">미개봉</label>
+                            <label for="used">중고</label>
                             <input type="radio" name="status" value="new" id="new">
-                            <label for="new">거의 새 것</label>
-                            <input type="radio" name="status" value="new" id="new">
-                            <label for="new">사용감 있음</label>
+                            <label for="new">미개봉</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
@@ -159,6 +181,8 @@ font-family: 'SUITE-Regular';
                             <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
                             <input type="checkbox" name="deliveryPrice" id="deliveryPrice">
                             <label for="deliveryPrice">배송비 포함</label>
+                             <input type="checkbox" name="priceOffer" id="priceOffer">
+                            <label for="deliveryPrice">가격제안받기</label>
                         </div>
                     </div>
                     <div class="goods_info_area">
@@ -187,24 +211,29 @@ font-family: 'SUITE-Regular';
                             </p>
                         </div>
                     </div>
-                    <div class="goods_count_area">
-                        <p>수량</p>
-                        <div><input type="text" name="goodsCount" value="1" oninput="valueIsNumber(event)">개</div> 
-                    </div>
+<!--                     <div class="goods_count_area"> -->
+<!--                         <p>수량</p> -->
+<!--                         <div><input type="text" name="goodsCount" value="1" oninput="valueIsNumber(event)">개</div>  -->
+<!--                     </div> -->
                     <!--번개페이 뻐른 판매-->
                     <div class="fast_selling_area">
-                        <h2>빠른 판매</h2>
+                        <h2>클레버 페이</h2>
                         <div class="goods_option_area">
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
 		                            <input type="radio" name="status" value="account" id="account">
 		                            <label for="account">계좌 이체</label>
-		                            <input type="radio" name="status" value="point" id="point">
-		                            <label for="point">포인트 결제</label>
+		                            <input type="radio" name="status" value="" id="">
+		                            <label for="point">?</label>
 		                        </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="col-4" style="margin-left: 650px;">
+                        <div class="p-3 info_btn3" style="text-align: center;">바로구매</div>
+                        <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px">돌아가기</div>
                     </div>
                 </form>
             </section>

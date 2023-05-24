@@ -1,6 +1,9 @@
 package com.itwillbs.clever.controller;
 
+import javax.servlet.http.*;
+
 import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -8,7 +11,15 @@ public class AdminController {
 	
 	
 	@GetMapping(value = "/adminMain.ad")
-	public String adminMain() {
+	public String adminMain(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		return "admin/admin_main";
 	}
 	

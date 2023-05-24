@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.clever.mapper.MemberMapper">
 
+	<!-- 회원가입 -->
+	<insert id="insertMember">
+		INSERT
+			INTO member
+			VALUES (
+				#{member_idx} + 1,
+				#{member_name},
+				#{member_id},
+				#{member_passwd}, -- 암호문
+				#{member_phone},
+				CONCAT(#{member_address},' ',#{member_address2}),
+				#{member_birth},
+				CONCAT(#{member_email}, '@', #{member_email2}), -- email 문자열 결합
+				#{member_interest},
+				'Y',
+				'Y',
+				now(),
+				'브론즈',
+				2000
+			)
+	</insert>
+
 
 	<!-- 로그인 -->
 	<select id="loginSuccess" parameterType="String" resultType="boolean">
