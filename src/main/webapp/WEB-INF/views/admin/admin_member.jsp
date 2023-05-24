@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>회원 목록 조회</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
     <link href="${pageContext.request.contextPath }/resources/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
@@ -106,19 +106,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="${memberList }" var="member">
+                                        	<c:forEach items="${memberList }" var="memberList">
 	                                            <tr>
-	                                                <td>${member.member_idx }</td>
-	                                                <td>${member.member_name }</td>
-	                                                <td>${member.member_id }</td>
-	                                                <td>${member.member_phone }</td>
-	                                                <td>${member.member_address }</td>
-	                                                <td>${member.member_birth }</td>
-	                                                <td>${member.member_email }</td>
-	                                                <td>${member.member_interest }</td>
-	                                                <td>${member.member_rank }</td>
-	                                                <td>${member.member_point }</td>
-	                                                <td>${member.member_date }</td>
+	                                                <td>${memberList.member_idx }</td>
+	                                                <td>${memberList.member_name }</td>
+	                                                <td>${memberList.member_id }</td>
+	                                                <td>${memberList.member_phone }</td>
+	                                                <td>${memberList.member_address }</td>
+	                                                <td>${memberList.member_birth }</td>
+	                                                <td>${memberList.member_email }</td>
+	                                                <td>${memberList.member_interest }</td>
+	                                                <td>${memberList.member_rank }</td>
+	                                                <td>${memberList.member_point }</td>
+	                                                <td>${memberList.member_date }</td>
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
@@ -153,13 +153,6 @@
 		</footer>
 		<!-- footer 끝 -->
 
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
 
         
     </div>

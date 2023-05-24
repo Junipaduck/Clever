@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>신고 처리 결과</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
     <link href="${pageContext.request.contextPath }/resources/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
