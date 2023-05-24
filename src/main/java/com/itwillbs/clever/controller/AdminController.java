@@ -10,9 +10,6 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
-import com.itwillbs.clever.vo.*;
-
-import retrofit2.http.*;
 
 @Controller
 public class AdminController {
