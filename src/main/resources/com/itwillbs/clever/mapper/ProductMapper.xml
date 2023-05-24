@@ -3,7 +3,7 @@
 <mapper namespace="com.itwillbs.clever.mapper.ProductMapper">
 
 	<!-- 중고상품등록 INSERT태그 -->
-	<insert id="insertProduct">
+	<insert id="insertProduct"> 
 	<selectKey keyProperty="product_idx" resultType="int" order="BEFORE">
 			SELECT IFNULL(MAX(product_idx), 0) FROM product
 	</selectKey>
