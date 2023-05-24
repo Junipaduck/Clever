@@ -47,14 +47,14 @@ public class MemberController {
         	if(insertCnt > 0) { // 회원가입을 성공 했을 때
         		model.addAttribute("msg", "회원 가입 성공!");
         		model.addAttribute("target","./");
-        		return "member/success";
+        		return "success";
         	} else { // 회원가입을 실패 했을 때
         		model.addAttribute("msg", "회원가입 실패!");
-        		return "member/fail_back";
+        		return "fail_back";
         	}
         } else { // 비밀번호 확인과 비밀번호 가 서로 다를 때
         	model.addAttribute("msg", "비밀번호가 서로 다름!");
-        	return "member/fail_back";
+        	return "fail_back";
         }
     }
 	
@@ -90,16 +90,24 @@ public class MemberController {
 	public String LoginPro(MemberVO member, HttpSession session, Model model) {
 		
 		System.out.println("아이디 : " + member.getMember_id() + ", 패스워드 : " + member.getMember_passwd());
-		
-			boolean loginSuccess = memberService.loginSuccess(member);
-			if(loginSuccess) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String passwd = memberService.getPasswd(member);
+		if(encoder.matches(member.getMember_passwd(), passwd)) {
+			member.setMember_passwd(passwd);
+			boolean isSuccess = memberService.isSuccessMember(member);
+			System.out.println(isSuccess);
+			if(isSuccess) {
 				//로그인 성공 시 세션 객체에 아이디 저장 
 				session.setAttribute("sId", member.getMember_id());
 				return "redirect:/"; // 로그인 성공 시 -> main 페이지로 리다이렉트 이동 
 			} else {
-				model.addAttribute("msg","아이디 혹은 패스워드가 일치하지 않습니다.");
+				model.addAttribute("msg","로그인 실패!");
 				return "fail_back";
 			}	
+		} else {
+			model.addAttribute("msg","로그인 실패!");
+			return "fail_back";
+		}
 		
 	}
 	

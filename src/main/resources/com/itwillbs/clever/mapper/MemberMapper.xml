@@ -19,22 +19,26 @@
 				CONCAT(#{member_birth}, '-', #{member_birth2}), 
 				CONCAT(#{member_email}, '@', #{member_email2}), -- email 문자열 결합
 				#{member_interest},
-				'Y',
-				'Y',
+				'N',
+				'N',
 				now(),
 				'브론즈',
 				2000
 			)
 	</insert>
 
-
 	<!-- 로그인 -->
-	<select id="loginSuccess" parameterType="String" resultType="boolean">
+	<select id="isSuccessMember" parameterType="String" resultType="boolean">
 		SELECT IF(COUNT(*) = 1, 1, 0)
 		FROM member
 		WHERE member_id = #{member_id} AND member_passwd = #{member_passwd}
 	</select>
-	
 
+	<!-- 로그인시 비밀번호 확인 -->	
+	<select id="getPasswd" resultType="string">
+		SELECT member_passwd
+			FROM member
+				WHERE member_id = #{member_id}
+	</select>
 
 </mapper>

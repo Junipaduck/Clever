@@ -17,10 +17,15 @@ public class MemberService {
 	public int insertMember(MemberVO member) {
 		return mapper.insertMember(member);
 	}
-	
-	public boolean loginSuccess(MemberVO member) {
-		return mapper.loginSuccess(member);
+
+	//로그인
+	public boolean isSuccessMember(MemberVO member) {
+		return mapper.isSuccessMember(member);
 	}
 	
+	//로그인시 비밀번호 확인
+	public String getPasswd(MemberVO member) {
+		return mapper.getPasswd(member);
+	}
 	
 }
