@@ -122,8 +122,8 @@
                             </div>
                         </div>
                         <div class="col detail_content_info">
-                            <h2>상품명</h2>
-                            <p>18,000,000<span>원</span></p>
+                            <h2>상품명 : <span>어케아노</span> </h2>
+                            <p> 18,000,000<span>원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -149,10 +149,6 @@
                                     <span>중고</span>
                                 </p>
                                 <p>
-                                    <span>· 교환여부</span>
-                                    <span>교환불가능</span>
-                                </p>
-                                <p>
                                     <span>· 배송비</span>
                                     <span class="shipping">배송비 별도</span>
                                 </p>
@@ -161,21 +157,21 @@
                                     <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소"> 주소</span>
                                 </p>
                             </div>
+                            <div style="height: 50px;">
+                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="경매가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>
+                            </div>
                             <div>
                                 <div class="container text-center detail_content_info_btn">
                                     <div class="row g-2">
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn1">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
-                                            </div>
+                                    	<div class="col-4">
+                                            <div class="p-3 info_btn2">입찰하기</div>
+                                        </div>
+                                    	<div class="col-4">
+                                            <div class="p-3 info_btn3">즉시구매</div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="p-3 info_btn2">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="번개톡"> 번개톡
+                                            <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
                                             </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn3">바로구매</div>
                                         </div>
                                     </div>
                                 </div>
@@ -372,6 +368,16 @@
                     </div>
                 </div>
             </div>
+            
+             <div id="side_bar2">
+                    <div style="border:4px solid" id="auctionDiv">
+                        <p style="font-size: 15px;">경매 입찰 내용</p>
+                        <div style="border:1px solid;  font-size: 20px; height: 465px;">
+                        	 <p>xxxxxx님이 xxxx원에 입찰</p>
+                        </div>
+                    </div>
+                </div>
+            
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
 	<!-- 풋터 시작 -->
