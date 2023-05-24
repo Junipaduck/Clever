@@ -53,11 +53,20 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
+//	@GetMapping(value = "/memberAuthForm.ad")
+//	public String memberAuthForm() {
+//		return "member/member_auth_form";
+//	}
 	
 	// 회원 가입 휴대폰 인증 
 	@GetMapping(value = "/authPhone.ad")
-	public String authPhone() {
-		return "member/member_auth_form";
+	@ResponseBody
+	public String authPhone(@RequestParam String member_phone) {
+		
+		int randomAuthNumber = (int)(Math.random() * (9999 - 1000 + 1) + 1000);
+		adminService.authPhoneNumber(member_phone, randomAuthNumber);
+		
+		return Integer.toString(randomAuthNumber);
 	}
 	
 	// 굿즈 등록 페이지 

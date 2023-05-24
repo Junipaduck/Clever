@@ -228,6 +228,7 @@ window.onload = function(){
 						                <option value="da">daum.com</option>
 						                <option value="yah">yahoo.com</option>
 						            </select>
+						            <input class='but1' type="button" value="이메일인증" id="mail-Check-Btn">
 						        </td>
 						    </tr>
 						     <tr>
