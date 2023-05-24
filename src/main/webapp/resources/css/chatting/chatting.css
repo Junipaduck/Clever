@@ -1,0 +1,230 @@
+.font_gray {
+	color: gray;
+	font-size: small;
+}
+
+.font_gray_b {
+	color: gray;
+	font-size: small;
+	vertical-align: bottom;
+}
+
+.modal-content {
+	height: 250px;
+	border-radius: 12px;
+	padding: 20px;
+}
+
+/* 채팅쪽 */
+.chattingBox {
+	margin: 0 auto;
+	background-color: white;
+	width: 992px;
+	height: 800px;
+	border: 1px solid rgb(222, 224, 225);
+	border-radius: 6px;
+}
+
+.chatting_memberBox {
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+
+.chatting_member {
+	height: calc(100% - 80px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.member_textBox {
+	width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.chatting_content {
+	float: left;
+	width: 70%;
+	height: 100%;
+	border-left: 1px solid rgb(222, 224, 225);
+}
+/* 윗라인  */
+.myProfile, .yourPost {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgb(222, 224, 225);
+	height: 80px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#yourPost {
+	cursor: pointer;
+}
+
+.myProfile img, #yourPost img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid rgb(222, 224, 225);
+	cursor: pointer;
+}
+
+/* 왼쪽 채팅 멤버 */
+.yourProfile {
+	display: flex;
+	align-items: center;
+	height: 80px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.yourProfile img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid rgb(222, 224, 225);
+}
+
+.yourProfile:hover {
+	background-color: #ffad0a2d;
+}
+
+/* 오른쪽 채팅 컨텐츠 */
+.messageBox {
+	height: calc(100% - 80px);
+	padding: 10px;
+}
+
+.contentDiv {
+	height: calc(100% - 150px);
+	overflow-y: auto;
+}
+
+.textDiv {
+	border-radius: 10px;
+	border: 2px solid rgb(192, 194, 196);
+}
+
+.textDiv textarea {
+	padding: 10px;
+	height: 100px;
+	resize: none;
+}
+
+.textDiv>.row img {
+	cursor: pointer;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+.middle_Btn {
+	background-color: rgb(255, 177, 88);
+	border: 2px solid rgb(137, 111, 58);
+	border-radius: 6px;
+	height: 32px;
+	font-size: small;
+	box-shadow: 2px 2px 2px rgba(158, 136, 93, 0.712);
+}
+
+.middle_Btn:hover {
+	color: white;
+}
+
+.middle_Btn:active {
+	margin-right: -3px;
+	/* margin-top: 3px; */
+	box-shadow: none;
+}
+
+.middle_bottomLine {
+	padding-top: 50px;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.233);
+}
+
+/* 이모티콘 */
+.imoticonBox {
+	background-color: white;
+	width: 500px;
+	height: 500px;
+	border: 2px solid rgb(192, 194, 196);
+	overflow: hidden;
+	z-index: 0;
+}
+
+.no_index {
+	z-index: 0;
+}
+
+.emoticon_gabal {
+	float: left;
+	width: 33.33%;
+	height: 33.33%;
+	cursor: pointer;
+}
+
+.dynamicChat_l {
+	text-align: left;
+	margin: 10px;
+}
+
+.dynamicChat_r {
+	text-align: right;
+	margin: 10px;
+}
+
+.dynamicChat_l>.chat_text {
+	display: inline-block;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: rgb(223, 223, 224);
+}
+
+.dynamicChat_r>.chat_text {
+	display: inline-block;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: orange;
+	color: rgb(245, 248, 249)
+}
+
+/* 스크롤 */
+.contentDiv::-webkit-scrollbar {
+	width: 6px;
+}
+
+.contentDiv::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.contentDiv::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background-color: rgb(193, 193, 193);
+}
+
+.contentDiv::-webkit-scrollbar-button {
+	width: 0;
+	height: 0;
+}
+
+.chatting_member::-webkit-scrollbar {
+	width: 6px;
+}
+
+.chatting_member::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.chatting_member::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	background-color: rgb(193, 193, 193);
+}
+
+.chatting_member::-webkit-scrollbar-button {
+	width: 0;
+	height: 0;
+}
