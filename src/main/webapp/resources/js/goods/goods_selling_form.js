@@ -51,7 +51,7 @@ function setImages(event){
     let cnt = document.querySelector(".image_num").innerText
 
     for(var image of event.target.files){
-        if(cnt >= 8){ // 이미지 파일 4개 카운팅 되면 나감
+        if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
             break;
         } else {
 	        var reader = new FileReader();

@@ -246,6 +246,12 @@ font-family: 'SUITE-Regular';
                 </form>
             </section>
         </div>
+        <div class="btn_submit_area">
+        <div class="inner_submit">
+            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+            <input type="submit" class="btn_goods_submit" value="등록하기">
+        </div>
+    </div>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
