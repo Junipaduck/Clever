@@ -45,6 +45,28 @@
 	    return str.replace(/[^\d]+/g, '');
 	}
 	
+	function showPrice() {
+		
+		var priceInput = document.getElementById("price").value;
+		
+		if(priceInput==""||priceInput==null||priceInput[0]=='0'){
+			alert("금액을 확인하세요");
+			return;
+		}
+		var resultElement = document.getElementById("result");
+		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
+		
+	}
+	
+	function auctionAddPrice(percent) {
+		
+		var priceInput = document.getElementById("price");
+		var price = parseInt(uncomma(document.getElementById("price").value));
+		price += price * percent;
+		$('input[name=price]').attr('value', price);
+		
+	}
+	
 
 </script>
 	<!-- 헤더 시작 -->
@@ -143,7 +165,7 @@
                         </div>
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>내가 어캐아노</span> </h2>
-                            <p> 18,000,000<span>원</span></p>
+                            <p id="result"><span>0</span><span>&nbsp; 원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -178,14 +200,26 @@
                                 </p>
                             </div>
                             <div style="height: 50px;">
-                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
                             	style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>
                             </div>
                             <div>
                                 <div class="container text-center detail_content_info_btn">
                                     <div class="row g-2">
+                                    	<div class="col-4" style="width: 50%">
+                                            <div class="p-3 info_btn2" onclick="auctionAddPrice(0.05);">현재 입찰 5% 가격</div>
+                                        </div>
+                                    	<div class="col-4" style="width: 50%">
+                                            <div class="p-3 info_btn3" onclick="auctionAddPrice(0.1);">현재 입찰 10% 가격</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="container text-center detail_content_info_btn">
+                                    <div class="row g-2">
                                     	<div class="col-4">
-                                            <div class="p-3 info_btn2">입찰하기</div>
+                                            <div class="p-3 info_btn2" onclick="showPrice();">입찰하기</div>
                                         </div>
                                     	<div class="col-4">
                                             <div class="p-3 info_btn3">즉시구매</div>
@@ -204,7 +238,7 @@
             <!-- // detail_content -->
 
             <!-- related_goods -->
-            <div id="related_goods">
+            <div id="related_goods" style="margin-top: 40px">
                 <div>
                     <h3>연관 상품</h3>
                     <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
