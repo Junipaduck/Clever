@@ -109,6 +109,15 @@ public class AdminController {
 		
 		return mailService.joinEmail(email);
 	}
+	
+	// 휴대폰 인증
+	@GetMapping(value = "/phoneCheck")
+	@ResponseBody
+	public String sendSMS(@RequestParam String phone) {
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+		adminService.certifiedPhoneNumber(phone, randomNumber);
+		return Integer.toString(randomNumber);
+	}
 }
 
 

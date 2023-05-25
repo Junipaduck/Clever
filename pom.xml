@@ -165,7 +165,15 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-										
+						
+						
+		<!-- 휴대폰 인증 라이브러리 -->	
+        <dependency>
+            <groupId>net.nurigo</groupId>
+            <artifactId>sdk</artifactId>
+            <version>4.2.7</version>
+        </dependency>
+        							
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

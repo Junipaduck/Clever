@@ -169,6 +169,7 @@ window.onload = function(){
     });
 }
 
+// 이메일 인증
 $(function() {
 	let nameStatus = false;
 	let idStatus = false;
@@ -178,16 +179,17 @@ $(function() {
 	let phoneStatus = false;
 	let genderStatus = false;
 	let emailStatus = false;
-
+	let phoneCheckStatus = false;
+	
 	$(function() {
 		$('#mail-Check-Btn').click(function() {
-			const eamil = $('#member_email').val(); // 이메일 주소값 얻어오기!
-			console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+			const email = $('#member_email').val(); // 이메일 주소값 얻어오기!
+			console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 			const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
 																	
 			$.ajax({
 				type : 'get',
-				url : "mailCheck?email="+eamil, // GET방식
+				url : "mailCheck?email=" + email, // GET방식
 				success : function (data) {
 					console.log("데이타 : " +  data);
 					checkInput.attr('disabled',false);
@@ -215,6 +217,46 @@ $(function() {
 				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
 				$resultMsg.css('color','red');
 				emailStatus = false;
+			}
+		});
+	});
+	
+	$(function() {
+		$('#phone-Check-Btn').click(function() {
+			const phone = $('#member_phone').val(); // 이메일 주소값 얻어오기!
+			console.log('완성된 이메일 : ' + phone); // 이메일 오는지 확인
+			const phoneCheckInput = $('.phone-check-input') // 인증번호 입력하는곳 
+																	
+			$.ajax({
+				type : 'get',
+				url : "phoneCheck?phone=" + phone, // GET방식
+				success : function (data) {
+					console.log("데이타 : " +  data);
+					phoneCheckInput.attr('disabled',false);
+					code = data;
+					alert('인증번호가 전송되었습니다.')
+				}	
+			}); // end ajax
+		}); // end send eamil
+		
+		// 인증번호 비교 
+		$('#member_phonecheck').keyup(function () {
+			const phoneInputCode = $(this).val();
+			const $resultPhoneMsg = $('#phone-check-warn');
+			
+			if(inputCode === code){
+				$resultPhoneMsg.html('인증번호가 일치합니다.');
+				$resultPhoneMsg.css('color','green');
+				$('#phone-Check-Btn').attr('disabled',true);
+				$('#member_phone').attr('readonly',true);
+				$('#member_phonecheck').attr('readonly',true);
+				phoneCheckStatus = true;
+		        
+		        
+			}else{
+				$resultPhoneMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+				$resultPhoneMsg.css('color','red');
+				phoneCheckStatus = false;
 			}
 		});
 	});
@@ -280,10 +322,17 @@ $(function() {
 						        </td>
 						    </tr>
 						     <tr>
-						        <td class="col1">연락처</td>
+						        <td class="col1">휴대폰 번호</td>
 						        <td class="col2">
 							        <input type="text" id="member_phone" name="member_phone">
-							        <input class='but1' type="button" value="인증하기" onclick="location.href='authPhone.ad'">
+							        <input class='but1' type="button" value="휴대폰인증" id="phone-Check-Btn">
+						        </td>
+						    </tr>
+						     <tr>
+						        <td class="col1">휴대폰 인증번호</td>
+						        <td class="col2">
+							        <input type="text" id="member_phonecheck" name="member_phonecheck">
+							        <span id="phone-check-warn"></span>
 						        </td>
 						    </tr>
 						    <tr>
