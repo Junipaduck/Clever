@@ -27,5 +27,10 @@ public class MemberService {
 	public String getPasswd(MemberVO member) {
 		return mapper.getPasswd(member);
 	}
+
+	//회원 정보 불러오기
+	public MemberVO selectMember(String sId) {
+		return mapper.selectMember(sId);
+	}
 	
 }
