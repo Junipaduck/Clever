@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/font/font.css">
 
 <!-- 햄버거 메뉴 호버시 -->
-<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js?ver=1"></script>
 <!-- 파비콘 -->
 <link rel="icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
@@ -69,7 +69,7 @@
                     <div class="row justify-content-start">
                         <div class="col-3 header_logo">
                             <h1 class="hidden">로고</h1>
-                            <a href="./">
+                            <a href="auction">
                                 <img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" alt="클레버 로고" width="130px;" height="40px;">
                             </a>
                         </div>
