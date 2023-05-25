@@ -17,6 +17,7 @@ public class MailSendService {
 	private int authNumber;
 	
 	public void makeRandomNumber() {
+		// 난수의 범위 111111 ~ 999999 (6자리 난수)
 		Random r = new Random();
 		int checkNum = r.nextInt(888888) + 111111;
 		System.out.println("인증번호 : " + checkNum);
@@ -25,7 +26,7 @@ public class MailSendService {
 	
 	public String joinEmail(String email) {
 		makeRandomNumber();
-		String setFrom = "nongdamyang@gmail.com";
+		String setFrom = "cleverteamproject@gmail.com";
 		String toMail = email;
 		String title = "이메일 인증 코드 입니다";
 		String content = 
