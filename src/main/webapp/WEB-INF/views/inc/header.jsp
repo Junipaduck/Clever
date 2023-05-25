@@ -45,6 +45,7 @@
                                     	<c:choose>
                                     		<c:when test="${empty sessionScope.sId }">
 		                                        <div class="col-2"><a href="loginForm.me">로그인</a></div>
+		                                        <div class="col-2"><a href="joinForm.me">회원가입</a></div>
 		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div>
                                     		</c:when>
                                     		<c:otherwise>
