@@ -26,7 +26,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js"></script>
 <!-- 데이트피커 cdn -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
@@ -76,6 +76,14 @@ font-family: 'SUITE-Regular';
 .preview_wrap {
 	display: flex;
 	}
+.goods_Scategory {
+display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow-y: auto;
+}
 </style>
 
 </head>
@@ -88,8 +96,23 @@ $(function() {
 $(function() {
 	$("#formform").on("submit", function() {
 		$("#auction_category").val($(".selected_category").text()); 
+			startEndDate();
+		if(!startEndDateStats){
+			return false;
+		}
 	});
 });
+function startEndDate() {
+	startEndDateStats = false;
+	var start = $("#auction_start_date").val() + " " + $("#auction_start_time").val();
+	var end = $("#auction_end_date").val() + " " + $("#auction_end_time").val();
+	if(start > end){
+		alert("경매 시작일 보다 경매 마감일이 더 빠릅니다.");
+		return;
+	} else {
+		startEndDateStats = true;
+	}
+}
 </script>
 	<!-- 헤더 시작 -->
 	<header>
@@ -219,26 +242,26 @@ $(function() {
                     <div class="goods_price_area">
                         <p>즉시 구매 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 최소 증가 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>경매 시작/마감일<span class="red">*</span></p>
                         <div class="goods_price">
                        <p>
-						<input type="text" name="auction_start_date" id="booking_date1" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%" /> 
+						<input type="text" name="auction_start_date" id="auction_start_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%" /> 
 						<!-- 캘린더 옵션 { -->
 						<script>
 					    $.datepicker.setDefaults({
@@ -267,7 +290,7 @@ $(function() {
 					    })
 					    
 						</script>
-						<input type="text" name="auction_start_time" id="booking_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;"/> 
+						<input type="text" name="auction_start_time" id="auction_start_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요."/> 
 						 <!-- 시간 옵션 { -->
 						  <script>
 						  $('.timepicker').timepicker({
@@ -282,7 +305,7 @@ $(function() {
 						  </script>
 					  <!-- } -->
 						<!-- } -->
-						<input type="text" name="auction_end" id="booking_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%;" /> 
+						<input type="text" name="auction_end_date" id="auction_end_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%;" /> 
 						<!-- 캘린더 옵션 { -->
 						<script>
 					    $.datepicker.setDefaults({
@@ -311,7 +334,7 @@ $(function() {
 					    })
 					    
 						</script>
-						<input type="text" name="auction_end_time" id="booking_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;"/> 
+						<input type="text" name="auction_end_time" id="auction_end_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요." /> 
 						 <!-- 시간 옵션 { -->
 						  <script>
 						  $('.timepicker').timepicker({
