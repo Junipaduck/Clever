@@ -1,8 +1,8 @@
 $(document).ready(function ( ) {
     document.querySelectorAll(".goods_Lcategory > div").forEach(lcategory => {
         lcategory.addEventListener("click", function() {
-            document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
-                scategory.classList.remove("selected");
+            document.querySelectorAll("div[class^='goods_Mcategory'] > div").forEach(mcategory => {
+                mcategory.classList.remove("selected");
             });
             document.querySelectorAll(".goods_Lcategory > div").forEach(sib => {
                 sib.removeAttribute("class");
@@ -11,9 +11,35 @@ $(document).ready(function ( ) {
             document.querySelector(".goods_category").style.borderColor="rgb(245, 126, 0)";
             document.querySelector(".goods_category + p").classList.remove("hidden");
             
-            document.querySelector("div.goods_Scategory").classList.add("hidden");
+            document.querySelector("div.goods_Mcategory").classList.add("hidden");
 
             if(lcategory.innerText === "의류/잡화"){
+                document.querySelector("div.goods_Mcategory_acc").classList.add("hidden");
+                const classList = document.querySelector("div.goods_Mcategory_cloth").classList;
+                classList.remove("hidden");
+            } else {
+                document.querySelector("div.goods_Mcategory_cloth").classList.add("hidden");
+                const classList = document.querySelector("div.goods_Mcategory_acc").classList;
+                classList.remove("hidden");
+            }
+
+            document.querySelector(".goods_category_area span.selected_category").innerText = this.innerText;
+        });
+    });
+
+    document.querySelectorAll("div[class^='goods_Mcategory'] > div").forEach(mcategory => {
+        mcategory.addEventListener("click", function() {
+            const children = this.parentElement.children
+            for (let i = 0; i < children.length; i++) {
+                children[i].removeAttribute("class");
+            }
+            this.classList.add("selected");
+
+            document.querySelector(".goods_category").style.borderColor="rgb(220, 219, 228)";
+            document.querySelector(".goods_category + p").classList.add("hidden");
+            document.querySelector("div.goods_Scategory").classList.add("hidden");
+            
+            if(mcategory.innerText === "시계/쥬얼리"){
                 document.querySelector("div.goods_Scategory_acc").classList.add("hidden");
                 const classList = document.querySelector("div.goods_Scategory_cloth").classList;
                 classList.remove("hidden");
@@ -23,12 +49,13 @@ $(document).ready(function ( ) {
                 classList.remove("hidden");
             }
 
-            document.querySelector(".goods_category_area span.selected_category").innerText = this.innerText;
+            let selectedCategory = document.querySelector(".goods_category_area span.selected_category").innerText.split(" ");
+            document.querySelector(".goods_category_area span.selected_category").innerText = selectedCategory[0] + " > " + this.innerText;
         });
     });
 
-    document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
-        scategory.addEventListener("click", function() {
+    document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(mcategory => {
+        mcategory.addEventListener("click", function() {
             const children = this.parentElement.children
             for (let i = 0; i < children.length; i++) {
                 children[i].removeAttribute("class");
@@ -37,12 +64,12 @@ $(document).ready(function ( ) {
 
             document.querySelector(".goods_category").style.borderColor="rgb(220, 219, 228)";
             document.querySelector(".goods_category + p").classList.add("hidden");
+            
 
             let selectedCategory = document.querySelector(".goods_category_area span.selected_category").innerText.split(" ");
-            document.querySelector(".goods_category_area span.selected_category").innerText = selectedCategory[0] + " > " + this.innerText;
+            document.querySelector(".goods_category_area span.selected_category").innerText = selectedCategory[0] + " > " + selectedCategory[2] + " > " + this.innerText;
         });
     });
-
 //    document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
 //    document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
 });

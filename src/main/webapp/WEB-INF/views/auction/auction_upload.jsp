@@ -9,10 +9,10 @@
 <title>Clever - 경매상품등록</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
 
-<!--아이콘-->
+<!-- 아이콘 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<!--부트스트랩-->
+<!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -20,13 +20,23 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
-<!--CSS-->
+<!-- CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
 <!-- 햄버거 메뉴 호버시 -->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
+<!-- 데이트피커 cdn -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/datepicker.css">
+ 
+<!-- 타임피커 cdn -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/timepicker.css">
 <style type="text/css">
 @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
 @font-face {
@@ -67,12 +77,25 @@ font-family: 'SUITE-Regular';
 	display: flex;
 	}
 </style>
+
 </head>
 <body>
+<script type="text/javascript">
+$(function() {
+    $( "#testDatepicker" ).datepicker({
+    });
+});
+$(function() {
+	$("#formform").on("submit", function() {
+		$("#auction_category").val($(".selected_category").text()); 
+	});
+});
+</script>
 	<!-- 헤더 시작 -->
 	<header>
-		<jsp:include page="../inc/header.jsp" />
-	</header>    <!--메인 컨텐츠-->
+		<jsp:include page="auction_header.jsp" />
+	</header>    
+<!--메인 컨텐츠 -->
         <div id="main_content">
             <!--하위 메뉴-->
             <nav class="content_nav">
@@ -85,7 +108,7 @@ font-family: 'SUITE-Regular';
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="" class="frm_selling_goods">
+                <form action="auction_upload_pro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
                             <span class="image_limit">(<span class="image_num"></span>/4)</span>
@@ -94,7 +117,10 @@ font-family: 'SUITE-Regular';
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="goodsImage" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -112,7 +138,7 @@ font-family: 'SUITE-Regular';
                     <div class="goods_title_area">
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
-                            <input type="text" name="goodsTitle" id="goods_title" maxlength="40"
+                            <input type="text" name="auction_title" id="goods_title" maxlength="40"
                                 placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
@@ -125,22 +151,32 @@ font-family: 'SUITE-Regular';
                                     <div>의류</div>
                                     <div>악세서리</div>
                                 </div>
-                                <div class="goods_Scategory">
+                                <div class="goods_Mcategory">
                                     중분류 선택
                                 </div>
-                                <div class="goods_Scategory_cloth hidden">
+                                <div class="goods_Mcategory_cloth hidden">
                                     <div>남성의류</div>
                                     <div>여성의류</div>
                                 </div>
-                                <div class="goods_Scategory_acc hidden">
+                                <div class="goods_Mcategory_acc hidden">
                                     <div>시계/쥬얼리</div>
                                     <div>패션악세서리</div>
+                                </div>
+                                <div class="goods_Scategory">
+                                    소분류 선택
+                                </div>
+                                <div class="goods_Scategory_cloth hidden">
+                                    <div>티셔츠</div>
+                                    <div>바지</div>
+                                </div>
+                                <div class="goods_Scategory_acc hidden">
+                                    <div>시계</div>
+                                    <div>악세사리</div>
                                 </div>
                             </div>
                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
                             <p>선택한 카테고리 : <span class="selected_category"></span></p>
-                            <input type="hidden" name="Lcategory">
-                            <input type="hidden" name="Scategory">
+                            <input type="hidden" id="auction_category" name="auction_category" value="">
                         </div>
                     </div>
                     <div class="goods_location_area">
@@ -158,7 +194,7 @@ font-family: 'SUITE-Regular';
 										        //카카오 지도 발생
 										        new daum.Postcode({
 										            oncomplete: function(data) { //선택시 입력값 세팅
-										                document.getElementById("product_address").value = data.sido + " " + data.sigungu + " " + data.query; // 주소 넣기
+										                document.getElementById("auction_address").value = data.sido + " " + data.sigungu + " " + data.query; // 주소 넣기
 										            }
 										        }).open();
 										    });
@@ -166,42 +202,137 @@ font-family: 'SUITE-Regular';
 										</script>
                                 <button onclick="return false;">지역설정안함</button>
                             </div>
-                            <input type="text" id="product_address" name="product_address" readonly>
+                            <input type="text" id="auction_address" name="auction_address" readonly>
                         </div>
                     </div>
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="status" value="used" id="used">
+                            <input type="radio" name="auction_status" value="used" id="used" >
                             <label for="used">미개봉</label>
-                            <input type="radio" name="status" value="new" id="new">
+                            <input type="radio" name="auction_status" value="new" id="new">
                             <label for="new">거의 새 것</label>
-                            <input type="radio" name="status" value="new" id="new">
+                            <input type="radio" name="auction_status" value="new" id="new">
                             <label for="new">사용감 있음</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>즉시 구매 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 최소 증가 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goodsPrice" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                        </div>
+                    </div>
+                    <div class="goods_price_area">
+                        <p>경매 시작/마감일<span class="red">*</span></p>
+                        <div class="goods_price">
+                       <p>
+						<input type="text" name="auction_start_date" id="booking_date1" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%" /> 
+						<!-- 캘린더 옵션 { -->
+						<script>
+					    $.datepicker.setDefaults({
+					      closeText: "닫기",
+					      prevText: "이전달",
+					      nextText: "다음달",
+					      currentText: "오늘",
+					      monthNames: ["1월", "2월", "3월", "4월", "5월", "6월",
+					        "7월", "8월", "9월", "10월", "11월", "12월"
+					      ],
+					      monthNamesShort: ["1월", "2월", "3월", "4월", "5월", "6월",
+					        "7월", "8월", "9월", "10월", "11월", "12월"
+					      ],
+					      dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+					      dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+					      dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+					      weekHeader: "주",
+					      dateFormat: "yy-mm-dd", // 날짜형태 예)yy년 m월 d일
+					      firstDay: 0,
+					      isRTL: false,
+					      showMonthAfterYear: true,
+					      yearSuffix: "년"
+					    })
+					    $(".datepicker").datepicker({
+					      minDate: 2
+					    })
+					    
+						</script>
+						<input type="text" name="auction_start_time" id="booking_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;"/> 
+						 <!-- 시간 옵션 { -->
+						  <script>
+						  $('.timepicker').timepicker({
+						    timeFormat: 'HH:mm',
+						    interval: 60,
+						    minTime: "10:00",
+						    maxTime: "12:00",
+						    dynamic: false,
+						    dropdown: true,
+						    scrollbar: true
+						   });
+						  </script>
+					  <!-- } -->
+						<!-- } -->
+						<input type="text" name="auction_end" id="booking_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%;" /> 
+						<!-- 캘린더 옵션 { -->
+						<script>
+					    $.datepicker.setDefaults({
+					      closeText: "닫기",
+					      prevText: "이전달",
+					      nextText: "다음달",
+					      currentText: "오늘",
+					      monthNames: ["1월", "2월", "3월", "4월", "5월", "6월",
+					        "7월", "8월", "9월", "10월", "11월", "12월"
+					      ],
+					      monthNamesShort: ["1월", "2월", "3월", "4월", "5월", "6월",
+					        "7월", "8월", "9월", "10월", "11월", "12월"
+					      ],
+					      dayNames: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+					      dayNamesShort: ["일", "월", "화", "수", "목", "금", "토"],
+					      dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+					      weekHeader: "주",
+					      dateFormat: "yy-mm-dd", // 날짜형태 예)yy년 m월 d일
+					      firstDay: 0,
+					      isRTL: false,
+					      showMonthAfterYear: true,
+					      yearSuffix: "년"
+					    })
+					    $(".datepicker").datepicker({
+					      minDate: 3
+					    })
+					    
+						</script>
+						<input type="text" name="auction_end_time" id="booking_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;"/> 
+						 <!-- 시간 옵션 { -->
+						  <script>
+						  $('.timepicker').timepicker({
+						    timeFormat: 'HH:mm',
+						    interval: 60,
+						    minTime: "10:00",
+						    maxTime: "12:00",
+						    dynamic: false,
+						    dropdown: true,
+						    scrollbar: true
+						   });
+						  </script>
+					  <!-- } -->
+						<!-- } -->
+					   </p>
                         </div>
                     </div>
                     <div class="goods_info_area">
                         <p>설명<span class="red">*</span></p>
                         <div>
-                            <textarea name="goodsInfo" id="goodsInfo" cols="30" rows="10"
+                            <textarea name="auction_content" id="goodsInfo" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
                         </div>
                     </div>
@@ -224,10 +355,6 @@ font-family: 'SUITE-Regular';
                             </p>
                         </div>
                     </div>
-                    <div class="goods_count_area">
-                        <p>수량</p>
-                        <div><input type="text" name="goodsCount" value="1" oninput="valueIsNumber(event)">개</div> 
-                    </div>
                     <!--번개페이 뻐른 판매-->
                     <div class="fast_selling_area">
                         <h2>빠른 판매</h2>
@@ -243,17 +370,18 @@ font-family: 'SUITE-Regular';
                             </div>
                         </div>
                     </div>
+		        <div class="btn_submit_area">
+			        <div class="inner_submit">
+			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+			            <input type="submit" class="btn_goods_submit" value="등록하기">
+			        </div>
+		    	</div>
                 </form>
             </section>
         </div>
-        <div class="btn_submit_area">
-        <div class="inner_submit">
-            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-            <input type="submit" class="btn_goods_submit" value="등록하기">
-        </div>
-    </div>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
-	</footer></body>
+	</footer>
+	</body>
 </html>
