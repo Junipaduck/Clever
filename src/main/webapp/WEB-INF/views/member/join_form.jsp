@@ -244,7 +244,7 @@ $(function() {
 			const phoneInputCode = $(this).val();
 			const $resultPhoneMsg = $('#phone-check-warn');
 			
-			if(inputCode === code){
+			if(phoneInputCode === code){
 				$resultPhoneMsg.html('인증번호가 일치합니다.');
 				$resultPhoneMsg.css('color','green');
 				$('#phone-Check-Btn').attr('disabled',true);
