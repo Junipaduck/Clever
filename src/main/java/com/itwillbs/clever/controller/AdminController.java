@@ -17,6 +17,8 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private MailSendService mailService;
 	
 	@GetMapping(value = "/adminMain.ad")
 	public String adminMain(HttpSession session, Model model) {
@@ -96,6 +98,16 @@ public class AdminController {
 	@GetMapping(value = "/CustomerCenter.ad")
 	public String customerCenter() {
 		return "customer_center/center_main";
+	}
+	
+	// 이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		System.out.println("이메일 인증 요청이 들어옴");
+		System.out.println("------------------이메일이메일: " + email);
+		
+		return mailService.joinEmail(email);
 	}
 }
 

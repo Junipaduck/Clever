@@ -24,10 +24,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
-<!-- js -->
-<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
+
 
  <style type="text/css">
  
@@ -171,6 +168,59 @@ window.onload = function(){
         }).open();
     });
 }
+
+$(function() {
+	let nameStatus = false;
+	let idStatus = false;
+	let passwdStatus = false;
+	let passwd2Status = false;
+	let birthStatus = false;
+	let phoneStatus = false;
+	let genderStatus = false;
+	let emailStatus = false;
+
+	$(function() {
+		$('#mail-Check-Btn').click(function() {
+			const eamil = $('#member_email').val(); // 이메일 주소값 얻어오기!
+			console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+			const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+																	
+			$.ajax({
+				type : 'get',
+				url : "mailCheck?email="+eamil, // GET방식
+				success : function (data) {
+					console.log("데이타 : " +  data);
+					checkInput.attr('disabled',false);
+					code = data;
+					alert('인증번호가 전송되었습니다.')
+				}	
+			}); // end ajax
+		}); // end send eamil
+		
+		// 인증번호 비교 
+		$('#member_emailcheck').keyup(function () {
+			const inputCode = $(this).val();
+			const $resultMsg = $('#mail-check-warn');
+			
+			if(inputCode === code){
+				$resultMsg.html('인증번호가 일치합니다.');
+				$resultMsg.css('color','green');
+				$('#mail-Check-Btn').attr('disabled',true);
+				$('#member_email').attr('readonly',true);
+				$('#member_emailcheck').attr('readonly',true);
+				emailStatus = true;
+		        
+		        
+			}else{
+				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+				$resultMsg.css('color','red');
+				emailStatus = false;
+			}
+		});
+	});
+
+
+});
 </script>	
 	
 	<!-- 중간 작업공간 시작 ============================================================== -->
@@ -218,17 +268,15 @@ window.onload = function(){
 						    <tr>
 						        <td class="col1">이메일</td>
 						        <td class="col2">
-						            <input type="text" name="member_email">
-						            <span class="a">@</span>
-						            <input type="text" name="member_email2">
-						            <select name="mailslc">
-						                <option value="self" selected>직접입력</option>
-						                <option value="naver">naver.com</option>
-						                <option value="gm">gmail.com</option>
-						                <option value="da">daum.com</option>
-						                <option value="yah">yahoo.com</option>
-						            </select>
+						            <input type="text" name="member_email" id="member_email">
 						            <input class='but1' type="button" value="이메일인증" id="mail-Check-Btn">
+						        </td>
+						    </tr>
+						    <tr>
+						        <td class="col1">이메일 인증번호</td>
+						        <td class="col2">
+									<input type="text" id="member_emailcheck" name="member_emailcheck">
+									<span id="mail-check-warn"></span>
 						        </td>
 						    </tr>
 						     <tr>
@@ -291,5 +339,9 @@ window.onload = function(){
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
+	<!-- js -->
+	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 </body>
 </html>
