@@ -10,4 +10,6 @@ public interface MemberMapper {
 
 	String getPasswd(MemberVO member);
 
+	MemberVO selectMember(String sId);
+
 }

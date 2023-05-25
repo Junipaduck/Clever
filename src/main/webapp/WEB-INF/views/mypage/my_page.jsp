@@ -28,6 +28,11 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/market_intro_modify.js"></script>
+
+
+
+<!-- 차트 js -->
+    
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -42,7 +47,7 @@
                         <img src="${pageContext.request.contextPath }/resources/images/market/store.svg" alt="내 상점">
                     </div>
                     <div>
-                        <p>${sessionScope.sId } 님</p>
+                        <p>${member.member_name} 님</p>
                         <p>
                             <img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">
                             <img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">
@@ -53,7 +58,7 @@
                     </div>
                     <div>
                         <p>
-                            <a href="#">20000 포인트</a>
+                            <a href="#">${member.member_point} 포인트</a>
                         </p>
                     </div>
                 </div>
@@ -61,7 +66,7 @@
                 <div class="my_store_right">
                     <div id="my_store_right_top">
                         <div>
-                            <h2>배하나</h2>
+                            <h2>${member.member_id} 님</h2>
                             <button>내 정보 수정</button>
                         </div>
                         
@@ -119,6 +124,14 @@
             </div>
             <!-- 프로필 영역 끝 -->
 
+			<!-- 가계부 -->
+            <div id="my_accountbook" style="margin-top: 30px;">
+            
+            	
+            
+            </div>
+            <!-- 가계부 끝 -->
+			
             <!-- 하단 내역 부분 -->
             <div id="my_store_menu">
                 <div class="container text-center menu_bar">

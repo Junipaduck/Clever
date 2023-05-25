@@ -75,11 +75,17 @@ public class MemberController {
 	@GetMapping("/myPage.me")
 	public String myPage(HttpSession session, Model model) {
 		
-		if(session.getAttribute("sId") == null) {
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("target", "loginForm.me");
 			return "success";
 		}
+		
+		MemberVO member = memberService.selectMember(sId);
+		
+		model.addAttribute("member", member);
 		
 		return "mypage/my_page";
 	}
