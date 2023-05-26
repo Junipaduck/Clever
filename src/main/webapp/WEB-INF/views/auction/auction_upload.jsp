@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -141,9 +141,6 @@ function startEndDate() {
                                 <div>
                                     이미지 등록
                                     <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
-                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
-                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
-                                    <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -161,7 +158,7 @@ function startEndDate() {
                     <div class="goods_title_area">
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
-                            <input type="text" name="auction_title" id="goods_title" maxlength="40"
+                            <input type="text" name="auction_title" id="auction_title" maxlength="40"
                                 placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
@@ -231,11 +228,11 @@ function startEndDate() {
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="auction_status" value="used" id="used" >
+                            <input type="radio" name="auction_product_status" value="used" id="used" >
                             <label for="used">미개봉</label>
-                            <input type="radio" name="auction_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="new" id="new">
                             <label for="new">거의 새 것</label>
-                            <input type="radio" name="auction_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="new" id="new">
                             <label for="new">사용감 있음</label>
                         </div>
                     </div>
@@ -367,7 +364,7 @@ function startEndDate() {
                                     <button onclick="return false;">#태그1</button>
                                     <button onclick="return false;" ><i class="fas fa-times"></i></button>
                                 </div>
-                                <input type="text" name="tag" id="tag" 
+                                <input type="text" name="auction_tag" id="auction_tag" 
                                     placeholder="연관태그를 입력해주세요. (최대5개)"
                                 >
                             </div>

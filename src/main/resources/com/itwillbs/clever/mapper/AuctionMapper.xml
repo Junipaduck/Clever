@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.clever.mapper.AuctionMapper">
+
+	<insert id="insertAutcion">
+	<selectKey keyProperty="auction_idx" order="BEFORE" resultType="int">
+	SELECT IFNULL(MAX(auction_idx), 0) FROM auction
+	</selectKey>
+	INSERT 
+		INTO
+			auction
+				VALUES(
+				#{auction_idx} + 1		
+				, #{map.auction_title }
+				, #{map.auction_min_bid	}
+				, #{map.auction_min_increase }
+				, #{map.auction_price }
+				, #{map.auction_Lcategory }
+				, #{map.auction_Mcategory }
+				, #{map.auction_Scategory }
+				, #{map.auction_file }
+				, #{map.auction_file_path }
+				, #{map.auction_product_status }
+				, #{map.auction_start }
+				, #{map.auction_end	}
+				, #{map.auction_tag	}
+				, #{map.auction_address	}
+				, 'N'
+				, 0
+				, 0
+				, #{map.auction_content	}
+				, "경매 등록 대기중"
+				, now()
+				, #{id }
+				)
+	</insert>
+	
+	<select id="selectImminent" resultType="map">
+	SELECT * FROM auction ORDER BY auction_end ASC
+	
+	</select>
+</mapper>
