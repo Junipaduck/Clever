@@ -43,7 +43,7 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+	 
 	<!-- 채팅 - 클라이언트가 다수일 경우 동시에 데이터 전송 제어 위해 비동기 처리 -->
 	<servlet>
 	    <servlet-name>appServlet</servlet-name>
