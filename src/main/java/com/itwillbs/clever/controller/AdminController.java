@@ -61,19 +61,19 @@ public class AdminController {
 	// 굿즈 등록 페이지 
 	@GetMapping(value = "/storeRegister.ad")
 	public String storeRegister() {
-		return "admin/store_register_form";
+		return "admin/goods_store_register_form";
 	}
 	
 	// 굿즈 등록 수정 페이지 
 	@GetMapping(value = "/storeModify.ad")
 	public String storeModify() {
-		return "admin/store_modify_form";
+		return "admin/goods_store_modify_form";
 	}
 	
 	// 현재 판매 중인 굿즈 목록 조회
 	@GetMapping(value = "/storeList.ad")
 	public String storeList() {
-		return "admin/store_list";
+		return "admin/goods_store_list";
 	}
 	
 	// 경매 목록 조회
