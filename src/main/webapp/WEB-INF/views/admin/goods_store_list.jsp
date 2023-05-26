@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>경매 현황 조회</title>
+    <title>상품 목록 조회</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
@@ -68,7 +67,7 @@
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>안녕하세요</h4>
-                            <span class="ml-1">경매 현황 조회 페이지입니다.</span>
+                            <span class="ml-1">굿즈 목록 조회 페이지입니다.</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -85,56 +84,42 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">신고 목록</h4>
+                                <h4 class="card-title">판매중인 굿즈 목록</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>경매번호</th>
-                                                <th>아이디</th>
+                                                <th>상품번호</th>
                                                 <th>상품명</th>
+                                                <th>상품등록일</th>
+                                                <th>상품 카테고리</th>
+                                                <th>상품가격</th>
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
-                                                <th>최소 입찰가</th>
-                                                <th>경매 시작일</th>
-                                                <th>경매 종료일</th>
-                                                <th>연관 태그</th>
-                                                <th>경매 상태</th>
-                                                <th>관리자 승인 여부</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           	<c:forEach items="${auctionList }" var="auctionList">
-	                                            <tr>
-	                                                <td>${auctionList.auction_idx }</td>
-	                                                <td>${auctionList.member_id }</td>
-	                                                <td>${auctionList.auction_title }</td>
-	                                                <td>${auctionList.auction_content }</td>
-	                                                <td>${auctionList.auction_file }</td>
-	                                                <td>${auctionList.auction_min_bid }</td>
-	                                                <td>${auctionList.auction_start }</td>
-	                                                <td>${auctionList.auction_end }</td>
-	                                                <td>${auctionList.auction_tag }</td>
-	                                                <td>${auctionList.auction_status }</td>
-	                                                <td>${auctionList.auction_auth_status }</td>
-	                                            </tr>
-                                           	</c:forEach>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>장바구니</td>
+                                                <td>2023-05-19</td>
+                                                <td>굿즈</td>
+                                                <td>5000원</td>
+                                                <td>예쁘고 튼튼한 장바구니</td>
+                                                <td>사진</td>
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>경매번호</th>
-                                                <th>아이디</th>
+                                                <th>상품번호</th>
                                                 <th>상품명</th>
+                                                <th>상품등록일</th>
+                                                <th>상품 카테고리</th>
+                                                <th>상품가격</th>
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
-                                                <th>최소 입찰가</th>
-                                                <th>경매 시작일</th>
-                                                <th>경매 종료일</th>
-                                                <th>연관 태그</th>
-                                                <th>경매 상태</th>
-                                                <th>관리자 승인 여부</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -147,6 +132,10 @@
         ***********************************-->
 
 
+		<!-- footer 시작 -->
+		<footer>
+			<jsp:include page="../inc/admin_footer.jsp"></jsp:include>
+		</footer>
 		<!-- footer 끝 -->
 
         <!--**********************************
@@ -159,11 +148,6 @@
 
         
     </div>
-    
-	<!-- footer 시작 -->
-	<footer>
-		<jsp:include page="../inc/admin_footer.jsp"></jsp:include>
-	</footer>
     <!--**********************************
         Main wrapper end
     ***********************************-->

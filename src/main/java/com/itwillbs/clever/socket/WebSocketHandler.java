@@ -71,7 +71,7 @@ public class WebSocketHandler extends TextWebSocketHandler{
 		logger.info("#WebSocketHandler, afterConnectionEstablished");
 		sessionList.add(session);
 		
-		logger.info(session.getPrincipal().getName() + "님이 입장하셨습니다.");
+		logger.info(session.getId() + "님이 입장하셨습니다.");
 	}
 	
 	@Override
@@ -92,9 +92,9 @@ public class WebSocketHandler extends TextWebSocketHandler{
 
 		sessionList.remove(session);
 		
-		logger.info(session.getPrincipal().getName() + "님이 퇴장하셨습니다.");
+		logger.info(session.getId() + "님이 퇴장하셨습니다.");
 	}
 	
 	
-	
 }
+

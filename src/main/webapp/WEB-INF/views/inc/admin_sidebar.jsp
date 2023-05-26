@@ -94,6 +94,7 @@
                     	<i class="icon icon-single-copy-06"></i><span class="nav-text">경매현황</span></a>
                         <ul aria-expanded="false">
                             <li><a href="adminAuction.ad">경매 상품 목록 조회</a></li>
+                            <li><a href="auctionAuth.ad">경매 상품 등록 승인</a></li>
                         </ul>
                     </li>
                 </ul>

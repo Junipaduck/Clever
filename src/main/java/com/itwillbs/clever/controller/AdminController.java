@@ -1,5 +1,6 @@
 package com.itwillbs.clever.controller;
 
+import java.io.*;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -10,6 +11,8 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
+
+import retrofit2.http.*;
 
 @Controller
 public class AdminController {
@@ -30,12 +33,19 @@ public class AdminController {
 			model.addAttribute("msg", "접근 권한이 없습니다!");
 			return "fail_back";
 		}
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-		// 관리자 메인 페이지 차트 
+// 관리자 메인 페이지 차트------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		// 가입 회원 수 계산 
-		int memberCount = adminService.selectMemberCount();
+		int memberCount = adminService.getMemberCount();
 		model.addAttribute("memberCount", memberCount);
+		
+		// 등록 상품 수 계산
+		int productCount = adminService.getProductCount();
+		model.addAttribute("productCount", productCount);
+		
+		// 등록 경매 상품 수 계산
+		int auctionCount = adminService.getAuctionCount();
+		model.addAttribute("auctionCount", auctionCount);
 		
 		return "admin/admin_main";
 	}
@@ -44,43 +54,65 @@ public class AdminController {
 	@GetMapping(value = "/adminMember.ad")
 	public String memberList(HttpSession httpSession, Model model) {
 		
-//		List<MemberVO> memberList = adminService.selectMember();
-//		model.addAttribute("memberList", memberList);
 		List<HashMap<String, String>> memberList = adminService.selectMember();
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/admin_member";
 	}
 	
-//	@GetMapping(value = "/memberAuthForm.ad")
-//	public String memberAuthForm() {
-//		return "member/member_auth_form";
-//	}
+	// 경매 목록 조회
+	@GetMapping(value = "/adminAuction.ad")
+	public String autionList(HttpSession session, Model model) {
+		
+		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
+		model.addAttribute("auctionList", auctionList);
+		
+		return "admin/auction_list";
+	}
+	
+	// 경매 등록 승인 페이지
+	@GetMapping(value = "/auctionAuth.ad")
+	public String auctionAuth(HttpSession session, Model model) {
+		
+		List<HashMap<String, String>> auctionAuthList = adminService.getAuctionAuthList();
+		model.addAttribute("auctionAuthList", auctionAuthList);
+		
+		return "admin/auction_auth_list";
+	}
+	
+	@GetMapping(value = "auctionAuthPro.ad")
+	public String auctionAuthPro(@RequestParam int auction_idx, HttpServletResponse response, Model model) {
+		
+		int isAuthSuccess = adminService.auctionAuth(auction_idx);
+		
+		if(isAuthSuccess > 0) {
+			return "redirect:/auctionAuth.ad";
+		} else {
+			model.addAttribute("msg", "승인 실패! 다시 확인해주세요");
+			return "fail_back";
+		}
+		
+	}
 	
 	
 	// 굿즈 등록 페이지 
 	@GetMapping(value = "/storeRegister.ad")
 	public String storeRegister() {
-		return "admin/store_register_form";
+		return "admin/goods_store_register_form";
 	}
 	
 	// 굿즈 등록 수정 페이지 
 	@GetMapping(value = "/storeModify.ad")
 	public String storeModify() {
-		return "admin/store_modify_form";
+		return "admin/goods_store_modify_form";
 	}
 	
 	// 현재 판매 중인 굿즈 목록 조회
 	@GetMapping(value = "/storeList.ad")
 	public String storeList() {
-		return "admin/store_list";
+		return "admin/goods_store_list";
 	}
 	
-	// 경매 목록 조회
-	@GetMapping(value = "/adminAuction.ad")
-	public String autionList() {
-		return "admin/auction_list";
-	}
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
@@ -99,6 +131,8 @@ public class AdminController {
 	public String customerCenter() {
 		return "customer_center/center_main";
 	}
+	
+	// 인증 -------------------------------------------------------------------------------------------
 	
 	// 이메일 인증
 	@GetMapping("/mailCheck")

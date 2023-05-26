@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>경매 현황 조회</title>
+    <title>경매 등록 승인 페이지</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
@@ -17,7 +17,19 @@
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+function Auth(auction_idx) {
+	
+	if(confirm("경매 상품 등록을 승인 하시겠습니까?")) {
+		alert("승인 성공");
+		location.href = "auctionAuthPro.ad?auction_idx=" + auction_idx
+		return true;
+	} else {
+		alert("승인 실패");
+		return false;
+	}
+}
+</script>
 <body>
 
     <!--*******************
@@ -103,22 +115,26 @@
                                                 <th>연관 태그</th>
                                                 <th>경매 상태</th>
                                                 <th>관리자 승인 여부</th>
+                                                <th>등록 승인 하기</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           	<c:forEach items="${auctionList }" var="auctionList">
+                                           	<c:forEach items="${auctionAuthList }" var="auctionAuthList">
 	                                            <tr>
-	                                                <td>${auctionList.auction_idx }</td>
-	                                                <td>${auctionList.member_id }</td>
-	                                                <td>${auctionList.auction_title }</td>
-	                                                <td>${auctionList.auction_content }</td>
-	                                                <td>${auctionList.auction_file }</td>
-	                                                <td>${auctionList.auction_min_bid }</td>
-	                                                <td>${auctionList.auction_start }</td>
-	                                                <td>${auctionList.auction_end }</td>
-	                                                <td>${auctionList.auction_tag }</td>
-	                                                <td>${auctionList.auction_status }</td>
-	                                                <td>${auctionList.auction_auth_status }</td>
+	                                                <td>${auctionAuthList.auction_idx }</td>
+	                                                <td>${auctionAuthList.member_id }</td>
+	                                                <td>${auctionAuthList.auction_title }</td>
+	                                                <td>${auctionAuthList.auction_content }</td>
+	                                                <td>${auctionAuthList.auction_file }</td>
+	                                                <td>${auctionAuthList.auction_min_bid }</td>
+	                                                <td>${auctionAuthList.auction_start }</td>
+	                                                <td>${auctionAuthList.auction_end }</td>
+	                                                <td>${auctionAuthList.auction_tag }</td>
+	                                                <td>${auctionAuthList.auction_status }</td>
+	                                                <td>${auctionAuthList.auction_auth_status }</td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="Auth('${auctionAuthList.auction_idx}')">승인하기</button>
+	                                                </td>	
 	                                            </tr>
                                            	</c:forEach>
                                         </tbody>
@@ -135,6 +151,7 @@
                                                 <th>연관 태그</th>
                                                 <th>경매 상태</th>
                                                 <th>관리자 승인 여부</th>
+                                                <th>등록 승인 하기</th>
                                             </tr>
                                         </tfoot>
                                     </table>

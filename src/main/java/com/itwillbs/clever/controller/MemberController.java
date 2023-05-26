@@ -1,17 +1,22 @@
 package com.itwillbs.clever.controller;
 
+import java.util.*;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.*;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.*;
 
 import com.itwillbs.clever.service.MemberService;
 import com.itwillbs.clever.socket.WebSocketHandler;
@@ -139,15 +144,20 @@ public class MemberController {
 			return "success";
 		}
 		
-//		CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		
-//		
+//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		System.out.println(user);
 //		logger.info("==================================");
 //		logger.info("@ChatController, GET Chat / Username : " + user.getUsername());
 //		
 //		model.addAttribute("userid", user.getUsername());
-		
 		return "chatting/chatting";
+		
+		
+//		mv.setViewName("chatting/chatting");
+//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		System.out.println("user name : " + user.getUsername());
+//		
+//		mv.addObject("userid", user.getUsername());
 	}
 	
 

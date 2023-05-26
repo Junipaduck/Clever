@@ -67,15 +67,18 @@
                 </div>
                 
                 <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
+                <!-- 관리자로 로그인 시 등록하기 버튼 보임 -->
                 <div class="category_under">
-                    <div class="category_box">
-                        <a href="전체보기">전체보기
-                            <span><i class="bi bi-chevron-right"></i></span></a>
-                    </div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
-                    <div class="category_box"></div>
+                    	<c:choose>
+                    		<c:when test="${sessionScope.sId eq 'admin' }">
+			                    <div class="category_box">
+			                        <a href="전체보기">등록하기</a>
+	                    		</div>
+                    		</c:when>
+                    		<c:otherwise>
+								<!-- 일반 회원 아이디로 로그인 시 아무것도 안 보임 -->
+                    		</c:otherwise>
+                    	</c:choose>
                 </div>
 
                 <!--상품 영역-->

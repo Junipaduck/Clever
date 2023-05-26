@@ -9,10 +9,64 @@
 			WHERE member_id != 'admin'
 	</select>
 	
+	<!-- 경매 목록 조회 -->
+	<select id="selectAuctionList" resultType="HashMap">
+		SELECT *
+			FROM auction
+	</select>
+	
+	<select id="selectAuctionAuthList" resultType="HashMap">
+		SELECT * 
+			FROM auction
+				WHERE auction_auth_status = 'N'	
+	</select>
+	
+	<!-- 회원 수 카운트 -->
 	<select id="selectMemberCount" resultType="int">
 		SELECT COUNT(*)
 			FROM member
 			WHERE member_id != 'admin'	
 	</select>
-
+	
+	<!-- 상품 수 카운트 -->
+	<select id="selectProductCount" resultType="int">
+		SELECT COUNT(*)
+			FROM product	
+	</select>
+	
+	<!-- 경매 수 카운트 -->
+	<select id="selectAuctionCount" resultType="int">
+		SELECT COUNT(*)
+			FROM auction	
+	</select>
+	
+	<!-- 경매 등록 승인 -->
+	<update id="updateAuthStatus">
+		UPDATE auction
+			SET auction_auth_status = 'Y'
+				WHERE auction_idx = ${auction_idx}; 
+	</update>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

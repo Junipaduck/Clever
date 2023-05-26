@@ -40,13 +40,14 @@
 	<context:property-placeholder location="classpath:/config/appdata.properties"/>
 	
 	<!-- 웹소켓 핸들러 -->
-	<beans:bean id="chattingHandler" class="com.itwillbs.clever.socket.WebSocketHandler"/>
 	<websocket:handlers>
-		<websocket:mapping handler="chattingHandler" path="/chatting"/>
-		<websocket:handshake-interceptors>
-			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
-		</websocket:handshake-interceptors>
+		<websocket:mapping handler="webSocketHandler" path="/chatting"/>
+<!-- 		<websocket:handshake-interceptors> -->
+<!-- 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean> -->
+<!-- 		</websocket:handshake-interceptors> -->
+		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
+	<beans:bean id="webSocketHandler" class="com.itwillbs.clever.socket.WebSocketHandler"/>
 	
 	
 </beans:beans>
