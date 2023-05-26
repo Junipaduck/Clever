@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="stat-content d-inline-block">
                                     <div class="stat-text">등록된 상품</div>
-                                    <div class="stat-digit">770</div>
+                                    <div class="stat-digit">${productCount }</div>
                                 </div>
                             </div>
                         </div>

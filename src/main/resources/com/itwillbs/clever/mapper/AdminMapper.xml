@@ -9,10 +9,17 @@
 			WHERE member_id != 'admin'
 	</select>
 	
+	<!-- 회원 수 카운트 -->
 	<select id="selectMemberCount" resultType="int">
 		SELECT COUNT(*)
 			FROM member
 			WHERE member_id != 'admin'	
+	</select>
+	
+	<!-- 상품 수 카운트 -->
+	<select id="selectProductCount" resultType="int">
+		SELECT COUNT(*)
+			FROM product	
 	</select>
 
 </mapper>

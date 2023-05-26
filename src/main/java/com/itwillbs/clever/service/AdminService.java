@@ -17,18 +17,31 @@ public class AdminService {
 	@Autowired
 	private AdminMapper mapper;
 	
+//조회 -----------------------------------------------------------------------------------------------------------------------------	
+	
 	// 관리자 전체 회원 목록 조회
 	public List<HashMap<String, String>> selectMember() {
 		
 		return mapper.selectMember();
 	}
-
+	
+//카운트 ---------------------------------------------------------------------------------------------------------------------------
+	
 	// 관리자 메인 페이지 회원 수 카운트 
-	public int selectMemberCount() {
+	public int getMemberCount() {
 		
 		return mapper.selectMemberCount();
 	}
-
+	
+	// 관리자 메인 페이지 등록 상품 수 카운트 
+	public int getProductCount() {
+		
+		return mapper.selectProductCount();
+	}
+	
+	
+// 인증 -----------------------------------------------------------------------------------------------------------------------------
+	
 	public void certifiedPhoneNumber(String phone, int randomNumber) {
 		String api_key = "NCSSDWHWSV57OMLH";
 	    String api_secret = "P4ZOPC9S0JKJZ6GBLUIW6QXWDHR1GCBQ";
@@ -50,6 +63,7 @@ public class AdminService {
 		}
 		
 	}
+
 
 		
 	}

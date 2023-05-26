@@ -30,12 +30,15 @@ public class AdminController {
 			model.addAttribute("msg", "접근 권한이 없습니다!");
 			return "fail_back";
 		}
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-		// 관리자 메인 페이지 차트 
+// 관리자 메인 페이지 차트------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		// 가입 회원 수 계산 
-		int memberCount = adminService.selectMemberCount();
+		int memberCount = adminService.getMemberCount();
 		model.addAttribute("memberCount", memberCount);
+		
+		// 등록 상품 수 계산
+		int productCount = adminService.getProductCount();
+		model.addAttribute("productCount", productCount);
 		
 		return "admin/admin_main";
 	}
@@ -52,10 +55,7 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
-//	@GetMapping(value = "/memberAuthForm.ad")
-//	public String memberAuthForm() {
-//		return "member/member_auth_form";
-//	}
+
 	
 	
 	// 굿즈 등록 페이지 
@@ -99,6 +99,8 @@ public class AdminController {
 	public String customerCenter() {
 		return "customer_center/center_main";
 	}
+	
+	// 인증 -------------------------------------------------------------------------------------------
 	
 	// 이메일 인증
 	@GetMapping("/mailCheck")
