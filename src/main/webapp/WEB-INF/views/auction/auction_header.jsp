@@ -44,7 +44,7 @@
                                     <div class="row justify-content-end top_header_login">
                                     	<c:choose>
                                     		<c:when test="${empty sessionScope.sId }">
-		                                        <div class="col-2"><a href="loginForm.me">로그인</a></div>
+		                                        <div class="col-2"><a href="auction_loginForm">로그인</a></div>
 		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div>
                                     		</c:when>
                                     		<c:otherwise>
@@ -70,7 +70,7 @@
                         <div class="col-3 header_logo">
                             <h1 class="hidden">로고</h1>
                             <a href="auction">
-                                <img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" alt="클레버 로고" width="130px;" height="40px;">
+                                <img src="${pageContext.request.contextPath }/resources/images/CleverLogo2_Auction.png" alt="클레버 로고" width="130px;" height="40px;">
                             </a>
                         </div>
                         <div class="col-6 top_searh_area">
