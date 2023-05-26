@@ -15,6 +15,12 @@
 			FROM auction
 	</select>
 	
+	<select id="selectAuctionAuthList" resultType="HashMap">
+		SELECT * 
+			FROM auction
+				WHERE auction_auth_status = 'N'	
+	</select>
+	
 	<!-- 회원 수 카운트 -->
 	<select id="selectMemberCount" resultType="int">
 		SELECT COUNT(*)
@@ -38,7 +44,7 @@
 	<update id="updateAuthStatus">
 		UPDATE auction
 			SET auction_auth_status = 'Y'
-				WHERE auction_idx = ${auction_idx};
+				WHERE auction_idx = ${auction_idx}; 
 	</update>
 	
 </mapper>

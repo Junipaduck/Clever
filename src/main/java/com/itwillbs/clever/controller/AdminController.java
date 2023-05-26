@@ -74,8 +74,8 @@ public class AdminController {
 	@GetMapping(value = "/auctionAuth.ad")
 	public String auctionAuth(HttpSession session, Model model) {
 		
-		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
-		model.addAttribute("auctionList", auctionList);
+		List<HashMap<String, String>> auctionAuthList = adminService.getAuctionAuthList();
+		model.addAttribute("auctionAuthList", auctionAuthList);
 		
 		return "admin/auction_auth_list";
 	}

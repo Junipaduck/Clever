@@ -81,6 +81,11 @@ public class AdminService {
 		return mapper.updateAuthStatus(auction_idx);
 	}
 
+	public List<HashMap<String, String>> getAuctionAuthList() {
+		
+		return mapper.selectAuctionAuthList();
+	}
+
 
 
 		

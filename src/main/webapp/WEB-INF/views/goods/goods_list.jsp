@@ -67,9 +67,9 @@
                 </div>
                 
                 <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
+                <!-- 관리자로 로그인 시 등록하기 버튼 보임 -->
                 <div class="category_under">
                     	<c:choose>
-                    		<!-- 관리자 아이디로 로그인 했을 경우에만 등록하기 버튼 보임 -->
                     		<c:when test="${sessionScope.sId eq 'admin' }">
 			                    <div class="category_box">
 			                        <a href="전체보기">등록하기</a>

@@ -24,5 +24,7 @@ public interface AdminMapper {
 	// 경매 등록 승인
 	int updateAuthStatus(int auction_idx);
 
+	List<HashMap<String, String>> selectAuctionAuthList();
+
 
 }

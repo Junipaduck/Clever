@@ -119,21 +119,21 @@ function Auth(auction_idx) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           	<c:forEach items="${auctionList }" var="auctionList">
+                                           	<c:forEach items="${auctionAuthList }" var="auctionAuthList">
 	                                            <tr>
-	                                                <td>${auctionList.auction_idx }</td>
-	                                                <td>${auctionList.member_id }</td>
-	                                                <td>${auctionList.auction_title }</td>
-	                                                <td>${auctionList.auction_content }</td>
-	                                                <td>${auctionList.auction_file }</td>
-	                                                <td>${auctionList.auction_min_bid }</td>
-	                                                <td>${auctionList.auction_start }</td>
-	                                                <td>${auctionList.auction_end }</td>
-	                                                <td>${auctionList.auction_tag }</td>
-	                                                <td>${auctionList.auction_status }</td>
-	                                                <td>${auctionList.auction_auth_status }</td>
+	                                                <td>${auctionAuthList.auction_idx }</td>
+	                                                <td>${auctionAuthList.member_id }</td>
+	                                                <td>${auctionAuthList.auction_title }</td>
+	                                                <td>${auctionAuthList.auction_content }</td>
+	                                                <td>${auctionAuthList.auction_file }</td>
+	                                                <td>${auctionAuthList.auction_min_bid }</td>
+	                                                <td>${auctionAuthList.auction_start }</td>
+	                                                <td>${auctionAuthList.auction_end }</td>
+	                                                <td>${auctionAuthList.auction_tag }</td>
+	                                                <td>${auctionAuthList.auction_status }</td>
+	                                                <td>${auctionAuthList.auction_auth_status }</td>
 	                                                <td>
-	                                                	<button type="button" class="btn btn-primary" onclick="Auth('${auctionList.auction_idx}')">승인하기</button>
+	                                                	<button type="button" class="btn btn-primary" onclick="Auth('${auctionAuthList.auction_idx}')">승인하기</button>
 	                                                </td>	
 	                                            </tr>
                                            	</c:forEach>

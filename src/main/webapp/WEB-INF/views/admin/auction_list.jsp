@@ -103,7 +103,6 @@
                                                 <th>연관 태그</th>
                                                 <th>경매 상태</th>
                                                 <th>관리자 승인 여부</th>
-                                                <th>등록 승인 하기</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -120,7 +119,6 @@
 	                                                <td>${auctionList.auction_tag }</td>
 	                                                <td>${auctionList.auction_status }</td>
 	                                                <td>${auctionList.auction_auth_status }</td>
-	                                                <td><button type="button" class="btn btn-primary" onclick="location.href='auctionAuth.ad'">승인하기</button></td>
 	                                            </tr>
                                            	</c:forEach>
                                         </tbody>
@@ -137,7 +135,6 @@
                                                 <th>연관 태그</th>
                                                 <th>경매 상태</th>
                                                 <th>관리자 승인 여부</th>
-                                                <th>등록 승인 하기</th>
                                             </tr>
                                         </tfoot>
                                     </table>
