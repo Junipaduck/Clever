@@ -18,7 +18,7 @@
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 </head>
 <style>
 
@@ -56,6 +56,7 @@
 <!--                 <div class="anotherMsg"> -->
 <!--                     <span class="anotherName">Boa</span> -->
 <!--                     <span class="msg">안녕?</span> -->
+<!--                     <span class="msg">나 꼽주고....</span> -->
 <!--                 </div> -->
 <!--                 <div class="myMsg"> -->
 <!--                     <span class="msg">안녕안녕</span> -->
@@ -89,7 +90,9 @@
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
-	
+
+
+		
 <script type="text/javascript">
 // 	var ws;
 // 	var userId = '{param.id}';
@@ -154,17 +157,23 @@
 // 	});
 
 
+// function() {
+	
 
 //전송 버튼 누르는 이벤트
-$("#btnSend").on("click", function(e) {
-	sendMessage();
-	$('#message').val('')
+var sock = new SockJS('http://localhost:8082/clever/chatting');
+// var sock = new WebSocket('ws://localhost:8082/clever/chatting');
+sock.onmessage = onMessage;
+sock.onopen = onOpen;
+sock.onclose = onClose;
+
+$(function() {
+	$("#btnSend").click(function() {
+		console.log('send Message');
+		sendMessage();
+	})
 });
 
-var sock = new SockJS('http://localhost:8089/clever/chatting');
-sock.onmessage = onMessage;
-sock.onclose = onClose;
-sock.onopen = onOpen;
 
 function sendMessage() {
 	sock.send($("#message").val());
@@ -182,13 +191,13 @@ function onMessage(msg) {
 		console.log('arr[' + i + ']: ' + arr[i]);
 	}
 	
-	var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
+	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
 	console.log("cur_session : " + cur_session);
 	
 	sessionId = arr[0];
 	message = arr[1];
 	
-    //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+//     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if(sessionId == cur_session){
 		
 		var str = "<div class='col-6'>";
@@ -209,25 +218,29 @@ function onMessage(msg) {
 	}
 	
 }
-//채팅창에서 나갔을 때
-function onClose(evt) {
-	
-	var user = '${pr.username}';
-	var str = user + " 님이 퇴장하셨습니다.";
-	
-	$("#chatLog").append(str);
-}
 //채팅창에 들어왔을 때
 function onOpen(evt) {
+	console.log("입장");
 	
-	var user = '${pr.username}';
+// 	var user = '${pr.username}';
+	var user = "hana";
 	var str = user + "님이 입장하셨습니다.";
 	
 	$("#chatLog").append(str);
 }
-
+//채팅창에서 나갔을 때
+function onClose(evt) {
+	console.log("퇴장");
+	
+// 	var user = '${pr.username}';
+	var user = "hana";
+	var str = user + " 님이 퇴장하셨습니다.";
+	
+	$("#chatLog").append(str);
+}
+// }
 </script>
 	
-	
+
 </body>
 </html>
