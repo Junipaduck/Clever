@@ -72,7 +72,7 @@
                     	<c:choose>
                     		<c:when test="${sessionScope.sId eq 'admin' }">
 			                    <div class="category_box">
-			                        <a href="전체보기">등록하기</a>
+			                        <a href="storeRegister.ad">등록하기</a>
 	                    		</div>
                     		</c:when>
                     		<c:otherwise>
