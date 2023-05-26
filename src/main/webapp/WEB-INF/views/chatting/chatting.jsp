@@ -18,8 +18,10 @@
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </head>
 <style>
+
 </style>
 <body>
 <!-- 헤더 시작 -->
@@ -29,301 +31,56 @@
 <!-- main_content 영역 -->
 <div id="main_content">
 	<div class="page-navigation">
-		<div class="inner">
-    	<!-- 시작하기전 밑에 middle 스타일 제거해주세용 -->
-    		<div class="container middle" >
-        		<div class="chattingBox" style="back-ground: #6c757d">
-            		<div class="chatting_memberBox">
-                		<div class="myProfile">
-                    		<div class="d-flex align-items-center">
-<%--                     	<c:if test="${empty memdto.user_profile}"> --%>
-                        		<img src="${pageContext.request.contextPath }/resources/images/chatting/9.png">
-<%--                         </c:if> --%>
-<%--                         <c:if test="${not empty memdto.user_profile}"> --%>
-							<%-- 프로필 완성후 경로값 설정 --%>
-<%--                         	<img src="/user_profile/${memdto.user_profile}"> --%>
-<%--                         </c:if> --%>
-                        		<span class="ms-2 fw-bolder">
-<%--                             ${memdto.user_nickname} --%>
-									현재 선택한 채팅방 유저 닉네임
-                        		</span>
-                    		</div>
-                		</div>
-                		<!-- 채팅목록 -->
-                		<div class="chatting_member">
-<%-- 				<c:if test="${list.size() == 0}"> --%>
-<!--                 	<div class="yourProfile"> -->
-<!--                         <div class="d-flex align-items-center"> -->
-<!--                 			<b>채팅 상대가 없습니다.</b> -->
-<!--                 		</div> -->
-<!--                 	</div> -->
-<%--                 </c:if> --%>
-<%--                 <c:if test="${list.size() > 0}"> --%>
-<%--                 	<c:forEach items="${list}" var="list"> --%>
-<!-- 	                	<div class="yourProfile"> -->
-<!-- 	                        <div class="d-flex align-items-center"> -->
-<%-- 	                        로그인정보값과 비교해서 다른 프로필 추출 --%>
-<%-- 		                        <c:if test="${loginSession.user_nickname ne list.username}"> --%>
-<%-- 		                        	<c:if test="${empty list.user_profile_a}"> --%>
-<!--                         				<img src="/resources/images/chatting/NoImg.webp"> -->
-<%-- 		                        	</c:if> --%>
-<%-- 		                        	<c:if test="${not empty list.user_profile_a}"> --%>
-<%--                         				<img src="/user_profile/${list.user_profile_a}"> --%>
-<%-- 		                        	</c:if> --%>
-<%-- 		                        </c:if> --%>
-<%-- 		                        <c:if test="${loginSession.user_nickname eq list.username}"> --%>
-<%-- 		                        	<c:if test="${empty list.user_profile_b}"> --%>
-<!--                         				<img src="/resources/images/chatting/NoImg.webp"> -->
-<%-- 		                        	</c:if> --%>
-<%-- 		                        	<c:if test="${not empty list.user_profile_b}"> --%>
-<%--                         				<img src="/user_profile/${list.user_profile_b}"> --%>
-<%-- 		                        	</c:if> --%>
-<%-- 		                        </c:if> --%>
-<!-- 	                            <div class="ms-2 member_textBox"> -->
-<%-- 	                            	로그인정보값과 비교해서 다른 닉네임 추출 --%>
-<%-- 		                             <c:if test="${loginSession.user_nickname eq list.username}"> --%>
-<%-- 		                             	<span class="fw-bolder" id="report_nickname">${list.mastername}</span>  --%>
-<%-- 		                             </c:if> --%>
-<%-- 		                              <c:if test="${loginSession.user_nickname ne list.username}"> --%>
-<%-- 		                             	<span class="fw-bolder" id="report_nickname">${list.username}</span>  --%>
-<%-- 		                             </c:if>    --%>
-<%-- 	                                <span class="font_gray">${list.extraaddr}·${list.last_date}</span> --%>
-<!-- 	                                <div > -->
-<%-- 	                                    ${list.last_chat} --%>
-<!-- 	                                </div> -->
-<%-- 	                                 <input type="text" class="d-none" id="roomId" name="roomId" value="${list.roomId}"> --%>
-<%-- 	                                 <input type="text" class="d-none" id="post_seq" name="post_seq"value="${list.post_seq}"> --%>
-<%-- 	                                 <input type="text" class="d-none" id="" name="post_seq"value="${list.post_seq}"> --%>
-<!-- 	                                 <input type="text" class="d-none" id="rooId_input" name="roomId"> -->
-<!-- 	                                 <input type="text" class="d-none" id="post_seq_input" name="post_seq"> -->
-<!-- 	                            </div> -->
-<!-- 	                        </div> -->
-<!--                     	</div> -->
-<%-- 	                </c:forEach> --%>
-<%--                 </c:if> --%>
-							<div class="yourProfile">
-                        		<div class="d-flex align-items-center">
-                            		<img src="${pageContext.request.contextPath }/resources/images/chatting/박하사탕.jpeg">
-                            		<div class="ms-2 member_textBox">
-                                		<span class="fw-bolder">박하사탕</span> 
-                                		<span class="font_gray">망원동·2시간전</span>
-                                			<div>
-                                    			박하사탕 좋아하세요?
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/슈퍼파워.jpeg">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">슈퍼파워</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    헬스갔다가 구매할게요
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/우주.jpg">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">우주를살께</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    네고 조금만 부탁드려요 ㅜㅜ
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/상상력.jpg">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">생각대로</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    안살래요
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/NoImg.webp">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">싸게싸게</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    얼마까지 깍아주실수 있으세요?
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/만수르.jpg">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">중고만수르</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    그냥 새거살게요
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/간지남.jpg">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">중고간지남</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    쿨거래 ㄱㄱ
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/NoImg.webp">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">중고간지녀</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    다살게요
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/NoImg.webp">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">귀티자르</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    조금 입긴했어요...
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                    <div class="yourProfile">
-			                        <div class="d-flex align-items-center">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/NoImg.webp">
-			                            <div class="ms-2 member_textBox">
-			                                <span class="fw-bolder">(-*3*)-</span> 
-			                                <span class="font_gray">망원동·2시간전</span>
-			                                <div>
-			                                    뿌우
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div> 
-			                </div>
-			            </div>
-			            <div class="chatting_content d-flex justify-content-center align-items-center"  id="chatting_before">
-<%-- 			            	 <img src="${pageContext.request.contextPath }/resources/images/chatting/1234.png"> --%>
-<!-- 							<iframe src='https://www.vchatcloud.com/chat-demo/iframe/iframe_kakao/v3/index.html?channelKey=ZJDywSFkMc-AQiMcQOHtk-20230524163247' frameborder='no' scrolling='no' marginwidth='0' marginheight='0' width='391' height='691'></iframe> -->
-<%-- 			            	<jsp:include page="chatting_2.jsp" /> --%>
-								?????????????
-			            </div>
-			            <div class="chatting_content d-none" id="chatting_after">
-			                <div class="yourPost">
-			                    <!-- 클릭시게시글로 이동 -->
-			                    <div class="d-flex align-items-center" id="yourPost">
-			                        <img src="${pageContext.request.contextPath }/resources/images/chatting/타블렛.jpeg">
-			                        <div class="ms-2">
-			                            <span class="fw-bolder">우주를살께</span> 
-			                            <span class="font_gray">한번도안쓴 타블렛팝니다</span>
-			                            <div class="fw-bolder">
-			                                <span>5,000원</span>
-			                            </div>
-			                        </div>
-			                    </div>
-			                     <!-- 모달 -->
-			                    <div class="col p-0 dropdown text-end">
-			                        <a href="#" class="naviIcon fw-bolder" data-bs-toggle="dropdown" aria-expanded="false">
-			                            <img src="${pageContext.request.contextPath }/resources/images/chatting/navibar.png" height="35px">
-			                        </a>
-			                        <ul class="dropdown-menu no_index" aria-labelledby="dropdownMenuButton1">
-			                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModa3">신고하기</a></li>
-			                            <li><a class="dropdown-item" id="chatExit" href="#">채팅방 나가기</a></li>
-			                        </ul>
-			                        <!-- Modal -->
-			                		<div id="modal_delete">
-			                    		<div class="modal fade" id="exampleModa3" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			                        		<div class="modal-dialog modal-dialog-centered" style="width: 350px;">
-			                            		<div class="row align-items-center modal-content ">
-			                                		<div class="row align-items-center middle_bottomLine">
-			                                			<form class="m-0" id="reportForm" action="/report/insert" method="post">
-				                                    		<div class="col d-flex justify-content-center" id="modalTitle" style="width:auto;">
-				                                        		<input type="text" class="form-control-plaintext fw-bolder" id="report_content"
-				                                            		name="report_content" placeholder="내용을 입력하세요">
-				                                   		 	</div>
-				                                     		<div class="d-none">
-								                         		<input type="text" name="user_id"  value="${loginSession.user_id}"> <%-- 신고보내는 사람 --%>
-								                         		<input type="text" name="user_category"  value="${loginSession.user_category}"> <%-- 그사람 로그인 카테고리 --%>
-								                         		<input type="text" name="reported_id"id="reported_id" > <%-- 신고받는 사람 --%>
-								                         		<input type="text" name="category"  value="채팅"> <%-- 게시글 카테고리 --%>
-								                         		<input type="text" name="category_seq"id="category_seq"  > <%-- 게시글 번호 --%>
-								                     		</div>
-			                                    		</form>
-			                                		</div>
-			
-			                                	<div class="col d-flex justify-content-center pt-5" id="modalBtn">
-			                                    	<button type="button" class="middle_Btn" id="post_reportBtn"
-			                                        	data-bs-dismiss="modal">신고하기</button>
-			                                	</div>
-			                            	</div>
-			                        	</div>
-			                    	</div>
-			                	</div>
-							</div>
-						</div>
-						<div class="messageBox">
-							<!-- 텍스트창 -->
-							<div class="contentDiv">
-							</div>
-			                    <!-- <div class="imoticonBox"></div> -->
-			                    <!-- 인풋창 -->
-							<div class="textDiv">
-								<div>
-									<textarea class="form-control-plaintext font_style" id="chatting_content" name="chatting_content"
-										placeholder="메세지를 입력하세요."></textarea>
-								</div>
-			                        
-								<div class="row p-2 dropup">
-									<!-- 이모티콘 -->
-									<div class="col" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/이모티콘.png" height="30px">
-									</div>
-			                            
-									<div class="dropdown-menu ms-2 imoticonBox"  aria-labelledby="dropdownMenuButton1">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/1.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/2.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/3.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/4.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/5.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/6.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/7.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/8.png" class="emoticon_gabal">
-										<img src="${pageContext.request.contextPath }/resources/images/chatting/9.png" class="emoticon_gabal">
-									</div>
-									<div class="col text-end me-2">
-										<span class="font_gray">
-											<span class="length_num">0</span>/100
-										</span>
-										<button type="button" class="middle_Btn ms-2" id="writeBtn" style="width: 50px;">전송</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	
+	<div id="contentWrap">
+<!--     <nav> -->
+<!-- 		<span id="nav-header"> -->
+<!--             chat App -->
+<!--         </span> -->
+<!--         <span id="logoutBtn">로그아웃</span> -->
+<!--     </nav> -->
+    <div id="contentCover">
+        <div id="roomWrap">
+            <div id="roomList">
+                <div id="roomHeader">채팅 방 목록</div>
+                <div id="roomSelect">
+                    <div class="roomEl active" data-id="1">고양이 두부모래 팝니다~</div>
+                    <div class="roomEl" data-id="2">JSP책 판매</div>
+                    <div class="roomEl" data-id="3">엠스톤 키보드</div>
+                </div>
+            </div>
+        </div>
+        <div id="chatWrap">
+            <div id="chatHeader">Everyone</div>
+            <div id="chatLog">
+<!--                 <div class="anotherMsg"> -->
+<!--                     <span class="anotherName">Boa</span> -->
+<!--                     <span class="msg">안녕?</span> -->
+<!--                 </div> -->
+<!--                 <div class="myMsg"> -->
+<!--                     <span class="msg">안녕안녕</span> -->
+<!--                     <span class="msg">우리집고양이</span> -->
+<%--                     <img src="${pageContext.request.contextPath }/resources/images/고양이.jpg" style="width: 50px;"> --%>
+<!--                 </div> -->
+            </div>
+            <form id="chatForm">
+                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요">
+                <input type="button" id="btnSend" value="보내기">
+            </form>
+        </div>
+        <div id="memberWrap">
+            <div id="memberList">
+                <div id="memberHeader">채팅중인 멤버</div>
+                <div id="memberSelect">나 : ${sessionScope.sId }</div>
+                <div id="targetUser">Boa</div>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	
+	
+	
 	</div>
 </div>
 <!-- // main_content 영역 -->
@@ -333,239 +90,144 @@
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
 	
+<script type="text/javascript">
+// 	var ws;
+// 	var userId = '{param.id}';
+	
+// 	function connect() {
+// 		// 웹소켓 객체 생성
+// 		// 핸들러 등록(연결, 메세지 수신, 연결 종료)
+		
+// 		// url 연결할 서버 경로
+// 		ws = new SockJS('http://localhost:8089/clever/chatting');
+		
+// 		ws.onopen = function() {
+// 			console.log('연결 생성');
+// 			register();
+// 		};
+// 		ws.onmessage = function(e) {
+// 			console.log('메세지 받음');
+// 			var data = e.data;
+// 			addMsg(data);
+// 		};
+// 		ws.onclose = function() {
+// 			console.log('연결 끊김');
+// 		};
+// 	}
+	
+// 	// 원래 채팅 메세지에 방금 받은 메세지 더하기
+// 	function addMsg(msg) {
+// 		var chat = $('#chatLog').val();
+// 		chat = chat + "\n상대방 : " + msg;
+// 		$('#chatLog').val(chat);
+// 	}
+	
+// 	// 메세지 수신을 위한 서버에 id등록하기
+// 	function register() {
+// 		var msg = {
+// 				type : "register",
+// 				userid : '${param.id}'
+// 		};
+// 		ws.send(JSON.stringify(msg));
+// 	}
+	
+// 	function sendMsg() {
+// 		var msg = {
+// 				type : "chat",
+// 				target : $("#targetUser").val(),
+// 				message : $("#chatLog").val()
+// 		};
+// 		ws.send(JSON.stringify(msg));
+// 	};
+	
+// 	// 페이지 로딩되면 connect 실행
+// 	$(function() {
+// 		connect();
+// 		console.log("로딩완");
+// 		$('#btnSend').on("click", function() {
+// 			var chat = $("#chatLog").val();
+// 			chat = caht + "\n나 : " + $("#message").val();
+// 			$("chatLog").val(chat);
+// 			sendMsg();
+// 			$("#chatLog").val("");
+// 		})
+// 	});
+
+
+
+//전송 버튼 누르는 이벤트
+$("#btnSend").on("click", function(e) {
+	sendMessage();
+	$('#message').val('')
+});
+
+var sock = new SockJS('http://localhost:8089/clever/chatting');
+sock.onmessage = onMessage;
+sock.onclose = onClose;
+sock.onopen = onOpen;
+
+function sendMessage() {
+	sock.send($("#message").val());
+}
+//서버에서 메시지를 받았을 때
+function onMessage(msg) {
+	
+	var data = msg.data;
+	var sessionId = null; //데이터를 보낸 사람
+	var message = null;
+	
+	var arr = data.split(":");
+	
+	for(var i=0; i<arr.length; i++){
+		console.log('arr[' + i + ']: ' + arr[i]);
+	}
+	
+	var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
+	console.log("cur_session : " + cur_session);
+	
+	sessionId = arr[0];
+	message = arr[1];
+	
+    //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+	if(sessionId == cur_session){
+		
+		var str = "<div class='col-6'>";
+		str += "<div class='alert alert-secondary'>";
+		str += "<b>" + sessionId + " : " + message + "</b>";
+		str += "</div></div>";
+		
+		$("#chatLog").append(str);
+	}
+	else{
+		
+		var str = "<div class='col-6'>";
+		str += "<div class='alert alert-warning'>";
+		str += "<b>" + sessionId + " : " + message + "</b>";
+		str += "</div></div>";
+		
+		$("#chatLog").append(str);
+	}
+	
+}
+//채팅창에서 나갔을 때
+function onClose(evt) {
+	
+	var user = '${pr.username}';
+	var str = user + " 님이 퇴장하셨습니다.";
+	
+	$("#chatLog").append(str);
+}
+//채팅창에 들어왔을 때
+function onOpen(evt) {
+	
+	var user = '${pr.username}';
+	var str = user + "님이 입장하셨습니다.";
+	
+	$("#chatLog").append(str);
+}
+
+</script>
 	
 	
-	
-	<script>
-    $(".myProfile").on("click",function(){
-		location.href = "/mypage/toMyStore?user_id=${loginSession.user_id}";
-	})
-    //신고
-    $("#post_reportBtn").on("click",function(){
-    	 $("#reportForm").submit();
-    	
-    })
-    //게시글 클릭시 디테일페이지 이동
-    $("#yourPost").on("click",function(e){
-    	let post_seq = $("#post_seq_input").val();
-    	console.log(post_seq);
-    	location.href = "/post/toPostDetail?post_seq="+post_seq;
-    })
-    //채팅방 나가기 클릭시
-  	$("#chatExit").on("click", function(){
-  		let roomId = $("#rooId_input").val();
-  		console.log(roomId);
-  		let post_seq = $("#post_seq_input").val();
-    	console.log(post_seq);
-  		location.href = "/chatting/chat_m_exit?roomId="+roomId+"&post_seq="+post_seq;
-  	})
-    //채팅멤버 클릭 -> 리스트 출력
-    $(".yourProfile").on("click", function(e){
-        $(".yourProfile").css('background-color','')
-        $(this).css('background-color','rgb(237, 238, 239)');
-        let roomId = $(this).find("#roomId").val();
-        let post_seq = $(this).find("#post_seq").val();
-        let loginId= '${loginSession.user_id}';
-        $("#rooId_input").val(roomId);
-        $("#post_seq_input").val(post_seq);
-        console.log(post_seq,roomId);
-       
-        function ajax(){
-        	 
-        	  $(".yourProfile").on("click", function(e){
-        		  clearInterval(timer);
-        		  return 
-        	 })
-        	$.ajax({
-        		url: "/chatting/chat_m_select"
-        		, type: "get"
-        		, data: {roomId : roomId, 
-        				post_seq : post_seq}
-        		, success: function(data){
-        			console.log(data);
-        			$("#chatting_before").remove();
-        			$("#chatting_after").removeClass('d-none');
-        			$("#yourPost").empty();
-        			$("#yourPost").append(
-        					"<img src='/user_profile/"+data.postMap.user_profile+"'>"
-        					+'<div class="ms-2">'
-        					+	'<span class="fw-bolder">'+ data.postMap.post_state +'</span>'
-        					+	'<span class="font_gray ms-1">'+ data.postMap.post_title +'</span>'
-        					+		'<div class="fw-bolder">'
-        					+			'<span>'+data.postMap.price_selling+'원</span>'
-        					+		'</div>'
-        					+'</div>');
-        			$("#reported_id").val(data.postMap.user_id);
-        			$("#category_seq").val(data.postMap.post_seq);
-        			console.log($("#reported_id").val()+$("#category_seq").val());
-        			$(".contentDiv").empty();
-        			for(var i=0; i<data.messagelist.length; i++){
-        				if(data.messagelist[i].messageId==loginId){
-        					var chat = 
-        						"<div class='dynamicChat_r'>"
-        						+"<span class='me-2 font_gray_b'>"
-        	    				+	data.messagelist[i].upload_date
-        	    				+"</span>"
-        	    				+	data.messagelist[i].message 
-        	    				+"</div>";
-    	    				 $(".contentDiv").append(chat);
-        				}else{
-        					var chat = "<div class='dynamicChat_l'>" 
-        	    				+ data.messagelist[i].message 
-        	    				+ "<span class='ms-2 font_gray_b'>"+data.messagelist[i].upload_date+"</span></div>";
-        	    				 $(".contentDiv").append(chat);
-        				}
-        			}
-        			$(".contentDiv").scrollTop($(".contentDiv")[0].scrollHeight);   
-        		}, error: function(e){
-        			console.log(e);
-        		}
-        	})
-        	
-        }
-        var timer = window.setInterval(ajax, 2500);
-        
-    })
-	//이모티콘 클릭시
-      $(".emoticon_gabal").on("click", function () {
-    	  var now = new Date();
-          // Date 객체의 getHours(시간) , getMinutes(분) 속성을 저장 합니다.
-          var nowHour = now.getHours();
-          var nowMt = now.getMinutes();
-     		if ( nowHour <= 11  &&  nowHour  >= 0 ) {
-     			if(nowHour<10){
-     				var date ='오전0' + nowHour + ':' + nowMt;
-     			}else{
-     				var date ='오전' + nowHour + ':' + nowMt;
-     			}
-     		  
-     		} else if (  nowHour >= 12  &&  nowHour  < 24  ) {
-     			if(nowHour<20){
-     				var date ='오후0' + (nowHour-12) + ':' + nowMt;
-     			}else{
-     				var date ='오후' + (nowHour-12) + ':' + nowMt;
-     			}
-    		    
-     		}
-     		let message2 = "이모티콘을 보냈어요."
-    	  	let loginId= '${loginSession.user_id}';    
-          	let roomId = $('#rooId_input').val();
-          	let messageId= '${memdto.user_id}';
-          	let name =  '${memdto.user_nickname}';
-    	  	let message = "<span><img style='width:180px;height:180;' src=" + $(this).prop("src") + ">" + "</span>";
-            let newChat = "<div class='dynamicChat_r'><span class='font_gray_b'>" + date + "</span>" 
-                + message +"</div>";
-            console.log(newChat);
-            $(".contentDiv").append($(newChat).hide());
-            $(".dynamicChat_r").fadeIn("slow")
-                // 스크롤 아래
-                let scrollH = $(".contentDiv").prop("scrollHeight");
-                $(".contentDiv").scrollTop(scrollH);
-                
-              
-                	$.ajax({
-                		url: "/chatting/chat_m_insert"
-                		, type: "post"
-                		, data: {roomId:roomId, messageId : messageId, name:name,
-                				message : message, message2:message2}
-                		, success: function(data){
-                			console.log(data);
-                			if(data =="success"){
-                			}else{
-                				alert("실패!");
-                			}
-                		}, error: function(e){
-                			console.log(e);
-                		}
-                	})
-               
-        })
-    
-    //전송버튼 클릭시
-    $("#writeBtn").on("click", function(){
-    	let user_id= '${memdto.user_id}';
-    	let loginId= '${loginSession.user_id}';
-    	console.log(user_id,loginId);
-        if($(".length_num").html()>100){
-            alert("글자수 초과로 입력할수 없습니다")
-            return;
-        }
-        makeDynamicEl();
-    })
-    // 키보드입력시
-    $("#chatting_content").on("keyup", function (e) {
-        // 엔터 클릭시 
-        if (e.keyCode == 13 && ($("#chatting_content").val() !== "")) {
-            makeDynamicEl();
-        }
-        if($(".length_num").html()>100){
-            alert("글자수 초과로 입력할수 없습니다")
-        }
-        let length_cnt = $("#chatting_content").val().length+1;
-        let length_num = length_cnt*3;
-        $(".length_num").html(length_num);
-       
-    })
-    
-      function makeDynamicEl(){
-    	
-    	let loginId= '${loginSession.user_id}';    
-        let roomId = $('#rooId_input').val();
-        let messageId= '${memdto.user_id}';
-        let name =  '${memdto.user_nickname}';
-        let message = '<span class="chat_text">' +$("#chatting_content").val() +'</span>';
-       	let message2 = $("#chatting_content").val();
-        $.ajax({
-    		url: "/chatting/chat_m_insert"
-    		, type: "post"
-    		, data: {roomId:roomId, messageId : messageId, name:name,
-    				message : message, message2:message2}
-    		, success: function(data){
-    			console.log(data);
-    			if(data =="success"){
-    			}else{
-    				alert("실패!");
-    			}
-    		}, error: function(e){
-    			console.log(e);
-    		}
-    	})  
-    	 var now = new Date();
-         // Date 객체의 getHours(시간) , getMinutes(분) 속성을 저장 합니다.
-         var nowHour = now.getHours();
-         var nowMt = now.getMinutes();
-         if ( nowHour <= 11  &&  nowHour  >= 0 ) {
-        	 if(nowHour<10){
-  				var date ='오전0' + nowHour + ':' + nowMt;
-  			}else{
-  				var date ='오전' + nowHour + ':' + nowMt;
-  			}
-    		} else if (  nowHour >= 12  &&  nowHour  < 23  ) {
-    			if(nowHour<20){
-    				var date ='오후0' + (nowHour-12) + ':' + nowMt;
-    			}else{
-    				var date ='오후' + (nowHour-12) + ':' + nowMt;
-    			}
-   		    
-    	}
-         
-    	if(loginId==messageId){
-    		let newChat = "<div class='dynamicChat_r'><span class='me-2 font_gray_b'>" + date + 
-            "</span>" + message + "</div>";
-        	$(".contentDiv").append($(newChat).hide());
-        	$(".dynamicChat_r").fadeIn("slow");
-        	
-    	}else{
-    		let newChat = "<div class='dynamicChat_l'><span class='me-2 font_gray_b'>" + date + 
-            "</span>" + message + "</div>";
-	        $(".contentDiv").append($(newChat).hide());
-	        $(".dynamicChat_l").fadeIn("slow");
-    	}
-            let scrollH = $(".contentDiv").prop("scrollHeight");
-            $(".contentDiv").scrollTop(scrollH);
-            $("#chatting_content").focus();
-            $("#chatting_content").val("");
-        }
-    </script>
 </body>
 </html>

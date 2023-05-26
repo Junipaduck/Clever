@@ -54,19 +54,22 @@
 			return;
 		}
 		var resultElement = document.getElementById("result");
+		$("#inputInt").val(priceInput);
 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
+// 		console.log($("#inputInt").val());
 		
 	}
 	
 	function auctionAddPrice(percent) {
 		
-		var priceInput = document.getElementById("price");
-		var price = parseInt(uncomma(document.getElementById("price").value));
-		price += price * percent;
-		$('input[name=price]').attr('value', price);
+		var priceInput = parseInt(uncomma($("#inputInt").val()));
+		priceInput += priceInput * percent;
+		
+		priceInput = (priceInput/10) * 10;
+		
+		$('#price').val(priceInput);
 		
 	}
-	
 
 </script>
 	<!-- 헤더 시작 -->
@@ -74,6 +77,7 @@
 		<jsp:include page="../inc/header.jsp" />
 	</header>
     <!-- main_content 영역 -->
+    	<input type="hidden" id="inputInt" name="inputInt" value="0">
         <div id="main_content">
             <!-- category -->
             <div id="category">
@@ -96,7 +100,6 @@
                                 </ul>
                                 <i class="bi bi-chevron-down under_direction"></i>
                             </span>
-                            
                         </p>
                         <p id="category_clothes">
                             <span>

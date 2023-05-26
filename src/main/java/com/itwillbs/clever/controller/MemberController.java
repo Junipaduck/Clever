@@ -2,7 +2,10 @@ package com.itwillbs.clever.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.clever.service.MemberService;
+import com.itwillbs.clever.socket.WebSocketHandler;
 import com.itwillbs.clever.vo.MemberVO;
 
 @Controller
 public class MemberController {
+	private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
 	
 	@Autowired
 	private MemberService memberService;
@@ -133,6 +138,15 @@ public class MemberController {
 			model.addAttribute("target","loginForm.me");
 			return "success";
 		}
+		
+//		CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		
+//		
+//		logger.info("==================================");
+//		logger.info("@ChatController, GET Chat / Username : " + user.getUsername());
+//		
+//		model.addAttribute("userid", user.getUsername());
+		
 		return "chatting/chatting";
 	}
 	
