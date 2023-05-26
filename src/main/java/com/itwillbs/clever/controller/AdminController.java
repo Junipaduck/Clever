@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
 
+import retrofit2.http.*;
+
 @Controller
 public class AdminController {
 	
@@ -40,6 +42,10 @@ public class AdminController {
 		int productCount = adminService.getProductCount();
 		model.addAttribute("productCount", productCount);
 		
+		// 등록 경매 상품 수 계산
+		int auctionCount = adminService.getAuctionCount();
+		model.addAttribute("auctionCount", auctionCount);
+		
 		return "admin/admin_main";
 	}
 	
@@ -47,13 +53,22 @@ public class AdminController {
 	@GetMapping(value = "/adminMember.ad")
 	public String memberList(HttpSession httpSession, Model model) {
 		
-//		List<MemberVO> memberList = adminService.selectMember();
-//		model.addAttribute("memberList", memberList);
 		List<HashMap<String, String>> memberList = adminService.selectMember();
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/admin_member";
 	}
+	
+	// 경매 목록 조회
+	@GetMapping(value = "/adminAuction.ad")
+	public String autionList(HttpSession session, Model model) {
+		
+		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
+		model.addAttribute("auctionList", auctionList);
+		
+		return "admin/auction_list";
+	}
+
 	
 
 	
@@ -76,11 +91,6 @@ public class AdminController {
 		return "admin/goods_store_list";
 	}
 	
-	// 경매 목록 조회
-	@GetMapping(value = "/adminAuction.ad")
-	public String autionList() {
-		return "admin/auction_list";
-	}
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")

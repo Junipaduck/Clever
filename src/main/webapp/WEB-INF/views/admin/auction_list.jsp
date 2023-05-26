@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,32 +92,49 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>상품번호</th>
+                                                <th>경매번호</th>
+                                                <th>아이디</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
+                                                <th>상품설명</th>
                                                 <th>상품사진</th>
+                                                <th>최소 입찰가</th>
+                                                <th>경매 시작일</th>
+                                                <th>경매 종료일</th>
+                                                <th>연관 태그</th>
+                                                <th>경매 상태</th>
+                                                <th>관리자 승인 여부</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>장바구니</td>
-                                                <td>2023-05-19</td>
-                                                <td>굿즈</td>
-                                                <td>5000원</td>
-                                                <td>사진</td>
-                                            </tr>
+                                           	<c:forEach items="${auctionList }" var="auctionList">
+	                                            <tr>
+	                                                <td>${auctionList.auction_idx }</td>
+	                                                <td>${auctionList.member_id }</td>
+	                                                <td>${auctionList.auction_title }</td>
+	                                                <td>${auctionList.auction_content }</td>
+	                                                <td>${auctionList.auction_file }</td>
+	                                                <td>${auctionList.auction_min_bic }</td>
+	                                                <td>${auctionList.auction_start }</td>
+	                                                <td>${auctionList.auction_end }</td>
+	                                                <td>${auctionList.auction_tag }</td>
+	                                                <td>${auctionList.auction_status }</td>
+	                                                <td>${auctionList.auction_auth_status }</td>
+	                                            </tr>
+                                           	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>상품번호</th>
+                                                <th>경매번호</th>
+                                                <th>아이디</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
+                                                <th>상품설명</th>
                                                 <th>상품사진</th>
+                                                <th>최소 입찰가</th>
+                                                <th>경매 시작일</th>
+                                                <th>경매 종료일</th>
+                                                <th>연관 태그</th>
+                                                <th>경매 상태</th>
+                                                <th>관리자 승인 여부</th>
                                             </tr>
                                         </tfoot>
                                     </table>

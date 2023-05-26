@@ -124,8 +124,8 @@
                                     <i class="ti-link text-danger border-danger"></i>
                                 </div>
                                 <div class="stat-content d-inline-block">
-                                    <div class="stat-text">경매 상품</div>
-                                    <div class="stat-digit">2,781</div>
+                                    <div class="stat-text">경매 수</div>
+                                    <div class="stat-digit">${auctionCount }</div>
                                 </div>
                             </div>
                         </div>

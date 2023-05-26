@@ -25,6 +25,12 @@ public class AdminService {
 		return mapper.selectMember();
 	}
 	
+	// 관리자 경매 목록 조회
+	public List<HashMap<String, String>> getAuctionList() {
+		
+		return mapper.selectAuctionList();
+	}
+	
 //카운트 ---------------------------------------------------------------------------------------------------------------------------
 	
 	// 관리자 메인 페이지 회원 수 카운트 
@@ -37,6 +43,12 @@ public class AdminService {
 	public int getProductCount() {
 		
 		return mapper.selectProductCount();
+	}
+	
+	// 관리자 메인 페이지 경매 등록 상품 수 카운트
+	public int getAuctionCount() {
+		
+		return mapper.selectAuctionCount();
 	}
 	
 	
@@ -63,6 +75,8 @@ public class AdminService {
 		}
 		
 	}
+
+
 
 
 		
