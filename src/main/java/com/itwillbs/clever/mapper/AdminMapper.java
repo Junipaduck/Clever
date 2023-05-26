@@ -21,5 +21,8 @@ public interface AdminMapper {
 	// 관리자 메인 화면 경매 수 카운트
 	int selectAuctionCount();
 
+	// 경매 등록 승인
+	int updateAuthStatus(int auction_idx);
+
 
 }

@@ -76,6 +76,10 @@ public class AdminService {
 		
 	}
 
+	public int auctionAuth(int auction_idx) {
+		
+		return mapper.updateAuthStatus(auction_idx);
+	}
 
 
 

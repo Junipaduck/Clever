@@ -33,5 +33,34 @@
 		SELECT COUNT(*)
 			FROM auction	
 	</select>
-
+	
+	<!-- 경매 등록 승인 -->
+	<update id="updateAuthStatus">
+		UPDATE auction
+			SET auction_auth_status = 'Y'
+				WHERE auction_idx = ${auction_idx};
+	</update>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

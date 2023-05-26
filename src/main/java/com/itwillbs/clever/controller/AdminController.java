@@ -1,5 +1,6 @@
 package com.itwillbs.clever.controller;
 
+import java.io.*;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -68,9 +69,30 @@ public class AdminController {
 		
 		return "admin/auction_list";
 	}
-
 	
-
+	// 경매 등록 승인 페이지
+	@GetMapping(value = "/auctionAuth.ad")
+	public String auctionAuth(HttpSession session, Model model) {
+		
+		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
+		model.addAttribute("auctionList", auctionList);
+		
+		return "admin/auction_auth_list";
+	}
+	
+	@GetMapping(value = "auctionAuthPro.ad")
+	public String auctionAuthPro(@RequestParam int auction_idx, HttpServletResponse response, Model model) {
+		
+		int isAuthSuccess = adminService.auctionAuth(auction_idx);
+		
+		if(isAuthSuccess > 0) {
+			return "redirect:/auctionAuth.ad";
+		} else {
+			model.addAttribute("msg", "승인 실패! 다시 확인해주세요");
+			return "fail_back";
+		}
+		
+	}
 	
 	
 	// 굿즈 등록 페이지 

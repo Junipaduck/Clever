@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>경매 현황 조회</title>
+    <title>경매 등록 승인 페이지</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
@@ -17,7 +17,19 @@
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+function Auth(auction_idx) {
+	
+	if(confirm("경매 상품 등록을 승인 하시겠습니까?")) {
+		alert("승인 성공");
+		location.href = "auctionAuthPro.ad?auction_idx=" + auction_idx
+		return true;
+	} else {
+		alert("승인 실패");
+		return false;
+	}
+}
+</script>
 <body>
 
     <!--*******************
@@ -120,7 +132,9 @@
 	                                                <td>${auctionList.auction_tag }</td>
 	                                                <td>${auctionList.auction_status }</td>
 	                                                <td>${auctionList.auction_auth_status }</td>
-	                                                <td><button type="button" class="btn btn-primary" onclick="location.href='auctionAuth.ad'">승인하기</button></td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="Auth('${auctionList.auction_idx}')">승인하기</button>
+	                                                </td>	
 	                                            </tr>
                                            	</c:forEach>
                                         </tbody>
