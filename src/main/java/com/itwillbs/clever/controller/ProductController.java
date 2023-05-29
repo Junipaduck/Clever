@@ -34,6 +34,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	// file테이블 업로드 관련 서비스 호출
 	@Autowired
 	FileUpload FileUpload;
 	

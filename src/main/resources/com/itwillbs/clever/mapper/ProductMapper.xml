@@ -25,6 +25,7 @@
 			)
 	</insert>
 	
+	<!-- 중고상품의 이미지를 file테이블에 INSERT -->
 	<insert id="insertFile">
 	<selectKey keyProperty="file_idx" resultType="int" order="BEFORE">
 			SELECT IFNULL(MAX(file_idx), 0) FROM file
@@ -43,7 +44,7 @@
 	</insert>
 
 
-
+<!-- 	file 테이블의 file_num(= product테이블의 product_idx)의 max값을 select함 -->
 	<select id="selectMax" resultType="int">
 		SELECT
 			MAX(product_idx)
