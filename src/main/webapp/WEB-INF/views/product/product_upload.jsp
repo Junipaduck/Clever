@@ -56,7 +56,7 @@ font-family: 'SUITE-Regular';
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="productUploadPro" method="POST" class="frm_selling_goods">
+                <form action="productUploadPro" method="POST" class="frm_selling_goods" enctype="multipart/form-data">
                 	<input type="hidden" name="member_id" value="${sessionScope.sId }"> 
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
@@ -66,7 +66,7 @@ font-family: 'SUITE-Regular';
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="product_file" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -85,7 +85,7 @@ font-family: 'SUITE-Regular';
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
                             <input type="text" name="product_subject" id="product_subject" maxlength="40"
-                                placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
+                                placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);" style="width: 700px;">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ font-family: 'SUITE-Regular';
                     <div class="goods_price_area">
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">원</p>
+                            <p><input type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;">원</p>
                             <input type="checkbox" name="deliveryPrice" id="deliveryPrice">
                             <label for="deliveryPrice">배송비 포함</label>
                              <input type="checkbox" name="priceOffer" id="priceOffer">
@@ -218,15 +218,15 @@ font-family: 'SUITE-Regular';
 <!--                     </div> -->
                     <!--번개페이 뻐른 판매-->
                     <div class="fast_selling_area">
-                        <h2>클레버 페이</h2>
+                        <h2>클레버페이</h2>
                         <div class="goods_option_area">
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
 		                            <input type="radio" name="sale_pay" value="계좌이체" id="sale_pay1">
-		                            <label for="account">계좌 이체</label>
-		                            <input type="radio" name="sale_pay" value="옵션2" id="sale_pay2">
-		                            <label for="point">옵션2</label>
+		                            <label for="account">계좌이체</label>
+		                            <input type="radio" name="sale_pay" value="카드결제" id="sale_pay2">
+		                            <label for="point">카드결제</label>
 		                        </div>
                             </div>
                         </div>

@@ -1,12 +1,30 @@
 package com.itwillbs.clever.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.itwillbs.clever.common.util.FileUpload;
 import com.itwillbs.clever.service.ProductService;
 import com.itwillbs.clever.vo.ProductVO;
 
@@ -15,6 +33,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	FileUpload FileUpload;
 	
 	// 상품 리스트 
 	@GetMapping("/product_list")
@@ -59,21 +80,47 @@ public class ProductController {
 	}
 	
 	// 중고 상품 등록 INSERT (썸네일)
+//	@PostMapping("/productUploadPro")
+//	public String productUproadPro(ProductVO product, HttpSession session, Model model) {
+//		System.out.println(product);
+//		
+//		int insertCount = productService.insertProduct(product);
+//		
+//		if(insertCount > 0) {
+//			model.addAttribute("msg", "등록이 완료되었습니다.");
+//			model.addAttribute("target", "product_list");
+//			return "success";
+//		} else {
+//			model.addAttribute("msg", "등록이 실패하였습니다.");
+//			return "fail_back";
+//		}
+//	}
+	
+	
+	// 중고 상품 등록 INSERT 
 	@PostMapping("/productUploadPro")
-	public String productUproadPro(ProductVO product, HttpSession session, Model model) {
-		System.out.println(product);
+	public String productUproadPro(ProductVO product, HttpSession session, Model model, MultipartFile[] file) {
+		int insertCount = productService.insertProduct(product); //중고상품 insert 후 리턴받아온 int값
 		
-		int insertCount = productService.insertProduct(product);
+		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("file_div", "product");
+		paramMap.put("file_num", productService.selectMax());
+		FileUpload.upload(file, session, paramMap);
+		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
 		
-		if(insertCount > 0) {
+		String result = "";
+		if(insertCount > 0) { // 성공
 			model.addAttribute("msg", "등록이 완료되었습니다.");
 			model.addAttribute("target", "product_list");
-			return "success";
-		} else {
+			result = "success";
+		} else { // 실패
 			model.addAttribute("msg", "등록이 실패하였습니다.");
-			return "fail_back";
+			result = "fail_back";
 		}
+		return result;
 	}
+
 	
 	
 	

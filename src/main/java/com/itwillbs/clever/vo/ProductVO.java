@@ -1,5 +1,7 @@
 package com.itwillbs.clever.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 /*
@@ -35,6 +37,7 @@ public class ProductVO {
 	private String product_tag;
 	private String sale_pay;
 	private String sale_status;
+	private MultipartFile file;
 }
 
 
