@@ -86,13 +86,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">상품명</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="상품명을 입력하세요">
+                                                <input type="text" class="form-control" placeholder="상품명을 입력하세요" name="goods_name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">상품가격</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="상품 가격을 입력하세요">
+                                                <input type="text" class="form-control" placeholder="상품 가격을 입력하세요" name="goods_price">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -110,7 +110,7 @@
                                             <label class="col-sm-2 col-form-label">상품 상세설명</label>
                                             <div class="col-sm-10">
 		 										<div class="form-group">
-		                                            <textarea class="form-control" rows="4" id="comment"></textarea>
+		                                            <textarea class="form-control" rows="4" id="comment" name="goods_content"></textarea>
 		                                        </div>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                             <label class="col-sm-2 col-form-label">상품사진</label>
                                             <div class="col-sm-10">
 	                                             <div class="custom-file">
-	                                                <input type="file" class="custom-file-input">
+	                                                <input type="file" class="custom-file-input" name="goods_file">
 	                                                <label class="custom-file-label">상품 사진을 등록하세요.</label>
                                             	</div>
                                             </div>
