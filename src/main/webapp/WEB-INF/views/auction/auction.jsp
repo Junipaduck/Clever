@@ -355,9 +355,13 @@ height: 90px;
                     <c:forEach items="${imminentList }" var="imminent" end="5"> 
                     <div class="goods">
                         <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${imminent.auction_file_path}/${imminent.auction_file}" width="194" height="194" alt="상품 이미지">
-                            </div>
+                        <c:forEach items="${fileList }" var="file" end="1">
+                            <c:if test="${file.file_num eq imminent.auction_idx }">
+	                            <div class="goods_image">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path }/${file.file_name}" width="194" height="194" alt="상품 이미지">
+	                            </div>
+                            </c:if>
+                        </c:forEach>
                             <div class="goods_info">
                                 <p class="goods_title">${imminent.auction_title } </p>
                                 <div class="goods_price_date">
@@ -377,7 +381,6 @@ height: 90px;
 	                                	  const diffMin = Math.floor(diff / (1000 * 60));
 	                                	  diff -= diffMin * (1000 * 60);
 	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
 	                                	  element = document.getElementById("timeOut${imminent.auction_idx}");
 	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
@@ -400,12 +403,16 @@ height: 90px;
             <section class="main_goods">
                 <h2 align="center" style="color: red;">핫 한 경매 물품</h2>
                 <div class="goods_wrap">
-                    <c:forEach items="${hotList }" var="hot" end="5"> 
+                    <c:forEach items="${hotList }" var="hot" end="1"> 
                     <div class="goods">
                         <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${hot.auction_file_path}/${hot.auction_file}" width="194" height="194" alt="상품 이미지">
-                            </div>
+                            <c:forEach items="${fileList }" var="file" end="1">
+                            <c:if test="${file.file_num eq hot.auction_idx }">
+	                            <div class="goods_image">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path }/${file.file_name}" width="194" height="194" alt="상품 이미지">
+	                            </div>
+                            </c:if>
+                        </c:forEach>
                             <div class="goods_info">
                                 <p class="goods_title">${hot.auction_title } </p>
                                 <div class="goods_price_date">
@@ -425,7 +432,6 @@ height: 90px;
 	                                	  const diffMin = Math.floor(diff / (1000 * 60));
 	                                	  diff -= diffMin * (1000 * 60);
 	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
 	                                	  element = document.getElementById("hotTimeOut${hot.auction_idx}");
 	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
@@ -450,9 +456,13 @@ height: 90px;
                     <c:forEach items="${currentList }" var="current" end="5"> 
                     <div class="goods">
                         <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${current.auction_file_path}/${current.auction_file}" width="194" height="194" alt="상품 이미지">
-                            </div>
+                            <c:forEach items="${fileList }" var="file" end="1">
+                            <c:if test="${file.file_num eq current.auction_idx }">
+	                            <div class="goods_image">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path }/${file.file_name}" width="194" height="194" alt="상품 이미지">
+	                            </div>
+                            </c:if>
+                        </c:forEach>
                             <div class="goods_info">
                                 <p class="goods_title">${current.auction_title } </p>
                                 <div class="goods_price_date">
@@ -472,7 +482,6 @@ height: 90px;
 	                                	  const diffMin = Math.floor(diff / (1000 * 60));
 	                                	  diff -= diffMin * (1000 * 60);
 	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
 	                                	  element = document.getElementById("currentTimeOut${current.auction_idx}");
 	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  

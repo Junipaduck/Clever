@@ -18,8 +18,6 @@
 				, #{map.auction_Lcategory }
 				, #{map.auction_Mcategory }
 				, #{map.auction_Scategory }
-				, #{map.auction_file }
-				, #{map.auction_file_path }
 				, #{map.auction_product_status }
 				, #{map.auction_start }
 				, #{map.auction_end	}
@@ -46,5 +44,12 @@
 	<select id="selectCurrent" resultType="map">
 	SELECT * FROM auction ORDER BY auction_date DESC
 	
+	</select>
+	<select id="selectMax" resultType="int">
+	SELECT IFNULL(MAX(auction_idx), 0) FROM auction
+	</select>
+	
+	<select id="selectFiles" resultType="map">
+	SELECT * FROM file WHERE file_div = 'auction'
 	</select>
 </mapper>

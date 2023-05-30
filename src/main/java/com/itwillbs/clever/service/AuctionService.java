@@ -28,5 +28,13 @@ public class AuctionService {
 	public List selectCurrent() {
 		return mapper.selectCurrent();
 	}
+
+	public Object selectMax() {
+		return mapper.selectMax();
+	}
+
+	public List selectFiles() {
+		return mapper.selectFiles();
+	}
 	
 }

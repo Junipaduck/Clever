@@ -30,22 +30,23 @@ public class FileUpload {
 	private ProductMapper mapper;
 	
 	public void upload(MultipartFile[] file, HttpSession session, Map<String, Object> paramMap) {
-		String uploadDir = "/resources/fileUpload"; //프로젝트상의 가상 업로드 경로
-		String saveDir = session.getServletContext().getRealPath(uploadDir); //실제 업로드 경로
 		
 		if (file != null) {
-			Date date = new Date(); //java.util.Date 클래스 사용하기
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			
-			String file_path = "/" + sdf.format(date);
-			
-			saveDir = saveDir + file_path; //실제 업로드 경로와 서브 디렉토리 경로 결합하여 저장
-			
+			String uploadDir = "/resources/fileUpload"; //프로젝트상의 가상 업로드 경로
+			String saveDir = session.getServletContext().getRealPath(uploadDir); //실제 업로드 경로
+			System.out.println("saveDir : " + saveDir);
+			String file_path = "";
 			for(MultipartFile f: file) {
 				try {
+					Date date = new Date(); //java.util.Date 클래스 사용하기
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+					
+					file_path = "/" + sdf.format(date);
+					
+					saveDir = saveDir + file_path; //실제 업로드 경로와 서브 디렉토리 경로 결합하여 저장
+					System.out.println("saveDir : " + saveDir);
 					Path path = Paths.get(saveDir);
 					Files.createDirectories(path);
-					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -57,7 +58,7 @@ public class FileUpload {
 				map.put("file_div", paramMap.get("file_div")); // 경매, 공지사항 등 파일 업로드 할때 각각의 컨트롤러에서 변경해줘야함
 				map.put("file_num", paramMap.get("file_num")); // 이것도 마찬가지
 				map.put("file_name", UUIDpath);
-				map.put("file_path", saveDir);
+				map.put("file_path", file_path);
 				map.put("file_size", f.getSize());
 				map.put("file_exe", f.getContentType());
 				mapper.insertFile(map);

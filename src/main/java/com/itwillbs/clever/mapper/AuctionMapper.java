@@ -14,5 +14,9 @@ public interface AuctionMapper {
 
 	List selectCurrent();
 
+	Object selectMax();
+
+	List selectFiles();
+
 
 }

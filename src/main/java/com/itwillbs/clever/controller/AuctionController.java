@@ -15,6 +15,7 @@ import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
+import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
 
@@ -27,17 +28,20 @@ public class AuctionController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	FileUpload upload;
 	
 	@GetMapping(value = "auction")
 	public String auction(Model model) {
-		
 		List imminentList = auctionService.selectImminent();
 		List hotList = auctionService.selectHotList();
 		List currentList = auctionService.selectCurrent();
+		List fileList = auctionService.selectFiles();
 		
 		model.addAttribute("imminentList", imminentList);
 		model.addAttribute("hotList", hotList);
 		model.addAttribute("currentList", currentList);
+		model.addAttribute("fileList", fileList);
 		
 		
 		return "auction/auction";
@@ -94,10 +98,7 @@ public class AuctionController {
 	}
 	
 	@PostMapping(value = "auction_upload_pro")
-	public String auction_upload_pro(@RequestParam Map<String, String> map, @RequestParam("auction_images") MultipartFile[] images, HttpSession session, Model model) {
-		
-		
-		
+	public String auction_upload_pro(@RequestParam Map<String, String> map, @RequestParam("auction_images") MultipartFile[] file, HttpSession session, Model model) {
 		
 		String id = (String)session.getAttribute("sId");
 		// 카테고리 분류
@@ -106,51 +107,20 @@ public class AuctionController {
 		map.put("auction_Mcategory", categorys[1]);
 		map.put("auction_Scategory", categorys[2]);
 		// 카테고리 분류 끝
-		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
-		String uploadDir = "/resources/auctionUpload"; //프로젝트상의 가상 업로드 경로
-		String saveDir = session.getServletContext().getRealPath(uploadDir); //실제 업로드 경로
-		System.out.println("실제 업로드 경로 : " + saveDir);
-//		실제 업로드 경로(resources뒤에 띄어쓰기 되어있음) : C:\Users\HANABAE\workspace_sts\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\FoodCode\resourcees\auctionUpload
-		try {
-			Date date = new Date(); //java.util.Date 클래스 사용하기
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			map.put("auction_file_path", "/" + sdf.format(date));
-			
-			saveDir = saveDir + map.get("auction_file_path"); //실제 업로드 경로와 서브 디렉토리 경로 결합하여 저장
-			
-			Path path = Paths.get(saveDir);
-			Files.createDirectories(path);
-			
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		MultipartFile mFile = images[0]; //StoreVO 객체에 전달된 MultipartFile 단일파일 꺼내기
-		String originalFileName = mFile.getOriginalFilename();
-		
-		String uuid = UUID.randomUUID().toString(); //파일명 중복 방지를 위한 코드
-		for (MultipartFile image : images) {
-			// 각 이미지 파일에 대한 처리 수행
-			// 파일을 읽거나 데이터베이스에 저장하는 등의 작업 수행
-			System.out.println(image);
-			try {
-				image.transferTo(new File(saveDir,uuid.substring(0, 8) + "_" + mFile.getOriginalFilename()));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		System.out.println("UUID : " + uuid);
-		
-		map.put("auction_file", uuid.substring(0, 8) + "_" + originalFileName);
-		System.out.println("실제 업로드 될 파일명 : " + map.get("auction_file"));
-		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
+		// 경매 시작일 및 경매 종료일 코드 입력
 		map.put("auction_start", map.get("auction_start_date") + " " + map.get("auction_start_time"));
 		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
 		System.out.println(map);
 		int insertAuction = auctionService.insertAutcion(map,id);
+		// 종료
+		
+		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("file_div", "auction");
+		paramMap.put("file_num", auctionService.selectMax());
+		upload.upload(file, session, paramMap);
+		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
+		
 		if(insertAuction > 0) {
 			model.addAttribute("msg", "경매 등록 성공!");
 			model.addAttribute("target", "auction");
