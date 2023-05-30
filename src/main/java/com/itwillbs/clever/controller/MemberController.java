@@ -138,11 +138,11 @@ public class MemberController {
 	// 채팅 폼 포워딩
 	@GetMapping(value = "chatting")
 	public String chatting(HttpSession session, Model model) {
-		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg","로그인 후 이용해주세요!");
-			model.addAttribute("target","loginForm.me");
-			return "success";
-		}
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg","로그인 후 이용해주세요!");
+//			model.addAttribute("target","loginForm.me");
+//			return "success";
+//		}
 		
 //		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //		System.out.println(user);

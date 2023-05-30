@@ -1,13 +1,21 @@
 package com.itwillbs.clever.socket;
 
+import java.security.Principal;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.*;
 
-public class WebSocketHandler extends TextWebSocketHandler{
+import okhttp3.internal.ws.RealWebSocket.Message;
+
+@Controller
+public class WebSocketHandler extends TextWebSocketHandler implements InitializingBean{
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
 
 //	private List<WebSocketSession> users;
@@ -72,6 +80,7 @@ public class WebSocketHandler extends TextWebSocketHandler{
 		sessionList.add(session);
 		
 		logger.info(session.getId() + "님이 입장하셨습니다.");
+		
 	}
 	
 	@Override
@@ -80,9 +89,25 @@ public class WebSocketHandler extends TextWebSocketHandler{
 		logger.info("#WebSocketHandler, handleMessage");
 		logger.info(session.getId() + ": " + message);
 		
-		for(WebSocketSession s : sessionList) {
-			s.sendMessage(new TextMessage(session.getPrincipal().getName() + ":" + message.getPayload()));
-		}
+		String payload = message.getPayload();
+        logger.info("payload {}", payload);
+		System.out.println(sessionList);
+		
+		sessionList.get(0).sendMessage(message);
+		System.out.println(new TextMessage("asd")); 
+		
+		Principal p = session.getPrincipal();
+		System.out.println(session);
+		System.out.println(session.getPrincipal());
+		System.out.println(p);
+		System.out.println(p.getName());
+		System.out.println(message.getPayload());
+		
+		
+//		for(WebSocketSession s : sessionList) {
+//			System.out.println(s);
+//			s.sendMessage(new TextMessage(session.getPrincipal().getName() + ":" + message.getPayload()));
+//		}
 	}
 	
 	@Override
@@ -93,6 +118,12 @@ public class WebSocketHandler extends TextWebSocketHandler{
 		sessionList.remove(session);
 		
 		logger.info(session.getId() + "님이 퇴장하셨습니다.");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

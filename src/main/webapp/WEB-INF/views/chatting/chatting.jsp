@@ -31,7 +31,7 @@
 <!-- main_content 영역 -->
 <div id="main_content">
 	<div class="page-navigation">
-	
+	<button onclick="location.href='chatTest'">test</button>
 	<div id="contentWrap">
 <!--     <nav> -->
 <!-- 		<span id="nav-header"> -->
@@ -73,7 +73,7 @@
             <div id="memberList">
                 <div id="memberHeader">채팅중인 멤버</div>
                 <div id="memberSelect">나 : ${sessionScope.sId }</div>
-                <div id="targetUser">Boa</div>
+                <div id="targetUser">상대 : </div>
             </div>
         </div>
     </div>
@@ -161,8 +161,8 @@
 	
 
 //전송 버튼 누르는 이벤트
-var sock = new SockJS('http://localhost:8082/clever/chatting');
-// var sock = new WebSocket('ws://localhost:8082/clever/chatting');
+var sock = new SockJS('http://localhost:8089/clever/chatting');
+// var sock = new WebSocket('ws://localhost:8089/clever/chatting');
 sock.onmessage = onMessage;
 sock.onopen = onOpen;
 sock.onclose = onClose;
@@ -222,8 +222,7 @@ function onMessage(msg) {
 function onOpen(evt) {
 	console.log("입장");
 	
-// 	var user = '${pr.username}';
-	var user = "hana";
+	var user = '${sessionScope.sId}';
 	var str = user + "님이 입장하셨습니다.";
 	
 	$("#chatLog").append(str);
@@ -231,10 +230,9 @@ function onOpen(evt) {
 //채팅창에서 나갔을 때
 function onClose(evt) {
 	console.log("퇴장");
-	
-// 	var user = '${pr.username}';
-	var user = "hana";
-	var str = user + " 님이 퇴장하셨습니다.";
+// 	setTimeout(socketInit, 300); // 웹소켓을 재연결하는 코드 삽입
+	var user = '${sessionScope.sId}';
+	var str = user + " 님이 퇴장하셨습니다.ㅜ";
 	
 	$("#chatLog").append(str);
 }

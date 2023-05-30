@@ -18,4 +18,9 @@ public class ChattingController {
 //		
 //		model.addAttribute("userid", user.getUsername());
 //	}
+	
+	@GetMapping("/chatTest")
+	public String chatTest() {
+		return "chatting/test";
+	}
 }
