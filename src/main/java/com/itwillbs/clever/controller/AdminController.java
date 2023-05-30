@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
+import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
+import com.itwillbs.clever.vo.*;
 
 import retrofit2.http.*;
 
@@ -22,6 +25,12 @@ public class AdminController {
 	
 	@Autowired
 	private MailSendService mailService;
+	
+	@Autowired
+	private GoodsService goodsService;
+	
+	@Autowired
+	FileUpload fileUpload;
 	
 	@GetMapping(value = "/adminMain.ad")
 	public String adminMain(HttpSession session, Model model) {
@@ -99,6 +108,13 @@ public class AdminController {
 	@GetMapping(value = "/storeRegister.ad")
 	public String storeRegister() {
 		return "admin/goods_store_register_form";
+	}
+	
+	@PostMapping(value = "/goodsRegisterPro.ad")
+	public String goodsRegisterPro(GoodsVO goods, HttpSession session, Model model, MultipartFile[] file) {
+		
+		int insertCount = goodsService.insertGoods(goods);
+		return "";
 	}
 	
 	// 굿즈 등록 수정 페이지 
