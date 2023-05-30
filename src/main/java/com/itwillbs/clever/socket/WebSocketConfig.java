@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 @Configuration
 @EnableWebSocket
@@ -15,6 +16,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(webSocketHandler, "/chatting").setAllowedOrigins("*").withSockJS(); // WebSocket 핸들러와 주소 매핑
+//        registry.addHandler(webSocketHandler, "/chatting").setAllowedOrigins("*").addInterceptors(new HttpSessionHandshakeInterceptor());
     }
 
     @Bean

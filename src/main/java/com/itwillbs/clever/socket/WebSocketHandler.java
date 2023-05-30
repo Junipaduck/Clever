@@ -1,5 +1,6 @@
 package com.itwillbs.clever.socket;
 
+import java.net.InetSocketAddress;
 import java.security.Principal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -73,47 +74,48 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 	
+	// 연결되었을 때 - 클라이언트가 연결됐을 떄
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
 		logger.info("#WebSocketHandler, afterConnectionEstablished");
 		sessionList.add(session);
+		System.out.println(session);
+		String senderId = session.getId();
+//		String senderId = getMemberId(session);
+		System.out.println(senderId);
+		session.getAttributes().put("senderId", senderId);
 		
 		logger.info(session.getId() + "님이 입장하셨습니다.");
-		
 	}
 	
+	// Handler가 받은 메세지
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
-		logger.info("#WebSocketHandler, handleMessage");
-		logger.info(session.getId() + ": " + message);
+		// 세션아이디때문에 추가 - 0530
+		String senderId = (String)session.getAttributes().get("sessionId");
+		logger.info(senderId);
 		
-		String payload = message.getPayload();
-        logger.info("payload {}", payload);
+		
+		logger.info("#WebSocketHandler, handleMessage");
+		// session.getId() : 사용자 아이디
+		// message.getPayload() : 메세지 내용
+		logger.info(session.getId() + ": " + message.getPayload());
+		
 		System.out.println(sessionList);
 		
-		sessionList.get(0).sendMessage(message);
+//		sessionList.get(0).sendMessage(message);
+		
+		// 접속된 모든 이용자들에게 메세지를 날림 (브로드캐스팅)
 		for(WebSocketSession s : sessionList) {
 			System.out.println(s);
 			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
 		}
-//		System.out.println(new TextMessage("asd")); 
-		
-//		Principal p = session.getPrincipal();
-//		System.out.println(session);
-//		System.out.println(session.getPrincipal());
-//		System.out.println(p);
-//		System.out.println(p.getName());
-//		System.out.println(message.getPayload());
-		
-		
-//		for(WebSocketSession s : sessionList) {
-//			System.out.println(s);
-//			s.sendMessage(new TextMessage(session.getPrincipal().getName() + ":" + message.getPayload()));
-//		}
 	}
 	
+	
+	// 연결 끊겼을 때
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		
@@ -127,9 +129,6 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
-		
 	}
-	
-	
 }
 

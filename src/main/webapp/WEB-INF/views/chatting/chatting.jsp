@@ -18,7 +18,8 @@
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
-<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </head>
 <style>
 
@@ -51,7 +52,7 @@
             </div>
         </div>
         <div id="chatWrap">
-            <div id="chatHeader">Everyone</div>
+            <div id="chatHeader">Everyone<input type="button" id="btnClose" value="채팅 나가기"></div>
             <div id="chatLog">
 <!--                 <div class="anotherMsg"> -->
 <!--                     <span class="anotherName">Boa</span> -->
@@ -94,6 +95,7 @@
 
 		
 <script type="text/javascript">
+// ------ 첫번째 시도
 // 	var ws;
 // 	var userId = '{param.id}';
 	
@@ -160,6 +162,8 @@
 // function() {
 	
 
+
+// ------ 두번째 방법
 //전송 버튼 누르는 이벤트
 var sock = new SockJS('http://localhost:8082/clever/chatting');
 // var sock = new WebSocket('ws://localhost:8089/clever/chatting');
@@ -174,78 +178,79 @@ $(function() {
 	})
 });
 
+$(function() {
+	$("#btnClose").click(function() {
+		onClose();
+	})
+});
+
 
 function sendMessage() {
 	sock.send($("#message").val());
 }
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
-	
+	console.log(msg);
 	var data = msg.data;
-	var sessionId = null; //데이터를 보낸 사람
+	var chatId = null; // 메세지를 보낸 사람
 	var message = null;
-	console.log(data);
+	console.log('data = ' + data);
+	console.log('${sessionScope.senderId}');
+<%-- 	console.log('<%= session.getId() %>'); --%>
+// 	stompClient = Stomp.over(socket);
+// 	stompClient.connect({}, function(frame) {
+// 	        console.log(socket._transport.url); 
+// 	        //ws://localhost:8080/socket/039/byxby3jv/websocket
+// 	        //sessionId는 byxby3jv
+// 	    });
 	
 	var arr = data.split(":");
-	console.log(arr);
-	
 	for(var i=0; i<arr.length; i++){
 		console.log('arr[' + i + ']: ' + arr[i]);
 	}
 	
 // 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
-// 	var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
-// 	console.log("cur_session : " + cur_session);
+	var cur_session = '${user.id}'; //현재 세션에 로그인 한 사람
+	console.log("cur_session : " + cur_session);
 	
-	sessionId = arr[0];
+	chatId = arr[0];
 	message = arr[1];
 	
-	var str = "<div class='col-6'>";
-	str += "<div class='alert alert-secondary'>";
-	str += "<b>" + sessionId + " : " + message + "</b>";
-	str += "</div></div>";
-	
-	$("#chatLog").append(str);
-	
-	
-	
 //     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-// 	if(sessionId == cur_session){
+	if(chatId == cur_session){
 		
-// 		var str = "<div class='col-6'>";
-// 		str += "<div class='alert alert-secondary'>";
-// 		str += "<b>" + sessionId + " : " + message + "</b>";
-// 		str += "</div></div>";
+		var str = "<div class='col-6'>";
+		str += "<div class='alert alert-secondary'>";
+		str += "<b>" + chatId + " : " + message + "</b>";
+		str += "</div></div>";
 		
-// 		$("#chatLog").append(str);
-// 	}
-// 	else{
+		$("#chatLog").append(str);
+	}
+	else{
 		
-// 		var str = "<div class='col-6'>";
-// 		str += "<div class='alert alert-warning'>";
-// 		str += "<b>" + sessionId + " : " + message + "</b>";
-// 		str += "</div></div>";
+		var str = "<div class='col-6'>";
+		str += "<div class='alert alert-warning'>";
+		str += "<b>" + chatId + " : " + message + "</b>";
+		str += "</div></div>";
 		
-// 		$("#chatLog").append(str);
-// 	}
+		$("#chatLog").append(str);
+	}
 	
 }
+
 //채팅창에 들어왔을 때
 function onOpen(evt) {
 	console.log("입장");
-	
 	var user = '${sessionScope.sId}';
 	var str = user + "님이 입장하셨습니다.";
-	
 	$("#chatLog").append(str);
 }
+
 //채팅창에서 나갔을 때
 function onClose(evt) {
 	console.log("퇴장");
-// 	setTimeout(socketInit, 300); // 웹소켓을 재연결하는 코드 삽입
 	var user = '${sessionScope.sId}';
 	var str = user + " 님이 퇴장하셨습니다.ㅜ";
-	
 	$("#chatLog").append(str);
 }
 // }
