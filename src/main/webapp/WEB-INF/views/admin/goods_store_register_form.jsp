@@ -82,7 +82,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form>
+                                    <form action="goodsRegisterPro.ad" method="post">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">상품명</label>
                                             <div class="col-sm-10">
@@ -95,17 +95,7 @@
                                                 <input type="text" class="form-control" placeholder="상품 가격을 입력하세요" name="goods_price">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">카테고리</label>
-                                            <div class="col-sm-10">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>카테고리를 선택하세요</option>
-                                                    <option>굿즈</option>
-                                                    <option>뭐하지</option>
-                                                    <option>뭐하지</option>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">상품 상세설명</label>
                                             <div class="col-sm-10">
@@ -118,7 +108,8 @@
                                             <label class="col-sm-2 col-form-label">상품사진</label>
                                             <div class="col-sm-10">
 	                                             <div class="custom-file">
-	                                                <input type="file" class="custom-file-input" name="goods_file">
+<!-- 	                                             	<input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);"> -->
+	                                                <input type="file" class="custom-file-input" name="file">
 	                                                <label class="custom-file-label">상품 사진을 등록하세요.</label>
                                             	</div>
                                             </div>
@@ -171,6 +162,8 @@
     <script src="${pageContext.request.contextPath }/resources/vendor/summernote/js/summernote.min.js"></script>
     <!-- Summernote init -->
     <script src="${pageContext.request.contextPath }/resources/js/plugins-init/summernote-init.js"></script>
+    
+    <script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
 
 </body>
 

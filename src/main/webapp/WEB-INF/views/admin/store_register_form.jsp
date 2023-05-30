@@ -96,17 +96,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">카테고리</label>
-                                            <div class="col-sm-10">
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>카테고리를 선택하세요</option>
-                                                    <option>굿즈</option>
-                                                    <option>뭐하지</option>
-                                                    <option>뭐하지</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">상품 상세설명</label>
                                             <div class="col-sm-10">
 		 										<div class="form-group">
