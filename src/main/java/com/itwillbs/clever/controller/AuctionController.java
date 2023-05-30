@@ -32,8 +32,12 @@ public class AuctionController {
 	public String auction(Model model) {
 		
 		List imminentList = auctionService.selectImminent();
+		List hotList = auctionService.selectHotList();
+		List currentList = auctionService.selectCurrent();
 		
 		model.addAttribute("imminentList", imminentList);
+		model.addAttribute("hotList", hotList);
+		model.addAttribute("currentList", currentList);
 		
 		
 		return "auction/auction";

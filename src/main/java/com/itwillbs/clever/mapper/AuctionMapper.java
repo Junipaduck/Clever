@@ -10,5 +10,9 @@ public interface AuctionMapper {
 
 	List selectImminent();
 
+	List selectHotList();
+
+	List selectCurrent();
+
 
 }

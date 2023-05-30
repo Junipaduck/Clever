@@ -42,10 +42,6 @@ margin-right: 13px;
 .goods_info  {
 height: 90px;
 }
-#countdown {
-color: red;
-text-align: right;
-}
 </style>
 </head>
 <body>
@@ -368,29 +364,32 @@ text-align: right;
                                     <span class="goods_price">가격</span>
                                     <span class="goods_date_before">${imminent.auction_price }</span>
                                 </div>
-                                <script type="text/javascript">
-                                	function getTime() {
-                                	  var element;
-                                	  const endDay = new Date('${imminent.auction_end}');
-                                	  const currDay = new Date();
-                                	  let diff = endDay - currDay;
-                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-                                	  diff -= diffHours * (1000 * 60 * 60);
-                                	  const diffMin = Math.floor(diff / (1000 * 60));
-                                	  diff -= diffMin * (1000 * 60);
-                                	  const diffSec = Math.floor(diff / 1000);
-                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
-                                	  
-                                	  element = document.getElementById("timeOut${imminent.auction_idx}");
-                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-                                	}
-                                	$(function() {
-                                		setInterval(() => getTime(), 1000);
-									});
-                               </script>
-                               <div id="timeOut${imminent.auction_idx}"></div>
+	                                <script type="text/javascript">
+	                                	function getTime${imminent.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${imminent.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
+	                                	  element = document.getElementById("timeOut${imminent.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		return setInterval(() => getTime${imminent.auction_idx}(), 1000);
+										}());
+	                               </script>
+                               <div id="timeOut${imminent.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
@@ -401,152 +400,95 @@ text-align: right;
             <section class="main_goods">
                 <h2 align="center" style="color: red;">핫 한 경매 물품</h2>
                 <div class="goods_wrap">
+                    <c:forEach items="${hotList }" var="hot" end="5"> 
                     <div class="goods">
                         <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${hot.auction_file_path}/${hot.auction_file}" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
+                                <p class="goods_title">${hot.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
+                                    <span class="goods_date_before">${hot.auction_price }</span>
                                 </div>
+	                                <script type="text/javascript">
+	                                	function hotGetTime${hot.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${hot.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
+	                                	  element = document.getElementById("hotTimeOut${hot.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		return setInterval(() => hotGetTime${hot.auction_idx}(), 1000);
+										}());
+	                               </script>
+                               <div id="hotTimeOut${hot.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
+                    </c:forEach>
                 </div> 
             </section>
             <section class="main_goods">
                 <h2 align="center">신규 등록 순</h2>
                 <div class="goods_wrap">
+                    <c:forEach items="${currentList }" var="current" end="5"> 
                     <div class="goods">
                         <a href="auction_detail">
                             <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
+                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${current.auction_file_path}/${current.auction_file}" width="194" height="194" alt="상품 이미지">
                             </div>
                             <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
+                                <p class="goods_title">${current.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
+                                    <span class="goods_date_before">${current.auction_price }</span>
                                 </div>
+	                                <script type="text/javascript">
+	                                	function currentGetTime${current.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${current.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  console.log("일 " + diffDays + ", 시 " + diffHours + ", 분 " + diffMin + ", 초" + diffSec);
+	                                	  element = document.getElementById("currentTimeOut${current.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		return setInterval(() => currentGetTime${current.auction_idx}(), 1000);
+										}());
+	                               </script>
+                               <div id="currentTimeOut${current.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="auction_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    </c:forEach>
                     
                 </div> 
             </section>

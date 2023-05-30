@@ -20,5 +20,13 @@ public class AuctionService {
 	public List selectImminent() {
 		return mapper.selectImminent();
 	}
+
+	public List selectHotList() {
+		return mapper.selectHotList();
+	}
+
+	public List selectCurrent() {
+		return mapper.selectCurrent();
+	}
 	
 }

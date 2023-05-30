@@ -39,4 +39,12 @@
 	SELECT * FROM auction ORDER BY auction_end ASC
 	
 	</select>
+	<select id="selectHotList" resultType="map">
+	SELECT * FROM auction ORDER BY auction_readcount DESC
+	
+	</select>
+	<select id="selectCurrent" resultType="map">
+	SELECT * FROM auction ORDER BY auction_date DESC
+	
+	</select>
 </mapper>
