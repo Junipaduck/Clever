@@ -94,14 +94,18 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 		System.out.println(sessionList);
 		
 		sessionList.get(0).sendMessage(message);
-		System.out.println(new TextMessage("asd")); 
+		for(WebSocketSession s : sessionList) {
+			System.out.println(s);
+			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
+		}
+//		System.out.println(new TextMessage("asd")); 
 		
-		Principal p = session.getPrincipal();
-		System.out.println(session);
-		System.out.println(session.getPrincipal());
-		System.out.println(p);
-		System.out.println(p.getName());
-		System.out.println(message.getPayload());
+//		Principal p = session.getPrincipal();
+//		System.out.println(session);
+//		System.out.println(session.getPrincipal());
+//		System.out.println(p);
+//		System.out.println(p.getName());
+//		System.out.println(message.getPayload());
 		
 		
 //		for(WebSocketSession s : sessionList) {

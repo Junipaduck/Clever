@@ -184,38 +184,50 @@ function onMessage(msg) {
 	var data = msg.data;
 	var sessionId = null; //데이터를 보낸 사람
 	var message = null;
+	console.log(data);
 	
 	var arr = data.split(":");
+	console.log(arr);
 	
 	for(var i=0; i<arr.length; i++){
 		console.log('arr[' + i + ']: ' + arr[i]);
 	}
 	
-	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
-	console.log("cur_session : " + cur_session);
+// 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
+// 	var cur_session = '${userid}'; //현재 세션에 로그인 한 사람
+// 	console.log("cur_session : " + cur_session);
 	
 	sessionId = arr[0];
 	message = arr[1];
 	
+	var str = "<div class='col-6'>";
+	str += "<div class='alert alert-secondary'>";
+	str += "<b>" + sessionId + " : " + message + "</b>";
+	str += "</div></div>";
+	
+	$("#chatLog").append(str);
+	
+	
+	
 //     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-	if(sessionId == cur_session){
+// 	if(sessionId == cur_session){
 		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-secondary'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
+// 		var str = "<div class='col-6'>";
+// 		str += "<div class='alert alert-secondary'>";
+// 		str += "<b>" + sessionId + " : " + message + "</b>";
+// 		str += "</div></div>";
 		
-		$("#chatLog").append(str);
-	}
-	else{
+// 		$("#chatLog").append(str);
+// 	}
+// 	else{
 		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-warning'>";
-		str += "<b>" + sessionId + " : " + message + "</b>";
-		str += "</div></div>";
+// 		var str = "<div class='col-6'>";
+// 		str += "<div class='alert alert-warning'>";
+// 		str += "<b>" + sessionId + " : " + message + "</b>";
+// 		str += "</div></div>";
 		
-		$("#chatLog").append(str);
-	}
+// 		$("#chatLog").append(str);
+// 	}
 	
 }
 //채팅창에 들어왔을 때
