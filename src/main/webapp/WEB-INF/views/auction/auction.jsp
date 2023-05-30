@@ -354,7 +354,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${imminentList }" var="imminent" end="5"> 
                     <div class="goods">
-                        <a href="auction_detail">
+                        <a href="auction_detail?auction_idx=${imminent.auction_idx}">
                         <c:forEach items="${fileList }" var="file" end="1">
                             <c:if test="${file.file_num eq imminent.auction_idx }">
 	                            <div class="goods_image">

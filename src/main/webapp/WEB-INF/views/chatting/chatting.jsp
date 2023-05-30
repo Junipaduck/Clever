@@ -161,7 +161,7 @@
 	
 
 //전송 버튼 누르는 이벤트
-var sock = new SockJS('http://localhost:8089/clever/chatting');
+var sock = new SockJS('http://localhost:8082/clever/chatting');
 // var sock = new WebSocket('ws://localhost:8089/clever/chatting');
 sock.onmessage = onMessage;
 sock.onopen = onOpen;

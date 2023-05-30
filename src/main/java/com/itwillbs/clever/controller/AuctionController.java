@@ -83,7 +83,13 @@ public class AuctionController {
 	}
 	
 	@GetMapping(value = "auction_detail")
-	public String auction_detail() {
+	public String auction_detail(Model model, String auction_idx) {
+		
+		Map detailmap = auctionService.detailList(auction_idx);
+		model.addAttribute("detailmap", detailmap);
+		
+		System.out.println("맵!!!!!!!!" + detailmap);
+		
 		return "auction/auction_detail";
 	}
 	

@@ -52,4 +52,10 @@
 	<select id="selectFiles" resultType="map">
 	SELECT * FROM file WHERE file_div = 'auction'
 	</select>
+	
+	<select id="selectDetailList" resultType="map">
+		SELECT * FROM auction
+			WHERE auction_idx = #{auction_idx}
+	</select>
+	
 </mapper>

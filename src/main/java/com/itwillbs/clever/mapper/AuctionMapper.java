@@ -17,6 +17,8 @@ public interface AuctionMapper {
 	Object selectMax();
 
 	List selectFiles();
+	
+	Map<String, String> selectDetailList(String auction_idx);
 
 
 }
