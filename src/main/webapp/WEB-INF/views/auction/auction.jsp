@@ -354,7 +354,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${imminentList }" var="imminent" end="5"> 
                     <div class="goods">
-                        <a href="auction_detail">
+                        <a href="auction_detail?auction_idx=${imminent.auction_idx}">
                             <div class="goods_image">
                                 <img src="${pageContext.request.contextPath }/resources/auctionUpload/${imminent.auction_file_path}/${imminent.auction_file}" width="194" height="194" alt="상품 이미지">
                             </div>

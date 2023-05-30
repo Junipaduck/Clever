@@ -28,5 +28,12 @@ public class AuctionService {
 	public List selectCurrent() {
 		return mapper.selectCurrent();
 	}
+
+	public Map<String, String> detailList(String auction_idx) {
+		
+		return mapper.selectDetailList(auction_idx);
+	}
+	
+	
 	
 }

@@ -14,5 +14,7 @@ public interface AuctionMapper {
 
 	List selectCurrent();
 
+	Map<String, String> selectDetailList(String auction_idx);
+
 
 }

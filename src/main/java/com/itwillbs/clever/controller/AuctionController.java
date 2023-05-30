@@ -79,7 +79,13 @@ public class AuctionController {
 	}
 	
 	@GetMapping(value = "auction_detail")
-	public String auction_detail() {
+	public String auction_detail(Model model, String auction_idx) {
+		
+		Map detailmap = auctionService.detailList(auction_idx);
+		model.addAttribute("detailmap", detailmap);
+		
+		System.out.println("맵!!!!!!!!" + detailmap);
+		
 		return "auction/auction_detail";
 	}
 	
@@ -95,9 +101,6 @@ public class AuctionController {
 	
 	@PostMapping(value = "auction_upload_pro")
 	public String auction_upload_pro(@RequestParam Map<String, String> map, @RequestParam("auction_images") MultipartFile[] images, HttpSession session, Model model) {
-		
-		
-		
 		
 		String id = (String)session.getAttribute("sId");
 		// 카테고리 분류

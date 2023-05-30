@@ -47,4 +47,10 @@
 	SELECT * FROM auction ORDER BY auction_date DESC
 	
 	</select>
+	
+	<select id="selectDetailList" resultType="map">
+		SELECT * FROM auction
+			WHERE auction_idx = #{auction_idx}
+	</select>
+	
 </mapper>

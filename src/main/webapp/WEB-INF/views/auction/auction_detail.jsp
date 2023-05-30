@@ -53,6 +53,7 @@
 			alert("금액을 확인하세요");
 			return;
 		}
+		
 		var resultElement = document.getElementById("result");
 		$("#inputInt").val(priceInput);
 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
@@ -65,7 +66,7 @@
 		var priceInput = parseInt(uncomma($("#inputInt").val()));
 		priceInput += priceInput * percent;
 		
-		priceInput = (priceInput/10) * 10;
+// 		priceInput = (priceInput/10) * 10;
 		
 		$('#price').val(priceInput);
 		
@@ -168,7 +169,7 @@
                         </div>
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>내가 어캐아노</span> </h2>
-                            <p id="result"><span>0</span><span>&nbsp; 원</span></p>
+                            <p id="result"><span>${detailmap.auction_price }</span><span>&nbsp; 원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
