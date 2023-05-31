@@ -218,18 +218,22 @@ function onMessage(msg) {
 //     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if(chatId == cur_session){
 		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-secondary'>";
-		str += "<b>" + chatId + " : " + message + "</b>";
+// 		var str = "<div class='col-6'>";
+// 		str += "<div class='alert alert-secondary'>";
+// 		str += "<b>" + chatId + " : " + message + "</b>";
+		var str = "<div class='myMsg'>";
+		str += "<span class='msg'><b>"+ chatId + " : "  + message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);
 	}
 	else{
 		
-		var str = "<div class='col-6'>";
-		str += "<div class='alert alert-warning'>";
-		str += "<b>" + chatId + " : " + message + "</b>";
+// 		var str = "<div class='col-6'>";
+// 		str += "<div class='alert alert-warning'>";
+// 		str += "<b>" + chatId + " : " + message + "</b>";
+		var str = "<div class='anotherMsg'>";
+		str += "<span class='msg'>"+ chatId +" : <b>"  + message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);
