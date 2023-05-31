@@ -28,7 +28,11 @@ public class GoodsController {
 	
 	// 굿즈 스토어 목록으로 이동
 	@GetMapping(value = "/goodsStore.ad")
-	public String goodsStore() {
+	public String goodsStore(Model model) {
+		
+		List<HashMap<String, String>> goodsList = goodsService.getGoodsList();
+		model.addAttribute("goodsList", goodsList);
+		
 		return "goods/goods_list";
 	}
 	
@@ -111,6 +115,7 @@ public class GoodsController {
 		
 		return "admin/goods_store_list";
 	}
+	
 	
 }
 

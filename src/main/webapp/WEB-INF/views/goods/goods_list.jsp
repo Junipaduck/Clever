@@ -24,11 +24,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/market_category.css">
 
-<!--js-->
-<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
+
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -84,36 +80,28 @@
                 <!--상품 영역-->
                 <section class="main_goods">
                     <div class="goods_wrap">
-                        <div class="goods">
-                            <a href="goods_product_detail.html">
-                                <div class="goods_image">
-                                    <img src="${pageContext.request.contextPath }/resources/images/장바구니.jpg" width="194" height="194" alt="상품 이미지">
-                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
-                                    <span>배송비포함</span>
-                                </div>
-                                <div class="goods_info">
-                                    <p class="goods_title">장바구니</p>
-                                    <div class="goods_price_date">
-                                        <span class="goods_price">5000원</span>
-                                        <span class="goods_date_before">4일 전</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="goods">
-                            <a href="goods_product_detail.html">
-                                <div class="goods_image">
-                                    <img src="${pageContext.request.contextPath }/resources/images/텀블러.jpg" width="194" height="194" alt="상품 이미지">
-                                </div>
-                                <div class="goods_info">
-                                    <p class="goods_title">상품명</p>
-                                    <div class="goods_price_date">
-                                        <span class="goods_price">5000원</span>
-                                        <span class="goods_date_before">4일 전</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                       	<c:forEach items="${goodsList }" var="goodsList">
+	                        <div class="goods">
+	                            <a href="goods_product_detail.html">
+	                                <div class="goods_image">
+                             			<c:set var="length" value="${fn:length(goodsList.goods_file) }"/>
+										<c:set var="index" value="${fn:indexOf(goodsList.goods_file, '_') }"/>
+										<c:set var="fileName" value="${fn:substring(goodsList.goods_file, index + 1, length) }"/>
+<%-- 										<img alt="..." src="${pageContext.request.contextPath }/resources/upload/${fileName}" style="height: 194px;width: 194px;"> --%>
+	                                    <img src="${pageContext.request.contextPath }/resources/upload/${fileName}" width="194" height="194" alt="상품 이미지">
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이"> --%>
+	                                    <span></span>
+	                                </div>
+	                                <div class="goods_info">
+	                                    <p class="goods_title">${goodsList.goods_name }</p>
+	                                    <div class="goods_price_date">
+	                                        <span class="goods_price">${goodsList.goods_price }원</span>
+	                                        <span class="goods_date_before">${goodsList.goods_date }</span>
+	                                    </div>
+	                                </div>
+	                            </a>
+                        	</div>
+                       	</c:forEach>
                     </div>
                 </section>
             </div>
@@ -124,5 +112,11 @@
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
+	
+<!--js-->
+<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
 </body>
 </html>
