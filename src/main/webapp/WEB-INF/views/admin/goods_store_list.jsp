@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,33 +95,37 @@
                                             <tr>
                                                 <th>상품번호</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
                                                 <th>상품가격</th>
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
+                                                <th>상품등록일</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>장바구니</td>
-                                                <td>2023-05-19</td>
-                                                <td>굿즈</td>
-                                                <td>5000원</td>
-                                                <td>예쁘고 튼튼한 장바구니</td>
-                                                <td>사진</td>
-                                            </tr>
+                                        	<c:forEach items="${goodsList }" var="goodsList">
+	                                            <tr>
+	                                                <td>${goodsList.goods_idx }</td>
+	                                                <td>${goodsList.goods_name }</td>
+	                                                <td>${goodsList.goods_price }</td>
+	                                                <td>${goodsList.goods_content }</td>
+	                                                <td>
+								                        <c:set var="length" value="${fn:length(goodsList.goods_file) }"/>
+														<c:set var="index" value="${fn:indexOf(goodsList.goods_file, '_') }"/>
+														<c:set var="fileName" value="${fn:substring(goodsList.goods_file, index + 1, length) }"/>
+														<img alt="..." src="${pageContext.request.contextPath }/resources/upload/${fileName}" style="height: 50px;width: 50px;">
+                                                	</td>
+	                                                <td>${goodsList.goods_date }</td>
+	                                            </tr>
+                                        	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>상품번호</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
                                                 <th>상품가격</th>
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
+                                                <th>상품등록일</th>
                                             </tr>
                                         </tfoot>
                                     </table>

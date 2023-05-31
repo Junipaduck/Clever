@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,7 +145,11 @@ display: flex;
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="file" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+                                    <c:choose>
+                                    	<c:when test="${empty goods.goods_file }">
+		                                    <input type="file" name="file" accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
+                                    	</c:when>
+                                    </c:choose>
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

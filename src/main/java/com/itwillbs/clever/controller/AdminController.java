@@ -104,15 +104,6 @@ public class AdminController {
 	}
 	
 	
-
-	
-	// 현재 판매 중인 굿즈 목록 조회
-	@GetMapping(value = "/storeList.ad")
-	public String storeList() {
-		return "admin/goods_store_list";
-	}
-	
-	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
 	public String reportList() {

@@ -1,5 +1,7 @@
 package com.itwillbs.clever.service;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -21,6 +23,12 @@ public class GoodsService {
 	public int selectMax() {
 		
 		return mapper.selectMax();
+	}
+
+	// 굿즈 목록 조회
+	public List<HashMap<String, String>> getGoodsList() {
+		
+		return mapper.selectGoodsList();
 	}
 
 	
