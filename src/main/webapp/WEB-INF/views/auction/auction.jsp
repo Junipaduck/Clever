@@ -107,47 +107,47 @@ height: 90px;
 			<!-- 대대분류 -->
 			<ul class="tablist">
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/tshirt.png" alt="패션의류"></a><br>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
 				  <div align="center">패션의류</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/box.png" alt="패션잡화"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
 				  <div align="center">패션잡화</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/hobbies.png" alt="취미/컬렉션"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
 				  <div align="center">취미/컬렉션</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/cross-platform.png" alt="디지털"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
 				  <div align="center">디지털</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/sport.png" alt="스포츠/레저"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
 				  <div align="center">스포츠/레저</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/cosmetics.png" alt="뷰티"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
 				  <div align="center">뷰티</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/furniture.png" alt="생활가전"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
 				  <div align="center">생활가전</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/electric-car.png" alt="자동차/공구"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
 				  <div align="center">자동차/공구</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/open-book.png" alt="도서/기타"></a>
+				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
 				  <div align="center">도서/기타</div>
 				</li>
 			</ul>		
@@ -405,7 +405,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${hotList }" var="hot" end="1"> 
                     <div class="goods">
-                        <a href="auction_detail">
+                        <a href="auction_detail?auction_idx=${hot.auction_idx}">
                             <c:forEach items="${fileList }" var="file" end="1">
                             <c:if test="${file.file_num eq hot.auction_idx }">
 	                            <div class="goods_image">
@@ -455,7 +455,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${currentList }" var="current" end="5"> 
                     <div class="goods">
-                        <a href="auction_detail">
+                        <a href="auction_detail?auction_idx=${current.auction_idx}">
                             <c:forEach items="${fileList }" var="file" end="1">
                             <c:if test="${file.file_num eq current.auction_idx }">
 	                            <div class="goods_image">
