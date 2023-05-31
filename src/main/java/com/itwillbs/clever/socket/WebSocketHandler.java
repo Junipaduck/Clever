@@ -84,7 +84,6 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 		String senderId = session.getId();
 //		String senderId = getMemberId(session);
 		System.out.println(senderId);
-		session.getAttributes().put("senderId", senderId);
 		
 		logger.info(session.getId() + "님이 입장하셨습니다.");
 	}

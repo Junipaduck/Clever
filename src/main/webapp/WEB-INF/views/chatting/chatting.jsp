@@ -186,7 +186,7 @@ $(function() {
 
 
 function sendMessage() {
-	sock.send($("#message").val());
+	sock.send('${sId}' + ":" + $("#message").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
 }
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
@@ -196,7 +196,6 @@ function onMessage(msg) {
 	var message = null;
 	console.log('data = ' + data);
 	console.log('${sessionScope.senderId}');
-<%-- 	console.log('<%= session.getId() %>'); --%>
 // 	stompClient = Stomp.over(socket);
 // 	stompClient.connect({}, function(frame) {
 // 	        console.log(socket._transport.url); 
@@ -210,11 +209,11 @@ function onMessage(msg) {
 	}
 	
 // 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
-	var cur_session = '${user.id}'; //현재 세션에 로그인 한 사람
+	var cur_session = '${sId}'; //현재 세션에 로그인 한 사람
 	console.log("cur_session : " + cur_session);
 	
-	chatId = arr[0];
-	message = arr[1];
+	chatId = arr[1];
+	message = arr[2];
 	
 //     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
 	if(chatId == cur_session){
@@ -244,6 +243,7 @@ function onOpen(evt) {
 	var user = '${sessionScope.sId}';
 	var str = user + "님이 입장하셨습니다.";
 	$("#chatLog").append(str);
+// 	console.log('${sId}');
 }
 
 //채팅창에서 나갔을 때
