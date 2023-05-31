@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -90,41 +90,25 @@
                     <div class="goods_wrap">
                     
                    		<!-- 상품 1개 카드 -->
-                        <div class="goods">
-                            <a href="product_detail">
-                                <div class="goods_image">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
-                                    <span>배송비포함</span>
-                                </div>
-                                <div class="goods_info">
-                                    <p class="goods_title">상품명</p>
-                                    <div class="goods_price_date">
-                                        <span class="goods_price">가격</span>
-                                        <span class="goods_date_before">4일 전</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        <c:forEach items="${productList }" var="productList">
+	                        <div class="goods">
+	                            <a href="product_detail?product_idx=${productList.product_idx }">
+                               		<div class="goods_image">
+	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지">
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이"> --%>
+<!-- 	                                    <span>배송비포함</span> -->
+	                                </div>
+	                                <div class="goods_info">
+	                                    <p class="goods_title">${productList.product_subject }</p>
+	                                    <div class="goods_price_date">
+	                                        <span class="goods_price">${productList.product_price }원</span>
+	                                        <span class="goods_date_before">${productList.sale_status }</span>
+	                                    </div>
+	                                </div>
+	                            </a>
+	                        </div>
+                        </c:forEach>
                         <!-- //상품 1개 카드 -->
-                        
-                        <!-- 상품 1개 카드 -->
-                        <div class="goods">
-                            <a href="product_detail">
-                                <div class="goods_image">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                                </div>
-                                <div class="goods_info">
-                                    <p class="goods_title">상품명</p>
-                                    <div class="goods_price_date">
-                                        <span class="goods_price">가격</span>
-                                        <span class="goods_date_before">4일 전</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- //상품 1개 카드 -->
-                        
                         
                     </div>
                 </section>

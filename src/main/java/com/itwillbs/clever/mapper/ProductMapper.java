@@ -1,5 +1,7 @@
 package com.itwillbs.clever.mapper;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.itwillbs.clever.vo.ProductVO;
@@ -12,6 +14,11 @@ public interface ProductMapper {
 	void insertFile(Map<String, Object> paramMap);
 
 	int selectMax();
+
+	List<HashMap<String, String>> selectProduct();
+
+	List<HashMap<String, String>> selectProductDetail(int product_idx);
+
 
 	
 }

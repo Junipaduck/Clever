@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -32,6 +32,7 @@
 		<jsp:include page="../inc/header.jsp" />
 	</header>
     <!-- main_content 영역 -->
+    <c:forEach items="${productDetail }" var="productDetail">
         <div id="main_content">
             <!-- category -->
             <div id="category">
@@ -90,100 +91,115 @@
             <!-- // category -->
 
             <!-- detail_content -->
-            <div id="detail_content">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col detail_content_img">
-                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active change" id="change1" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" id="change2" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" id="change3" aria-label="Slide 3"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진1">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진2">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진3">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col detail_content_info">
-                            <h2>상품명</h2>
-                            <p>18,000,000<span>원</span></p>
-                            <hr>
-                            <div id="detail_content_info_mid">
-                                <p>
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
-                                    <span>0</span>
-                                </p>
-                                <p>
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
-                                    <span>0</span>
-                                </p>
-                                <p>
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="지난 시간">
-                                    <span>0일 전</span>
-                                </p>
-                                <p>
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/report.png" alt="신고">
-                                    <span>신고하기</span>
-                                </p>
-                            </div>
-                            <div id="detail_content_info_state">
-                                <p>
-                                    <span>· 상품상태</span>
-                                    <span>중고</span>
-                                </p>
-                                <p>
-                                    <span>· 교환여부</span>
-                                    <span>교환불가능</span>
-                                </p>
-                                <p>
-                                    <span>· 배송비</span>
-                                    <span class="shipping">배송비 별도</span>
-                                </p>
-                                <p>
-                                    <span>· 거래지역</span>
-                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소"> 주소</span>
-                                </p>
-                            </div>
-                            <div>
-                                <div class="container text-center detail_content_info_btn">
-                                    <div class="row g-2">
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn1">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="클레버톡"> 클레버톡
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn3">바로구매</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	            <div id="detail_content">
+	                <div class="container text-center">
+	                    <div class="row">
+	                        <div class="col detail_content_img">
+	                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+	                                <div class="carousel-indicators">
+	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active change" id="change1" aria-current="true" aria-label="Slide 1"></button>
+	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" id="change2" aria-label="Slide 2"></button>
+	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" id="change3" aria-label="Slide 3"></button>
+	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" id="change3" aria-label="Slide 4"></button>
+	                                </div>
+	                                <div class="carousel-inner">
+	                                    <div class="carousel-item active">
+	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진1">
+	                                    </div>
+	                                    <div class="carousel-item">
+	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진2">
+	                                    </div>
+	                                    <div class="carousel-item">
+	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3">
+	                                    </div>
+	                                    <div class="carousel-item">
+	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat4.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진4">
+	                                    </div>
+	                                </div>
+	                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+	                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                                    <span class="visually-hidden">Previous</span>
+	                                </button>
+	                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+	                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                                    <span class="visually-hidden">Next</span>
+	                                </button>
+	                            </div>
+	                        </div>
+	                        <div class="col detail_content_info">
+	                        <input hidden="">
+	                            	<h2>${productDetail.product_subject }</h2>
+	                            <p>${productDetail.product_price }<span>원</span></p>
+	                            <hr>
+	                            <div id="detail_content_info_mid">
+	                                <p>
+	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
+	                                    <span>0</span>
+	                                </p>
+	                                <p>
+	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
+	                                    <span>0</span>
+	                                </p>
+	                                <p>
+	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="지난 시간">
+	                                    <span>0일 전</span>
+	                                </p>
+	                                <p>
+	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/report.png" alt="신고">
+	                                    <span>신고하기</span>
+	                                </p>
+	                            </div>
+	                            <div id="detail_content_info_state">
+	                                <p>
+	                                    <span>· 상품상태</span>
+	                                    <span>${productDetail.product_status }</span>
+	                                </p>
+	                                 <p>
+	                                    <span>· 결제방식</span>
+	                                    <span>${productDetail.sale_pay }</span>
+	                                </p>
+<!-- 	                                <p> -->
+<!-- 	                                    <span>· 교환여부</span> -->
+<!-- 	                                    <span>교환불가능</span> -->
+<!-- 	                                </p> -->
+<!-- 	                                <p> -->
+<!-- 	                                    <span>· 배송비</span> -->
+<!-- 	                                    <span class="shipping">배송비 별도</span> -->
+<!-- 	                                </p> -->
+	                                <p>
+	                                    <span>· 거래지역</span>
+	                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소">${productDetail.sale_location }</span>
+	                                </p>
+	                                 <p>
+	                                    <span>· 상품태그</span>
+	                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="상품태그"> ${productDetail.product_tag }</span>
+	                                </p>
+	                            </div>
+	                            <div>
+	                                <div class="container text-center detail_content_info_btn">
+	                                    <div class="row g-2">
+	                                        <div class="col-4">
+	                                            <div class="p-3 info_btn1">
+	                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-4">
+	                                    	    <a href="chatting">
+		                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
+		                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="판매자채팅"> 판매자채팅
+		                                            </div>
+	                                            </a>
+	                                        </div>
+	                                        <div class="col-4">
+	                                            <div class="p-3 info_btn3">바로구매</div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
             <!-- // detail_content -->
 
             <!-- related_goods -->
@@ -278,8 +294,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    상품내용 입력란입니다.<br>
-                                    테스트메시지<br>
+                                    ${productDetail.product_content }
                                 </div>
                             </div>
                             <div class="p-3 detailed_information">
@@ -288,19 +303,19 @@
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_place">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/bottom_place.png" alt="거래지역"> <span>거래지역</span>
-                                                <p>상세 주소</p>
+                                                <p>${productDetail.sale_location }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_category">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/category.png" alt="카테고리"> <span>카테고리</span>
-                                                <p>상품 종류</p>
+                                                <p>${productDetail.product_category }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_tag">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="상품태그"> <span>상품태그</span>
-                                                <p>#최저가 #이벤트중</p>
+                                                <p>${productDetail.product_tag }</p>
                                             </div>
                                         </div>
                                     </div>
@@ -373,6 +388,7 @@
                 </div>
             </div>
             <!-- // goods_info -->
+        </c:forEach>     
         <!-- // main_content 영역 -->
 	<!-- 풋터 시작 -->
 	<footer>

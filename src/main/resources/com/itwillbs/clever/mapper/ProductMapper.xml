@@ -21,7 +21,7 @@
 				#{product_content},
 				#{product_tag},
 				#{sale_pay},
-				'판매중 하드코딩'
+				'판매중'
 			)
 	</insert>
 	
@@ -53,9 +53,21 @@
 	</select>
 	
 	
+	<!-- 중고상품 전체 select -->
+	<select id="selectProduct" resultType="HashMap">
+		SELECT *
+			FROM product
+			ORDER BY product_idx DESC;
+	</select>
 	
 	
-	
+	<!-- 중고상품 특정idx만 select -->
+	<select id="selectProductDetail" resultType="HashMap">
+		SELECT *
+			FROM product
+			WHERE product_idx = #{product_idx}
+			ORDER BY product_idx DESC;
+	</select>
 	
 	
 	

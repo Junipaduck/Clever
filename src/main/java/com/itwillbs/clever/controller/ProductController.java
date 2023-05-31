@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,13 +41,20 @@ public class ProductController {
 	
 	// 상품 리스트 
 	@GetMapping("/product_list")
-	public String productList() {
+	public String productList(Model model) {
+		List<HashMap<String, String>> productList = productService.selectProduct();
+//		System.out.println("product 담기냐 : " + productList);
+		model.addAttribute("productList", productList);
+		
 		return "product/product_list";
 	}
 	
 	// 상품 상세보기
 	@GetMapping("/product_detail")
-	public String productDetail() {
+	public String productDetail(Model model, @RequestParam int product_idx) {
+		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
+		model.addAttribute("productDetail", productDetail);
+		
 		return "product/product_detail";
 	}
 	

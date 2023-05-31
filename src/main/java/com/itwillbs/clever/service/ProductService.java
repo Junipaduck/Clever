@@ -1,5 +1,7 @@
 package com.itwillbs.clever.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +29,16 @@ public class ProductService {
 	public int selectMax() {
 		return mapper.selectMax();
 	}
+
+	// 중고상품 전체 select
+	public List<HashMap<String, String>> selectProduct() {
+		return mapper.selectProduct();
+	}
+
+	// 중고상품 특정idx만 select 
+	public List<HashMap<String, String>> selectProductDetail(int product_idx) {
+		return mapper.selectProductDetail(product_idx);
+	}
+
+	
 }
