@@ -18,6 +18,29 @@
 				)
 	</insert>
 	
+	<insert id="insertFile">
+		<selectKey keyProperty="file_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(file_idx), 0) FROM file
+		</selectKey>
+		INSERT
+				INTO file (file_idx, file_div, file_num, file_name, file_path, file_size, file_exe)
+				VALUES (
+					#{file_idx} + 1,
+					#{file_div},
+					#{file_num},
+					#{file_name},
+					#{file_path},
+					#{file_size},
+					#{file_exe}
+			)
+	</insert>
+	
+	<select id="selectMax" resultType="int">
+		SELECT
+			MAX(goods_idx)
+			FROM goods;
+	</select>
+	
 </mapper>
 
 

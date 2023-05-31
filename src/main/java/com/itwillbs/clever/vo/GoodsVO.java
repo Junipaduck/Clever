@@ -28,4 +28,5 @@ public class GoodsVO {
 	private String goods_file;
 	private Date goods_date;
 	private MultipartFile file;
+	
 }

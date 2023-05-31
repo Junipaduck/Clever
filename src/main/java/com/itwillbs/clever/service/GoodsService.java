@@ -16,5 +16,12 @@ public class GoodsService {
 		
 		return mapper.insertGoods(goods);
 	}
+
+	//file 테이블의 file_num의 max값 select
+	public int selectMax() {
+		
+		return mapper.selectMax();
+	}
+
 	
 }

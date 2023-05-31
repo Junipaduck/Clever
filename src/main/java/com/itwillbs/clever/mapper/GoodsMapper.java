@@ -6,6 +6,8 @@ public interface GoodsMapper {
 
 	int insertGoods(GoodsVO goods);
 
+	int selectMax();
+
 }
 
 

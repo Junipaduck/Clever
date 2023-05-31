@@ -104,24 +104,7 @@ public class AdminController {
 	}
 	
 	
-	// 굿즈 등록 페이지 
-	@GetMapping(value = "/storeRegister.ad")
-	public String storeRegister() {
-		return "admin/goods_store_register_form";
-	}
-	
-	@PostMapping(value = "/goodsRegisterPro.ad")
-	public String goodsRegisterPro(GoodsVO goods, HttpSession session, Model model, MultipartFile[] file) {
-		
-		int insertCount = goodsService.insertGoods(goods);
-		return "";
-	}
-	
-	// 굿즈 등록 수정 페이지 
-	@GetMapping(value = "/storeModify.ad")
-	public String storeModify() {
-		return "admin/goods_store_modify_form";
-	}
+
 	
 	// 현재 판매 중인 굿즈 목록 조회
 	@GetMapping(value = "/storeList.ad")
