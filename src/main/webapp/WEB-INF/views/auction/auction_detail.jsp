@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>경매 - 상세페이지</title>
     <!-- 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -19,12 +20,20 @@
     <!-- 상세페이지 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_product_detail.css">
 
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/chatting/chatting.css">
+	
     <!-- 햄버거 메뉴 호버시 -->
     <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
     <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
     <!-- 파비콘 -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	
 </head>
 
 <body>
@@ -56,7 +65,8 @@
 		
 		var resultElement = document.getElementById("result");
 		$("#inputInt").val(priceInput);
-		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
+// 		resultElement.innerHTML = priceInput ;
+ 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
 		
 	}
 	
@@ -70,10 +80,117 @@
 		
 	}
 	
+	function auctionLog(){
+		location.href="auction_Log";
+	}
+	
+	
 // 	function ProductPriceUpdate(auction_idx) { 
 // 		alert(auction_idx);
 // 	}
+
+	var sock = new SockJS('http://localhost:8082/clever/chatting'); //원래꺼
+	// var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting'); //와르파일주소
+	// var sock = new WebSocket('ws://localhost:8089/clever/chatting');
+	sock.onmessage = onMessage;
+	sock.onopen = onOpen;
+	sock.onclose = onClose;
 	
+	$(function() {
+		$("#btnSend").click(function() {
+			console.log('send Message');
+			sendMessage();
+		})
+	});
+	
+	$(function() {
+		$("#btnClose").click(function() {
+			onClose();
+		})
+	});
+	
+	
+	function sendMessage() {
+		sock.send('${sId}' + ":" + $("#price").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
+	}
+	//서버에서 메시지를 받았을 때
+	function onMessage(msg) {
+		console.log(msg);
+		var data = msg.data;
+		var chatId = null; // 메세지를 보낸 사람
+		var message = null;
+		var resultElement = document.getElementById("result");
+		console.log('data = ' + data);
+		console.log('${sessionScope.senderId}');
+	// 	stompClient = Stomp.over(socket);
+	// 	stompClient.connect({}, function(frame) {
+	// 	        console.log(socket._transport.url); 
+	// 	        //ws://localhost:8080/socket/039/byxby3jv/websocket
+	// 	        //sessionId는 byxby3jv
+	// 	    });
+		
+		var arr = data.split(":");
+		for(var i=0; i<arr.length; i++){
+			console.log('arr[' + i + ']: ' + arr[i]);
+		}
+		
+	// 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
+		var cur_session = '${sId}'; //현재 세션에 로그인 한 사람
+		console.log("cur_session : " + cur_session);
+		
+		chatId = arr[1];
+		message = arr[2];
+		
+	//     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+		if(chatId == cur_session){
+			
+	// 		var str = "<div class='col-6'>";
+	// 		str += "<div class='alert alert-secondary'>";
+	// 		str += "<b>" + chatId + " : " + message + "</b>";
+			var str = "<div class='myMsg'>";
+			str += "<span class='msg'><b>"+ chatId + " : "  + message + "</b></span>";
+			str += "</div></div>";
+			
+			$("#chatLog2").append(str);
+			
+			$("#inputInt").val(message);
+	 		resultElement.innerHTML = "<span>" + message + "&nbsp;" +  "</span>원";
+		}
+		else{
+			
+	// 		var str = "<div class='col-6'>";
+	// 		str += "<div class='alert alert-warning'>";
+	// 		str += "<b>" + chatId + " : " + message + "</b>";
+			var str = "<div class='anotherMsg'>";
+			str += "<span class='msg'>"+ chatId +" : <b>"  + message + "</b></span>";
+			str += "</div></div>";
+			
+			$("#chatLog2").append(str);
+			
+			$("#inputInt").val(message);
+	 		resultElement.innerHTML = "<span>" + message + "&nbsp;" +  "</span>원";
+	
+		}
+		
+	}
+	
+	//채팅창에 들어왔을 때
+	function onOpen(evt) {
+		console.log("입장");
+		var user = '${sessionScope.sId}';
+// 		var str = user + "님이 입장하셨습니다.";
+// 		$("#chatLog2").append(str);
+	// 	console.log('${sId}');
+	}
+	
+// 	//채팅창에서 나갔을 때
+	function onClose(evt) {
+		console.log("퇴장");
+		var user = '${sessionScope.sId}';
+// 		var str = user + " 님이 퇴장하셨습니다.ㅜ";
+// 		$("#chatLog2").append(str);
+	}
+
 
 </script>
 	<!-- 헤더 시작 -->
@@ -173,7 +290,7 @@
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span> </h2>
                             <hr>
-                            <span>현재 입찰 가격 :</span><p id="result"><span>${detailmap.auction_price }</span><span>원</span></p>
+                            <p id="result"><span>현재 가격 :</span><span>${detailmap.auction_price }</span><span>원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -227,10 +344,10 @@
                                 <div class="container text-center detail_content_info_btn">
                                     <div class="row g-2">
                                     	<div class="col-4">
-                                            <div class="p-3 info_btn2" onclick="showPrice();">입찰하기</div>
+                                            <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
                                         </div>
                                     	<div class="col-4">
-                                            <div class="p-3 info_btn3">즉시구매</div>
+                                            <div class="p-3 info_btn3" onclick="auctionLog();">즉시구매</div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
@@ -432,14 +549,15 @@
                 </div>
             </div>
             
-             <div id="side_bar2">
-                    <div style="border:4px solid" id="auctionDiv">
-                        <p style="font-size: 15px;">실시간 &nbsp; 경매 입찰 &nbsp; 내용</p>
-                        <div style="border:1px solid;  font-size: 20px; height: 465px;">
-                        	 <p>xxxxxx님이 xxxx원에 입찰</p>
-                        </div>
-                    </div>
-                </div>
+            <div id="side_bar2">
+            	<div id="contentCover2">
+					<div id="chatWrap" style="width: 400px; height: 500px">
+			            <div id="chatHeader">입찰 내역</div>
+			            	<div id="chatLog2">
+		            	</div>
+					</div>
+				</div>
+            </div>
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
