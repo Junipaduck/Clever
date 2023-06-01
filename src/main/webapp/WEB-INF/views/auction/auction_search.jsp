@@ -35,7 +35,7 @@
 <style type="text/css">
 .dep1 img {
 width: 81px;
-height: 94px;
+height: 187px;
 margin-left: 13px;
 margin-right: 13px;
 }

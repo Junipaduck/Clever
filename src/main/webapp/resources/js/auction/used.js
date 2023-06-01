@@ -8,14 +8,13 @@
 			activeTab = tabs.filter('.on'),
 			tabpanels = wrapper.find('div.tabpanel'),
 			hasActivePanel = !!tabpanels.filter('.tabpanel-active').length;
-
+		// 마우스 올렸을 때 
 		tabs.bind({
 			select: function (e, tabClass) {
 				tabClass = tabClass || 'on';
-
 				var tab = $(this),
 					index = tab.index();
-
+				console.log(e.currentTarget); 
 				tabs.removeClass('on hover');
 				tab.addClass(tabClass);
 
@@ -31,6 +30,8 @@
 			}
 		});
 
+
+		// 마우스 나갔을 때
 		wrapper.bind('mouseleave', function () {
 			if (activeTab.length) {
 				if (hasActivePanel) {

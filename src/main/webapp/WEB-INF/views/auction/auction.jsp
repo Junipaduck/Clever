@@ -30,12 +30,12 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <!-- auction -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/auction/used.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/auction/used.js?after"></script>
 <!-- 경매 남은 시간 함수 -->
 <style type="text/css">
 .dep1 img {
 width: 81px;
-height: 94px;
+height: 187px;
 margin-left: 13px;
 margin-right: 13px;
 }

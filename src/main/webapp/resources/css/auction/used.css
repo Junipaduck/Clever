@@ -1575,8 +1575,11 @@ input[type=text]::-ms-clear {display:block}
 .used_head .tab_umarket .tablist li.dep1{float:left}
 .used_head .tab_umarket .tablist li.dep1 a{overflow:hidden;float:left;position:relative;height:94px}
 .used_head .tab_umarket .tablist li.active a,
-.used_head .tab_umarket .tablist li.hover a {height:94px; border:0;color:#FF6E00}
+.used_head .tab_umarket .tablist li.hover a {height:94px;margin-bottom:-10px;border:0;color:#FF6E00}
 .used_head .tab_umarket .tablist li.hover a span {display:block}
+.used_head .tab_umarket .tablist li.on img,
+.used_head .tab_umarket .tablist li.active img,
+.used_head .tab_umarket .tablist li.hover img {margin-top:-94px}
 .used_head .tabpanel{display:none;width:950px;margin-top:-3px;padding:15px 9px 13px 19px;border:1px solid #eaeaea;border-top:0}
 .used_head .tabpanel-active{display:block !important}
 .used_head .tabpanel ul{width:100%;overflow:hidden}
@@ -1584,6 +1587,18 @@ input[type=text]::-ms-clear {display:block}
 .used_head .tabpanel ul li a{float:left;padding:2px 0 2px 7px;background:url('//pics.auction.co.kr/listing/2012/bul_square.gif') no-repeat 0 6px}
 .used_head .tabpanel ul li.active a,
 .used_head .tabpanel ul li a:hover{color:#FF6E00;background-image:url('//pics.auction.co.kr/listing/2012/bul_square02.gif');text-decoration:none}
+/* 공통:좌배너,페이지넘,하단배너 */
+.used_head .uxc-myc-lbn{top:276px !important;margin-left:-581px}
+.paging .more a strong,.paginate_wrap .form a{text-decoration:none}
+.paging .more_wrap .page{top:23px}
+.paginate .arr{*display:inline;*margin:-4px 3px 0 0}
+.paginate .prv .arr{padding-right:4px;*padding-right:1px}
+:root .paginate .prv .arr{padding-right:1px \0/IE9}
+@media screen and (-webkit-min-device-pixel-ratio: 0){.paginate .prv .arr{padding-right:1px}}
+.paginate .next .arr{padding-left:1px}
+.use_bnr{margin-top:50px}
+.use_bnr img{width:980px}
+
 /* 공통:좌배너,페이지넘,하단배너 */
 .used_head .uxc-myc-lbn{top:276px !important;margin-left:-581px}
 .paging .more a strong,.paginate_wrap .form a{text-decoration:none}
