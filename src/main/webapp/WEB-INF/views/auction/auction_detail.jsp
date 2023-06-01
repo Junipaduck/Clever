@@ -57,7 +57,6 @@
 		var resultElement = document.getElementById("result");
 		$("#inputInt").val(priceInput);
 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
-// 		console.log($("#inputInt").val());
 		
 	}
 	
@@ -65,12 +64,16 @@
 		
 		var priceInput = parseInt(uncomma($("#inputInt").val()));
 		priceInput += priceInput * percent;
+		priceInput = Math.floor(priceInput/10) * 10; //10원 단위 짜르기
 		
-// 		priceInput = (priceInput/10) * 10;
-		
-		$('#price').val(priceInput);
+		$('#price').val(comma(priceInput));
 		
 	}
+	
+// 	function ProductPriceUpdate(auction_idx) { 
+// 		alert(auction_idx);
+// 	}
+	
 
 </script>
 	<!-- 헤더 시작 -->
@@ -168,8 +171,9 @@
                             </div>
                         </div>
                         <div class="col detail_content_info">
-                            <h2>상품명 : <span>내가 어캐아노</span> </h2>
-                            <p id="result"><span>${detailmap.auction_price }</span><span>&nbsp; 원</span></p>
+                            <h2>상품명 : <span>${detailmap.auction_title } </span> </h2>
+                            <hr>
+                            <span>현재 입찰 가격 :</span><p id="result"><span>${detailmap.auction_price }</span><span>원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -192,7 +196,7 @@
                             <div id="detail_content_info_state">
                                 <p>
                                     <span>· 상품상태</span>
-                                    <span>중고</span>
+                                    <span>${detailmap.auction_product_status }</span>
                                 </p>
                                 <p>
                                     <span>· 배송비</span>
@@ -200,7 +204,7 @@
                                 </p>
                                 <p>
                                     <span>· 거래지역</span>
-                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소"> 주소</span>
+                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소"> ${detailmap.auction_address }</span>
                                 </p>
                             </div>
                             <div style="height: 50px;">

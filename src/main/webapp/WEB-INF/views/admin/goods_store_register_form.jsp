@@ -31,11 +31,9 @@
 	
 	<!--CSS-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
-	
+	<!-- store.css -->
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/store.css"> --%>
 <style type="text/css">
-.form-control{
-	resize: none;
-}
 @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
 @font-face {
     font-family: 'SUITE-Regular';
@@ -139,7 +137,7 @@ display: flex;
 <%--                 	<input type="hidden" name="member_id" value="${sessionScope.sId }">  --%>
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
-                            <span class="image_limit">(<span class="image_num"></span>/4)</span>
+                           <span class="image_limit"><span class="image_num"></span></span>
                         </p>
                         <div>
                             <div class="goods_images">
@@ -175,7 +173,7 @@ display: flex;
                     <div class="goods_price_area">
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goods_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;">원</p>
+                            <p><input type="text" name="goods_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;"> 원</p>
                         </div>
                     </div>
                     <div class="goods_info_area">
@@ -183,6 +181,12 @@ display: flex;
                         <div>
                             <textarea name="goods_content" id="goods_content" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
+                        </div>
+                    </div>
+                    <div class="goods_price_area">
+                        <p>재고<span class="red">*</span></p>
+                        <div class="goods_price">
+                            <p><input type="text" name="goods_stock" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;"> 개</p>
                         </div>
                     </div>
 			        <div class="btn_submit_area">
