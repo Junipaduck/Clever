@@ -165,7 +165,8 @@
 
 // ------ 두번째 방법
 //전송 버튼 누르는 이벤트
-var sock = new SockJS('http://localhost:8082/clever/chatting');
+// var sock = new SockJS('http://localhost:8082/clever/chatting'); //원래꺼
+var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting'); //와르파일주소
 // var sock = new WebSocket('ws://localhost:8089/clever/chatting');
 sock.onmessage = onMessage;
 sock.onopen = onOpen;
