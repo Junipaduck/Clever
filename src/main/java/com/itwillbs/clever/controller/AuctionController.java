@@ -42,7 +42,7 @@ public class AuctionController {
 		model.addAttribute("hotList", hotList);
 		model.addAttribute("currentList", currentList);
 		model.addAttribute("fileList", fileList);
-		
+		System.out.println(fileList);
 		
 		return "auction/auction";
 	}
@@ -104,7 +104,16 @@ public class AuctionController {
 	}
 	
 	@PostMapping(value = "auction_upload_pro")
-	public String auction_upload_pro(@RequestParam Map<String, String> map, @RequestParam("auction_images") MultipartFile[] file, HttpSession session, Model model) {
+	public String auction_upload_pro(@RequestParam Map<String, String> map
+									, @RequestParam("auction_images") MultipartFile[] file
+//									, @RequestParam("auction_images1") MultipartFile file1
+//									, @RequestParam("auction_images2") MultipartFile file2
+//									, @RequestParam("auction_images3") MultipartFile file3
+//									, @RequestParam("auction_images4") MultipartFile file4
+									, HttpSession session, Model model) {
+//		MultipartFile[] file = {file1,file2,file3,file4};
+//		System.out.println(file);
+	
 		
 		String id = (String)session.getAttribute("sId");
 		// 카테고리 분류
@@ -135,6 +144,7 @@ public class AuctionController {
 			model.addAttribute("msg", "경매 등록 실패!");
 			return "fail_back";
 		}
+//		return "";
 	}
 	
 	@GetMapping(value = "auction_management")
@@ -150,6 +160,20 @@ public class AuctionController {
 	@GetMapping(value = "auction_buy")
 	public String auction_buy() {
 		return "auction/auction_buy";
+	}
+	
+	@GetMapping(value = "auction_searchPro")
+	public String auction_searchPro(@RequestParam Map<String, String> map,Model model) {
+		
+		List auction_product_search = auctionService.selectProductSearch(map.get("auction_search"));
+		List fileList = auctionService.selectFiles();
+		List auction_member_search = auctionService.selectMemberSearch(map.get("auction_search"));
+		
+		model.addAttribute("auction_search", map.get("auction_search"));
+		model.addAttribute("auction_product_search", auction_product_search);
+		model.addAttribute("auction_member_search", auction_member_search);
+		model.addAttribute("fileList", fileList);
+		return "auction/auction_search";
 	}
 	
 }

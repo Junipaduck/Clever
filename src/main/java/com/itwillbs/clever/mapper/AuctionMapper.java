@@ -20,5 +20,9 @@ public interface AuctionMapper {
 	
 	Map<String, String> selectDetailList(String auction_idx);
 
+	List selectProductSearch(String auction_search);
+
+	List selectMemberSearch(String auction_search);
+
 
 }

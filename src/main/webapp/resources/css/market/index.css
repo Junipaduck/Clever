@@ -37,6 +37,7 @@
 .goods_wrap {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .goods_wrap > .goods {
     display: inline-block;

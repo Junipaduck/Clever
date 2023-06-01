@@ -141,6 +141,10 @@ function startEndDate() {
                                 <div>
                                     이미지 등록
                                     <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+<!--                                     <input type="file" name="auction_images1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);"> -->
+<!--                                     <input type="file" name="auction_images2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);"> -->
+<!--                                     <input type="file" name="auction_images3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);"> -->
+<!--                                     <input type="file" name="auction_images4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);"> -->
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

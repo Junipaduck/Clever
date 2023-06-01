@@ -49,13 +49,38 @@
 	SELECT IFNULL(MAX(auction_idx), 0) FROM auction
 	</select>
 	
+<!-- 	<select id="selectFiles" resultType="map"> -->
+<!-- 	SELECT file_num, MIN(file_idx) AS file_idx , MIN(file_id) AS file_id, MIN(file_div) AS file_div, MIN(file_exe) AS file_exe, MIN(file_size) AS file_size, MIN(file_name) AS file_name, MIN(file_path) AS file_path -->
+<!-- 		FROM file -->
+<!-- 			WHERE file_div = 'auction' -->
+<!-- 				GROUP BY file_num; -->
+<!-- 	</select> -->
 	<select id="selectFiles" resultType="map">
-	SELECT * FROM file WHERE file_div = 'auction'
+	SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'auction'
+							GROUP BY file_num);
 	</select>
 	
 	<select id="selectDetailList" resultType="map">
 		SELECT * FROM auction
 			WHERE auction_idx = #{auction_idx}
 	</select>
+	
+	<select id="selectProductSearch" resultType="map">
+		SELECT *
+		 	FROM auction
+				WHERE auction_title LIKE '%${auction_search }%'
+	</select>
+	<select id="selectMemberSearch" resultType="map">
+		SELECT *
+		 	FROM auction
+				WHERE member_id LIKE '%${auction_search }%'
+	</select>
+	
+	
 	
 </mapper>

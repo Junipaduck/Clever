@@ -24,6 +24,13 @@
 		let result = confirm("로그아웃 하시겠습니까?");	
 		return result;
 	}
+function show_name(e){
+   var code = e.code;
+   let search = $("#auction_search").val();
+   if(code == 'Enter'){
+       location.href = 'auction_searchPro?auction_search='+ search;
+   }
+}
 </script>
 
 <!-- header 영역 -->
@@ -74,10 +81,20 @@
                             </a>
                         </div>
                         <div class="col-6 top_searh_area">
-                            <div id="top_searh">
-                                <input type="text" placeholder="상품명, 지역명, @상점명 입력">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
-                            </div>
+                            <c:choose>
+	                            <c:when test="${not empty auction_search }">
+		                            <div id="top_searh">
+		                                <input type="text" value="${auction_search }" id="auction_search" name="auction_search" placeholder="상품명, 상점명 입력" onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<div id="top_searh">
+		                                <input type="text" id="auction_search" name="auction_search" placeholder="상품명, 상점명 입력" onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="col-1 b_h_left_menu">
                             <a href="auction_upload">

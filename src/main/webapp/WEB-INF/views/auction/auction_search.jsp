@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클레버 - 경매메인</title>
+<title>클레버 - 경매검색</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -346,172 +346,135 @@ height: 90px;
 		<!-- //카테고리 -->	
     </div>
 </div>
-
-
-            <!--상품 영역-->
             <section class="main_goods">
-                <h2 align="center" style="color: red;">마감 임박 상품</h2>
+                <h2 align="center">'${auction_search }' 제목 검색 결과</h2>
                 <div class="goods_wrap">
-                    <c:forEach items="${imminentList }" var="imminent" end="4"> 
-                    <div class="goods">
-                        <a href="auction_detail?auction_idx=${imminent.auction_idx}">
-                        <c:forEach items="${fileList }" var="file">
-                        
-                        <c:set var="length" value="${fn:length(file.file_name) }" />
-						<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-						<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
-                            <c:if test="${file.file_num eq imminent.auction_idx }">
-	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
-	                            </div>
-                            </c:if>
-                        </c:forEach>
-                            <div class="goods_info">
-                                <p class="goods_title">${imminent.auction_title } </p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${imminent.auction_price }</span>
-                                </div>
-	                                <script type="text/javascript">
-	                                	function getTime${imminent.auction_idx}() {
-	                                	  var element;
-	                                	  const endDay = new Date('${imminent.auction_end}');
-	                                	  const currDay = new Date();
-	                                	  let diff = endDay - currDay;
-	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-	                                	  diff -= diffHours * (1000 * 60 * 60);
-	                                	  const diffMin = Math.floor(diff / (1000 * 60));
-	                                	  diff -= diffMin * (1000 * 60);
-	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  element = document.getElementById("timeOut${imminent.auction_idx}");
-	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "경매 종료";                    		  
-	                                	  } else {
-		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-	                                	  }
-	                                	}
-	                                	(function() {
-	                                		return setInterval(() => getTime${imminent.auction_idx}(), 1000);
-										}());
-	                               </script>
-                               <div id="timeOut${imminent.auction_idx}" style="color: red; text-align: right;"></div>
-                            </div>
-                        </a>
-                    </div>
-                    </c:forEach>
-                </div> 
-            </section>
-            <!--상품 영역-->
-            <section class="main_goods">
-                <h2 align="center" style="color: red;">핫 한 경매 물품</h2>
-                <div class="goods_wrap">
-                    <c:forEach items="${hotList }" var="hot" end="4"> 
-                    <div class="goods">
-                        <a href="auction_detail?auction_idx=${hot.auction_idx}">
-                            <c:forEach items="${fileList }" var="file">
-                            <c:set var="length" value="${fn:length(file.file_name) }" />
-							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-							<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
-                            <c:if test="${file.file_num eq hot.auction_idx }">
-	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
-	                            </div>
-                            </c:if>
-                        </c:forEach>
-                            <div class="goods_info">
-                                <p class="goods_title">${hot.auction_title } </p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${hot.auction_price }</span>
-                                </div>
-	                                <script type="text/javascript">
-	                                	function hotGetTime${hot.auction_idx}() {
-	                                	  var element;
-	                                	  const endDay = new Date('${hot.auction_end}');
-	                                	  const currDay = new Date();
-	                                	  let diff = endDay - currDay;
-	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-	                                	  diff -= diffHours * (1000 * 60 * 60);
-	                                	  const diffMin = Math.floor(diff / (1000 * 60));
-	                                	  diff -= diffMin * (1000 * 60);
-	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  element = document.getElementById("hotTimeOut${hot.auction_idx}");
-	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "경매 종료";                    		  
-	                                	  } else {
-		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-	                                	  }
-	                                	}
-	                                	(function() {
-	                                		return setInterval(() => hotGetTime${hot.auction_idx}(), 1000);
-										}());
-	                               </script>
-                               <div id="hotTimeOut${hot.auction_idx}" style="color: red; text-align: right;"></div>
-                            </div>
-                        </a>
-                    </div>
-                    </c:forEach>
-                </div> 
-            </section>
-            <section class="main_goods">
-                <h2 align="center">신규 등록 순</h2>
-                <div class="goods_wrap">
-                    <c:forEach items="${currentList }" var="current" end="4"> 
-                    <div class="goods">
-                        <a href="auction_detail?auction_idx=${current.auction_idx}">
-                            <c:forEach items="${fileList }" var="file">
-                            <c:set var="length" value="${fn:length(file.file_name) }" />
-							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-							<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
-                            <c:if test="${file.file_num eq current.auction_idx }">
-	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
-	                            </div>
-                            </c:if>
-                        </c:forEach>
-                            <div class="goods_info">
-                                <p class="goods_title">${current.auction_title } </p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${current.auction_price }</span>
-                                </div>
-	                                <script type="text/javascript">
-	                                	function currentGetTime${current.auction_idx}() {
-	                                	  var element;
-	                                	  const endDay = new Date('${current.auction_end}');
-	                                	  const currDay = new Date();
-	                                	  let diff = endDay - currDay;
-	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-	                                	  diff -= diffHours * (1000 * 60 * 60);
-	                                	  const diffMin = Math.floor(diff / (1000 * 60));
-	                                	  diff -= diffMin * (1000 * 60);
-	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  element = document.getElementById("currentTimeOut${current.auction_idx}");
-	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "경매 종료";                    		  
-	                                	  } else {
-		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-	                                	  }
-	                                	}
-	                                	(function() {
-	                                		return setInterval(() => currentGetTime${current.auction_idx}(), 1000);
-										}());
-	                               </script>
-                               <div id="currentTimeOut${current.auction_idx}" style="color: red; text-align: right;"></div>
-                            </div>
-                        </a>
-                    </div>
-                    </c:forEach>
+                    <c:choose>
+	                    <c:when test="${not empty auction_product_search }">
+		                    <c:forEach items="${auction_product_search }" var="auction_product" end="4"> 
+			                    <div class="goods">
+			                        <a href="auction_detail?auction_idx=${auction_product.auction_idx}">
+			                            <c:forEach items="${fileList }" var="file">
+			                            <c:set var="length" value="${fn:length(file.file_name) }" />
+										<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
+										<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+			                            <c:if test="${file.file_num eq auction_product.auction_idx }">
+				                            <div class="goods_image">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+				                            </div>
+			                            </c:if>
+			                        </c:forEach>
+			                            <div class="goods_info">
+			                                <p class="goods_title">${auction_product.auction_title } </p>
+			                                <div class="goods_price_date">
+			                                    <span class="goods_price">가격</span>
+			                                    <span class="goods_date_before">${auction_product.auction_price }</span>
+			                                </div>
+				                                <script type="text/javascript">
+				                                	function auction_productGetTime${auction_product.auction_idx}() {
+				                                	  var element;
+				                                	  const endDay = new Date('${auction_product.auction_end}');
+				                                	  const currDay = new Date();
+				                                	  let diff = endDay - currDay;
+				                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+				                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+				                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+				                                	  diff -= diffHours * (1000 * 60 * 60);
+				                                	  const diffMin = Math.floor(diff / (1000 * 60));
+				                                	  diff -= diffMin * (1000 * 60);
+				                                	  const diffSec = Math.floor(diff / 1000);
+				                                	  element = document.getElementById("auction_productTimeOut${auction_product.auction_idx}");
+				                                	  if(diffDays < 0){
+				                                		  element.innerHTML = "경매 종료";                    		  
+				                                	  } else {
+					                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+				                                	  }
+				                                	}
+				                                	(function() {
+				                                		return setInterval(() => auction_productGetTime${auction_product.auction_idx}(), 1000);
+													}());
+				                               </script>
+			                               <div id="auction_productTimeOut${auction_product.auction_idx}" style="color: red; text-align: right;"></div>
+			                            </div>
+			                        </a>
+			                    </div>
+		                    </c:forEach>
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<br>
+	                    	<br>
+	                    	<br>
+	                    	<div style="color: blue;">조회된 결과가 없습니다.</div>
+	                    </c:otherwise>
+                    </c:choose>
                     
                 </div> 
             </section>
+            <section class="main_goods">
+                <h2 align="center">'${auction_search }' 상점명 검색 결과</h2>
+                <div class="goods_wrap">
+                    <c:choose>
+	                    <c:when test="${not empty auction_member_search }">
+	                    	<c:forEach items="${auction_member_search }" var="auction_member" end="4"> 
+		                    <div class="goods">
+		                        <a href="auction_detail?auction_idx=${auction_member.auction_idx}">
+		                            <c:forEach items="${fileList }" var="file">
+		                            <c:set var="length" value="${fn:length(file.file_name) }" />
+									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
+									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+		                            <c:if test="${file.file_num eq auction_member.auction_idx }">
+			                            <div class="goods_image">
+			                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+			                            </div>
+		                            </c:if>
+		                        </c:forEach>
+		                            <div class="goods_info">
+		                                <p class="goods_title">${auction_member.auction_title } </p>
+		                                <div class="goods_price_date">
+		                                    <span class="goods_price">가격</span>
+		                                    <span class="goods_date_before">${auction_member.auction_price }</span>
+		                                </div>
+			                                <script type="text/javascript">
+			                                	function auction_memberGetTime${auction_member.auction_idx}() {
+			                                	  var element;
+			                                	  const endDay = new Date('${auction_member.auction_end}');
+			                                	  const currDay = new Date();
+			                                	  let diff = endDay - currDay;
+			                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+			                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+			                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+			                                	  diff -= diffHours * (1000 * 60 * 60);
+			                                	  const diffMin = Math.floor(diff / (1000 * 60));
+			                                	  diff -= diffMin * (1000 * 60);
+			                                	  const diffSec = Math.floor(diff / 1000);
+			                                	  element = document.getElementById("auction_memberTimeOut${auction_member.auction_idx}");
+			                                	  if(diffDays < 0){
+			                                		  element.innerHTML = "경매 종료";                    		  
+			                                	  } else {
+				                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+			                                	  }
+			                                	}
+			                                	(function() {
+			                                		return setInterval(() => auction_memberGetTime${auction_member.auction_idx}(), 1000);
+												}());
+			                               </script>
+		                               <div id="auction_memberTimeOut${auction_member.auction_idx}" style="color: red; text-align: right;"></div>
+		                            </div>
+		                        </a>
+		                    </div>
+		                    </c:forEach>
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<br>
+	                    	<br>
+	                    	<br>
+	                    	<div style="color: blue;">조회된 결과가 없습니다.</div>
+	                    </c:otherwise>
+                    </c:choose>
+                </div> 
+            </section>
         </div>
+            
         
 			
 			

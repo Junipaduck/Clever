@@ -40,6 +40,14 @@ public class AuctionService {
 		
 		return mapper.selectDetailList(auction_idx);
 	}
+
+	public List selectProductSearch(String auction_search) {
+		return mapper.selectProductSearch(auction_search);
+	}
+
+	public List selectMemberSearch(String auction_search) {
+		return mapper.selectMemberSearch(auction_search);
+	}
 	
 	
 	
