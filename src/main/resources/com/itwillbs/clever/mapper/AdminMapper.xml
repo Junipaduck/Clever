@@ -47,6 +47,13 @@
 				WHERE auction_idx = ${auction_idx}; 
 	</update>
 	
+	
+	<!-- 관리자 정보 조회 -->
+	<select id="selectAdminInfo" resultType="HashMap">
+		SELECT * 
+			FROM member
+			WHERE member_id = 'admin'	
+	</select>
 </mapper>
 
 

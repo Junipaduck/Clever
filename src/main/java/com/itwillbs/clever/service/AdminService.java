@@ -86,6 +86,13 @@ public class AdminService {
 		return mapper.selectAuctionAuthList();
 	}
 
+	
+	// 관리자 정보 조회
+	public HashMap<String, String> getAdminInfo() {
+		
+		return mapper.selectAdminInfo();
+	}
+
 
 
 		

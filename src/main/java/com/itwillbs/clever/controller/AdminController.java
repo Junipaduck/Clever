@@ -142,6 +142,16 @@ public class AdminController {
 		adminService.certifiedPhoneNumber(phone, randomNumber);
 		return Integer.toString(randomNumber);
 	}
+	
+	// 관리자 정보 페이지 이동 (계좌관리, 관리자 정보 관리 용)
+	@GetMapping(value = "/adminInfo.ad")
+	public String adminInfo(Model model) {
+		
+		HashMap<String, String> adminInfo = adminService.getAdminInfo();
+		model.addAttribute("adminInfo", adminInfo);
+		
+		return "admin/admin_info";
+	}
 }
 
 

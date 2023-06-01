@@ -13,8 +13,10 @@
                     <li class="nav-label first"></li>
                     <li><a class="has-arrow" href="adminMain.ad" aria-expanded="false">
                     	<i class="icon icon-single-04"></i><span class="nav-text">관리자 메인 페이지</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="adminInfo.ad">관리자 정보 관리</a></li>
+                        </ul>
                     </li>
-
                     <li class="nav-label">회원관리</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     	<i class="icon icon-app-store"></i><span class="nav-text">회원관리</span></a>

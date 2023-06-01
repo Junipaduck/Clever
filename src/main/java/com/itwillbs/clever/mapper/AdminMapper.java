@@ -26,5 +26,9 @@ public interface AdminMapper {
 
 	List<HashMap<String, String>> selectAuctionAuthList();
 
+	
+	// 관리자 정보 조회
+	HashMap<String, String> selectAdminInfo();
+
 
 }
