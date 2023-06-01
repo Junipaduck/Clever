@@ -175,7 +175,7 @@ display: flex;
                     <div class="goods_price_area">
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goods_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;">원</p>
+                            <p><input type="text" name="goods_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;"> 원</p>
                         </div>
                     </div>
                     <div class="goods_info_area">
@@ -183,6 +183,12 @@ display: flex;
                         <div>
                             <textarea name="goods_content" id="goods_content" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
+                        </div>
+                    </div>
+                    <div class="goods_price_area">
+                        <p>재고<span class="red">*</span></p>
+                        <div class="goods_price">
+                            <p><input type="text" name="goods_stock" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;"> 개</p>
                         </div>
                     </div>
 			        <div class="btn_submit_area">
