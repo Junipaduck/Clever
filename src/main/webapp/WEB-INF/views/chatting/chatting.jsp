@@ -54,19 +54,11 @@
         <div id="chatWrap">
             <div id="chatHeader">Everyone<input type="button" id="btnClose" value="채팅 나가기"></div>
             <div id="chatLog">
-<!--                 <div class="anotherMsg"> -->
-<!--                     <span class="anotherName">Boa</span> -->
-<!--                     <span class="msg">안녕?</span> -->
-<!--                     <span class="msg">나 꼽주고....</span> -->
-<!--                 </div> -->
-<!--                 <div class="myMsg"> -->
-<!--                     <span class="msg">안녕안녕</span> -->
-<!--                     <span class="msg">우리집고양이</span> -->
-<%--                     <img src="${pageContext.request.contextPath }/resources/images/고양이.jpg" style="width: 50px;"> --%>
-<!--                 </div> -->
+            <!-- 채팅 내용 출력 화면 -->
             </div>
             <form id="chatForm">
-                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요">
+            	<input type="text" style="display:none;"/> <!-- 의미없는 텍스트 박스 -->
+                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요" onkeypress="JavaScript:press(this.form)">
                 <input type="button" id="btnSend" value="보내기">
             </form>
         </div>
@@ -164,31 +156,48 @@
 
 
 // ------ 두번째 방법
-//전송 버튼 누르는 이벤트
-// var sock = new SockJS('http://localhost:8082/clever/chatting'); //원래꺼
-var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting'); //와르파일주소
+
+// 로컬주소로 연결시 소켓 연결 주소
+var sock = new SockJS('http://localhost:8082/clever/chatting');
+// war파일(DB공용폴더)로 연결시 소켓 연결 주소
+// var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
 // var sock = new WebSocket('ws://localhost:8089/clever/chatting');
+
+
+//전송 버튼 누르는 이벤트
 sock.onmessage = onMessage;
 sock.onopen = onOpen;
 sock.onclose = onClose;
 
+
+// 전송 버튼 누르는 이벤트
 $(function() {
+	// 엔터키 눌렀을 때 메세지 전송
+	$("#message").keypress(function(e) {
+		if (e.keyCode && e.keyCode === 13) {
+			$("#btnSend").trigger("click");
+		}
+	});
+	
 	$("#btnSend").click(function() {
 		console.log('send Message');
 		sendMessage();
+		$("#message").val('');
 	})
 });
 
+// 소켓에 메세지 전송
+function sendMessage() {
+	sock.send('${sId}' + ":" + $("#message").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
+}
+
+// 채팅나가기 버튼 누르는 이벤트
 $(function() {
 	$("#btnClose").click(function() {
 		onClose();
 	})
 });
 
-
-function sendMessage() {
-	sock.send('${sId}' + ":" + $("#message").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
-}
 //서버에서 메시지를 받았을 때
 function onMessage(msg) {
 	console.log(msg);
@@ -209,14 +218,13 @@ function onMessage(msg) {
 		console.log('arr[' + i + ']: ' + arr[i]);
 	}
 	
-// 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
 	var cur_session = '${sId}'; //현재 세션에 로그인 한 사람
 	console.log("cur_session : " + cur_session);
 	
 	chatId = arr[1];
 	message = arr[2];
 	
-//     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+// 로그인 한 클라이언트와 상대 클라이언트 구별하여 메세지 출력
 	if(chatId == cur_session){
 		
 // 		var str = "<div class='col-6'>";
@@ -242,7 +250,7 @@ function onMessage(msg) {
 	
 }
 
-//채팅창에 들어왔을 때
+// 소켓 연결
 function onOpen(evt) {
 	console.log("입장");
 	var user = '${sessionScope.sId}';
@@ -251,7 +259,7 @@ function onOpen(evt) {
 // 	console.log('${sId}');
 }
 
-//채팅창에서 나갔을 때
+// 소켓 연결 끊김
 function onClose(evt) {
 	console.log("퇴장");
 	var user = '${sessionScope.sId}';

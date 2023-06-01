@@ -17,7 +17,7 @@
 				#{member_phone},
 				CONCAT(#{member_address},' ',#{member_address2}),
 				CONCAT(#{member_birth}, '-', #{member_birth2}), 
-				CONCAT(#{member_email}, '@', #{member_email2}), -- email 문자열 결합
+				#{member_email}, 
 				#{member_interest},
 				'N',
 				'N',
