@@ -156,18 +156,15 @@
 
 
 // ------ 두번째 방법
-<<<<<<< HEAD
 
 // 로컬주소로 연결시 소켓 연결 주소
 var sock = new SockJS('http://localhost:8082/clever/chatting');
 // war파일(DB공용폴더)로 연결시 소켓 연결 주소
 // var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
-=======
-//전송 버튼 누르는 이벤트
-// var sock = new SockJS('http://localhost:8082/clever/chatting'); //원래꺼
-var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting'); //와르파일주소
->>>>>>> branch 'main' of https://github.com/Junipaduck/Clever
 // var sock = new WebSocket('ws://localhost:8089/clever/chatting');
+
+
+//전송 버튼 누르는 이벤트
 sock.onmessage = onMessage;
 sock.onopen = onOpen;
 sock.onclose = onClose;
