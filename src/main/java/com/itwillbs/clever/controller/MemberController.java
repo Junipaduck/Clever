@@ -7,9 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.*;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -135,30 +132,17 @@ public class MemberController {
 	}
 
 	
-	// 채팅 폼 포워딩
-	@GetMapping(value = "chatting")
-	public String chatting(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg","로그인 후 이용해주세요!");
-//			model.addAttribute("target","loginForm.me");
-//			return "success";
-//		}
-		
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		System.out.println(user);
-//		logger.info("==================================");
-//		logger.info("@ChatController, GET Chat / Username : " + user.getUsername());
+//	// 채팅 폼 포워딩					--- chattingcontroller로 이동할게요 (0601 최보아)
+//	@GetMapping(value = "chatting")
+//	public String chatting(HttpSession session, Model model) {
+////		if(session.getAttribute("sId") == null) {
+////			model.addAttribute("msg","로그인 후 이용해주세요!");
+////			model.addAttribute("target","loginForm.me");
+////			return "success";
+////		}
+//		return "chatting/chatting";
 //		
-//		model.addAttribute("userid", user.getUsername());
-		return "chatting/chatting";
-		
-		
-//		mv.setViewName("chatting/chatting");
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		System.out.println("user name : " + user.getUsername());
-//		
-//		mv.addObject("userid", user.getUsername());
-	}
+//	}
 	
 
 	

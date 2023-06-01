@@ -40,14 +40,18 @@
 	<context:property-placeholder location="classpath:/config/appdata.properties"/>
 	
 	<!-- 웹소켓 핸들러 -->
+	<beans:bean id="webSocketHandler" class="com.itwillbs.clever.socket.WebSocketHandler"/>
+	
 	<websocket:handlers>
 		<websocket:mapping handler="webSocketHandler" path="/chatting"/>
-<!-- 		<websocket:handshake-interceptors> -->
-<!-- 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean> -->
-<!-- 		</websocket:handshake-interceptors> -->
+		<!-- 요청 관련 데이터 중 httpSession(로그인정보, 채팅방번호)을 webSocketSession에게 넣어줌 -->
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
+		</websocket:handshake-interceptors>
+		<!-- SockJS 라이브러리를 이용해서 만들어진 웹소켓 객체임을 의미 -->
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
-	<beans:bean id="webSocketHandler" class="com.itwillbs.clever.socket.WebSocketHandler"/>
+	
 	
 	
 </beans:beans>

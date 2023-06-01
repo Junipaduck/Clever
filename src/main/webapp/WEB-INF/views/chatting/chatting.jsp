@@ -32,7 +32,6 @@
 <!-- main_content 영역 -->
 <div id="main_content">
 	<div class="page-navigation">
-	<button onclick="location.href='chatTest'">test</button>
 	<div id="contentWrap">
 <!--     <nav> -->
 <!-- 		<span id="nav-header"> -->
@@ -57,8 +56,8 @@
             <!-- 채팅 내용 출력 화면 -->
             </div>
             <form id="chatForm">
-            	<input type="text" style="display:none;"/> <!-- 의미없는 텍스트 박스 -->
-                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요" onkeypress="JavaScript:press(this.form)">
+            	<input type="text" style="display:none;"/> <!-- 의미없는 텍스트 박스 - 엔터키 입력 시 메세지 전송을 위해 필요함(form안에 text박스가 하나만 있으면 안됨) -->
+                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요">
                 <input type="button" id="btnSend" value="보내기">
             </form>
         </div>
@@ -87,186 +86,141 @@
 
 		
 <script type="text/javascript">
-// ------ 첫번째 시도
-// 	var ws;
-// 	var userId = '{param.id}';
-	
-// 	function connect() {
-// 		// 웹소켓 객체 생성
-// 		// 핸들러 등록(연결, 메세지 수신, 연결 종료)
-		
-// 		// url 연결할 서버 경로
-// 		ws = new SockJS('http://localhost:8089/clever/chatting');
-		
-// 		ws.onopen = function() {
-// 			console.log('연결 생성');
-// 			register();
-// 		};
-// 		ws.onmessage = function(e) {
-// 			console.log('메세지 받음');
-// 			var data = e.data;
-// 			addMsg(data);
-// 		};
-// 		ws.onclose = function() {
-// 			console.log('연결 끊김');
-// 		};
-// 	}
-	
-// 	// 원래 채팅 메세지에 방금 받은 메세지 더하기
-// 	function addMsg(msg) {
-// 		var chat = $('#chatLog').val();
-// 		chat = chat + "\n상대방 : " + msg;
-// 		$('#chatLog').val(chat);
-// 	}
-	
-// 	// 메세지 수신을 위한 서버에 id등록하기
-// 	function register() {
-// 		var msg = {
-// 				type : "register",
-// 				userid : '${param.id}'
-// 		};
-// 		ws.send(JSON.stringify(msg));
-// 	}
-	
-// 	function sendMsg() {
-// 		var msg = {
-// 				type : "chat",
-// 				target : $("#targetUser").val(),
-// 				message : $("#chatLog").val()
-// 		};
-// 		ws.send(JSON.stringify(msg));
-// 	};
-	
-// 	// 페이지 로딩되면 connect 실행
-// 	$(function() {
-// 		connect();
-// 		console.log("로딩완");
-// 		$('#btnSend').on("click", function() {
-// 			var chat = $("#chatLog").val();
-// 			chat = caht + "\n나 : " + $("#message").val();
-// 			$("chatLog").val(chat);
-// 			sendMsg();
-// 			$("#chatLog").val("");
-// 		})
-// 	});
-
-
-// function() {
-	
-
-
-// ------ 두번째 방법
 
 // 로컬주소로 연결시 소켓 연결 주소
-var sock = new SockJS('http://localhost:8082/clever/chatting');
-// war파일(DB공용폴더)로 연결시 소켓 연결 주소
-// var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
-// var sock = new WebSocket('ws://localhost:8089/clever/chatting');
+var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
+//war파일(DB공용폴더)로 연결시 소켓 연결 주소
+//var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
+//var chatSocket = new WebSocket('ws://localhost:8089/clever/chatting');
 
 
-//전송 버튼 누르는 이벤트
-sock.onmessage = onMessage;
-sock.onopen = onOpen;
-sock.onclose = onClose;
+//el태그통해 js변수 셋팅
+// const userNo = "${loginUser.userNo}";
+const userNo = "";
+const userName = "${sessionScope.sId}";
+const chatRoomNo = "${chatRoomNo}";
+// const contextPath = "${pageContext.request.requestURL}";
+
+// /chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
+// var chatSocket = new SockJS(contextPath + "/chatting");
 
 
-// 전송 버튼 누르는 이벤트
-$(function() {
-	// 엔터키 눌렀을 때 메세지 전송
-	$("#message").keypress(function(e) {
-		if (e.keyCode && e.keyCode === 13) {
-			$("#btnSend").trigger("click");
-		}
-	});
-	
-	$("#btnSend").click(function() {
-		console.log('send Message');
-		sendMessage();
-		$("#message").val('');
-	})
+
+// // 페이지 로딩 완료시 채팅창을 맨 아래로 내리기. 즉시 실행함수. IIFE
+// (function() {
+//  const displayChatting = document.getElementsByClassName("display-chatting")[0];
+
+//  if (displayChatting != null) {
+//      displayChatting.scrollTop = displayChatting.scrollHeight;
+//  }
+// })();
+
+// 메세지 전송 버튼 클릭 시 이벤트
+document.getElementById("btnSend").addEventListener("click", sendMessage);
+
+// 엔터키 눌렀을 때 메세지 전송
+$("#message").keypress(function(e) {
+	if (e.keyCode && e.keyCode === 13) {
+		$("#btnSend").trigger("click");
+	}
 });
 
-// 소켓에 메세지 전송
+// 메세지 전송
 function sendMessage() {
-	sock.send('${sId}' + ":" + $("#message").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
+
+	// 채팅이 입력되는 textarea요소 가져오기
+	const message = document.getElementById("message");
+
+	// 채팅 내용을 입력하지 않았을 때
+	if (message.value.trim().length == 0) {
+     
+		alert("채팅내용을 입력해주세요!");
+		message.value = "";		// text입력창 초기화
+		message.focus();
+		
+	// 채팅 내용 있을 때	
+	} else {
+	const chatMessage = {		// js객체로 생성
+		"userNo": userNo,
+		"userName": userName,
+		"chatRoomNo": chatRoomNo,
+		"message": message.value
+	};
+
+	console.log(chatMessage);
+	console.log(JSON.stringify(chatMessage));
+
+	// 소켓으로 내용 보내기
+	chatSocket.send(JSON.stringify(chatMessage));
+	message.value = "";		// text입력창 초기화
+	}
+
 }
 
-// 채팅나가기 버튼 누르는 이벤트
-$(function() {
-	$("#btnClose").click(function() {
-		onClose();
-	})
-});
+// 서버에서 메시지를 받았을 때
+chatSocket.onmessage = function(e) {
 
-//서버에서 메시지를 받았을 때
-function onMessage(msg) {
-	console.log(msg);
-	var data = msg.data;
-	var chatId = null; // 메세지를 보낸 사람
-	var message = null;
-	console.log('data = ' + data);
-	console.log('${sessionScope.senderId}');
-// 	stompClient = Stomp.over(socket);
-// 	stompClient.connect({}, function(frame) {
-// 	        console.log(socket._transport.url); 
-// 	        //ws://localhost:8080/socket/039/byxby3jv/websocket
-// 	        //sessionId는 byxby3jv
-// 	    });
-	
-	var arr = data.split(":");
-	for(var i=0; i<arr.length; i++){
-		console.log('arr[' + i + ']: ' + arr[i]);
-	}
-	
-	var cur_session = '${sId}'; //현재 세션에 로그인 한 사람
-	console.log("cur_session : " + cur_session);
-	
-	chatId = arr[1];
-	message = arr[2];
-	
-// 로그인 한 클라이언트와 상대 클라이언트 구별하여 메세지 출력
-	if(chatId == cur_session){
-		
-// 		var str = "<div class='col-6'>";
-// 		str += "<div class='alert alert-secondary'>";
-// 		str += "<b>" + chatId + " : " + message + "</b>";
+	// 전달받은 메세지를 JS객체로 변환
+	const chatMessage = JSON.parse(e.data);
+
+	// 내가 쓴 채팅
+	if (chatMessage.userNo == userNo) {
 		var str = "<div class='myMsg'>";
-		str += "<span class='msg'><b>"+ chatId + " : "  + message + "</b></span>";
+		str += "<span class='msg'><b>"+ chatMessage.userName + " : "  + chatMessage.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);
-	}
-	else{
-		
-// 		var str = "<div class='col-6'>";
-// 		str += "<div class='alert alert-warning'>";
-// 		str += "<b>" + chatId + " : " + message + "</b>";
+	} else {
 		var str = "<div class='anotherMsg'>";
-		str += "<span class='msg'>"+ chatId +" : <b>"  + message + "</b></span>";
+		str += "<span class='msg'>"+ chatMessage.userName +" : <b>"  + chatMessage.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);
 	}
-	
-}
+
+// 	// 채팅창을 제일밑으로 내리기
+// 	displayChatting.scrollTop = displayChatting.scrollHeight;
+// 	// scrollTop : 스크롤 이동
+// 	// scrollHeight : 스크롤이되는 요소의 전체 높이.
+
+};
+
+
+// function getCurrentTime() {
+// 	const now = new Date();
+
+// 	const time = now.getFullYear() + "년 " +
+// 					addZero(now.getMonth() + 1) + "월 " +
+// 					addZero(now.getDate()) + "일 " +
+// 					addZero(now.getHours()) + ":" +
+// 					addZero(now.getMinutes()) + ":" +
+// 					addZero(now.getSeconds()) + " ";
+
+// 	return time;
+// }
+
+// // 10보다 작은수가 매개변수로 들어오는경우 앞에 0을 붙여서 반환해주는함수.
+// function addZero(number) {
+// 	return number < 10 ? "0" + number : number;
+// }
+
+
 
 // 소켓 연결
-function onOpen(evt) {
-	console.log("입장");
+chatSocket.onopen = function(e) {
+	console.log('${sessionScope.sId}' + " 입장");
 	var user = '${sessionScope.sId}';
 	var str = user + "님이 입장하셨습니다.";
 	$("#chatLog").append(str);
-// 	console.log('${sId}');
 }
 
-// 소켓 연결 끊김
-function onClose(evt) {
-	console.log("퇴장");
+// 소켓 연결 끊김 - (0601최보아) 나중에 상대방이 채팅방 나가면 상대방 아이디랑 함께 출력해줘야함
+chatSocket.onclose = function(e) {
+	console.log('${sessionScope.sId}' + " 퇴장");
 	var user = '${sessionScope.sId}';
 	var str = user + " 님이 퇴장하셨습니다.ㅜ";
 	$("#chatLog").append(str);
 }
-// }
 </script>
 	
 
