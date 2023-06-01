@@ -99,6 +99,7 @@
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
+                                                <th>상품재고</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -115,6 +116,7 @@
 														<img alt="..." src="${pageContext.request.contextPath }/resources/upload/${fileName}" style="height: 50px;width: 50px;">
                                                 	</td>
 	                                                <td>${goodsList.goods_date }</td>
+	                                                <td>${goodsList.goods_stock }개</td>
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
@@ -126,6 +128,7 @@
                                                 <th>상품설명</th>
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
+                                                <th>상품재고</th>
                                             </tr>
                                         </tfoot>
                                     </table>

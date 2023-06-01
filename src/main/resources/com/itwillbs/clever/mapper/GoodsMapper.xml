@@ -16,6 +16,7 @@
 					, #{goods_file}
 					, #{goods_file_path}
 					, now()
+					, #{goods_stock}
 				)
 	</insert>
 	
