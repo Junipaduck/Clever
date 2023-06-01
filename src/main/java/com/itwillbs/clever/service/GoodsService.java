@@ -31,5 +31,11 @@ public class GoodsService {
 		return mapper.selectGoodsList();
 	}
 
+	// 굿즈 수정용 굿즈 목록 조회
+	public HashMap<String, String> getGoods(int goods_idx) {
+		
+		return mapper.selectGoods(goods_idx);
+	}
+
 	
 }

@@ -12,6 +12,9 @@ public interface GoodsMapper {
 
 	List<HashMap<String, String>> selectGoodsList();
 
+	// 굿즈 수정용 조회
+	HashMap<String, String> selectGoods(int goods_idx);
+
 }
 
 

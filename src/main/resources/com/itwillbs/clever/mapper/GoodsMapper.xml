@@ -26,7 +26,12 @@
 			FROM goods
 	</select>
 	
-	
+	<!-- 굿즈 수정용 목록 조회 -->
+	<select id="selectGoods" resultType="HashMap">
+		SELECT *
+			FROM goods
+			WHERE goods_idx = ${goods_idx}
+	</select>
 </mapper>
 
 

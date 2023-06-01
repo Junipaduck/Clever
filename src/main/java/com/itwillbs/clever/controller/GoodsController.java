@@ -102,8 +102,17 @@ public class GoodsController {
 	
 	// 굿즈 등록 수정 페이지 
 	@GetMapping(value = "/storeModify.ad")
-	public String storeModify() {
+	public String storeModify(@RequestParam int goods_idx, Model model) {
+		
+		HashMap<String, String> goods = goodsService.getGoods(goods_idx);
+		model.addAttribute("goods", goods);
+		
 		return "admin/goods_store_modify_form";
+	}
+	
+	@PostMapping(value = "/storeModifyPro.ad")
+	public String storeModifyPro() {
+		return "redirect:/storeList.ad";
 	}
 	
 	// 현재 판매 중인 굿즈 목록 조회

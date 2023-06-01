@@ -151,7 +151,10 @@ public class AdminController {
 	public String adminInfo(Model model) {
 		
 		HashMap<String, String> adminInfo = adminService.getAdminInfo();
+		
 		model.addAttribute("adminInfo", adminInfo);
+		
+		// 클라이언트 id 저장
 		model.addAttribute("client_id", client_id);
 		
 		return "admin/admin_info";

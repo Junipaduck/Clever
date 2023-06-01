@@ -100,6 +100,7 @@
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
                                                 <th>상품재고</th>
+                                                <th>상품수정</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -117,6 +118,9 @@
                                                 	</td>
 	                                                <td>${goodsList.goods_date }</td>
 	                                                <td>${goodsList.goods_stock }개</td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="location.href='storeModify.ad?goods_idx=${goodsList.goods_idx}'">수정하기</button>
+	                                                </td>
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
@@ -129,6 +133,7 @@
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
                                                 <th>상품재고</th>
+                                                <th>상품수정</th>
                                             </tr>
                                         </tfoot>
                                     </table>
