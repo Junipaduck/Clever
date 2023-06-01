@@ -32,6 +32,9 @@ public class AdminController {
 	@Autowired
 	FileUpload fileUpload;
 	
+	@Value("${client_id}")
+	private String client_id;
+	
 	@GetMapping(value = "/adminMain.ad")
 	public String adminMain(HttpSession session, Model model) {
 		
@@ -149,6 +152,7 @@ public class AdminController {
 		
 		HashMap<String, String> adminInfo = adminService.getAdminInfo();
 		model.addAttribute("adminInfo", adminInfo);
+		model.addAttribute("client_id", client_id);
 		
 		return "admin/admin_info";
 	}

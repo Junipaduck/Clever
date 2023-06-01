@@ -185,11 +185,11 @@
 				authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
 					+ "?response_type=code"
 					+ "&client_id=${client_id}"
-					+ "&redirect_uri=http://localhost:8082/clever/callback"
+					+ "&redirect_uri=http://localhost:8082/fintech/callback"
 					+ "&scope=login inquiry transfer"
 					+ "&state=12345678901234567890123456789012"
 					+ "&auth_type=0";
-				// 산업은행 - 12345678 계좌 입력했음
+				// 산업은행 - 222123456789 & 2팀 계좌인증 테스트 
 			});
 		});
 	</script>
