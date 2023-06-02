@@ -24,9 +24,9 @@
 	<update id="updateAccountAuthStatus">
 		UPDATE member
 			SET
-				account_auth_status = 'Y'
+				account_auth = 'Y'
 			WHERE
-				id = #{id}
+				member_id = #{member_id}
 	</update>
 	
 	<!-- 계좌 정보 조회 - SELECT -->
