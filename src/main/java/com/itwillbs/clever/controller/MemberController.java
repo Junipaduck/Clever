@@ -1,22 +1,16 @@
 package com.itwillbs.clever.controller;
 
-import java.util.*;
+import javax.servlet.http.*;
 
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.*;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
-import com.itwillbs.clever.socket.WebSocketHandler;
+import com.itwillbs.clever.socket.*;
 import com.itwillbs.clever.vo.*;
 
 @Controller
@@ -28,6 +22,10 @@ public class MemberController {
 	
 	@Autowired
 	private BankService bankService;
+	
+	@Value("${client_id}")
+	private String client_id;
+	
 	
 	// 로그인 페이지 포워딩 
 	@GetMapping("/loginForm.me")
