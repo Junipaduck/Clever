@@ -179,52 +179,10 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=31000000">출산/육아</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=20000000">장난감/완구</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=32000000">유아동의류</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=49000000">유아동신발/잡화</a></li>
-                
-				</ul>
-			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=27000000">가구/DIY</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=23000000">조명/인테리어</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=75000000">침구/커튼</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=28000000">생활용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=44000000">주방용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=51000000">신선식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=19000000">건강식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=38000000">커피/음료</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=64000000">가공식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=39000000">생필품</a></li>
-                
-				</ul>
-			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=33000000">건강/의료용품</a></li>
-                
                     <li class=""><a href="/corner/UsedMarket.aspx?category=45000000">반려동물용품</a></li>
                 
                     <li class=""><a href="/corner/UsedMarket.aspx?category=46000000">악기/취미</a></li>
@@ -235,21 +193,7 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=02000000">카메라</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=14000000">음향기기</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=15000000">게임</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=07000000">모바일/태블릿</a></li>
-                
-				</ul>
-			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
@@ -263,27 +207,23 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=21000000">휘트니스/수영</a></li>
                 
                     <li class=""><a href="/corner/UsedMarket.aspx?category=37000000">스포츠의류/운동화</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=08000000">골프</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=48000000">등산/아웃도어</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=48000000">등산/아웃도어/캠핑/낚시</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=72000000">캠핑/낚시</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=73000000">구기/라켓</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=72000000">스포츠 용품</a></li>
                 
                     <li class=""><a href="/corner/UsedMarket.aspx?category=76000000">자전거/보드/기타레저</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
@@ -293,21 +233,21 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=29000000">영상가전</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=27000000">가구/DIY</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=34000000">계절가전</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=23000000">조명/인테리어</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=03000000">주방가전</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=75000000">침구/커튼</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=71000000">생활/미용가전</a></li>
+                    <li class=""><a href="/corner/UsedMarket.aspx?category=28000000">생활용품</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
@@ -317,7 +257,7 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
@@ -331,7 +271,6 @@ height: 90px;
                 
 				</ul>
 			</div>
-    
 			<!-- //대분류 -->
 			
 			<!-- 중소분류 -->

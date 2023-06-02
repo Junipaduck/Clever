@@ -172,7 +172,7 @@ function startEndDate() {
                         <div>
                             <div class="goods_category">
                                 <div class="goods_Lcategory">
-                                    <div>의류</div>
+                                    <div>의류/잡화</div>
                                     <div>악세서리</div>
                                 </div>
                                 <div class="goods_Mcategory">
