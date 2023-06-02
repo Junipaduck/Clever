@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clever - 상품등록</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<title>Clever - 중고상품 등록</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -223,7 +224,7 @@ display: flex;
                         </div>
                     </div>
                     <div class="goods_info_area">
-                        <p>설명<span class="red">*</span></p>
+                        <p>상품설명<span class="red">*</span></p>
                         <div>
                             <textarea name="product_content" id="product_content" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
@@ -254,7 +255,7 @@ display: flex;
 <!--                     </div> -->
                     <!--번개페이 뻐른 판매-->
                     <div class="fast_selling_area">
-                        <h2>클레버페이</h2>
+                        <h2>결제수단</h2>
                         <div class="goods_option_area">
                             <p>옵션</p>
                             <div class="goods_option">
@@ -263,6 +264,8 @@ display: flex;
 		                            <label for="account">계좌이체</label>
 		                            <input type="radio" name="sale_pay" value="카드결제" id="sale_pay2">
 		                            <label for="point">카드결제</label>
+		                            <input type="radio" name="sale_pay" value="만나서결제" id="sale_pay3">
+		                            <label for="point">만나서결제</label>
 		                        </div>
                             </div>
                         </div>

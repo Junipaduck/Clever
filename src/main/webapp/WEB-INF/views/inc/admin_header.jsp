@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>admin header</title>
 </head>
+<script type="text/javascript">
+	function confirmLogout(){
+		let result = confirm("로그아웃 하시겠습니까?");	
+		return result;
+	}
+</script>
 <body>
+
         <!--**********************************
             Header start
         ***********************************-->
@@ -21,14 +29,20 @@
 	                            <span class="ml-2">홈</span>
 	                        </a>
                         </div>
-				           <a href="./page-login.html" class="dropdown-item">
+                        	<c:choose>
+                        		<c:when test="">
+						           <a href="./page-login.html" class="dropdown-item">
                                       <i class="icon-key"></i>
                                       <span class="ml-2">로그인</span>
-                           </a> | 
-				           <a href="./page-login.html" class="dropdown-item">
+		                           </a>  
+                        		</c:when>
+                        		<c:otherwise>
+						           <a href="adminLogout.ad" class="dropdown-item" onclick="return confirmLogout()">
                                       <i class="icon-key"></i>
                                       <span class="ml-2">로그아웃</span>
-                           </a>
+		                           </a>
+                        		</c:otherwise>
+                        	</c:choose>
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">

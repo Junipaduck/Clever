@@ -3,18 +3,27 @@
 <mapper namespace="com.itwillbs.clever.mapper.ChattingMapper">
 	
 	<!-- 채팅방 리스트 조회 -->
+	<select id="selectChatList" resultType="com.itwillbs.clever.vo.ChatListVO">
+		SELECT *
+			FROM chat_list
+			WHERE product_idx = ${product_idx}
+	</select>
 	
 	
 	<!-- 채팅방 생성 -->
 	<insert id="openRoom">
-	<selectKey keyProperty="chat_idx" resultType="int" order="BEFORE">
-			SELECT IFNULL(MAX(chat_idx), 0) FROM chat_list
-	</selectKey>
-		INSERT
-			INTO chat_list
+		<selectKey keyProperty="chat_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(chat_idx), 0) FROM chat_list
+		</selectKey>
+			INSERT
+				INTO 
+					chat_list
 				VALUES (
 					#{chat_idx} + 1
-					,
+					, #{product_idx}
+					, now()
+					, '나중에 수정'
+					, 'Y'
 				)
 	</insert>
 

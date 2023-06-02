@@ -52,7 +52,7 @@ public class BankApiClient {
 		parameters.add("code", authResponse.get("code")); // 응답데이터 중 code 파라미터 사용
 		parameters.add("client_id", client_id);
 		parameters.add("client_secret", client_secret);
-		parameters.add("redirect_uri", "http://localhost:8082/fintech/callback");
+		parameters.add("redirect_uri", "http://localhost:8082/clever/callback"); // 콜백 주소 변경
 		parameters.add("grant_type", "authorization_code");
 		logger.info("◇◇◇◇◇ parameters : " + parameters.toString());
 		

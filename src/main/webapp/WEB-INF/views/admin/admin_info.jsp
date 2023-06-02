@@ -120,8 +120,8 @@
                                             <div class="col-sm-10">
                                     			<c:choose>
 													<c:when test="${adminInfo.account_auth eq 'Y' }">
-														<button type="button" class="btn btn-primary">계좌관리</button>
-														<input type="button" value="계좌관리" onclick="location.href='bank_userInfo'">
+														<button type="button" class="btn btn-primary" onclick="location.href='bank_userInfo'">계좌관리</button>
+<!-- 														<input type="button" value="계좌관리" onclick="location.href='bank_userInfo'"> -->
 														계좌 인증 완료
 													</c:when>
 													<c:otherwise>
@@ -185,7 +185,7 @@
 				authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
 					+ "?response_type=code"
 					+ "&client_id=${client_id}"
-					+ "&redirect_uri=http://localhost:8082/fintech/callback" // 나중에 callback 주소 변경 요청
+					+ "&redirect_uri=http://localhost:8082/clever/callback" // 나중에 callback 주소 변경 요청
 					+ "&scope=login inquiry transfer"
 					+ "&state=12345678901234567890123456789012"
 					+ "&auth_type=0";

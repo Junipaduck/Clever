@@ -1,23 +1,17 @@
 package com.itwillbs.clever.controller;
 
-import java.util.*;
+import javax.servlet.http.*;
 
-import javax.servlet.http.HttpSession;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.*;
-
-import com.itwillbs.clever.service.MemberService;
-import com.itwillbs.clever.socket.WebSocketHandler;
-import com.itwillbs.clever.vo.MemberVO;
+import com.itwillbs.clever.service.*;
+import com.itwillbs.clever.socket.*;
+import com.itwillbs.clever.vo.*;
 
 @Controller
 public class MemberController {
@@ -25,6 +19,13 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private BankService bankService;
+	
+	@Value("${client_id}")
+	private String client_id;
+	
 	
 	// 로그인 페이지 포워딩 
 	@GetMapping("/loginForm.me")
@@ -112,6 +113,14 @@ public class MemberController {
 			if(isSuccess) {
 				//로그인 성공 시 세션 객체에 아이디 저장 
 				session.setAttribute("sId", member.getMember_id());
+				
+				// 핀테크 정보 세션 객체에 저장
+				AccountVO account = bankService.getAccount(member.getMember_id());
+				if(account != null) {
+					session.setAttribute("access_token", account.getAccess_token());
+					session.setAttribute("user_seq_no", account.getUser_seq_no());
+				}
+				
 				return "redirect:/"; // 로그인 성공 시 -> main 페이지로 리다이렉트 이동 
 			} else {
 				model.addAttribute("msg","로그인 실패!");

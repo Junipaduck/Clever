@@ -6,8 +6,8 @@ import com.itwillbs.clever.vo.ChatListVO;
 
 public interface ChattingMapper {
 
-	List<ChatListVO> selectChatList(String sId);
+	List<ChatListVO> selectChatList(int product_idx);
 
-	int openRoom(String sId);
+	int openRoom(int product_idx);
 
 }

@@ -98,6 +98,7 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 // const userNo = "${loginUser.userNo}";
 const userNo = "";
 const userName = "${sessionScope.sId}";
+const productIdx = "${param.product_idx}";
 const chatRoomNo = "${chatRoomNo}";
 // const contextPath = "${pageContext.request.requestURL}";
 
@@ -141,8 +142,8 @@ function sendMessage() {
 	// 채팅 내용 있을 때	
 	} else {
 	const chatMessage = {		// js객체로 생성
-		"userNo": userNo,
 		"userName": userName,
+		"productIdx": productIdx,
 		"chatRoomNo": chatRoomNo,
 		"message": message.value
 	};

@@ -40,5 +40,30 @@ public class ProductService {
 		return mapper.selectProductDetail(product_idx);
 	}
 
+	// 중고 판매자 신고 insert
+//	public int insertProductReport(int product_idx) {
+//		return mapper.insertProductReport(product_idx);
+//	}
+
+	// 중고상품 카테고리가 같은 연관상품 select
+	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
+		return mapper.selectProductSameCategory(product_idx);
+	}
+
+	
+	// 중고상품 사진파일 첫번째업로드한것 select
+	public List<HashMap<String, String>> selectFile() {
+		return mapper.selectFile();
+	}
+
+	// 중고상품 사진파일 전부 select
+	public List<HashMap<String, String>> selectFiles() {
+		return mapper.selectFiles();
+	}
+
+	
+
+
+	
 	
 }
