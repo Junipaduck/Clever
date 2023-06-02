@@ -184,7 +184,7 @@
 	                                            </div>
 	                                        </div>
 	                                        <div class="col-4">
-	                                    	    <a href="chatting">
+	                                    	    <a href="chatting?product_idx=${param.product_idx}" >
 		                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
 		                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="판매자채팅"> 판매자채팅
 		                                            </div>

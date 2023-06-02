@@ -5,9 +5,11 @@ import java.security.Principal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.json.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.integration.config.xml.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.socket.*;
@@ -79,7 +81,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
     // 멀티스레드 환경에서 하나의 컬렉션요소에 여러 스레드가 동시에 접근하면 충돌이 발생할 수 있으므로 동기화를 충돌이 안나도록 진행
 	
 //	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
-	// arrayList는 보안에 약할 수 있어서 안씀..
+	// arrayList는 안전하지 않아 안씀..
 	
 	// 연결되었을 때 - 클라이언트가 연결됐을 떄
 	@Override
@@ -118,7 +120,14 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
 		
-	    logger.info("전달된 메세지 : " + message.getPayload()); 
+		String msg = message.getPayload();
+	    logger.info("전달된 메세지 : " + msg);
+	    
+//	    for(WebSocketSession s : sessions) {
+//			System.out.println(s);
+//			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
+//		}
+	    
 
 //	    // JSON형태로 넘어온 데이터를 특정VO필드에 맞게 자동매핑
 //	    ObjectMapper objectMapper = new ObjectMapper();
