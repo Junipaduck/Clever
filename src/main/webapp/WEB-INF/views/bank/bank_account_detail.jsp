@@ -115,22 +115,6 @@
                                             	<input type="text" class="form-control" placeholder="${account.available_amt }" readonly="readonly">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">계좌인증</label>
-                                            <div class="col-sm-10">
-                                    			<c:choose>
-													<c:when test="${adminInfo.account_auth eq 'Y' }">
-														<button type="button" class="btn btn-primary" onclick="location.href='bank_userInfo'">계좌관리</button>
-<!-- 														<input type="button" value="계좌관리" onclick="location.href='bank_userInfo'"> -->
-														계좌 인증 완료
-													</c:when>
-													<c:otherwise>
-														<button type="button" class="btn btn-primary" id="btnAccountAuth">인증하기</button>
-														(계좌 인증 과정이 필요합니다.)
-													</c:otherwise>
-												</c:choose>
-                                            </div>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
