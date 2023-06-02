@@ -14,14 +14,16 @@ public class ChattingService {
 	@Autowired
 	private ChattingMapper mapper;
 
-	public List<ChatListVO> selectChatList(String sId) {
-		return null;
-//		return mapper.selectChatList(sId);
+	public List<ChatListVO> selectChatList(int product_idx) {
+		return mapper.selectChatList(product_idx);
 	}
 
-	public int openRoom(String sId) {
-		return 0;
-//		return mapper.openRoom(sId);
+//	public int openRoom(int product_idx) {
+//		return mapper.openRoom(product_idx);
+//	}
+
+	public int OpenRoom(int chat_idx, int product_idx) {
+		return mapper.openRoom(chat_idx, product_idx);
 	}
 
 

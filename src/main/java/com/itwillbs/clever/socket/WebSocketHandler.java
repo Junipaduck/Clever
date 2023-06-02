@@ -5,22 +5,36 @@ import java.security.Principal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.ibatis.annotations.*;
+import org.json.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.integration.config.xml.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.*;
 import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itwillbs.clever.vo.ChatMessageVO;
+import com.itwillbs.clever.controller.*;
+import com.itwillbs.clever.service.*;
+import com.itwillbs.clever.vo.*;
 
+import kotlin.*;
 import okhttp3.internal.ws.RealWebSocket.Message;
 
 @Controller
 public class WebSocketHandler extends TextWebSocketHandler implements InitializingBean{
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
+	
+	@Autowired
+	private ChattingService chattingService;
+	
+	@Autowired
+	private ChattingController chattingController;
 
 //	private List<WebSocketSession> users;
 //	private Map<String, Object> userMap;
@@ -79,7 +93,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
     // 멀티스레드 환경에서 하나의 컬렉션요소에 여러 스레드가 동시에 접근하면 충돌이 발생할 수 있으므로 동기화를 충돌이 안나도록 진행
 	
 //	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
-	// arrayList는 보안에 약할 수 있어서 안씀..
+	// arrayList는 안전하지 않아 안씀..
 	
 	// 연결되었을 때 - 클라이언트가 연결됐을 떄
 	@Override
@@ -118,12 +132,35 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception{
 		
-	    logger.info("전달된 메세지 : " + message.getPayload()); 
+		String msg = message.getPayload();
+	    logger.info("전달된 메세지 : " + msg);
+	    
+//	    for(WebSocketSession s : sessions) {
+//			System.out.println(s);
+//			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
+//		}
+	    
 
 //	    // JSON형태로 넘어온 데이터를 특정VO필드에 맞게 자동매핑
-//	    ObjectMapper objectMapper = new ObjectMapper();
-//	    ChatMessage chatMessage = objectMapper.readValue(message.getPayload(), ChatMessage.class);
-//	    System.out.println(chatMessage);
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    ChatListVO chatMessage = objectMapper.readValue(message.getPayload(), ChatListVO.class);
+	    System.out.println(chatMessage);
+	    System.out.println(chatMessage.getChat_idx());
+	    
+	    List<ChatListVO> selectChatList = chattingService.selectChatList(chatMessage.getProduct_idx());
+	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
+	    
+	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성
+	    if(selectChatList.isEmpty()) {
+	    	System.out.println("채팅방이 없어요ㅋㅋㅋㅋㅋ^^");
+	    	int openChatRoom = chattingService.OpenRoom(chatMessage.getChat_idx(), chatMessage.getProduct_idx());
+	    	System.out.println("채팅방이 없어요^^");
+	    	if(openChatRoom > 0) { 
+	    		System.out.println("채팅방 생성 성공");
+	    	} else {
+	    		System.out.println("채팅방 생성 실패");
+	    	}
+	    }
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);
 //

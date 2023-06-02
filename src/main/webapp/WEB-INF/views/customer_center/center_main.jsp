@@ -164,8 +164,7 @@
 					<div class="bbs-table-list">
 						<dl class="bbs-link bbs-link-btm animated">
 							<dd>
-								<a href="/board/board.html?code=jo112&page=1&board_cate=&type=i"
-									class="CMbutton1" style="color: white;">글쓰기</a>
+								<a href="noticeForm.ad" class="CMbutton1" style="color: white;">글쓰기</a>
 							</dd>
 						</dl>
 						<!-- 자주묻는 질문 시작 -->

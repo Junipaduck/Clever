@@ -14,6 +14,9 @@ public interface GoodsMapper {
 
 	// 굿즈 수정용 조회
 	HashMap<String, String> selectGoods(int goods_idx);
+	
+	// 굿즈 수정
+	int updateGoods(GoodsVO goods);
 
 }
 

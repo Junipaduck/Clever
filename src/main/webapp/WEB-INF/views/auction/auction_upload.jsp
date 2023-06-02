@@ -172,8 +172,15 @@ function startEndDate() {
                         <div>
                             <div class="goods_category">
                                 <div class="goods_Lcategory">
-                                    <div>의류</div>
-                                    <div>악세서리</div>
+                                    <div>패션의류</div>
+                                    <div>패션잡화</div>
+                                    <div>취미/컬렉션</div>
+                                    <div>디지털</div>
+                                    <div>스포츠/레저</div>
+                                    <div>뷰티</div>
+                                    <div>생활가전</div>
+                                    <div>자동차/공구</div>
+                                    <div>도서/기타</div>
                                 </div>
                                 <div class="goods_Mcategory">
                                     중분류 선택
@@ -181,10 +188,13 @@ function startEndDate() {
                                 <div class="goods_Mcategory_cloth hidden">
                                     <div>남성의류</div>
                                     <div>여성의류</div>
+                                    <div>언더웨어</div>
                                 </div>
                                 <div class="goods_Mcategory_acc hidden">
-                                    <div>시계/쥬얼리</div>
-                                    <div>패션악세서리</div>
+                                    <div>신발</div>
+                                    <div>가방/잡화</div>
+                                    <div>쥬얼리/시계</div>
+                                    <div>수입명품</div>
                                 </div>
                                 <div class="goods_Scategory">
                                     소분류 선택
