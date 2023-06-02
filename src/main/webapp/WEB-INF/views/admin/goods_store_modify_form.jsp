@@ -141,7 +141,7 @@ display: flex;
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-		                        	<input type="file" name="file" accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
+                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

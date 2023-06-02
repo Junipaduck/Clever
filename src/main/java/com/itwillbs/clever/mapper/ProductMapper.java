@@ -19,6 +19,18 @@ public interface ProductMapper {
 
 	List<HashMap<String, String>> selectProductDetail(int product_idx);
 
+//	int insertProductReport(int product_idx);
+
+	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
+
+	List<HashMap<String, String>> selectFile();
+
+	List<HashMap<String, String>> selectFiles();
+
+
+
+
+
 
 	
 }

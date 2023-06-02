@@ -70,11 +70,56 @@
 	</select>
 	
 	
+	<!-- 중고상품 판매자 신고 insert -->
+<!-- 	<insert id="insertStoreReport"> -->
+<!-- 		<selectKey keyProperty="report_idx" resultType="int" order="BEFORE"> -->
+<!-- 	 			SELECT IFNULL(MAX(report_idx), 0) FROM report -->
+<!-- 	 		</selectKey> -->
+<!-- 			INSERT -->
+<!-- 				INTO report -->
+<!-- 				VALUES ( -->
+<!-- 					#{report_idx} + 1 -->
+<!-- 					,#{report_content} -->
+<!-- 					,1 -->
+<!-- 					,#{product_idx} -->
+<!-- 				) -->
+<!-- 	</insert> -->
 	
 	
+	<!-- 중고상품 같은 카테고리 연관상품 select -->
+	<select id="selectProductSameCategory" resultType="HashMap">
+		SELECT
+				*
+			FROM
+				product
+			WHERE
+				product_category IN (
+				SELECT
+					product_category
+				FROM
+					product
+				WHERE
+					product_idx = #{product_idx})
+				AND product_idx != #{product_idx}
+	</select>
 	
 	
+	<!-- 중고상품 메인에 띄워줄 첫번째에 업로드한 사진 select -->
+	<select id="selectFile" resultType="HashMap">
+		SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'product'
+							GROUP BY file_num);
+	</select>
 	
+	
+	<!-- 중고상품 이미지 모두 select -->
+	<select id="selectFiles" resultType="HashMap">
+		SELECT * FROM file f WHERE file_div = 'product';
+	</select>
 	
 	
 	

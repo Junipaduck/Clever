@@ -120,8 +120,8 @@
                                             <div class="col-sm-10">
                                     			<c:choose>
 													<c:when test="${adminInfo.account_auth eq 'Y' }">
-														<button type="button" class="btn btn-primary">계좌관리</button>
-														<input type="button" value="계좌관리" onclick="location.href='bank_userInfo'">
+														<button type="button" class="btn btn-primary" onclick="location.href='bank_userInfo'">계좌관리</button>
+<!-- 														<input type="button" value="계좌관리" onclick="location.href='bank_userInfo'"> -->
 														계좌 인증 완료
 													</c:when>
 													<c:otherwise>
