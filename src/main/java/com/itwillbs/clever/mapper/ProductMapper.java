@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwillbs.clever.vo.ProductVO;
+import com.itwillbs.clever.vo.ReportVO;
 
 public interface ProductMapper {
 
@@ -19,8 +22,8 @@ public interface ProductMapper {
 
 	List<HashMap<String, String>> selectProductDetail(int product_idx);
 
-//	int insertProductReport(int product_idx);
-
+	int insertProductReport(ReportVO report);
+	
 	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
 
 	List<HashMap<String, String>> selectFile();

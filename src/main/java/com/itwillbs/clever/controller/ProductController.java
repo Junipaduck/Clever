@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwillbs.clever.common.util.FileUpload;
 import com.itwillbs.clever.service.ProductService;
 import com.itwillbs.clever.vo.ProductVO;
+import com.itwillbs.clever.vo.ReportVO;
 
 @Controller
 public class ProductController {
@@ -156,22 +157,24 @@ public class ProductController {
 	}
 	
 	// 판매자 신고하기 (report 테이블에 insert)
-//	@PostMapping("/productReportPro")
-//	public String productReportPro(Model model, @RequestParam int product_idx) {
-//		
-//		int insertCount = productService.insertProductReport(product_idx);
-//		
-//		String result = "";
-//		if(insertCount > 0) { // 성공
-//			model.addAttribute("msg", "신고가 완료되었습니다.");
-//			model.addAttribute("target", "product_list");
-//			result = "success";
-//		} else { // 실패
-//			model.addAttribute("msg", "신고를 실패하였습니다.");
-//			result = "fail_back";
-//		}
-//		return result;
-//	}
+	@PostMapping("/productReportPro")
+	public String productReportPro(Model model, @RequestParam int product_idx, ReportVO report) {
+		
+		int insertCount = productService.insertProductReport(report);
+		
+		System.out.println("왜안나와!!! " + report.getReport_content());
+		
+		String result = "";
+		if(insertCount > 0) { // 성공
+			model.addAttribute("msg", "신고가 완료되었습니다.");
+			model.addAttribute("target", "product_list");
+			result = "success";
+		} else { // 실패
+			model.addAttribute("msg", "신고를 실패하였습니다.");
+			result = "fail_back";
+		}
+		return result;
+	}
 	
 	
 	

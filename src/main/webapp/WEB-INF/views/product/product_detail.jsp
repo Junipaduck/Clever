@@ -47,8 +47,8 @@
 	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" id="change3" aria-label="Slide 4"></button>
 	                                </div>
 	                                
-				                                <div class="carousel-inner">
-					                                <c:forEach items="${filesList }" var="filesList">
+			                              	 	 <div class="carousel-inner">
+					                               <c:forEach items="${filesList }" var="filesList">
 					                               		<c:set var="length" value="${fn:length(filesList.file_name) }" />
 														<c:set var="index" value="${fn:indexOf(filesList.file_name, '_') }" />
 														<c:set var="files_name" value="${fn:substring(filesList.file_name, index + 1, length) }" />
@@ -56,18 +56,18 @@
 							                                    <div class="carousel-item active">
 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${files_name}" class="d-block w-100" width="184" height="470" >
 							                                    </div>
+<!-- 							                                    <div class="carousel-item"> -->
+<%-- 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${files_name}" class="d-block w-100" width="184" height="470" alt="상품 사진2"> --%>
+<!-- 							                                    </div> -->
+<!-- 							                                    <div class="carousel-item"> -->
+<%-- 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3"> --%>
+<!-- 							                                    </div> -->
+<!-- 							                                    <div class="carousel-item"> -->
+<%-- 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat4.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진4"> --%>
+<!-- 																</div> -->
 															</c:if>
                                						</c:forEach>
-				                                </div>
-<!-- 				                                    <div class="carousel-item"> -->
-<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진2"> --%>
-<!-- 				                                    </div> -->
-<!-- 				                                    <div class="carousel-item"> -->
-<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3"> --%>
-<!-- 				                                    </div> -->
-<!-- 				                                    <div class="carousel-item"> -->
-<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat4.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진4"> --%>
-<!-- 				                                    </div> -->
+			                                	</div>
 	                                
 	                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 	                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -98,7 +98,7 @@
 	                                    <span>0일 전</span>
 	                                </p>
 	                                <p>
-		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}'">
+		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="openWindow()">
 	                                    <span>신고하기</span>
 	                                </p>
 	                            </div>
@@ -143,9 +143,9 @@
 		                                            </div>
 	                                            </a>
 	                                        </div>
-<!-- 	                                        <div class="col-4"> -->
-<!-- 	                                            <div class="p-3 info_btn3">바로구매</div> -->
-<!-- 	                                        </div> -->
+	                                        <div class="col-4">
+	                                            <div class="p-3 info_btn3">바로구매</div>
+	                                        </div>
 	                                    </div>
 	                                </div>
 	                            </div>
