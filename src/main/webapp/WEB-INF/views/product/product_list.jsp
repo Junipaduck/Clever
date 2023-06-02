@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>번개장터</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<title>clever - 중고상품 전체목록</title>
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -21,6 +22,7 @@
 
 <!--css-->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/market_category.css">
 
@@ -29,12 +31,19 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
+
 </head>
 <body>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
 	</header>
+	
+
+
+	
 	
     <!-- main_content 영역 -->
         <div id="background_main">
@@ -47,14 +56,22 @@
                         </span>
                         <span>홈</span>
                     </p>
+                    
                     <p id="entire">
                         <span>
                             <i class="bi bi-chevron-right"></i>
                         </span>
                         <span>
                             <ul class="entire_bar">
-                                <li><a href="#">의류</a></li>
-                                <li class="hidden_menu"><a href="#">악세서리</a></li>
+                                <li><a href="#">카테고리 선택</a></li>
+                                <li class="hidden_menu"><a href="#">의류/잡화</a></li>
+                                <li class="hidden_menu"><a href="#">디지털/가전</a></li>
+                                <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li>
+                                <li class="hidden_menu"><a href="#">뷰티/미용</a></li>
+                                <li class="hidden_menu"><a href="#">식품</a></li>
+                                <li class="hidden_menu"><a href="#">반려동물용품</a></li>
+                                <li class="hidden_menu"><a href="#">기타</a></li>
+                                <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li>
                             </ul>
                             <i class="bi bi-chevron-down under_direction"></i>
                         </span>
@@ -93,11 +110,21 @@
                         <c:forEach items="${productList }" var="productList">
 	                        <div class="goods">
 	                            <a href="product_detail?product_idx=${productList.product_idx }">
-                               		<div class="goods_image">
-	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지">
-<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이"> --%>
-<!-- 	                                    <span>배송비포함</span> -->
-	                                </div>
+<!--                                		<div class="goods_image"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지"> --%>
+<!-- 	                                </div> -->
+
+										<c:forEach items="${fileList }" var="fileList">
+					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+					                            <c:if test="${fileList.file_num eq productList.product_idx }">
+						                            <div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                            </div>
+					                            </c:if>
+				                        </c:forEach>
+				                        
 	                                <div class="goods_info">
 	                                    <p class="goods_title">${productList.product_subject }</p>
 	                                    <div class="goods_price_date">

@@ -42,9 +42,15 @@ public class ProductController {
 	// 상품 리스트 
 	@GetMapping("/product_list")
 	public String productList(Model model) {
-		List<HashMap<String, String>> productList = productService.selectProduct();
-//		System.out.println("product 담기냐 : " + productList);
+		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 select리스트
 		model.addAttribute("productList", productList);
+
+		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("fileList", fileList);
+		
+//		System.out.println("product 담기냐 : " + productList);
+//		System.out.println("file 담기냐 : " + fileList);
+		
 		
 		return "product/product_list";
 	}
@@ -52,8 +58,20 @@ public class ProductController {
 	// 상품 상세보기
 	@GetMapping("/product_detail")
 	public String productDetail(Model model, @RequestParam int product_idx) {
+		// 중고상품 상세보기 select
 		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
 		model.addAttribute("productDetail", productDetail);
+		
+		// 중고상품 파일이미지 select
+		List<HashMap<String, String>> filesList = productService.selectFiles(); // 중고상품 이미지 모두 select
+		model.addAttribute("filesList", filesList);
+		
+		// 중고상품 같은카테고리의 연관상품 select
+		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
+		model.addAttribute("productSameCategory", productSameCategory);
+		
+		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("fileList", fileList);
 		
 		return "product/product_detail";
 	}
@@ -131,6 +149,29 @@ public class ProductController {
 	}
 
 	
+	// 판매자 신고 폼으로 포워딩
+	@GetMapping("/productReport")
+	public String productReport() {
+		return "product/product_report";
+	}
+	
+	// 판매자 신고하기 (report 테이블에 insert)
+//	@PostMapping("/productReportPro")
+//	public String productReportPro(Model model, @RequestParam int product_idx) {
+//		
+//		int insertCount = productService.insertProductReport(product_idx);
+//		
+//		String result = "";
+//		if(insertCount > 0) { // 성공
+//			model.addAttribute("msg", "신고가 완료되었습니다.");
+//			model.addAttribute("target", "product_list");
+//			result = "success";
+//		} else { // 실패
+//			model.addAttribute("msg", "신고를 실패하였습니다.");
+//			result = "fail_back";
+//		}
+//		return result;
+//	}
 	
 	
 	

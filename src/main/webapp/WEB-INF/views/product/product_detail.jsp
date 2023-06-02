@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상세페이지</title>
+<title>clever - 중고상품 상세페이지</title>
     <!-- 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- 부트스트랩 icon -->
@@ -34,62 +34,6 @@
     <!-- main_content 영역 -->
     <c:forEach items="${productDetail }" var="productDetail">
         <div id="main_content">
-            <!-- category -->
-            <div id="category">
-                <div id="category_left">
-                    <div>
-                        <p id="home">
-                            <span>
-                                <img src="${pageContext.request.contextPath }/resources/images/goods/home.png" alt="home">
-                            </span>
-                            <span>홈</span>
-                        </p>
-                        <p id="entire">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="entire_bar">
-                                    <li><a href="#">의류</a></li>
-                                    <li class="hidden_menu"><a href="#">악세서리</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                            
-                        </p>
-                        <p id="category_clothes">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="category_clothes_bar">
-                                    <li><a href="#">남성의류</a></li>
-                                    <li class="hidden_menu"><a href="#">여성의류</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                            
-                        </p>
-                        <p id="category_acc">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="category_acc_bar">
-                                    <li><a href="#">시계/쥬얼리</a></li>
-                                    <li class="hidden_menu"><a href="#">패션 악세서리</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div id="category_right">
-                    <img src="${pageContext.request.contextPath }/resources/images/goods/sale.png" alt="할인 받기">
-                </div>
-            </div>
-            <!-- // category -->
-
             <!-- detail_content -->
 	            <div id="detail_content">
 	                <div class="container text-center">
@@ -102,20 +46,29 @@
 	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" id="change3" aria-label="Slide 3"></button>
 	                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" id="change3" aria-label="Slide 4"></button>
 	                                </div>
-	                                <div class="carousel-inner">
-	                                    <div class="carousel-item active">
-	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진1">
-	                                    </div>
-	                                    <div class="carousel-item">
-	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진2">
-	                                    </div>
-	                                    <div class="carousel-item">
-	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3">
-	                                    </div>
-	                                    <div class="carousel-item">
-	                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat4.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진4">
-	                                    </div>
-	                                </div>
+	                                
+				                                <div class="carousel-inner">
+					                                <c:forEach items="${filesList }" var="filesList">
+					                               		<c:set var="length" value="${fn:length(filesList.file_name) }" />
+														<c:set var="index" value="${fn:indexOf(filesList.file_name, '_') }" />
+														<c:set var="files_name" value="${fn:substring(filesList.file_name, index + 1, length) }" />
+															<c:if test="${filesList.file_num eq productDetail.product_idx }">
+							                                    <div class="carousel-item active">
+							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${files_name}" class="d-block w-100" width="184" height="470" >
+							                                    </div>
+															</c:if>
+                               						</c:forEach>
+				                                </div>
+<!-- 				                                    <div class="carousel-item"> -->
+<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진2"> --%>
+<!-- 				                                    </div> -->
+<!-- 				                                    <div class="carousel-item"> -->
+<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3"> --%>
+<!-- 				                                    </div> -->
+<!-- 				                                    <div class="carousel-item"> -->
+<%-- 				                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat4.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진4"> --%>
+<!-- 				                                    </div> -->
+	                                
 	                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 	                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                                    <span class="visually-hidden">Previous</span>
@@ -145,7 +98,7 @@
 	                                    <span>0일 전</span>
 	                                </p>
 	                                <p>
-	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/report.png" alt="신고">
+		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}'">
 	                                    <span>신고하기</span>
 	                                </p>
 	                            </div>
@@ -186,13 +139,13 @@
 	                                        <div class="col-4">
 	                                    	    <a href="chatting">
 		                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
-		                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="판매자채팅"> 판매자채팅
+		                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="채팅하기"> 채팅하기
 		                                            </div>
 	                                            </a>
 	                                        </div>
-	                                        <div class="col-4">
-	                                            <div class="p-3 info_btn3">바로구매</div>
-	                                        </div>
+<!-- 	                                        <div class="col-4"> -->
+<!-- 	                                            <div class="p-3 info_btn3">바로구매</div> -->
+<!-- 	                                        </div> -->
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -202,65 +155,38 @@
 	            </div>
             <!-- // detail_content -->
 
+<hr>
             <!-- related_goods -->
-            <div id="related_goods">
-                <div>
-                    <h3>연관 상품</h3>
-                    <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
-                </div>
-                <div class="container text-center" id="related_goods_imgs">
-                    <div class="row g-2">
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/cashmere_coat.jpg" alt="연관상품 캐시미어 코트">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/hood_coat.jpg" alt="연관상품 후드코트">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/wool_coat.jpg" alt="연관상품 울코트">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/long_padded.jpg" alt="연관상품 롱패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/short_padded.jpg" alt="연관상품 숏패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/cream_short_padded.jpg" alt="연관상품 크림색 숏패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- 카테고리가 같은 상품들을 5개까지 보여줌 -->
+	            <div id="related_goods">
+	                <div>
+	                    <h3>연관상품</h3>
+	                    <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
+	                </div>
+	                <div class="container text-center" id="related_goods_imgs">
+	                    <div class="row g-2">
+			            <c:forEach var="productSameCategory" items="${productSameCategory }" begin="0" end="4"> 
+	                        <div class="col-2 goods_list">
+	                            <div class="related_goods_img">
+	                                <a href="#">
+<%-- 	                                	<c:forEach items="${fileList }" var="fileList"> --%>
+<%-- 					                        <c:set var="length" value="${fn:length(fileList.file_name) }" /> --%>
+<%-- 											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" /> --%>
+<%-- 											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" /> --%>
+<%-- 												<c:if test="${fileList.file_num eq productDetail.product_idx }"> --%>
+<%-- 				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품"> --%>
+				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품">
+				                                    <p>${productSameCategory.product_subject }</p>
+				                                    <p>${productSameCategory.product_price }원</p>
+<%-- 		                                  		</c:if> --%>
+<%-- 		                                 </c:forEach> --%>
+	                                </a>
+	                            </div>
+	                        </div>
+			            </c:forEach>
+	                    </div>
+	                </div>
+	            </div>
             <!-- // related_goods -->
 
             <!-- url_images -->
@@ -290,14 +216,14 @@
                             <div class="info_content">
                                 <div>
                                     <p>
-                                        상품정보
+                                        상품설명
                                     </p>
                                 </div>
-                                <div>
+                                <div style="font-size: large;">
                                     ${productDetail.product_content }
                                 </div>
                             </div>
-                            <div class="p-3 detailed_information">
+                            <div class="p-3 detailed_information" style="margin-top: 300px;">
                                 <div class="container text-center ">
                                     <div class="row g-2">
                                         <div class="col-4">
@@ -327,45 +253,39 @@
                             <div class="store_info_area">
                                 <div>
                                     <p>
-                                        상점정보
+                                        판매자정보
                                     </p>
                                 </div>
                                 <div>
                                     <div>
                                         <div>
-                                            <img src="${pageContext.request.contextPath }/resources/images/goods/store.svg" alt="상점명">
+                                            <img src="${pageContext.request.contextPath }/resources/images/goods/store.svg" alt="판매자아이디">
                                         </div>
                                         <div>
-                                            <p>
-                                                상점명
+                                            <p style="font-weight: bold;">
+                                                ${productDetail.member_id }
                                             </p>
-                                            <p>
                                                 <p>
-                                                    상품 <span>0</span>
+                                                    판매중인 상품 <span>4개</span>
                                                 </p>
-                                                <p>
-                                                    팔로워 <span>0</span>
-                                                </p>
-                                            </p>
                                         </div>
                                         <div id="store_follow">
-                                            <button>
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/follow.png" alt="팔로우">팔로우
-                                            </button>
+                                            	<button onclick="location.href='chatting'" style="background-color: #0085f5; color: white;"> 채팅하기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/test_img.jpg" alt="상품 더보기">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/test_img.jpg" alt="상품 더보기">
+                                    	<!-- 2개만 보여주도록 foreach할때 begin=0 end=1로 설정하기! -->
+                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
+                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
                                     </div>
                                     <div>
-                                        <p><span>0개</span> 상품 더보기 ></p>
+                                        <p style="margin-top: 41px;">판매중인 <span>4개</span> 상품</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <p>상점후기 <span>0</span></p>
+                                    <p>판매자후기 <span>0</span></p>
                                     <div>
                                         <p>
                                             등록된 후기가 없습니다.<br>
@@ -377,10 +297,6 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button>
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="번개톡"> 번개톡
-                                    </button>
-                                    <button>바로구매</button>
                                 </div>
                             </div>
                         </div>
