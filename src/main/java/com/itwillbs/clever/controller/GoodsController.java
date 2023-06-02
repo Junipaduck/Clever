@@ -111,7 +111,50 @@ public class GoodsController {
 	}
 	
 	@PostMapping(value = "/storeModifyPro.ad")
-	public String storeModifyPro() {
+	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model) {
+		
+    	// 리뷰 수정 시 파일 처리 코드 - 0422
+		boolean isUploadProcess = false; // 업로드 작업 수행 여부를 저장하는 변수 선언
+		
+	   	// 파일 업로드 경로 설정  
+    	String uploadDir = "resources/upload"; // sts에서 저장되는 경로(이 곳에 실제로 파일이 업로드 되지는 않음) 
+    	String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 파일이 저장되는 경로 
+    	
+    	// 날짜별로 업로드 폴더 생성
+    	try {
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			goods.setGoods_file_path("/" + sdf.format(date));
+			
+			// 기본 업로드 경로와 서브 디렉토리 경로를 결합하여 저장 
+			saveDir = saveDir + goods.getGoods_file_path();
+			
+			// Paths 클래스의 get() 메서드 호출하여 실제 경로를 관리하는 Path 타입 객체 리턴 받기 (파라미터: 실제 업로드 경로) 
+			Path path = Paths.get(saveDir);
+			
+			// Files 클래스의 메서드를 호출하여 Path 객체가 관리하는 경로가 없으면 생성 
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	MultipartFile mFile = goods.getFile(); // 단일 파일 
+    	String originalFileName = mFile.getOriginalFilename(); // 원본 파일 명 
+    	
+    	// 파일명 중복 방지를 위한 랜던 ID값 생성 
+    	String uuid = UUID.randomUUID().toString();
+    	
+    	// 생성된  UUID 값을 원본 파일명과 결합하기. subString으로 길이 줄이기 
+    	// 랜덤 uuid - 하이픈 앞 글자수가 8개 이므로 인덱스 범위가 0, 8 
+    	goods.setGoods_file(uuid.substring(0, 8) + "_" + originalFileName);
+    	System.out.println("실제 업로드 될 파일명 : " + goods.getGoods_file());
+    	
+    	// 굿즈 등록 수정 코드 시작 
+    	int updateCount = goodsService.updateGoods(goods);
+    	
+		
+		
 		return "redirect:/storeList.ad";
 	}
 	
