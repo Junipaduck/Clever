@@ -33,7 +33,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/auction/used.js?after"></script>
 <!-- 경매 남은 시간 함수 -->
 <style type="text/css">
-.dep1 img {
+.dep1 a img {
 width: 81px;
 height: 187px;
 margin-left: 13px;
@@ -41,6 +41,9 @@ margin-right: 13px;
 }
 .goods_info  {
 height: 90px;
+}
+#textDiv {
+	margin-top: 100px;
 }
 </style>
 </head>
@@ -108,47 +111,47 @@ height: 90px;
 			<ul class="tablist">
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
-				  <div align="center">패션의류</div>
+				  <div align="center" style="margin-top: 77px">패션의류</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
-				  <div align="center">패션잡화</div>
+				  <div align="center" id="textDiv">패션잡화</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
-				  <div align="center">취미/컬렉션</div>
+				  <div align="center" id="textDiv">취미/컬렉션</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
-				  <div align="center">디지털</div>
+				  <div align="center" id="textDiv">디지털</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
-				  <div align="center">스포츠/레저</div>
+				  <div align="center" id="textDiv">스포츠/레저</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
-				  <div align="center">뷰티</div>
+				  <div align="center" id="textDiv">뷰티</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
-				  <div align="center">생활가전</div>
+				  <div align="center" id="textDiv">생활가전</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
-				  <div align="center">자동차/공구</div>
+				  <div align="center" id="textDiv">자동차/공구</div>
 				</li>
     
 				<li class="dep1">
 				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
-				  <div align="center">도서/기타</div>
+				  <div align="center" id="textDiv">도서/기타</div>
 				</li>
 			</ul>		
 			<!-- //대대분류 -->
