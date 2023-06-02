@@ -142,10 +142,10 @@ function sendMessage() {
 	// 채팅 내용 있을 때	
 	} else {
 	const chatMessage = {		// js객체로 생성
-		"userName": userName,
-		"productIdx": productIdx,
-		"chatRoomNo": chatRoomNo,
-		"message": message.value
+// 		"userName": userName,
+		"product_idx": productIdx,
+		"chat_idx": chatRoomNo,
+// 		"message": message.value
 	};
 
 	console.log(chatMessage);
