@@ -32,6 +32,19 @@
 			FROM goods
 			WHERE goods_idx = ${goods_idx}
 	</select>
+	
+	<update id="updateGoods">
+		UPDATE goods
+			SET
+				<if test="goods_file neq null">
+					goods_file = #{goods_file}
+				</if>
+				, goods_name = #{goods_name}
+				, goods_price = #{goods_price}
+				, goods_content = #{goods_content}
+				WHERE
+					goods_idx = #{goods_idx}
+	</update>
 </mapper>
 
 

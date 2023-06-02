@@ -37,5 +37,11 @@ public class GoodsService {
 		return mapper.selectGoods(goods_idx);
 	}
 
+	// 굿즈 수정 
+	public int updateGoods(GoodsVO goods) {
+		
+		return mapper.updateGoods(goods);
+	}
+
 	
 }
