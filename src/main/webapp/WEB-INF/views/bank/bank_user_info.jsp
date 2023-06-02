@@ -68,7 +68,7 @@
 			<c:when test="${empty sessionScope.access_token }">
 				<script type="text/javascript">
 					alert("계좌인증 후 사용 가능합니다.");
-					location.href = "admininfo.ad";
+					location.href = "adminInfo.ad";
 				</script>
 			</c:when>
 		</c:choose>
