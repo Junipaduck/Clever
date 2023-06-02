@@ -11,6 +11,13 @@ public class NoticeController {
 		return "notice/notice_main";
 	}
 	
+	
+	// 공지사항 작성 폼 이동
+	@GetMapping(value = "/noticeForm.ad")
+	public String noticeForm() {
+		
+		return "notice/notice_form";
+	}
 }
 
 
