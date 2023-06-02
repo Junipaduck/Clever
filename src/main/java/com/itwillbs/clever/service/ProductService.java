@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.clever.mapper.ProductMapper;
 import com.itwillbs.clever.vo.ProductVO;
+import com.itwillbs.clever.vo.ReportVO;
 
 @Service
 public class ProductService {
@@ -41,9 +42,9 @@ public class ProductService {
 	}
 
 	// 중고 판매자 신고 insert
-//	public int insertProductReport(int product_idx) {
-//		return mapper.insertProductReport(product_idx);
-//	}
+	public int insertProductReport(ReportVO report) {
+		return mapper.insertProductReport(report);
+	}
 
 	// 중고상품 카테고리가 같은 연관상품 select
 	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {

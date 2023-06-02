@@ -18,8 +18,12 @@ public class ChattingService {
 		return mapper.selectChatList(product_idx);
 	}
 
-	public int openRoom(int product_idx) {
-		return mapper.openRoom(product_idx);
+//	public int openRoom(int product_idx) {
+//		return mapper.openRoom(product_idx);
+//	}
+
+	public int OpenRoom(int chat_idx, int product_idx) {
+		return mapper.openRoom(chat_idx, product_idx);
 	}
 
 

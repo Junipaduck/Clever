@@ -207,8 +207,8 @@ color: #fff;
 	</div>
 
   <div class="table-box">
-  	<form action="productReportPro" name="productReportPro" method="POST" enctype="multipart/form-data">
-  	<input type="hidden" name="product_idx" value="${param.product_idx}" />
+  	<form action="productReportPro" name="productReportPro" method="POST">
+  		<input type="hidden" name="product_idx" value="${param.product_idx}" />
 		    <table class="table table--min" cellspacing="0" cellpadding="0">
 		      <thead>
 		      <tr>
@@ -218,32 +218,41 @@ color: #fff;
 		      <tbody>
 		      <tr>
 		        <td>
-		        	<input type="radio" id="report_content1" value="뭐임" name="report_content"><label for="report_content1">　뭐임</label>
+	      		  	<div class="goods_status">
+                        <input type="radio" name="report_content" value="광고성 콘텐츠(판매)입니다.1" id="report_content1"><label>광고성 콘텐츠(판매)입니다.1</label>
+                    </div>
+<!-- 		        	<input type="radio" id="report_content1" value="광고성 콘텐츠(판매)입니다." name="report_content"><label for="report_content1">　광고성 콘텐츠(판매)입니다.</label> -->
 				</td>
 		      </tr>
 		      <tr>
 		      	<td>
-		       		<input type="radio" id="report_content2" value="불법, 음란, 선정성 등 부적절한 홍보 또는 광고" name="report_content"><label for="report_content2">　불법, 음란, 선정성 등 부적절한 홍보 또는 광고</label>
+		      		<div class="goods_status">
+                        <input type="radio" name="report_content" value="상품 정보가 부정확합니다.1" id="report_content2"><label>상품 정보가 부정확합니다.1</label>
+                    </div>
+<!-- 		       		<input type="radio" id="report_content2" value="상품 정보가 부정확합니다." name="report_content"><label for="report_content2">　상품 정보가 부정확합니다.</label> -->
 		      	</td>
 		      </tr>
 		      <tr>
 		     	 <td>
-		       		 <input type="radio" id="report_content3" value="관련없는 내용, 사진 게시" name="report_content"><label for="report_content3">　관련없는 내용, 사진 게시</label>
+		     	 	<div class="goods_status">
+                        <input type="radio" name="report_content" value="거래 금지 품목으로 판단됩니다.1" id="report_content3"><label>거래 금지 품목으로 판단됩니다.1</label>
+                    </div>
+<!-- 		       		 <input type="radio" id="report_content3" value="거래 금지 품목으로 판단됩니다." name="report_content"><label for="report_content3">　거래 금지 품목으로 판단됩니다.</label> -->
 		     	 </td>
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content4" value="가게 취지에 맞지 않는 내용44" name="report_content"><label for="report_content4">　가게 취지에 맞지 않는 내용44</label>
+		       	   <input type="radio" id="report_content4" value="바로구매를 거부합니다." name="report_content"><label for="report_content4">　바로구매를 거부합니다.</label>
 		       	</td>
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content5" value="저작권 도용 의심(사진 등)" name="report_content"><label for="report_content5">　저작권 도용 의심(사진 등)</label>
+		       	   <input type="radio" id="report_content5" value="사기가 의심됩니다.(외부 채널 유도)" name="report_content"><label for="report_content5">　사기가 의심됩니다.(외부 채널 유도)</label>
 		       	</td>
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content6" value="개인정보 유출 위험" name="report_content"><label for="report_content6">　개인정보 유출 위험</label>
+		       	   <input type="radio" id="report_content6" value="개인정보 유출 위험이 있습니다." name="report_content"><label for="report_content6">　개인정보 유출 위험이 있습니다.</label>
 		       	</td>
 		      </tr>
 		       <tr>

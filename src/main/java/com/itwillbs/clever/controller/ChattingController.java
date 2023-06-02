@@ -21,6 +21,9 @@ public class ChattingController {
 	@Autowired
 	private ChattingService chattingService;
 	
+	@Autowired
+	private WebSocketHandler webSocketHandler;
+	
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
 
 	// 채팅 폼 포워딩

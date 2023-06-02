@@ -71,19 +71,19 @@
 	
 	
 	<!-- 중고상품 판매자 신고 insert -->
-<!-- 	<insert id="insertStoreReport"> -->
-<!-- 		<selectKey keyProperty="report_idx" resultType="int" order="BEFORE"> -->
-<!-- 	 			SELECT IFNULL(MAX(report_idx), 0) FROM report -->
-<!-- 	 		</selectKey> -->
-<!-- 			INSERT -->
-<!-- 				INTO report -->
-<!-- 				VALUES ( -->
-<!-- 					#{report_idx} + 1 -->
-<!-- 					,#{report_content} -->
-<!-- 					,1 -->
-<!-- 					,#{product_idx} -->
-<!-- 				) -->
-<!-- 	</insert> -->
+	<insert id="insertProductReport">
+		<selectKey keyProperty="report_idx" resultType="int" order="BEFORE">
+	 			SELECT IFNULL(MAX(report_idx), 0) FROM report
+	 	</selectKey>
+		INSERT
+			INTO report
+			VALUES (
+				#{report_idx} + 1
+				,#{report_content}
+				,1
+				,#{product_idx}
+			)
+	</insert>
 	
 	
 	<!-- 중고상품 같은 카테고리 연관상품 select -->
