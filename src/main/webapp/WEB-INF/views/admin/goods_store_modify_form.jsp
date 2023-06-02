@@ -141,7 +141,11 @@ display: flex;
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
+                                    <c:choose>
+                                    	<c:when test="${not empty goods.goods_file }">
+		                                    <input type="file" name="file" accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
+                                    	</c:when>
+                                    </c:choose>
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
