@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -78,41 +78,36 @@
 										<thead>
 											<tr>
 												<th scope="col">
-													<div class="tb-center">번호</div>
+													<div class="tb-center">글번호</div>
 												</th>
 												<th scope="col">
-													<div class="tb-center">분류</div>
+													<div class="tb-center">조회수</div>
 												</th>
 												<th scope="col">
-													<div class="tb-left" style="font-weight: 400;">제목</div>
+													<div class="tb-center">제목</div>
+												</th>
+												<th scope="col">
+													<div class="tb-left" style="font-weight: 400;">등록일</div>
 												</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr uid="6">
-												<td>
-													<div class="tb-center">1</div>
-												</td>
-												<td>
-													<div class="tb-center">주문</div>
-												</td>
-												<td>
-													<div class="tb-left">물건이 도착하지 않으면 어떻게 해야 하나요</div>
-												</td>
-											</tr>
-											<tr uid="24">
-												<td>
-													<div class="tb-center">2</div>
-												</td>
-												<td>
-													<div class="tb-center">반품</div>
-												</td>
-												<td>
-													<div class="tb-left">중고 거래도 반품 가능한가요?</div>
-												</td>
-											</tr>
-											
-	
+											<c:forEach items="${noticeList }" var="noticeList">
+												<tr uid="6">
+													<td>
+														<div class="tb-center">${noticeList.notice_idx }</div>
+													</td>
+													<td>
+														<div class="tb-center">${noticeList.notice_readcount }</div>
+													</td>
+													<td>
+														<div class="tb-left">${noticeList.notice_title }</div>
+													</td>
+													<td>
+														<div class="tb-left">${noticeList.notice_content }</div>
+													</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

@@ -71,9 +71,11 @@
 
                     <li class="nav-label">고객센터</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    	<i class="icon icon-single-copy-06"></i><span class="nav-text">자주묻는질문</span></a>
+                    	<i class="icon icon-single-copy-06"></i><span class="nav-text">공지사항</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-register.html">질문뭐하지</a></li>
+                            <li><a href="adminNoticeList.ad">공지사항 목록</a></li>
+                            <li><a href="noticeForm.ad">공지사항 등록</a></li>
+                            <li><a href="./page-register.html">공지사항 수정</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">페이관리</li>
