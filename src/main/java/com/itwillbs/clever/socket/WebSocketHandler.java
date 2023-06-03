@@ -146,18 +146,23 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	    String messageContent = jo.getString("message_content");
 	    System.out.println("productIdx : " + productIdx);
 	    System.out.println("chatRoomIdx : " + chatRoomIdx);
+	    System.out.println("messageContent : " + messageContent);
 	    
-//	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx);
-//	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
+	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx, jo.getString("chat_id"));
+	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성
-	    if(chatRoomIdx == 0) {
+	    if(chatRoomIdx == 0 && selectChatList.isEmpty()) {
 	    	int openChatRoom = chattingService.OpenRoom(chatRoomIdx, productIdx);
 	    	if(openChatRoom > 0) { 
 	    		System.out.println("채팅방 생성 성공");
 	    	}
 	    } else {
-	    	
+	    	for(WebSocketSession s : sessions) {
+	    		System.out.println("채팅방 존재함! 메세지 전송!!!!!");
+	    		s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
+	    		System.out.println("메세지 전송 성공");
+	    	}
 	    }
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);

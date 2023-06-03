@@ -143,7 +143,7 @@ function sendMessage() {
 	const chatMessage = {		// js객체로 생성
 // 		"buyerId": userName,
 		"chatRoom_idx": chatRoomIdx,
-		"buyer_id" : userId,
+		"chat_id" : userId,
 // 		"message_date" : ,
 		"product_idx": productIdx,
 		"message_content" : message.value
@@ -162,19 +162,27 @@ function sendMessage() {
 // 서버에서 메시지를 받았을 때
 chatSocket.onmessage = function(e) {
 
-	// 전달받은 메세지를 JS객체로 변환
-	const chatMessage = JSON.parse(e.data);
+// 	// 전달받은 메세지를 JS객체로 변환
+// 	const chatMessage = JSON.parse(e.data);
 
-	// 내가 쓴 채팅
-	if (chatMessage.userNo == userNo) {
+	var receive = e.data.split(":");
+	const data = {
+			"id" : receive[0],
+			"message" : receive[1]
+	}
+	console.log('id : ' + data.id);
+	console.log('message : ' + data.message);
+
+	// 채팅방 화면에 채팅 내용 출력
+	if (data.id == userId) {
 		var str = "<div class='myMsg'>";
-		str += "<span class='msg'><b>"+ chatMessage.userName + " : "  + chatMessage.message + "</b></span>";
+		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);
 	} else {
 		var str = "<div class='anotherMsg'>";
-		str += "<span class='msg'>"+ chatMessage.userName +" : <b>"  + chatMessage.message + "</b></span>";
+		str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog").append(str);

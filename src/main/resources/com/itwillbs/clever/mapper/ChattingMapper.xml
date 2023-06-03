@@ -11,7 +11,7 @@
 				ON cr.chatRoom_idx = cm.chatRoom_idx
 			WHERE 
 				cr.product_idx = ${product_idx}
-					AND cm.buyer_id = #{sId}
+					AND (cm.buyer_id = #{sId} OR cm.seller_id = #{sId})
 	</select>
 	
 	
