@@ -81,12 +81,6 @@
 					<li><a href="noticeMain.ad">공지사항</a></li>
 					<li><a href="/shop/faq.html">자주묻는질문</a></li>
 					<li><a href="/board/board.html?code=jo112" data-link="jo112">고객문의</a></li>
-					<li><a href="/shop/page.html?id=30" data-link="jo112">쇼핑가이드</a></li>
-					<li><a
-						href="/board/board.html?code=jo112_board24&type=v&num1=999999&num2=00000&lock="
-						data-link="jo112_image1" target="_blank">멤버십</a>
-					<li><a href="/board/board.html?code=jo112_board37"
-						target="_blank">보도자료</a></li>
 				</ul>
 			</div>
 
