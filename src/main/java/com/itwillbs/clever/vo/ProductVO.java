@@ -1,5 +1,7 @@
 package com.itwillbs.clever.vo;
 
+import java.sql.Timestamp;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -27,7 +29,6 @@ CREATE TABLE product (
 public class ProductVO {
 	private int product_idx;
 	private String member_id;
-	private String product_file;
 	private String product_subject;
 	private String product_category;
 	private String sale_location;
@@ -38,6 +39,7 @@ public class ProductVO {
 	private String sale_pay;
 	private String sale_status;
 	private MultipartFile file;
+	private String product_date;
 }
 
 

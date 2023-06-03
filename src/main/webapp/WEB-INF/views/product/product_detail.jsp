@@ -48,17 +48,29 @@
 	                                </div>
 	                                
 			                              	 	 <div class="carousel-inner">
-					                               <c:forEach items="${filesList }" var="filesList">
-					                               		<c:set var="length" value="${fn:length(filesList.file_name) }" />
-														<c:set var="index" value="${fn:indexOf(filesList.file_name, '_') }" />
-														<c:set var="files_name" value="${fn:substring(filesList.file_name, index + 1, length) }" />
-															<c:if test="${filesList.file_num eq productDetail.product_idx }">
+					                               <c:forEach items="${fileList }" var="fileList"> <!-- 첫번째사진 select 하는 forEach문 -->
+					                               		<c:set var="length" value="${fn:length(fileList.file_name) }" />
+														<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+														<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+															<c:if test="${fileList.file_num eq productDetail.product_idx }">
 							                                    <div class="carousel-item active">
-							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${files_name}" class="d-block w-100" width="184" height="470" >
+							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" class="d-block w-100" width="184" height="470" >
 							                                    </div>
-<!-- 							                                    <div class="carousel-item"> -->
-<%-- 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${files_name}" class="d-block w-100" width="184" height="470" alt="상품 사진2"> --%>
-<!-- 							                                    </div> -->
+							                                    
+							                                    	<c:forEach items="${filesList}" var="filesItem" varStatus="loop"> <!-- 첫번째사진을 제외한 나머지를 select하는 forEach문 -->
+																	    <c:set var="length" value="${fn:length(filesItem.file_name)}" />
+																	    <c:set var="index" value="${fn:indexOf(filesItem.file_name, '_')}" />
+																	    <c:set var="file_name" value="${fn:substring(filesItem.file_name, index + 1, length)}" />
+																	    <c:if test="${filesItem.file_num eq productDetail.product_idx and loop.index ne 0}">
+																	        <div class="carousel-item">
+																	            <img src="${pageContext.request.contextPath}/resources/fileUpload/${file_name}" class="d-block w-100" width="184" height="470">
+																	        </div>
+																	    </c:if>
+																	</c:forEach>
+
+<!-- 								                                    <div class="carousel-item"> -->
+<%-- 								                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/cat.png" class="d-block w-100" width="184" height="470" alt="상품 사진2"> --%>
+<!-- 								                                    </div> -->
 <!-- 							                                    <div class="carousel-item"> -->
 <%-- 							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" class="d-block w-100" width="184" height="470" alt="상품 사진3"> --%>
 <!-- 							                                    </div> -->
@@ -85,20 +97,20 @@
 	                            <p>${productDetail.product_price }<span>원</span></p>
 	                            <hr>
 	                            <div id="detail_content_info_mid">
-	                                <p>
+	                                <p style="width: 80px;">
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
-	                                    <span>0</span>
+	                                    <span>17</span>
 	                                </p>
-	                                <p>
+	                                <p style="width: 80px;">
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
-	                                    <span>0</span>
+	                                    <span>76</span>
+	                                </p>
+	                                <p style="width: 150px;">
+	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="업로드날짜">
+	                                    <span>${productDetail.product_date }</span>
 	                                </p>
 	                                <p>
-	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="지난 시간">
-	                                    <span>0일 전</span>
-	                                </p>
-	                                <p>
-		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="openWindow()">
+		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?seller_id=${productDetail.member_id}?reporter_id=${sessionScope.sId }'">
 	                                    <span>신고하기</span>
 	                                </p>
 	                            </div>
@@ -129,25 +141,44 @@
 	                                </p>
 	                            </div>
 	                            <div>
-	                                <div class="container text-center detail_content_info_btn">
-	                                    <div class="row g-2">
-	                                        <div class="col-4">
-	                                            <div class="p-3 info_btn1">
-	                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
-	                                            </div>
-	                                        </div>
-	                                        <div class="col-4">
-	                                    	    <a href="chatting?product_idx=${param.product_idx}" >
-		                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
-		                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="채팅하기"> 채팅하기
-		                                            </div>
-	                                            </a>
-	                                        </div>
-	                                        <div class="col-4">
-	                                            <div class="p-3 info_btn3">바로구매</div>
-	                                        </div>
-	                                    </div>
-	                                </div>
+	                             
+	                                <!-- 만약 판매자의 member_id와 현재로그인한 sId가 일치한다면(본인이 올린 글 이라면) 수정하기 버튼이 표시되도록. -->
+	                                <c:choose>
+		                                <c:when test="${productDetail.member_id eq sessionScope.sId }">
+		                                	<!-- 버튼영역 -->
+			                                <div class="container text-center detail_content_info_btn">
+			                                    <div class="row g-2">
+			                                        <div class="col-12">
+			                                            <div class="p-3 info_btn3" onclick="location.href='productModifyForm?product_idx=${productDetail.product_idx}'">수정하기</div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <!-- //버튼영역 -->
+		                                </c:when>
+	                                	<c:otherwise>
+                                			<!-- 버튼영역 -->
+			                                <div class="container text-center detail_content_info_btn">
+			                                    <div class="row g-2">
+			                                        <div class="col-4">
+			                                            <div class="p-3 info_btn1">
+			                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
+			                                            </div>
+			                                        </div>
+			                                        <div class="col-4">
+			                                    	    <a href="chatting?product_idx=${param.product_idx}" >
+				                                            <div class="p-3 info_btn2"  style="background-color: #0085f5;">
+				                                                <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="채팅하기"> 채팅하기
+				                                            </div>
+			                                            </a>
+			                                        </div>
+			                                        <div class="col-4">
+			                                            <div class="p-3 info_btn3">바로구매</div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <!-- //버튼영역 -->
+	                                	</c:otherwise>
+	                                </c:choose>
 	                            </div>
 	                        </div>
 	                    </div>

@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.clever.mapper.ProductMapper;
+import com.itwillbs.clever.vo.FileVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
 
@@ -60,6 +62,16 @@ public class ProductService {
 	// 중고상품 사진파일 전부 select
 	public List<HashMap<String, String>> selectFiles() {
 		return mapper.selectFiles();
+	}
+
+	// 중고상품 수정 update
+	public int updateProduct(ProductVO product) {
+		return mapper.updateProduct(product);
+	}
+
+	// 중고상품 파일삭제 (수정중)
+	public Object deleteFile(FileVO file) {
+		return mapper.deleteFile(file);
 	}
 
 	

@@ -197,6 +197,7 @@ color: #fff;
 
 <!-- 신고양식 html 시작 --------------------------------------------------------------------------------- -->
 	<div id="div-top">
+	하나 메모 // 지금 신고하기 버튼 누르면 400 오류 납니다.. 원인 찾는중
 		<h2 id="h1-1">가게 신고하기</h2>
 	</div>
 	<div id="div-top2">
@@ -209,7 +210,9 @@ color: #fff;
   <div class="table-box">
   	<form action="productReportPro" name="productReportPro" method="POST">
   		<input type="hidden" name="product_idx" value="${param.product_idx}" />
-		    <table class="table table--min" cellspacing="0" cellpadding="0">
+  		<input type="hidden" name="seller_id" value="${seller_id}" />
+  		<input type="hidden" name="reporter_id" value="${reporter_id}" />
+		    <table class="table table--min" cellspacing="0" cellpadding="0"> 
 		      <thead>
 		      <tr>
 		        <th style="width:10%; background-color: #ff9507;" id="table1">신고하는 사유를 선택해주세요. (택1 필수)</th>
@@ -219,25 +222,22 @@ color: #fff;
 		      <tr>
 		        <td>
 	      		  	<div class="goods_status">
-                        <input type="radio" name="report_content" value="광고성 콘텐츠(판매)입니다.1" id="report_content1"><label>광고성 콘텐츠(판매)입니다.1</label>
+                        <input type="radio" name="report_content" value="광고성 콘텐츠(판매)입니다." id="report_content1"><label>광고성 콘텐츠(판매)입니다.</label>
                     </div>
-<!-- 		        	<input type="radio" id="report_content1" value="광고성 콘텐츠(판매)입니다." name="report_content"><label for="report_content1">　광고성 콘텐츠(판매)입니다.</label> -->
 				</td>
 		      </tr>
 		      <tr>
 		      	<td>
 		      		<div class="goods_status">
-                        <input type="radio" name="report_content" value="상품 정보가 부정확합니다.1" id="report_content2"><label>상품 정보가 부정확합니다.1</label>
+                        <input type="radio" name="report_content" value="상품 정보가 부정확합니다." id="report_content2"><label>상품 정보가 부정확합니다.</label>
                     </div>
-<!-- 		       		<input type="radio" id="report_content2" value="상품 정보가 부정확합니다." name="report_content"><label for="report_content2">　상품 정보가 부정확합니다.</label> -->
 		      	</td>
 		      </tr>
 		      <tr>
 		     	 <td>
 		     	 	<div class="goods_status">
-                        <input type="radio" name="report_content" value="거래 금지 품목으로 판단됩니다.1" id="report_content3"><label>거래 금지 품목으로 판단됩니다.1</label>
+                        <input type="radio" name="report_content" value="거래 금지 품목으로 판단됩니다." id="report_content3"><label>거래 금지 품목으로 판단됩니다.</label>
                     </div>
-<!-- 		       		 <input type="radio" id="report_content3" value="거래 금지 품목으로 판단됩니다." name="report_content"><label for="report_content3">　거래 금지 품목으로 판단됩니다.</label> -->
 		     	 </td>
 		      </tr>
 		       <tr>
