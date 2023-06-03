@@ -60,6 +60,10 @@ public class AdminController {
 		int auctionCount = adminService.getAuctionCount();
 		model.addAttribute("auctionCount", auctionCount);
 		
+		// 신고 수 계산 
+		int reportCount = adminService.getReportCount();
+		model.addAttribute("reportCount", reportCount);
+		
 		return "admin/admin_main";
 	}
 	

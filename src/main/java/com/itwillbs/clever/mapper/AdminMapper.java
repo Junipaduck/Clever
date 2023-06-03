@@ -20,6 +20,9 @@ public interface AdminMapper {
 
 	// 관리자 메인 화면 경매 수 카운트
 	int selectAuctionCount();
+	
+	// 관리자 메인 화면 신고 수 카운트
+	int selectReportCount();
 
 	// 경매 등록 승인
 	int updateAuthStatus(int auction_idx);
@@ -29,6 +32,7 @@ public interface AdminMapper {
 	
 	// 관리자 정보 조회
 	HashMap<String, String> selectAdminInfo();
+
 
 
 }

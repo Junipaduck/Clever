@@ -93,6 +93,12 @@ public class AdminService {
 		return mapper.selectAdminInfo();
 	}
 
+	// 관리자 메인 페이지 신고수 카운트
+	public int getReportCount() {
+		
+		return mapper.selectReportCount();
+	}
+
 
 
 		

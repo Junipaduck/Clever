@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,8 +85,8 @@
                                     <i class="ti-money text-success border-success"></i>
                                 </div>
                                 <div class="stat-content d-inline-block">
-                                    <div class="stat-text">0월 수익</div>
-                                    <div class="stat-digit">1,012</div>
+                                    <div class="stat-text">신고 카운트</div>
+                                    <div class="stat-digit">${reportCount }</div>
                                 </div>
                             </div>
                         </div>
