@@ -14,7 +14,6 @@
 					AND (cm.buyer_id = #{sId} OR cm.seller_id = #{sId})
 	</select>
 	
-	
 	<!-- 채팅방 생성 -->
 	<insert id="openRoom">
 		<selectKey keyProperty="chatRoom_idx" resultType="int" order="BEFORE">
@@ -31,6 +30,26 @@
 						FROM product 
 						WHERE product_idx = #{product_idx})
 					, 'Y'
+				)
+	</insert>
+	
+	<!-- 채팅 메세지 저장 -->
+	<insert id="insertChat">
+		<selectKey keyProperty="message_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(message_idx), 0) FROM chat_message
+		</selectKey>
+			INSERT
+				INTO 
+					chat_message
+				VALUES (
+					#{message_idx} + 1
+					, #{chatRoomIdx} + 1
+					, #{chatId}
+					, (SELECT member_id
+						FROM product
+						WHERE product_idx = #{productIdx})
+					, now()
+					, #{messageContent}
 				)
 	</insert>
 

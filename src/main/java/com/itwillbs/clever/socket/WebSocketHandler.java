@@ -1,30 +1,25 @@
 package com.itwillbs.clever.socket;
 
-import java.net.InetSocketAddress;
-import java.security.Principal;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import org.apache.ibatis.annotations.*;
-import org.json.*;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.integration.config.xml.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.*;
-import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.socket.*;
-import org.springframework.web.socket.handler.*;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.itwillbs.clever.controller.*;
-import com.itwillbs.clever.service.*;
-import com.itwillbs.clever.vo.*;
-
-import kotlin.*;
-import okhttp3.internal.ws.RealWebSocket.Message;
+import com.itwillbs.clever.controller.ChattingController;
+import com.itwillbs.clever.service.ChattingService;
+import com.itwillbs.clever.vo.ChatRoomVO;
 
 @Controller
 public class WebSocketHandler extends TextWebSocketHandler implements InitializingBean{
@@ -144,24 +139,32 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	    int productIdx = (Integer.parseInt(jo.getString("product_idx")));
 	    int chatRoomIdx = (Integer.parseInt(jo.getString("chatRoom_idx")));
 	    String messageContent = jo.getString("message_content");
+	    String chatId = jo.getString("chat_id");
 	    System.out.println("productIdx : " + productIdx);
 	    System.out.println("chatRoomIdx : " + chatRoomIdx);
 	    System.out.println("messageContent : " + messageContent);
 	    
-	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx, jo.getString("chat_id"));
-	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
+	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx, chatId);
+	    System.out.println("앜" + selectChatList);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
-	    if(chatRoomIdx == 0 && selectChatList.isEmpty()) {
-	    	chattingService.OpenRoom(chatRoomIdx, productIdx);
-	    } else { 
-    		System.out.println("채팅방 생성 성공");
-    		for(WebSocketSession s : sessions) {
-    			System.out.println("채팅방 존재함! 메세지 전송!!!!!");
-    			s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
-    			System.out.println("메세지 전송 성공");
-    		} 
+	    if (chatRoomIdx == 0 && selectChatList.isEmpty()) {
+	        chattingService.OpenRoom(chatRoomIdx, productIdx);
+	        System.out.println("채팅방 생성 성공");
+	    } 
+
+	    for (WebSocketSession s : sessions) {
+	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
+	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
+	        System.out.println("메세지 전송 성공");
+	        int result = chattingService.insertMessage(productIdx, chatRoomIdx, chatId, messageContent);
+	        if (result > 0) {
+	            System.out.println("채팅 메세지 저장");
+	        }
 	    }
+	    
+	    
+	    
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);
 //

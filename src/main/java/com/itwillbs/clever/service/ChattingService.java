@@ -18,13 +18,15 @@ public class ChattingService {
 		return mapper.selectChatList(product_idx, sId);
 	}
 
-//	public int openRoom(int product_idx) {
-//		return mapper.openRoom(product_idx);
-//	}
 
 	public int OpenRoom(int chatRoom_idx, int product_idx) {
 		return mapper.openRoom(chatRoom_idx, product_idx);
 	}
+
+	public int insertMessage(int productIdx, int chatRoomIdx, String chatId, String messageContent) {
+		return mapper.insertChat(productIdx, chatRoomIdx, chatId, messageContent);
+	}
+
 
 
 }

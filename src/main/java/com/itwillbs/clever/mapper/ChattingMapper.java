@@ -12,4 +12,7 @@ public interface ChattingMapper {
 
 	int openRoom(@Param("chatRoom_idx") int chatRoom_idx, @Param("product_idx") int product_idx);
 
+	int insertChat(@Param("productIdx") int productIdx, @Param("chatRoomIdx") int chatRoomIdx, @Param("chatId") String chatId, @Param("messageContent") String messageContent);
+
+
 }
