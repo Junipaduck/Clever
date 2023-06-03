@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,32 +91,39 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>상품번호</th>
-                                                <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
-                                                <th>상품사진</th>
+                                                <th>신고번호</th>
+                                                <th>신고상품번호</th>
+                                                <th>신고사유</th>
+                                                <th>판매자 정보</th>
+                                                <th>신고자 정보</th>
+                                                <th>누적 신고 수</th>
+                                                <th>신고 처리 상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>장바구니</td>
-                                                <td>2023-05-19</td>
-                                                <td>굿즈</td>
-                                                <td>5000원</td>
-                                                <td>사진</td>
-                                            </tr>
+                                        	<c:forEach items="${reportList }" var="reportList">
+	                                            <tr>
+	                                                <td>${reportList.report_idx }</td>
+	                                                <td>${reportList.product_idx }</td>
+	                                                <td>${reportList.report_content }</td>
+	                                                <td>${reportList.seller_id }</td>
+	                                                <td>${reportList.reporter_id }</td>
+	                                                <td>${reportList.report_count }</td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary">처리하기</button>
+	                                                </td>
+	                                            </tr>
+                                        	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>상품번호</th>
-                                                <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
-                                                <th>상품사진</th>
+                                                <th>신고번호</th>
+                                                <th>신고상품번호</th>
+                                                <th>신고사유</th>
+                                                <th>판매자 정보</th>
+                                                <th>신고자 정보</th>
+                                                <th>누적 신고 수</th>
+                                                <th>신고 처리 상태</th>
                                             </tr>
                                         </tfoot>
                                     </table>

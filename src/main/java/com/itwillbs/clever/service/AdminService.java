@@ -99,6 +99,12 @@ public class AdminService {
 		return mapper.selectReportCount();
 	}
 
+	// 관리자 페이지 신고 목록 조회
+	public List<HashMap<String, String>> getReportList() {
+		
+		return mapper.selectReportList();
+	}
+
 
 
 		

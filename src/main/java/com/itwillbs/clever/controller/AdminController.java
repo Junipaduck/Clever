@@ -114,7 +114,11 @@ public class AdminController {
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
-	public String reportList() {
+	public String reportList(Model model) {
+		
+		List<HashMap<String, String>> reportList = adminService.getReportList();
+		model.addAttribute("reportList", reportList);
+		
 		return "admin/report_list";
 	}
 	

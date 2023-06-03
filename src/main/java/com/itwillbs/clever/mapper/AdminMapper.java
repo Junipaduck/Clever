@@ -33,6 +33,9 @@ public interface AdminMapper {
 	// 관리자 정보 조회
 	HashMap<String, String> selectAdminInfo();
 
+	// 신고 목록 조회
+	List<HashMap<String, String>> selectReportList();
+
 
 
 }
