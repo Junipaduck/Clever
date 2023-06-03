@@ -1,5 +1,6 @@
 package com.itwillbs.clever.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.ChattingService;
 import com.itwillbs.clever.socket.WebSocketHandler;
-import com.itwillbs.clever.vo.ChatListVO;
+import com.itwillbs.clever.vo.ChatRoomVO;
 
 @Controller
 public class ChattingController {
@@ -38,24 +39,18 @@ public class ChattingController {
 			return "success";
 		}
 		
-		// 제품상세페이지에서 product_idx값 가져와서 채팅 시작
 		// 채팅방 조회
-		List<ChatListVO> chatList = chattingService.selectChatList(product_idx);
-		model.addAttribute("chatList", chatList);
-		System.out.println("chatList : " + chatList);
+		List<ChatRoomVO> chatList = chattingService.selectChatList(product_idx, sId);
+		int chatRoomIdx = 0;
+		if (!chatList.isEmpty()) {
+			chatRoomIdx = chatList.get(0).getChatRoom_idx();
+		}
 		
-//		if(chatList == null) {
-//			System.out.println("새 채팅방 생성");
-//			// 채팅방 오픈
-//			int openCtRoom = chattingService.openRoom(product_idx);
-//			if(openCtRoom > 0) {
-//				model.addAttribute("msg","채팅을 시작합니다!");
-//				return "chatting/chatting";
-//			} else {
-//				model.addAttribute("msg","채팅을 시작할 수 없습니다!");
-//				return "fail_back";
-//			}			
-//		}
+		model.addAttribute("chatList", chatList);
+		model.addAttribute("chatRoomIdx", chatRoomIdx);
+		System.out.println("chatList : " + chatList);
+		System.out.println("chatRoomIdx : " + chatRoomIdx);
+		
 		
 		return "chatting/chatting";
 	}

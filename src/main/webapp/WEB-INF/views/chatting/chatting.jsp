@@ -96,16 +96,15 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 
 //el태그통해 js변수 셋팅
 // const userNo = "${loginUser.userNo}";
-const userNo = "";
-const userName = "${sessionScope.sId}";
-const productIdx = "${param.product_idx}";
-const chatRoomNo = "${chatRoomNo}";
+var userId = "${sessionScope.sId}";
+var productIdx = "${param.product_idx}";
+var chatList = "${chatList}";
+console.log(chatList);
+var chatRoomIdx = "${chatRoomIdx}";
+console.log(chatRoomIdx);
 // const contextPath = "${pageContext.request.requestURL}";
-
-// /chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
+// //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
 // var chatSocket = new SockJS(contextPath + "/chatting");
-
-
 
 // // 페이지 로딩 완료시 채팅창을 맨 아래로 내리기. 즉시 실행함수. IIFE
 // (function() {
@@ -142,10 +141,12 @@ function sendMessage() {
 	// 채팅 내용 있을 때	
 	} else {
 	const chatMessage = {		// js객체로 생성
-// 		"userName": userName,
+// 		"buyerId": userName,
+		"chatRoom_idx": chatRoomIdx,
+		"buyer_id" : userId,
+// 		"message_date" : ,
 		"product_idx": productIdx,
-		"chat_idx": chatRoomNo,
-// 		"message": message.value
+		"message_content" : message.value
 	};
 
 	console.log(chatMessage);

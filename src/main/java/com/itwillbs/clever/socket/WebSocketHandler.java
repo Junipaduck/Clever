@@ -87,7 +87,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 //		users.remove(session);
 //	}
 	
-	
+	private final ObjectMapper objectMapper = new ObjectMapper();
 	private Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
 	// synchronizedSet : 동기화된 set은 반환해주는 메소드
     // 멀티스레드 환경에서 하나의 컬렉션요소에 여러 스레드가 동시에 접근하면 충돌이 발생할 수 있으므로 동기화를 충돌이 안나도록 진행
@@ -140,26 +140,24 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 //			s.sendMessage(new TextMessage(session.getId() + ":" + message.getPayload()));
 //		}
 	    
-
-//	    // JSON형태로 넘어온 데이터를 특정VO필드에 맞게 자동매핑
-	    ObjectMapper objectMapper = new ObjectMapper();
-	    ChatListVO chatMessage = objectMapper.readValue(message.getPayload(), ChatListVO.class);
-	    System.out.println(chatMessage);
-	    System.out.println(chatMessage.getChat_idx());
+	    JSONObject jo = new JSONObject(message.getPayload());
+	    int productIdx = (Integer.parseInt(jo.getString("product_idx")));
+	    int chatRoomIdx = (Integer.parseInt(jo.getString("chatRoom_idx")));
+	    String messageContent = jo.getString("message_content");
+	    System.out.println("productIdx : " + productIdx);
+	    System.out.println("chatRoomIdx : " + chatRoomIdx);
 	    
-	    List<ChatListVO> selectChatList = chattingService.selectChatList(chatMessage.getProduct_idx());
-	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
+//	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx);
+//	    System.out.println("앜!!!!!!ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ" + selectChatList);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성
-	    if(selectChatList.isEmpty()) {
-	    	System.out.println("채팅방이 없어요ㅋㅋㅋㅋㅋ^^");
-	    	int openChatRoom = chattingService.OpenRoom(chatMessage.getChat_idx(), chatMessage.getProduct_idx());
-	    	System.out.println("채팅방이 없어요^^");
+	    if(chatRoomIdx == 0) {
+	    	int openChatRoom = chattingService.OpenRoom(chatRoomIdx, productIdx);
 	    	if(openChatRoom > 0) { 
 	    		System.out.println("채팅방 생성 성공");
-	    	} else {
-	    		System.out.println("채팅방 생성 실패");
 	    	}
+	    } else {
+	    	
 	    }
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);

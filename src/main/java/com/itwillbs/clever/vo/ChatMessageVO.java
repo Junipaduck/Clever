@@ -4,7 +4,7 @@ import lombok.Data;
 
 //CREATE TABLE chat_message (
 //		message_idx int
-//		,chat_idx int
+//		,chatRoom_idx int
 //		,buyer_id varchar(45)
 //		,seller_id varchar(45)
 //		,message_date date
@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class ChatMessageVO {
 	private int message_idx;
-	private int chat_idx;
+	private int chatRoom_idx;
 	private String buyer_id;
 	private String seller_id;
 	private String message_date;
