@@ -98,6 +98,7 @@ public class GoodsController {
 		
 		List<HashMap<String, String>> fileList = goodsService.selectFile();
 		model.addAttribute("fileList", fileList);
+		System.out.println("파일 확인 ------------------------" + fileList);
 		
 		return "admin/goods_store_list";
 	}
