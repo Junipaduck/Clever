@@ -118,11 +118,19 @@
 					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
 											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
 											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
-					                            <c:if test="${fileList.file_num eq productList.product_idx }">
+											<c:choose>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매중' }">
 						                            <div class="goods_image">
 						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
 						                            </div>
-					                            </c:if>
+					                            </c:when>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매완료' }">
+					                            	<div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                               	<img src="${pageContext.request.contextPath }/resources/images/soldOut.png" alt="판매완료" style="width: 170px; height: 120px; margin-bottom: 77px;">
+						                            </div>
+					                            </c:when>
+					                        </c:choose>
 				                        </c:forEach>
 				                        
 	                                <div class="goods_info">

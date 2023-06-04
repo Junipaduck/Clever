@@ -197,9 +197,11 @@
 				                                            </div>
 			                                            </a>
 			                                        </div>
-			                                        <div class="col-4">
-			                                            <div class="p-3 info_btn3" onclick="payProduct()">바로구매</div>
-			                                        </div>
+			                                        <c:if test="${productDetail.sale_status eq '판매중' }"> <!-- '판매중'인 상품만 바로구매 버튼이 보여짐 -->
+				                                        <div class="col-4">
+				                                            <div class="p-3 info_btn3" onclick="payProduct()">바로구매</div>
+				                                        </div>
+			                                        </c:if>
 			                                    </div>
 			                                </div>
 			                                <!-- //버튼영역 -->
