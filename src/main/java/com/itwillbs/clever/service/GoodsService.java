@@ -43,5 +43,11 @@ public class GoodsService {
 		return mapper.updateGoods(goods);
 	}
 
+	// 파일테이블에서 굿즈 이미지 조회
+	public List<HashMap<String, String>> selectFile() {
+		
+		return mapper.selectFile();
+	}
+
 	
 }

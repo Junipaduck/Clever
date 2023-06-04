@@ -18,6 +18,9 @@ public interface GoodsMapper {
 	// 굿즈 수정
 	int updateGoods(GoodsVO goods);
 
+	// 관리자 굿즈 페이지 굿즈 이미지 조회
+	List<HashMap<String, String>> selectFile();
+
 }
 
 

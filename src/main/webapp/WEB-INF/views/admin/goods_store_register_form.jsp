@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html lang="en">
@@ -136,18 +137,14 @@ display: flex;
                 <form action="goodsRegisterPro.ad" method="POST" class="frm_selling_goods" enctype="multipart/form-data">
 <%--                 	<input type="hidden" name="member_id" value="${sessionScope.sId }">  --%>
                     <div class="goods_images_area">
-                        <p>상품이미지<span class="red">*</span>
-                           <span class="image_limit"><span class="image_num"></span></span>
+                         <p>상품이미지<span class="red">*</span>
+                            <span class="image_limit">(<span class="image_num"></span>/4)</span>
                         </p>
                         <div>
                             <div class="goods_images">
-                                <div>
+                                 <div>
                                     이미지 등록
-                                    <c:choose>
-                                    	<c:when test="${empty goods.goods_file }">
-		                                    <input type="file" name="file" accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
-                                    	</c:when>
-                                    </c:choose>
+                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

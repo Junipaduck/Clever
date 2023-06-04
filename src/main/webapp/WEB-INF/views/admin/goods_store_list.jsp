@@ -111,10 +111,16 @@
 	                                                <td>${goodsList.goods_price }</td>
 	                                                <td>${goodsList.goods_content }</td>
 	                                                <td>
-								                        <c:set var="length" value="${fn:length(goodsList.goods_file) }"/>
-														<c:set var="index" value="${fn:indexOf(goodsList.goods_file, '_') }"/>
-														<c:set var="fileName" value="${fn:substring(goodsList.goods_file, index + 1, length) }"/>
-														<img alt="..." src="${pageContext.request.contextPath }/resources/upload/${fileName}" style="height: 50px;width: 50px;">
+												    	<c:forEach items="${fileList }" var="fileList">
+									                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+															<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+															<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+									                            <c:if test="${fileList.file_num eq goodsList.goods_idx }">
+										                            <div class="goods_image">
+										                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+										                            </div>
+									                            </c:if>
+								                        </c:forEach>
                                                 	</td>
 	                                                <td>${goodsList.goods_date }</td>
 	                                                <td>${goodsList.goods_stock }개</td>

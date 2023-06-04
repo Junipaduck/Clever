@@ -13,17 +13,35 @@
 					, #{goods_name}
 					, #{goods_price}
 					, #{goods_content}
-					, #{goods_file}
-					, #{goods_file_path}
 					, now()
 					, #{goods_stock}
 				)
 	</insert>
 	
+	
+	<!-- 	file 테이블의 file_num(= product테이블의 product_idx)의 max값을 select함 -->
+	<select id="selectMax" resultType="int">
+		SELECT
+			MAX(goods_idx)
+		FROM
+			goods;
+	</select>
+	
 	<!-- 굿즈 목록 조회 -->
 	<select id="selectGoodsList" resultType="HashMap">
 		SELECT *
 			FROM goods
+	</select>
+	
+	<!-- 메인에 띄워줄 첫 번쨰 업로드 사진 select -->
+	<select id="selectFile" resultType="HashMap">
+		SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'goods'
+							GROUP BY file_num);
 	</select>
 	
 	<!-- 굿즈 수정용 목록 조회 -->
@@ -33,18 +51,6 @@
 			WHERE goods_idx = ${goods_idx}
 	</select>
 	
-	<update id="updateGoods">
-		UPDATE goods
-			SET
-				<if test="goods_file neq null">
-					goods_file = #{goods_file}
-				</if>
-				, goods_name = #{goods_name}
-				, goods_price = #{goods_price}
-				, goods_content = #{goods_content}
-				WHERE
-					goods_idx = #{goods_idx}
-	</update>
 </mapper>
 
 
