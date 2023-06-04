@@ -85,7 +85,6 @@ public class GoodsController {
 		int updateCount = goodsService.updateGoods(goods);
 		
 		if(updateCount > 0) {
-			model.addAttribute("msg", "수정이 완료되었습니다");
 			return "redirect:/storeList.ad";
 		} else {
 			model.addAttribute("msg", "굿즈 수정 실패!");

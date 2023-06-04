@@ -136,17 +136,14 @@ display: flex;
                 	<input type="hidden" name="goods_idx" value="${param.goods_idx }"> 
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
+                           <span class="image_limit">(<span class="image_num"></span>/4)</span>
                         </p>
                         <div>
                             <div class="goods_images">
-                                <div>
-                                    이미지 등록
-                                    <c:choose>
-                                    	<c:when test="${not empty goods.goods_file }">
-		                                    <input type="file" name="file" accept="image/jpg, image/jpeg, image/png" onchange="setImages(event);">
-                                    	</c:when>
-                                    </c:choose>
-                                </div>
+	                                <div>
+	                                    이미지 등록
+	                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+	                                </div>
                                 <div class="preview_wrap"></div>
                             </div>
                             <div class="goods_images_notice">
@@ -164,31 +161,30 @@ display: flex;
                         <p>상품명<span class="red">*</span></p>
                         <div class="goods_title">
                             <input type="text" name="goods_name" id="goods_name" maxlength="40"
-                                placeholder="${goods.goods_name }" oninput="countTitleLength(event);" style="width: 700px;">
+                                value="${goods.goods_name }" oninput="countTitleLength(event);" style="width: 700px;">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goods_price" placeholder="${goods.goods_price }" oninput="valueIsNumber(event)" style="width: 700px;"> 원</p>
+                            <p><input type="text" name="goods_price" value="${goods.goods_price }" oninput="valueIsNumber(event)" style="width: 700px;"> 원</p>
                         </div>
                     </div>
                     <div class="goods_info_area">
                         <p>설명<span class="red">*</span></p>
                         <div>
-                            <textarea name="goods_content" id="goods_content" cols="30" rows="10" maxlength="2000" oninput="countInfoLength(event)" placeholder="${goods.goods_content }"></textarea>
+                            <textarea name="goods_content" id="goods_content" cols="30" rows="10" maxlength="2000" oninput="countInfoLength(event)" placeholder ="${goods.goods_content }"></textarea>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>재고<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="goods_stock" placeholder="${goods.goods_stock }" oninput="valueIsNumber(event)" style="width: 700px;"> 개</p>
+                            <p><input type="text" name="goods_stock" value="${goods.goods_stock }" oninput="valueIsNumber(event)" style="width: 700px;"> 개</p>
                         </div>
                     </div>
 			        <div class="btn_submit_area">
 				        <div class="inner_submit" style="margin-left: 650px;">
-				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
 				            <input type="submit" class="p-3 info_btn3" value="수정하기">
 				        </div>
 			    	</div>

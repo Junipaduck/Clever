@@ -51,6 +51,17 @@
 			WHERE goods_idx = ${goods_idx}
 	</select>
 	
+	<!-- 굿즈 등록 수정 -->
+	<update id="updateGoods">
+		UPDATE goods
+			SET
+				goods_name = #{goods_name}
+				, goods_price = #{goods_price}
+				, goods_content = #{goods_content}
+				, goods_stock = #{goods_stock}
+			WHERE
+				goods_idx = #{goods_idx}
+	</update>
 </mapper>
 
 
