@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
 
+import retrofit2.http.*;
+
 @Controller
 public class NoticeController {
 
@@ -58,6 +60,30 @@ public class NoticeController {
 		}
 		
 	}
+	
+	// 공지사항 수정 폼으로 이동
+	@GetMapping(value = "/noticeModifyForm.ad")
+	public String noticeModifyForm(@RequestParam int notice_idx, Model model) {
+		
+		HashMap<String, String> notice = noticeService.getNotice(notice_idx);
+		model.addAttribute("notice", notice);
+		
+		return "notice/notice_modify_form";
+	}
+	
+	@PostMapping(value = "/noticeModifyPro.ad")
+	public String noticeModifyPro(NoticeVO notice, Model model) {
+		int updateCount = noticeService.updateNotice(notice);
+		if(updateCount > 0) {
+			model.addAttribute("msg", "공지사항 수정 완료!");
+			return "redirect:/adminNoticeList.ad";
+		} else {
+			model.addAttribute("msg", "공지사항 수정 실패!");
+			return "fail_back";
+		}
+	}
+	
+
 }
 
 

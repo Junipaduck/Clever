@@ -91,6 +91,7 @@
                                                 <th>내용</th>
                                                 <th>등록일</th>
                                                 <th>조회수</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,6 +102,9 @@
 	                                                <td>${noticeList.notice_content }</td>
 	                                                <td>${noticeList.notice_date }</td>
 	                                                <td>${noticeList.notice_readcount }</td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="location.href='noticeModifyForm.ad?notice_idx=${noticeList.notice_idx}'">수정하기</button>
+	                                                </td>
 	                                            </tr>
                                            	</c:forEach>
                                         </tbody>
@@ -111,6 +115,7 @@
                                                 <th>내용</th>
                                                 <th>등록일</th>
                                                 <th>조회수</th>
+                                                <th></th>
                                         </tfoot>
                                     </table>
                                 </div>

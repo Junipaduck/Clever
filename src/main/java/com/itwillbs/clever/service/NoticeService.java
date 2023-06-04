@@ -27,5 +27,19 @@ public class NoticeService {
 		
 		return mapper.selectNoticeList();
 	}
+
+
+	// 공지사항 수정 페이지 플레이스홀더
+	public HashMap<String, String> getNotice(int notice_idx) {
+		
+		return mapper.selectNotice(notice_idx);
+	}
+
+
+	// 공지사항 수정 처리
+	public int updateNotice(NoticeVO notice) {
+		
+		return mapper.updateNotice(notice);
+	}
 	
 }

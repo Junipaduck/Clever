@@ -22,4 +22,22 @@
 		SELECT *
 			FROM notice	
 	</select>
+	
+	<!-- 공지사항 수정 페이지 -->
+	<select id="selectNotice" resultType="HashMap">
+		SELECT * 
+			FROM notice	
+			WHERE 
+				notice_idx = #{notice_idx}
+	</select>
+	
+	<!-- 공지사항 수펑 처리 -->
+	<update id="updateNotice">
+		UPDATE notice
+			SET 
+				notice_title = #{notice_title}
+				, notice_content = #{notice_content}
+				WHERE
+					notice_idx = #{notice_idx}
+	</update>
 </mapper>
