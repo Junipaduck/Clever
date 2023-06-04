@@ -37,8 +37,12 @@ public interface ProductMapper {
 	// 중고상품 파일삭제 (수정중)
 	Object deleteFile(FileVO file);
 
+	int deleteProduct(ProductVO product);
+	
 	DibsVO selectDibsCheck(DibsVO dibs);
 
-	int deleteProduct(ProductVO product);
+	int insertDibs(DibsVO like);
+
+	int deleteDibs(DibsVO like);
 	
 }

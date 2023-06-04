@@ -75,16 +75,25 @@ public class ProductService {
 		return mapper.deleteFile(file);
 	}
 
-	public DibsVO selectDibsCheck(DibsVO dibs) {
-		return mapper.selectDibsCheck(dibs);
-	}
-
 	// 중고상품 삭제 delete
 	public int deleteProduct(ProductVO product) {
 		return mapper.deleteProduct(product);
 	}
 
+	// 찜하기 조회
+	public DibsVO selectDibsCheck(DibsVO dibs) {
+		return mapper.selectDibsCheck(dibs);
+	}
+	
+	// 찜하기 
+	public int insertDibs(DibsVO like) {
+		return mapper.insertDibs(like);
+	}
 
+	// 찜하기 삭제
+	public int deleteDibs(DibsVO like) {
+		return mapper.deleteDibs(like);
+	}
 	
 	
 }

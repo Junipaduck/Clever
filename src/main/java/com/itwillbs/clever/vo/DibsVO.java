@@ -15,5 +15,5 @@ import lombok.Data;
 public class DibsVO {
 	private int product_idx;
 	private String member_id;
-	private String dibs_check;
+	private int dibs_check;
 }

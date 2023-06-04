@@ -84,20 +84,48 @@ public class ProductController {
 		dibs.setProduct_idx(product_idx);
 		dibs.setMember_id(sId);		
 		
-		System.out.println("1차체크 : " + dibs);
-		
 		DibsVO dibsCheck = productService.selectDibsCheck(dibs);
 		
 		if(dibsCheck != null) {
 		} else {
 			dibsCheck = new DibsVO();
-			dibsCheck.setDibs_check("N");
+			dibsCheck.setDibs_check(0);
 		} model.addAttribute("result", dibsCheck);
-		
-		System.out.println("찜체크" + dibsCheck);
 		
 		return "product/product_detail";
 	}
+	
+	// 찜하기 상호작용 ajax 
+		@ResponseBody
+		@GetMapping("/dibsCheck")
+		public int DibsCheck(int product_idx, String member_id , HttpSession session, Model model) {
+						
+			int result = -1;
+			String sId = (String)session.getAttribute("sId");
+			if(sId == null) {
+				return result;
+			}
+		
+			// 객체 생성 및 값 세팅 후 찜하기 또는 삭제 판별		
+			DibsVO like = new DibsVO();
+			like.setProduct_idx(product_idx);
+			like.setMember_id(sId);
+					
+			DibsVO dibsCheck = productService.selectDibsCheck(like);
+			
+			System.out.println("확인해주세요 " + dibsCheck);
+			
+			if(dibsCheck == null) {
+				result = productService.insertDibs(like);
+			} else {
+				result = productService.deleteDibs(like);
+				result = 0;
+			}
+			
+			session.setAttribute("result", result);
+					
+			return result;
+		}
 	
 	// 상품 등록하기
 	@GetMapping("/product_upload")

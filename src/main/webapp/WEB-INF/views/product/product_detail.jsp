@@ -42,6 +42,46 @@
 		    window.open("payProduct?product_idx=${param.product_idx}", "바로구매새창", "width=800, height=1200" );
 	}
 	
+	/* 찜하기 AJAX 찜하기 버튼 누르면 상호작용 */
+	let product_idx = document.location.href.split("=")[1];
+	
+	$(document).ready(function() {
+		 $(".dibs").on("click", function(){
+		 	$.ajax({
+		 		url : "dibsCheck",
+		 		type: 'GET',
+		 		data: {'product_idx':product_idx, 'member_id':'${sessionScope.sId}'},
+		 		success:function(data){
+				
+		 			if(data==1){
+		 				alert("상품 찜 하셨습니다.");
+		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/hearton.png");
+		 				$('#dibsback').attr("style","background-color: #333333");
+		 				var result = confirm('찜목록으로 이동하시겠습니까?');
+		 				if (result) {
+		 					//yes
+		 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
+		 					location.href='myPage.me'; 
+		 	 			} 
+		 			}
+		 			else if(data == -1){
+		 				alert("로그인이 필요한 서비스입니다. ");
+		 				location.href='loginForm.me';
+		 			} 		 			
+		 			else {
+		 				alert("상품 찜 취소하셨습니다. ");
+		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/w_heart.svg");
+		 				$('#dibsback').attr("style","background-color: #CCCCCC");
+		 			}
+		 		},
+		 		error:function(error){
+		 			console.log(error);
+		 		}
+		 	});
+		 });
+	}); 
+	
+	
 </script>
 	<!-- 헤더 시작 -->
 	<header>
@@ -179,15 +219,19 @@
 			                                <div class="container text-center detail_content_info_btn">
 			                                    <div class="row g-2">
 			                                        <div class="col-4">
-			                                        	<c:if test="${result.dibs_check == 'N' }">
-				                                            <div class="p-3 info_btn1">
-				                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 
-				                                            </div>
-			                                        	</c:if>
-			                                        	<c:if test="${result.dibs_check == 'Y' }">
-			                                        		<div class="p-3 info_btn1" style="background-color: #333333;">
-				                                                <img src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜
-				                                            </div>
+			                                        	<c:if test="${result.dibs_check != null }">
+			                                        		<a class="dibs">
+			                                        			<c:if test="${result.dibs_check == 0}">
+				                                            		<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >
+				                                                	<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 
+				                                            		</div>
+			                                        			</c:if>	
+			                                        			<c:if test="${result.dibs_check == 1}">
+			                                        				<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">
+				                                                	<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜
+				                                            		</div>
+			                                        			</c:if>
+			                                        		</a>
 			                                        	</c:if>
 			                                        </div>
 			                                        <div class="col-4">
