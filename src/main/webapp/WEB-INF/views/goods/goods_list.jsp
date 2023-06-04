@@ -83,15 +83,17 @@
                        	<c:forEach items="${goodsList }" var="goodsList">
 	                        <div class="goods">
 	                            <a href="goods_product_detail.html">
-	                                <div class="goods_image">
-                             			<c:set var="length" value="${fn:length(goodsList.goods_file) }"/>
-										<c:set var="index" value="${fn:indexOf(goodsList.goods_file, '_') }"/>
-										<c:set var="fileName" value="${fn:substring(goodsList.goods_file, index + 1, length) }"/>
-<%-- 										<img alt="..." src="${pageContext.request.contextPath }/resources/upload/${fileName}" style="height: 194px;width: 194px;"> --%>
-	                                    <img src="${pageContext.request.contextPath }/resources/upload/${fileName}" width="194" height="194" alt="상품 이미지">
-<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이"> --%>
-	                                    <span></span>
-	                                </div>
+ 	 									<c:forEach items="${fileList }" var="fileList">
+				                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+										<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+										<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+				                            <c:if test="${fileList.file_num eq goodsList.goods_idx }">
+					                            <div class="goods_image">
+					                                <img src="${pageContext.request.contextPath }/resources/upload/${file_name}" width="194" height="194" alt="상품 이미지">
+					                            </div>
+				                            </c:if>
+				                        </c:forEach>
+				                        
 	                                <div class="goods_info">
 	                                    <p class="goods_title">${goodsList.goods_name }</p>
 	                                    <div class="goods_price_date">

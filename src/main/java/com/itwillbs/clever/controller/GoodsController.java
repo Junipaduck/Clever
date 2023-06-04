@@ -33,6 +33,11 @@ public class GoodsController {
 		List<HashMap<String, String>> goodsList = goodsService.getGoodsList();
 		model.addAttribute("goodsList", goodsList);
 		
+		List<HashMap<String, String>> fileList = goodsService.selectFile();
+		model.addAttribute("fileList", fileList);
+		System.out.println("파일 확인 ------------------------" + fileList);
+		
+		
 		return "goods/goods_list";
 	}
 	
