@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+`<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
@@ -37,162 +37,7 @@
 </head>
 
 <body>
-<script type="text/javascript">
 
-	function inputNumberFormat(obj) {
-		
-	    obj.value = comma(uncomma(obj.value));
-	}
-	
-	function comma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	}
-	
-	function uncomma(str) {
-	    str = String(str);
-	    return str.replace(/[^\d]+/g, '');
-	}
-	
-	function showPrice() {
-		
-		var priceInput = document.getElementById("price").value;
-		
-		if(priceInput==""||priceInput==null||priceInput[0]=='0'){
-			alert("금액을 확인하세요");
-			return;
-		}
-		
-		var resultElement = document.getElementById("result");
-		$("#inputInt").val(priceInput);
-// 		resultElement.innerHTML = priceInput ;
- 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
-		
-	}
-	
-	function auctionAddPrice(percent) {
-		
-		var priceInput = parseInt(uncomma($("#inputInt").val()));
-		priceInput += priceInput * percent;
-		priceInput = Math.floor(priceInput/10) * 10; //10원 단위 짜르기
-		
-		$('#price').val(comma(priceInput));
-		
-	}
-	
-	function auctionLog(){
-		location.href="auction_Log";
-	}
-	
-	
-// 	function ProductPriceUpdate(auction_idx) { 
-// 		alert(auction_idx);
-// 	}
-
-	var sock = new SockJS('http://localhost:8082/clever/chatting'); //원래꺼
-	// var sock = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting'); //와르파일주소
-	// var sock = new WebSocket('ws://localhost:8089/clever/chatting');
-	sock.onmessage = onMessage;
-	sock.onopen = onOpen;
-	sock.onclose = onClose;
-	
-	$(function() {
-		$("#btnSend").click(function() {
-			console.log('send Message');
-			sendMessage();
-		})
-	});
-	
-	$(function() {
-		$("#btnClose").click(function() {
-			onClose();
-		})
-	});
-	
-	
-	function sendMessage() {
-		sock.send('${sId}' + ":" + $("#price").val());	// 메세지 전송 시 메세지 입력하는 사용자의 아이디 같이 보냄
-	}
-	//서버에서 메시지를 받았을 때
-	function onMessage(msg) {
-		console.log(msg);
-		var data = msg.data;
-		var chatId = null; // 메세지를 보낸 사람
-		var message = null;
-		var resultElement = document.getElementById("result");
-		console.log('data = ' + data);
-		console.log('${sessionScope.senderId}');
-	// 	stompClient = Stomp.over(socket);
-	// 	stompClient.connect({}, function(frame) {
-	// 	        console.log(socket._transport.url); 
-	// 	        //ws://localhost:8080/socket/039/byxby3jv/websocket
-	// 	        //sessionId는 byxby3jv
-	// 	    });
-		
-		var arr = data.split(":");
-		for(var i=0; i<arr.length; i++){
-			console.log('arr[' + i + ']: ' + arr[i]);
-		}
-		
-	// 	var cur_session = $('#memberSelect').val(); //현재 세션에 로그인 한 사람
-		var cur_session = '${sId}'; //현재 세션에 로그인 한 사람
-		console.log("cur_session : " + cur_session);
-		
-		chatId = arr[1];
-		message = arr[2];
-		
-	//     로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-		if(chatId == cur_session){
-			
-	// 		var str = "<div class='col-6'>";
-	// 		str += "<div class='alert alert-secondary'>";
-	// 		str += "<b>" + chatId + " : " + message + "</b>";
-			var str = "<div class='myMsg'>";
-			str += "<span class='msg'><b>"+ chatId + " : "  + message + "</b></span>";
-			str += "</div></div>";
-			
-			$("#chatLog2").append(str);
-			
-			$("#inputInt").val(message);
-	 		resultElement.innerHTML = "<span>" + message + "&nbsp;" +  "</span>원";
-		}
-		else{
-			
-	// 		var str = "<div class='col-6'>";
-	// 		str += "<div class='alert alert-warning'>";
-	// 		str += "<b>" + chatId + " : " + message + "</b>";
-			var str = "<div class='anotherMsg'>";
-			str += "<span class='msg'>"+ chatId +" : <b>"  + message + "</b></span>";
-			str += "</div></div>";
-			
-			$("#chatLog2").append(str);
-			
-			$("#inputInt").val(message);
-	 		resultElement.innerHTML = "<span>" + message + "&nbsp;" +  "</span>원";
-	
-		}
-		
-	}
-	
-	//채팅창에 들어왔을 때
-	function onOpen(evt) {
-		console.log("입장");
-		var user = '${sessionScope.sId}';
-// 		var str = user + "님이 입장하셨습니다.";
-// 		$("#chatLog2").append(str);
-	// 	console.log('${sId}');
-	}
-	
-// 	//채팅창에서 나갔을 때
-	function onClose(evt) {
-		console.log("퇴장");
-		var user = '${sessionScope.sId}';
-// 		var str = user + " 님이 퇴장하셨습니다.ㅜ";
-// 		$("#chatLog2").append(str);
-	}
-
-
-</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
@@ -311,7 +156,7 @@
                                 </p>
                             </div>
                             <div id="detail_content_info_state">
-                                <p>
+                                <p> 
                                     <span>· 상품상태</span>
                                     <span>${detailmap.auction_product_status }</span>
                                 </p>
@@ -565,5 +410,183 @@
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
+	
+	<script type="text/javascript">
+
+	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
+	var userId = "${sessionScope.sId}";
+	var auction_idx = "${param.auction_idx}";
+	var logList = "${logList}";
+	var logRoom_idx = "${logRoomIdx}";
+	
+// 	alert("1번째 : " + userId);
+// 	alert("2번째 : " + auction_idx);
+// 	alert("3번째 : " + logList);
+// 	alert("4번째 : " + logRoom_idx);
+	
+	function inputNumberFormat(obj) {
+		
+	    obj.value = comma(uncomma(obj.value));
+	}
+	
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
+	
+	function showPrice() {
+		
+		var priceInput = document.getElementById("price").value;
+		
+		if(priceInput==""||priceInput==null||priceInput[0]=='0'){
+			alert("금액을 확인하세요");
+			return;
+		}
+		
+		var resultElement = document.getElementById("result");
+		$("#inputInt").val(priceInput);
+// 		resultElement.innerHTML = priceInput ;
+ 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
+		
+	}
+	
+	function auctionAddPrice(percent) {
+		
+		var priceInput = parseInt(uncomma($("#inputInt").val()));
+		priceInput += priceInput * percent;
+		priceInput = Math.floor(priceInput/10) * 10; //10원 단위 짜르기
+		
+		$('#price').val(comma(priceInput));
+		
+	}
+	
+	function auctionLog(){
+		location.href="auction_Log";
+	}
+	
+
+	//서버에서 메시지를 받았을 때
+
+//war파일(DB공용폴더)로 연결시 소켓 연결 주소
+//var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
+//var chatSocket = new WebSocket('ws://localhost:8089/clever/chatting');
+
+
+//el태그통해 js변수 셋팅
+// const userNo = "${loginUser.userNo}";
+
+// const contextPath = "${pageContext.request.requestURL}";
+// //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
+// var chatSocket = new SockJS(contextPath + "/chatting");
+
+// // 페이지 로딩 완료시 채팅창을 맨 아래로 내리기. 즉시 실행함수. IIFE
+// (function() {
+//  const displayChatting = document.getElementsByClassName("display-chatting")[0];
+
+//  if (displayChatting != null) {
+//      displayChatting.scrollTop = displayChatting.scrollHeight;
+//  }
+// })();
+
+// 메세지 전송 버튼 클릭 시 이벤트
+document.getElementById("btnSend").addEventListener("click", sendMessage);
+
+// 엔터키 눌렀을 때 메세지 전송
+// $("#message").keypress(function(e) {
+// 	if (e.keyCode && e.keyCode === 13) {
+// 		$("#btnSend").trigger("click");
+// 	}
+// });
+
+// 메세지 전송
+function sendMessage() {
+	
+	// 채팅이 입력되는 textarea요소 가져오기
+	const message = document.getElementById("price");
+
+	// 채팅 내용을 입력하지 않았을 때
+	if (message.value.trim().length == 0) {
+     
+		alert("채팅내용을 입력해주세요!");
+		message.value = "";		// text입력창 초기화
+		message.focus();
+		
+	// 채팅 내용 있을 때	
+	} else {
+	const chatMessage = {		// js객체로 생성
+// 		"buyerId": userName,
+		"logRoom_idx": logRoom_idx,
+		"chat_id" : userId,
+// 		"message_date" : ,
+		"auction_idx": auction_idx,
+		"message_content" : message.value
+	};
+
+	alert(chatMessage);
+	alert(JSON.stringify(chatMessage));
+	
+	// 소켓으로 내용 보내기
+	chatSocket.send(JSON.stringify(chatMessage));
+	message.value = "";		// text입력창 초기화
+	}
+}
+
+// 서버에서 메시지를 받았을 때
+chatSocket.onmessage = function(e) {
+	
+	// 전달받은 메세지를 JS객체로 변환
+	const chatMessage = JSON.parse(e.data);
+
+	var receive = e.data.split(":");
+	const data = {
+			"id" : receive[0],
+			"message" : receive[1]
+	}
+	console.log('id : ' + data.id);
+	console.log('message : ' + data.message);
+
+	// 채팅방 화면에 채팅 내용 출력
+	if (data.id == userId) {
+		var str = "<div class='myMsg'>";
+		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
+		str += "</div></div>";
+		
+		$("#chatLog2").append(str);
+	} else {
+		var str = "<div class='anotherMsg'>";
+		str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
+		str += "</div></div>";
+		
+		$("#chatLog2").append(str);
+	}
+
+
+};
+
+
+// 소켓 연결
+chatSocket.onopen = function(e) {
+	console.log('${sessionScope.sId}' + " 입장");
+	var user = '${sessionScope.sId}';
+	var str = user + "님이 입장하셨습니다.";
+	$("#chatLog2").append(str);
+}
+
+// 소켓 연결 끊김 
+chatSocket.onclose = function(e) {
+	console.log('${sessionScope.sId}' + " 퇴장");
+	var user = '${sessionScope.sId}';
+	var str = user + " 님이 퇴장하셨습니다.ㅜ";
+	$("#chatLog2").append(str);
+}
+
+</script>
+	
+	
 </body>
 </html>

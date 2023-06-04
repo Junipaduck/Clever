@@ -39,7 +39,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/chatting").addInterceptors().withSockJS();
+		registry.addEndpoint("/auction_detail").addInterceptors().withSockJS();
 	}
+	
+	
 }
 
 

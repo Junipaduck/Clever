@@ -36,7 +36,7 @@ public class AuctionService {
 	public List selectFiles() {
 		return mapper.selectFiles();
 	}
-	public Map<String, String> detailList(String auction_idx) {
+	public Map<String, String> detailList(int auction_idx) {
 		
 		return mapper.selectDetailList(auction_idx);
 	}

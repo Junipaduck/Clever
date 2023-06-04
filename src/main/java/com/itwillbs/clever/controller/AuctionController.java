@@ -29,6 +29,9 @@ public class AuctionController {
 	private MemberService memberService;
 	
 	@Autowired
+	private AuctionLogService auctionLogService;
+	
+	@Autowired
 	FileUpload upload;
 	
 	@GetMapping(value = "auction")
@@ -83,15 +86,34 @@ public class AuctionController {
 	}
 	
 	@GetMapping(value = "auction_detail")
-	public String auction_detail(Model model, String auction_idx) {
+	public String auction_detail(HttpSession session, Model model, @RequestParam int auction_idx) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
+			model.addAttribute("msg","로그인 후 이용해주세요!");
+			model.addAttribute("target","loginForm.me");
+			return "success";
+		}
+		
+		List<LogRoomVO> logList = auctionLogService.selectLogList(auction_idx, sId);
+		
+		int logRoomIdx = 0;
+		if (!logList.isEmpty()) {
+			logRoomIdx = logList.get(0).getLogRoom_idx();
+		}
+		
+		model.addAttribute("logList", logList);
+		model.addAttribute("logRoomIdx", logRoomIdx);
+		System.out.println("chatList!!!!!!!!!!!!!!! : " + logList);
+		System.out.println("logRoomIdx!!!!!!!!!!!!!!!! : " + logRoomIdx);
 		
 		Map detailmap = auctionService.detailList(auction_idx);
 		model.addAttribute("detailmap", detailmap);
 		
-		System.out.println("맵!!!!!!!!" + detailmap);
-		
 		return "auction/auction_detail";
 	}
+	
 	
 	@GetMapping(value = "auction_upload")
 	public String auction_upload(Model model, HttpSession session) {

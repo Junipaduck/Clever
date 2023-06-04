@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.clever.mapper.AuctionLogMapper">
+	
+	<!-- 채팅방 리스트 조회 -->
+	<select id="selectLogList" resultType="com.itwillbs.clever.vo.LogRoomVO">
+		SELECT *
+			FROM 
+				log_room lr
+			JOIN log_message lm
+				ON lr.logRoom_idx = lm.logRoom_idx
+			WHERE 
+				lr.auction_idx = ${auction_idx}
+					AND (lm.buyer_id = #{sId} OR lm.seller_id = #{sId})
+	</select>
+	
+	<!-- 채팅방 생성 -->
+	<insert id="openRoom2">
+		<selectKey keyProperty="logRoom_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(logRoom_idx), 0) FROM log_room
+		</selectKey>
+			INSERT
+				INTO 
+					log_room
+				VALUES (
+					#{logRoom_idx} + 1
+					, #{auction_idx}
+					, now()
+					, (SELECT auction_title 
+						FROM auction
+						WHERE auction_idx = #{auction_idx})
+					, 'Y'
+				)
+	</insert>
+	
+	<!-- 채팅 메세지 저장 -->
+	<insert id="insertChat2">
+		<selectKey keyProperty="message_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(message_idx), 0) FROM log_message
+		</selectKey>
+			INSERT
+				INTO 
+					log_message
+				VALUES (
+					#{message_idx} + 1
+					, #{logRoom_idx} + 1
+					, #{chatId}
+					, (SELECT member_id
+						FROM auction
+						WHERE auction_idx = #{auction_idx})
+					, now()
+					, #{messageContent}
+				)
+	</insert>
+
+
+</mapper>

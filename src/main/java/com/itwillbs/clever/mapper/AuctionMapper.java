@@ -18,7 +18,7 @@ public interface AuctionMapper {
 
 	List selectFiles();
 	
-	Map<String, String> selectDetailList(String auction_idx);
+	Map<String, String> selectDetailList(int auction_idx);
 
 	List selectProductSearch(String auction_search);
 
