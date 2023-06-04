@@ -38,5 +38,7 @@ public interface ProductMapper {
 	Object deleteFile(FileVO file);
 
 	DibsVO selectDibsCheck(DibsVO dibs);
+
+	int deleteProduct(ProductVO product);
 	
 }

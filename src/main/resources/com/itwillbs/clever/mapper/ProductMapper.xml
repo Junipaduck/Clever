@@ -153,4 +153,8 @@
 			WHERE product_idx = #{product_idx} AND member_id = #{member_id}; 
 	</select>
 	
+	
+	<delete id="deleteProduct">
+		DELETE FROM product WHERE product_idx = #{product_idx}
+	</delete>
 </mapper>

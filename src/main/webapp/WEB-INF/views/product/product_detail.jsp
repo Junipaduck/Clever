@@ -27,6 +27,22 @@
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 </head>
 <body>
+<script src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+
+	/* [삭제하기]버튼을 클릭하면 게시글이 삭제됨 */
+	function deleteProduct() {
+		if(window.confirm("상품을 삭제하시겠습니까?")){
+		location.href="deleteProduct?product_idx=${param.product_idx}";
+		}
+	}
+	
+	/* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
+	function payProduct(){
+		    window.open("payProduct?product_idx=${param.product_idx}", "바로구매새창", "width=800, height=1200" );
+	}
+	
+</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
@@ -148,8 +164,11 @@
 		                                	<!-- 버튼영역 -->
 			                                <div class="container text-center detail_content_info_btn">
 			                                    <div class="row g-2">
-			                                        <div class="col-12">
-			                                            <div class="p-3 info_btn3" onclick="location.href='productModifyForm?product_idx=${productDetail.product_idx}'">수정하기</div>
+			                                        <div class="col-6">
+			                                            <div class="p-3 info_btn3" onclick="location.href='productModifyForm?product_idx=${productDetail.product_idx}'" style="background-color: #ff8733;">수정하기</div>
+			                                        </div>
+			                                         <div class="col-6">
+			                                            <div class="p-3 info_btn3" onclick="deleteProduct()")>삭제하기</div>
 			                                        </div>
 			                                    </div>
 			                                </div>
@@ -179,7 +198,7 @@
 			                                            </a>
 			                                        </div>
 			                                        <div class="col-4">
-			                                            <div class="p-3 info_btn3">바로구매</div>
+			                                            <div class="p-3 info_btn3" onclick="payProduct()">바로구매</div>
 			                                        </div>
 			                                    </div>
 			                                </div>

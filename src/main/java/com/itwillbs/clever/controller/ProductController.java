@@ -245,6 +245,35 @@ public class ProductController {
     }
 	
 	
+	// 중고상품 삭제하기
+	@GetMapping("/deleteProduct")
+	public String deleteProduct(ProductVO product, Model model) {
+		int deleteCount = productService.deleteProduct(product);
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "삭제되었습니다.");
+			model.addAttribute("target", "product_list");
+			return "success";
+		} else {			
+			model.addAttribute("msg", "실패");
+			return "fail_back";
+		}
+	}	
+	
+	// 중고상품 구매하기 페이지
+	@GetMapping("/payProduct")
+	public String buyProduct(Model model, @RequestParam int product_idx) {
+		// 중고상품 상세보기 select
+		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
+		model.addAttribute("productDetail", productDetail);
+		
+		//파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		List<HashMap<String, String>> fileList = productService.selectFile(); 
+		model.addAttribute("fileList", fileList);
+		
+		return "product/product_pay_form";
+	}
+	
+	
 } //끝
 
 

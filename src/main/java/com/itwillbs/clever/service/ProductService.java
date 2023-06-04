@@ -79,6 +79,11 @@ public class ProductService {
 		return mapper.selectDibsCheck(dibs);
 	}
 
+	// 중고상품 삭제 delete
+	public int deleteProduct(ProductVO product) {
+		return mapper.deleteProduct(product);
+	}
+
 
 	
 	
