@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.clever.mapper.ProductMapper;
+import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
@@ -74,7 +75,9 @@ public class ProductService {
 		return mapper.deleteFile(file);
 	}
 
-	
+	public DibsVO selectDibsCheck(DibsVO dibs) {
+		return mapper.selectDibsCheck(dibs);
+	}
 
 
 	

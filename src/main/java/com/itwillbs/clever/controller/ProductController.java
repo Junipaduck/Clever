@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwillbs.clever.common.util.FileUpload;
 import com.itwillbs.clever.service.ProductService;
+import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
@@ -61,7 +62,7 @@ public class ProductController {
 	
 	// 상품 상세보기
 	@GetMapping("/product_detail")
-	public String productDetail(Model model, @RequestParam int product_idx) {
+	public String productDetail(Model model, @RequestParam int product_idx, HttpSession session) {
 		// 중고상품 상세보기 select
 		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
 		model.addAttribute("productDetail", productDetail);
@@ -76,6 +77,24 @@ public class ProductController {
 		
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
+		
+		// 찜하기
+		String sId = (String)session.getAttribute("sId");
+		DibsVO dibs = new DibsVO();
+		dibs.setProduct_idx(product_idx);
+		dibs.setMember_id(sId);		
+		
+		System.out.println("1차체크 : " + dibs);
+		
+		DibsVO dibsCheck = productService.selectDibsCheck(dibs);
+		
+		if(dibsCheck != null) {
+		} else {
+			dibsCheck = new DibsVO();
+			dibsCheck.setDibs_check("N");
+		} model.addAttribute("result", dibsCheck);
+		
+		System.out.println("찜체크" + dibsCheck);
 		
 		return "product/product_detail";
 	}

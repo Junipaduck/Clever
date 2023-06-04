@@ -146,4 +146,11 @@
 		DELETE from file where file_div = 'product' and file_name = #{file_name}
 	</delete>
 	
+	<!-- 찜했는지 가져오는 select -->
+	<select id="selectDibsCheck" resultType="com.itwillbs.clever.vo.DibsVO">
+		SELECT dibs_check
+			FROM dibs 
+			WHERE product_idx = #{product_idx} AND member_id = #{member_id}; 
+	</select>
+	
 </mapper>

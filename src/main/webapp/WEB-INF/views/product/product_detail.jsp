@@ -160,9 +160,16 @@
 			                                <div class="container text-center detail_content_info_btn">
 			                                    <div class="row g-2">
 			                                        <div class="col-4">
-			                                            <div class="p-3 info_btn1">
-			                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 <span>0</span>
-			                                            </div>
+			                                        	<c:if test="${result.dibs_check == 'N' }">
+				                                            <div class="p-3 info_btn1">
+				                                                <img src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 
+				                                            </div>
+			                                        	</c:if>
+			                                        	<c:if test="${result.dibs_check == 'Y' }">
+			                                        		<div class="p-3 info_btn1" style="background-color: #333333;">
+				                                                <img src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜
+				                                            </div>
+			                                        	</c:if>
 			                                        </div>
 			                                        <div class="col-4">
 			                                    	    <a href="chatting?product_idx=${param.product_idx}" >
