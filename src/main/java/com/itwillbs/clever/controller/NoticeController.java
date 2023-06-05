@@ -83,6 +83,18 @@ public class NoticeController {
 		}
 	}
 	
+	@GetMapping(value = "/noticeDelete.ad")
+	public String noticeDelete(@RequestParam int notice_idx, Model model) {
+		
+		int deleteCount = noticeService.deleteNotice(notice_idx);
+		if(deleteCount > 0) {
+			return "redirect:/adminNoticeList.ad";
+		} else {
+			model.addAttribute("msg", "공지사항 삭제 실패!");
+			return "fail_back";
+		}
+		
+	}
 
 }
 

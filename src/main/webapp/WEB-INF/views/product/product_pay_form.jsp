@@ -32,7 +32,9 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/market_manage.js"></script>
 </head>
 <body>
-          <!-- 구매정보 및 계좌이체하는 버튼 -->
+          <!-- 결제정보 -->
+      <form action="withdrawProduct" method="post">
+		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
           <c:forEach items="${productDetail }" var="productDetail">
 	          <section class="goods_manage_area">
 	            <header class="header" role="banner" >
@@ -69,10 +71,11 @@
 	                    </tbody>
 	                </table>
 	                <div style="margin-bottom: 50px; margin-left: 100px;">
-		                <h5>💸hana님에게 7000원을 이체하시겠습니까?💸 <button>이체하기</button></h5>
+		                <h5>💸${productDetail.member_id }님에게 ${productDetail.product_price }원을 이체하시겠습니까?💸 <input type="submit" value="이체하기"></h5>
 	                </div>
 	            </section>
             </c:forEach>
+          </form>  
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />

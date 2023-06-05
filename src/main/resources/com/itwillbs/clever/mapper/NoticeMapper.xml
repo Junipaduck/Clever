@@ -40,4 +40,33 @@
 				WHERE
 					notice_idx = #{notice_idx}
 	</update>
+	
+	<delete id="deleteNotice">
+		DELETE
+			FROM notice
+			WHERE
+				notice_idx = #{notice_idx}
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

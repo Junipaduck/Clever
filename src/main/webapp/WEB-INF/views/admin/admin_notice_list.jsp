@@ -17,7 +17,18 @@
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+	function deleteNotice(notice_idx){
+		if(confirm("삭제 하시겠습니까?")){
+			alert("삭제 성공!");
+			location.href = "noticeDelete.ad?notice_idx=" + notice_idx
+			return true;
+		} else {
+			alert("삭제 실패!");
+			return false;
+		}
+	}
+</script>
 <body>
 
     <!--*******************
@@ -92,6 +103,7 @@
                                                 <th>등록일</th>
                                                 <th>조회수</th>
                                                 <th></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -105,6 +117,11 @@
 	                                                <td>
 	                                                	<button type="button" class="btn btn-primary" onclick="location.href='noticeModifyForm.ad?notice_idx=${noticeList.notice_idx}'">수정하기</button>
 	                                                </td>
+	                                                <td>
+	                                                	<form action="noticeDelete.ad">
+	                                                		<button type="button" class="btn btn-primary" onclick="deleteNotice('${noticeList.notice_idx}')">삭제하기</button>
+	                                                	</form>
+	                                                </td>
 	                                            </tr>
                                            	</c:forEach>
                                         </tbody>
@@ -115,6 +132,7 @@
                                                 <th>내용</th>
                                                 <th>등록일</th>
                                                 <th>조회수</th>
+                                                <th></th>
                                                 <th></th>
                                         </tfoot>
                                     </table>
