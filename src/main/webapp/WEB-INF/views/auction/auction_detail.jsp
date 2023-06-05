@@ -192,7 +192,7 @@
                                             <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
                                         </div>
                                     	<div class="col-4">
-                                            <div class="p-3 info_btn3" onclick="auctionLog();">즉시구매</div>
+                                            <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
@@ -565,9 +565,7 @@ chatSocket.onmessage = function(e) {
 		$("#chatLog2").append(str);
 	}
 
-
 };
-
 
 // 소켓 연결
 chatSocket.onopen = function(e) {
