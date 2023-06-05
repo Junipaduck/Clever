@@ -81,6 +81,7 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 		
 		String msg = message.getPayload();
 	    logger.info("전달된 메세지 : " + msg);
+	    System.out.println("전달된 메세지 : " + msg);
 
 //	    for(WebSocketSession s : sessions) {
 //			System.out.println(s);

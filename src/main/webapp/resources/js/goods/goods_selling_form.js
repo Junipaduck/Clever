@@ -1225,8 +1225,8 @@ $(document).ready(function ( ) {
             document.querySelector(".goods_category_area span.selected_category").innerText = selectedCategory[0] + " > " + selectedCategory[2] + " > " + this.innerText;
         });
     });
-//    document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
-//    document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
+    document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
+    document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
 });
 
 function setImages(event){

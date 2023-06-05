@@ -135,7 +135,7 @@
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span> </h2>
                             <hr>
-                            <p id="result"><span>현재 가격 :</span><span>${detailmap.auction_price }</span><span>원</span></p>
+                            <p id="result"><span>현재 가격 : </span><span id="currentPrice">${detailmap.auction_price } 원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -418,6 +418,7 @@
 	var auction_idx = "${param.auction_idx}";
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
+	var currentPrice = document.getElementById("currentPrice");
 	
 // 	alert("1번째 : " + userId);
 // 	alert("2번째 : " + auction_idx);
@@ -451,7 +452,7 @@
 		var resultElement = document.getElementById("result");
 		$("#inputInt").val(priceInput);
 // 		resultElement.innerHTML = priceInput ;
- 		resultElement.innerHTML = "<span>" + priceInput + "&nbsp;" +  "</span>원";
+ 		resultElement.innerHTML = "<span> 현재 가격 : " + priceInput + "&nbsp;" +  "원</span>";
 		
 	}
 	
@@ -539,8 +540,10 @@ function sendMessage() {
 // 서버에서 메시지를 받았을 때
 chatSocket.onmessage = function(e) {
 	
+// 	alert("e가 뭔데? : " + e.toString());
+	
 	// 전달받은 메세지를 JS객체로 변환
-	const chatMessage = JSON.parse(e.data);
+// 	const chatMessage = JSON.parse(e.data);
 
 	var receive = e.data.split(":");
 	const data = {
@@ -563,6 +566,8 @@ chatSocket.onmessage = function(e) {
 		str += "</div></div>";
 		
 		$("#chatLog2").append(str);
+		alert(data.message);
+		currentPrice.innerText = data.message + " 원";
 	}
 
 };

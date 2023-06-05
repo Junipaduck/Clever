@@ -116,7 +116,7 @@ form > div:not(.fast_selling_area) > div {
     height: 3rem;
     padding: 0px 1rem;
     border: 1px solid rgb(195, 194, 204);
-    width: 100%;
+    width: 90%;
 }
 .goods_form input[type="text"]:not(:read-only):hover,
  .goods_form textarea:hover{

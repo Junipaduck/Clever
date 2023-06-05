@@ -532,7 +532,7 @@ function startEndDate() {
                                     <button onclick="return false;">#태그1</button>
                                     <button onclick="return false;" ><i class="fas fa-times"></i></button>
                                 </div>
-                                <input type="text" name="auction_tag" id="auction_tag" 
+                                <input type="text" name="tag" id="tag" 
                                     placeholder="연관태그를 입력해주세요. (최대5개)"
                                 >
                             </div>
