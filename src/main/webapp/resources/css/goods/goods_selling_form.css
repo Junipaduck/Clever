@@ -183,7 +183,7 @@ form > div:not(.fast_selling_area) > div {
     background: rgb(244, 244, 250);
 }
 .goods_category > div > div.selected {
-    color: rgb(255, 80, 88);
+    color: rgb(88, 80, 255);
 }
 .goods_category + p {
     color: rgb(245, 126, 0);

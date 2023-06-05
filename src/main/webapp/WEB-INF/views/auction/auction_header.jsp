@@ -312,7 +312,7 @@ function show_name(e){
                                 <h3>생활/가전</h3>
                                 <li id="test_lifeA"><a href="auction_list">가구DIY</a></li>
                                 <li id="test_lifeB"><a href="auction_list">조명/인테리어</a></li>
-                                <li id="test_lifeC"><a href="auction_list">침구/커튼</a></li>
+                                <li id="test_lifeC"><a href="auction_list">침대/커튼</a></li>
                                 <li id="test_lifeD"><a href="auction_list">생활용품</a></li>
                             </ul>
                             <!-- 소 분류 -->

@@ -26,7 +26,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
 <!-- 데이트피커 cdn -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />

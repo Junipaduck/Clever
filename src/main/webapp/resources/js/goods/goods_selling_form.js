@@ -935,7 +935,6 @@ $(document).ready(function ( ) {
                 document.querySelector("div.goods_Scategory_clothA").classList.add("hidden");
 				document.querySelector("div.goods_Scategory_clothB").classList.add("hidden");
 				document.querySelector("div.goods_Scategory_clothC").classList.add("hidden");
-				document.querySelector("div.goods_Scategory_clothD").classList.add("hidden");
 				document.querySelector("div.goods_Scategory_accA").classList.add("hidden");
 				document.querySelector("div.goods_Scategory_accB").classList.add("hidden");
 				document.querySelector("div.goods_Scategory_accC").classList.add("hidden");
