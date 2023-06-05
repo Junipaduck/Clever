@@ -18,4 +18,7 @@ public interface NoticeMapper {
 	// 공지사항 수정 처리
 	int updateNotice(NoticeVO notice);
 
+	// 공지사항 삭제 처리
+	int deleteNotice(int notice_idx);
+
 }

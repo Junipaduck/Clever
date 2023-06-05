@@ -41,5 +41,12 @@ public class NoticeService {
 		
 		return mapper.updateNotice(notice);
 	}
+
+	
+	// 공지사항 삭제 처리
+	public int deleteNotice(int notice_idx) {
+		
+		return mapper.deleteNotice(notice_idx);
+	}
 	
 }
