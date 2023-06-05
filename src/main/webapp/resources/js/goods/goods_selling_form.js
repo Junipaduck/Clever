@@ -3,7 +3,11 @@ $(document).ready(function ( ) {
         lcategory.addEventListener("click", function() {
             document.querySelectorAll("div[class^='goods_Mcategory'] > div").forEach(mcategory => {
                 mcategory.classList.remove("selected");
-            });
+            });	
+            document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
+                scategory.classList.remove("selected");
+                scategory.classList.add("hidden");
+            });	
             document.querySelectorAll(".goods_Lcategory > div").forEach(sib => {
                 sib.removeAttribute("class");
             });
@@ -134,10 +138,16 @@ $(document).ready(function ( ) {
                 children[i].removeAttribute("class");
             }
             this.classList.add("selected");
+            document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
+                scategory.classList.remove("selected");
+            });
+            
+            document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
+                scategory.classList.remove("hidden");
+            });
 
             document.querySelector(".goods_category").style.borderColor="rgb(220, 219, 228)";
             document.querySelector(".goods_category + p").classList.add("hidden");
-            document.querySelector("div.goods_Scategory").classList.add("hidden");
             
             if(mcategory.innerText === "남성의류"){
 				document.querySelector("div.goods_Scategory_clothB").classList.add("hidden");
@@ -1200,8 +1210,8 @@ $(document).ready(function ( ) {
         });
     });
 
-    document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(mcategory => {
-        mcategory.addEventListener("click", function() {
+    document.querySelectorAll("div[class^='goods_Scategory'] > div").forEach(scategory => {
+        scategory.addEventListener("click", function() {
             const children = this.parentElement.children
             for (let i = 0; i < children.length; i++) {
                 children[i].removeAttribute("class");
