@@ -83,6 +83,8 @@ display: flex;
 </style>
 </head>
 <body>
+<script type="text/javascript">
+</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
@@ -93,7 +95,7 @@ display: flex;
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="productUploadPro" method="POST" class="frm_selling_goods" enctype="multipart/form-data">
+                <form action="productUploadPro" method="POST" class="frm_selling_goods" id="formform" enctype="multipart/form-data">
                 	<input type="hidden" name="member_id" value="${sessionScope.sId }"> 
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
@@ -128,55 +130,203 @@ display: flex;
                     </div>
                     <div class="goods_category_area">
                         <p>카테고리<span class="red">*</span></p>
-                        	<select class="form-select" name="product_category" aria-label="Default select example" style="width: 244px; height: 48px;">
-							  <option selected>카테고리 선택</option>
-							  <option value="의류/잡화">의류/잡화</option>
-							  <option value="디지털/가전">디지털/가전</option>
-							  <option value="도서/티켓/문구">도서/티켓/문구</option>
-							  <option value="뷰티/미용">뷰티/미용</option>
-							  <option value="식품">식품</option>
-							  <option value="반려동물용품">반려동물용품</option>
-							  <option value="기타">기타</option>
-							</select>
-                        
-<!--                           <p id="category_clothes"> -->
-<!--                         <span> -->
-<!--                             <i class="bi bi-chevron-right"></i> -->
-<!--                         </span> -->
-<!--                         <span> -->
-<!--                             <ul class="category_clothes_bar"> -->
-<!--                                 <li><a href="#">남성의류</a></li> -->
-<!--                                 <li class="hidden_menu"><a href="#">여성의류</a></li> -->
-<!--                             </ul> -->
-<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
-<!--                         </span> -->
-<!--                     	</p> -->
-                    	
-<!--                         <div> -->
-<!--                             <div class="goods_category"> -->
-<!--                                 <div class="goods_Lcategory"> -->
-<!--                                     <div>의류/잡화</div> -->
-<!--                                     <div>디지털/가전</div> -->
-<!--                                     <div>도서/티켓/문구</div> -->
-<!--                                     <div>뷰티/미용</div> -->
-<!--                                     <div>식품</div> -->
-<!--                                     <div>반려동물용품</div> -->
-<!--                                     <div>기타</div> -->
-<!--                                 </div> -->
-<!--                                 <div class="goods_Scategory_cloth hidden"> -->
-<!--                                     <div>디지털</div> -->
-<!--                                     <div>가전</div> -->
-<!--                                 </div> -->
-<!--                                 <div class="goods_Scategory_acc hidden"> -->
-<!--                                     <div>시계/쥬얼리</div> -->
-<!--                                     <div>패션악세서리</div> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-<!--                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p> -->
-<!--                             <p>선택한 카테고리 : <span class="selected_category"></span></p> -->
-<!--                             <input type="hidden" name="Lcategory"> -->
-<!--                             <input type="hidden" name="Scategory"> -->
-<!--                         </div> -->
+                        <div>
+                            <div class="goods_category" style="height: 401.818182px;">
+                                <div class="goods_Lcategory">
+                                    <div>패션의류</div>
+                                    <div>패션잡화</div>
+                                    <div>취미/컬렉션</div>
+                                    <div>디지털</div>
+                                    <div>스포츠/레저</div>
+                                    <div>뷰티</div>
+                                    <div>생활가전</div>
+                                    <div>자동차/공구</div>
+                                    <div>도서/기타</div>
+                                </div>
+                                <div class="goods_Mcategory">
+                                    중분류 선택
+                                </div>
+                                <div class="goods_Mcategory_cloth hidden">
+                                    <div>남성의류</div>
+                                    <div>여성의류</div>
+                                    <div>언더웨어</div>
+                                </div>
+                                <div class="goods_Mcategory_acc hidden">
+                                    <div>신발</div>
+                                    <div>가방/잡화</div>
+                                    <div>쥬얼리/시계</div>
+                                    <div>수입명품</div>
+                                </div>
+                                <div class="goods_Mcategory_hobby hidden">
+                                    <div>반려동물용품</div>
+                                    <div>악기/취미</div>
+                                    <div>문구/사무용품</div>
+                                    <div>꽃/이벤트용품</div>
+                                </div>
+                                <div class="goods_Mcategory_digital hidden">
+                                    <div>노트북/데스크탑</div>
+                                    <div>모니터/프린터</div>
+                                    <div>PC주변기기</div>
+                                    <div>저장장치</div>
+                                </div>
+                                <div class="goods_Mcategory_sports hidden">
+                                    <div>스포츠의류/운동화</div>
+                                    <div>등산/아웃도어/캠핑/낚시</div>
+                                    <div>스포츠용품</div>
+                                    <div>자전거/보드/기타레저</div>
+                                </div>
+                                <div class="goods_Mcategory_beauty hidden">
+                                    <div>화장품/향수</div>
+                                    <div>바디/헤어</div>
+                                </div>
+                                <div class="goods_Mcategory_life hidden">
+                                    <div>가구DIY</div>
+                                    <div>조명/인테리어</div>
+                                    <div>침구/커튼</div>
+                                    <div>생활용품</div>
+                                </div>
+                                <div class="goods_Mcategory_car hidden">
+                                    <div>자동차용품</div>
+                                    <div>공구/안전/산업용품</div>
+                                </div>
+                                <div class="goods_Mcategory_book hidden">
+                                    <div>도서/교육/음반</div>
+                                    <div>백화점/제화상품권</div>
+                                    <div>여행/항공권</div>
+                                    <div>e쿠폰/모바일상품권</div>
+                                </div>
+                                <div class="goods_Scategory">
+                                    소분류 선택
+                                </div>
+                                <div class="goods_Scategory_clothA hidden">
+                                    <div>반팔티셔츠</div>
+                                    <div>바지</div>
+                                </div>
+                                <div class="goods_Scategory_clothB hidden">
+                                    <div>셔츠/블라우스</div>
+                                    <div>티셔츠</div>
+                                </div>
+                                <div class="goods_Scategory_clothC hidden">
+                                    <div>여성 언더웨어</div>
+                                    <div>남성 언더웨어</div>
+                                </div>
+                                <div class="goods_Scategory_accA hidden">
+                                    <div>남성신발</div>
+                                    <div>여성신발</div>
+                                </div>
+                                <div class="goods_Scategory_accB hidden">
+                                    <div>남성가방</div>
+                                    <div>여성가방</div>
+                                </div>
+                                <div class="goods_Scategory_accC hidden">
+                                    <div>악세사리</div>
+                                    <div>팔찌/발찌/시계</div>
+                                </div>
+                                <div class="goods_Scategory_accD hidden">
+                                    <div>명품의류</div>
+                                    <div>명품 지갑/벨트</div>
+                                </div>
+                                <div class="goods_Scategory_hobbyA hidden">
+                                    <div>강아지사료</div>
+                                    <div>강아지간식</div>
+                                </div>
+                                <div class="goods_Scategory_hobbyB hidden">
+                                    <div>악기/악기용품</div>
+                                    <div>게임/게임용품</div>
+                                </div>
+                                <div class="goods_Scategory_hobbyC hidden">
+                                    <div>보드/게시판</div>
+                                    <div>도장/스탬프</div>
+                                </div>
+                                <div class="goods_Scategory_hobbyD hidden">
+                                    <div>원예/식물</div>
+                                    <div>이벤트/파티용품</div>
+                                </div>
+                                <div class="goods_Scategory_digitalA hidden">
+                                    <div>노트북</div>
+                                    <div>데스크탑</div>
+                                </div>
+                                <div class="goods_Scategory_digitalB hidden">
+                                    <div>모니터</div>
+                                    <div>프린터</div>
+                                </div>
+                                <div class="goods_Scategory_digitalC hidden">
+                                    <div>PC용품</div>
+                                    <div>PC부품</div>
+                                </div>
+                                <div class="goods_Scategory_digitalD hidden">
+                                    <div>HDD/SSD</div>
+                                    <div>저장장치용품</div>
+                                </div>
+                                <div class="goods_Scategory_sportsA hidden">
+                                    <div>스포츠남성의류</div>
+                                    <div>스포츠여성의류</div>
+                                </div>
+                                <div class="goods_Scategory_sportsB hidden">
+                                    <div>등산의류</div>
+                                    <div>등산장비</div>
+                                </div>
+                                <div class="goods_Scategory_sportsC hidden">
+                                    <div>스포츠아이템</div>
+                                    <div>스포츠기구</div>
+                                </div>
+                                <div class="goods_Scategory_sportsD hidden">
+                                    <div>자전거</div>
+                                    <div>보드/기타레저</div>
+                                </div>
+                                <div class="goods_Scategory_beautyA hidden">
+                                    <div>스킨케어</div>
+                                    <div>향수</div>
+                                </div>
+                                <div class="goods_Scategory_beautyB hidden">
+                                    <div>바디케어</div>
+                                    <div>헤어케어</div>
+                                </div>
+                                <div class="goods_Scategory_lifeA hidden">
+                                    <div>침대/매트릭스</div>
+                                    <div>옷장/붙박이장</div>
+                                </div>
+                                <div class="goods_Scategory_lifeB hidden">
+                                    <div>전구/형광등</div>
+                                    <div>조명기구</div>
+                                </div>
+                                <div class="goods_Scategory_lifeC hidden">
+                                    <div>침구세트</div>
+                                    <div>토퍼/패드</div>
+                                </div>
+                                <div class="goods_Scategory_lifeD hidden">
+                                    <div>수납/정리용품</div>
+                                    <div>선반/행거/진열대</div>
+                                </div>
+                                <div class="goods_Scategory_carA hidden">
+                                    <div>자동차관리용품</div>
+                                    <div>자동차내부용품</div>
+                                </div>
+                                <div class="goods_Scategory_carB hidden">
+                                    <div>공구</div>
+                                    <div>안전용품</div>
+                                </div>
+                                <div class="goods_Scategory_bookA hidden">
+                                    <div>중고도서</div>
+                                    <div>전자책</div>
+                                </div>
+                                <div class="goods_Scategory_bookB hidden">
+                                    <div>롯데백화점</div>
+                                    <div>신세계백화점</div>
+                                </div>
+                                <div class="goods_Scategory_bookC hidden">
+                                    <div>해외항공권</div>
+                                    <div>국내항공권</div>
+                                </div>
+                                <div class="goods_Scategory_bookD hidden">
+                                    <div>문화상품권</div>
+                                    <div>기타상품권</div>
+                                </div>
+                            </div>
+                            <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
+                            <p>선택한 카테고리 : <span class="selected_category"></span></p>
+                            <input type="hidden" id="product_category" name="product_category" value="">
+                        </div>
                     </div>
                     <div class="goods_location_area">
                         <p>거래지역<span class="red">*</span></p>

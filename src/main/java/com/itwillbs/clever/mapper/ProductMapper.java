@@ -13,7 +13,7 @@ import com.itwillbs.clever.vo.ReportVO;
 
 public interface ProductMapper {
 
-	int insertProduct(ProductVO product);
+	int insertProduct(@Param("map") Map<String, String> map, @Param("id") String id);
 
 	// common.util 공용 패키지의 FileUpload.java 서비스를 불러오는 코드
 	void insertFile(Map<String, Object> paramMap);
@@ -26,7 +26,7 @@ public interface ProductMapper {
 
 	int insertProductReport(ReportVO report);
 	
-	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
+//	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
 
 	List<HashMap<String, String>> selectFile();
 

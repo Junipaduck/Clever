@@ -30,7 +30,7 @@ public class ProductVO {
 	private int product_idx;
 	private String member_id;
 	private String product_subject;
-	private String product_category;
+//	private String product_category;
 	private String sale_location;
 	private String product_status;
 	private String product_price;
@@ -40,6 +40,9 @@ public class ProductVO {
 	private String sale_status;
 	private MultipartFile file;
 	private String product_date;
+	private String product_Lcategory;
+	private String product_Mcategory;
+	private String product_Scategory;
 }
 
 

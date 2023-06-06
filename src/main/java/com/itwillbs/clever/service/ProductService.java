@@ -21,8 +21,8 @@ public class ProductService {
 	private ProductMapper mapper;
 
 	// 중고상품 INSERT
-	public int insertProduct(ProductVO product) {
-		return mapper.insertProduct(product);
+	public int insertProduct(Map<String, String> map, String id) {
+		return mapper.insertProduct(map, id);
 	}
 	
 //	public void insertFile(Map<String, Object> paramMap) { //리턴 안할때는 void
@@ -50,9 +50,9 @@ public class ProductService {
 	}
 
 	// 중고상품 카테고리가 같은 연관상품 select
-	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
-		return mapper.selectProductSameCategory(product_idx);
-	}
+//	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
+//		return mapper.selectProductSameCategory(product_idx);
+//	}
 
 	
 	// 중고상품 사진파일 첫번째업로드한것 select

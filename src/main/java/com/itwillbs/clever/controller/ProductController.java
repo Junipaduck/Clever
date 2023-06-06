@@ -72,8 +72,8 @@ public class ProductController {
 		model.addAttribute("filesList", filesList);
 		
 		// 중고상품 같은카테고리의 연관상품 select
-		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
-		model.addAttribute("productSameCategory", productSameCategory);
+//		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
+//		model.addAttribute("productSameCategory", productSameCategory);
 		
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
@@ -177,8 +177,19 @@ public class ProductController {
 	
 	// 중고 상품 등록 INSERT 
 	@PostMapping("/productUploadPro")
-	public String productUproadPro(ProductVO product, HttpSession session, Model model, MultipartFile[] file) {
-		int insertCount = productService.insertProduct(product); //중고상품 insert 후 리턴받아온 int값
+	public String productUproadPro(ProductVO product, HttpSession session, Model model
+										,MultipartFile[] file, @RequestParam Map<String, String> map) {
+	
+		String id = (String)session.getAttribute("sId");
+		
+		// 카테고리 분류
+		String[] categorys = map.get("product_category").split(" > ");
+		map.put("product_Lcategory", categorys[0]);
+		map.put("product_Mcategory", categorys[1]);
+		map.put("product_Scategory", categorys[2]);
+		// 카테고리 분류 끝
+		
+		int insertCount = productService.insertProduct(map, id); //중고상품 insert 후 리턴받아온 int값
 		
 		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
 		Map<String, Object> paramMap = new HashMap<String, Object>();
