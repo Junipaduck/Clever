@@ -26,7 +26,7 @@ public interface ProductMapper {
 
 	int insertProductReport(ReportVO report);
 	
-	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
+	List<HashMap<String, Object>> selectProductSameCategory(ProductVO product);
 
 	List<HashMap<String, String>> selectFile();
 
@@ -44,5 +44,7 @@ public interface ProductMapper {
 	int insertDibs(DibsVO like);
 
 	int deleteDibs(DibsVO like);
+
+	String sellerInfoCount(ProductVO product);
 	
 }

@@ -166,7 +166,7 @@
 	                                    <span>${productDetail.product_date }</span>
 	                                </p>
 	                                <p>
-		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?seller_id=${productDetail.member_id}?reporter_id=${sessionScope.sId }'">
+		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
 	                                    <span>신고하기</span>
 	                                </p>
 	                            </div>
@@ -266,6 +266,7 @@
 	                    <h3>연관상품</h3>
 	                    <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
 	                </div>
+	                <input type="hidden" name="product_Mcategory" value="${productDetail.product_Mcategory }">
 	                <div class="container text-center" id="related_goods_imgs">
 	                    <div class="row g-2">
 			            <c:forEach var="productSameCategory" items="${productSameCategory }" begin="0" end="4"> 
@@ -273,12 +274,12 @@
 	                            <div class="related_goods_img">
 	                                <a href="#">
 <%-- 	                                	<c:forEach items="${fileList }" var="fileList"> --%>
-<%-- 					                        <c:set var="length" value="${fn:length(fileList.file_name) }" /> --%>
-<%-- 											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" /> --%>
-<%-- 											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" /> --%>
+					                        <c:set var="length" value="${fn:length(productSameCategory.file_name) }" />
+											<c:set var="index" value="${fn:indexOf(productSameCategory.file_name, '_') }" />
+											<c:set var="file_name" value="${fn:substring(productSameCategory.file_name, index + 1, length) }" />
 <%-- 												<c:if test="${fileList.file_num eq productDetail.product_idx }"> --%>
 <%-- 				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품"> --%>
-				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품">
+				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품">
 				                                    <p>${productSameCategory.product_subject }</p>
 				                                    <p>${productSameCategory.product_price }원</p>
 <%-- 		                                  		</c:if> --%>
@@ -369,7 +370,7 @@
                                                 ${productDetail.member_id }
                                             </p>
                                                 <p>
-                                                    판매중인 상품 <span>4개</span>
+                                                    판매중인 상품 <span>${sellerInfoCount}개</span>
                                                 </p>
                                         </div>
                                         <div id="store_follow">
@@ -384,7 +385,7 @@
                                         <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
                                     </div>
                                     <div>
-                                        <p style="margin-top: 41px;">판매중인 <span>4개</span> 상품</p>
+                                        <p style="margin-top: 41px;">판매중인 <span>${sellerInfoCount}개</span> 상품</p>
                                     </div>
                                 </div>
                                 <div>

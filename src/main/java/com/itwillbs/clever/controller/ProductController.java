@@ -64,7 +64,7 @@ public class ProductController {
 	
 	// 상품 상세보기
 	@GetMapping("/product_detail")
-	public String productDetail(Model model, @RequestParam int product_idx, HttpSession session) {
+	public String productDetail(Model model, @RequestParam int product_idx, HttpSession session, ProductVO product) {
 		// 중고상품 상세보기 select
 		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
 		model.addAttribute("productDetail", productDetail);
@@ -74,11 +74,16 @@ public class ProductController {
 		model.addAttribute("filesList", filesList);
 		
 		// 중고상품 같은카테고리의 연관상품 select
-		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
+		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product);
 		model.addAttribute("productSameCategory", productSameCategory);
+		System.out.println("엠카테고리나와라 " + product.getProduct_Mcategory());
 		
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
+		
+		// 판매자정보의 판매중인상품 조회 select
+		String sellerInfoCount = productService.sellerInfoCount(product);
+		model.addAttribute("sellerInfoCount", sellerInfoCount);
 		
 		// 찜하기
 		String sId = (String)session.getAttribute("sId");

@@ -50,8 +50,8 @@ public class ProductService {
 	}
 
 	// 중고상품 카테고리가 같은 연관상품 select
-	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
-		return mapper.selectProductSameCategory(product_idx);
+	public List<HashMap<String, Object>> selectProductSameCategory(ProductVO product) {
+		return mapper.selectProductSameCategory(product);
 	}
 
 	
@@ -93,6 +93,11 @@ public class ProductService {
 	// 찜하기 삭제
 	public int deleteDibs(DibsVO like) {
 		return mapper.deleteDibs(like);
+	}
+
+	// 판매자정보 조회
+	public String sellerInfoCount(ProductVO product) {
+		return mapper.sellerInfoCount(product);
 	}
 	
 	
