@@ -34,6 +34,8 @@ import com.itwillbs.clever.vo.FileVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
 
+import kotlin.reflect.jvm.internal.impl.load.java.JavaClassFinder.Request;
+
 @Controller
 public class ProductController {
 	
@@ -72,8 +74,8 @@ public class ProductController {
 		model.addAttribute("filesList", filesList);
 		
 		// 중고상품 같은카테고리의 연관상품 select
-//		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
-//		model.addAttribute("productSameCategory", productSameCategory);
+		List<HashMap<String, Object>> productSameCategory = productService.selectProductSameCategory(product_idx);
+		model.addAttribute("productSameCategory", productSameCategory);
 		
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
@@ -182,11 +184,13 @@ public class ProductController {
 	
 		String id = (String)session.getAttribute("sId");
 		
+//		System.out.println("카테고리 넘어오냐? " + map.get("product_category"));
+		
 		// 카테고리 분류
-		String[] categorys = map.get("product_category").split(" > ");
-		map.put("product_Lcategory", categorys[0]);
-		map.put("product_Mcategory", categorys[1]);
-		map.put("product_Scategory", categorys[2]);
+		String[] product_categorys = map.get("product_category").split(" > ");
+		map.put("product_Lcategory", product_categorys[0]);
+		map.put("product_Mcategory", product_categorys[1]);
+		map.put("product_Scategory", product_categorys[2]);
 		// 카테고리 분류 끝
 		
 		int insertCount = productService.insertProduct(map, id); //중고상품 insert 후 리턴받아온 int값
@@ -254,8 +258,24 @@ public class ProductController {
 	
 	// 중고상품 수정 Pro
 	@PostMapping("/productModifyPro")
-	public String productModifyPro(Model model, ProductVO product) {
-		int updateCount = productService.updateProduct(product);
+	public String productModifyPro(Model model, @RequestParam Map<String, String> map, ProductVO product) {
+		
+		// map.get("input태그의 name값")
+		map.put("product_subject", map.get("product_subject"));
+		map.put("sale_location", map.get("sale_location"));
+		map.put("product_status", map.get("product_status"));
+		map.put("product_price", map.get("product_price"));
+		map.put("product_content", map.get("product_content"));
+		map.put("product_idx", map.get("product_idx"));
+		
+		// 카테고리 분류
+		String[] product_categorys = map.get("product_category").split(" > ");
+		map.put("product_Lcategory", product_categorys[0]);
+		map.put("product_Mcategory", product_categorys[1]);
+		map.put("product_Scategory", product_categorys[2]);
+		// 카테고리 분류 끝
+		
+		int updateCount = productService.updateProduct(map);
 		
 		String result = "";
 		if(updateCount > 0) { // 성공

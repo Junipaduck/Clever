@@ -338,7 +338,7 @@
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_category">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/category.png" alt="카테고리"> <span>카테고리</span>
-                                                <p>${productDetail.product_category }</p>
+                                                <p>${productDetail.product_Lcategory } > ${productDetail.product_Mcategory } > ${productDetail.product_Scategory }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">

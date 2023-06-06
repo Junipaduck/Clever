@@ -50,9 +50,9 @@ public class ProductService {
 	}
 
 	// 중고상품 카테고리가 같은 연관상품 select
-//	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
-//		return mapper.selectProductSameCategory(product_idx);
-//	}
+	public List<HashMap<String, Object>> selectProductSameCategory(int product_idx) {
+		return mapper.selectProductSameCategory(product_idx);
+	}
 
 	
 	// 중고상품 사진파일 첫번째업로드한것 select
@@ -66,8 +66,8 @@ public class ProductService {
 	}
 
 	// 중고상품 수정 update
-	public int updateProduct(ProductVO product) {
-		return mapper.updateProduct(product);
+	public int updateProduct(Map<String, String> map) {
+		return mapper.updateProduct(map);
 	}
 
 	// 중고상품 파일삭제 (수정중)

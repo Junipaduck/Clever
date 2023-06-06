@@ -13,7 +13,6 @@
 				#{product_idx} + 1,
 				#{id},
 				#{map.product_subject}, 
-				#{map.product_category},
 				#{map.sale_location},
 				#{map.product_status},
 				#{map.product_price},
@@ -21,10 +20,10 @@
 				#{map.product_tag},
 				#{map.sale_pay},
 				'판매중',
-				now()
-				, #{map.product_Lcategory }
-				, #{map.product_Mcategory }
-				, #{map.product_Scategory }
+				now(),
+				#{map.product_Lcategory},
+				#{map.product_Mcategory},
+				#{map.product_Scategory}
 			)
 	</insert>
 	
@@ -91,22 +90,22 @@
 	</insert>
 	
 	
-	<!-- 중고상품 같은 카테고리 연관상품 select -->
-<!-- 	<select id="selectProductSameCategory" resultType="HashMap"> -->
-<!-- 		SELECT -->
-<!-- 				* -->
-<!-- 			FROM -->
-<!-- 				product -->
-<!-- 			WHERE -->
-<!-- 				product_category IN ( -->
-<!-- 				SELECT -->
-<!-- 					product_category -->
-<!-- 				FROM -->
-<!-- 					product -->
-<!-- 				WHERE -->
-<!-- 					product_idx = #{product_idx}) -->
-<!-- 				AND product_idx != #{product_idx} -->
-<!-- 	</select> -->
+	<!-- 중고상품 같은 카테고리 연관상품 select (소분류를 조회하기에는 너무 적을 것 같아서 중분류로 조회함) -->
+	<select id="selectProductSameCategory" resultType="HashMap">
+		SELECT
+				*
+			FROM
+				product
+			WHERE
+				product_Mcategory IN (
+				SELECT
+					product_Mcategory
+				FROM
+					product
+				WHERE
+					product_idx = #{product_idx})
+				AND product_idx != #{product_idx}
+	</select>
 	
 	
 	<!-- 중고상품 메인에 띄워줄 첫번째에 업로드한 사진 select -->
@@ -133,12 +132,13 @@
 			product
 		set
 			product_subject = #{product_subject}
-			,product_category = #{product_category}
 			,sale_location = #{sale_location}
 			,product_status = #{product_status}
 			,product_price = #{product_price}
 			,product_content = #{product_content}
-			,sale_status = #{sale_status}
+			,product_Lcategory = #{product_Lcategory}
+			,product_Mcategory = #{product_Mcategory}
+			,product_Scategory = #{product_Scategory}
 		where
 			product_idx = #{product_idx};
 	</update>

@@ -84,11 +84,19 @@ display: flex;
 </head>
 <body>
 <script type="text/javascript">
+// from태그가 실행될 때 이 js코드가 실행되며, 
+// 카테고리가 선택되면 selected_category라는 이름의 span태그에 값이 들어가는데,
+// 그 값을 input hidden 태그 (name이 product_category인 것)의 value에 넣는다는 의미
+$(function() {
+	$("#formform").on("submit", function() {
+		$("#product_category").val($(".selected_category").text()); 
+	});
+});
 </script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
-	</header>    <!--메인 컨텐츠-->
+			</header>    <!--메인 컨텐츠-->
         <div id="main_content">
             
             

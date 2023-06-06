@@ -26,13 +26,13 @@ public interface ProductMapper {
 
 	int insertProductReport(ReportVO report);
 	
-//	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
+	List<HashMap<String, Object>> selectProductSameCategory(int product_idx);
 
 	List<HashMap<String, String>> selectFile();
 
 	List<HashMap<String, String>> selectFiles();
 
-	int updateProduct(ProductVO product);
+	int updateProduct(Map<String, String> map);
 
 	// 중고상품 파일삭제 (수정중)
 	Object deleteFile(FileVO file);
