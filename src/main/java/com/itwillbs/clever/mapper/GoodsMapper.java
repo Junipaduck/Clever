@@ -21,6 +21,13 @@ public interface GoodsMapper {
 	// 관리자 굿즈 페이지 굿즈 이미지 조회
 	List<HashMap<String, String>> selectFile();
 
+	// 굿즈 파일 삭제
+	Object deleteGoodsFile(FileVO file);
+
+	// 굿즈 파일 셀렉트
+	List<HashMap<String, String>> selectGoodsFiles();
+
+
 }
 
 

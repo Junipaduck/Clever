@@ -144,7 +144,49 @@ display: flex;
 	                                    이미지 등록
 	                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
 	                                </div>
-                                <div class="preview_wrap"></div>
+                                <div class="preview_wrap">
+                                
+                                 <script type="text/javascript">
+		                               	function deleteListItem(button) { // => 이미지를 삭제하는 x아이콘을 눌렀을때 실행되는 것들
+	                               	  		/* 1. 뷰 삭제작업 - <li>태그를 listItem에 저장하고 removeChild를 호출하여 <li>태그를 삭제시킴 */
+		                               	    var listItem = button.parentNode;
+		                               	    listItem.parentNode.removeChild(listItem);
+		                               	    
+		                               	    /* 2. DB삭제작업 - (file테이블의 이미지 삭제) */
+				                               	$.ajax({
+				                               	    url: 'productModifyPro', // 이동할 컨트롤러의 서블릿 url
+				                               	    type: 'POST',
+					                               	data: {
+					                               		fileVO: {
+					                                        file_name: $("#fileName-${loop.index}").val()
+					                                    }
+					         						},
+				                               	    success: function(response) { 
+				                               	        alert("파일 삭제!");
+				                               	    },
+				                               	    error: function() {
+				                               	        // 요청이 실패했을 때 실행할 동작
+				                               	        alert("파일 삭제 실패!");
+				                               	    }
+				                               	});
+			                               	 
+			                               	 
+		                               	  }// onclick function 끝!
+							</script>
+							    <c:forEach items="${filesList }" var="filesItem" varStatus="loop">
+                               		<c:set var="length" value="${fn:length(filesItem.file_name) }" />
+								    <c:set var="index" value="${fn:indexOf(filesItem.file_name, '_') }" />
+								    <c:set var="file_name" value="${fn:substring(filesItem.file_name, index + 1, length) }" />
+								    <c:if test="${filesItem.file_num eq goods.goods_idx}">
+								        <li draggable="false" class="sc-gkFcWv iiYIYa">
+								            <img src="${pageContext.request.contextPath }/resources/upload/${file_name}" class="preview">
+								            <input type="hidden" id="fileName-${loop.index}" value="${filesItem.file_name}">
+								            ${filesItem.file_name}
+								            <button class="eHGbgX" type="button" onclick="deleteListItem(this)"></button>
+								        </li>
+								    </c:if>
+                               	</c:forEach>
+								</div>
                             </div>
                             <div class="goods_images_notice">
                                 <b>* 상품 이미지는 640x640에 최적화 되어 있습니다.</b><br>

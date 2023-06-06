@@ -49,5 +49,16 @@ public class GoodsService {
 		return mapper.selectFile();
 	}
 
+	// 굿즈 파일 삭제
+	public Object deleteGoodsFile(FileVO file) {
+		return mapper.deleteGoodsFile(file);
+	}
+
+	// 굿즈 파일 셀렉트
+	public List<HashMap<String, String>> selectGoodsFiles() {
+		
+		return mapper.selectGoodsFiles();
+	}
+
 	
 }

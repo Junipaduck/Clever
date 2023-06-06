@@ -8,6 +8,7 @@ import java.util.*;
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
@@ -76,13 +77,29 @@ public class GoodsController {
 		HashMap<String, String> goods = goodsService.getGoods(goods_idx);
 		model.addAttribute("goods", goods);
 		
+		// 파일 셀렉트
+		List<HashMap<String, String>> filesList = goodsService.selectGoodsFiles();
+		model.addAttribute("filesList", filesList);
+		
 		return "admin/goods_store_modify_form";
 	}
 	
 	@PostMapping(value = "/storeModifyPro.ad")
-	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model) {
+	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model, MultipartFile[] file) {
+		
+		System.out.println("파일 넘어오나요" + file);
+		
+		for(int i=0; i<file.length; i++) {
+			System.out.println("file 배열 for문" + file[i]);
+		}
 		
 		int updateCount = goodsService.updateGoods(goods);
+		
+		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
+//		paramMap.put("file_div", "goods");
+//		paramMap.put("file_num", goodsService.selectMax());
+//		FileUpload.upload(file, session, paramMap);
 		
 		if(updateCount > 0) {
 			return "redirect:/storeList.ad";
@@ -92,6 +109,7 @@ public class GoodsController {
 		}
 		
 	}
+	
 	
 	// 현재 판매 중인 굿즈 목록 조회
 	@GetMapping(value = "/storeList.ad")
