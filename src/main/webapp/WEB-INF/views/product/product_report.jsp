@@ -210,8 +210,8 @@ color: #fff;
   <div class="table-box">
   	<form action="productReportPro" name="productReportPro" method="POST">
   		<input type="hidden" name="product_idx" value="${param.product_idx}" />
-  		<input type="hidden" name="seller_id" value="${seller_id}" />
-  		<input type="hidden" name="reporter_id" value="${reporter_id}" />
+  		<input type="hidden" name="seller_id" value="${param.seller_id}" />
+  		<input type="hidden" name="reporter_id" value="${param.reporter_id}" />
 		    <table class="table table--min" cellspacing="0" cellpadding="0"> 
 		      <thead>
 		      <tr>
