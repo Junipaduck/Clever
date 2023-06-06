@@ -21,4 +21,7 @@ public interface NoticeMapper {
 	// 공지사항 삭제 처리
 	int deleteNotice(int notice_idx);
 
+	// 공지사항 상세보기
+	List<HashMap<String, String>> selectNoticeDetail(int notice_idx);
+
 }

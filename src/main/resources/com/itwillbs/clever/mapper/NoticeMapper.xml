@@ -47,6 +47,14 @@
 			WHERE
 				notice_idx = #{notice_idx}
 	</delete>
+	
+	<!-- 공지사항 상세 보기 -->
+	<select id="selectNoticeDetail" resultType="HashMap">
+		SELECT *
+			FROM notice
+				WHERE
+					notice_idx = #{notice_idx}
+	</select>
 </mapper>
 
 

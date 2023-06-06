@@ -48,5 +48,12 @@ public class NoticeService {
 		
 		return mapper.deleteNotice(notice_idx);
 	}
+
+
+	// 공지사항 상세보기
+	public List<HashMap<String, String>> getNoticeDetail(int notice_idx) {
+		
+		return mapper.selectNoticeDetail(notice_idx);
+	}
 	
 }

@@ -101,10 +101,10 @@
 														<div class="tb-center">${noticeList.notice_readcount }</div>
 													</td>
 													<td>
-														<div class="tb-left">${noticeList.notice_title }</div>
+														<div class="tb-left"><a href="noticeDetail.ad?notice_idx=${noticeList.notice_idx }">${noticeList.notice_title }</a></div>
 													</td>
 													<td>
-														<div class="tb-left">${noticeList.notice_content }</div>
+														<div class="tb-left">${noticeList.notice_date }</div>
 													</td>
 												</tr>
 											</c:forEach>
