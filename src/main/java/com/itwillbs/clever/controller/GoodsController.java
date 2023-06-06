@@ -18,6 +18,8 @@ import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
 
+import retrofit2.http.*;
+
 @Controller
 public class GoodsController {
 	
@@ -85,21 +87,15 @@ public class GoodsController {
 	}
 	
 	@PostMapping(value = "/storeModifyPro.ad")
-	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model, MultipartFile[] file) {
+	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model) {
 		
-		System.out.println("파일 넘어오나요" + file);
 		
-		for(int i=0; i<file.length; i++) {
-			System.out.println("file 배열 for문" + file[i]);
-		}
+//		for(int i=0; i<file.length; i++) {
+//			System.out.println("file 배열 for문" + file[i]);
+//		}
 		
 		int updateCount = goodsService.updateGoods(goods);
 		
-		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
-//		Map<String, Object> paramMap = new HashMap<String, Object>();
-//		paramMap.put("file_div", "goods");
-//		paramMap.put("file_num", goodsService.selectMax());
-//		FileUpload.upload(file, session, paramMap);
 		
 		if(updateCount > 0) {
 			return "redirect:/storeList.ad";
@@ -108,6 +104,20 @@ public class GoodsController {
 			return "fail_back";
 		}
 		
+	}
+	
+	@PostMapping(value = "/deleteGoodsFile")
+	@ResponseBody
+	public String deleteGoodsFile(FileVO file, @RequestParam String file_name, Model model) {
+		System.out.println("파일 넘어 오나요? " + file_name + ", " + file.getFile_name());
+		
+		int deleteCount = goodsService.deleteGoodsFile(file);
+		if(deleteCount > 0) {
+			return "redirect:/storeModify.ad";
+		} else {
+			model.addAttribute("msg", "파일 삭제 실패!");
+			return "fail_back";
+		}
 	}
 	
 	
@@ -125,6 +135,23 @@ public class GoodsController {
 		return "admin/goods_store_list";
 	}
 	
+	// 굿즈 상세보기
+	@GetMapping(value = "/goodsDetail.ad")
+	public String goodsDetail(@RequestParam int goods_idx, Model model) {
+		
+		List<HashMap<String, String>> goodsDetail = goodsService.getGoodsDetail(goods_idx);
+		model.addAttribute("goodsDetail", goodsDetail);
+		
+		// 첫번째 이미지만 셀렉트
+		List<HashMap<String, String>> fileList = goodsService.selectFile();
+		model.addAttribute("fileList", fileList);
+		
+		// 전체 셀렉트
+		List<HashMap<String, String>> filesList = goodsService.selectFiles();
+		model.addAttribute("filesList", filesList);
+		
+		return "goods/goods_detail";
+	}
 	
 }
 

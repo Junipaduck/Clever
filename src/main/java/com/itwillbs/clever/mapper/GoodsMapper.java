@@ -22,10 +22,16 @@ public interface GoodsMapper {
 	List<HashMap<String, String>> selectFile();
 
 	// 굿즈 파일 삭제
-	Object deleteGoodsFile(FileVO file);
+	int deleteGoodsFile(FileVO file);
 
 	// 굿즈 파일 셀렉트
 	List<HashMap<String, String>> selectGoodsFiles();
+
+	// 굿즈 상세페이지
+	List<HashMap<String, String>> selectGoodsDetail(int goods_idx);
+
+	// 굿즈 파일 전체 셀렉트
+	List<HashMap<String, String>> selectFiles();
 
 
 }

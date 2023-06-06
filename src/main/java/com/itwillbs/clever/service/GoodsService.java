@@ -50,7 +50,7 @@ public class GoodsService {
 	}
 
 	// 굿즈 파일 삭제
-	public Object deleteGoodsFile(FileVO file) {
+	public int deleteGoodsFile(FileVO file) {
 		return mapper.deleteGoodsFile(file);
 	}
 
@@ -58,6 +58,18 @@ public class GoodsService {
 	public List<HashMap<String, String>> selectGoodsFiles() {
 		
 		return mapper.selectGoodsFiles();
+	}
+
+	// 굿즈 상세페이지
+	public List<HashMap<String, String>> getGoodsDetail(int goods_idx) {
+		
+		return mapper.selectGoodsDetail(goods_idx);
+	}
+
+	// 굿즈 파일 이미지 전체 셀렉트
+	public List<HashMap<String, String>> selectFiles() {
+		
+		return mapper.selectFiles();
 	}
 
 	

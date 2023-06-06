@@ -43,23 +43,6 @@
                         </span>
                         <span>홈</span>
                     </p>
-                    <p id="entire">
-                        <span>
-                            <i class="bi bi-chevron-right"></i>
-                        </span>
-                        <span>
-                            <ul class="entire_bar">
-                                <li><a href="#">굿즈</a></li>
-                                <li class="hidden_menu">
-                                	<a href="#">주방용품</a>
-                                </li>
-                                <li class="hidden_menu">
-                                	<a href="#">잡화</a>
-                                </li>
-                            </ul>
-                            <i class="bi bi-chevron-down under_direction"></i>
-                        </span>
-                    </p>
                 </div>
                 
                 <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
@@ -82,7 +65,7 @@
                     <div class="goods_wrap">
                        	<c:forEach items="${goodsList }" var="goodsList">
 	                        <div class="goods">
-	                            <a href="goods_product_detail.html">
+	                            <a href="goodsDetail.ad?goods_idx=${goodsList.goods_idx }">
  	 									<c:forEach items="${fileList }" var="fileList">
 				                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
 										<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />

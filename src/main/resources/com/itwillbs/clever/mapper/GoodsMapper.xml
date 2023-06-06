@@ -71,6 +71,12 @@
 					file_div = 'goods';
 	</select>
 	
+	<select id="selectFiles" resultType="HashMap">
+		SELECT *
+			FROM file f
+				WHERE file_div = 'goods';	
+	</select>
+	
 	<!-- 굿즈 사진 삭제 -->
 	<delete id="deleteGoodsFile">
 		DELETE
@@ -78,6 +84,13 @@
 				WHERE
 					file_div = 'goods' AND file_name = #{file_name}
 	</delete>
+	
+	<select id="selectGoodsDetail" resultType="HashMap">
+		SELECT *
+			FROM goods
+				WHERE 
+					goods_idx = #{goods_idx}	
+	</select>
 </mapper>
 
 
