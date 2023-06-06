@@ -1,5 +1,8 @@
 package com.itwillbs.clever.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.*;
 
 import org.slf4j.*;
@@ -26,6 +29,8 @@ public class MemberController {
 	@Value("${client_id}")
 	private String client_id;
 	
+	@Autowired
+	private ProductService productService;
 	
 	// 로그인 페이지 포워딩 
 	@GetMapping("/loginForm.me")
@@ -94,6 +99,13 @@ public class MemberController {
 		MemberVO member = memberService.selectMember(sId);
 		
 		model.addAttribute("member", member);
+		
+		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 select리스트
+		model.addAttribute("productList", productList);
+		
+		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("fileList", fileList);
+		
 		
 		return "mypage/my_page";
 	}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -317,26 +317,43 @@ div.right {
 			                </div>
 			            </nav>
 			            <!--상품 내용-->
+			            <c:forEach items="${productList }" var="productList">
 			            <div class="goods">
 			                <div class="goods_one">
-			                    <a href="goods_seller_ordersheet.html">
+			                    <a href="product_detail?product_idx=${productList.product_idx }">
 			                        <div class="goods_image">
-			                            <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" alt="상품사진">
-			                            <!--사진 앞 상태(구매확정 시 표시, 맨 처음은 표시 X)-->
-			                            <span class="goods_front">
-			                                <i class="far fa-check-circle"></i><br>
-			                                거래완료
-			                            </span>
+<%-- 			                            <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" alt="상품사진"> --%>
+
+
+											<c:forEach items="${fileList }" var="fileList">
+					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+											<c:choose>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매중' }">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+					                            </c:when>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매완료' }">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+							                            <!--사진 앞 상태(구매확정 시 표시, 맨 처음은 표시 X)-->
+							                            <span class="goods_front">
+							                                <i class="far fa-check-circle"></i><br>
+							                                거래완료
+							                            </span>
+					                            </c:when>
+					                        </c:choose>
+				                        </c:forEach>
 			                        </div>
 			                        <div class="goods_info">
-			                            <h2 class="goods_title">상품 글 제목</h2>
-			                            <p class="goods_price"><span class="bold">1,111</span>원</p>
+			                            <h2 class="goods_title">${productList.product_subject }</h2>
+			                            <p class="goods_price"><span class="bold">${productList.product_price }</span>원</p>
 			                            <p class="goods_shop">상점명 / 번개페이 안전결제</p>
 			                            <p class="goods_date">2022.12.16 (오후 04:37)</p>
 			                        </div>
 			                    </a>
 			                </div>
 			            </div>
+			            </c:forEach>
 			        </div>
 				</div>
 			</div>
