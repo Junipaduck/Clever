@@ -84,7 +84,7 @@ public class MemberController {
 		return "member/find_passwd_form";
 	}
 	
-	// 마이페이지 포워딩
+	// 마이페이지 포워딩 - 이사가야함
 	@GetMapping("/myPage.me")
 	public String myPage(HttpSession session, Model model) {
 		

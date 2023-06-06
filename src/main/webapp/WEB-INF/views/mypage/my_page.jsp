@@ -322,9 +322,6 @@ div.right {
 			                <div class="goods_one">
 			                    <a href="product_detail?product_idx=${productList.product_idx }">
 			                        <div class="goods_image">
-<%-- 			                            <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" alt="상품사진"> --%>
-
-
 											<c:forEach items="${fileList }" var="fileList">
 					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
 											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
