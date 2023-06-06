@@ -279,7 +279,7 @@
 											<c:set var="file_name" value="${fn:substring(productSameCategory.file_name, index + 1, length) }" />
 <%-- 												<c:if test="${fileList.file_num eq productDetail.product_idx }"> --%>
 <%-- 				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품"> --%>
-				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}'" style="width: 170px; height: 180px;" alt="연관상품">
+				                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" onclick="location.href='product_detail?product_idx=${productSameCategory.product_idx}&product_Mcategory=${productDetail.product_Mcategory }'" style="width: 170px; height: 180px;" alt="연관상품">
 				                                    <p>${productSameCategory.product_subject }</p>
 				                                    <p>${productSameCategory.product_price }원</p>
 <%-- 		                                  		</c:if> --%>
