@@ -12,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.clever.service.ChattingService;
 import com.itwillbs.clever.socket.WebSocketHandler;
 import com.itwillbs.clever.vo.ChatRoomVO;
+import com.itwillbs.clever.vo.ProductVO;
 
 @Controller
 public class ChattingController {
@@ -29,7 +32,7 @@ public class ChattingController {
 
 	// 채팅 폼 포워딩
 	@GetMapping("chatting")
-	public String chatting(HttpSession session, Model model, @RequestParam int product_idx) {
+	public String chatting(HttpSession session, Model model, @RequestParam int product_idx) throws JsonProcessingException {
 		
 		String sId = (String)session.getAttribute("sId");
 		
@@ -40,18 +43,25 @@ public class ChattingController {
 		}
 		
 		// 채팅방 조회
-		List<ChatRoomVO> chatList = chattingService.selectChatList(product_idx, sId);
-		int chatRoomIdx = 0;
-		if (!chatList.isEmpty()) {
-			chatRoomIdx = chatList.get(0).getChatRoom_idx();
-		}
+		List<ProductVO> product = chattingService.selectProduct(product_idx);
+		ObjectMapper mapper = new ObjectMapper();
+		String productInfo = mapper.writeValueAsString(product);
+		String sellerId = product.get(0).getMember_id();
 		
-		model.addAttribute("chatList", chatList);
-		model.addAttribute("chatRoomIdx", chatRoomIdx);
-		System.out.println("chatList : " + chatList);
-		System.out.println("chatRoomIdx : " + chatRoomIdx);
+		String sellerIdx = chattingService.selectUser(sellerId);
+		String buyerIdx = chattingService.selectUser(sId);
+		System.out.println("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
 		
+		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("sellerIdx", sellerIdx);
+		model.addAttribute("buyerIdx", buyerIdx);
 		
+		return "chatting/chatting";
+	}
+	
+	@GetMapping("myChatting")
+	public String myChatting(HttpSession session) {
+		List<ChatRoomVO> chatList = chattingService.selectChatList(null);
 		return "chatting/chatting";
 	}
 	

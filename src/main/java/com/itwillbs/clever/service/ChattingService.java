@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.clever.mapper.ChattingMapper;
 import com.itwillbs.clever.vo.ChatRoomVO;
+import com.itwillbs.clever.vo.ProductVO;
 
 @Service
 public class ChattingService {
@@ -14,18 +15,32 @@ public class ChattingService {
 	@Autowired
 	private ChattingMapper mapper;
 
-	public List<ChatRoomVO> selectChatList(int product_idx, String sId) {
-		return mapper.selectChatList(product_idx, sId);
+	// 채팅페이지 이동 시 판매물품 정보 조회
+	public List<ProductVO> selectProduct(int product_idx) {
+		return mapper.selectProduct(product_idx);
+	}
+	
+	// 채팅페이지 이동 시 멤버idx조회
+	public String selectUser(String id) {
+		return mapper.selectUserInfo(id);
+	}
+	
+	// 메세지 전송 후 채팅방 존재하는지 확인
+	public List<ChatRoomVO> selectChatList(String chatRoomId) {
+		return mapper.selectChatList(chatRoomId);
+	}
+
+	// 채팅방 생성
+	public int OpenRoom(String chatRoomId, int productIdx) {
+		return mapper.openRoom(chatRoomId, productIdx);
+	}
+
+	public int insertMessage(int productIdx, String chatRoomId, String buyerId, String sellerId,
+			String messageContent) {
+		return mapper.insertChat(productIdx, chatRoomId, buyerId, sellerId, messageContent);
 	}
 
 
-	public int OpenRoom(int chatRoom_idx, int product_idx) {
-		return mapper.openRoom(chatRoom_idx, product_idx);
-	}
-
-	public int insertMessage(int productIdx, int chatRoomIdx, String chatId, String messageContent) {
-		return mapper.insertChat(productIdx, chatRoomIdx, chatId, messageContent);
-	}
 
 
 

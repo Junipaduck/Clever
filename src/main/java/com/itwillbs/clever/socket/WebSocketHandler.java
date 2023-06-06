@@ -136,28 +136,26 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 //		}
 	    
 	    JSONObject jo = new JSONObject(message.getPayload());
-	    int productIdx = (Integer.parseInt(jo.getString("product_idx")));
-	    int chatRoomIdx = (Integer.parseInt(jo.getString("chatRoom_idx")));
+	    int productIdx = Integer.parseInt(jo.getString("product_idx"));
+	    String chatRoomId = jo.getString("chatRoom_id");
 	    String messageContent = jo.getString("message_content");
-	    String chatId = jo.getString("chat_id");
-	    System.out.println("productIdx : " + productIdx);
-	    System.out.println("chatRoomIdx : " + chatRoomIdx);
-	    System.out.println("messageContent : " + messageContent);
+	    String buyerId = jo.getString("buyer_id");
+	    String sellerId = jo.getString("seller_id");
 	    
-	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(productIdx, chatId);
+	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(chatRoomId);
 	    System.out.println("앜" + selectChatList);
 	    
-	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
-	    if (chatRoomIdx == 0 && selectChatList.isEmpty()) {
-	        chattingService.OpenRoom(chatRoomIdx, productIdx);
+	    // 채팅방이 존재하지 않으면 새로운 채팅방 생성 
+	    if (selectChatList.isEmpty()) {
+	        chattingService.OpenRoom(chatRoomId, productIdx);
 	        System.out.println("채팅방 생성 성공");
 	    } 
 
 	    for (WebSocketSession s : sessions) {
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
-	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
+	        s.sendMessage(new TextMessage(buyerId + ":" + messageContent));
 	        System.out.println("메세지 전송 성공");
-	        int result = chattingService.insertMessage(productIdx, chatRoomIdx, chatId, messageContent);
+	        int result = chattingService.insertMessage(productIdx, chatRoomId, buyerId, sellerId, messageContent);
 	        if (result > 0) {
 	            System.out.println("채팅 메세지 저장");
 	        }

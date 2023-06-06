@@ -98,10 +98,20 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 // const userNo = "${loginUser.userNo}";
 var userId = "${sessionScope.sId}";
 var productIdx = "${param.product_idx}";
-var chatList = "${chatList}";
-console.log(chatList);
-var chatRoomIdx = "${chatRoomIdx}";
-console.log(chatRoomIdx);
+var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이터 안에서 /r/n이 오류 발생하므로 공백문자로 대체
+var productInfo = JSON.parse(modifiedProductInfo);
+var sellerIdx = "${sellerIdx}";
+var buyerIdx = "${buyerIdx}";
+console.log("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
+var sellerId = null;
+var productSubject = null;
+for (var i = 0; i < productInfo.length; i++) {
+	sellerId = productInfo[i].member_id;
+	productSubject = productInfo[i].product_subject;
+  }
+console.log("sellerId : " + sellerId);
+var roomId = "P" + productIdx + "S" + sellerIdx + "B" + buyerIdx;
+console.log("roomIdx : " + roomId);
 // const contextPath = "${pageContext.request.requestURL}";
 // //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
 // var chatSocket = new SockJS(contextPath + "/chatting");
@@ -141,9 +151,9 @@ function sendMessage() {
 	// 채팅 내용 있을 때	
 	} else {
 	const chatMessage = {		// js객체로 생성
-// 		"buyerId": userName,
-		"chatRoom_idx": chatRoomIdx,
-		"chat_id" : userId,
+		"chatRoom_id": roomId,
+		"buyer_id" : userId,
+		"seller_id" : sellerId,
 // 		"message_date" : ,
 		"product_idx": productIdx,
 		"message_content" : message.value
@@ -209,7 +219,7 @@ chatSocket.onmessage = function(e) {
 // 	return time;
 // }
 
-// // 10보다 작은수가 매개변수로 들어오는경우 앞에 0을 붙여서 반환해주는함수.
+// 10보다 작은수가 매개변수로 들어오는경우 앞에 0을 붙여서 반환해주는함수.
 // function addZero(number) {
 // 	return number < 10 ? "0" + number : number;
 // }

@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.clever.mapper.ChattingMapper">
+
+	<!-- 판매물품 정보 조회 -->
+	<select id="selectProduct" resultType="com.itwillbs.clever.vo.ProductVO">
+		SELECT *
+			FROM 
+				product
+			WHERE
+				product_idx = ${product_idx}
+	</select>
+	
+	<!-- memberIdx 조회 -->
+	<select id="selectUserInfo" resultType="String">
+		SELECT member_idx
+			FROM
+				member
+			WHERE
+				member_id = '${id}'
+	</select>
 	
 	<!-- 채팅방 리스트 조회 -->
 	<select id="selectChatList" resultType="com.itwillbs.clever.vo.ChatRoomVO">
 		SELECT *
 			FROM 
-				chat_room cr
-			JOIN chat_message cm 
-				ON cr.chatRoom_idx = cm.chatRoom_idx
-			WHERE 
-				cr.product_idx = ${product_idx}
-					AND (cm.buyer_id = #{sId} OR cm.seller_id = #{sId})
+				chat_room
+			WHERE
+				chatRoom_id = #{chatRoomId}
 	</select>
 	
 	<!-- 채팅방 생성 -->
 	<insert id="openRoom">
-		<selectKey keyProperty="chatRoom_idx" resultType="int" order="BEFORE">
-				SELECT IFNULL(MAX(chatRoom_idx), 0) FROM chat_room
-		</selectKey>
-			INSERT
-				INTO 
-					chat_room
-				VALUES (
-					#{chatRoom_idx} + 1
-					, #{product_idx}
-					, now()
-					, (SELECT product_subject 
-						FROM product 
-						WHERE product_idx = #{product_idx})
-					, 'Y'
-				)
+		INSERT
+			INTO 
+				chat_room
+			VALUES (
+				#{chatRoomId}
+				, #{productIdx}
+				, now()
+				, (SELECT product_subject 
+					FROM product 
+					WHERE product_idx = #{productIdx})
+				, 'Y'
+			)
 	</insert>
 	
 	<!-- 채팅 메세지 저장 -->
@@ -43,11 +55,9 @@
 					chat_message
 				VALUES (
 					#{message_idx} + 1
-					, #{chatRoomIdx} + 1
-					, #{chatId}
-					, (SELECT member_id
-						FROM product
-						WHERE product_idx = #{productIdx})
+					, #{chatRoomId}
+					, #{buyerId}
+					, #{sellerId}
 					, now()
 					, #{messageContent}
 				)
