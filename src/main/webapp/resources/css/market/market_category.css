@@ -82,7 +82,7 @@
     position: relative;
     top: -20px;
 }
-.entire_bar, .category_clothes_bar {
+.entire_bar, .category_clothes_bar, .category_acc_bar {
     position: relative;
     top: -4px;
     padding-top: 3px;

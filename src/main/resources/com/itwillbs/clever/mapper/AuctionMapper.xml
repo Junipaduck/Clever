@@ -4,7 +4,7 @@
 
 	<insert id="insertAutcion">
 	<selectKey keyProperty="auction_idx" order="BEFORE" resultType="int">
-	SELECT IFNULL(MAX(auction_idx), 0) FROM auction
+		SELECT IFNULL(MAX(auction_idx), 0) FROM auction
 	</selectKey>
 	INSERT 
 		INTO
@@ -55,6 +55,7 @@
 <!-- 			WHERE file_div = 'auction' -->
 <!-- 				GROUP BY file_num; -->
 <!-- 	</select> -->
+
 	<select id="selectFiles" resultType="map">
 	SELECT *
 		FROM file f 
@@ -79,6 +80,43 @@
 		SELECT *
 		 	FROM auction
 				WHERE member_id LIKE '%${auction_search }%'
+	</select>
+	
+	<select id="getProductList" resultType="map">
+		SELECT *
+			FROM auction
+				WHERE auction_Lcategory = #{param} or auction_Mcategory = #{param} or auction_Scategory = #{param}
+	</select>
+	
+	<select id="getCategorys">
+		SELECT * 
+			FROM category
+				WHERE bigCategory = #{param} or midCategory = #{param} or smallCategory = #{param};
+	</select>
+	
+	<select id="getBigCategory" resultType="string">
+		SELECT DISTINCT bigCategory FROM category WHERE bigCategory = #{param}
+	</select>
+	<select id="getMidCategory" resultType="map">
+		SELECT DISTINCT midCategory , bigCategory FROM category WHERE midCategory = #{param}
+	</select>
+	<select id="getSmallCategory" resultType="map">
+		SELECT DISTINCT smallCategory , midCategory , bigCategory FROM category WHERE smallCategory = #{param}
+	</select>
+	<select id="getBigCategorys" resultType="map">
+		SELECT DISTINCT bigCategory FROM category
+	</select>
+	<select id="getMidCategorys" resultType="map">
+		SELECT
+		 	DISTINCT midCategory
+		  		FROM category
+		  			WHERE bigCategory = IFNULL((SELECT DISTINCT bigCategory  FROM category c WHERE midCategory = #{param}),IFNULL((SELECT DISTINCT bigCategory  FROM category c WHERE smallCategory = #{param}),#{param}) );
+	</select>
+	<select id="getSmallCategorys" resultType="map">
+		SELECT
+		 	DISTINCT smallCategory
+		 		 FROM category c
+		  			 WHERE midCategory = IFNULL((SELECT DISTINCT midCategory  FROM category c WHERE midCategory = #{param}),(SELECT DISTINCT midCategory  FROM category c WHERE smallCategory = #{param}))
 	</select>
 	
 	
