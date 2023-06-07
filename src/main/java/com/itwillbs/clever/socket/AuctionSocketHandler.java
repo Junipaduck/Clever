@@ -98,7 +98,6 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    System.out.println("messageContent : " + messageContent);
 	    
 	    List<LogRoomVO> selectChatList = auctionLogService.selectLogList(auctionIdx);
-	    System.out.println("zzzzzzzzzzzzz" + selectChatList);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
@@ -115,7 +114,6 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
 	    
 	    System.out.println("현재 세션에 연결된 사람!!!!!! : " + sessions);
-	    
 	    
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);
@@ -139,7 +137,6 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 //
 //	    }
 	}
-	
 	
 	// 연결 끊겼을 때
 	@Override
