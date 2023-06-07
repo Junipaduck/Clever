@@ -142,6 +142,8 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	    String buyerId = jo.getString("buyer_id");
 	    String sellerId = jo.getString("seller_id");
 	    
+	    List<ChatRoomVO> selectChatRoom = chattingService.selectChatRoom(chatRoomId);
+	    System.out.println("앜" + selectChatRoom);
 	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(chatRoomId);
 	    System.out.println("앜" + selectChatList); 
 	    

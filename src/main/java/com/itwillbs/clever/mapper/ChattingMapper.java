@@ -13,12 +13,15 @@ public interface ChattingMapper {
 	
 	String selectUserInfo(String id);
 	
+	List<ChatRoomVO> selectChatRoom(String chatRoomId);
+	
 	List<ChatRoomVO> selectChatList(String sId);
 
 	int openRoom(@Param("chatRoomId") String chatRoomId, @Param("productIdx") int productIdx);
 
 	int insertChat(@Param("productIdx") int productIdx, @Param("chatRoomId") String chatRoomId, 
 			@Param("buyerId") String buyerId, @Param("sellerId") String sellerId, @Param("messageContent") String messageContent);
+
 
 
 

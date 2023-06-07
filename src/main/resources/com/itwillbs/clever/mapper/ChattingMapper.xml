@@ -37,7 +37,6 @@
 					LIKE 
 						CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
 					AND chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = 'admin'));
-				
 	</select>
 	
 	<!-- 채팅방 생성 -->
