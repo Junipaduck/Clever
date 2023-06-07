@@ -43,7 +43,8 @@
 	}
 	
 	/* 찜하기 AJAX 찜하기 버튼 누르면 상호작용 */
-	let product_idx = document.location.href.split("=")[1];
+	let url = window.location.href;
+	let product_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
 	
 	$(document).ready(function() {
 		 $(".dibs").on("click", function(){
