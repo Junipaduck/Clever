@@ -29,9 +29,6 @@ public class MemberController {
 	@Value("${client_id}")
 	private String client_id;
 	
-	@Autowired
-	private ProductService productService;
-	
 	// 로그인 페이지 포워딩 
 	@GetMapping("/loginForm.me")
 	public String loginForm() {
@@ -83,33 +80,6 @@ public class MemberController {
 	public String findPasswd() {
 		return "member/find_passwd_form";
 	}
-	
-	// 마이페이지 포워딩 - 이사가야함
-	@GetMapping("/myPage.me")
-	public String myPage(HttpSession session, Model model) {
-		
-		String sId = (String)session.getAttribute("sId");
-		
-		if(sId == null) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("target", "loginForm.me");
-			return "success";
-		}
-		
-		MemberVO member = memberService.selectMember(sId);
-		
-		model.addAttribute("member", member);
-		
-		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 select리스트
-		model.addAttribute("productList", productList);
-		
-		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
-		model.addAttribute("fileList", fileList);
-		
-		
-		return "mypage/my_page";
-	}
-	
 	
 	// 로그인 기능
 	@PostMapping(value = "loginPro.me")

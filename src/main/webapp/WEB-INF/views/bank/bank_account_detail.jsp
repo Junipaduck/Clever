@@ -123,6 +123,58 @@
 		<!-- form 끝 -->
 		
 		
+                <!-- form 시작 -->
+                        <div class="card" style="width: 900px;margin: auto;">
+                            <div class="card-header">
+                                <h4 class="card-title">송금정보</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form action="bank_withdraw" method="post">
+                                    <input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">예금주명</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_name" placeholder="예금주명">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">은행코드</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_bank_code" placeholder="은행코드">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">계좌번호</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_account_num" placeholder="계좌번호">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">핀테크이용번호</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_fintech_use_num" placeholder="핀테크이용번호">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">송금할 금액</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="tran_amt" placeholder="송금할 금액">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary">송금(출금이체)</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            	</div>
+		<!-- form 끝 -->
+		
+		
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<!-- footer 시작 -->

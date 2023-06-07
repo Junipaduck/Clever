@@ -143,7 +143,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	    String sellerId = jo.getString("seller_id");
 	    
 	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(chatRoomId);
-	    System.out.println("앜" + selectChatList);
+	    System.out.println("앜" + selectChatList); 
 	    
 	    // 채팅방이 존재하지 않으면 새로운 채팅방 생성 
 	    if (selectChatList.isEmpty()) {

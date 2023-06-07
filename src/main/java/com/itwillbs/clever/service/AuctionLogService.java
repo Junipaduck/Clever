@@ -14,8 +14,8 @@ public class AuctionLogService {
 	@Autowired
 	private AuctionLogMapper mapper;
 
-	public List<LogRoomVO> selectLogList(int auction_idx, String sId) {
-		return mapper.selectLogList(auction_idx, sId);
+	public List<LogRoomVO> selectLogList(int auction_idx) {
+		return mapper.selectLogList(auction_idx);
 	}
 
 	public int OpenRoom(int logRoom_idx, int auction_idx) {

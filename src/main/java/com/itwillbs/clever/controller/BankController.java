@@ -145,17 +145,31 @@ public class BankController {
 		
 	}
 	
-	// 2.3.1 출금이체
+	// 2.5.1. 출금이체
+	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
 	@PostMapping("bank_withdraw")
 	public String withdraw(
 			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 출금 요청 정보 : " + map);
 		
+		// BankApiService - withdraw() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountWithdrawResponseVO(result)
 		AccountWithdrawResponseVO result = apiService.withdraw(map);
-		System.out.println("result = " + result);
+		logger.info("★★★★★★ 출금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountWithdrawResponseVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
+		}
 		
 		return "bank/withdraw_result";
-		
 	}
 	
 }

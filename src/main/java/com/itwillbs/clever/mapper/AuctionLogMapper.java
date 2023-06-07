@@ -9,7 +9,7 @@ import com.itwillbs.clever.vo.LogRoomVO;
 
 public interface AuctionLogMapper {
 
-	List<LogRoomVO> selectLogList(@Param("auction_idx")int auction_idx, @Param("sId")String sId);
+	List<LogRoomVO> selectLogList(@Param("auction_idx")int auction_idx);
 
 	int openRoom2(@Param("logRoom_idx")int logRoom_idx, @Param("auction_idx")int auction_idx);
 

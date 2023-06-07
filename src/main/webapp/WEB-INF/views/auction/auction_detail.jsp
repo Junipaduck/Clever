@@ -133,9 +133,9 @@
                             </div>
                         </div>
                         <div class="col detail_content_info">
-                            <h2>상품명 : <span>${detailmap.auction_title } </span> </h2>
+                            <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
                             <hr>
-                            <p id="result"><span>현재 가격 : </span><span id="currentPrice">${detailmap.auction_price } 원</span></p>
+                            <p id="result"><span>현재 가격 : </span>${detailmap.auction_price }<span id="currentPrice"> </span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -418,7 +418,7 @@
 	var auction_idx = "${param.auction_idx}";
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
-	var currentPrice = document.getElementById("currentPrice");
+	var message = document.getElementById("price");
 	
 // 	alert("1번째 : " + userId);
 // 	alert("2번째 : " + auction_idx);
@@ -452,8 +452,7 @@
 		var resultElement = document.getElementById("result");
 		$("#inputInt").val(priceInput);
 // 		resultElement.innerHTML = priceInput ;
- 		resultElement.innerHTML = "<span> 현재 가격 : " + priceInput + "&nbsp;" +  "원</span>";
-		
+//  	resultElement.innerHTML = "<span> 현재 가격 : " + priceInput + "&nbsp;" +  "원</span>";
 	}
 	
 	function auctionAddPrice(percent) {
@@ -466,9 +465,9 @@
 		
 	}
 	
-	function auctionLog(){
-		location.href="auction_Log";
-	}
+// 	function auctionLog(){
+// 		location.href="auction_Log";
+// 	}
 	
 
 	//서버에서 메시지를 받았을 때
@@ -508,8 +507,7 @@ document.getElementById("btnSend").addEventListener("click", sendMessage);
 function sendMessage() {
 	
 	// 채팅이 입력되는 textarea요소 가져오기
-	const message = document.getElementById("price");
-
+	
 	// 채팅 내용을 입력하지 않았을 때
 	if (message.value.trim().length == 0) {
      
@@ -540,8 +538,6 @@ function sendMessage() {
 // 서버에서 메시지를 받았을 때
 chatSocket.onmessage = function(e) {
 	
-// 	alert("e가 뭔데? : " + e.toString());
-	
 	// 전달받은 메세지를 JS객체로 변환
 // 	const chatMessage = JSON.parse(e.data);
 
@@ -552,24 +548,33 @@ chatSocket.onmessage = function(e) {
 	}
 	console.log('id : ' + data.id);
 	console.log('message : ' + data.message);
-
+	
 	// 채팅방 화면에 채팅 내용 출력
-	if (data.id == userId) {
+	if (data.id == userId && auction_idx==logRoom_idx) {
 		var str = "<div class='myMsg'>";
 		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog2").append(str);
-	} else {
+		
+	} else if (auction_idx==logRoom_idx) {
 		var str = "<div class='anotherMsg'>";
 		str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog2").append(str);
-		alert(data.message);
-		currentPrice.innerText = data.message + " 원";
+		
 	}
-
+	
+	if(auction_idx==logRoom_idx){
+// 		$("p").remove("#result");
+		currentPrice = document.getElementById("currentPrice");
+		alert("메시지 오는거가 " + data.message);
+		currentPrice.innerText = data.message + " 원";
+// 		const newDivElement = document.createElement('div');
+// 		newDivElement.textContent = 'Hello!';
+	}
+	
 };
 
 // 소켓 연결

@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 public class ChatRoomVO {
-	private int chatRoom_idx;
+	private String chatRoom_id;
 	private int product_idx;
 	private String chatRoom_date;
 	private String product_subject;
