@@ -61,7 +61,8 @@ public class ChattingController {
 	
 	@GetMapping("myChatting")
 	public String myChatting(HttpSession session) {
-		List<ChatRoomVO> chatList = chattingService.selectChatList(null);
+		String sId = (String)session.getAttribute("sId");
+		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
 		
 		//하나 테스트
 //		chattingService.selectChattingRoom();
