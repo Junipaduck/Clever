@@ -28,7 +28,14 @@
 				chatRoom_id 
 				LIKE 
 					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%');
-				
+	</select>
+	
+	<!-- 채팅방 존재하는지 조회 -->
+	<select id="selectChatRoom" resultType="com.itwillbs.clever.vo.ChatRoomVO">
+		SELECT *
+			FROM chat_room
+			WHERE
+				chatRoom_id = #{chatRoomId}
 	</select>
 	
 	<!-- 채팅방 생성 -->

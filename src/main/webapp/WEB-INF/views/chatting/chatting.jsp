@@ -100,27 +100,36 @@ var userId = "${sessionScope.sId}";
 var productIdx = "${param.product_idx}";
 
 var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이터 안에서 /r/n이 오류 발생하므로 공백문자로 대체
-console.log(modifiedProductInfo);
+// console.log(modifiedProductInfo);
+
+// 헤더의 채팅 버튼 클릭 시
 if(!modifiedProductInfo) {
-	console.log("널 입니다!");
+	console.log("헤더에서 입장!");
+	var chatRoomInfo = JSON.parse('${chatRoom}');
+// 	console.log(chatRoomInfo);
+	var roomId = null;
+	for (var i = 0; i < chatRoomInfo.length; i++) {
+		roomId = chatRoomInfo[i].chatRoom_id;
+	}
 }
+// 제품상세페이지 -> 채팅방 이동 시
 if(modifiedProductInfo) {
+	var productInfo = JSON.parse(modifiedProductInfo);
+	var sellerIdx = "${sellerIdx}";
+	var buyerIdx = "${buyerIdx}";
+	console.log("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
+	var sellerId = null;
+	var productSubject = null;
+	for (var i = 0; i < productInfo.length; i++) {
+		sellerId = productInfo[i].member_id;
+		productSubject = productInfo[i].product_subject;
+	}
+	console.log("sellerId : " + sellerId);
+	var roomId = "P" + productIdx + "S" + sellerIdx + "B" + buyerIdx;
+	console.log("roomIdx : " + roomId);
+}
 	
 
-var productInfo = JSON.parse(modifiedProductInfo);
-var sellerIdx = "${sellerIdx}";
-var buyerIdx = "${buyerIdx}";
-console.log("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
-var sellerId = null;
-var productSubject = null;
-for (var i = 0; i < productInfo.length; i++) {
-	sellerId = productInfo[i].member_id;
-	productSubject = productInfo[i].product_subject;
-  }
-console.log("sellerId : " + sellerId);
-var roomId = "P" + productIdx + "S" + sellerIdx + "B" + buyerIdx;
-console.log("roomIdx : " + roomId);
-}
 
 
 // const contextPath = "${pageContext.request.requestURL}";

@@ -60,11 +60,16 @@ public class ChattingController {
 	}
 	
 	@GetMapping("myChatting")
-	public String myChatting(HttpSession session, Model model) {
+	public String myChatting(HttpSession session, Model model) throws JsonProcessingException {
 		String sId = (String)session.getAttribute("sId");
 		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
-		model.addAttribute("chatList", chatList);
-		System.out.println(chatList);
+		ObjectMapper mapper = new ObjectMapper();
+		String chatRoom = mapper.writeValueAsString(chatList);
+		
+//		String sellerId = chatList.get(0)
+		
+		model.addAttribute("chatRoom", chatRoom);
+		System.out.println(chatRoom);
 		
 		//하나 테스트
 //		chattingService.selectChattingRoom();
