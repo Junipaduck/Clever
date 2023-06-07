@@ -413,6 +413,7 @@
 	
 	<script type="text/javascript">
 
+// 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";
 	var auction_idx = "${param.auction_idx}";
@@ -473,7 +474,7 @@
 	//서버에서 메시지를 받았을 때
 
 //war파일(DB공용폴더)로 연결시 소켓 연결 주소
-//var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
+
 //var chatSocket = new WebSocket('ws://localhost:8089/clever/chatting');
 
 
@@ -540,33 +541,35 @@ chatSocket.onmessage = function(e) {
 	
 	// 전달받은 메세지를 JS객체로 변환
 // 	const chatMessage = JSON.parse(e.data);
-
+	
 	var receive = e.data.split(":");
 	const data = {
 			"id" : receive[0],
-			"message" : receive[1]
+			"message" : receive[1],
+			"auction_idx" : receive[2]
 	}
 	console.log('id : ' + data.id);
 	console.log('message : ' + data.message);
+	alert("테스트트트" + data.auction_idx);
 	
 	// 채팅방 화면에 채팅 내용 출력
-	if (data.id == userId && auction_idx==logRoom_idx) {
+	if (data.id == userId && auction_idx==data.auction_idx) {
 		var str = "<div class='myMsg'>";
 		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog2").append(str);
 		
-	} else if (auction_idx==logRoom_idx) {
+	} else if (auction_idx==data.auction_idx) {
 		var str = "<div class='anotherMsg'>";
 		str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
 		str += "</div></div>";
 		
 		$("#chatLog2").append(str);
 		
-	}
+	} 
 	
-	if(auction_idx==logRoom_idx){
+	if(auction_idx==data.auction_idx){
 // 		$("p").remove("#result");
 		currentPrice = document.getElementById("currentPrice");
 // 		alert("메시지 오는거가 " + data.message);

@@ -186,7 +186,7 @@
 					+ "?response_type=code"
 					+ "&client_id=${client_id}"
 					+ "&redirect_uri=http://localhost:8082/clever/callback" // 나중에 callback 주소 변경 요청
-					+ "&scope=login inquiry transfer"
+					+ "&scope=login inquiry transfer oob"
 					+ "&state=12345678901234567890123456789012"
 					+ "&auth_type=0";
 				// 산업은행 - 222123456789 & 2팀 계좌인증 테스트 

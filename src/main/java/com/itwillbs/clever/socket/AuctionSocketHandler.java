@@ -105,10 +105,11 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	        System.out.println("채팅방 생성 성공");
 	    }
 	    
+	    
 	    for (WebSocketSession s : sessions) {
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
-	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
-	        System.out.println("메세지 전송 성공");
+	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent + ":" + jo.getString("auction_idx")));
+//	        System.out.println("시발 제발" + jo.getString("auction_idx"));
 	    }
 	    
 	    int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
