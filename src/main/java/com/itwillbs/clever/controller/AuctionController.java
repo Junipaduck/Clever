@@ -96,7 +96,7 @@ public class AuctionController {
 			return "success";
 		}
 		
-		List<LogRoomVO> logList = auctionLogService.selectLogList(auction_idx, sId);
+		List<LogRoomVO> logList = auctionLogService.selectLogList(auction_idx);
 		
 		int logRoomIdx = 0;
 		if (!logList.isEmpty()) {

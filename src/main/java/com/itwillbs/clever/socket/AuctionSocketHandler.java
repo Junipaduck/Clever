@@ -97,25 +97,24 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    System.out.println("chatRoomIdx : " + logRoomIdx);
 	    System.out.println("messageContent : " + messageContent);
 	    
-	    List<LogRoomVO> selectChatList = auctionLogService.selectLogList(auctionIdx, chatId);
+	    List<LogRoomVO> selectChatList = auctionLogService.selectLogList(auctionIdx);
 	    System.out.println("zzzzzzzzzzzzz" + selectChatList);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
 	    	auctionLogService.OpenRoom(logRoomIdx, auctionIdx);
 	        System.out.println("채팅방 생성 성공");
-	    } 
-
+	    }
+	    
 	    for (WebSocketSession s : sessions) {
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
 	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent));
 	        System.out.println("메세지 전송 성공");
-	        int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
-	        if (result > 0) {
-	            System.out.println("채팅 메세지 저장");
-	        }
 	    }
 	    
+	    int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
+	    
+	    System.out.println("현재 세션에 연결된 사람!!!!!! : " + sessions);
 	    
 	    
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
