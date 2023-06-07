@@ -81,9 +81,45 @@ public class AuctionController {
 		}
 	
 	@GetMapping(value = "auction_list")
-	public String auction_list() {
+	public String auction_list(@RequestParam Map<String, String> map, Model model) {
+		List productList = auctionService.getProductList(map.get("param"));
+		List fileList = auctionService.selectFiles();
+		String bigCategory = auctionService.getBigCategory(map.get("param"));
+		List bigCategorys = auctionService.getBigCategorys();
+		List midCategorys = auctionService.getMidCategorys(map.get("param"));
+		System.out.println(midCategorys);
+		List smallCategorys = auctionService.getSmallCategorys(map.get("param"));
+		System.out.println("???????" + smallCategorys);
+		if(bigCategory == null) {
+			List midCategory = auctionService.getMidCategory(map.get("param"));
+			System.out.println("midCategory : " + midCategory);
+			if(midCategory.size() < 1) {
+				List smallCategory = auctionService.getSmallCategory(map.get("param"));
+				System.out.println("smallCategory : " + smallCategory);
+				model.addAttribute("smallCategory", smallCategory);
+			} else {
+				model.addAttribute("midCategory", midCategory);
+			}
+		} else {
+			System.out.println("bigCategory : " + bigCategory);
+			model.addAttribute("bigCategory", bigCategory);
+		}
+		
+		
+		
+		
+		model.addAttribute("fileList", fileList);
+		model.addAttribute("bigCategorys", bigCategorys);
+		model.addAttribute("midCategorys", midCategorys);
+		model.addAttribute("smallCategorys", smallCategorys);
+		model.addAttribute("productList", productList);
+		model.addAttribute("categoryParam", map.get("param"));
+		
+		
 		return "auction/auction_list";
 	}
+	
+	
 	
 	@GetMapping(value = "auction_detail")
 	public String auction_detail(HttpSession session, Model model, @RequestParam int auction_idx) {

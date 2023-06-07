@@ -135,7 +135,7 @@
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
                             <hr>
-                            <p id="result"><span>현재 가격 : </span>${detailmap.auction_price }<span id="currentPrice"> </span></p>
+                            <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_price } 원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -569,8 +569,8 @@ chatSocket.onmessage = function(e) {
 	if(auction_idx==logRoom_idx){
 // 		$("p").remove("#result");
 		currentPrice = document.getElementById("currentPrice");
-		alert("메시지 오는거가 " + data.message);
-		currentPrice.innerText = data.message + " 원";
+// 		alert("메시지 오는거가 " + data.message);
+		currentPrice.innerText = "현재가격 : " + data.message + " 원";
 // 		const newDivElement = document.createElement('div');
 // 		newDivElement.textContent = 'Hello!';
 	}

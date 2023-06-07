@@ -44,9 +44,11 @@
             <div id="roomList">
                 <div id="roomHeader">채팅 방 목록</div>
                 <div id="roomSelect">
-                    <div class="roomEl active" data-id="1">고양이 두부모래 팝니다~</div>
-                    <div class="roomEl" data-id="2">JSP책 판매</div>
-                    <div class="roomEl" data-id="3">엠스톤 키보드</div>
+                	<c:forEach items="${chatList }" var="chatList">
+	                    <div class="roomEl active" data-id="1">${chatList.product_subject }</div>
+<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
+<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
+                    </c:forEach>
                 </div>
             </div>
         </div>

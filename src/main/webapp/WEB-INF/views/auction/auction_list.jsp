@@ -29,6 +29,21 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
+<style type="text/css">
+.goods_info  {
+height: 90px;
+}
+#textDiv {
+	margin-top: 100px;
+}
+
+div .category_box {
+color: #4f4f4f;
+text-decoration: none;
+font-size: 12px;
+font-weight: 500;
+}
+</style>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -53,61 +68,141 @@
                         </span>
                         <span>
                             <ul class="entire_bar">
-                                <li><a href="#">의류</a></li>
-                                <li class="hidden_menu"><a href="#">악세서리</a></li>
+                                <c:if test="${not empty bigCategory }">
+	                                <li><a href="auction_list?param=${bigCategory }">${bigCategory }</a></li>
+                                </c:if>
+                                <c:if test="${not empty midCategory }">
+	                                <li><a href="auction_list?param=${midCategory[0].bigCategory }">${midCategory[0].bigCategory }</a></li>
+                                </c:if>
+                                <c:if test="${not empty smallCategory }">
+	                                <li><a href="auction_list?param=${smallCategory[0].bigCategory }">${smallCategory[0].bigCategory }</a></li>
+                                </c:if>
+                                <c:forEach items="${bigCategorys }" var="big">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${big.bigCategory }">${big.bigCategory }</a></li>
+                                </c:forEach>
+                                
                             </ul>
                             <i class="bi bi-chevron-down under_direction"></i>
                         </span>
                     </p>
-                    <p id="category_clothes">
-                        <span>
-                            <i class="bi bi-chevron-right"></i>
-                        </span>
-                        <span>
-                            <ul class="category_clothes_bar">
-                                <li><a href="#">남성의류</a></li>
-                                <li class="hidden_menu"><a href="#">여성의류</a></li>
-                            </ul>
-                            <i class="bi bi-chevron-down under_direction"></i>
-                        </span>
-                    </p>
+	                    <p id="category_clothes">
+	                        <span>
+	                            <i class="bi bi-chevron-right"></i>
+	                        </span>
+	                        <span>
+	                            <ul class="category_clothes_bar">
+	                                <c:if test="${not empty midCategory }">
+		                                <li><a href="#">${midCategory[0].midCategory }</a></li>
+	                                </c:if>
+	                                <c:if test="${not empty smallCategory }">
+		                                <li><a href="#">${smallCategory[0].midCategory }</a></li>
+	                                </c:if>
+                                <c:forEach items="${midCategorys }" var="mid">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${mid.midCategory }">${mid.midCategory }</a></li>
+                                </c:forEach>
+	                            </ul>
+	                            <i class="bi bi-chevron-down under_direction"></i>
+	                        </span>
+	                    </p>
+                    <c:if test="${not empty midCategory or not empty smallCategory }">
+	                    <p id="category_clothes">
+	                        <span>
+	                            <i class="bi bi-chevron-right"></i>
+	                        </span>
+	                        <span>
+	                            <ul class="category_acc_bar">
+		                                <li><a href="#">${smallCategory[0].smallCategory }</a></li>
+	                            <c:forEach items="${smallCategorys }" var="smalls">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${smalls.smallCategory }">${smalls.smallCategory }</a></li>
+                                </c:forEach>
+	                            </ul>
+	                            <i class="bi bi-chevron-down under_direction"></i>
+	                        </span>
+	                    </p>
+                    </c:if>
+                    
                 </div>
                 
                 <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
                 <div class="category_under">
                     <div class="category_box">
-                        <a href="전체보기">전체보기
-                            <span><i class="bi bi-chevron-right"></i></span></a>
+                        현재 카테고리
+                            <span><i class="bi bi-chevron-right"></i></span>
                     </div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
-                    <div class="category_box"></div>
+                    <c:if test="${not empty bigCategory }">
+	                    <div class="category_box">${bigCategory }</div>
+	                    <div class="category_box"></div>
+	                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
+	                    <div class="category_box"></div>
+                    </c:if>
+                    <c:if test="${not empty midCategory }">
+	                    <div class="category_box">${midCategory[0].midCategory } ></div>
+	                    <div class="category_box">${midCategory[0].bigCategory }</div>
+	                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
+	                    <div class="category_box"></div>
+                    </c:if>
+                    <c:if test="${not empty smallCategory }">
+	                    <div class="category_box">${smallCategory[0].bigCategory } ></div>
+	                    <div class="category_box">${smallCategory[0].midCategory} ></div>
+	                    <div class="category_box">${smallCategory[0].smallCategory }</div> <!--자리 남아도 5개 유지-->
+	                    <div class="category_box"></div>
+                    </c:if>
                 </div>
 
-                <!--상품 영역-->
                 <section class="main_goods">
-                    <div class="goods_wrap">
-                        <div class="goods">
-                            <a href="goods_product_detail.html">
-                                <div class="goods_image">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                                    <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
-                                    <span>배송비포함</span>
+                <h2 align="center">${categoryParam } 카테고리의 상품들</h2>
+                <div class="goods_wrap">
+                    <c:forEach items="${productList }" var="product" end="4"> 
+                    <div class="goods">
+                        <a href="auction_detail?auction_idx=${product.auction_idx}">
+                        <c:forEach items="${fileList }" var="file">
+                        
+                        <c:set var="length" value="${fn:length(file.file_name) }" />
+						<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
+						<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+                            <c:if test="${file.file_num eq product.auction_idx }">
+	                            <div class="goods_image">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+	                            </div>
+                            </c:if>
+                        </c:forEach>
+                            <div class="goods_info">
+                                <p class="goods_title">${product.auction_title } </p>
+                                <div class="goods_price_date">
+                                    <span class="goods_price">가격</span>
+                                    <span class="goods_date_before">${product.auction_price }</span>
                                 </div>
-                                <div class="goods_info">
-                                    <p class="goods_title">상품명</p>
-                                    <div class="goods_price_date">
-                                        <span class="goods_price">가격</span>
-                                        <span class="goods_date_before">4일 전</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+	                                <script type="text/javascript">
+	                                	function getTime${product.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${product.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("timeOut${product.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		return setInterval(() => getTime${product.auction_idx}(), 1000);
+										}());
+	                               </script>
+                               <div id="timeOut${product.auction_idx}" style="color: red; text-align: right;"></div>
+                            </div>
+                        </a>
                     </div>
-                </section>
-            </div>
-        </div>
+                    </c:forEach>
+                </div> 
+            </section>
         <!-- // main_content 영역 -->
 
 	<!-- 풋터 시작 -->

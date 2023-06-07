@@ -71,6 +71,7 @@ public class ChattingController {
 		model.addAttribute("chatRoom", chatRoom);
 		System.out.println(chatRoom);
 		
+		
 		//하나 테스트
 //		chattingService.selectChattingRoom();
 		return "chatting/chatting";
