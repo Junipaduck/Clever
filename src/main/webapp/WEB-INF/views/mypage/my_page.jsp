@@ -106,7 +106,7 @@ div.right {
 				<div id="my_store_right_top">
 					<div>
 						<h2>${member.member_id}님</h2>
-						<button>내 정보 수정</button>
+						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
 					</div>
 
 					<div>

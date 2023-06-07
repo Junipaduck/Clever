@@ -1,5 +1,7 @@
 package com.itwillbs.clever.mapper;
 
+import java.util.HashMap;
+
 import com.itwillbs.clever.vo.MemberVO;
 
 public interface MemberMapper {
@@ -11,5 +13,7 @@ public interface MemberMapper {
 	String getPasswd(MemberVO member);
 
 	MemberVO selectMember(String sId);
+
+	HashMap<String, String> selectModifyMember(String sId);
 
 }

@@ -62,4 +62,25 @@
 		WHERE member_id = #{sId}
 	</select>
 
+	<!-- 회원정보 수정 페이지에서 생일, 주소 split을 위한 select -->
+	<select id="selectModifyMember" resultType="HashMap">
+		SELECT 
+		 member_idx,
+		 member_name,
+		 member_id,
+		 member_passwd,
+		 member_phone,
+		 member_address,
+		 SUBSTRING_INDEX(member_birth, '-', 1) as member_birth,
+		 SUBSTRING_INDEX(member_birth, '-', -1) as member_birth2,
+		 member_email,
+		 member_interest,
+		 email_auth,
+		 account_auth,
+		 member_date,
+		 member_rank,
+		 member_point
+		 FROM member
+		WHERE member_id = #{sId}
+	</select>
 </mapper>

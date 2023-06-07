@@ -51,4 +51,16 @@ public class MypageController {
 		return "mypage/my_page";
 	}
 		
+	@GetMapping("/memberModify.me")
+	public String customerModify(HttpSession session, Model model) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		HashMap<String, String> member = memberService.selectModifyMember(sId);
+		model.addAttribute("member", member);
+		System.out.println(member);
+		
+		return "mypage/memberModify";
+	}
+	
 }
