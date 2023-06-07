@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.*;
 
+import com.itwillbs.clever.vo.ChatMessageVO;
 import com.itwillbs.clever.vo.ChatRoomVO;
 import com.itwillbs.clever.vo.ProductVO;
 
@@ -21,6 +22,8 @@ public interface ChattingMapper {
 
 	int insertChat(@Param("productIdx") int productIdx, @Param("chatRoomId") String chatRoomId, 
 			@Param("buyerId") String buyerId, @Param("sellerId") String sellerId, @Param("messageContent") String messageContent);
+
+	List<ChatMessageVO> selectRoomInfo(String roomId);
 
 
 

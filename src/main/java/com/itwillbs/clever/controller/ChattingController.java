@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.clever.service.ChattingService;
 import com.itwillbs.clever.socket.WebSocketHandler;
+import com.itwillbs.clever.vo.ChatMessageVO;
 import com.itwillbs.clever.vo.ChatRoomVO;
 import com.itwillbs.clever.vo.ProductVO;
 
@@ -74,6 +75,20 @@ public class ChattingController {
 		//하나 테스트
 //		chattingService.selectChattingRoom();
 		return "chatting/chatting";
+	}
+	
+	@ResponseBody
+	@PostMapping("roomInfo")
+	public String roomInfo(String roomId) {
+		List<ChatMessageVO> chatRoomInfo = chattingService.selectRoomInfo(roomId);
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			String roomInfo = objectMapper.writeValueAsString(chatRoomInfo);
+			return roomInfo;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.clever.mapper.ChattingMapper;
+import com.itwillbs.clever.vo.ChatMessageVO;
 import com.itwillbs.clever.vo.ChatRoomVO;
 import com.itwillbs.clever.vo.ProductVO;
 
@@ -42,6 +43,11 @@ public class ChattingService {
 	public int insertMessage(int productIdx, String chatRoomId, String buyerId, String sellerId,
 			String messageContent) {
 		return mapper.insertChat(productIdx, chatRoomId, buyerId, sellerId, messageContent);
+	}
+
+	// 채팅방 목록에서 해당 방 메세지 조회
+	public List<ChatMessageVO> selectRoomInfo(String roomId) {
+		return mapper.selectRoomInfo(roomId);
 	}
 
 

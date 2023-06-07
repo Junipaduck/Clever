@@ -43,13 +43,20 @@
         <div id="roomWrap">
             <div id="roomList">
                 <div id="roomHeader">채팅 방 목록</div>
-                <div id="roomSelect">
-                	<c:forEach items="${chatList }" var="chatList">
-	                    <div class="roomEl active" data-id="1">${chatList.product_subject }</div>
-<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
-<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
-                    </c:forEach>
-                </div>
+                	<c:if test="${chatList.size() == 0 }">
+                		<div id="roomSelect">
+	                    	<div class="roomEl active" data-id="1">채팅 상대가 없습니다.</div>
+                		</div>
+                	</c:if>
+                	<c:if test="${chatList.size() > 0 }">
+		                <div id="roomSelect">
+		                	<c:forEach items="${chatList }" var="chatList">
+			                    <div class="roomEl active" data-id="${chatList.chatRoom_id}">${chatList.product_subject }</div>
+		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
+		<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
+		                    </c:forEach>
+		                </div>
+                	</c:if>
             </div>
         </div>
         <div id="chatWrap">
@@ -109,10 +116,10 @@ if(!modifiedProductInfo) {
 	console.log("헤더에서 입장!");
 	var chatRoomInfo = JSON.parse('${chatRoom}');
 // 	console.log(chatRoomInfo);
-	var roomId = null;
-	for (var i = 0; i < chatRoomInfo.length; i++) {
-		roomId = chatRoomInfo[i].chatRoom_id;
-	}
+	var roomId = chatRoomInfo[0].chatRoom_id;
+// 	for (var i = 0; i < chatRoomInfo.length; i++) {
+// 		roomId = chatRoomInfo[i].chatRoom_id;
+// 	}
 }
 console.log(roomId);
 // 제품상세페이지 -> 채팅방 이동 시
@@ -148,6 +155,41 @@ if(modifiedProductInfo) {
 //      displayChatting.scrollTop = displayChatting.scrollHeight;
 //  }
 // })();
+
+// 채팅방(리스트) 클릭 시
+$("#roomSelect .roomEl").on("click", function(e) {
+	let roomId = $(this).data("id");
+	console.log('roomId : ' + roomId);
+	$.ajax({
+		type: "POST",
+		url: "roomInfo",
+		data: {roomId: roomId},
+		dataType: "json",
+		success: function(response) {
+            console.log(response);
+            $.each(response , function(i){
+//             let buyerId = 
+//             if (data.id == userId) {
+//         		var str = "<div class='myMsg'>";
+//         		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
+//         		str += "</div></div>";
+        		
+//         		$("#chatLog").append(str);
+//         	} else {
+        		var str = "<div class='anotherMsg'>";
+        		str += "<span class='msg'>"+ response[i].seller_id +" : <b>"  + response[i].message_content + "</b></span>";
+        		str += "</div></div>";
+        		
+        		$("#chatLog").append(str);
+//         	}
+            });
+        },
+        error: function(e) {
+            console.log(e);
+        }
+		
+	});
+});
 
 // 메세지 전송 버튼 클릭 시 이벤트
 document.getElementById("btnSend").addEventListener("click", sendMessage);
