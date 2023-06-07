@@ -22,12 +22,21 @@
 	
 	<!-- 채팅방 리스트 조회 -->
 	<select id="selectChatList" resultType="com.itwillbs.clever.vo.ChatRoomVO">
-		SELECT * 
-			FROM chat_room
-			WHERE 
-				chatRoom_id 
-				LIKE 
-					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%');
+<!-- 		SELECT *  -->
+<!-- 			FROM chat_room -->
+<!-- 			WHERE  -->
+<!-- 				chatRoom_id  -->
+<!-- 				LIKE  -->
+<!-- 					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%'); -->
+					
+			<!-- 하나 테스트 0607 -->		
+			SELECT * 
+				FROM chat_room
+				WHERE 
+					chatRoom_id 
+					LIKE 
+						CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
+					AND chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = 'admin'));
 				
 	</select>
 	
