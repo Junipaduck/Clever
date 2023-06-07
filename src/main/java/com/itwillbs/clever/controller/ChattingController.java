@@ -60,9 +60,11 @@ public class ChattingController {
 	}
 	
 	@GetMapping("myChatting")
-	public String myChatting(HttpSession session) {
+	public String myChatting(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
+		model.addAttribute("chatList", chatList);
+		System.out.println(chatList);
 		
 		//하나 테스트
 //		chattingService.selectChattingRoom();

@@ -98,7 +98,15 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 // const userNo = "${loginUser.userNo}";
 var userId = "${sessionScope.sId}";
 var productIdx = "${param.product_idx}";
+
 var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이터 안에서 /r/n이 오류 발생하므로 공백문자로 대체
+console.log(modifiedProductInfo);
+if(!modifiedProductInfo) {
+	console.log("널 입니다!");
+}
+if(modifiedProductInfo) {
+	
+
 var productInfo = JSON.parse(modifiedProductInfo);
 var sellerIdx = "${sellerIdx}";
 var buyerIdx = "${buyerIdx}";
@@ -112,6 +120,9 @@ for (var i = 0; i < productInfo.length; i++) {
 console.log("sellerId : " + sellerId);
 var roomId = "P" + productIdx + "S" + sellerIdx + "B" + buyerIdx;
 console.log("roomIdx : " + roomId);
+}
+
+
 // const contextPath = "${pageContext.request.requestURL}";
 // //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
 // var chatSocket = new SockJS(contextPath + "/chatting");
