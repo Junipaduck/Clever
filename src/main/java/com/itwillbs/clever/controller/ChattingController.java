@@ -62,6 +62,9 @@ public class ChattingController {
 	@GetMapping("myChatting")
 	public String myChatting(HttpSession session) {
 		List<ChatRoomVO> chatList = chattingService.selectChatList(null);
+		
+		//하나 테스트
+//		chattingService.selectChattingRoom();
 		return "chatting/chatting";
 	}
 	

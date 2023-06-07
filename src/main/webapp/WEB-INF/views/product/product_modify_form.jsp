@@ -404,7 +404,7 @@ display: flex;
                                 </div>
                             </div>
                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
-                            <p>선택한 카테고리 : <span class="selected_category"></span></p>
+                            <p>선택한 카테고리 : <span class="selected_category">${productDetail.product_Lcategory } > ${productDetail.product_Mcategory } > ${productDetail.product_Scategory }</span></p>
                             <input type="hidden" id="product_category" name="product_category" value="">
                         </div>
                     </div>

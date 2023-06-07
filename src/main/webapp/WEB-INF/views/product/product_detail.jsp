@@ -263,7 +263,7 @@
             <!-- 카테고리가 같은 상품들을 5개까지 보여줌 -->
 	            <div id="related_goods">
 	                <div>
-	                    <h3>연관상품</h3>
+	                    <h3>${productDetail.product_Mcategory } 연관상품</h3>
 	                    <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
 	                </div>
 	                <input type="hidden" name="product_Mcategory" value="${productDetail.product_Mcategory }">
@@ -323,7 +323,7 @@
                                         상품설명
                                     </p>
                                 </div>
-                                <div style="font-size: large;">
+                                <div style="font-size: large; white-space: pre-line;">
                                     ${productDetail.product_content }
                                 </div>
                             </div>
@@ -374,7 +374,7 @@
                                                 </p>
                                         </div>
                                         <div id="store_follow">
-                                            	<button onclick="location.href='chatting'" style="background-color: #0085f5; color: white;"> 채팅하기</button>
+                                            	<button onclick="location.href='chatting?product_idx=${param.product_idx}'" style="background-color: #0085f5; color: white;"> 채팅하기</button>
                                         </div>
                                     </div>
                                 </div>
