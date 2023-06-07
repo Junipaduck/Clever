@@ -13,7 +13,7 @@ public interface ChattingMapper {
 	
 	String selectUserInfo(String id);
 	
-	List<ChatRoomVO> selectChatList(String chatRoomId);
+	List<ChatRoomVO> selectChatList(String sId);
 
 	int openRoom(@Param("chatRoomId") String chatRoomId, @Param("productIdx") int productIdx);
 

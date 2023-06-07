@@ -22,11 +22,13 @@
 	
 	<!-- 채팅방 리스트 조회 -->
 	<select id="selectChatList" resultType="com.itwillbs.clever.vo.ChatRoomVO">
-		SELECT *
-			FROM 
-				chat_room
-			WHERE
-				chatRoom_id = #{chatRoomId}
+		SELECT * 
+			FROM chat_room
+			WHERE 
+				chatRoom_id 
+				LIKE 
+					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%');
+				
 	</select>
 	
 	<!-- 채팅방 생성 -->
