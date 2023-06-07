@@ -99,7 +99,7 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 //el태그통해 js변수 셋팅
 // const userNo = "${loginUser.userNo}";
 var userId = "${sessionScope.sId}";
-var productIdx = "${param.product_idx}";
+
 
 var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이터 안에서 /r/n이 오류 발생하므로 공백문자로 대체
 // console.log(modifiedProductInfo);
@@ -114,8 +114,10 @@ if(!modifiedProductInfo) {
 		roomId = chatRoomInfo[i].chatRoom_id;
 	}
 }
+console.log(roomId);
 // 제품상세페이지 -> 채팅방 이동 시
 if(modifiedProductInfo) {
+	var productIdx = "${param.product_idx}";
 	var productInfo = JSON.parse(modifiedProductInfo);
 	var sellerIdx = "${sellerIdx}";
 	var buyerIdx = "${buyerIdx}";

@@ -66,9 +66,8 @@ public class ChattingController {
 		ObjectMapper mapper = new ObjectMapper();
 		String chatRoom = mapper.writeValueAsString(chatList);
 		
-//		String sellerId = chatList.get(0)
-		
 		model.addAttribute("chatRoom", chatRoom);
+		model.addAttribute("chatList", chatList);
 		System.out.println(chatRoom);
 		
 		
