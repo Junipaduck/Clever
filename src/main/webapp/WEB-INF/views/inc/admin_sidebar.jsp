@@ -21,7 +21,6 @@
                     	<i class="icon icon-app-store"></i><span class="nav-text">회원관리</span></a>
                         <ul aria-expanded="false">
                             <li><a href="adminMember.ad">회원목록</a></li>
-                            <li><a href="./app-calender.html">뭐하지</a></li>
                         </ul>
                     </li>
 					<!-- 차트 목록 있던 자리 -->
@@ -75,7 +74,6 @@
                         <ul aria-expanded="false">
                             <li><a href="adminNoticeList.ad">공지사항 목록</a></li>
                             <li><a href="noticeForm.ad">공지사항 등록</a></li>
-                            <li><a href="./page-register.html">공지사항 수정</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">페이관리</li>
