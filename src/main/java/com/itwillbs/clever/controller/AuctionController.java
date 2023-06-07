@@ -83,6 +83,7 @@ public class AuctionController {
 	@GetMapping(value = "auction_list")
 	public String auction_list(@RequestParam Map<String, String> map, Model model) {
 		List productList = auctionService.getProductList(map.get("param"));
+		List fileList = auctionService.selectFiles();
 		String bigCategory = auctionService.getBigCategory(map.get("param"));
 		List bigCategorys = auctionService.getBigCategorys();
 		List midCategorys = auctionService.getMidCategorys(map.get("param"));
@@ -107,6 +108,7 @@ public class AuctionController {
 		
 		
 		
+		model.addAttribute("fileList", fileList);
 		model.addAttribute("bigCategorys", bigCategorys);
 		model.addAttribute("midCategorys", midCategorys);
 		model.addAttribute("smallCategorys", smallCategorys);
