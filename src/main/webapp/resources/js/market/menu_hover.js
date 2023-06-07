@@ -1041,7 +1041,7 @@ $(document).ready(function(){
         $('#test_hobbyCC').css('display', 'none');
     }) 
     
-    $("#test_hobbyBB").hover(function(){
+    $("#test_hobbyCC").hover(function(){
         $('#test_cates').css('display', 'block');
         $('#test_hobby').css('display', 'block');
         $('#test_hobbyCC').css('display', 'block');
