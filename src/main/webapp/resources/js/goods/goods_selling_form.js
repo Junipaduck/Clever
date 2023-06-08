@@ -1231,21 +1231,21 @@ $(document).ready(function ( ) {
 
 function setImages(event){
     let cnt = document.querySelector(".image_num").innerText;
-//    	const currentInputName = event.target.name;
-//		  const currentInput = document.getElementsByName(currentInputName)[0];
-////		  alert(currentInputName);
-////		  alert(currentInput);
+    	const currentInputName = event.target.name;
+		  const currentInput = document.getElementsByName(currentInputName)[0];
+//		  alert(currentInputName);
+//		  alert(currentInput);
+		
+		  currentInput.setAttribute("hidden", true);
 //		
-//		  currentInput.setAttribute("hidden", true);
-////		
-//		  const nextInputName = "auction_images" + (parseInt(currentInputName.substring(14)) + 1);
-//		  const nextInput = document.getElementsByName(nextInputName)[0];
-////		  alert(nextInputName);
-////		  alert(nextInput);
-////		
-//		  if (nextInput) {
-//		    nextInput.removeAttribute("hidden");
-//		  }
+		  const nextInputName = "auction_images" + (parseInt(currentInputName.substring(14)) + 1);
+		  const nextInput = document.getElementsByName(nextInputName)[0];
+//		  alert(nextInputName);
+//		  alert(nextInput);
+//		
+		  if (nextInput) {
+		    nextInput.removeAttribute("hidden");
+		  }
 		
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감

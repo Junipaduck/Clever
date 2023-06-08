@@ -132,6 +132,7 @@ function startEndDate() {
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
                 <form action="auction_detail_modifyPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="auction_idx" value="${detailmap.auction_idx }">
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
                             <span class="image_limit">(<span class="image_num"></span>/4)</span>

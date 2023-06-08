@@ -203,7 +203,7 @@ public class AuctionController {
 	
 	@PostMapping(value = "auction_detail_modifyPro")
 	public String auction_detail_modifyPro(@RequestParam Map<String, String> map, Model model) {
-		System.out.println(map);
+		System.out.println("자 드가자~!" + map);
 		// 카테고리 분류
 		String[] categorys = map.get("auction_category").split(" > ");
 		map.put("auction_Lcategory", categorys[0]);
@@ -215,7 +215,7 @@ public class AuctionController {
 		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
 		int modifyCnt = auctionService.detailModify(map);
 		if(modifyCnt > 0) {
-			return "";
+			return "auction/auction";
 		} else {
 			model.addAttribute("msg", "수정 실패!");
 			return "fail_back";

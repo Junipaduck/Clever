@@ -190,7 +190,7 @@
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
                             <hr>
-                            <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_price } 원</span></p>
+                            <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_final_price } 원</span></p>
                             <script type="text/javascript">
 	                                	function getTime() {
 	                                	  var element;
