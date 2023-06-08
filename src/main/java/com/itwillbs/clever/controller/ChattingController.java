@@ -53,6 +53,9 @@ public class ChattingController {
 		String buyerIdx = chattingService.selectUser(sId);
 		System.out.println("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
 		
+		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
+		model.addAttribute("chatList", chatList);
+		
 		model.addAttribute("productInfo", productInfo);
 		model.addAttribute("sellerIdx", sellerIdx);
 		model.addAttribute("buyerIdx", buyerIdx);
