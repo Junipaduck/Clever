@@ -24,6 +24,10 @@
 		let result = confirm("로그아웃 하시겠습니까?");	
 		return result;
 	}
+	
+	function pointCharge() {
+		window.open("pointCharge", "포인트 충전 새창", "width=800, height=1200");
+	}
 </script>
 
 <!-- header 영역 -->
@@ -55,6 +59,12 @@
 		                                        	<c:if test="${sessionScope.sId eq 'admin' }">
 			                                        	<div class="col-3" style="text-align: left;"><a href="adminMain.ad">관리자페이지</a></div>
 		                                        	</c:if>
+							                    <div class="col-1 b_h_left_menu">
+						                            <a href=""> 
+						                                <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="포인트 충전" onclick="pointCharge()">
+						                                포인트 충전
+						                            </a>
+						                        </div>
                                     		</c:otherwise>
                                     	</c:choose>
                                     </div>

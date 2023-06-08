@@ -1,5 +1,5 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -15,10 +15,12 @@
     <!-- 부트스트랩 js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
+    <!-- CSS -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
     <!-- 공통 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
     <!-- 상세페이지 CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_product_detail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_product_detail.css?after">
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/chatting/chatting.css">
 	
@@ -33,71 +35,110 @@
 	<script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<style type="text/css">
+	.goods_info  {
+	height: 90px;
+	}
+	#textDiv {
+		margin-top: 100px;
+	}
 	
+	div .category_box {
+	color: #4f4f4f;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: 500;
+	}
+	.entire_bar  li, .category_clothes_bar  li , .category_acc_bar  li {
+ 	z-index: 10; 
+ 	position: relative;
+ 	background-color: #ffffff;
+	}
+	div #category {
+	height: 61px;
+	}
+	</style>
 </head>
 
 <body>
 
 	<!-- 헤더 시작 -->
 	<header>
-		<jsp:include page="../inc/header.jsp" />
+		<jsp:include page="auction_header.jsp" />
 	</header>
     <!-- main_content 영역 -->
     	<input type="hidden" id="inputInt" name="inputInt" value="0">
         <div id="main_content">
-            <!-- category -->
-            <div id="category">
-                <div id="category_left">
-                    <div>
-                        <p id="home">
-                            <span>
-                                <img src="${pageContext.request.contextPath }/resources/images/goods/home.png" alt="home">
-                            </span>
-                            <span>홈</span>
-                        </p>
-                        <p id="entire">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="entire_bar">
-                                    <li><a href="#">의류</a></li>
-                                    <li class="hidden_menu"><a href="#">악세서리</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                        </p>
-                        <p id="category_clothes">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="category_clothes_bar">
-                                    <li><a href="#">남성의류</a></li>
-                                    <li class="hidden_menu"><a href="#">여성의류</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                            
-                        </p>
-                        <p id="category_acc">
-                            <span>
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                            <span>
-                                <ul class="category_acc_bar">
-                                    <li><a href="#">시계/쥬얼리</a></li>
-                                    <li class="hidden_menu"><a href="#">패션 악세서리</a></li>
-                                </ul>
-                                <i class="bi bi-chevron-down under_direction"></i>
-                            </span>
-                        </p>
-                    </div>
+            <br>
+            <!-- 카테고리 -->
+                <div id="category">
+                    <p id="home">
+                        <span>
+                            <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home">
+                        </span>
+                        <a href="auction"><span>홈</span></a>
+                    </p>
+                    <p id="entire">
+                        <span>
+                            <i class="bi bi-chevron-right"></i>
+                        </span>
+                        <span>
+                            <ul class="entire_bar">
+                                <c:if test="${not empty bigCategory }">
+	                                <li><a href="auction_list?param=${bigCategory }">${bigCategory }</a></li>
+                                </c:if>
+                                <c:if test="${not empty midCategory }">
+	                                <li><a href="auction_list?param=${midCategory[0].bigCategory }">${midCategory[0].bigCategory }</a></li>
+                                </c:if>
+                                <c:if test="${not empty smallCategory }">
+	                                <li><a href="auction_list?param=${smallCategory[0].bigCategory }">${smallCategory[0].bigCategory }</a></li>
+                                </c:if>
+                                <c:forEach items="${bigCategorys }" var="big">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${big.bigCategory }">${big.bigCategory }</a></li>
+                                </c:forEach>
+                                
+                            </ul>
+                            <i class="bi bi-chevron-down under_direction"></i>
+                        </span>
+                    </p>
+	                    <p id="category_clothes">
+	                        <span>
+	                            <i class="bi bi-chevron-right"></i>
+	                        </span>
+	                        <span>
+	                            <ul class="category_clothes_bar">
+	                                <c:if test="${not empty midCategory }">
+		                                <li><a href="#">${midCategory[0].midCategory }</a></li>
+	                                </c:if>
+	                                <c:if test="${not empty smallCategory }">
+		                                <li><a href="#">${smallCategory[0].midCategory }</a></li>
+	                                </c:if>
+                                <c:forEach items="${midCategorys }" var="mid">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${mid.midCategory }">${mid.midCategory }</a></li>
+                                </c:forEach>
+	                            </ul>
+	                            <i class="bi bi-chevron-down under_direction"></i>
+	                        </span>
+	                    </p>
+                    <c:if test="${not empty midCategory or not empty smallCategory }">
+	                    <p id="category_clothes">
+	                        <span>
+	                            <i class="bi bi-chevron-right"></i>
+	                        </span>
+	                        <span>
+	                            <ul class="category_acc_bar">
+		                                <li><a href="#">${smallCategory[0].smallCategory }</a></li>
+	                            <c:forEach items="${smallCategorys }" var="smalls">
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${smalls.smallCategory }">${smalls.smallCategory }</a></li>
+                                </c:forEach>
+	                            </ul>
+	                            <i class="bi bi-chevron-down under_direction"></i>
+	                        </span>
+	                    </p>
+                    </c:if>
+                    
                 </div>
-                <div id="category_right">
-                    <img src="${pageContext.request.contextPath }/resources/images/goods/sale.png" alt="할인 받기">
-                </div>
-            </div>
+                
             <!-- // category -->
 
             <!-- detail_content -->
@@ -107,20 +148,34 @@
                         <div class="col detail_content_img">
                             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                                 <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active change" id="change1" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" id="change2" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" id="change3" aria-label="Slide 3"></button>
+                                    	<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active change" id="change0" aria-current="true" aria-label="Slide 1"></button>
+                                    <c:choose>
+                                    	<c:when test="${fn:length(fileList) > 1 }">
+		                                    <c:forEach items="${fileList }" var="file" varStatus="status" end="${fn:length(fileList) - 2}">
+		                                    	<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${status.count }" id="change${status.count }" aria-label="Slide ${status.count + 1 }"></button>
+		                                    </c:forEach>
+                                    	</c:when>
+                                    </c:choose>
+                                    
                                 </div>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진1">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진2">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진3">
-                                    </div>
+                        
+			                        <c:set var="length" value="${fn:length(fileList[0].file_name) }" />
+									<c:set var="index" value="${fn:indexOf(fileList[0].file_name, '_') }" />
+									<c:set var="file_name" value="${fn:substring(fileList[0].file_name, index + 1, length) }" />
+				                            <div class="carousel-item active">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100">
+				                            </div>
+				                   <c:if test="${fn:length(fileList) > 1 }">
+				                   	<c:forEach items="${fileList }" var="file" begin="1">
+			                        <c:set var="length" value="${fn:length(file.file_name) }" />
+									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
+									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+	                                    <div class="carousel-item ">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100">
+	                                    </div>
+				                   	</c:forEach>
+				                   </c:if>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -136,6 +191,31 @@
                             <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
                             <hr>
                             <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_price } 원</span></p>
+                            <script type="text/javascript">
+	                                	function getTime() {
+	                                	  var element;
+	                                	  const endDay = new Date('${detailmap.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("timeOut");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		return setInterval(() => getTime(), 1000);
+										}());
+	                               </script>
+                               <div id="timeOut" style="color: red; text-align: left; font-size: 20px"></div>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -156,13 +236,13 @@
                                 </p>
                             </div>
                             <div id="detail_content_info_state">
+                                <p>
+                                    <span>· 시작가격</span>
+                                    <span class="shipping" id="auction_price"></span>
+                                </p>
                                 <p> 
                                     <span>· 상품상태</span>
                                     <span>${detailmap.auction_product_status }</span>
-                                </p>
-                                <p>
-                                    <span>· 배송비</span>
-                                    <span class="shipping">배송비 별도</span>
                                 </p>
                                 <p>
                                     <span>· 거래지역</span>
@@ -185,18 +265,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="container text-center detail_content_info_btn">
-                                    <div class="row g-2">
-                                    	<div class="col-4">
-                                            <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
-                                        </div>
-                                    	<div class="col-4">
-                                            <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
-                                            </div>
+                            <div class="container text-center detail_content_info_btn" style="margin-top: 20px ">
+                                <div class="row g-2">
+                                	<div class="col-4">
+                                        <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
+                                    </div>
+                                	<div class="col-4">
+                                        <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -210,6 +288,12 @@
             <!-- related_goods -->
             <div id="related_goods" style="margin-top: 40px">
                 <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                     <h3>연관 상품</h3>
                     <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
                 </div>
@@ -299,8 +383,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    상품내용 입력란입니다.<br>
-                                    테스트메시지<br>
+                                    ${detailmap.auction_content }
                                 </div>
                             </div>
                             <div class="p-3 detailed_information">
@@ -309,13 +392,13 @@
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_place">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/bottom_place.png" alt="거래지역"> <span>거래지역</span>
-                                                <p>상세 주소</p>
+                                                <p>${detailmap.auction_address }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_category">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/category.png" alt="카테고리"> <span>카테고리</span>
-                                                <p>상품 종류</p>
+                                                <p>${detailmap.auction_Lcategory } <br>↓<br> ${detailmap.auction_Mcategory } <br>↓<br> ${detailmap.auction_Scategory }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -406,6 +489,15 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
+       		<c:if test="${sessionScope.sId eq detailmap.member_id }">
+	       		<div class="btn_submit_area">
+			        <div class="inner_submit">
+			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
+			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
+			        </div>
+		    	</div>
+	    	</c:if>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -413,6 +505,11 @@
 	
 <script type="text/javascript">
 
+	$(function() {
+// 		alert("${detailmap.auction_price }");
+		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
+	});
+	
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";
@@ -435,9 +532,9 @@
 	}
 	
 	function comma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	}
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
 	
 	function uncomma(str) {
 	    str = String(str);

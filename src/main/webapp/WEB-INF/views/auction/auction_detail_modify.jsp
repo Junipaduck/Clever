@@ -131,7 +131,7 @@ function startEndDate() {
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="auction_upload_pro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
+                <form action="auction_detail_modifyPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
                     <div class="goods_images_area">
                         <p>상품이미지<span class="red">*</span>
                             <span class="image_limit">(<span class="image_num"></span>/4)</span>
@@ -163,7 +163,7 @@ function startEndDate() {
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
                             <input type="text" name="auction_title" id="auction_title" maxlength="40"
-                                placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);">
+                                placeholder="상품 제목을 입력해주세요." oninput="countTitleLength(event);" value="${detailmap.auction_title }">
                             <span class="goods_title_length"><span></span>/40</span>
                         </div>
                     </div>
@@ -363,8 +363,8 @@ function startEndDate() {
                                 </div>
                             </div>
                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
-                            <p>선택한 카테고리 : <span class="selected_category"></span></p>
-                            <input type="hidden" id="auction_category" name="auction_category" value="">
+                            <p>선택한 카테고리 : <span class="selected_category">${detailmap.auction_Lcategory } > ${detailmap.auction_Mcategory } > ${detailmap.auction_Scategory }</span></p>
+                            <input type="hidden" id="auction_category" name="auction_category">
                         </div>
                     </div>
                     <div class="goods_location_area">
@@ -390,43 +390,43 @@ function startEndDate() {
 										</script>
                                 <button onclick="return false;">지역설정안함</button>
                             </div>
-                            <input type="text" id="auction_address" name="auction_address" readonly>
+                            <input type="text" id="auction_address" name="auction_address" readonly value="${detailmap.auction_address }">
                         </div>
                     </div>
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="auction_product_status" value="used" id="used" >
+                            <input type="radio" name="auction_product_status" value="new" id="new" <c:if test="${detailmap.auction_product_status eq 'new' }" >checked</c:if>>
                             <label for="used">미개봉</label>
-                            <input type="radio" name="auction_product_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="newUsed" id="newUsed" <c:if test="${detailmap.auction_product_status eq 'newUsed' }" >checked</c:if>>
                             <label for="new">거의 새 것</label>
-                            <input type="radio" name="auction_product_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="used" id="used" <c:if test="${detailmap.auction_product_status eq 'used' }" >checked</c:if>>
                             <label for="new">사용감 있음</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>즉시 구매 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.auction_price }" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.auction_min_bid }" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 최소 증가 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.auction_min_increase }" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>경매 시작/마감일<span class="red">*</span></p>
                         <div class="goods_price">
                        <p>
-						<input type="text" name="auction_start_date" id="auction_start_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%" /> 
+						<input type="text" value="${detailmap.auction_start_date }" name="auction_start_date" id="auction_start_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%" /> 
 						<!-- 캘린더 옵션 { -->
 						<script>
 					    $.datepicker.setDefaults({
@@ -455,7 +455,7 @@ function startEndDate() {
 					    })
 					    
 						</script>
-						<input type="text" name="auction_start_time" id="auction_start_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요."/> 
+						<input type="text" value="${detailmap.auction_start_time }" name="auction_start_time" id="auction_start_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요."/> 
 						 <!-- 시간 옵션 { -->
 						  <script>
 						  $('.timepicker').timepicker({
@@ -470,7 +470,7 @@ function startEndDate() {
 						  </script>
 					  <!-- } -->
 						<!-- } -->
-						<input type="text" name="auction_end_date" id="auction_end_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%;" /> 
+						<input type="text" value="${detailmap.auction_end_date }" name="auction_end_date" id="auction_end_date" class="datepicker inp" placeholder="날짜를 선택 해주세요" readonly="true" required="required" style="text-align: center; width: 24%;" /> 
 						<!-- 캘린더 옵션 { -->
 						<script>
 					    $.datepicker.setDefaults({
@@ -499,7 +499,7 @@ function startEndDate() {
 					    })
 					    
 						</script>
-						<input type="text" name="auction_end_time" id="auction_end_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요." /> 
+						<input type="text" value="${detailmap.auction_end_time }" name="auction_end_time" id="auction_end_time" class="timepicker inp" readonly="true" required="required" style="width: 24%;" placeholder="시간을 선택해 주세요." /> 
 						 <!-- 시간 옵션 { -->
 						  <script>
 						  $('.timepicker').timepicker({
@@ -521,7 +521,7 @@ function startEndDate() {
                         <p>설명<span class="red">*</span></p>
                         <div>
                             <textarea name="auction_content" id="goodsInfo" cols="30" rows="10"
-                            maxlength="2000" oninput="countInfoLength(event)"></textarea>
+                            maxlength="2000" oninput="countInfoLength(event)">${detailmap.auction_content }</textarea>
                         </div>
                     </div>
                     <div class="goods_tag_area">
@@ -561,7 +561,7 @@ function startEndDate() {
 		        <div class="btn_submit_area">
 			        <div class="inner_submit">
 			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-			            <input type="submit" class="btn_goods_submit" value="등록하기">
+			            <input type="submit" class="btn_goods_submit" value="수정하기" style="background-color: blue;">
 			        </div>
 		    	</div>
                 </form>

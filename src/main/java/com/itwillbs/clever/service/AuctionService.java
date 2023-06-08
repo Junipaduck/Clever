@@ -81,6 +81,14 @@ public class AuctionService {
 		mapper.updatePrice(auction_idx, auction_final_price);
 	}
 
+	public List selectFilesIdx(int auction_idx) {
+		return mapper.selectFilesIdx(auction_idx);
+	}
+
+	public int detailModify(Map<String, String> map) {
+		return mapper.detailModify(map);
+	}
+
 	
 	
 	

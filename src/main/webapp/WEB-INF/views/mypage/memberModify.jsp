@@ -186,7 +186,7 @@ window.onload = function(){
 <!-- 				     </header> -->
 		
 					
-					<form method="post" action="joinPro.me">
+					<form method="post" action="memberModifyPro.me">
 				      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 					    <div class="insert">
 					    
@@ -210,12 +210,12 @@ window.onload = function(){
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호 확인</td>
-						        <td class="col2"><input type="password" id="member_passwd2" name="member_passwd2" maxlength="16"></td>
+						        <td class="col2"><input type="password" id="modifypasswd" name="modifypasswd" maxlength="16"></td>
 						    </tr>
 						    <tr>
 						        <td class="col1">이메일</td>
 						        <td class="col2">
-						            <input type="text" name="member_email" id="member_email" value="${member.member_email }">
+						            <input type="text" name="member_email" id="member_email" value="${member.member_email }" readonly="readonly">
 						        </td>
 						    </tr>
 						     <tr>
@@ -227,7 +227,7 @@ window.onload = function(){
 						    <tr>
 						        <td class="col1">생년월일</td>
 						        <td class="col2">
-						        	<input type="text" id="member_birth" name="member_birth" value="${member.member_birth }"> <span class="a"> - </span><input type="text" id="member_birth2" name="member_birth2" value="${member.member_birth2 }" style="width: 30px;">
+						        	<input type="text" id="member_birth" name="member_birth" value="${member.member_birth }" readonly="readonly"> <span class="a"> - </span><input type="text" id="member_birth2" name="member_birth2" value="${member.member_birth2 }" style="width: 30px;" readonly="readonly">
 						        </td>
 						    </tr>
 						    <tr>

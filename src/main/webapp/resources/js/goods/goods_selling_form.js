@@ -1247,7 +1247,6 @@ function setImages(event){
 //		    nextInput.removeAttribute("hidden");
 //		  }
 		
-    
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
             break;
@@ -1282,6 +1281,7 @@ function setImages(event){
 	        reader.readAsDataURL(image);
 		}
     } // 포문 끝
+    
 }
 
 function countTitleLength(event) {
@@ -1319,8 +1319,10 @@ function tagAdd(event){
             let tagBtn = document.querySelector("div.tag_button").cloneNode(true);
             tagBtn.children[0].innerText = event.target.value;
             tagBtn.classList.remove("hidden");
+            console.log(tag_button.valueOf.name);
             document.querySelector("div.goods_tag").insertBefore(tagBtn, this);
             event.target.value = "";
+            alert(tagBtn);
         }
     }
 }

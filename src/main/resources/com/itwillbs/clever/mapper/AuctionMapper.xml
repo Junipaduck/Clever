@@ -24,7 +24,7 @@
 				, #{map.auction_tag	}
 				, #{map.auction_address	}
 				, 'N'
-				, 0
+				, #{map.auction_price }
 				, 0
 				, #{map.auction_content	}
 				, "경매 등록 대기중"
@@ -118,10 +118,34 @@
 		 		 FROM category c
 		  			 WHERE midCategory = IFNULL((SELECT DISTINCT midCategory  FROM category c WHERE midCategory = #{param}),(SELECT DISTINCT midCategory  FROM category c WHERE smallCategory = #{param}))
 	</select>
+	<select id="selectFilesIdx" resultType="map">
+	SELECT *
+		FROM file
+			WHERE file_num = #{auction_idx } AND file_div = 'auction'
+	</select>
 	
 	<update id="updatePrice">
 		UPDATE auction SET auction_final_price = #{auction_final_price}
 			WHERE auction_idx = #{auction_idx};
+	</update>
+	
+	<update id="detailModify">
+		UPDATE auction
+		 	SET 
+				auction_title = #{auction_title}
+				, auction_min_bid = #{auction_min_bid}
+				, auction_min_increase = #{auction_min_increase}
+				, auction_price = #{auction_price}
+				, auction_Lcategory = #{auction_Lcategory}
+				, auction_Mcategory = #{auction_Mcategory}
+				, auction_Scategory = #{auction_Scategory}
+				, auction_product_status = #{auction_product_status}
+				, auction_start = #{auction_start}
+				, auction_end = #{auction_end}
+				, auction_tag = #{auction_tag}
+				, auction_address = #{auction_address}
+				, auction_content = #{auction_content}
+					WHERE auction_idx = #{auction_idx}
 	</update>
 	
 </mapper>

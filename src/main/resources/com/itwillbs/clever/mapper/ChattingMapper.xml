@@ -38,6 +38,24 @@
 				LIKE 
 					CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
 					OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${sId}'));
+
+		<!-- 또 수정 -->
+<!-- 			SELECT * -->
+<!-- 				FROM chat_room -->
+<!-- 				WHERE  -->
+<!-- 					(chatRoom_id LIKE CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%') -->
+<!-- 					OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%')) -->
+<!-- 					AND chatRoom_id LIKE CONCAT('%P', (SELECT product_idx FROM product WHERE product_idx = #{productIdx}), 'S%'); -->
+	</select>
+	
+	<!-- 채팅방 유무 확인 -->
+	<select id="selectChatRoom" resultType="com.itwillbs.clever.vo.ChatRoomVO">
+		SELECT *
+				FROM chat_room
+				WHERE 
+					(chatRoom_id LIKE CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${senderId}'), 'B%')
+					OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${senderId}'), '%'))
+					AND chatRoom_id LIKE CONCAT('%P', (SELECT product_idx FROM product WHERE product_idx = #{productIdx}), 'S%');
 	</select>
 	
 	<!-- 채팅방 생성 -->

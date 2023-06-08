@@ -2,6 +2,8 @@ package com.itwillbs.clever.mapper;
 
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwillbs.clever.vo.MemberVO;
 
 public interface MemberMapper {
@@ -16,4 +18,10 @@ public interface MemberMapper {
 
 	HashMap<String, String> selectModifyMember(String sId);
 
+	String getModifyPasswd(String sId);
+
+	int modifyMember(String sId, HashMap<String, String> paramMember);
+
+	int updateMember(@Param("sId") String sId, @Param("member") MemberVO member, @Param("modifypasswd") String modifypasswd);
+	
 }

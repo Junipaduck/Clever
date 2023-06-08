@@ -83,4 +83,23 @@
 		 FROM member
 		WHERE member_id = #{sId}
 	</select>
+	
+	<!-- 회원정보 수정 페이지에서 비밀번호 확인 -->
+	<select id="getModifyPasswd" resultType="string">
+		SELECT member_passwd
+			FROM member
+				WHERE member_id = #{sId}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember">
+		UPDATE member
+		SET 
+		  member_passwd = #{modifypasswd}
+		  ,member_phone = #{member.member_phone}
+		  ,member_address = #{member.member_address }
+		  ,member_interest = #{member.member_interest}
+		WHERE member_id = #{sId}
+	</update>
+	
 </mapper>
