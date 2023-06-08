@@ -45,7 +45,6 @@ public class ChattingController {
 		
 		// 채팅방 조회
 		List<ProductVO> product = chattingService.selectProduct(product_idx);
-		List<ChatRoomVO> chatList = chattingService.selectChatList(sId); // 하나 추가
 		ObjectMapper mapper = new ObjectMapper();
 		String productInfo = mapper.writeValueAsString(product);
 		String sellerId = product.get(0).getMember_id();
@@ -54,10 +53,12 @@ public class ChattingController {
 		String buyerIdx = chattingService.selectUser(sId);
 		System.out.println("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
 		
+		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
+		model.addAttribute("chatList", chatList);
+		
 		model.addAttribute("productInfo", productInfo);
 		model.addAttribute("sellerIdx", sellerIdx);
 		model.addAttribute("buyerIdx", buyerIdx);
-		model.addAttribute("chatList", chatList); // 하나 추가
 		
 		return "chatting/chatting";
 	}

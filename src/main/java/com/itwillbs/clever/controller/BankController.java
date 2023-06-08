@@ -172,6 +172,33 @@ public class BankController {
 		return "bank/withdraw_result";
 	}
 	
+	// 2.5.2. 입금이체
+	// 입금 정보 전달받기 - Map
+	@PostMapping("bank_deposit")
+	public String deposit(
+			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 입금 요청 정보 : " + map);
+		
+		// BankApiService - deposit() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountDepositResponseListVO(result)
+		AccountDepositListResponseVO result = apiService.deposit(map);
+		logger.info("★★★★★★ 입금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountDepositResponseListVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
+		}
+		
+		return "bank/deposit_result";
+	}
+	
 }
 
 

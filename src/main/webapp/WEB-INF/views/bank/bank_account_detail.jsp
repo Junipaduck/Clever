@@ -122,7 +122,7 @@
             	</div>
 		<!-- form 끝 -->
 		
-		
+				&nbsp;&nbsp;&nbsp;
                 <!-- form 시작 -->
                         <div class="card" style="width: 900px;margin: auto;">
                             <div class="card-header">

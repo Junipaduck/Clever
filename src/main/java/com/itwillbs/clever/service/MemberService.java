@@ -1,5 +1,7 @@
 package com.itwillbs.clever.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,11 @@ public class MemberService {
 	//회원 정보 불러오기
 	public MemberVO selectMember(String sId) {
 		return mapper.selectMember(sId);
+	}
+
+	// 회원정보 수정 페이지에서 생일, 주소 split을 위한 select
+	public HashMap<String, String> selectModifyMember(String sId) {
+		return mapper.selectModifyMember(sId);
 	}
 	
 }

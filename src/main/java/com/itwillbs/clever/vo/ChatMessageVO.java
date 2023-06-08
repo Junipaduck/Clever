@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class ChatMessageVO {
 	private int message_idx;
-	private int chatRoom_idx;
+	private String chatRoom_id;
 	private String buyer_id;
 	private String seller_id;
 	private String message_date;
