@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +27,9 @@ public class MypageController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Value("${client_id}")
+	private String client_id;
 	
 	// 마이페이지 포워딩
 	@GetMapping("/myPage.me")
@@ -63,6 +66,9 @@ public class MypageController {
 		HashMap<String, String> member = memberService.selectModifyMember(sId);
 		model.addAttribute("member", member);
 		System.out.println(member);
+		
+		// 클라이언트 id 저장 
+		model.addAttribute("client_id", client_id);
 		
 		return "mypage/memberModify";
 	}

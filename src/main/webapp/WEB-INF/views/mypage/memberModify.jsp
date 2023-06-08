@@ -258,7 +258,7 @@ window.onload = function(){
 									        계좌 인증 완료
 						        		</c:when>
 						        		<c:otherwise>
-									        <input class='accButton' type="button" value="계좌 인증" id="accButton">
+									        <input class='accButton' type="button" value="계좌 인증" id="btnAccountAuth">
 									        (계좌 인증 과정이 필요합니다.)
 						        		</c:otherwise>
 						        	</c:choose>
@@ -308,5 +308,21 @@ window.onload = function(){
 	// 	$("#member_interest option[value='${member.member_interest }']").remove();
 	</script>	
 	
+		<!-- 계좌인증 -->
+	<script type="text/javascript">
+		$(function() {
+			$("#btnAccountAuth").on("click", function() {
+				let authWindow = window.open("about:blank", "authWindow", "width=500, height=700");
+				authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
+					+ "?response_type=code"
+					+ "&client_id=${client_id}"
+					+ "&redirect_uri=http://localhost:8082/clever/callback" // 나중에 callback 주소 변경 요청
+					+ "&scope=login inquiry transfer oob"
+					+ "&state=12345678901234567890123456789012"
+					+ "&auth_type=0";
+				// 산업은행 - 222123456789 & 2팀 계좌인증 테스트 
+			});
+		});
+	</script>
 </body>
 </html>
