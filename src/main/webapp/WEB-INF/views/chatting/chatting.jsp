@@ -167,6 +167,7 @@ $("#roomSelect .roomEl").on("click", function(e) {
 		dataType: "json",
 		success: function(response) {
             console.log(response);
+            $("#chatLog").empty();
             $.each(response , function(i){
 //             let buyerId = 
 //             if (data.id == userId) {
