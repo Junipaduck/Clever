@@ -51,7 +51,8 @@
                 	<c:if test="${chatList.size() > 0 }">
 		                <div id="roomSelect">
 		                	<c:forEach items="${chatList }" var="chatList">
-			                    <div class="roomEl active" data-id="${chatList.chatRoom_id}">${chatList.product_subject }</div>
+			                    <div class="roomEl active" data-id="${chatList.chatRoom_id}"}">${chatList.product_subject }</div>
+<%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>
 		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
 		<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
 		                    </c:forEach>
@@ -170,6 +171,10 @@ $("#roomSelect .roomEl").on("click", function(e) {
     productIdx = roomId.substring(roomId.indexOf("P")+1, roomId.indexOf("S"));
     console.log('productIdx : ' + productIdx);
     
+//     sellerId = $('input[type=hidden]').val();
+ 	console.log('sellerId : ' + sellerId);
+    
+    
     var userId = "${sessionScope.sId}";
 	console.log('현재 로그인한 sId : ' + userId);
 	
@@ -199,6 +204,8 @@ $("#roomSelect .roomEl").on("click", function(e) {
                 }
                 
                 $("#chatLog").append(str);
+                sellerId = message.seller_id;
+                console.log("sellerId ! " + sellerId);
             });
         },
         error: function(e) {
@@ -236,7 +243,7 @@ function sendMessage() {
 	const chatMessage = {		// js객체로 생성
 		"chatRoom_id": roomId,
 		"buyer_id" : userId,
-// 		"senderId" : userId, //하나가 잠깐 추가함
+ 		"senderId" : userId, //하나가 잠깐 추가함
 		"seller_id" : sellerId,
 // 		"message_date" : ,
 		"product_idx": productIdx,

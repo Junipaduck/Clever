@@ -71,6 +71,7 @@
 					, #{sellerId}
 					, now()
 					, #{messageContent}
+					, #{senderId}
 				)
 	</insert>
 	
