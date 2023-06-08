@@ -55,4 +55,16 @@ public class MemberService {
 		return mapper.findId(member);
 	}
 	
+	// 비밀번호 찾기
+	public MemberVO selectMemberFindPasswd(MemberVO member) {
+		return mapper.selectMemberFindPasswd(member);
+	}
+
+	// 비밀번호 초기화 1234
+	public int updateMemberFindPasswd(MemberVO member) {
+		return mapper.updateMemberFindPasswd(member);
+	}
+	
+	
+	
 }

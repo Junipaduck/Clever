@@ -73,7 +73,7 @@
 							                        </a>
 							                    </li>
 							                </ul>
-							                <form action="loginPro.me" method="POST">
+							                <form action="findPasswdPro.me" method="POST">
 							                    <input type="hidden" id="localechange" name="localechange" value="">
 							                    <input type="hidden" name="dynamicKey" id="dynamicKey" value="yof65-ms19PMu12I7ERX9NK_bo70mtLLDhrOpKL8WQOoh7PKDn0WWnUnh2maVur-Eq-p6To3HetGHjFR_eQiMZeayILhXOFK3AreSVv9j54">
 							                    <input type="hidden" name="encpw" id="encpw" value="">
@@ -96,7 +96,7 @@
 							                                                <span class="blind">아이디</span>
 							                                            </span>
 							                                        </div>
-							                                        <input type="text" id="id" name="id" placeholder="아이디" title="아이디"
+							                                        <input type="text" id="member_id" name="member_id" placeholder="아이디" title="아이디"
 							                                               class="input_text" maxlength="41"
 							                                               value="">
 							                                        <span role="button" class="btn_delete" id="id_clear" style="display: none;">
@@ -107,9 +107,9 @@
 							                                    </div>
 							                                    <div class="input_row" id="pw_line">
 							                                        <div class="icon_cell" id="pw_cell">
-							                                                <span class="blind">연락처</span>
+							                                                <span class="blind">전화번호</span>
 							                                        </div>
-							                                        <input type="password" id="pw" name="pw" placeholder="연락처" title="연락처"
+							                                        <input type="text" id="member_phone" name="member_phone" placeholder="전화번호" title="전화번호"
 							                                               class="input_text" maxlength="16">
 							                                        <span role="button" class="btn_delete" id="pw_clear" style="display: none;">
 							                                            <span class="icon_delete">

@@ -109,4 +109,14 @@
 			WHERE member_phone = #{member_phone} AND member_name = #{member_name}
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectMemberFindPasswd" resultType="com.itwillbs.clever.vo.MemberVO">
+	SELECT * FROM member WHERE member_id = #{member_id} AND member_phone = #{member_phone}
+	</select>
+	
+	<!-- 비밀번호 업데이트 1234로 초기화 -->
+	<update id="updateMemberFindPasswd">
+	UPDATE member SET member_passwd = #{member_passwd} WHERE member_id = #{member_id}
+	</update>
+	
 </mapper>

@@ -272,7 +272,7 @@ div.right {
 						중고거래 찜 <span>0</span>
 					</div>
 					<div class="col my_store_menus auction_menu">
-						경매 참여내역 <span>0</span>
+						경매 낙찰 내역 <span>0</span>
 					</div>
 					<div class="col my_store_menus auctionLike_menu">
 						경매 찜 <span>0</span>

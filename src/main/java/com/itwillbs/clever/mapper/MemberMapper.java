@@ -25,5 +25,9 @@ public interface MemberMapper {
 	int updateMember(@Param("sId") String sId, @Param("member") MemberVO member, @Param("modifypasswd") String modifypasswd);
 
 	String findId(MemberVO member);
+
+	MemberVO selectMemberFindPasswd(MemberVO member);
+
+	int updateMemberFindPasswd(MemberVO member);
 	
 }
