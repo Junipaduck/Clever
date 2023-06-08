@@ -183,9 +183,50 @@ public class AuctionController {
 		return "auction/auction_detail";
 	}
 	
+	@GetMapping(value = "auction_detail_modify")
+	public String auction_detail_modify(@RequestParam int auction_idx, Model model) {
+		Map detailmap = auctionService.detailList(auction_idx);
+		System.out.println(detailmap);
+		String[] strs = detailmap.get("auction_start").toString().split("T");
+		String[] strs2 = detailmap.get("auction_end").toString().split("T");
+		
+		detailmap.put("auction_start_date", strs[0]); 		
+		detailmap.put("auction_start_time", strs[1]); 		
+		detailmap.put("auction_end_date", strs2[0]); 		
+		detailmap.put("auction_end_time", strs2[1]);
+		
+		
+		model.addAttribute("detailmap", detailmap);
+		
+		return "auction/auction_detail_modify";
+	}
+	
+	@PostMapping(value = "auction_detail_modifyPro")
+	public String auction_detail_modifyPro(@RequestParam Map<String, String> map, Model model) {
+		System.out.println(map);
+		// 카테고리 분류
+		String[] categorys = map.get("auction_category").split(" > ");
+		map.put("auction_Lcategory", categorys[0]);
+		map.put("auction_Mcategory", categorys[1]);
+		map.put("auction_Scategory", categorys[2]);
+		// 카테고리 분류 끝
+		// 경매 시작일 및 경매 종료일 코드 입력
+		map.put("auction_start", map.get("auction_start_date") + " " + map.get("auction_start_time"));
+		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
+		int modifyCnt = auctionService.detailModify(map);
+		if(modifyCnt > 0) {
+			return "";
+		} else {
+			model.addAttribute("msg", "수정 실패!");
+			return "fail_back";
+		}
+	}
+	
+	
 	
 	@GetMapping(value = "auction_upload")
 	public String auction_upload(Model model, HttpSession session) {
+//		System.out.println(map);
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("target", "loginForm.me");
@@ -217,25 +258,25 @@ public class AuctionController {
 		map.put("auction_start", map.get("auction_start_date") + " " + map.get("auction_start_time"));
 		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
 		System.out.println(map);
-		int insertAuction = auctionService.insertAutcion(map,id);
-		// 종료
-		
-		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("file_div", "auction");
-		paramMap.put("file_num", auctionService.selectMax());
-		upload.upload(file, session, paramMap);
-		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
-		
-		if(insertAuction > 0) {
-			model.addAttribute("msg", "경매 등록 성공!");
-			model.addAttribute("target", "auction");
-			return "success";
-		} else {
-			model.addAttribute("msg", "경매 등록 실패!");
-			return "fail_back";
-		}
-//		return "";
+//		int insertAuction = auctionService.insertAutcion(map,id);
+//		// 종료
+//		
+//		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
+//		paramMap.put("file_div", "auction");
+//		paramMap.put("file_num", auctionService.selectMax());
+//		upload.upload(file, session, paramMap);
+//		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
+//		
+//		if(insertAuction > 0) {
+//			model.addAttribute("msg", "경매 등록 성공!");
+//			model.addAttribute("target", "auction");
+//			return "success";
+//		} else {
+//			model.addAttribute("msg", "경매 등록 실패!");
+//			return "fail_back";
+//		}
+		return "";
 	}
 	
 	@GetMapping(value = "auction_management")
@@ -252,6 +293,7 @@ public class AuctionController {
 	public String auction_buy() {
 		return "auction/auction_buy";
 	}
+	
 	
 	@GetMapping(value = "auction_searchPro")
 	public String auction_searchPro(@RequestParam Map<String, String> map,Model model) {

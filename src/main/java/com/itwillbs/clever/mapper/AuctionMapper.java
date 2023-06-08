@@ -42,4 +42,6 @@ public interface AuctionMapper {
 	
 	void updatePrice(@Param("auction_idx") int auction_idx, @Param("auction_final_price") int auction_final_price);
 
+	int detailModify(Map<String, String> map);
+
 }

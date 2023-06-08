@@ -1319,8 +1319,10 @@ function tagAdd(event){
             let tagBtn = document.querySelector("div.tag_button").cloneNode(true);
             tagBtn.children[0].innerText = event.target.value;
             tagBtn.classList.remove("hidden");
+            console.log(tag_button.valueOf.name);
             document.querySelector("div.goods_tag").insertBefore(tagBtn, this);
             event.target.value = "";
+            alert(tagBtn);
         }
     }
 }

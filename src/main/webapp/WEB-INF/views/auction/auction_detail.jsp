@@ -15,6 +15,8 @@
     <!-- 부트스트랩 js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
+    <!-- CSS -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
     <!-- 공통 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
     <!-- 상세페이지 CSS -->
@@ -52,6 +54,9 @@
  	position: relative;
  	background-color: #ffffff;
 	}
+	div #category {
+	height: 61px;
+	}
 	</style>
 </head>
 
@@ -66,7 +71,7 @@
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
-                <div id="category" style="z-index: 1">
+                <div id="category">
                     <p id="home">
                         <span>
                             <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home">
@@ -260,18 +265,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div class="container text-center detail_content_info_btn">
-                                    <div class="row g-2">
-                                    	<div class="col-4">
-                                            <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
-                                        </div>
-                                    	<div class="col-4">
-                                            <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
-                                            </div>
+                            <div class="container text-center detail_content_info_btn" style="margin-top: 20px ">
+                                <div class="row g-2">
+                                	<div class="col-4">
+                                        <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
+                                    </div>
+                                	<div class="col-4">
+                                        <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -380,8 +383,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    상품내용 입력란입니다.<br>
-                                    테스트메시지<br>
+                                    ${detailmap.auction_content }
                                 </div>
                             </div>
                             <div class="p-3 detailed_information">
@@ -390,13 +392,13 @@
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_place">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/bottom_place.png" alt="거래지역"> <span>거래지역</span>
-                                                <p>상세 주소</p>
+                                                <p>${detailmap.auction_address }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_category">
                                                 <img src="${pageContext.request.contextPath }/resources/images/goods/category.png" alt="카테고리"> <span>카테고리</span>
-                                                <p>상품 종류</p>
+                                                <p>${detailmap.auction_Lcategory } <br>↓<br> ${detailmap.auction_Mcategory } <br>↓<br> ${detailmap.auction_Scategory }</p>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -487,6 +489,15 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
+       		<c:if test="${sessionScope.sId eq detailmap.member_id }">
+	       		<div class="btn_submit_area">
+			        <div class="inner_submit">
+			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
+			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
+			        </div>
+		    	</div>
+	    	</c:if>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />

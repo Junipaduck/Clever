@@ -85,6 +85,10 @@ public class AuctionService {
 		return mapper.selectFilesIdx(auction_idx);
 	}
 
+	public int detailModify(Map<String, String> map) {
+		return mapper.detailModify(map);
+	}
+
 	
 	
 	
