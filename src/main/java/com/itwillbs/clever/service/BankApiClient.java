@@ -216,6 +216,60 @@ public class BankApiClient {
 		
 		return responseEntity.getBody();
 	}
+
+	// 입금 처리 요청 - POST(Content-type : application/json)
+	public AccountDepositListResponseVO deposit(Map<String, String> map) {
+		// 입금 이체 API(핀테크 번호 사용) URL
+		String url = baseUrl + "/v2.0/transfer/deposit/fin_num";
+		
+		// 헤더 정보로 "Authorization" 속성값에 엑세스토큰값 설정
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Authorization", "Bearer " + map.get("access_token"));
+		// JSON 타입 요청을 위해 헤더정보의 ContentType 항목을 설정
+		// => HttpHeaders 객체의 setContentType() 메서드 호출(MediaType.APPLICATION_JSON 상수 전달)
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		
+		// 1건의 입금 정보 갖는 JSONObject 객체 생성
+		JSONObject req = new JSONObject();
+		req.put("tran_no", 1); // 거래순번(단건이체이므로 1 고정)
+		req.put("bank_tran_id", valueGenerator.getBankTranId()); // bank_tran_id(거래고유번호 - BankValueGenerator 클래스 활용)
+		req.put("fintech_use_num", map.get("recv_client_fintech_use_num")); // fintech_use_num(입금계좌 핀테크 이용번호)
+		req.put("print_content", "클레버가송금"); // dps_print_content(입금계좌 인자내역, 상대방 통장에 표시할 내역)
+		req.put("tran_amt", map.get("tran_amt")); // 입금금액
+		req.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
+		req.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
+		req.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
+		req.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
+		// => 이 정보를 리스트 형태로 담기 위해 JSONArray 객체 활용
+		JSONArray req_list = new JSONArray();
+		req_list.put(req);
+		// --------------------------------------------------------------------
+		// JSONObject 객체를 활용하여 요청 파라미터를 JSON 객체 형식으로 생성
+		JSONObject jo = new JSONObject();
+		jo.put("cntr_account_num", "99999999999999"); // cntr_account_num(약정 계좌)
+		jo.put("cntr_account_type", "N"); // cntr_account_type(계좌형태 - 계좌를 의미하는 "N" 전달)
+		
+		jo.put("wd_pass_phrase", "NONE"); // 입금이체용 암호문구(테스트 계좌는 "NONE" 값 설정)
+		jo.put("wd_print_content", "클레버출금"); // wd_print_content(출금계좌 인자내역, 내 통장에 표시할 내역)
+		jo.put("name_check_option", "on"); // 수취인 성명 검증 여부
+		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
+		jo.put("req_cnt", 1); // 입금요청건수(1 고정 => 다건 이체 불가능)
+		jo.put("req_list", req_list); // 입금요청 리스트 전달
+		
+		// HttpEntity 객체 생성(파라미터 : JSONObject 객체, HttpHeaders 객체)
+		HttpEntity<String> httpEntity = new HttpEntity<String>(jo.toString(), httpHeaders);
+		
+		// POST 방식 요청 시 JSON 데이터 전송을 위해 RestTemplate 객체의 postForEntity() 메서드 호출
+		// 파라미터 : 요청 URL, HttpEntity 객체, 리턴타입(.class)
+		// 리턴타입 : ResponseEntity<리턴타입클래스>
+		restTemplate = new RestTemplate();
+		ResponseEntity<AccountDepositListResponseVO> responseEntity = 
+				restTemplate.postForEntity(url, httpEntity, AccountDepositListResponseVO.class);
+		
+		System.out.println(responseEntity.getBody());
+		
+		return responseEntity.getBody();
+	}
 	
 	
 
