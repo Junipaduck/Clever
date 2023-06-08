@@ -156,40 +156,90 @@ if(modifiedProductInfo) {
 //  }
 // })();
 
+
 // 채팅방(리스트) 클릭 시
-$("#roomSelect .roomEl").on("click", function(e) {
-	let roomId = $(this).data("id");
-	console.log('roomId : ' + roomId);
-	$.ajax({
-		type: "POST",
-		url: "roomInfo",
-		data: {roomId: roomId},
-		dataType: "json",
-		success: function(response) {
-            console.log(response);
-            $.each(response , function(i){
-//             let buyerId = 
-//             if (data.id == userId) {
-//         		var str = "<div class='myMsg'>";
-//         		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
+// $("#roomSelect .roomEl").on("click", function(e) {
+// 	let roomId = $(this).data("id");
+// 	console.log('roomId : ' + roomId);
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "roomInfo",
+// 		data: {roomId: roomId},
+// 		dataType: "json",
+// 		success: function(response) {
+//             console.log(response);
+//             $.each(response , function(i){
+// //             let buyerId = 
+// //             if (data.id == userId) {
+// //         		var str = "<div class='myMsg'>";
+// //         		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
+// //         		str += "</div></div>";
+        		
+// //         		$("#chatLog").append(str);
+// //         	} else {
+//         		var str = "<div class='anotherMsg'>";
+//         		str += "<span class='msg'>"+ response[i].seller_id +" : <b>"  + response[i].message_content + "</b></span>";
 //         		str += "</div></div>";
         		
 //         		$("#chatLog").append(str);
-//         	} else {
-        		var str = "<div class='anotherMsg'>";
-        		str += "<span class='msg'>"+ response[i].seller_id +" : <b>"  + response[i].message_content + "</b></span>";
-        		str += "</div></div>";
-        		
-        		$("#chatLog").append(str);
-//         	}
+// //         	}
+//             });
+//         },
+//         error: function(e) {
+//             console.log(e);
+//         }
+		
+// 	});
+// });
+
+//방 나누기 + 메세지나누기
+$("#roomSelect .roomEl").on("click", function(e) {
+    // 처음 나오는 A채팅방의 메세지 제거
+    $(".roomEl.selected").removeClass("selected");
+
+    // 목록에서 B채팅방 선택
+    $(this).addClass("selected");
+
+    let roomId = $(this).data("id");
+    console.log('roomId : ' + roomId);
+    
+    var userId = "${sessionScope.sId}";
+	console.log('현재 로그인한 sId : ' + userId);
+	
+    $.ajax({
+        type: "POST",
+        url: "roomInfo",
+        data: {roomId: roomId, sId: userId},
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+            // A채팅방의 메세지를 지우고, B채팅방의 메세지를 출력
+            $("#chatLog").empty();
+
+            $.each(response, function(i) {
+                var message = response[i];
+                var str = "";
+
+                // 로그인한 사용자의 아이디와 보내는 사람의 아이디를 비교하여 구분
+                if (message.senderId === userId) {
+                    str = "<div class='myMsg'>";
+                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
+                    str += "</div></div>";
+                } else {
+                    str = "<div class='anotherMsg'>";
+                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
+                    str += "</div></div>";
+                }
+                
+                $("#chatLog").append(str);
             });
         },
         error: function(e) {
             console.log(e);
         }
-		
-	});
+    });
 });
+
 
 // 메세지 전송 버튼 클릭 시 이벤트
 document.getElementById("btnSend").addEventListener("click", sendMessage);
@@ -219,6 +269,7 @@ function sendMessage() {
 	const chatMessage = {		// js객체로 생성
 		"chatRoom_id": roomId,
 		"buyer_id" : userId,
+// 		"senderId" : userId, //하나가 잠깐 추가함
 		"seller_id" : sellerId,
 // 		"message_date" : ,
 		"product_idx": productIdx,

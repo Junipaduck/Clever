@@ -25,6 +25,7 @@ public interface ChattingMapper {
 
 	List<ChatMessageVO> selectRoomInfo(String roomId);
 
+	
 
 
 

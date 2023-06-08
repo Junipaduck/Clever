@@ -45,6 +45,7 @@ public class ChattingController {
 		
 		// 채팅방 조회
 		List<ProductVO> product = chattingService.selectProduct(product_idx);
+		List<ChatRoomVO> chatList = chattingService.selectChatList(sId); // 하나 추가
 		ObjectMapper mapper = new ObjectMapper();
 		String productInfo = mapper.writeValueAsString(product);
 		String sellerId = product.get(0).getMember_id();
@@ -56,6 +57,7 @@ public class ChattingController {
 		model.addAttribute("productInfo", productInfo);
 		model.addAttribute("sellerIdx", sellerIdx);
 		model.addAttribute("buyerIdx", buyerIdx);
+		model.addAttribute("chatList", chatList); // 하나 추가
 		
 		return "chatting/chatting";
 	}
@@ -72,14 +74,12 @@ public class ChattingController {
 		System.out.println(chatRoom);
 		
 		
-		//하나 테스트
-//		chattingService.selectChattingRoom();
 		return "chatting/chatting";
 	}
 	
 	@ResponseBody
 	@PostMapping("roomInfo")
-	public String roomInfo(String roomId) {
+	public String roomInfo(String roomId, String userId) {
 		List<ChatMessageVO> chatRoomInfo = chattingService.selectRoomInfo(roomId);
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {

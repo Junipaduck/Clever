@@ -19,4 +19,5 @@ public class ChatMessageVO {
 	private String seller_id;
 	private String message_date;
 	private String message_content;
+	private String senderId;
 }
