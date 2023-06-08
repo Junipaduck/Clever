@@ -141,10 +141,11 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	    String messageContent = jo.getString("message_content");
 	    String buyerId = jo.getString("buyer_id");
 	    String sellerId = jo.getString("seller_id");
+	    String senderId = jo.getString("senderId");
 	    
-	    List<ChatRoomVO> selectChatRoom = chattingService.selectChatRoom(chatRoomId);
-	    System.out.println("앜" + selectChatRoom);
-	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(chatRoomId);
+//	    List<ChatRoomVO> selectChatRoom = chattingService.selectChatRoom(chatRoomId);
+//	    System.out.println("앜" + selectChatRoom);
+	    List<ChatRoomVO> selectChatList = chattingService.selectChatList(senderId);
 	    System.out.println("앜" + selectChatList); 
 	    
 	    // 채팅방이 존재하지 않으면 새로운 채팅방 생성 
@@ -157,7 +158,7 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
 	        s.sendMessage(new TextMessage(buyerId + ":" + messageContent));
 	        System.out.println("메세지 전송 성공");
-	        int result = chattingService.insertMessage(productIdx, chatRoomId, buyerId, sellerId, messageContent);
+	        int result = chattingService.insertMessage(productIdx, chatRoomId, buyerId, sellerId, messageContent, senderId);
 	        if (result > 0) {
 	            System.out.println("채팅 메세지 저장");
 	        }

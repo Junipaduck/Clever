@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -252,7 +252,16 @@ window.onload = function(){
 						     <tr>
 						        <td class="col1">계좌</td>
 						        <td class="col2">
-							        <input class='accButton' type="button" value="계좌 관리" id="accButton">
+						        	<c:choose>
+						        		<c:when test="${member.account_auth eq 'Y' }">
+									        <input class='accButton' type="button" value="계좌 관리" id="accButton">
+									        계좌 인증 완료
+						        		</c:when>
+						        		<c:otherwise>
+									        <input class='accButton' type="button" value="계좌 인증" id="accButton">
+									        (계좌 인증 과정이 필요합니다.)
+						        		</c:otherwise>
+						        	</c:choose>
 						        </td>
 						    </tr>
 					    </table>

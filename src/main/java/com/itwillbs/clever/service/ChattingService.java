@@ -27,9 +27,9 @@ public class ChattingService {
 	}
 	
 	// 메세지 전송 후 채팅방 존재하는지 확인
-	public List<ChatRoomVO> selectChatRoom(String chatRoomId) {
-		return mapper.selectChatRoom(chatRoomId);
-	}
+//	public List<ChatRoomVO> selectChatRoom(String chatRoomId) {
+//		return mapper.selectChatRoom(chatRoomId);
+//	}
 	
 	public List<ChatRoomVO> selectChatList(String sId) {
 		return mapper.selectChatList(sId);
@@ -41,8 +41,8 @@ public class ChattingService {
 	}
 
 	public int insertMessage(int productIdx, String chatRoomId, String buyerId, String sellerId,
-			String messageContent) {
-		return mapper.insertChat(productIdx, chatRoomId, buyerId, sellerId, messageContent);
+			String messageContent, String senderId) {
+		return mapper.insertChat(productIdx, chatRoomId, buyerId, sellerId, messageContent, senderId);
 	}
 
 	// 채팅방 목록에서 해당 방 메세지 조회

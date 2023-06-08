@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.clever.controller.AuctionController;
 import com.itwillbs.clever.controller.ChattingController;
 import com.itwillbs.clever.service.AuctionLogService;
+import com.itwillbs.clever.service.AuctionService;
 import com.itwillbs.clever.service.ChattingService;
 import com.itwillbs.clever.vo.ChatRoomVO;
 import com.itwillbs.clever.vo.LogRoomVO;
@@ -32,7 +33,7 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	private AuctionLogService auctionLogService;
 	
 	@Autowired
-	private AuctionController auctionController;
+	private AuctionService auctionService;
 	
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
@@ -99,12 +100,12 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    
 	    List<LogRoomVO> selectChatList = auctionLogService.selectLogList(auctionIdx);
 	    
+	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
 	    	auctionLogService.OpenRoom(logRoomIdx, auctionIdx);
 	        System.out.println("채팅방 생성 성공");
 	    }
-	    
 	    
 	    for (WebSocketSession s : sessions) {
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
@@ -114,7 +115,8 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    
 	    int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
 	    
-	    System.out.println("현재 세션에 연결된 사람!!!!!! : " + sessions);
+	    auctionService.updatePrice(auctionIdx, Integer.parseInt(messageContent.replace(",", "")));
+	    
 	    
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
 //	    logger.info(chatMessage);

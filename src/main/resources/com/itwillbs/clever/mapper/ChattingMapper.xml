@@ -22,22 +22,22 @@
 	
 	<!-- 채팅방 리스트 조회 -->
 	<select id="selectChatList" resultType="com.itwillbs.clever.vo.ChatRoomVO">
+<!-- 		SELECT *  -->
+<!-- 			FROM chat_room -->
+<!-- 			WHERE  -->
+<!-- 				chatRoom_id  -->
+<!-- 				LIKE  -->
+<!-- 					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%') -->
+<!-- 			ORDER BY chatRoom_date DESC -->
+		
+		<!-- 하나 수정 (S셀러와 B바이어 조건 두개를 다 맞춰줘야해서 OR구문 추가함) -->			
 		SELECT * 
 			FROM chat_room
 			WHERE 
 				chatRoom_id 
 				LIKE 
-					CONCAT('%', (SELECT member_idx FROM member WHERE member_id = '${sId}'), '%')
-			ORDER BY chatRoom_date DESC
-					
-			<!-- 하나 테스트 0607 -->		
-<!-- 			SELECT *  -->
-<!-- 				FROM chat_room -->
-<!-- 				WHERE  -->
-<!-- 					chatRoom_id  -->
-<!-- 					LIKE  -->
-<!-- 						CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%') -->
-<!-- 					AND chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = 'admin')); -->
+					CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
+					OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${sId}'));
 	</select>
 	
 	<!-- 채팅방 생성 -->
@@ -71,6 +71,7 @@
 					, #{sellerId}
 					, now()
 					, #{messageContent}
+					, #{senderId}
 				)
 	</insert>
 	

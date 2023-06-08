@@ -76,6 +76,10 @@ public class AuctionService {
 	public List getSmallCategorys(String param) {
 		return mapper.getSmallCategorys(param);
 	}
+	
+	public void updatePrice(int auction_idx, int auction_final_price) {
+		mapper.updatePrice(auction_idx, auction_final_price);
+	}
 
 	public List selectFilesIdx(int auction_idx) {
 		return mapper.selectFilesIdx(auction_idx);

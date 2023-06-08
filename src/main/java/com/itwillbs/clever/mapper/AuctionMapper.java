@@ -39,5 +39,7 @@ public interface AuctionMapper {
 	List getSmallCategorys(String param);
 
 	List selectFilesIdx(int auction_idx);
+	
+	void updatePrice(@Param("auction_idx") int auction_idx, @Param("auction_final_price") int auction_final_price);
 
 }

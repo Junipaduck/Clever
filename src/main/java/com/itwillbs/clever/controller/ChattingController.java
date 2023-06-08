@@ -53,6 +53,9 @@ public class ChattingController {
 		String buyerIdx = chattingService.selectUser(sId);
 		System.out.println("sellerIdx : " + sellerIdx + ", buyerIdx : " + buyerIdx);
 		
+		List<ChatRoomVO> chatList = chattingService.selectChatList(sId);
+		model.addAttribute("chatList", chatList);
+		
 		model.addAttribute("productInfo", productInfo);
 		model.addAttribute("sellerIdx", sellerIdx);
 		model.addAttribute("buyerIdx", buyerIdx);
@@ -72,14 +75,12 @@ public class ChattingController {
 		System.out.println(chatRoom);
 		
 		
-		//하나 테스트
-//		chattingService.selectChattingRoom();
 		return "chatting/chatting";
 	}
 	
 	@ResponseBody
 	@PostMapping("roomInfo")
-	public String roomInfo(String roomId) {
+	public String roomInfo(String roomId, String userId) {
 		List<ChatMessageVO> chatRoomInfo = chattingService.selectRoomInfo(roomId);
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {

@@ -32,8 +32,14 @@ public class BankApiService {
 		return apiClient.requestAccountDetail(map);
 	}
 
+	// 출금 이체 요청
 	public AccountWithdrawResponseVO withdraw(Map<String, String> map) {
 		return apiClient.withdraw(map);
+	}
+
+	// 입금 요청
+	public AccountDepositListResponseVO deposit(Map<String, String> map) {
+		return apiClient.deposit(map);
 	}
 	
 }

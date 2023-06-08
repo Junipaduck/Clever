@@ -124,6 +124,9 @@
 			WHERE file_num = #{auction_idx } AND file_div = 'auction'
 	</select>
 	
-	
+	<update id="updatePrice">
+		UPDATE auction SET auction_final_price = #{auction_final_price}
+			WHERE auction_idx = #{auction_idx};
+	</update>
 	
 </mapper>

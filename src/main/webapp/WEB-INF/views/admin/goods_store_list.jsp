@@ -96,7 +96,8 @@
                                                 <th>상품번호</th>
                                                 <th>상품명</th>
                                                 <th>상품가격</th>
-                                                <th>상품설명</th>
+                                                <th>상품 간단 설명</th>
+                                                <th>상품 상세 설명</th>
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
                                                 <th>상품재고</th>
@@ -110,6 +111,7 @@
 	                                                <td>${goodsList.goods_name }</td>
 	                                                <td>${goodsList.goods_price }</td>
 	                                                <td>${goodsList.goods_content }</td>
+	                                                <td>${goodsList.goods_detail }</td>
 	                                                <td>
 												    	<c:forEach items="${fileList }" var="fileList">
 									                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
@@ -135,7 +137,8 @@
                                                 <th>상품번호</th>
                                                 <th>상품명</th>
                                                 <th>상품가격</th>
-                                                <th>상품설명</th>
+                                                <th>상품 간단 설명</th>
+                                                <th>상품 상세 설명</th>
                                                 <th>상품사진</th>
                                                 <th>상품등록일</th>
                                                 <th>상품재고</th>
