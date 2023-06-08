@@ -39,5 +39,15 @@ public class MemberService {
 	public HashMap<String, String> selectModifyMember(String sId) {
 		return mapper.selectModifyMember(sId);
 	}
+
+	// 회원정보 수정시 패스워드 확인
+	public String getModifyPasswd(String sId) {
+		return mapper.getModifyPasswd(sId);
+	}
+
+	// 회원정보 업데이트
+	public int updateMember(String sId, MemberVO member, String modifypasswd) {
+		return  mapper.updateMember(sId, member, modifypasswd);
+	}
 	
 }
