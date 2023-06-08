@@ -119,6 +119,9 @@
 		  			 WHERE midCategory = IFNULL((SELECT DISTINCT midCategory  FROM category c WHERE midCategory = #{param}),(SELECT DISTINCT midCategory  FROM category c WHERE smallCategory = #{param}))
 	</select>
 	
-	
+	<update id="updatePrice">
+		UPDATE auction SET auction_final_price = #{auction_final_price}
+			WHERE auction_idx = #{auction_idx};
+	</update>
 	
 </mapper>
