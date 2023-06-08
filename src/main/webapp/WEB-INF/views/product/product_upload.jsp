@@ -113,7 +113,11 @@ $(function() {
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+<!--                                     <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);"> -->
+                               		<input type="file" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

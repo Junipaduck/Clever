@@ -252,17 +252,22 @@ public class ProductController {
 	
 	// 판매자 신고 폼으로 포워딩
 	@GetMapping("/productReport")
-	public String productReport() {
-		return "product/product_report";
+	public String productReport(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("target", "loginForm.me");
+			return "success";
+		} else {
+			return "product/product_report";
+		}
 	}
 	
 	// 판매자 신고하기 (report 테이블에 insert)
 	@PostMapping("/productReportPro")
-	public String productReportPro(Model model, @RequestParam int product_idx, ReportVO report) {
+	public String productReportPro(Model model, ReportVO report) {
 		 
 		int insertCount = productService.insertProductReport(report);
-		
-		System.out.println("왜안나와!!! " + report.getReport_content());
 		
 		String result = "";
 		if(insertCount > 0) { // 성공

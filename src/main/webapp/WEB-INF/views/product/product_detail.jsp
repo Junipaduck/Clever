@@ -167,7 +167,7 @@
 	                                    <span>${productDetail.product_date }</span>
 	                                </p>
 	                                <p>
-		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
+		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}&seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
 	                                    <span>신고하기</span>
 	                                </p>
 	                            </div>

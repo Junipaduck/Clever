@@ -86,6 +86,7 @@
 				,#{product_idx}
 				,#{seller_id}
 				,#{reporter_id}
+				,'product'
 			)
 	</insert>
 	

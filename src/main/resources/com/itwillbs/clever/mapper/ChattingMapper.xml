@@ -87,7 +87,7 @@
 					, #{chatRoomId}
 					, #{buyerId}
 					, #{sellerId}
-					, now()
+					, DATE_FORMAT(now(),'%Y-%m-%d %H:%i:%s')
 					, #{messageContent}
 					, #{senderId}
 				)

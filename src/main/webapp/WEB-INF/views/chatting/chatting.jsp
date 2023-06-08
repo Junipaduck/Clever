@@ -40,18 +40,18 @@
 <!--         <span id="logoutBtn">로그아웃</span> -->
 <!--     </nav> -->
     <div id="contentCover">
-        <div id="roomWrap">
-            <div id="roomList">
-                <div id="roomHeader">채팅 방 목록</div>
+        <div id="roomWrap" style="margin-left:-100px;">
+            <div id="roomList" style="width: 440px;">
+                <div id="roomHeader" style="width: 440px;">채팅 방 목록</div>
                 	<c:if test="${chatList.size() == 0 }">
                 		<div id="roomSelect">
-	                    	<div class="roomEl active" data-id="1">채팅 상대가 없습니다.</div>
+	                    	<div class="roomEl active" style="width: 440px;" data-id="1">채팅 상대가 없습니다.</div>
                 		</div>
                 	</c:if>
                 	<c:if test="${chatList.size() > 0 }">
 		                <div id="roomSelect">
 		                	<c:forEach items="${chatList }" var="chatList">
-			                    <div class="roomEl active" data-id="${chatList.chatRoom_id}"}">${chatList.product_subject }</div>
+			                    <div class="roomEl active" style="width: 440px;" data-id="${chatList.chatRoom_id}"}">${chatList.product_subject }</div>
 <%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>
 		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
 		<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
@@ -60,7 +60,7 @@
                 	</c:if>
             </div>
         </div>
-        <div id="chatWrap">
+        <div id="chatWrap" style="margin-right:100px; margin-bottom:50px;">
             <div id="chatHeader">Everyone<input type="button" id="btnClose" value="채팅 나가기"></div>
             <div id="chatLog">
             <!-- 채팅 내용 출력 화면 -->
@@ -71,13 +71,13 @@
                 <input type="button" id="btnSend" value="보내기">
             </form>
         </div>
-        <div id="memberWrap">
-            <div id="memberList">
-                <div id="memberHeader">채팅중인 멤버</div>
-                <div id="memberSelect">나 : ${sessionScope.sId }</div>
-                <div id="targetUser">상대 : </div>
-            </div>
-        </div>
+<!--         <div id="memberWrap"> -->
+<!--             <div id="memberList"> -->
+<!--                 <div id="memberHeader">채팅중인 멤버</div> -->
+<%--                 <div id="memberSelect">나 : ${sessionScope.sId }</div> --%>
+<!--                 <div id="targetUser">상대 : </div> -->
+<!--             </div> -->
+<!--         </div> -->
     </div>
 </div>
 	

@@ -137,7 +137,7 @@ display: flex;
 }
 
 #table1 {
-background: #1A374D;
+background: #0761ff;
 color: #fff;
 /* 아래 2줄은 테이블 둥근모서리 표현하는 코드 */
 /* border-top-left-radius: 15px; */
@@ -168,14 +168,14 @@ color: #fff;
     -webkit-box-shadow: none;
     box-shadow: none; }
   .btn.btn-primary {
-   background: #ff9507;
-   border-color: #ff9507;
+   background: #0761ff;
+   border-color: #0761ff;
 	color: #fff;
     margin-top: 30px;
     margin-bottom: 200px;
    }
     .btn.btn-primary:hover {
-     background: #1A374D;
+     background: #0761ff;
 	color: #fff; }
 	
 
@@ -197,8 +197,7 @@ color: #fff;
 
 <!-- 신고양식 html 시작 --------------------------------------------------------------------------------- -->
 	<div id="div-top">
-	하나 메모 // 지금 신고하기 버튼 누르면 400 오류 납니다.. 원인 찾는중
-		<h2 id="h1-1">가게 신고하기</h2>
+		<h1>중고물품 신고하기</h1>
 	</div>
 	<div id="div-top2">
 		<hr>
@@ -215,7 +214,7 @@ color: #fff;
 		    <table class="table table--min" cellspacing="0" cellpadding="0"> 
 		      <thead>
 		      <tr>
-		        <th style="width:10%; background-color: #ff9507;" id="table1">신고하는 사유를 선택해주세요. (택1 필수)</th>
+		        <th style="width:10%; background-color: #0761ff;" id="table1">신고하는 사유를 선택해주세요. (택1 필수)</th>
 		      </tr>
 		      </thead>
 		      <tbody>
@@ -242,17 +241,23 @@ color: #fff;
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content4" value="바로구매를 거부합니다." name="report_content"><label for="report_content4">　바로구매를 거부합니다.</label>
+		       		<div class="goods_status">
+                        <input type="radio" name="report_content" value="바로구매를 거부합니다." id="report_content4"><label>바로구매를 거부합니다.</label>
+                    </div>
 		       	</td>
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content5" value="사기가 의심됩니다.(외부 채널 유도)" name="report_content"><label for="report_content5">　사기가 의심됩니다.(외부 채널 유도)</label>
+		       		<div class="goods_status">
+                        <input type="radio" name="report_content" value="사기가 의심됩니다.(외부 채널 유도)" id="report_content5"><label>사기가 의심됩니다.(외부 채널 유도)</label>
+                    </div>
 		       	</td>
 		      </tr>
 		       <tr>
 		       	<td>
-		       	   <input type="radio" id="report_content6" value="개인정보 유출 위험이 있습니다." name="report_content"><label for="report_content6">　개인정보 유출 위험이 있습니다.</label>
+		       		<div class="goods_status">
+                        <input type="radio" name="report_content" value="개인정보 유출 위험이 있습니다." id="report_content6"><label>개인정보 유출 위험이 있습니다.</label>
+                    </div>
 		       	</td>
 		      </tr>
 		       <tr>
@@ -260,7 +265,7 @@ color: #fff;
 <!-- 		           <input type="radio" id="report_content5" value="기타" name="report_content"><label for="report_content5">　기타 (신고사유를 증명할 파일을 첨부해주세요.)</label> -->
 <!-- 		        	<textarea name="" class="form-control" id="message" name="report_content" cols="30" rows="5" placeholder="신고사유를 직접 작성해주세요."></textarea><br> -->
 <!-- 		            <input type="file" name="file"> -->
-		        	<button type="submit" class="btn btn-primary" style="background-color: #ff9507;">신고하기</button> <!-- 클릭 시 "신고접수가 완료되었습니다." 알림창 띄우고 홈으로 이동 -->
+		        	<button type="submit" class="btn btn-primary" style="background-color: #0761ff;">신고하기</button> <!-- 클릭 시 "신고접수가 완료되었습니다." 알림창 띄우고 홈으로 이동 -->
 		        </td>
 		      </tr>
 		      </tbody>
