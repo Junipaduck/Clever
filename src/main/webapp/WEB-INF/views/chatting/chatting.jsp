@@ -107,6 +107,7 @@ var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 //el태그통해 js변수 셋팅
 // const userNo = "${loginUser.userNo}";
 var userId = "${sessionScope.sId}";
+var buyerId = "${sessionScope.sId}";
 
 
 var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이터 안에서 /r/n이 오류 발생하므로 공백문자로 대체
@@ -116,7 +117,7 @@ var modifiedProductInfo = '${productInfo}'.replace(/\r\n/g, ' ');	// JSON 데이
 if(!modifiedProductInfo) {
 	console.log("헤더에서 입장!");
 	var chatRoomInfo = JSON.parse('${chatRoom}');
-// 	console.log(chatRoomInfo);
+	console.log(chatRoomInfo);
 	var roomId = chatRoomInfo[0].chatRoom_id;
 // 	for (var i = 0; i < chatRoomInfo.length; i++) {
 // 		roomId = chatRoomInfo[i].chatRoom_id;
@@ -205,7 +206,9 @@ $("#roomSelect .roomEl").on("click", function(e) {
                 
                 $("#chatLog").append(str);
                 sellerId = message.seller_id;
-                console.log("sellerId ! " + sellerId);
+                console.log("채팅 내용 조회 후 sellerId ! " + sellerId);
+                buyerId = message.buyer_id;
+                console.log("채팅 내용 조회 후 buyerId ! " + buyerId);
             });
         },
         error: function(e) {
@@ -231,6 +234,8 @@ function sendMessage() {
 	// 채팅이 입력되는 textarea요소 가져오기
 	const message = document.getElementById("message");
 
+	console.log('roomId : ' + roomId);
+	console.log('productIdx : ' + productIdx);
 	// 채팅 내용을 입력하지 않았을 때
 	if (message.value.trim().length == 0) {
      
@@ -242,7 +247,7 @@ function sendMessage() {
 	} else {
 	const chatMessage = {		// js객체로 생성
 		"chatRoom_id": roomId,
-		"buyer_id" : userId,
+		"buyer_id" : buyerId,
  		"senderId" : userId, //하나가 잠깐 추가함
 		"seller_id" : sellerId,
 // 		"message_date" : ,
