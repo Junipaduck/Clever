@@ -156,41 +156,6 @@ if(modifiedProductInfo) {
 //  }
 // })();
 
-//
-// 채팅방(리스트) 클릭 시
-// $("#roomSelect .roomEl").on("click", function(e) {
-// 	let roomId = $(this).data("id");
-// 	console.log('roomId : ' + roomId);
-// 	$.ajax({
-// 		type: "POST",
-// 		url: "roomInfo",
-// 		data: {roomId: roomId},
-// 		dataType: "json",
-// 		success: function(response) {
-//             console.log(response);
-//             $.each(response , function(i){
-// //             let buyerId = 
-// //             if (data.id == userId) {
-// //         		var str = "<div class='myMsg'>";
-// //         		str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
-// //         		str += "</div></div>";
-        		
-// //         		$("#chatLog").append(str);
-// //         	} else {
-//         		var str = "<div class='anotherMsg'>";
-//         		str += "<span class='msg'>"+ response[i].seller_id +" : <b>"  + response[i].message_content + "</b></span>";
-//         		str += "</div></div>";
-        		
-//         		$("#chatLog").append(str);
-// //         	}
-//             });
-//         },
-//         error: function(e) {
-//             console.log(e);
-//         }
-		
-// 	});
-// });
 
 //방 나누기 + 메세지나누기
 $("#roomSelect .roomEl").on("click", function(e) {
@@ -202,6 +167,8 @@ $("#roomSelect .roomEl").on("click", function(e) {
 
     let roomId = $(this).data("id");
     console.log('roomId : ' + roomId);
+    productIdx = roomId.substring(roomId.indexOf("P")+1, roomId.indexOf("S"));
+    console.log('productIdx : ' + productIdx);
     
     var userId = "${sessionScope.sId}";
 	console.log('현재 로그인한 sId : ' + userId);
