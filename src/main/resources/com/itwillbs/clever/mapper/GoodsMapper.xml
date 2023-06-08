@@ -13,6 +13,7 @@
 					, #{goods_name}
 					, #{goods_price}
 					, #{goods_content}
+					, #{goods_detail}
 					, now()
 					, #{goods_stock}
 				)
@@ -58,6 +59,7 @@
 				goods_name = #{goods_name}
 				, goods_price = #{goods_price}
 				, goods_content = #{goods_content}
+				, goods_detail = #{goods_detail}
 				, goods_stock = #{goods_stock}
 			WHERE
 				goods_idx = #{goods_idx}

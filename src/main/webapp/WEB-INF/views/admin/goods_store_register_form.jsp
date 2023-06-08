@@ -174,9 +174,16 @@ display: flex;
                         </div>
                     </div>
                     <div class="goods_info_area">
-                        <p>설명<span class="red">*</span></p>
+                        <p>간략한 설명<span class="red">*</span></p>
                         <div>
                             <textarea name="goods_content" id="goods_content" cols="30" rows="10"
+                            maxlength="2000" oninput="countInfoLength(event)"></textarea>
+                        </div>
+                    </div>
+                    <div class="goods_info_area">
+                        <p>상세 설명<span class="red">*</span></p>
+                        <div>
+                            <textarea name="goods_detail" id="goods_detail" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
                         </div>
                     </div>

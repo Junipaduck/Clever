@@ -89,21 +89,24 @@
 	                            <p>${goodsDetail.goods_price }<span>원</span></p>
 	                            <hr>
 	                            <div id="detail_content_info_mid">
-	                                <p style="width: 80px;">
-	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
-	                                    <span>17</span>
-	                                </p>
-	                                <p style="width: 80px;">
-	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
-	                                    <span>76</span>
-	                                </p>
+<!-- 	                                <p style="width: 80px;"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜"> --%>
+<!-- 	                                    <span>17</span> -->
+<!-- 	                                </p> -->
+<!-- 	                                <p style="width: 80px;"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회"> --%>
+<!-- 	                                    <span>76</span> -->
+<!-- 	                                </p> -->
 	                                <p style="width: 150px;">
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="업로드날짜">
 	                                    <span>${goodsDetail.goods_date }</span>
 	                                </p>
 	                            </div>
 	                            <div id="detail_content_info_state">
-								
+									<p>
+	                                    <span>· 상품설명</span>
+	                                    <span>${goodsDetail.goods_content }</span>
+	                                </p>
 	                            <div>
 	                             	<!-- 버튼영역 -->
 			                                <div class="container text-center detail_content_info_btn">
@@ -129,7 +132,7 @@
 	                    <h3>상세설명</h3>
 	                </div>
 	                <div class="container text-center" id="related_goods_imgs">
-						${goodsDetail.goods_content }
+						${goodsDetail.goods_detail }
 	                </div>
 	            </div>
             <!-- 상품상세설명 -->

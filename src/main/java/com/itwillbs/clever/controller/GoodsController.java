@@ -60,6 +60,7 @@ public class GoodsController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("file_div", "goods");
 		paramMap.put("file_num", goodsService.selectMax());
+		
 		FileUpload.upload(file, session, paramMap);
 		
 		if(insertCount > 0) {

@@ -28,5 +28,5 @@ public class GoodsVO {
 	private Date goods_date;
 	private int goods_stock;
 	private MultipartFile file;
-	
+	private String goods_detail;
 }
