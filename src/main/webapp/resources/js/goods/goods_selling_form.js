@@ -1247,7 +1247,6 @@ function setImages(event){
 //		    nextInput.removeAttribute("hidden");
 //		  }
 		
-    
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
             break;
@@ -1282,6 +1281,7 @@ function setImages(event){
 	        reader.readAsDataURL(image);
 		}
     } // 포문 끝
+    
 }
 
 function countTitleLength(event) {

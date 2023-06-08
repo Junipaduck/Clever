@@ -14,9 +14,9 @@ public interface ChattingMapper {
 	
 	String selectUserInfo(String id);
 	
-//	List<ChatRoomVO> selectChatRoom(String chatRoomId);
+	List<ChatRoomVO> selectChatRoom(@Param("senderId") String senderId, @Param("productIdx") int productIdx);
 	
-	List<ChatRoomVO> selectChatList(String sId);
+	List<ChatRoomVO> selectChatList(@Param("sId") String sId);
 
 	int openRoom(@Param("chatRoomId") String chatRoomId, @Param("productIdx") int productIdx);
 

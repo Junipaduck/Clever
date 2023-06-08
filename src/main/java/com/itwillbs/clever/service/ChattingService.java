@@ -27,9 +27,9 @@ public class ChattingService {
 	}
 	
 	// 메세지 전송 후 채팅방 존재하는지 확인
-//	public List<ChatRoomVO> selectChatRoom(String chatRoomId) {
-//		return mapper.selectChatRoom(chatRoomId);
-//	}
+	public List<ChatRoomVO> selectChatRoom(String senderId, int productIdx) {
+		return mapper.selectChatRoom(senderId, productIdx);
+	}
 	
 	public List<ChatRoomVO> selectChatList(String sId) {
 		return mapper.selectChatList(sId);
