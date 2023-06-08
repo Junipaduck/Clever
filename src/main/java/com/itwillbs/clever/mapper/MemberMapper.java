@@ -23,5 +23,7 @@ public interface MemberMapper {
 	int modifyMember(String sId, HashMap<String, String> paramMember);
 
 	int updateMember(@Param("sId") String sId, @Param("member") MemberVO member, @Param("modifypasswd") String modifypasswd);
+
+	String findId(MemberVO member);
 	
 }

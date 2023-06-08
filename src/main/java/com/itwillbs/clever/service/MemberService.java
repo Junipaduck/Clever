@@ -47,7 +47,12 @@ public class MemberService {
 
 	// 회원정보 업데이트
 	public int updateMember(String sId, MemberVO member, String modifypasswd) {
-		return  mapper.updateMember(sId, member, modifypasswd);
+		return mapper.updateMember(sId, member, modifypasswd);
+	}
+
+	// 아이디 찾기
+	public String findId(MemberVO member) {
+		return mapper.findId(member);
 	}
 	
 }
