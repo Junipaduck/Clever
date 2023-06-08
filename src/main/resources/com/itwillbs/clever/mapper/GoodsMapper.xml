@@ -13,9 +13,9 @@
 					, #{goods_name}
 					, #{goods_price}
 					, #{goods_content}
-					, #{goods_detail}
 					, now()
 					, #{goods_stock}
+					, #{goods_detail}
 				)
 	</insert>
 	

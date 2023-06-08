@@ -25,8 +25,8 @@ public class GoodsVO {
 	private String goods_name;
 	private String goods_price;
 	private String goods_content;
+	private String goods_detail;
 	private Date goods_date;
 	private int goods_stock;
 	private MultipartFile file;
-	private String goods_detail;
 }
