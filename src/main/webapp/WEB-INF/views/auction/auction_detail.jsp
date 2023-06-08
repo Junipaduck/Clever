@@ -411,7 +411,7 @@
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
@@ -420,6 +420,9 @@
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
 	var message = document.getElementById("price");
+	var checkPrice = false;
+	
+	var regex = /[^0-9]/g;
 	
 // 	alert("1번째 : " + userId);
 // 	alert("2번째 : " + auction_idx);
@@ -450,10 +453,21 @@
 			return;
 		}
 		
-		var resultElement = document.getElementById("result");
-		$("#inputInt").val(priceInput);
-// 		resultElement.innerHTML = priceInput ;
-//  	resultElement.innerHTML = "<span> 현재 가격 : " + priceInput + "&nbsp;" +  "원</span>";
+		var currentPrice = document.getElementById("currentPrice").innerText; 
+		var regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
+		
+		var priceInputInt = parseInt(uncomma(priceInput));  //현재 입력한 값 인트타입 변환
+		
+		if(regexPrice>priceInputInt) {
+			alert("현재 가격보다 높게 입력하세요 !!");
+			return;
+		}
+		
+		checkPrice = true;
+		
+// 		var resultElement = document.getElementById("result");
+// 		$("#inputInt").val(priceInput);
+	
 	}
 	
 	function auctionAddPrice(percent) {
@@ -495,7 +509,7 @@
 // })();
 
 // 메세지 전송 버튼 클릭 시 이벤트
-document.getElementById("btnSend").addEventListener("click", sendMessage);
+
 
 // 엔터키 눌렀을 때 메세지 전송
 // $("#message").keypress(function(e) {
@@ -504,9 +518,14 @@ document.getElementById("btnSend").addEventListener("click", sendMessage);
 // 	}
 // });
 
-// 메세지 전송
+document.getElementById("btnSend").addEventListener("click", sendMessage);
+
+//메세지 전송
 function sendMessage() {
 	
+	if(checkPrice==false) {
+		return;
+	}
 	// 채팅이 입력되는 textarea요소 가져오기
 	
 	// 채팅 내용을 입력하지 않았을 때
@@ -570,12 +589,8 @@ chatSocket.onmessage = function(e) {
 	} 
 	
 	if(auction_idx==data.auction_idx){
-// 		$("p").remove("#result");
 		currentPrice = document.getElementById("currentPrice");
-// 		alert("메시지 오는거가 " + data.message);
 		currentPrice.innerText = "현재가격 : " + data.message + " 원";
-// 		const newDivElement = document.createElement('div');
-// 		newDivElement.textContent = 'Hello!';
 	}
 	
 };
