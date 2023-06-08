@@ -24,7 +24,7 @@
 				, #{map.auction_tag	}
 				, #{map.auction_address	}
 				, 'N'
-				, 0
+				, #{map.auction_price }
 				, 0
 				, #{map.auction_content	}
 				, "경매 등록 대기중"
@@ -117,6 +117,11 @@
 		 	DISTINCT smallCategory
 		 		 FROM category c
 		  			 WHERE midCategory = IFNULL((SELECT DISTINCT midCategory  FROM category c WHERE midCategory = #{param}),(SELECT DISTINCT midCategory  FROM category c WHERE smallCategory = #{param}))
+	</select>
+	<select id="selectFilesIdx" resultType="map">
+	SELECT *
+		FROM file
+			WHERE file_num = #{auction_idx } AND file_div = 'auction'
 	</select>
 	
 	

@@ -77,6 +77,10 @@ public class AuctionService {
 		return mapper.getSmallCategorys(param);
 	}
 
+	public List selectFilesIdx(int auction_idx) {
+		return mapper.selectFilesIdx(auction_idx);
+	}
+
 	
 	
 	

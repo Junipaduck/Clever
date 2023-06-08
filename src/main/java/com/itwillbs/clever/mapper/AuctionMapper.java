@@ -38,4 +38,6 @@ public interface AuctionMapper {
 
 	List getSmallCategorys(String param);
 
+	List selectFilesIdx(int auction_idx);
+
 }

@@ -287,7 +287,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${imminentList }" var="imminent" end="4"> 
                     <div class="goods">
-                        <a href="auction_detail?auction_idx=${imminent.auction_idx}">
+                        <a href="auction_detail?auction_idx=${imminent.auction_idx}&param=${imminent.auction_Scategory}">
                         <c:forEach items="${fileList }" var="file">
                         
                         <c:set var="length" value="${fn:length(file.file_name) }" />
@@ -342,7 +342,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${hotList }" var="hot" end="4"> 
                     <div class="goods">
-                        <a href="auction_detail?auction_idx=${hot.auction_idx}">
+                        <a href="auction_detail?auction_idx=${hot.auction_idx}&param=${hot.auction_Scategory}">
                             <c:forEach items="${fileList }" var="file">
                             <c:set var="length" value="${fn:length(file.file_name) }" />
 							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
@@ -395,7 +395,7 @@ height: 90px;
                 <div class="goods_wrap">
                     <c:forEach items="${currentList }" var="current" end="4"> 
                     <div class="goods">
-                        <a href="auction_detail?auction_idx=${current.auction_idx}">
+                        <a href="auction_detail?auction_idx=${current.auction_idx}&param=${current.auction_Scategory}">
                             <c:forEach items="${fileList }" var="file">
                             <c:set var="length" value="${fn:length(file.file_name) }" />
 							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />

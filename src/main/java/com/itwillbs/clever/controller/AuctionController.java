@@ -42,6 +42,7 @@ public class AuctionController {
 		List fileList = auctionService.selectFiles();
 		
 		model.addAttribute("imminentList", imminentList);
+		System.out.println(imminentList);
 		model.addAttribute("hotList", hotList);
 		model.addAttribute("currentList", currentList);
 		model.addAttribute("fileList", fileList);
@@ -122,10 +123,9 @@ public class AuctionController {
 	
 	
 	@GetMapping(value = "auction_detail")
-	public String auction_detail(HttpSession session, Model model, @RequestParam int auction_idx) {
+	public String auction_detail(HttpSession session, Model model, @RequestParam int auction_idx, @RequestParam String param) {
 		
 		String sId = (String)session.getAttribute("sId");
-		
 		if(sId == null) {
 			model.addAttribute("msg","로그인 후 이용해주세요!");
 			model.addAttribute("target","loginForm.me");
@@ -139,6 +139,39 @@ public class AuctionController {
 			logRoomIdx = logList.get(0).getLogRoom_idx();
 		}
 		
+		List fileList = auctionService.selectFilesIdx(auction_idx);
+		String bigCategory = auctionService.getBigCategory(param);
+		List bigCategorys = auctionService.getBigCategorys();
+		List midCategorys = auctionService.getMidCategorys(param);
+		System.out.println(midCategorys);
+		List smallCategorys = auctionService.getSmallCategorys(param);
+		System.out.println("???????" + smallCategorys);
+		if(bigCategory == null) {
+			List midCategory = auctionService.getMidCategory(param);
+			System.out.println("midCategory : " + midCategory);
+			if(midCategory.size() < 1) {
+				List smallCategory = auctionService.getSmallCategory(param);
+				System.out.println("smallCategory : " + smallCategory);
+				model.addAttribute("smallCategory", smallCategory);
+			} else {
+				model.addAttribute("midCategory", midCategory);
+			}
+		} else {
+			System.out.println("bigCategory : " + bigCategory);
+			model.addAttribute("bigCategory", bigCategory);
+		}
+		
+		
+		
+		
+		model.addAttribute("fileList", fileList);
+		model.addAttribute("bigCategorys", bigCategorys);
+		model.addAttribute("midCategorys", midCategorys);
+		model.addAttribute("smallCategorys", smallCategorys);
+		model.addAttribute("categoryParam", param);
+		
+		model.addAttribute("fileList", fileList);
+		System.out.println(fileList);
 		model.addAttribute("logList", logList);
 		model.addAttribute("logRoomIdx", logRoomIdx);
 		System.out.println("chatList!!!!!!!!!!!!!!! : " + logList);
