@@ -117,6 +117,7 @@ if(!modifiedProductInfo) {
 	var chatRoomInfo = JSON.parse('${chatRoom}');
 // 	console.log(chatRoomInfo);
 	var roomId = chatRoomInfo[0].chatRoom_id;
+	var productIdx = chatRoomInfo[0].product_idx;
 // 	for (var i = 0; i < chatRoomInfo.length; i++) {
 // 		roomId = chatRoomInfo[i].chatRoom_id;
 // 	}
@@ -159,7 +160,9 @@ if(modifiedProductInfo) {
 // 채팅방(리스트) 클릭 시
 $("#roomSelect .roomEl").on("click", function(e) {
 	let roomId = $(this).data("id");
+    productIdx = roomId.substring(roomId.indexOf("P")+1, roomId.indexOf("S"));
 	console.log('roomId : ' + roomId);
+	console.log('productIdx : ' + productIdx);
 	$.ajax({
 		type: "POST",
 		url: "roomInfo",
