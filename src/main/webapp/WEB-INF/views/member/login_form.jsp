@@ -86,7 +86,7 @@
 							                                        </div>
 							                                        <input type="text" id="member_id" name="member_id" placeholder="아이디" title="아이디"
 							                                               class="input_text" maxlength="41"
-							                                               value="">
+							                                               value="${param.member_id }">
 							                                        <span role="button" class="btn_delete" id="id_clear" style="display: none;">
 							                                            <span class="icon_delete">
 																			<span class="blind">삭제</span>

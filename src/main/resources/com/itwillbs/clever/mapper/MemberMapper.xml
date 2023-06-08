@@ -102,4 +102,11 @@
 		WHERE member_id = #{sId}
 	</update>
 	
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="String">
+	SELECT member_id
+		FROM member
+			WHERE member_phone = #{member_phone} AND member_name = #{member_name}
+	</select>
+	
 </mapper>

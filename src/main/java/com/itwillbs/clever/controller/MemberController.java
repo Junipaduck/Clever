@@ -68,12 +68,28 @@ public class MemberController {
         }
     }
 	
-	// 아이디찾기 페이지 포워딩
+	// 아이디 찾기 페이지 포워딩
 	@GetMapping("/findId.me")
 	public String findId() {
 		return "member/find_id_form";
 	}
 	
+	// 아이디 찾기 
+	@PostMapping(value = "/findIdPro.me")
+    public String findIdPro(MemberVO member,Model model) {
+		System.out.println("정보 확인 " + member);
+    	String id = memberService.findId(member);
+    	String msg = "";
+    	if(id != null && !id.equals("")) {
+    		model.addAttribute("msg", "조회 된 아이디는 " + id + "입니다.");
+    		model.addAttribute("msg2", "해당 아이디로 로그인 하시겠습니까?");
+    		model.addAttribute("target", "loginForm.me?member_id=" + id);
+    		return "confirm";
+    	} else {
+    		model.addAttribute("msg", "조회 된 아이디가 없습니다.");
+    		return "fail_back";
+    	}
+    }
 	
 	// 비밀번호찾기 페이지 포워딩
 	@GetMapping("/findPasswd.me")
@@ -123,17 +139,6 @@ public class MemberController {
 	}
 
 	
-//	// 채팅 폼 포워딩					--- chattingcontroller로 이동할게요 (0601 최보아)
-//	@GetMapping(value = "chatting")
-//	public String chatting(HttpSession session, Model model) {
-////		if(session.getAttribute("sId") == null) {
-////			model.addAttribute("msg","로그인 후 이용해주세요!");
-////			model.addAttribute("target","loginForm.me");
-////			return "success";
-////		}
-//		return "chatting/chatting";
-//		
-//	}
 	
 
 	
