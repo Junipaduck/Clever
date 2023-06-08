@@ -11,23 +11,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- 부트스트랩 icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <!-- 부트스트랩 js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     
     <!-- 공통 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
     <!-- 상세페이지 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_product_detail.css">
 
-    <!-- 햄버거 메뉴 호버시 -->
-    <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
     <!-- 파비콘 -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 </head>
+
 <body>
-<script src="js/jquery-3.6.4.js"></script>
+
+
 
 	<!-- 헤더 시작 -->
 	<header>
@@ -109,9 +106,10 @@
 	                                </p>
 	                            <div>
 	                             	<!-- 버튼영역 -->
+	                             			<input type="hidden" value="${goodsDetail.goods_idx }">
 			                                <div class="container text-center detail_content_info_btn">
 			                                        <div class="col-4">
-			                                            <div class="p-3 info_btn3" onclick="">바로구매</div>
+			                                            <div class="p-3 info_btn3" onclick="payGoods()">바로구매</div>
 			                                        </div>
 			                                    </div>
 			                                </div>
@@ -163,5 +161,17 @@
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
+		<!-- 부트스트랩 js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- 햄버거 메뉴 호버시 -->
+    <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
+    <script src="js/jquery-3.6.4.js"></script>
+    <script type="text/javascript">
+    	function payGoods() {
+		    window.open("payGoods?goods_idx=${param.goods_idx}", "바로구매새창", "width=800, height=1200" );
+    	}
+    </script>	
 </body>
 </html>

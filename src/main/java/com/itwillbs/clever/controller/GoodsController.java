@@ -154,6 +154,18 @@ public class GoodsController {
 		return "goods/goods_detail";
 	}
 	
+	// 굿즈 결제 페이지 
+	@GetMapping(value = "/payGoods")
+	public String payGoods(@RequestParam int goods_idx, Model model) {
+		List<HashMap<String, String>> goodsDetail = goodsService.getGoodsDetail(goods_idx);
+		model.addAttribute("goodsDetail", goodsDetail);
+		
+		List<HashMap<String, String>> fileList = goodsService.selectFile();
+		model.addAttribute("fileList", fileList);
+		
+		return "goods/goods_pay_form";
+	}
+	
 }
 
 
