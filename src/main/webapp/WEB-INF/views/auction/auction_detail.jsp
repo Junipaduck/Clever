@@ -467,6 +467,7 @@
 	$(function() {
 		auctionStart();
 		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
+		document.getElementById("currentPrice").innerText = "현재가격 : " + comma(${detailmap.auction_final_price }) + " 원";
 		
 	});
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
