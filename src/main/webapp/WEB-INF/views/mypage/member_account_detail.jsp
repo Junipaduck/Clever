@@ -155,72 +155,7 @@
 
 
 	<!-- 중간 작업공간 시작 ============================================================== -->
-	<div id="">
-	
-            <div class="container text-center">
-			  <div class="row">
-			    <div class="col"></div>
-			    <div class="col"><!-- 그리드 중간부분 시작 -->
-			    
-<!-- 				     <header class="header" role="banner" > -->
-<!-- 				        <div class="header_inner"> -->
-<%-- 				            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px;"></a> --%>
-<!-- 				        </div> -->
-<!-- 				     </header> -->
-		
-					<h1>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${userInfo.user_seq_no })</h1>
-				      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-					    <div class="insert">
-					    
-					    <table border="1">
-							<tr>
-								<th>은행명</th>
-								<th>계좌번호</th>
-								<th>상품명</th>
-								<th>계좌잔액</th>
-								<th>출금가능금액</th>
-								<th></th>
-							</tr>
-							<tr>
-								<td>${account.bank_name }</td>
-								<td>${account_num_masked }</td>
-								<td>${account.product_name }</td>
-								<td>${account.balance_amt }</td>
-								<td>${account.available_amt }</td>
-								<td>
-									<form action="bank_regist" method="POST">
-					<%-- 						<input type="hidden" name="access_token" value="${sessionScope.access_token }"> --%>
-										<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
-										<input type="hidden" name="bank_name" value="${account.bank_name }">
-										<input type="hidden" name="balance_amt" value="${account.balance_amt }">
-										<input type="submit" value="등록하기">
-					<!-- 					<input type="submit" value="출금이체(X)"> -->
-									</form>
-									
-								</td>
-							</tr>
-						</table>
-					    
-					   
-					    
-					  </div>
-					  <div class="create">
-					  		<form action="bank_accountDetail" method="post">
-		  						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
-								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
-								<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
-								<input type="hidden" name="user_name" value="${userInfo.user_name }">
-					        	<input class="but4" type="submit" value="계좌상세정보">
-					  		</form>
-					  </div>
-					  </div>
-				  
-				  
-			   </div> <!-- 그리드 중간부분 끝 -->
-		    <div class="col"></div>
-		  </div>
-		</div>
-    </div>
+	<h1>확인용</h1>
 				  		
 
 	<!-- 중간 작업공간 끝 ============================================================== -->

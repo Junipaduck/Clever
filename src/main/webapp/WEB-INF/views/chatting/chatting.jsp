@@ -44,14 +44,15 @@
             <div id="roomList" style="width: 440px;">
                 <div id="roomHeader" style="width: 440px;">채팅 방 목록</div>
                 	<c:if test="${chatList.size() == 0 }">
-                		<div id="roomSelect">
+                		<div id="roomSelect" >
 	                    	<div class="roomEl active" style="width: 440px;" data-id="1">채팅 상대가 없습니다.</div>
                 		</div>
                 	</c:if>
                 	<c:if test="${chatList.size() > 0 }">
-		                <div id="roomSelect">
+		                <div id="roomSelect" >
 		                	<c:forEach items="${chatList }" var="chatList">
-			                    <div class="roomEl active" style="width: 440px;" data-id="${chatList.chatRoom_id}"}">${chatList.product_subject }</div>
+			                    <div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" data-id="${chatList.chatRoom_id}"}">${chatList.product_subject }<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" style="width: 40px;">
+			                    </div>
 <%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>
 		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
 		<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
@@ -61,7 +62,7 @@
             </div>
         </div>
         <div id="chatWrap" style="margin-right:100px; margin-bottom:50px;">
-            <div id="chatHeader">Everyone<input type="button" id="btnClose" value="채팅 나가기"></div>
+            <div id="chatHeader">채팅제목하드코딩입니다아아아아아아 </div>
             <div id="chatLog">
             <!-- 채팅 내용 출력 화면 -->
             </div>
@@ -167,7 +168,7 @@ $("#roomSelect .roomEl").on("click", function(e) {
     // 목록에서 B채팅방 선택
     $(this).addClass("selected");
 
-    let roomId = $(this).data("id");
+    roomId = $(this).data("id");
     console.log('roomId : ' + roomId);
     productIdx = roomId.substring(roomId.indexOf("P")+1, roomId.indexOf("S"));
     console.log('productIdx : ' + productIdx);
