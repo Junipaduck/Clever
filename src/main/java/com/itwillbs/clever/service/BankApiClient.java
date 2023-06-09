@@ -179,7 +179,7 @@ public class BankApiClient {
 		
 		jo.put("bank_tran_id", valueGenerator.getBankTranId()); // bank_tran_id(거래고유번호 - BankValueGenerator 클래스 활용)
 		jo.put("cntr_account_type", "N"); // cntr_account_type(계좌형태 - 계좌를 의미하는 "N" 전달)
-		jo.put("cntr_account_num", "70667066"); // cntr_account_num(약정 계좌)
+		jo.put("cntr_account_num", "222123456789"); // cntr_account_num(약정 계좌)
 		jo.put("dps_print_content", "양선정이송금"); // dps_print_content(입금계좌 인자내역, 상대방 통장에 표시할 내역)
 		jo.put("fintech_use_num", map.get("fintech_use_num")); // fintech_use_num(출금계좌 핀테크 이용번호)
 		jo.put("wd_print_content", "000에게송금"); // wd_print_content(출금계좌 인자내역, 내 통장에 표시할 내역)
