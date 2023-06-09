@@ -1238,10 +1238,10 @@ function setImages(event){
 		
 		  currentInput.setAttribute("hidden", true);
 //		
-		  const nextInputName = "auction_images" + (parseInt(currentInputName.substring(14)) + 1);
+		  const nextInputName = "image" + (parseInt(currentInputName.substring(5)) + 1);
 		  const nextInput = document.getElementsByName(nextInputName)[0];
-//		  alert(nextInputName);
-//		  alert(nextInput);
+		  alert(nextInputName);
+		  alert(nextInput);
 //		
 		  if (nextInput) {
 		    nextInput.removeAttribute("hidden");
