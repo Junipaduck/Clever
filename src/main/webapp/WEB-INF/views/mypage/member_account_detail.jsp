@@ -24,128 +24,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
-
-
- <style type="text/css">
- 
-      div.container{
-    }
- 
-      div.insert{
-    }
- 
-    div.create{
-    width: 800px;
-    text-align: center;
-    padding: 30px;
-/*     border-bottom: 1px solid black; */
-    margin: auto;
-    }
- 
-    table{
-    height: 300px;
-    width: 900px;
-    border-top: 3px solid black;
-    margin-right: auto;
-    margin-left: auto;
-    }
- 
-    td{
-    border-bottom: 1px dotted black;
-    }
- 
-    caption{
-    text-align: left;
-    }
- 
-    .col1 {
-    background-color: #e8e8e8;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
-    font-size: 0.8em;
-    }
- 
-    .col2 {
-    text-align: left;
-    padding: 5px;
-    }
- 
-    .but1 {
-    height: 25px;
-    width: 80px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but2 {
-    height: 27px;
-    width: 120px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but3 {
-    height: 35px;
-    width: 150px;
-    background-color: #2445f0;
-    border: 2px solid #2445f0;
-    }
- 
-    .but4{
-    height: 35px;
-    width: 150px;
-    background-color: white;
-    border: 2px solid black;
-    }
-    
-    .but1:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
- 
-    .but2:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
- 
-    .but3:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
- 
-    .but4:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
-    
-    .num{
-    color: red;
-    }
- 
- 	.accButton button {
-    padding: 0px 0.5rem;
-    height: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: rgb(255, 80, 88);
-    background-color: rgb(244, 244, 250);
-    border: none;
-    outline: none;
-	}
-	.accButton button.active{
-    color: #fff;
-    background: rgb(255, 80, 88);
- 	}
-  </style>
-  
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -155,16 +33,17 @@
 
 
 	<!-- 중간 작업공간 시작 ============================================================== -->
-	<h1>확인용</h1>
+	
+	
 				  		
 
+
+
+
+
+
 	<!-- 중간 작업공간 끝 ============================================================== -->
-	
-	
-	
-	
-	
-	
+		
 	<!-- 푸터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -173,7 +52,6 @@
 	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-	
-	
+		
 </body>
 </html>

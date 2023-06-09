@@ -10,6 +10,25 @@
 			ORDER BY product_idx DESC;
 	</select>
 	
+	<!-- 중고거래 구매내역 select -->
+	<select id="selectProductBuyList" resultType="HashMap">
+		SELECT *
+			FROM buy 
+			WHERE buy_id = #{sId};
+	</select>
 	
+	<!-- 경매 찜 내역 select -->
+<!-- 	<select id="selectAutionDibs" resultType="HashMap"> -->
+<!-- 		SELECT * -->
+<!-- 			FROM dibs -->
+<!-- 			WHERE member_id = #{sId} AND dibs_type = 'auction'; -->
+<!-- 	</select> -->
+	
+	<!-- 찜 내역 select -->
+	<select id="selectDibsList" resultType="HashMap"> 
+		SELECT *
+			FROM dibs
+			WHERE member_id = #{sId};
+	</select>
 	
 </mapper>

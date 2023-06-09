@@ -23,7 +23,7 @@ public class MypageController {
 	private MemberService memberService;
 	
 	@Autowired
-	private MypageService mypageservice;
+	private MypageService mypageService;
 	
 	@Autowired
 	private ProductService productService;
@@ -47,12 +47,23 @@ public class MypageController {
 		
 		model.addAttribute("member", member);
 		
-		List<HashMap<String, String>> onSaleproduct = mypageservice.selectOnSaleProduct(sId);
+		List<HashMap<String, String>> onSaleproduct = mypageService.selectOnSaleProduct(sId);
 		model.addAttribute("onSaleproduct", onSaleproduct);
+		
+		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
+		model.addAttribute("productBuyList", productBuyList);
 		
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
 		
+//		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibs(sId);
+//		model.addAttribute("auctionDibsList", auctionDibsList);
+//		System.out.println("경매 찜 " + auctionDibsList);
+		
+		List<HashMap<String, String>> dibsList = mypageService.selectDibsList(sId);
+		model.addAttribute("dibsList", dibsList);
+		System.out.println("찜 목록 " + dibsList);
+			
 		
 		return "mypage/my_page";
 	}

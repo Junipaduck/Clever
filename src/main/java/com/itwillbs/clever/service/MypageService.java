@@ -19,4 +19,19 @@ public class MypageService {
 		return mapper.selectOnSaleProduct(sId);
 	}
 	
+	// 중고거래 구매내역 조회
+	public List<HashMap<String, String>> selectProductBuyList(String sId) {
+		return mapper.selectProductBuyList(sId);
+	}
+	
+	// 경매 찜 조회
+//	public List<HashMap<String, String>> selectAutionDibs(String sId) {
+//		return mapper.selectAutionDibs(sId);
+//	}
+
+	public List<HashMap<String, String>> selectDibsList(String sId) {
+		return mapper.selectDibsList(sId);
+	}
+
+	
 }

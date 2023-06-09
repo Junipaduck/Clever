@@ -61,7 +61,7 @@
 	<h1>　</h1>
 	</div>
 	<div class="container text-center">
-	<h1>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${userInfo.user_seq_no })</h1>
+	<h1>${userInfo.user_name } 고객님의 계좌 목록</h1> <!-- (사용자 일련번호 : ${userInfo.user_seq_no }) -->
 	</div>
 			
 	<div class="bbs-table-list">
