@@ -309,7 +309,7 @@ function comma(str) {
                                 <p class="goods_title">${imminent.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">comma(${imminent.auction_final_price })</span>
+                                    <span class="goods_date_before">${imminent.auction_final_price }</span>
                                 </div>
 	                                <script type="text/javascript">
 	                                	function getTime${imminent.auction_idx}() {

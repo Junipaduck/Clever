@@ -1228,10 +1228,10 @@ $(document).ready(function ( ) {
     document.querySelector(".goods_tag > input").addEventListener("keyup", tagAdd);
     document.querySelector(".checkbox_safePay > input[type='checkbox']").addEventListener("click", thunerPay);
 });
-
+let cnt = 0;
 function setImages(event){
-    let cnt = 0;
-    	const currentInputName = event.target.name;
+    
+    		const currentInputName = event.target.name;
 		  const currentInput = document.getElementsByName(currentInputName)[0];
 //		  alert(currentInputName);
 //		  alert(currentInput);
@@ -1249,11 +1249,13 @@ function setImages(event){
 		
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
+            alert("너 들어갔니?");
             break;
         } else {
 	        var reader = new FileReader();
 	        
 	        reader.onload = function(event){
+		
 	            var li = document.createElement("li");
 	            li.setAttribute("draggable","false");
 	            li.setAttribute("class","sc-gkFcWv iiYIYa");
@@ -1265,14 +1267,17 @@ function setImages(event){
 	            button.setAttribute("class", "eHGbgX");
 	            button.setAttribute("type", "button");
 	            button.addEventListener("click", function () {
+//				alert(currentInputName);
+//				document.getElementById(currentInputName).value = null;
+				document.getElementById(currentInputName).value = null;
 		          li.remove();
-		          cnt--;
+		          cnt -= 1;
 		          document.querySelector(".image_num").innerText = cnt;
 		        });
 	            li.appendChild(img);
 				li.appendChild(button);
 	            document.querySelector("div.preview_wrap").appendChild(li);
-	            cnt++;
+	            cnt += 1;
 	            document.querySelector(".image_num").innerText = cnt;
 	            
 //	            

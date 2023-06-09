@@ -48,6 +48,12 @@ public class AuctionController {
 		List currentList = auctionService.selectCurrent();
 		List fileList = auctionService.selectFiles();
 		
+//		for(int i = 0; i < imminentList.size() - 1; i++) {
+//			imminentList.get(i).
+//		}
+//		
+//		System.out.println("시발 : " + imminentList.get(2));	
+			
 		model.addAttribute("imminentList", imminentList);
 		System.out.println(imminentList);
 		model.addAttribute("hotList", hotList);
@@ -270,8 +276,13 @@ public class AuctionController {
 									, @RequestParam("image2") MultipartFile file2
 									, @RequestParam("image3") MultipartFile file3
 									, @RequestParam("image4") MultipartFile file4
+									, @RequestParam("image5") MultipartFile file5
+									, @RequestParam("image6") MultipartFile file6
 									, HttpSession session, Model model) {
-		MultipartFile[] file = {file1,file2,file3,file4};
+		MultipartFile[] file;
+		for(int i = 1; i < 6; i++) {
+			
+		}
 //		System.out.println(file);
 	
 		
@@ -293,7 +304,7 @@ public class AuctionController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("file_div", "auction");
 		paramMap.put("file_num", auctionService.selectMax());
-		upload.upload(file, session, paramMap);
+//		upload.upload(file, session, paramMap);
 		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
 		
 		if(insertAuction > 0) {
