@@ -3,6 +3,8 @@ package com.itwillbs.clever.controller;
 import java.io.*;
 import java.nio.file.*;
 import java.text.*;
+import java.time.*;
+import java.time.format.*;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -18,6 +20,8 @@ import org.springframework.web.multipart.*;
 import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
+
+import reactor.core.publisher.*;
 
 @Controller
 public class AuctionController {
@@ -176,8 +180,10 @@ public class AuctionController {
 		model.addAttribute("logRoomIdx", logRoomIdx);
 		System.out.println("chatList!!!!!!!!!!!!!!! : " + logList);
 		System.out.println("logRoomIdx!!!!!!!!!!!!!!!! : " + logRoomIdx);
-		
+		int readCount = auctionService.readCountUp(auction_idx);
 		Map detailmap = auctionService.detailList(auction_idx);
+		String[] strArr = detailmap.get("auction_date").toString().split("T");
+		detailmap.put("date", strArr[0]);
 		model.addAttribute("detailmap", detailmap);
 		
 		return "auction/auction_detail";
@@ -214,8 +220,9 @@ public class AuctionController {
 		map.put("auction_start", map.get("auction_start_date") + " " + map.get("auction_start_time"));
 		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
 		int modifyCnt = auctionService.detailModify(map);
+		
 		if(modifyCnt > 0) {
-			return "auction/auction";
+			return "redirect:/auction";
 		} else {
 			model.addAttribute("msg", "수정 실패!");
 			return "fail_back";

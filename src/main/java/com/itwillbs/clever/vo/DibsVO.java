@@ -13,7 +13,9 @@ import lombok.Data;
 
 @Data
 public class DibsVO {
-	private int product_idx;
+	private int dibs_idx;
+	private String dibs_type;
+	private int type_num;
 	private String member_id;
 	private int dibs_check;
 }

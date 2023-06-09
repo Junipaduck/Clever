@@ -180,21 +180,31 @@
 	<select id="selectDibsCheck" resultType="com.itwillbs.clever.vo.DibsVO">
 	SELECT dibs_check
 		FROM dibs
-		WHERE product_idx = #{product_idx} AND member_id = #{member_id}; 
+		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{member_id}; 
 	</select>
 
 	<!-- 찜 추가 -->
 	<insert id="insertDibs">
+	<selectKey keyProperty="dibs_idx" resultType="int" order="BEFORE">
+	 			SELECT IFNULL(MAX(dibs_idx), 0) FROM dibs
+	</selectKey>
 	INSERT
 		INTO dibs
-		VALUES (#{product_idx},#{member_id},1); 
+		VALUES
+		(
+		#{dibs_idx} + 1
+		, #{dibs_type}
+		, #{type_num}
+		, #{member_id}
+		, 1
+		)
 	</insert>
 
 	<!-- 찜 삭제 -->
 	<delete id="deleteDibs">
 	DELETE
 		FROM dibs
-		WHERE product_idx = #{product_idx} AND member_id = #{member_id}; 
+		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{member_id}; 
 	</delete>
 	
 	
