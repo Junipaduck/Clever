@@ -96,6 +96,14 @@ public class AuctionService {
 		return mapper.dibsCount(auction_idx);
 	}
 
+	public int deleteAution(int auction_idx) {
+		return mapper.deleteAution(auction_idx);
+	}
+
+	public int deleteAutionFile(int auction_idx) {
+		return mapper.deleteAutionFile(auction_idx);
+	}
+
 	
 	
 	

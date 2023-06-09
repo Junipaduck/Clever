@@ -46,6 +46,12 @@ height: 90px;
 	margin-top: 100px;
 }
 </style>
+<script type="text/javascript">
+function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+</script>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -303,7 +309,7 @@ height: 90px;
                                 <p class="goods_title">${imminent.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${imminent.auction_final_price }</span>
+                                    <span class="goods_date_before">comma(${imminent.auction_final_price })</span>
                                 </div>
 	                                <script type="text/javascript">
 	                                	function getTime${imminent.auction_idx}() {
