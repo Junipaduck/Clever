@@ -85,6 +85,13 @@ public class BankController {
 		System.out.println("access_token : " + access_token);
 		System.out.println("user_seq_no : " + user_seq_no);
 		
+		String id = (String)session.getAttribute("sId");
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
 		if(access_token == null) {
 			model.addAttribute("msg", "계좌 인증 필수!");
