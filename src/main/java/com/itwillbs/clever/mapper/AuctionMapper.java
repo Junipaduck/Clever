@@ -46,4 +46,6 @@ public interface AuctionMapper {
 
 	int readCountUp(int auction_idx);
 
+	int dibsCount(int auction_idx);
+
 }

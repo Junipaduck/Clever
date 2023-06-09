@@ -184,9 +184,11 @@ public class AuctionController {
 		System.out.println("chatList!!!!!!!!!!!!!!! : " + logList);
 		System.out.println("logRoomIdx!!!!!!!!!!!!!!!! : " + logRoomIdx);
 		int readCount = auctionService.readCountUp(auction_idx);
+		int dibsCount = auctionService.dibsCount(auction_idx);
 		Map detailmap = auctionService.detailList(auction_idx);
 		String[] strArr = detailmap.get("auction_date").toString().split("T");
 		detailmap.put("date", strArr[0]);
+		detailmap.put("dibsCount", dibsCount);
 		model.addAttribute("detailmap", detailmap);
 		
 		

@@ -67,7 +67,7 @@
 		<jsp:include page="auction_header.jsp" />
 	</header>
     <!-- main_content 영역 -->
-    	<input type="hidden" id="inputInt" name="inputInt" value="0">
+    	<input type="hidden" id="inputInt" name="inputInt" value="${detailmap.auction_final_price }">
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
@@ -219,9 +219,9 @@
                             <div id="detail_content_info_mid">
                                 <p>
                                     <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
-                                    <span>0</span>
+                                    <span>${detailmap.dibsCount }</span>
                                 </p>
-                                <p>
+                                <p style="width: 80px;">
                                     <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
                                     <span>${detailmap.auction_readcount }</span>
                                 </p>
@@ -455,15 +455,15 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
-	        	<c:if test="${sessionScope.sId eq detailmap.member_id }">
-	        		<div class="btn_submit_area">
-				        <div class="inner_submit">
-				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-				            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
-				            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
-				        </div>
-			    	</div>
-	        	</c:if>
+       		<c:if test="${sessionScope.sId eq detailmap.member_id }">
+	       		<div class="btn_submit_area">
+			        <div class="inner_submit">
+			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
+			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
+			        </div>
+		    	</div>
+	    	</c:if>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -472,25 +472,20 @@
 <script type="text/javascript">
 
 	$(function() {
-// 		alert("${detailmap.auction_price }");
+		auctionStart();
 		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
+		
 	});
-	
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";
 	var auction_idx = "${param.auction_idx}";
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
-	var message = document.getElementById("price");
+	var message;
 	var checkPrice = false;
 	
 	var regex = /[^0-9]/g;
-	
-// 	alert("1번째 : " + userId);
-// 	alert("2번째 : " + auction_idx);
-// 	alert("3번째 : " + logList);
-// 	alert("4번째 : " + logRoom_idx);
 	
 	function inputNumberFormat(obj) {
 		
@@ -543,6 +538,8 @@
 		
 	}
 	
+	
+	
 // 	function auctionLog(){
 // 		location.href="auction_Log";
 // 	}
@@ -581,11 +578,9 @@
 // 	}
 // });
 
-document.getElementById("btnSend").addEventListener("click", sendMessage);
 
 //메세지 전송
 function sendMessage() {
-	
 	if(checkPrice==false) {
 		return;
 	}
@@ -677,25 +672,31 @@ chatSocket.onclose = function(e) {
 </script>
 <script type="text/javascript">
 $(function() {
-	auctionStart();
+// 	document.getElementById("btnSend").addEventListener("click", sendMessage);
+	$("#btnSend").on("click", function() {
+		sendMessage();
+	});
 });
 function auctionStart() {
 	var auction_start = new Date("${detailmap.auction_start}");
 	var auction_end = new Date("${detailmap.auction_end}");
 	var nowDate = new Date();
 	if(auction_start < nowDate && auction_end > nowDate){
-		$("#detail_content_info_state").append('<div style="height: 50px;">'
-				+ '<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\..*)\./g, \'$1\');"'
-				+ 'style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>'
+		$("#detail_content_info_state").append(
+				'<div style="height: 50px;">'
+				+ '<span style="font-size: 20px">· 입찰가 : </span>'
+				+ '<input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, \'$1\');" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">'
+				+ '&nbsp;'
+				+ '<span style="font-size: 20px">원</span>'
 				+ '</div>'
 				+ '<div>'
 				+ '<div class="container text-center detail_content_info_btn">'
 				+ '<div class="row g-2">'
 				+ '<div class="col-4" style="width: 50%">'
-				+ '<div class="p-3 info_btn2" onclick="auctionAddPrice(0.05);">현재 입찰 5% 가격</div>'
+				+ '<div class="p-3 info_btn2" onclick="auctionAddPrice(0.05)">현재 입찰 5% 가격</div>'
 				+ '</div>'
 				+ '<div class="col-4" style="width: 50%">'
-				+ '<div class="p-3 info_btn3" onclick="auctionAddPrice(0.1);">현재 입찰 10% 가격</div>'
+				+ '<div class="p-3 info_btn3" onclick="auctionAddPrice(0.1)">현재 입찰 10% 가격</div>'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
@@ -715,7 +716,7 @@ function auctionStart() {
 				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
 				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
 				+ '</div>'
-				+ '</c:if>	'
+				+ '</c:if>'	
 				+ '<c:if test="${result.dibs_check == 1}">'
 				+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
 				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
@@ -727,52 +728,54 @@ function auctionStart() {
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
-
 		);
 	} else if(auction_end < nowDate) {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
 	}
 	
+	/* 찜하기 AJAX 찜하기 버튼 누르면 상호작용 */
+	let url = window.location.href;
+	let product_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
+	
+	$(document).ready(function() {
+		 $(".dibs").on("click", function(){
+		 	$.ajax({
+		 		url : "dibsCheck",
+		 		type: 'GET',
+		 		data: {'type_num':product_idx, 'member_id':'${sessionScope.sId}', "dibs_type" : "auction"},
+		 		success:function(data){
+				
+		 			if(data==1){
+		 				alert("상품 찜 하셨습니다.");
+		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/hearton.png");
+		 				$('#dibsback').attr("style","background-color: #333333");
+		 				var result = confirm('찜목록으로 이동하시겠습니까?');
+		 				if (result) {
+		 					//yes
+		 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
+		 					location.href='myPage.me'; 
+		 	 			} 
+		 			}
+		 			else if(data == -1){
+		 				alert("로그인이 필요한 서비스입니다. ");
+		 				location.href='loginForm.me';
+		 			} 		 			
+		 			else {
+		 				alert("상품 찜 취소하셨습니다. ");
+		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/w_heart.svg");
+		 				$('#dibsback').attr("style","background-color: #CCCCCC");
+		 			}
+		 		},
+		 		error:function(error){
+		 			console.log(error);
+		 		}
+		 	});
+		 });
+	}); 
+	
+	 	message = document.getElementById("price");
+	
 }
-</script>
-<script type="text/javascript">
-let url = window.location.href;
-let auction_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
-$(document).ready(function() {
-	 $(".dibs").on("click", function(){
-	 	$.ajax({
-	 		url : "dibsCheck",
-	 		type: 'GET',
-	 		data: {'type_num':auction_idx, 'member_id':'${sessionScope.sId}', "dibs_type":''},
-	 		success:function(data){
-			
-	 			if(data==1){
-	 				alert("상품 찜 하셨습니다.");
-	 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/hearton.png");
-	 				$('#dibsback').attr("style","background-color: #333333");
-	 				var result = confirm('찜목록으로 이동하시겠습니까?');
-	 				if (result) {
-	 					//yes
-	 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
-	 					location.href='myPage.me'; 
-	 	 			} 
-	 			}
-	 			else if(data == -1){
-	 				alert("로그인이 필요한 서비스입니다. ");
-	 				location.href='loginForm.me';
-	 			} 		 			
-	 			else {
-	 				alert("상품 찜 취소하셨습니다. ");
-	 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/w_heart.svg");
-	 				$('#dibsback').attr("style","background-color: #CCCCCC");
-	 			}
-	 		},
-	 		error:function(error){
-	 			console.log(error);
-	 		}
-	 	});
-	 });
-});
 </script>
 	
 </body>

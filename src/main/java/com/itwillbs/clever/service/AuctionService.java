@@ -92,6 +92,10 @@ public class AuctionService {
 		return mapper.readCountUp(auction_idx);
 	}
 
+	public int dibsCount(int auction_idx) {
+		return mapper.dibsCount(auction_idx);
+	}
+
 	
 	
 	
