@@ -254,7 +254,7 @@ window.onload = function(){
 						        <td class="col2">
 						        	<c:choose>
 						        		<c:when test="${member.account_auth eq 'Y' }">
-									        <input class='accButton' type="button" value="계좌 관리" id="accButton" onclick="location.href='bank_userInfo'">
+									        <input class='accButton' type="button" value="계좌 관리" id="accButton" onclick="location.href='bank_memberInfo'">
 									        계좌 인증 완료
 						        		</c:when>
 						        		<c:otherwise>
