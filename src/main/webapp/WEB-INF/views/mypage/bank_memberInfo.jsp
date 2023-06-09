@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 수정</title>
+<title>계좌 목록 조회</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -152,23 +152,6 @@
 	<header>
 		<jsp:include page="../inc/header.jsp" />
 	</header>
-	
-<!-- 주소 API 스크립트 -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-window.onload = function(){
-    document.getElementById("member_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("member_address").value = data.address; // 주소 넣기
-//                 document.querySelector("input[name=member_address2]").focus(); //상세입력 포커싱
-            }
-        }).open();
-    });
-}
-</script>	
-
 
 
 	<!-- 중간 작업공간 시작 ============================================================== -->
@@ -185,94 +168,60 @@ window.onload = function(){
 <!-- 				        </div> -->
 <!-- 				     </header> -->
 		
-					
-					<form method="post" action="memberModifyPro.me">
+					<h1>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${userInfo.user_seq_no })</h1>
 				      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
 					    <div class="insert">
 					    
 					    <table>
-						    <tr>
-						        <td class="col1">이름</td>
-						        <td class="col2"><input type="text" id="member_name" name="member_name" value="${member.member_name }" maxlength="5" readonly="readonly"></td>
-						    </tr>
-						    <tr>
-						        <td class="col1">아이디</td>
-						        <td class="col2">
-						            <input type="text" id="member_id" name="member_id" maxlength="10" value="${member.member_id }" readonly="readonly">
-						        </td>
-						    </tr>
-						    <tr>
-						        <td class="col1">기존 비밀번호</td>
-						        <td class="col2">
-						            <input type="password" id="member_passwd" name="member_passwd" maxlength="16"placeholder="********" >
-						            <p>비밀번호 변경하기를 원하시는 경우 <span class="num">비밀번호 확인란에 새 비밀번호</span>를 입력해주세요.</p>
-						        </td>
-						    </tr>
-						    <tr>
-						        <td class="col1">비밀번호 확인</td>
-						        <td class="col2"><input type="password" id="modifypasswd" name="modifypasswd" maxlength="16"></td>
-						    </tr>
-						    <tr>
-						        <td class="col1">이메일</td>
-						        <td class="col2">
-						            <input type="text" name="member_email" id="member_email" value="${member.member_email }" readonly="readonly">
-						        </td>
-						    </tr>
-						     <tr>
-						        <td class="col1">휴대폰 번호</td>
-						        <td class="col2">
-							        <input type="text" id="member_phone" name="member_phone" value="${member.member_phone }">
-						        </td>
-						    </tr>
-						    <tr>
-						        <td class="col1">생년월일</td>
-						        <td class="col2">
-						        	<input type="text" id="member_birth" name="member_birth" value="${member.member_birth }" readonly="readonly"> <span class="a"> - </span><input type="text" id="member_birth2" name="member_birth2" value="${member.member_birth2 }" style="width: 30px;" readonly="readonly">
-						        </td>
-						    </tr>
-						    <tr>
-						        <td class="col1">주소</td>
-						        <td class="col2"><input type="text" id="member_address" name="member_address" placeholder="도로명주소 검색" value="${member.member_address }" style="width: 400px;"><span class="a">
-						        <p> 주소가 변경 되었다면 <span class="num"> 주소칸을 클릭해서 입력</span>해주세요.</p>
-						        </td>
-						    </tr>
-						    <tr>
-						        <td class="col1">관심카테고리</td>
-						        <td class="col2"><select name="member_interest" id="member_interest" >
-						            <option value="${member.member_interest }" selected>${member.member_interest }</option>
-						            <option value="의류/잡화">의류/잡화</option>
-						            <option value="디지털/가전">디지털/가전</option>
-						            <option value="도서/티켓/문구">도서/티켓/문구</option>
-						            <option value="뷰티/미용">뷰티/미용</option>
-						            <option value="식품">식품</option>
-						            <option value="반려동물용품">반려동물용품</option>
-						            <option value="기타">기타</option>
-						        </select>
-						    </tr>
-						     <tr>
-						        <td class="col1">계좌</td>
-						        <td class="col2">
-						        	<c:choose>
-						        		<c:when test="${member.account_auth eq 'Y' }">
-									        <input class='accButton' type="button" value="계좌 관리" id="accButton" onclick="location.href='bank_memberInfo'">
-									        계좌 인증 완료
-						        		</c:when>
-						        		<c:otherwise>
-									        <input class='accButton' type="button" value="계좌 인증" id="btnAccountAuth">
-									        (계좌 인증 과정이 필요합니다.)
-						        		</c:otherwise>
-						        	</c:choose>
-						        </td>
-						    </tr>
+						    <c:forEach items="${userInfo.res_list }" var="account">
+							    <tr>
+							        <td class="col1">계좌별칭</td>
+							        <td class="col2"><input type="text" value="${account.account_alias }" readonly="readonly"></td>
+							    </tr>
+							    <tr>
+							        <td class="col1">계좌번호</td>
+							        <td class="col2">
+										<input type="text" value="${account.account_num_masked }" readonly="readonly">							        
+									</td>
+							    </tr>
+							    <tr>
+							        <td class="col1">은행명</td>
+							        <td class="col2">
+										<input type="text" value="${account.bank_name }(${account.bank_code_std })" readonly="readonly">							        
+							        </td>
+							    </tr>
+							    <tr>
+							        <td class="col1">예금주명</td>
+							        <td class="col2">
+										<input type="text" value="${account.account_holder_name }" readonly="readonly">							        
+							        </td>
+							    </tr>
+							     <tr>
+							        <td class="col1">계좌상태</td>
+							        <td class="col2">
+										<input type="text" value="" readonly="readonly">							        
+							        </td>
+							    </tr>
+							    <tr>
+							        <td class="col1">핀테크이용번호</td>
+							        <td class="col2">
+										<input type="text" value="${account.fintech_use_num }" readonly="readonly">							        
+							        </td>
+							    </tr>
+						    </c:forEach>
 					    </table>
 					    
 					  </div>
-					 
 					  <div class="create">
-					        <input class="but4" type="submit" value="수정">
+					  		<form action="bank_accountDetail" method="post">
+		  						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
+								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+								<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
+								<input type="hidden" name="user_name" value="${userInfo.user_name }">
+					        	<input class="but4" type="submit" value="계좌상세정보">
+					  		</form>
 					  </div>
 					  </div>
-				  </form>
 				  
 				  
 			   </div> <!-- 그리드 중간부분 끝 -->
