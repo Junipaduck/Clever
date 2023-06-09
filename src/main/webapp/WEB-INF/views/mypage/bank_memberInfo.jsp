@@ -23,129 +23,31 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
-
-
-
+<!-- customer_center 외부 css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/board_list.jo112.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/footer.1.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/unit_csboard_top2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/faq.css">
+ 
  <style type="text/css">
- 
-      div.container{
-    }
- 
-      div.insert{
-    }
- 
-    div.create{
-    width: 800px;
-    text-align: center;
-    padding: 30px;
-/*     border-bottom: 1px solid black; */
-    margin: auto;
-    }
- 
-    table{
-    height: 300px;
-    width: 900px;
-    border-top: 3px solid black;
-    margin-right: auto;
-    margin-left: auto;
-    }
- 
-    td{
-    border-bottom: 1px dotted black;
-    }
- 
-    caption{
-    text-align: left;
-    }
- 
-    .col1 {
-    background-color: #e8e8e8;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
-    font-size: 0.8em;
-    }
- 
-    .col2 {
-    text-align: left;
-    padding: 5px;
-    }
- 
-    .but1 {
-    height: 25px;
-    width: 80px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but2 {
-    height: 27px;
-    width: 120px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but3 {
-    height: 35px;
-    width: 150px;
-    background-color: #2445f0;
-    border: 2px solid #2445f0;
-    }
- 
-    .but4{
+ .but4{
     height: 35px;
     width: 150px;
     background-color: white;
     border: 2px solid black;
-    }
-    
-    .but1:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
+    margin:auto;
+    display: block;
+ }
  
-    .but2:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
- 
-    .but3:hover {
+ .but4:hover {
     background-color: #2445f0;
     color: white;
     border: 2px solid #2445f0;
     }
- 
-    .but4:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
-    
-    .num{
-    color: red;
-    }
- 
- 	.accButton button {
-    padding: 0px 0.5rem;
-    height: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: rgb(255, 80, 88);
-    background-color: rgb(244, 244, 250);
-    border: none;
-    outline: none;
-	}
-	.accButton button.active{
-    color: #fff;
-    background: rgb(255, 80, 88);
- 	}
-  </style>
-  
+ </style>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -155,88 +57,72 @@
 
 
 	<!-- 중간 작업공간 시작 ============================================================== -->
-	<div id="">
-	
-            <div class="container text-center">
-			  <div class="row">
-			    <div class="col"></div>
-			    <div class="col"><!-- 그리드 중간부분 시작 -->
-			    
-<!-- 				     <header class="header" role="banner" > -->
-<!-- 				        <div class="header_inner"> -->
-<%-- 				            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px;"></a> --%>
-<!-- 				        </div> -->
-<!-- 				     </header> -->
-		
-					<h1>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${userInfo.user_seq_no })</h1>
-				      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-					    <div class="insert">
-					    
-					    <table>
-						    <c:forEach items="${userInfo.res_list }" var="account">
-							    <tr>
-							        <td class="col1">계좌별칭</td>
-							        <td class="col2"><input type="text" value="${account.account_alias }" readonly="readonly"></td>
-							    </tr>
-							    <tr>
-							        <td class="col1">계좌번호</td>
-							        <td class="col2">
-										<input type="text" value="${account.account_num_masked }" readonly="readonly">							        
-									</td>
-							    </tr>
-							    <tr>
-							        <td class="col1">은행명</td>
-							        <td class="col2">
-										<input type="text" value="${account.bank_name }(${account.bank_code_std })" readonly="readonly">							        
-							        </td>
-							    </tr>
-							    <tr>
-							        <td class="col1">예금주명</td>
-							        <td class="col2">
-										<input type="text" value="${account.account_holder_name }" readonly="readonly">							        
-							        </td>
-							    </tr>
-							     <tr>
-							        <td class="col1">계좌상태</td>
-							        <td class="col2">
-										<input type="text" value="" readonly="readonly">							        
-							        </td>
-							    </tr>
-							    <tr>
-							        <td class="col1">핀테크이용번호</td>
-							        <td class="col2">
-										<input type="text" value="${account.fintech_use_num }" readonly="readonly">							        
-							        </td>
-							    </tr>
-						    </c:forEach>
-					    </table>
-					    
-					  </div>
-					  <div class="create">
-					  		<form action="bank_accountDetail" method="post">
-		  						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
-								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
-								<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
-								<input type="hidden" name="user_name" value="${userInfo.user_name }">
-					        	<input class="but4" type="submit" value="계좌상세정보">
-					  		</form>
-					  </div>
-					  </div>
-				  
-				  
-			   </div> <!-- 그리드 중간부분 끝 -->
-		    <div class="col"></div>
-		  </div>
-		</div>
-    </div>
-				  		
+	<div class="container text-center">
+	<h1>　</h1>
+	</div>
+	<div class="container text-center">
+	<h1>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${userInfo.user_seq_no })</h1>
+	</div>
+			
+	<div class="bbs-table-list">
+						<!-- 자주묻는 질문 시작 -->
+						<div id="faqWrap">
+							<div class="page-body">
+								<div id="faqTable">
+									<table >
+										<thead>
+											<tr>
+												<th scope="col">
+													<div class="tb-center">계좌 이름</div>
+												</th>
+												<th scope="col">
+													<div class="tb-center">계좌번호</div>
+												</th>
+												<th scope="col">
+													<div class="tb-center">은행명</div>
+												</th>
+												<th scope="col">
+													<div class="tb-center">예금주 명</div>
+												</th>
+												<th scope="col">
+													<div class="tb-center"></div>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${userInfo.res_list }" var="account">
+												<tr uid="6">
+													<td>
+														<div class="tb-center"><input type="text" value="${account.account_alias }" readonly="readonly" style="text-align:center; border:none;"></div>
+													</td>
+													<td>
+														<div class="tb-center"><input type="text" value="${account.account_num_masked }" readonly="readonly" style="text-align:center; border:none;">	</div>
+													</td>
+													<td>
+														<div class="tb-center"><input type="text" value="${account.bank_name }(${account.bank_code_std })" readonly="readonly" style="text-align:center; border:none;"></div>
+													</td>
+													<td>
+														<div class="tb-center"><input type="text" value="${account.account_holder_name }" readonly="readonly" style="text-align:center; border:none;">	</div>
+													</td>
+													<td>
+														<form action="Member_accountDetail" method="post">
+														  	<input type="hidden" name="access_token" value="${sessionScope.access_token }">
+															<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+															<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
+															<input type="hidden" name="user_name" value="${userInfo.user_name }">
+															<input class="but4" type="submit" value="계좌상세정보">
+														</form>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+				</div>
 
 	<!-- 중간 작업공간 끝 ============================================================== -->
-	
-	
-	
-	
-	
 	
 	<!-- 푸터 시작 -->
 	<footer>
@@ -246,32 +132,5 @@
 	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-	
-	<!-- select 중복값 제거를 위한 script 상단 스크립트에 줄 시 적용안됨 -->
-	<script>
-	var foundedinputs = [];
-	$("select[name=member_interest] option").each(function() {
-  		if($.inArray(this.value, foundedinputs) != -1) $(this).remove();
-  		foundedinputs.push(this.value);
-	});
-	// 	$("#member_interest option[value='${member.member_interest }']").remove();
-	</script>	
-	
-		<!-- 계좌인증 -->
-	<script type="text/javascript">
-		$(function() {
-			$("#btnAccountAuth").on("click", function() {
-				let authWindow = window.open("about:blank", "authWindow", "width=500, height=700");
-				authWindow.location = "https://testapi.openbanking.or.kr/oauth/2.0/authorize"
-					+ "?response_type=code"
-					+ "&client_id=${client_id}"
-					+ "&redirect_uri=http://localhost:8082/clever/callback" // 나중에 callback 주소 변경 요청
-					+ "&scope=login inquiry transfer oob"
-					+ "&state=12345678901234567890123456789012"
-					+ "&auth_type=0";
-				// 산업은행 - 222123456789 & 2팀 계좌인증 테스트 
-			});
-		});
-	</script>
 </body>
 </html>
