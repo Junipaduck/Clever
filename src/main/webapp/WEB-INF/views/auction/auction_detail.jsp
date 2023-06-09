@@ -476,8 +476,9 @@
 	var auction_idx = "${param.auction_idx}";
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
-	var message;
+	var message; //메시지 객체 들고오는 변수
 	var checkPrice = false;
+
 	
 	var regex = /[^0-9]/g;
 	
@@ -507,10 +508,9 @@
 		
 		var currentPrice = document.getElementById("currentPrice").innerText; 
 		var regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
-		
 		var priceInputInt = parseInt(uncomma(priceInput));  //현재 입력한 값 인트타입 변환
 		
-		if(regexPrice>priceInputInt) {
+		if(regexPrice>=priceInputInt) {
 			alert("현재 가격보다 높게 입력하세요 !!");
 			return;
 		}
@@ -524,11 +524,14 @@
 	
 	function auctionAddPrice(percent) {
 		
-		var priceInput = parseInt(uncomma($("#inputInt").val()));
-		priceInput += priceInput * percent;
-		priceInput = Math.floor(priceInput/10) * 10; //10원 단위 짜르기
-		
-		$('#price').val(comma(priceInput));
+		var priceInput;
+		var currentPrice = document.getElementById("currentPrice").innerText; 
+		var regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
+ 		alert(regexPrice);
+ 		regexPrice += regexPrice * percent;
+		alert(regexPrice);
+		regexPrice = Math.floor(regexPrice/10) * 10; //10원 단위 짜르기
+		$('#price').val(comma(regexPrice));
 		
 	}
 	
@@ -575,6 +578,9 @@
 
 //메세지 전송
 function sendMessage() {
+	
+	alert(checkPrice);
+	
 	if(checkPrice==false) {
 		return;
 	}
@@ -766,8 +772,8 @@ function auctionStart() {
 		 	});
 		 });
 	}); 
-	
-	 	message = document.getElementById("price");
+		
+ 	message = document.getElementById("price");
 	
 }
 </script>
