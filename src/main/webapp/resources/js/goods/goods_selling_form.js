@@ -1230,7 +1230,7 @@ $(document).ready(function ( ) {
 });
 
 function setImages(event){
-    let cnt = document.querySelector(".image_num").innerText;
+    let cnt = 0;
     	const currentInputName = event.target.name;
 		  const currentInput = document.getElementsByName(currentInputName)[0];
 //		  alert(currentInputName);
@@ -1240,8 +1240,8 @@ function setImages(event){
 //		
 		  const nextInputName = "image" + (parseInt(currentInputName.substring(5)) + 1);
 		  const nextInput = document.getElementsByName(nextInputName)[0];
-		  alert(nextInputName);
-		  alert(nextInput);
+//		  alert(nextInputName);
+//		  alert(nextInput);
 //		
 		  if (nextInput) {
 		    nextInput.removeAttribute("hidden");

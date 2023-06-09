@@ -48,4 +48,8 @@ public interface AuctionMapper {
 
 	int dibsCount(int auction_idx);
 
+	int deleteAution(int auction_idx);
+
+	int deleteAutionFile(int auction_idx);
+
 }

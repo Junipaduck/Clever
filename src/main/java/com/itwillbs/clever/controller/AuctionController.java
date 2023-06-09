@@ -265,13 +265,13 @@ public class AuctionController {
 	
 	@PostMapping(value = "auction_upload_pro")
 	public String auction_upload_pro(@RequestParam Map<String, String> map
-									, @RequestParam("auction_images") MultipartFile[] file
-//									, @RequestParam("auction_images1") MultipartFile file1
-//									, @RequestParam("auction_images2") MultipartFile file2
-//									, @RequestParam("auction_images3") MultipartFile file3
-//									, @RequestParam("auction_images4") MultipartFile file4
+//									, @RequestParam("auction_images") MultipartFile[] file
+									, @RequestParam("image1") MultipartFile file1
+									, @RequestParam("image2") MultipartFile file2
+									, @RequestParam("image3") MultipartFile file3
+									, @RequestParam("image4") MultipartFile file4
 									, HttpSession session, Model model) {
-//		MultipartFile[] file = {file1,file2,file3,file4};
+		MultipartFile[] file = {file1,file2,file3,file4};
 //		System.out.println(file);
 	
 		
@@ -286,25 +286,25 @@ public class AuctionController {
 		map.put("auction_start", map.get("auction_start_date") + " " + map.get("auction_start_time"));
 		map.put("auction_end", map.get("auction_end_date") + " " + map.get("auction_end_time"));
 		System.out.println(map);
-//		int insertAuction = auctionService.insertAutcion(map,id);
-//		// 종료
-//		
-//		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
-//		Map<String, Object> paramMap = new HashMap<String, Object>();
-//		paramMap.put("file_div", "auction");
-//		paramMap.put("file_num", auctionService.selectMax());
-//		upload.upload(file, session, paramMap);
-//		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
-//		
-//		if(insertAuction > 0) {
-//			model.addAttribute("msg", "경매 등록 성공!");
-//			model.addAttribute("target", "auction");
-//			return "success";
-//		} else {
-//			model.addAttribute("msg", "경매 등록 실패!");
-//			return "fail_back";
-//		}
-		return "";
+		int insertAuction = auctionService.insertAutcion(map,id);
+		// 종료
+		
+		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("file_div", "auction");
+		paramMap.put("file_num", auctionService.selectMax());
+		upload.upload(file, session, paramMap);
+		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
+		
+		if(insertAuction > 0) {
+			model.addAttribute("msg", "경매 등록 성공!");
+			model.addAttribute("target", "auction");
+			return "success";
+		} else {
+			model.addAttribute("msg", "경매 등록 실패!");
+			return "fail_back";
+		}
+//		return "";
 	}
 	
 	@GetMapping(value = "auction_management")
@@ -320,6 +320,21 @@ public class AuctionController {
 	@GetMapping(value = "auction_buy")
 	public String auction_buy() {
 		return "auction/auction_buy";
+	}
+	
+	@GetMapping(value = "auction_delete")
+	public String auction_delete(@RequestParam int auction_idx, Model model) {
+		int deleteCnt = auctionService.deleteAution(auction_idx);
+		int deleteFileCnt = auctionService.deleteAutionFile(auction_idx);
+		
+		if(deleteCnt > 0) {
+			model.addAttribute("msg", "게시글 삭제 성공!");
+			model.addAttribute("target", "redirect://auction");
+			return "success";
+		} else {
+			model.addAttribute("msg", "게시글 삭제에 실패했습니다.");
+			return "fail_back";
+		}
 	}
 	
 	

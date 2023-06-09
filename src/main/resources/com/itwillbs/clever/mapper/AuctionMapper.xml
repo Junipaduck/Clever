@@ -21,7 +21,6 @@
 				, #{map.auction_product_status }
 				, #{map.auction_start }
 				, #{map.auction_end	}
-				, #{map.auction_tag	}
 				, #{map.auction_address	}
 				, 'N'
 				, #{map.auction_price }
@@ -142,7 +141,6 @@
 				, auction_product_status = #{auction_product_status}
 				, auction_start = #{auction_start}
 				, auction_end = #{auction_end}
-				, auction_tag = #{auction_tag}
 				, auction_address = #{auction_address}
 				, auction_content = #{auction_content}
 					WHERE auction_idx = #{auction_idx}
@@ -155,5 +153,13 @@
 	<select id="dibsCount" resultType="int"> 
 	SELECT COUNT(*) FROM dibs d WHERE dibs_type = 'auction' AND type_num = #{auction_idx};
 	</select>
+	
+	<delete id="deleteAution">
+	DELETE FROM auction WHERE auction_idx = #{auction_idx}
+	</delete>
+	
+	<delete id="deleteAutionFile">
+	DELETE FROM file WHERE file_num = #{auction_idx} AND file_div = 'auction'
+	</delete>
 	
 </mapper>

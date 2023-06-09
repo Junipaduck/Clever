@@ -525,25 +525,6 @@ function startEndDate() {
                             maxlength="2000" oninput="countInfoLength(event)">${detailmap.auction_content }</textarea>
                         </div>
                     </div>
-                    <div class="goods_tag_area">
-                        <p>연관태그</p>
-                        <div>
-                            <div class="goods_tag">
-                                <div class="tag_button hidden" onclick="tagDelete(event);">
-                                    <button onclick="return false;" name="auction_tag2" value="태그1">#태그1</button>
-                                    <button onclick="return false;" name="auction_tag3" ><i class="fas fa-times"></i></button>
-                                </div>
-                                <input type="text" name="auction_tag" id="tag" 
-                                    placeholder="연관태그를 입력해주세요. (최대5개)"
-                                >
-                            </div>
-                            <p>
-                                - 태그는 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있습니다.<br>
-                                - 태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.<br>
-                                - 상품과 직접 관련이 없는 다른 상품명, 브랜드, 스팸성 키워드 등을 입력하면 노출이 중단되거나 상품이 삭제될 수 있습니다.<br>
-                            </p>
-                        </div>
-                    </div>
                     <!--번개페이 뻐른 판매-->
                     <div class="fast_selling_area">
                         <h2>빠른 판매</h2>

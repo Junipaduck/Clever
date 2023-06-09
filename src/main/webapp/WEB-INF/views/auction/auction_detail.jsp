@@ -164,7 +164,7 @@
 									<c:set var="index" value="${fn:indexOf(fileList[0].file_name, '_') }" />
 									<c:set var="file_name" value="${fn:substring(fileList[0].file_name, index + 1, length) }" />
 				                            <div class="carousel-item active">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100" style="height: 488px">
 				                            </div>
 				                   <c:if test="${fn:length(fileList) > 1 }">
 				                   	<c:forEach items="${fileList }" var="file" begin="1">
@@ -367,12 +367,6 @@
                                                 <p>${detailmap.auction_Lcategory } <br>↓<br> ${detailmap.auction_Mcategory } <br>↓<br> ${detailmap.auction_Scategory }</p>
                                             </div>
                                         </div>
-                                        <div class="col-4">
-                                            <div class="p-3 detailed_information_tag">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="상품태그"> <span>상품태그</span>
-                                                <p>#최저가 #이벤트중</p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -460,7 +454,7 @@
 			        <div class="inner_submit">
 			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
 			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
-			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
+			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_delete?auction_idx=${detailmap.auction_idx}'">
 			        </div>
 		    	</div>
 	    	</c:if>
