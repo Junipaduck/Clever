@@ -51,7 +51,7 @@
 		 	$.ajax({
 		 		url : "dibsCheck",
 		 		type: 'GET',
-		 		data: {'product_idx':product_idx, 'member_id':'${sessionScope.sId}'},
+		 		data: {'type_num':product_idx, 'member_id':'${sessionScope.sId}', "dibs_type" : "product"},
 		 		success:function(data){
 				
 		 			if(data==1){

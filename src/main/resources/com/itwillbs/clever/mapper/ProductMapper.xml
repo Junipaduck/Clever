@@ -180,7 +180,7 @@
 	<select id="selectDibsCheck" resultType="com.itwillbs.clever.vo.DibsVO">
 	SELECT dibs_check
 		FROM dibs
-		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{member_id}; 
+		WHERE dibs_type = #{dibs_type} AND type_num = #{type_num} AND member_id = #{member_id}; 
 	</select>
 
 	<!-- 찜 추가 -->
@@ -204,7 +204,7 @@
 	<delete id="deleteDibs">
 	DELETE
 		FROM dibs
-		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{member_id}; 
+		WHERE dibs_type = #{dibs_type} AND type_num = #{type_num} AND member_id = #{member_id}; 
 	</delete>
 	
 	

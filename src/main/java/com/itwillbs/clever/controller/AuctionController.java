@@ -36,6 +36,9 @@ public class AuctionController {
 	private AuctionLogService auctionLogService;
 	
 	@Autowired
+	private ProductService productService;
+	
+	@Autowired
 	FileUpload upload;
 	
 	@GetMapping(value = "auction")
@@ -185,6 +188,22 @@ public class AuctionController {
 		String[] strArr = detailmap.get("auction_date").toString().split("T");
 		detailmap.put("date", strArr[0]);
 		model.addAttribute("detailmap", detailmap);
+		
+		
+		// 찜하기
+		DibsVO dibs = new DibsVO();
+		dibs.setDibs_type("product");
+		dibs.setType_num(auction_idx);
+		dibs.setMember_id(sId);		
+		
+		DibsVO dibsCheck = productService.selectDibsCheck(dibs);
+		
+		if(dibsCheck != null) {
+		} else {
+			dibsCheck = new DibsVO();
+			dibsCheck.setDibs_check(0);
+		} 
+		model.addAttribute("result", dibsCheck);
 		
 		return "auction/auction_detail";
 	}

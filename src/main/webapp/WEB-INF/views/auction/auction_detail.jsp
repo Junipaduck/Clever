@@ -455,15 +455,15 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
-       		<c:if test="${sessionScope.sId eq detailmap.member_id }">
-	       		<div class="btn_submit_area">
-			        <div class="inner_submit">
-			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
-			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
-			        </div>
-		    	</div>
-	    	</c:if>
+	        	<c:if test="${sessionScope.sId eq detailmap.member_id }">
+	        		<div class="btn_submit_area">
+				        <div class="inner_submit">
+				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+				            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
+				            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'">
+				        </div>
+			    	</div>
+	        	</c:if>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -685,7 +685,7 @@ function auctionStart() {
 	var nowDate = new Date();
 	if(auction_start < nowDate && auction_end > nowDate){
 		$("#detail_content_info_state").append('<div style="height: 50px;">'
-				+ '<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\./g, \'$1\');"'
+				+ '<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\..*)\./g, \'$1\');"'
 				+ 'style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>'
 				+ '</div>'
 				+ '<div>'
@@ -709,17 +709,70 @@ function auctionStart() {
 				+ '<div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>'
 				+ '</div>'
 				+ '<div class="col-4">'
-				+ '<div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>'
+				+ '<c:if test="${result.dibs_check != null }">'
+				+ '<a class="dibs">'
+				+ '<c:if test="${result.dibs_check == 0}">'
+				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
+				+ '</div>'
+				+ '</c:if>	'
+				+ '<c:if test="${result.dibs_check == 1}">'
+				+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
+				+ '</div>'
+				+ '</c:if>'
+				+ '</a>'
+				+ '</c:if>'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
+
 		);
 	} else if(auction_end < nowDate) {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
 	}
 	
 }
+</script>
+<script type="text/javascript">
+let url = window.location.href;
+let auction_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
+$(document).ready(function() {
+	 $(".dibs").on("click", function(){
+	 	$.ajax({
+	 		url : "dibsCheck",
+	 		type: 'GET',
+	 		data: {'type_num':auction_idx, 'member_id':'${sessionScope.sId}', "dibs_type":''},
+	 		success:function(data){
+			
+	 			if(data==1){
+	 				alert("상품 찜 하셨습니다.");
+	 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/hearton.png");
+	 				$('#dibsback').attr("style","background-color: #333333");
+	 				var result = confirm('찜목록으로 이동하시겠습니까?');
+	 				if (result) {
+	 					//yes
+	 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
+	 					location.href='myPage.me'; 
+	 	 			} 
+	 			}
+	 			else if(data == -1){
+	 				alert("로그인이 필요한 서비스입니다. ");
+	 				location.href='loginForm.me';
+	 			} 		 			
+	 			else {
+	 				alert("상품 찜 취소하셨습니다. ");
+	 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/w_heart.svg");
+	 				$('#dibsback').attr("style","background-color: #CCCCCC");
+	 			}
+	 		},
+	 		error:function(error){
+	 			console.log(error);
+	 		}
+	 	});
+	 });
+});
 </script>
 	
 </body>

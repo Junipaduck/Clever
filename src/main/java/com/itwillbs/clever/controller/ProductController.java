@@ -127,7 +127,8 @@ public class ProductController {
 		} else {
 			dibsCheck = new DibsVO();
 			dibsCheck.setDibs_check(0);
-		} model.addAttribute("result", dibsCheck);
+		} 
+		model.addAttribute("result", dibsCheck);
 		
 		return "product/product_detail";
 	}
@@ -135,8 +136,8 @@ public class ProductController {
 	// 찜하기 상호작용 ajax 
 		@ResponseBody
 		@GetMapping("/dibsCheck")
-		public int DibsCheck(int product_idx, String member_id , HttpSession session, Model model) {
-						
+		public int DibsCheck(int type_num, String member_id , HttpSession session, Model model, String dibs_type) {
+			System.out.println("시발아!" + dibs_type);
 			int result = -1;
 			String sId = (String)session.getAttribute("sId");
 			if(sId == null) {
@@ -145,8 +146,8 @@ public class ProductController {
 		
 			// 객체 생성 및 값 세팅 후 찜하기 또는 삭제 판별		
 			DibsVO like = new DibsVO();
-			like.setDibs_type("product");
-			like.setType_num(product_idx);
+			like.setDibs_type(dibs_type);
+			like.setType_num(type_num);
 			like.setMember_id(sId);
 					
 			DibsVO dibsCheck = productService.selectDibsCheck(like);
