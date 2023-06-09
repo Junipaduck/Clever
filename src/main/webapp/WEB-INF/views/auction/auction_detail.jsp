@@ -189,7 +189,6 @@
                         </div>
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
-                            <hr>
                             <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_final_price } 원</span></p>
                             <script type="text/javascript">
 	                                	function getTime() {
@@ -224,11 +223,11 @@
                                 </p>
                                 <p>
                                     <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
-                                    <span>0</span>
+                                    <span>${detailmap.auction_readcount }</span>
                                 </p>
-                                <p>
+                                <p style="width: 130px;">
                                     <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="지난 시간">
-                                    <span>0일 전</span>
+                                    <span>${detailmap.date }</span>
                                 </p>
                                 <p>
                                     <img src="${pageContext.request.contextPath }/resources/images/goods/report.png" alt="신고">
@@ -249,36 +248,9 @@
                                     <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소"> ${detailmap.auction_address }</span>
                                 </p>
                             </div>
-                            <div style="height: 50px;">
-                            	<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
-                            	style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>
-                            </div>
-                            <div>
-                                <div class="container text-center detail_content_info_btn">
-                                    <div class="row g-2">
-                                    	<div class="col-4" style="width: 50%">
-                                            <div class="p-3 info_btn2" onclick="auctionAddPrice(0.05);">현재 입찰 5% 가격</div>
-                                        </div>
-                                    	<div class="col-4" style="width: 50%">
-                                            <div class="p-3 info_btn3" onclick="auctionAddPrice(0.1);">현재 입찰 10% 가격</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container text-center detail_content_info_btn" style="margin-top: 20px ">
-                                <div class="row g-2">
-                                	<div class="col-4">
-                                        <div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>
-                                    </div>
-                                	<div class="col-4">
-                                        <div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <jsp:useBean id="now" class="java.util.Date" />
+							<fmt:formatDate value="${now}" type="time" var="today" />
+<%-- 							<fmt:parseDate value="" var="auction_start" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
                         </div>
                     </div>
                 </div>
@@ -286,14 +258,8 @@
             <!-- // detail_content -->
 
             <!-- related_goods -->
-            <div id="related_goods" style="margin-top: 40px">
+            <div id="related_goods" style="margin-top: 150px">
                 <div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
                     <h3>연관 상품</h3>
                     <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
                 </div>
@@ -709,7 +675,52 @@ chatSocket.onclose = function(e) {
 }
 
 </script>
+<script type="text/javascript">
+$(function() {
+	auctionStart();
+});
+function auctionStart() {
+	var auction_start = new Date("${detailmap.auction_start}");
+	var auction_end = new Date("${detailmap.auction_end}");
+	var nowDate = new Date();
+	if(auction_start < nowDate && auction_end > nowDate){
+		$("#detail_content_info_state").append('<div style="height: 50px;">'
+				+ '<span style="font-size: 20px">· 입찰가 : </span><input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*)\./g, \'$1\');"'
+				+ 'style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">&nbsp;<span style="font-size: 20px">원</span>'
+				+ '</div>'
+				+ '<div>'
+				+ '<div class="container text-center detail_content_info_btn">'
+				+ '<div class="row g-2">'
+				+ '<div class="col-4" style="width: 50%">'
+				+ '<div class="p-3 info_btn2" onclick="auctionAddPrice(0.05);">현재 입찰 5% 가격</div>'
+				+ '</div>'
+				+ '<div class="col-4" style="width: 50%">'
+				+ '<div class="p-3 info_btn3" onclick="auctionAddPrice(0.1);">현재 입찰 10% 가격</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div class="container text-center detail_content_info_btn" style="margin-top: 20px ">'
+				+ '<div class="row g-2">'
+				+ '<div class="col-4">'
+				+ '<div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>'
+				+ '</div>'
+				+ '<div class="col-4">'
+				+ '<div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>'
+				+ '</div>'
+				+ '<div class="col-4">'
+				+ '<div class="p-3 info_btn1">관심등록 &nbsp; <span>0</span>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+		);
+	} else if(auction_end < nowDate) {
+		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
+	}
 	
+}
+</script>
 	
 </body>
 </html>

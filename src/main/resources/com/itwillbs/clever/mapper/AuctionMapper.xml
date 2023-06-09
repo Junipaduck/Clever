@@ -148,4 +148,8 @@
 					WHERE auction_idx = #{auction_idx}
 	</update>
 	
+	<update id="readCountUp">
+		UPDATE auction SET auction_readcount = auction_readcount + 1 WHERE auction_idx = #{auction_idx}
+	</update>
+	
 </mapper>

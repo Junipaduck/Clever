@@ -37,7 +37,6 @@ public class AuctionService {
 		return mapper.selectFiles();
 	}
 	public Map<String, String> detailList(int auction_idx) {
-		
 		return mapper.selectDetailList(auction_idx);
 	}
 
@@ -87,6 +86,10 @@ public class AuctionService {
 
 	public int detailModify(Map<String, String> map) {
 		return mapper.detailModify(map);
+	}
+
+	public int readCountUp(int auction_idx) {
+		return mapper.readCountUp(auction_idx);
 	}
 
 	

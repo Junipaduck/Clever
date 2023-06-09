@@ -117,7 +117,8 @@ public class ProductController {
 		// 찜하기
 		String sId = (String)session.getAttribute("sId");
 		DibsVO dibs = new DibsVO();
-		dibs.setProduct_idx(product_idx);
+		dibs.setDibs_type("product");
+		dibs.setType_num(product_idx);
 		dibs.setMember_id(sId);		
 		
 		DibsVO dibsCheck = productService.selectDibsCheck(dibs);
@@ -144,7 +145,8 @@ public class ProductController {
 		
 			// 객체 생성 및 값 세팅 후 찜하기 또는 삭제 판별		
 			DibsVO like = new DibsVO();
-			like.setProduct_idx(product_idx);
+			like.setDibs_type("product");
+			like.setType_num(product_idx);
 			like.setMember_id(sId);
 					
 			DibsVO dibsCheck = productService.selectDibsCheck(like);

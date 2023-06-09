@@ -44,4 +44,6 @@ public interface AuctionMapper {
 
 	int detailModify(Map<String, String> map);
 
+	int readCountUp(int auction_idx);
+
 }
