@@ -114,20 +114,39 @@ public class AdminController {
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
-	public String reportList(@RequestParam int report_idx, Model model) {
+	public String reportList(Model model) {
 		
 		List<HashMap<String, String>> reportList = adminService.getReportList();
 		model.addAttribute("reportList", reportList);
 		
-		
-		
 		return "admin/report_list";
 	}
 	
+
+	
 	//신고 처리 결과 페이지 
 	@GetMapping(value = "/adminReportPro.ad")
-	public String reportPro() {
+	public String reportProPage(Model model) {
+		
+		List<HashMap<String, String>> rList = adminService.getReportProList();
+		model.addAttribute("rList", rList);
+		
 		return "admin/report_pro";
+	}
+	
+	// 신고 처리 로직
+	@GetMapping(value = "/reportPro.ad")
+	public String reportPro(@RequestParam int product_idx, Model model) {
+		
+		int deleteCount = adminService.reportPro(product_idx);
+		
+		if(deleteCount > 0) {
+			return "redirect:/adminReportPro.ad";
+		} else {
+			model.addAttribute("msg", "상품 삭제 실패! 확인 요망!");
+			return "fail_back";
+		}
+		
 	}
 	
 	// 고객센터 매핑

@@ -66,6 +66,26 @@
 		SELECT *
 			FROM report
 	</select>
+	
+
+	<!-- 신고 카운트 조회 -->
+	<select id="selectReportProList" resultType="HashMap">
+		SELECT 
+			p.member_id, p.product_subject, r.product_idx, COUNT(*) AS total_reports
+				FROM report r
+				JOIN product p ON r.product_idx = p.product_idx 
+				GROUP BY r.product_idx
+				HAVING total_reports >= 5;	
+	</select>
+	
+	<!-- 신고 처리 -->
+	<delete id="deleteProduct">
+		DELETE r, p
+			FROM report r
+			JOIN product p on r.product_idx = p.product_idx
+			WHERE 
+				r.product_idx = #{product_idx}
+	</delete>
 </mapper>
 
 
