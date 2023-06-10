@@ -54,6 +54,38 @@
 <!-- 부트스트랩 링크 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+ <style type="text/css">
+ 
+#file444 {
+ 	height: 38px;
+ }
+ 
+.hanadiv{
+	margin-top: 40px;
+}
+
+/* 버튼 기본 css */
+
+.btn44{
+	background: #ff9507;
+  	border-color: #ff9507;
+  	border-color: #ff9507;
+	background: #ff9507;
+	padding-top: 12px; 
+	padding-bottom: 12px;
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius: 30px;
+	border: 2px solid #ffffff;
+	color: #fff;
+	font-size: 14px;
+	
+	margin-left: 495px;
+    margin-top: 10px;
+	
+}
+ </style>
+
 </head>
 <body>
 <script type="text/javascript">
@@ -114,117 +146,44 @@
 								</ul>
 								<!-- .faq-menu-->
 							</div>
-							<!-- .faq-category-->
-							<div class="faq-search">
-								<div class="search-wrap">
-
-									<fieldset>
-										<legend>FAQ 검색 폼</legend>
-										<select class="MS_input_select select-category"
-											id="search-category">
-											<option value="">전체검색</option>
-											<option value="1">회원/계정</option>
-											<option value="2">거래분쟁/운영정책</option>
-											<option value="3">스토어</option>
-											<option value="4">포인트</option>
-											<option value="5">중고거래</option>
-											<option value="6">경매</option>
-										</select> <span class="keyword"> <input id='faqSearch'
-											class="MS_input_txt"
-											onKeyPress='javascript:faqEnter(event);' type='text'
-											value='' />
-										</span> <a class="searchbt" href="javascript:faqSearch('keyword')"><img
-											src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif"
-											alt="검색" title="검색"></a>
-									</fieldset>
-									<dl class="best-keyword" style="display: none;">
-										<dt>
-											<strong>자주 찾는 검색어</strong> :
-										</dt>
-										<dd>
-											<ul class="list">
-											</ul>
-										</dd>
-									</dl>
-								</div>
-								<!-- .search-wrap -->
-								</form>
-							</div>
-							<!-- .faq-search-->
 						</div>
+					</div>
 
 						<div id="faqTable">
-							<table summary="분류 제목">
-								<caption>질문/답변</caption>
-								<colgroup>
-									<col width="100" />
-									<col width="*" />
-									<col width="1" />
-								</colgroup>
-<!-- 								<thead> -->
-<!-- 									<tr> -->
-<!-- 										<th scope="col"> -->
-<!-- 											<div class="tb-center">분류</div> -->
-<!-- 										</th> -->
-<!-- 										<th scope="col"> -->
-<!-- 											<div class="tb-center" style="font-weight: 400;">클레버 FAQ</div> -->
-<!-- 										</th> -->
-<!-- 										<th scope="col"> -->
-<!-- 											<div class="tb-left"></div> -->
-<!-- 										</th> -->
-<!-- 									</tr> -->
-<!-- 								</thead> -->
-							
-<!-- 								<tbody> -->
-<!-- 									<tr uid="6"> -->
-<!-- 										<td> -->
-<%-- 											<div class="tb-center">${FAQcategory.FAQ_category }</div> --%>
-<!-- 										</td> -->
-<!-- 										<td> -->
-<%-- 											<div class="tb-center"><a href="FAQdetail?FAQ_idx=${FAQcategory.FAQ_idx}">${FAQcategory.FAQ_subject }</a></div> --%>
-<!-- 										</td> -->
-<!-- 										<td> -->
-<!-- 											<div class="tb-left"></div> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
-<!-- 								</tbody> -->
-
-									<!-- 부트스트랩 아코디언 시작 -->
-									<c:forEach items="${FAQcategory }" var="FAQcategory">
-									<div class="accordion" id="accordionExample" style="width: 1350px; margin: auto; margin-top:10px;">
-									  <div class="accordion-item">
-									    <h2 class="accordion-header">
-									      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									        Q. ${FAQcategory.FAQ_subject }
-									      </button>
-									    </h2>
-									    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-									      <div class="accordion-body">
-									      	${FAQcategory.FAQ_content }
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									</c:forEach>
-									<!-- //부트스트랩 아코디언 끝 -->
-									
-									
-									 
-							</table>
+							<div class="hanadiv">
+							 <div class="row justify-content-center">
+						 		<div class="col-lg-4">
+						      	  	<div class="custom-block" data-aos="fade-up" data-aos-delay="100">
+						            	<h3 class="section-title">관리자용 FAQ 글쓰기✏️</h3>
+						            <form action="FAQwritePro" name="FAQwritePro" method="POST">
+						              <div class="form-group">
+						              	 <label class="text-black" for="title">제목</label>
+						               	<input class="form-control" type="text" name="FAQ_subject" placeholder="제목을 입력하세요." aria-label="default input example">
+						              </div>
+						              <div class="form-group">
+						              	 <label class="text-black" for="title">분류</label>
+							              	 <select name="FAQ_category">
+											    <option value="회원/계정">회원/계정</option>
+											    <option value="거래분쟁/운영정책">거래분쟁/운영정책</option>
+											    <option value="스토어">스토어</option>
+											    <option value="포인트">포인트</option>
+											    <option value="중고거래">중고거래</option>
+											    <option value="경매">경매</option>
+											 </select>
+						              </div>
+						              <div class="form-group">
+						                <label class="text-black" for="FAQ_content">내용</label>
+						              	<textarea class="form-control" placeholder="내용을 입력하세요." id="FAQ_content" name="FAQ_content" style="height: 500px"></textarea>
+						              </div>
+						              	<button type="submit" class="btn btn-primary" style="background-color: #0761ff;">등록하기</button>
+						            </form>
+						          </div>
+						     	</div>
+						 	</div>
+						 </div>
 						</div>
 					</div>
 					<!-- .page-body -->
-					<div>
-						<ol class="paging">
-							<li><strong>1</strong></li>
-							<li><a href="/shop/faq.html?page=2">2</a></li>
-							<li><a href="/shop/faq.html?page=3">3</a></li>
-							<li><a href="/shop/faq.html?page=4">4</a></li>
-							<li class="last"><a href="/shop/faq.html?page=4"><img
-									src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif"
-									alt="끝" title="" /></a></li>
-						</ol>
-					</div>
 				</div>
 				<!-- #faqWrap -->
 
