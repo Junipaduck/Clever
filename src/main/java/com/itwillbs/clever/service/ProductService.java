@@ -100,5 +100,33 @@ public class ProductService {
 		return mapper.sellerInfoCount(product);
 	}
 	
-	
+	// 카테고리 이동 관련 (7개)
+	public List getProductList(String param) {
+		return mapper.getProductList(param);
+	}
+
+	public String getBigCategory(String param) {
+		return mapper.getBigCategory(param);
+	}
+
+	public List getMidCategory(String param) {
+		return mapper.getMidCategory(param);
+	}
+
+	public List getSmallCategory(String param) {
+		return mapper.getSmallCategory(param);
+	}
+
+	public List getBigCategorys() {
+		return mapper.getBigCategorys();
+	}
+
+	public List getMidCategorys(String param) {
+		return mapper.getMidCategorys(param);
+	}
+
+	public List getSmallCategorys(String param) {
+		return mapper.getSmallCategorys(param);
+	}
+	// 카테고리 이동 관련 (7개) 끝
 }

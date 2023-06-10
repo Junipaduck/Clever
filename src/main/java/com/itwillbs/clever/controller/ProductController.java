@@ -55,39 +55,6 @@ public class ProductController {
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
 		
-//		List productList2 = auctionService.getProductList(map.get("param"));
-//		List fileList = auctionService.selectFiles();
-//		String bigCategory = auctionService.getBigCategory(map.get("param"));
-//		List bigCategorys = auctionService.getBigCategorys();
-//		List midCategorys = auctionService.getMidCategorys(map.get("param"));
-//		System.out.println(midCategorys);
-//		List smallCategorys = auctionService.getSmallCategorys(map.get("param"));
-//		System.out.println("???????" + smallCategorys);
-//		if(bigCategory == null) {
-//			List midCategory = auctionService.getMidCategory(map.get("param"));
-//			System.out.println("midCategory : " + midCategory);
-//			if(midCategory.size() < 1) {
-//				List smallCategory = auctionService.getSmallCategory(map.get("param"));
-//				System.out.println("smallCategory : " + smallCategory);
-//				model.addAttribute("smallCategory", smallCategory);
-//			} else {
-//				model.addAttribute("midCategory", midCategory);
-//			}
-//		} else {
-//			System.out.println("bigCategory : " + bigCategory);
-//			model.addAttribute("bigCategory", bigCategory);
-//		}
-//		
-//		
-//		
-//		
-//		model.addAttribute("fileList", fileList);
-//		model.addAttribute("bigCategorys", bigCategorys);
-//		model.addAttribute("midCategorys", midCategorys);
-//		model.addAttribute("smallCategorys", smallCategorys);
-//		model.addAttribute("productList2", productList2);
-//		model.addAttribute("categoryParam", map.get("param"));
-		
 		return "product/product_list";
 	}
 	
@@ -131,6 +98,38 @@ public class ProductController {
 		model.addAttribute("result", dibsCheck);
 		
 		return "product/product_detail";
+	}
+	
+	// 중고상품 카테고리 이동
+	@GetMapping(value = "product_category")
+	public String product_category(@RequestParam Map<String, String> map, Model model) {
+		List productList = productService.getProductList(map.get("param"));
+		String bigCategory = productService.getBigCategory(map.get("param"));
+		List bigCategorys = productService.getBigCategorys();
+		List midCategorys = productService.getMidCategorys(map.get("param"));
+		List smallCategorys = productService.getSmallCategorys(map.get("param"));
+		List<HashMap<String, String>> fileList = productService.selectFile(); // 첫번째에 등록된 사진파일 가져오기
+		
+		if(bigCategory == null) { // 만약 대 카테고리가 비어있으면, 중 카테고리를 가져오고, 
+			List midCategory = productService.getMidCategory(map.get("param"));
+			if(midCategory.size() < 1) { // 그랬을 때 중 카테고리가 비어있으면 , 소 카테고리를 가져온다
+				List smallCategory = productService.getSmallCategory(map.get("param"));
+				model.addAttribute("smallCategory", smallCategory);
+			} else {
+				model.addAttribute("midCategory", midCategory);
+			}
+		} else {
+			model.addAttribute("bigCategory", bigCategory);
+		}
+		
+		model.addAttribute("bigCategorys", bigCategorys);
+		model.addAttribute("midCategorys", midCategorys);
+		model.addAttribute("smallCategorys", smallCategorys);
+		model.addAttribute("productList", productList);
+		model.addAttribute("categoryParam", map.get("param"));
+		model.addAttribute("fileList", fileList); 
+		
+		return "product/product_category";
 	}
 	
 	// 찜하기 상호작용 ajax 

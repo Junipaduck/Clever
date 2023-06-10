@@ -208,4 +208,55 @@
 	</delete>
 	
 	
-</mapper>
+	<!-- 카테고리 관련 (7개) -->
+	<select id="getProductList" resultType="map">
+		SELECT *
+			FROM product
+				WHERE product_Lcategory = #{param} or product_Mcategory = #{param} or product_Scategory = #{param}
+	</select>
+	
+	<select id="getBigCategory" resultType="string">
+		SELECT DISTINCT bigCategory FROM category WHERE bigCategory = #{param}
+	</select>
+	
+	<select id="getMidCategory" resultType="map">
+		SELECT DISTINCT midCategory , bigCategory FROM category WHERE midCategory = #{param}
+	</select>
+	
+	<select id="getSmallCategory" resultType="map">
+		SELECT DISTINCT smallCategory , midCategory , bigCategory FROM category WHERE smallCategory = #{param}
+	</select>
+	
+	<select id="getBigCategorys" resultType="map">
+		SELECT DISTINCT bigCategory FROM category
+	</select>
+	
+	<select id="getMidCategorys" resultType="map">
+		SELECT
+		 	DISTINCT midCategory
+		  		FROM category
+		  			WHERE bigCategory = IFNULL((SELECT DISTINCT bigCategory  FROM category c WHERE midCategory = #{param}),IFNULL((SELECT DISTINCT bigCategory  FROM category c WHERE smallCategory = #{param}),#{param}) );
+	</select>
+	
+	<select id="getSmallCategorys" resultType="map">
+		SELECT
+		 	DISTINCT smallCategory
+		 		 FROM category c
+		  			 WHERE midCategory = IFNULL((SELECT DISTINCT midCategory  FROM category c WHERE midCategory = #{param}),(SELECT DISTINCT midCategory  FROM category c WHERE smallCategory = #{param}))
+	</select>
+	<!-- // 카테고리 관련 (7개) -->
+	
+</mapper> <!-- 매퍼끝 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
