@@ -1,6 +1,7 @@
 package com.itwillbs.clever.socket;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -90,16 +91,17 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 //		}
 	    
 	    JSONObject jo = new JSONObject(message.getPayload());
-	    int auctionIdx = (Integer.parseInt(jo.getString("auction_idx")));
+	    int auctionIdx = (Integer.parseInt(jo.getString("auction_idx"))); //경매 상품 인덱스
 	    int logRoomIdx = (Integer.parseInt(jo.getString("logRoom_idx")));
-	    String messageContent = jo.getString("message_content");
-	    String chatId = jo.getString("chat_id");
+	    String messageContent = jo.getString("message_content"); //입력한 가격
+	    String chatId = jo.getString("chat_id"); //해당 메시지를 보낸 아이디
 	    System.out.println("productIdx : " + auctionIdx);
 	    System.out.println("chatRoomIdx : " + logRoomIdx);
 	    System.out.println("messageContent : " + messageContent);
 	    
 	    List<LogRoomVO> selectChatList = auctionLogService.selectLogList(auctionIdx);
 	    
+	    HashMap<String, String> selectAuctionList = auctionService.selectAcution(auctionIdx);
 	    
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
@@ -116,6 +118,14 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
 	    
 	    auctionService.updatePrice(auctionIdx, Integer.parseInt(messageContent.replace(",", "")));
+	    
+	    
+	    int dbPrice = Integer.parseInt(selectAuctionList.get("immediately_price"));
+	    int messagePrice = Integer.parseInt(messageContent.replace(",", ""));
+	    
+	    if(dbPrice <= messagePrice) {
+	    	auctionService.updateDate(auctionIdx, chatId);
+	    }
 	    
 	    
 //	    chatMessage.setCreateDate(new Date(System.currentTimeMillis()));

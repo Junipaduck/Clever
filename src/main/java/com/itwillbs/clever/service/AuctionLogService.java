@@ -33,6 +33,5 @@ public class AuctionLogService {
 		return mapper.auctionConfirmed(auction_idx);
 	}
 	
-	
 
 }

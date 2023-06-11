@@ -108,9 +108,14 @@ public class AuctionService {
 		mapper.updateConfirmed(buyer_id, auction_idx);
 	}
 
+	public HashMap<String, String> selectAcution(int auctionIdx) {
+		// TODO Auto-generated method stub
+		return mapper.selectAcution(auctionIdx);
 	
+	}
 
-	
-	
-	
+	public void updateDate(int auctionIdx, String chatId) {
+		mapper.updateDate(auctionIdx, chatId);
+	}
+
 }

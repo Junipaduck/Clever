@@ -19,4 +19,6 @@ public interface AuctionLogMapper {
 
 	List<HashMap<String, String>> auctionConfirmed(@Param("auction_idx")int auction_idx);
 
+//	List<HashMap<String, String>> selectAcution(int auction_idx);
+
 }

@@ -595,6 +595,7 @@ function sendMessage() {
 // 		"message_date" : ,
 		"auction_idx": auction_idx,
 		"message_content" : message.value
+		
 	};
 
 	alert(chatMessage);

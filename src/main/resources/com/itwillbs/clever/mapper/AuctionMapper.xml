@@ -168,4 +168,14 @@
 				WHERE auction_idx = #{auction_idx}
 	</update>
 	
+	<select id="selectAcution" resultType="map">
+		SELECT CAST(immediately_price AS char) AS immediately_price FROM  
+			auction WHERE auction_idx = #{auction_idx};
+	</select>	
+	
+	<update id="updateDate">
+		UPDATE auction SET auction_end = now(), buyer_id=#{chatId}
+			WHERE auction_idx = #{auctionIdx};
+	</update>
+	
 </mapper>
