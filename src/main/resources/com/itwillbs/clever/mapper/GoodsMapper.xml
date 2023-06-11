@@ -109,6 +109,22 @@
 				WHERE
 					goods_idx = #{goods_idx}
 	</select>
+	
+	<!--  세션 아이디 포인트 조회 -->
+	<select id="selectMemberPoint" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT *
+			FROM member
+				WHERE
+					member_id = #{id}
+	</select>
+	
+	<update id="buyGoods">
+		UPDATE member
+			SET 
+				member_point = member_point - #{goods_price}
+					WHERE
+						member_id = #{id} 
+	</update>
 </mapper>
 
 

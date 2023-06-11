@@ -79,15 +79,21 @@ public class GoodsService {
 	}
 
 	// 굿즈 구매 처리
-	public int buyGoods(String id) {
+	public int buyGoods(String id, int goods_price) {
 		
-		return mapper.buyGoods(id);
+		return mapper.buyGoods(id, goods_price);
 	}
 
 	// goods_price 조회
 	public GoodsVO selectGoodsPrice(int goods_idx) {
 		
 		return mapper.selectGoodsPrice(goods_idx);
+	}
+
+	// 멤버 포인트 조회
+	public MemberVO selectMemberPoint(String id) {
+		
+		return mapper.selectMemberPoint(id);
 	}
 
 	
