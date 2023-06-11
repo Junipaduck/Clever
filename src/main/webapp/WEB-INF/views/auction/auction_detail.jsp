@@ -259,7 +259,8 @@
                             </div>
                             <div id="detail_content_info_state">
                                 <p>
-                                    <span>· 시작가격</span>
+                                    <span>· 시작가격 </span>
+                                    <span id="auction_price"></span>
                                 </p>
                                 <p> 
                                     <span>· 상품상태</span>
