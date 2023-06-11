@@ -48,7 +48,10 @@ public interface GoodsMapper {
 	MemberVO selectMemberPoint(String id);
 
 	// 굿즈 구매 정보 insert
-	int insertBuyGoods();
+	int insertBuyGoods(@Param("id") String id, @Param("buy_title") String buy_title, @Param("buy_price") String buy_price, @Param("goods_idx") int goods_idx);
+
+	// 굿즈 재고 차감
+	int updateStock(int goods_idx);
 
 
 

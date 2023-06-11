@@ -126,23 +126,32 @@
 						member_id = #{id} 
 	</update>
 	
-<insert id="insertBuyGoods">
-    <selectKey keyProperty="buy_idx" resultType="int" order="BEFORE">
-        SELECT IFNULL(MAX(buy_idx), 0) FROM buyGoods
-    </selectKey>
-	    INSERT 
-	    	INTO buyGoods (buy_idx, buy_id, buy_title, buy_price, buy_date, goods_idx, buy_status)
-	    		VALUES 
-	    			(
-    				#{buy_idx} + 1
-    				, #{buy_id}
-    				, #{buy_title}
-    				, #{buy_price}
-    				, now() 
-    				, #{goods_idx}
-    				, 'O'
-    				)
-</insert>
+	<!-- 굿즈 재고 차감 -->
+	<update id="updateStock">
+		UPDATE goods
+			SET
+				goods_stock = goods_stock - 1
+				WHERE
+					goods_idx = #{goods_idx}
+	</update>
+	
+	<insert id="insertBuyGoods">
+	    <selectKey keyProperty="buy_idx" resultType="int" order="BEFORE">
+	        SELECT IFNULL(MAX(buy_idx), 0) FROM buyGoods
+	    </selectKey>
+		    INSERT 
+		    	INTO buyGoods (buy_idx, buy_id, buy_title, buy_price, buy_date, goods_idx, buy_status)
+		    		VALUES 
+		    			(
+	    				#{buy_idx} + 1
+	    				, #{id}
+	    				, #{buy_title}
+	    				, #{buy_price}
+	    				, now() 
+	    				, #{goods_idx}
+	    				, 'O'
+	    				)
+	</insert>
 
 </mapper>
 

@@ -71,17 +71,16 @@
 	                        </tr>
 	                    </tbody>
 	                </table>
+<%-- 	            <input type="text" name="buy_id" id="buy_id" value="${member.member_id }" readonly="readonly"> --%>
+<%-- 	            <input type="text" name="buy_title" id="buy_title" value="${goodsDetail.goods_name }" readonly="readonly"> --%>
+<%-- 	            <input type="text" name="buy_price" id="buy_price" value="${goodsDetail.goods_price }" readonly="readonly"> --%>
+<%-- 	            <input type="text" name="goods_idx" id="goods_idx" value="${goodsDetail.goods_idx }" readonly="readonly"> --%>
 	                <div style="margin-bottom: 50px; margin-left: 100px;">
 		                <h5>${member.member_id }님이 보유하신 포인트는 총 ${member.member_point }점 입니다.</h5>
 		                <h5>💸포인트로 ${goodsDetail.goods_name }을 구매하시겠습니까?💸 <input type="submit" value="구매하기" onclick="location.href='buyGoods.ad?goods_idx=${goodsDetail.goods_idx}'"></h5>
+<%-- 		                <h5>💸포인트로 ${goodsDetail.goods_name }을 구매하시겠습니까?💸 <input type="submit" value="구매하기"></h5> --%>
 	                </div>
 	            </section>
-	            
-            <input type="submit" name="buy_id" value="${member.member_id }">
-            <input type="submit" name="buy_title" value="${goodsDetail.goods_name }">
-            <input type="submit" name="buy_price" value="${goodsDetail.goods_price }">
-            <input type="submit" name="goods_idx" value="${goodsDetail.goods_idx }">
-            <input type="submit" name="buy_status">
             </c:forEach>
 <!--           </form>   -->
 	<!-- 풋터 시작 -->

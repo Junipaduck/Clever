@@ -191,16 +191,22 @@ public class GoodsController {
 		
 		int point = member.getMember_point();
 		int goods_price = Integer.parseInt(goods.getGoods_price());
+		String buy_title = goods.getGoods_name();
+		String buy_price = goods.getGoods_price();
+		
 		
 		if(point > goods_price) { // 포인트가 굿즈 가격보다 높을 때 
 			int updateCount = goodsService.buyGoods(id, goods_price); // 포인트에서 굿즈 가격 차감
 			
+			
 			if(updateCount > 0) { // 포인트 차감 성공 시 
 				
 				// 결제 내역  buyGoods 에 insert
-				int insertCount = goodsService.insertBuyGoods();
+				int insertCount = goodsService.insertBuyGoods(id, buy_title, buy_price, goods_idx);
+				// 굿즈 재고 차감
+				int updateGoods = goodsService.updateStock(goods_idx);
 				
-				if(insertCount > 0) { // 결제내역 insert 성공시
+				if(insertCount > 0 && updateGoods > 0) { // 결제내역 insert 성공시
 					return "goods/goods_pay_pro";
 				} else {
 					model.addAttribute("msg", "결제 내역 insert 실패!");
