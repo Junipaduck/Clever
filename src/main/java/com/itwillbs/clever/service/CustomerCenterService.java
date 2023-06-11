@@ -29,4 +29,20 @@ public class CustomerCenterService {
 		return mapper.insertFAQ(map);
 	}
 
+	// 1:1 문의 list 조회
+	public List<String> myAskedList(String sId) {
+		return mapper.myAskedList(sId);
+	}
+	
+	// 1:1 문의 detail 조회
+	public List<String> myAskedDetail(int asked_idx) {
+		return mapper.myAskedDetail(asked_idx);
+	}
+
+	// 1:1 문의 등록
+	public int insertAsked(Map<String, String> map) {
+		return mapper.insertAsked(map);
+	}
+
+
 }

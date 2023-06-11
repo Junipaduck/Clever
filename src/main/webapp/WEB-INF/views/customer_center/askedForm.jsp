@@ -54,7 +54,8 @@
 				<p>1 : 1 문의 작성하기</p>
 			</div>
 		</div>
-		<form action="askedFormPro" method="post">
+		<form action="askedFormPro" name="askedFormPro" method="post">
+			<input type="hidden" name="member_id" value="${sessionScope.sId }">
 			<div class="asked_title_area">
 				<div class="asked_title" style="position: relative;">
 				<input type="text" name="asked_subject" id="asked_subject" placeholder="제목을 입력해주세요." style="width: 700px; height: 3rem; padding: 0px 1rem; border: 1px solid rgb(195, 194, 204); margin-bottom: 20px;">
@@ -110,5 +111,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/summernote/summernote-lite.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 
+<!-- 풋터 시작 -->
+<jsp:include page="../inc/footer.jsp" />
 </body>
 </html>

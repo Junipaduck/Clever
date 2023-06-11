@@ -71,63 +71,36 @@
 								<caption>질문/답변</caption>
 								<colgroup>
 									<col width="100" />
-									<col width="200" />
 									<col width="*" />
 								</colgroup>
-								<thead>
-									<tr>
-										<th scope="col">
-											<div class="tb-center">번호</div>
-										</th>
-										<th scope="col">
-											<div class="tb-center">답변상태</div>
-										</th>
-										<th scope="col">
-											<div class="tb-left" style="font-weight: 400;">제목</div>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${myAsked }" var="myAsked">
+								<c:forEach items="${myAskedDetail }" var="myAskedDetail">
+									<thead>
+										<tr>
+											<th scope="col">
+												<div class="tb-center">제목</div>
+											</th>
+											<th scope="col">
+												<div class="tb-left">${myAskedDetail.asked_subject }</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
 										<tr uid="6">
-												<td>
-													<div class="tb-center">${myAsked.asked_idx }</div>
-												</td>
-												<td>
-													<c:if test="${myAsked.asked_status  eq 'N' }">
-														<div class="tb-center">답변 진행중</div>
-													</c:if>
-													<c:if test="${myAsked.asked_status  eq 'Y' }">
-														<div class="tb-center">답변 완료</div>
-													</c:if>
-												</td>
-												<td>
-													<div class="tb-left"><a href="centerAskedDetail?asked_idx=${myAsked.asked_idx }">${myAsked.asked_subject }</div>
+												<td colspan="2">
+													<div class="tb-left">${myAskedDetail.asked_content }</div>
 												</td>
 										</tr>
-									</c:forEach>
-								</tbody>
+									</tbody>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
-					<!-- .page-body -->
-<!-- 					<div> -->
-<!-- 						<ol class="paging"> -->
-<!-- 							<li><strong>1</strong></li> -->
-<!-- 							<li><a href="/shop/faq.html?page=2">2</a></li> -->
-<!-- 							<li><a href="/shop/faq.html?page=3">3</a></li> -->
-<!-- 							<li><a href="/shop/faq.html?page=4">4</a></li> -->
-<!-- 							<li class="last"><a href="/shop/faq.html?page=4"><img -->
-<!-- 									src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif" -->
-<!-- 									alt="끝" title="" /></a></li> -->
-<!-- 						</ol> -->
-<!-- 					</div> -->
 				</div>
 				<!-- #faqWrap -->
 				
 				<dl class="bbs-link bbs-link-btm animated">
 					<dd>
-						<a href="askedForm" class="CMbutton1" style="background-color: #0085f5; color: white;">글쓰기</a>
+						<a href="javascript:history.back()" class="CMbutton1" style="background-color: #0085f5; color: white;">돌아가기</a>
 					</dd>
 				</dl>
 	
@@ -157,7 +130,6 @@
 				</div>
 	</div>
 </div>
-
 
 <!-- 풋터 시작 -->
 <jsp:include page="../inc/footer.jsp" />

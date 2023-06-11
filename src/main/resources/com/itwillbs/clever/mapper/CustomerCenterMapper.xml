@@ -31,6 +31,38 @@
 					, #{FAQ_content}
 					);
 	</insert>
+	
+	
+	<!-- 1:1 문의 list 조회 -->
+	<select id="myAskedList" resultType="map">
+		SELECT *
+			FROM asked
+			WHERE member_id = '${sId}'
+	</select>
+	
+	<!-- 1:1 문의 내용 조회 -->
+	<select id="myAskedDetail" resultType="map">
+		SELECT *
+			FROM asked
+			WHERE asked_idx = #{asked_idx}
+	</select>
+	
+	<!-- 1:1 문의 등록 -->
+	<insert id="insertAsked">
+		<selectKey keyProperty="asked_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(asked_idx), 0) FROM asked
+		</selectKey>
+		INSERT
+			INTO 
+				asked
+			VALUES (
+				#{asked_idx} + 1
+				,#{member_id}
+				,#{asked_subject}
+				,#{asked_content}
+				,'N'
+			)
+	</insert>
 
 
 </mapper>
