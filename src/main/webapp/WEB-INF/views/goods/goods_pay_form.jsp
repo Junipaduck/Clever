@@ -33,7 +33,7 @@
 </head>
 <body>
           <!-- 결제정보 -->
-<%--       <form action="buyGoods.ad?goods_idx=${param.goods_idx }" method="get"> --%>
+<!--       <form action="buyGoods.ad" method="post"> -->
      	<input type="hidden" value="${param.goods_idx }">    
 		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
           <c:forEach items="${goodsDetail }" var="goodsDetail">
@@ -73,7 +73,7 @@
 	                </table>
 	                <div style="margin-bottom: 50px; margin-left: 100px;">
 		                <h5>${member.member_id }님이 보유하신 포인트는 총 ${member.member_point }점 입니다.</h5>
-		                <h5>💸포인트로 ${goodsDetail.goods_name }을 구매하시겠습니까?💸 <input type="button" value="구매하기" onclick="location.href='buyGoods.ad?goods_idx=${param.goods_idx}'"></h5>
+		                <h5>💸포인트로 ${goodsDetail.goods_name }을 구매하시겠습니까?💸 <input type="submit" value="구매하기" onclick="location.href='buyGoods.ad?goods_idx=${goodsDetail.goods_idx}'"></h5>
 	                </div>
 	            </section>
             </c:forEach>
