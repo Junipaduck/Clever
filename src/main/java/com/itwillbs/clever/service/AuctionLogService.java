@@ -1,6 +1,8 @@
 package com.itwillbs.clever.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,10 @@ public class AuctionLogService {
 	public int insertMessage(int auction_idx, int logRoom_idx, String chatId, String messageContent) {
 		
 		return mapper.insertChat2(auction_idx, logRoom_idx, chatId, messageContent);
+	}
+
+	public List<HashMap<String, String>> auctionConfirmed(int auction_idx) {
+		return mapper.auctionConfirmed(auction_idx);
 	}
 	
 	

@@ -68,6 +68,7 @@
 	</header>
     <!-- main_content 영역 -->
     	<input type="hidden" id="inputInt" name="inputInt" value="${detailmap.auction_final_price }">
+    	<input type="hidden" id="currentAjax" name="currentAjax" value="0">
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
@@ -189,8 +190,12 @@
                         </div>
                         <div class="col detail_content_info">
                             <h2>상품명 : <span>${detailmap.auction_title } </span></h2>
-                            <p id="result"><span id="currentPrice">현재 가격 : ${detailmap.auction_final_price } 원</span></p>
+                            <p id="result"><span id="currentPrice"></span></p>
                             <script type="text/javascript">
+                            
+	                            let url = window.location.href;
+	                        	var auction_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
+ 	                        	var currentAjax =  document.getElementById("currentAjax").value;
 	                                	function getTime() {
 	                                	  var element;
 	                                	  const endDay = new Date('${detailmap.auction_end}');
@@ -205,7 +210,25 @@
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("timeOut");
 	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "경매 종료";                    		  
+	                                		  element.innerHTML = "경매 종료"; 
+	                                		  	if(currentAjax==0){
+	                           		  			 	$.ajax({
+	                           		  			 		url : "auction_confirmed",
+	                           		  			 		type: 'GET',
+	                           		  			 		data: {'auction_idx':auction_idx},
+	                           		  			 		dataType : "json",
+	                           		  			 		success:function(data){
+	                           		  			 			currentAjax = 1;
+	                           		  			 			for(let auction of data) {
+	                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
+	                           		  			 			}
+	                           		  			 		},
+	                           		  			 		error:function(error){
+	                           		  			 			console.log(error);
+	                           		  			 		}
+	                           		  			 		
+	                           		  			 	});
+	                                	  	}
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -467,7 +490,6 @@
 	$(function() {
 		auctionStart();
 		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
-		document.getElementById("currentPrice").innerText = "현재가격 : " + comma(${detailmap.auction_final_price }) + " 원";
 		
 	});
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
@@ -478,7 +500,6 @@
 	var logRoom_idx = "${logRoomIdx}";
 	var message; //메시지 객체 들고오는 변수
 	var checkPrice = false;
-
 	
 	var regex = /[^0-9]/g;
 	
@@ -537,37 +558,6 @@
 	
 	
 	
-// 	function auctionLog(){
-// 		location.href="auction_Log";
-// 	}
-	
-
-	//서버에서 메시지를 받았을 때
-
-//war파일(DB공용폴더)로 연결시 소켓 연결 주소
-
-//var chatSocket = new WebSocket('ws://localhost:8089/clever/chatting');
-
-
-//el태그통해 js변수 셋팅
-// const userNo = "${loginUser.userNo}";
-
-// const contextPath = "${pageContext.request.requestURL}";
-// //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
-// var chatSocket = new SockJS(contextPath + "/chatting");
-
-// // 페이지 로딩 완료시 채팅창을 맨 아래로 내리기. 즉시 실행함수. IIFE
-// (function() {
-//  const displayChatting = document.getElementsByClassName("display-chatting")[0];
-
-//  if (displayChatting != null) {
-//      displayChatting.scrollTop = displayChatting.scrollHeight;
-//  }
-// })();
-
-// 메세지 전송 버튼 클릭 시 이벤트
-
-
 // 엔터키 눌렀을 때 메세지 전송
 // $("#message").keypress(function(e) {
 // 	if (e.keyCode && e.keyCode === 13) {
@@ -774,6 +764,7 @@ function auctionStart() {
 	}); 
 		
  	message = document.getElementById("price");
+	document.getElementById("currentPrice").innerText = "현재가격 : " + comma(${detailmap.auction_final_price }) + " 원";
 	
 }
 </script>

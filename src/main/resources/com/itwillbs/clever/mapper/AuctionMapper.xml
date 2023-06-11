@@ -162,4 +162,10 @@
 	DELETE FROM file WHERE file_num = #{auction_idx} AND file_div = 'auction'
 	</delete>
 	
+	<update id="updateConfirmed">
+		UPDATE auction 
+			SET buyer_id = #{buyer_id} 
+				WHERE auction_idx = #{auction_idx}
+	</update>
+	
 </mapper>

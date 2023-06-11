@@ -104,6 +104,12 @@ public class AuctionService {
 		return mapper.deleteAutionFile(auction_idx);
 	}
 
+	public void updateConfirmed(String buyer_id, int auction_idx) {
+		mapper.updateConfirmed(buyer_id, auction_idx);
+	}
+
+	
+
 	
 	
 	

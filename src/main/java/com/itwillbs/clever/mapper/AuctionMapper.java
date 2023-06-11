@@ -52,4 +52,6 @@ public interface AuctionMapper {
 
 	int deleteAutionFile(int auction_idx);
 
+	void updateConfirmed(@Param("buyer_id") String buyer_id, @Param("auction_idx")int auction_idx);
+
 }
