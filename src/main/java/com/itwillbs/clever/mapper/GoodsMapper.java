@@ -33,6 +33,9 @@ public interface GoodsMapper {
 	// 굿즈 파일 전체 셀렉트
 	List<HashMap<String, String>> selectFiles();
 
+	// 결제창 멤버 정보 조회
+	MemberVO selectMemberInfo(String id);
+
 
 }
 

@@ -93,6 +93,14 @@
 				WHERE 
 					goods_idx = #{goods_idx}	
 	</select>
+	
+	<!-- 결제창 멤버 정보 조회 -->
+	<select id="selectMemberInfo" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT * 
+			FROM member
+			WHERE
+				member_id = #{id}	
+	</select>
 </mapper>
 
 

@@ -156,12 +156,18 @@ public class GoodsController {
 	
 	// 굿즈 결제 페이지 
 	@GetMapping(value = "/payGoods")
-	public String payGoods(@RequestParam int goods_idx, Model model) {
+	public String payGoods(@RequestParam int goods_idx, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
 		List<HashMap<String, String>> goodsDetail = goodsService.getGoodsDetail(goods_idx);
 		model.addAttribute("goodsDetail", goodsDetail);
 		
 		List<HashMap<String, String>> fileList = goodsService.selectFile();
 		model.addAttribute("fileList", fileList);
+		
+		MemberVO member = goodsService.getMemberInfo(id);
+		model.addAttribute("member", member);
 		
 		return "goods/goods_pay_form";
 	}

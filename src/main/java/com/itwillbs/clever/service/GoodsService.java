@@ -72,5 +72,11 @@ public class GoodsService {
 		return mapper.selectFiles();
 	}
 
+	// 굿즈 포인트 결제창에서 정보 조회
+	public MemberVO getMemberInfo(String id) {
+		
+		return mapper.selectMemberInfo(id);
+	}
+
 	
 }

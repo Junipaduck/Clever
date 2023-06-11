@@ -71,6 +71,7 @@
 	                    </tbody>
 	                </table>
 	                <div style="margin-bottom: 50px; margin-left: 100px;">
+		                <h5>${sessionScope.sId }님이 보유하신 포인트는 총 ${member.member_point }점 입니다.</h5>
 		                <h5>💸포인트로 ${goodsDetail.goods_name }을 구매하시겠습니까?💸 <input type="submit" value="구매하기"></h5>
 	                </div>
 	            </section>
