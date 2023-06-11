@@ -33,5 +33,11 @@ public class MypageService {
 		return mapper.selectDibsList(sId);
 	}
 
+	// 굿즈 구매 내역
+	public List<HashMap<String, String>> selectGoodsList(String sId) {
+		
+		return mapper.selectGoodsList(sId);
+	}
+
 	
 }

@@ -31,4 +31,11 @@
 			WHERE member_id = #{sId};
 	</select>
 	
+	<!-- 굿즈 구매 내역 조회 -->
+	<select id="selectGoodsList" resultType="HashMap">
+		SELECT *
+			FROM buyGoods
+				WHERE 
+					buy_id = #{sId}	
+	</select>
 </mapper>

@@ -63,6 +63,10 @@ public class MypageController {
 		List<HashMap<String, String>> dibsList = mypageService.selectDibsList(sId);
 		model.addAttribute("dibsList", dibsList);
 		System.out.println("찜 목록 " + dibsList);
+		
+		// 굿즈 구매 내역
+		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
+		model.addAttribute("goodsList", goodsList);
 			
 		
 		return "mypage/my_page";

@@ -13,5 +13,8 @@ public interface MypageMapper {
 
 	List<HashMap<String, String>> selectDibsList(String sId);
 
+	// 굿즈 구매 내역 조회
+	List<HashMap<String, String>> selectGoodsList(String sId);
+
 	
 }
