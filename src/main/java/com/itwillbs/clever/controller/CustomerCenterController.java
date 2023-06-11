@@ -58,4 +58,32 @@ public class CustomerCenterController {
 	}
 	
 	
+	
+	
+	
+	// 1:1 문의게시판
+	@GetMapping("centerAsked")
+	public String centerHelp() {
+		return "customer_center/center_asked";
+	}
+	
+	// 1:1 문의게시판 폼
+	@GetMapping("askedForm")
+	public String askedForm() {
+		return "customer_center/askedForm";
+	}
+	
+//		@PostMapping("askedFormPro")
+//		public String askedPro() {
+//			int insertCount = noticeService.registerNotice(notice);
+//			
+//			if(insertCount > 0) {
+//				return "redirect:/adminNoticeList.ad";
+//			} else {
+//				model.addAttribute("msg", "공지사항 등록 실패!");
+//				return "fail_back";
+//			} 
+//		}
+	
+	
 } // 컨트롤러 끝
