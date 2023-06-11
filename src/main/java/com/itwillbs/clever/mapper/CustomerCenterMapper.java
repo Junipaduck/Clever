@@ -21,4 +21,5 @@ public interface CustomerCenterMapper {
 	int insertAsked(Map<String, String> map);
 
 
+
 }
