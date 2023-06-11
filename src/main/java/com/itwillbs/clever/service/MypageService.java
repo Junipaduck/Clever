@@ -15,8 +15,13 @@ public class MypageService {
 	private MypageMapper mapper;
 
 	// 중고거래 판매내역 조회
-	public List<HashMap<String, String>> selectOnSaleProduct(String sId) {
-		return mapper.selectOnSaleProduct(sId);
+	public List<HashMap<String, String>> selectProductSellList(String sId) {
+		return mapper.selectProductSellList(sId);
+	}
+
+	// 중고거래 판매날짜 조회
+	public List<HashMap<String, String>> selectProductSellDate(String sId) {
+		return mapper.selectProductSellDate(sId);
 	}
 	
 	// 중고거래 구매내역 조회
@@ -24,13 +29,14 @@ public class MypageService {
 		return mapper.selectProductBuyList(sId);
 	}
 	
-	// 경매 찜 조회
-//	public List<HashMap<String, String>> selectAutionDibs(String sId) {
-//		return mapper.selectAutionDibs(sId);
-//	}
+	// 중고거래 찜 조회
+	public List<HashMap<String, String>> selectProductDibsList(String sId) {
+		return mapper.selectProductDibsList(sId);
+	}
 
-	public List<HashMap<String, String>> selectDibsList(String sId) {
-		return mapper.selectDibsList(sId);
+	// 경매 찜 조회
+	public List<HashMap<String, String>> selectAutionDibsList(String sId) {
+		return mapper.selectAutionDibsList(sId);
 	}
 
 	// 굿즈 구매 내역

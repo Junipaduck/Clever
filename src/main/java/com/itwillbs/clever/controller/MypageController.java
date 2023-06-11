@@ -47,8 +47,11 @@ public class MypageController {
 		
 		model.addAttribute("member", member);
 		
-		List<HashMap<String, String>> onSaleproduct = mypageService.selectOnSaleProduct(sId);
-		model.addAttribute("onSaleproduct", onSaleproduct);
+		List<HashMap<String, String>> productSellList = mypageService.selectProductSellList(sId);
+		model.addAttribute("productSellList", productSellList);
+
+		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
+		model.addAttribute("productSellDate", productSellDate);
 		
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
 		model.addAttribute("productBuyList", productBuyList);
@@ -56,13 +59,11 @@ public class MypageController {
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
 		
-//		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibs(sId);
-//		model.addAttribute("auctionDibsList", auctionDibsList);
-//		System.out.println("경매 찜 " + auctionDibsList);
+		List<HashMap<String, String>> productdibsList = mypageService.selectProductDibsList(sId);
+		model.addAttribute("productdibsList", productdibsList);
 		
-		List<HashMap<String, String>> dibsList = mypageService.selectDibsList(sId);
-		model.addAttribute("dibsList", dibsList);
-		System.out.println("찜 목록 " + dibsList);
+		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibsList(sId);
+		model.addAttribute("auctionDibsList", auctionDibsList);
 		
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);

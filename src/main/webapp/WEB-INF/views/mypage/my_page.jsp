@@ -274,7 +274,7 @@ div.right {
 			<div class="col my_store_menus auction_menu">
 				내 경매  <span>0</span>
 			</div>
-			<div class="col my_store_menus auctionLike_menu">
+			<div class="col my_store_menus auctionbid_menu">
 				경매 낙찰내역 <span>0</span>
 			</div>
 			<div class="col my_store_menus auctionLike_menu">
@@ -320,20 +320,20 @@ div.right {
 	         </div>
 	     </nav>
 	     <!--상품 내용-->
-	     <c:forEach items="${onSaleproduct }" var="onSaleproduct">
+	     <c:forEach items="${productSellList }" var="productSellList">
 	     <div class="goods">
 	         <div class="goods_one">
-	             <a href="product_detail?product_idx=${onSaleproduct.product_idx }">
+	             <a href="product_detail?product_idx=${productSellList.product_idx }">
 	                 <div class="goods_image">
 		<c:forEach items="${fileList }" var="fileList">
 	                   <c:set var="length" value="${fn:length(fileList.file_name) }" />
 		<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
 		<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
 		<c:choose>
-	                       <c:when test="${fileList.file_num eq onSaleproduct.product_idx && onSaleproduct.sale_status eq '판매중' }">
+	                       <c:when test="${fileList.file_num eq productSellList.product_idx && productSellList.sale_status eq '판매중' }">
 	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
 	                       </c:when>
-	                       <c:when test="${fileList.file_num eq onSaleproduct.product_idx && onSaleproduct.sale_status eq '판매완료' }">
+	                       <c:when test="${fileList.file_num eq productSellList.product_idx && productSellList.sale_status eq '판매완료' }">
 	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
 	                         <span class="goods_front">
 	                             <i class="far fa-check-circle"></i><br>
@@ -344,10 +344,19 @@ div.right {
 	                  </c:forEach>
 	                 </div>
 	                 <div class="goods_info">
-	                     <h2 class="goods_title">${onSaleproduct.product_subject }</h2>
-	                     <p class="goods_price"><span class="bold">${onSaleproduct.product_price }</span>원</p>
+	                     <h2 class="goods_title">${productSellList.product_subject }</h2>
+	                     <p class="goods_price"><span class="bold">${productSellList.product_price }</span>원</p>
 	                     <p class="goods_shop">상점명 / 번개페이 안전결제</p>
-	                     <p class="goods_date">2022.12.16 (오후 04:37)</p>
+	                     <c:choose>
+	                     	<c:when test="${productSellList.sale_status eq '판매중'}">
+	                     		<p class="goods_date">${productSellList.product_date }</p>
+	                     	</c:when>
+	                     	<c:when test="${productSellList.sale_status eq '판매완료'}">
+	                     		 <c:forEach items="${productSellDate }" var="productSellDate">
+	                    		 <p class="goods_date">${productSellDate.sell_date }</p>
+	                    		 </c:forEach>
+	                     	</c:when>
+	                     </c:choose>
 	                 </div>
 	             </a>
 	         </div>
@@ -472,10 +481,10 @@ div.right {
                         </c:forEach>
                        </div>
                         <div class="goods_info">
-                           <h2 class="goods_title">상품 글 제목</h2>
-                           <p class="goods_price"><span class="bold">1,111</span>원</p>
+                           <h2 class="goods_title">${productBuyList.buy_title }</h2>
+                           <p class="goods_price"><span class="bold">${productBuyList.buy_price }</span>원</p>
                            <p class="goods_shop">상점명 / 번개페이 안전결제</p>
-                           <p class="goods_date">2022.12.16 (오후 04:37)</p>
+                           <p class="goods_date">${productBuyList.buy_date }</p>
                        </div>
                    	</a>
                    	<c:choose>
@@ -494,41 +503,7 @@ div.right {
 			</c:forEach>
             </div>
        	</div>
-   	</div> 
-
-            
-                        
-<!--                        <div class="goods_info"> -->
-<!--                            <h2 class="goods_title">상품 글 제목</h2> -->
-<!--                            <p class="goods_price"><span class="bold">1,111</span>원</p> -->
-<!--                            <p class="goods_shop">상점명 / 번개페이 안전결제</p> -->
-<!--                            <p class="goods_date">2022.12.16 (오후 04:37)</p> -->
-<!--                        </div> -->
-<!--                    </a> -->
-<!--                    <div class="btn_area"> -->
-<!--                        <button type="button" class="btn_buy_decide">구매확정</button> -->
-<!--                        <button type="button" class="btn_return">반품신청</button> -->
-<!--                    </div> -->
-<!--                </div> -->
-<!--                <div class="goods_one"> -->
-<!--                    <a href="goods_buyer_ordersheet.html"> -->
-<!--                        <div class="goods_image"> -->
-<!--                            <div class="image_area"> -->
-<%--                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" alt="상품사진"> --%>
-<!--                            </div> -->
-<!--                            <span class="goods_front"> -->
-<!--                                <i class="far fa-check-circle"></i><br> -->
-<!--                                거래완료 -->
-<!--                            </span> -->
-<!--                        </div> -->
-<!--                        <div class="goods_info"> -->
-<!--                            <h2 class="goods_title">상품 글 제목</h2> -->
-<!--                            <p class="goods_price"><span class="bold">1,111</span>원</p> -->
-<!--                            <p class="goods_shop">상점명 / 번개페이 안전결제</p> -->
-<!--                            <p class="goods_date">2022.12.16 (오후 04:37)</p> -->
-<!--                        </div> -->
-<!--                    </a> -->
-<!--                    <button type="button" class="btn_review_modal">후기작성</button> -->
+   	</div>
 
 				<div id="secondhandLike_menu_area" class="common_menu">
 					<div>
@@ -537,11 +512,44 @@ div.right {
 						</p>
 					</div>
 					<div>
-						<p>찜한 상품이 없습니다.</p>
+					<!--찜 상풍-->
+		<c:forEach items="${productdibsList }" var="productdibsList">
+	     <div class="goods">
+	         <div class="goods_one">
+	             <a href="product_detail?product_idx=${productdibsList.product_idx }">
+	                 <div class="goods_image">
+					<c:forEach items="${fileList }" var="fileList">
+				                   <c:set var="length" value="${fn:length(fileList.file_name) }" />
+					<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+					<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+					<c:choose>
+	                       <c:when test="${fileList.file_num eq productdibsList.product_idx }">
+	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+	                       </c:when>
+	                       <c:when test="${fileList.file_num eq productdibsList.product_idx }">
+	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+	                         <span class="goods_front">
+	                             <i class="far fa-check-circle"></i><br>
+	                             거래완료
+	                         </span>
+	                       </c:when>
+	                   </c:choose>
+	                  </c:forEach>
+	                 </div>
+	                 <div class="goods_info">
+	                     <h2 class="goods_title">${productdibsList.product_subject }</h2>
+	                     <p class="goods_price"><span class="bold">${productdibsList.product_price }</span>원</p>
+	                     <p class="goods_shop">상점명 / 번개페이 안전결제</p>
+	                     <p class="goods_date">${productdibsList.product_date }</p>
+	                 </div>
+	             </a>
+	         </div>
+	     </div>
+	     </c:forEach>
 					</div>
 				</div>
 
-				<div id="auction_menu_area" class="common_menu">
+				<div id="auctionbid_menu_area" class="common_menu">
 					<div>
 						<p>
 							경매 참여내역 <span>0</span>
@@ -567,10 +575,41 @@ div.right {
 						</p>
 					</div>
 					<div>
-						<p>찜한 상품이 없습니다.</p>
+						<c:forEach items="${auctionDibsList }" var="auctionDibsList">
+	     <div class="goods">
+	         <div class="goods_one">
+	             <a href="product_detail?product_idx=${auctionDibsList.auction_idx }">
+	                 <div class="goods_image">
+					<c:forEach items="${fileList }" var="fileList">
+				                   <c:set var="length" value="${fn:length(fileList.file_name) }" />
+					<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+					<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+					<c:choose>
+	                       <c:when test="${fileList.file_num eq auctionDibsList.auction_idx }">
+	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+	                       </c:when>
+	                       <c:when test="${fileList.file_num eq auctionDibsList.auction_idx }">
+	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+	                         <span class="goods_front">
+	                             <i class="far fa-check-circle"></i><br>
+	                             거래완료
+	                         </span>
+	                       </c:when>
+	                   </c:choose>
+	                  </c:forEach>
+	                 </div>
+	                 <div class="goods_info">
+	                     <h2 class="goods_title">${auctionDibsList.auction_title }</h2>
+	                     <p class="goods_price"><span class="bold">${auctionDibsList.auction_final_price }</span>원</p>
+	                     <p class="goods_shop">상점명 / 번개페이 안전결제</p>
+	                     <p class="goods_date">${auctionDibsList.auction_date }</p>
+	                 </div>
+	             </a>
+	         </div>
+	     </div>
+	     </c:forEach>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<!-- 하단 내역 부분 끝 -->
