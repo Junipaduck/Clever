@@ -69,6 +69,8 @@
     <!-- main_content 영역 -->
     	<input type="hidden" id="inputInt" name="inputInt" value="${detailmap.auction_final_price }">
     	<input type="hidden" id="currentAjax" name="currentAjax" value="0">
+    	<input type="hidden" id="immediately_price" name="immediately_price" value="${detailmap.immediately_price }">
+    	<input type="hidden" id=buyer_id name="buyer_id" value="${detailmap.buyer_id }">
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
@@ -661,20 +663,31 @@ chatSocket.onclose = function(e) {
 }
 
 </script>
+
 <script type="text/javascript">
 $(function() {
 // 	document.getElementById("btnSend").addEventListener("click", sendMessage);
 	$("#btnSend").on("click", function() {
 		sendMessage();
 	});
+	
+	$("#btnSend2").on("click", function() {
+		if(window.confirm("해당 물품의 즉시 구매가는 : " + comma(document.getElementById("immediately_price").value) + "원 입니다.\n즉시 구매 하시겠습니까??") ) {
+			document.getElementById("price").value = comma(document.getElementById("immediately_price").value);
+			checkPrice = true;
+			sendMessage();
+		}
+	});
+	
 });
 function auctionStart() {
 	var auction_start = new Date("${detailmap.auction_start}");
 	var auction_end = new Date("${detailmap.auction_end}");
+	var auction_buyer_id = document.getElementById("buyer_id").value;
 	var nowDate = new Date();
-	if(auction_start < nowDate && auction_end > nowDate){
+	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'){
 		$("#detail_content_info_state").append(
-				'<div style="height: 50px;">'
+				'<div style="height: 50px;">'   
 				+ '<span style="font-size: 20px">· 입찰가 : </span>'
 				+ '<input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, \'$1\');" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">'
 				+ '&nbsp;'
