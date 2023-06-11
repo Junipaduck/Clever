@@ -36,6 +36,14 @@ public interface AdminMapper {
 	// 신고 목록 조회
 	List<HashMap<String, String>> selectReportList();
 
+	// 신고 카운트 조회
+	List<HashMap<String, String>> selectReportProList();
+
+	// 신고 처리
+	int deleteProduct(int product_idx);
+
+
+
 
 
 }

@@ -19,7 +19,10 @@
 <script type="text/javascript">
 	function reportPro(report_idx, product_idx, report_count) {
 		if(report_count < 5) {
-			alert("누적 신고 횟수를 다시 확인해 주세요!");
+			alert(report_count + " / 5회입니다. 누적 신고 횟수를 다시 확인해 주세요!");
+			return false;
+		} else {
+			location.href = "reportPro?report_idx=" + report_idx + "&product_idx=" + product_idx
 		}
 	}
 </script>

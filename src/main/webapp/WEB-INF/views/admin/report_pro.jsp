@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,12 @@
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+	function reportPro(product_idx) {
+		confirm("정말 상품을 삭제하시겠습니까?");
+		location.href = "reportPro.ad?product_idx=" + product_idx
+	}
+</script>
 <body>
 
     <!--*******************
@@ -79,7 +85,6 @@
                 </div>
                 <!-- row -->
 
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -91,32 +96,34 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>상품번호</th>
+                                                <th>등록 아이디</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
-                                                <th>상품사진</th>
+                                                <th>상품번호</th>
+                                                <th>누적신고카운트</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>장바구니</td>
-                                                <td>2023-05-19</td>
-                                                <td>굿즈</td>
-                                                <td>5000원</td>
-                                                <td>사진</td>
-                                            </tr>
+                                        	<c:forEach items="${rList }" var="rList">
+												<input type="hidden" value="${rList.product_idx }">
+	                                            <tr>
+	                                                <td>${rList.member_id }</td>
+	                                                <td>${rList.product_subject }</td>
+	                                                <td>${rList.product_idx }</td>
+	                                                <td>${rList.total_reports }</td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="reportPro('${rList.product_idx}')">처리하기</button>
+	                                                </td>
+	                                            </tr>
+                                        	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>상품번호</th>
+                                                <th>등록 아이디</th>
                                                 <th>상품명</th>
-                                                <th>상품등록일</th>
-                                                <th>상품 카테고리</th>
-                                                <th>상품가격</th>
-                                                <th>상품사진</th>
+                                                <th>상품번호</th>
+                                                <th>누적신고카운트</th>
+                                                <th></th>
                                             </tr>
                                         </tfoot>
                                     </table>
