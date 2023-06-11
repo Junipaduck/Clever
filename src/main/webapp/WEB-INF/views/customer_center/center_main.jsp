@@ -80,7 +80,7 @@
 				<ul>
 					<li><a href="noticeMain.ad">공지사항</a></li>
 					<li><a href="/shop/faq.html">자주묻는질문</a></li>
-					<li><a href="/board/board.html?code=jo112" data-link="jo112">고객문의</a></li>
+					<li><a href="centerAsked" data-link="jo112">고객문의</a></li>
 				</ul>
 			</div>
 
