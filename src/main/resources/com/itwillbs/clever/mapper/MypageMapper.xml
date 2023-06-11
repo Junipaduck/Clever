@@ -30,7 +30,7 @@
 		SELECT p.product_idx, p.product_subject, p.product_price, p.product_date, d.dibs_type, d.type_num
 			FROM product p 
 			JOIN dibs d ON p.product_idx = d.type_num  
-			WHERE d.member_id = 'admin' AND d.dibs_type = 'product'; 
+			WHERE d.member_id = #{sId} AND d.dibs_type = 'product'; 
 	</select>
 	
 	<!-- 경매 찜 내역 select -->
@@ -38,7 +38,18 @@
 		SELECT a.auction_idx, a.auction_title, a.auction_final_price, a.auction_date, d.dibs_type, d.type_num
 			FROM auction a  
 			JOIN dibs d ON a.auction_idx = d.type_num  
-			WHERE d.member_id = 'admin' AND d.dibs_type = 'auction';
+			WHERE d.member_id = #{sId} AND d.dibs_type = 'auction';
+	</select>
+	
+	<!-- 경매 찜에 띄워줄 첫번째에 업로드한 사진 select -->
+	<select id="selectAuctionFile" resultType="HashMap">
+		SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'auction'
+							GROUP BY file_num);
 	</select>
 	
 	<!-- 굿즈 구매 내역 조회 -->

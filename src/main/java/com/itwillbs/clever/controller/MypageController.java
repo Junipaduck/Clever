@@ -65,6 +65,9 @@ public class MypageController {
 		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibsList(sId);
 		model.addAttribute("auctionDibsList", auctionDibsList);
 		
+		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("auctionfileList", auctionfileList);
+		
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
 		model.addAttribute("goodsList", goodsList);

@@ -580,15 +580,15 @@ div.right {
 	         <div class="goods_one">
 	             <a href="product_detail?product_idx=${auctionDibsList.auction_idx }">
 	                 <div class="goods_image">
-					<c:forEach items="${fileList }" var="fileList">
-				                   <c:set var="length" value="${fn:length(fileList.file_name) }" />
-					<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
-					<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+					<c:forEach items="${auctionfileList }" var="auctionfileList">
+				                   <c:set var="length" value="${fn:length(auctionfileList.file_name) }" />
+					<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
+					<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
 					<c:choose>
-	                       <c:when test="${fileList.file_num eq auctionDibsList.auction_idx }">
+	                       <c:when test="${auctionfileList.file_num eq auctionDibsList.auction_idx }">
 	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
 	                       </c:when>
-	                       <c:when test="${fileList.file_num eq auctionDibsList.auction_idx }">
+	                       <c:when test="${auctionfileList.file_num eq auctionDibsList.auction_idx }">
 	                            <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
 	                         <span class="goods_front">
 	                             <i class="far fa-check-circle"></i><br>

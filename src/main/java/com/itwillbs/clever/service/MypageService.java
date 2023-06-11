@@ -38,12 +38,16 @@ public class MypageService {
 	public List<HashMap<String, String>> selectAutionDibsList(String sId) {
 		return mapper.selectAutionDibsList(sId);
 	}
+	
+	// 경매 찜 파일 조회
+	public List<HashMap<String, String>> selectAuctionFile() {
+		return mapper.selectAuctionFile();
+	}
 
 	// 굿즈 구매 내역
 	public List<HashMap<String, String>> selectGoodsList(String sId) {
 		
 		return mapper.selectGoodsList(sId);
 	}
-
 	
 }
