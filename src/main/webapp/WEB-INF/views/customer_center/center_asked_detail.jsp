@@ -93,6 +93,38 @@
 									</tbody>
 								</c:forEach>
 							</table>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<c:forEach items="${myAskedAns }" var="myAskedAns">
+								<table summary="분류 제목">
+									<caption>질문/답변</caption>
+									<colgroup>
+										<col width="100" />
+										<col width="*" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">
+												<div class="tb-center">답변</div>
+											</th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr uid="6">
+											<td colspan="2">
+												<div class="tb-left">${myAskedAns.ans_content }</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</c:forEach>
+							
 						</div>
 					</div>
 				</div>
@@ -103,6 +135,7 @@
 						<a href="javascript:history.back()" class="CMbutton1" style="background-color: #0085f5; color: white;">돌아가기</a>
 					</dd>
 				</dl>
+<input type="button" onclick="location.href='askedAnsForm?asked_idx=${param.asked_idx }'" value="답변하기">
 	
 			</div>
 			<!-- #contentWrap -->

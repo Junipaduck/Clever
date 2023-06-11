@@ -49,6 +49,13 @@
 			WHERE asked_idx = #{asked_idx}
 	</select>
 	
+	<!-- 1:1 답변 조회 -->
+	<select id="myAskedAns" resultType="map">
+		SELECT *
+			FROM asked_ans
+			WHERE asked_idx = #{asked_idx}
+	</select>
+	
 	<!-- 1:1 문의 등록 -->
 	<insert id="insertAsked">
 		<selectKey keyProperty="asked_idx" resultType="int" order="BEFORE">
@@ -65,5 +72,27 @@
 				,'N'
 			)
 	</insert>
+	
+	<!-- 1:1 답변 등록 -->
+	<insert id="insertAskedAns">
+		<selectKey keyProperty="ans_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(ans_idx), 0) FROM asked_ans
+		</selectKey>
+		INSERT
+			INTO 
+				asked_ans
+			VALUES (
+				#{ans_idx} + 1
+				,#{asked_idx}
+				,#{ans_content}
+			)
+	</insert>
+	<update id="updateAskedAns">
+		UPDATE
+			asked
+			SET
+				asked_status = 'Y'
+			WHERE asked_idx = #{asked_idx}
+	</update>
 
 </mapper>

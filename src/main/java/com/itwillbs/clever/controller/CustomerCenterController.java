@@ -96,13 +96,17 @@ public class CustomerCenterController {
 		System.out.println("문의상세내용 : " + myAskedDetail);
 		model.addAttribute("myAskedDetail", myAskedDetail);
 		
+		List<String> myAskedAns = customerCenterService.myAskedAns(asked_idx);
+		System.out.println("답변 : " + myAskedAns);
+		model.addAttribute("myAskedAns", myAskedAns);
+		
 		return "customer_center/center_asked_detail";
 	}
 	
 	// 1:1 문의게시판 폼
 	@GetMapping("askedForm")
 	public String askedForm() {
-		return "customer_center/askedForm";
+		return "customer_center/center_asked_form";
 	}
 	
 	@PostMapping("askedFormPro")
@@ -112,13 +116,49 @@ public class CustomerCenterController {
 		map.put("asked_content", map.get("editordata"));
 		int insertCount = customerCenterService.insertAsked(map);
 		if(insertCount < 0 ) {
-			model.addAttribute("msg", "글 등록 실패");
+			model.addAttribute("msg", "문의글 등록 실패");
 			return "fail_back";
 		} else {
-			model.addAttribute("msg", "글 등록 성공");
+			model.addAttribute("msg", "문의글 등록 성공");
 			model.addAttribute("target", "centerAsked");
 			return "success";
 		}
+	}
+	
+	// 1:1 문의 답변폼 이동
+	@GetMapping("askedAnsForm")
+	public String askedAnsForm() {
+		return "customer_center/center_asked_ans";
+	}
+	
+	// 1:1 문의 답변 등록
+	@PostMapping("askedAnsFormPro")
+	public String askedAnsFormPro(@RequestParam Map<String, String> map, Model model, @RequestParam int asked_idx) {
+		map.put("ans_content", map.get("editordata"));
+		map.put("asked_idx", map.get("asked_idx"));
+		
+		int insertCount = customerCenterService.insertAskedAns(map);
+		if(insertCount < 0 ) {
+			model.addAttribute("msg", "답변 등록 실패");
+			return "fail_back";
+		} else {
+			customerCenterService.updateAskedAns(map);
+			model.addAttribute("msg", "답변 등록 성공");
+			model.addAttribute("target", "centerAsked");
+			return "success";
+		}
+		
+	
+//		int updateCount = customerCenterService.updateAskedAns(map);
+//		if(updateCount < 0 ) {
+//			model.addAttribute("msg", "답변 등록 실패");
+//			return "fail_back";
+//		} else {
+//			model.addAttribute("msg", "답변 등록 성공");
+//			model.addAttribute("target", "centerAsked");
+//			return "success";
+//		}
+		
 	}
 	
 	

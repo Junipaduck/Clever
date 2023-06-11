@@ -17,8 +17,16 @@ public interface CustomerCenterMapper {
 	List<String> myAskedList(String sId);
 
 	List<String> myAskedDetail(int asked_idx);
+	
+	List<String> myAskedAns(int asked_idx);
 
 	int insertAsked(Map<String, String> map);
+
+	int insertAskedAns(Map<String, String> map);
+
+	int updateAskedAns(Map<String, String> map);
+
+	
 
 
 

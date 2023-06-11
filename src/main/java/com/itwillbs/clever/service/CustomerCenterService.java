@@ -38,11 +38,25 @@ public class CustomerCenterService {
 	public List<String> myAskedDetail(int asked_idx) {
 		return mapper.myAskedDetail(asked_idx);
 	}
+	public List<String> myAskedAns(int asked_idx) {
+		return mapper.myAskedAns(asked_idx);
+	}
 
 	// 1:1 문의 등록
 	public int insertAsked(Map<String, String> map) {
 		return mapper.insertAsked(map);
 	}
+
+	// 1:1 문의 답변 등록
+	public int insertAskedAns(Map<String, String> map) {
+		return mapper.insertAskedAns(map);
+	}
+
+	public int updateAskedAns(Map<String, String> map) {
+		return mapper.updateAskedAns(map);
+	}
+
+	
 
 
 
