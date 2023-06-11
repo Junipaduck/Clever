@@ -101,6 +101,14 @@
 			WHERE
 				member_id = #{id}	
 	</select>
+	
+	<!-- 굿즈 가격 조회 -->
+	<select id="selectGoodsPrice" resultType="com.itwillbs.clever.vo.GoodsVO">
+		SELECT *
+			FROM goods
+				WHERE
+					goods_idx = #{goods_idx}
+	</select>
 </mapper>
 
 

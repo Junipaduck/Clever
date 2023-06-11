@@ -36,6 +36,12 @@ public interface GoodsMapper {
 	// 결제창 멤버 정보 조회
 	MemberVO selectMemberInfo(String id);
 
+	// 굿즈 결제 처리
+	int buyGoods(String id);
+
+	// 굿즈 가격 조회
+	GoodsVO selectGoodsPrice(int goods_idx);
+
 
 }
 

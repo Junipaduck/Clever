@@ -160,18 +160,34 @@ public class GoodsController {
 		
 		String id = (String)session.getAttribute("sId");
 		
+		// 굿즈 상세 정보
 		List<HashMap<String, String>> goodsDetail = goodsService.getGoodsDetail(goods_idx);
 		model.addAttribute("goodsDetail", goodsDetail);
 		
 		List<HashMap<String, String>> fileList = goodsService.selectFile();
 		model.addAttribute("fileList", fileList);
 		
+		// 구매자 정보 조회
 		MemberVO member = goodsService.getMemberInfo(id);
 		model.addAttribute("member", member);
 		
 		return "goods/goods_pay_form";
 	}
 	
+	
+	// 굿즈 결제 처리
+	@GetMapping(value = "/buyGoods.ad")
+	public String buyGoods(@RequestParam("goods_idx") int goods_idx, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		GoodsVO goods = goodsService.selectGoodsPrice(goods_idx);
+		model.addAttribute("goods", goods);
+		System.out.println("여기에 가격이 찍히나??" + goods.getGoods_price());
+		
+		return "redirect:/payGoods";
+		
+	}
 }
 
 
