@@ -101,7 +101,7 @@
 						<div class="faqtopwrap">
 							<div id="faq-category">
 								<ul class="faq-menu">
-<!-- 									<li><a href="FAQ?param=전체보기">전체보기</a></li> -->
+									<li><a href="FAQ?param=ALL">전체보기</a></li>
 									<li><a href="FAQ?param=회원/계정">회원/계정</a></li>
 									<li><a href="FAQ?param=거래분쟁/운영정책">거래분쟁/운영정책</a></li>
 									<li><a href="FAQ?param=스토어">스토어</a></li>
@@ -120,6 +120,7 @@
 
 									<fieldset>
 										<legend>FAQ 검색 폼</legend>
+										<form action="FAQ"></form>
 										<select class="MS_input_select select-category"
 											id="search-category">
 											<option value="">전체검색</option>
@@ -161,6 +162,8 @@
 									<col width="*" />
 									<col width="1" />
 								</colgroup>
+								
+								<!-- 아코디언 오류나면 여기서부터 주석풀고 FAQ_detail.jsp랑 같이 사용하면 됨 -->
 <!-- 								<thead> -->
 <!-- 									<tr> -->
 <!-- 										<th scope="col"> -->

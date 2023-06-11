@@ -14,4 +14,5 @@ public interface CustomerCenterMapper {
 
 	int insertFAQ(Map<String, String> map);
 
+
 }

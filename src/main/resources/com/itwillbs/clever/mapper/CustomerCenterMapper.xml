@@ -8,8 +8,10 @@
 				*
 			FROM
 				FAQ
-			WHERE
-				FAQ_category = #{param} 
+			<if test="!param.equals('ALL')"> <!-- param의 값이 ALL이 아닌 경우에만 where절을 쓰고, ALL인 경우에는 where절 생략하고 전체조회 -->
+				WHERE
+					FAQ_category = #{param} 
+			</if>
 			ORDER BY FAQ_idx DESC;
 	</select>
 	
@@ -31,6 +33,5 @@
 					, #{FAQ_content}
 					);
 	</insert>
-
 
 </mapper>

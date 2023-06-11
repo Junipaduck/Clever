@@ -29,4 +29,5 @@ public class CustomerCenterService {
 		return mapper.insertFAQ(map);
 	}
 
+
 }
