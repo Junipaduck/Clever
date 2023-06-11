@@ -96,5 +96,12 @@ public class GoodsService {
 		return mapper.selectMemberPoint(id);
 	}
 
+	// 굿즈 구매 정보 insert
+	public int insertBuyGoods() {
+		
+		return mapper.insertBuyGoods();
+	}
+
+
 	
 }

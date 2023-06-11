@@ -14,6 +14,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
+import com.google.protobuf.*;
 import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
@@ -194,8 +195,19 @@ public class GoodsController {
 		if(point > goods_price) { // 포인트가 굿즈 가격보다 높을 때 
 			int updateCount = goodsService.buyGoods(id, goods_price); // 포인트에서 굿즈 가격 차감
 			
-			if(updateCount > 0) {
-				return "goods/goods_pay_pro";
+			if(updateCount > 0) { // 포인트 차감 성공 시 
+				
+				// 결제 내역  buyGoods 에 insert
+				int insertCount = goodsService.insertBuyGoods();
+				
+				if(insertCount > 0) { // 결제내역 insert 성공시
+					return "goods/goods_pay_pro";
+				} else {
+					model.addAttribute("msg", "결제 내역 insert 실패!");
+					return "fail_back";
+				}
+				
+				
 			} else {
 				model.addAttribute("msg", "결제 실패!");
 				return "fail_back";

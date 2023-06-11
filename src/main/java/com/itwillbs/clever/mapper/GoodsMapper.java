@@ -47,6 +47,10 @@ public interface GoodsMapper {
 	// 멤버 포인트 조회
 	MemberVO selectMemberPoint(String id);
 
+	// 굿즈 구매 정보 insert
+	int insertBuyGoods();
+
+
 
 }
 
