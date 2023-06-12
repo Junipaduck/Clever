@@ -12,8 +12,8 @@
 				VALUES(
 				#{auction_idx} + 1		
 				, #{map.auction_title }
-				, #{map.auction_min_bid	}
-				, #{map.auction_min_increase }
+<!-- 				, #{map.auction_min_bid	} -->
+<!-- 				, #{map.auction_min_increase } -->
 				, #{map.auction_price }
 				, #{map.auction_Lcategory }
 				, #{map.auction_Mcategory }
@@ -29,6 +29,8 @@
 				, "경매 등록 대기중"
 				, now()
 				, #{id }
+				, 'N'
+				, #{map.immediately_price }
 				)
 	</insert>
 	

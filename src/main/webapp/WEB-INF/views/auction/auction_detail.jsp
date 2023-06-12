@@ -501,6 +501,7 @@
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";
+	var seller = "${detailmap.member_id}";
 	var auction_idx = "${param.auction_idx}";
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
@@ -696,7 +697,7 @@ function auctionStart() {
 	var auction_end = new Date("${detailmap.auction_end}");
 	var auction_buyer_id = document.getElementById("buyer_id").value;
 	var nowDate = new Date();
-	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'){
+	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'&& userId != seller){
 		$("#detail_content_info_state").append(
 				'<div style="height: 50px;">'   
 				+ '<span style="font-size: 20px">· 입찰가 : </span>'

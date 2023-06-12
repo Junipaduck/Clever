@@ -288,12 +288,22 @@ public class AuctionController {
 									, @RequestParam("image4") MultipartFile file4
 									, @RequestParam("image5") MultipartFile file5
 									, @RequestParam("image6") MultipartFile file6
+									, @RequestParam("image7") MultipartFile file7
+									, @RequestParam("image8") MultipartFile file8
+									, @RequestParam("image9") MultipartFile file9
+									, @RequestParam("image10") MultipartFile file10
+									, @RequestParam("image11") MultipartFile file11
+									, @RequestParam("image12") MultipartFile file12
 									, HttpSession session, Model model) {
-		MultipartFile[] file = {file1,};
-		for(int i = 1; i < 6; i++) {
-			
+		MultipartFile[] fArr = {file1,file2,file3,file4,file5,file6,file7,file8,file9,file10,file11,file12};
+		ArrayList<MultipartFile> file = new ArrayList<MultipartFile>();
+		System.out.println(fArr); 
+		for(int i = 0; i < fArr.length; i++) {
+			if(!fArr[i].getOriginalFilename().equals("")) {
+				file.add(fArr[i]);
+			}
 		}
-//		System.out.println(file);
+		System.out.println(file);
 	
 		
 		String id = (String)session.getAttribute("sId");
@@ -314,7 +324,7 @@ public class AuctionController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("file_div", "auction");
 		paramMap.put("file_num", auctionService.selectMax());
-//		upload.upload(file, session, paramMap);
+		upload.upload(file, session, paramMap);
 		//---------- 파일 업로드 관련 작업 끝 ------------------------------------------------------------
 		
 		if(insertAuction > 0) {
