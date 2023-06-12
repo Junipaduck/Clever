@@ -77,13 +77,13 @@ div.right {
 				</div>
 				<div>
 					<p>${member.member_name}님</p>
-					<p>
-						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점"> 
-						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점"> 
-						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> 
-						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> 
-						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">
-					</p>
+<!-- 					<p> -->
+<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
+<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
+<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">  --%>
+<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">  --%>
+<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> --%>
+<!-- 					</p> -->
 				</div>
 				<div>
 					<p>
@@ -105,50 +105,52 @@ div.right {
 					</div>
 				</div>
 				<div id="my_store_right_mid">
-					<div>
-						<p>
-							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일">
-						</p>
-						<p>
-							여긴뭐해요 <span>0 일 전</span>
-						</p>
-					</div>
-					<div>
-						<p>
-							<img src="${pageContext.request.contextPath }/resources/images/market/people.png" alt="상점 방문수">
-						</p>
-						<p>
-							거래후기 <span>0 명</span>
-						</p>
-					</div>
-					<div>
-						<p>
-							<img src="${pageContext.request.contextPath }/resources/images/market/product_sell.png" alt="상품판매">
-						</p>
-						<p>
-							내물건판매 <span>0 회</span>
-						</p>
-					</div>
-					<div>
-						<p>
-							<img src="${pageContext.request.contextPath }/resources/images/market/parcel_service.png" alt="택배발송">
-						</p>
-						<p>
-							경매참여 <span>0 회</span>
-						</p>
-					</div>
+				
+					
+<!-- 					<div> -->
+<!-- 						<p> -->
+<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일"> --%>
+<!-- 						</p> -->
+<!-- 						<p> -->
+<!-- 							여긴뭐해요 <span>0 일 전</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<p> -->
+<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/people.png" alt="상점 방문수"> --%>
+<!-- 						</p> -->
+<!-- 						<p> -->
+<!-- 							거래후기 <span>0 명</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<p> -->
+<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/product_sell.png" alt="상품판매"> --%>
+<!-- 						</p> -->
+<!-- 						<p> -->
+<!-- 							내물건판매 <span>0 회</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<p> -->
+<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/parcel_service.png" alt="택배발송"> --%>
+<!-- 						</p> -->
+<!-- 						<p> -->
+<!-- 							경매참여 <span>0 회</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
 				</div>
 
-				<div id="my_store_right_bot">
-					<div id="intro_modify">
-						<button>회원 등급 / 관심목록 / 결제수단 / 포인트 출금</button>
-					</div>
+<!-- 				<div id="my_store_right_bot"> -->
+<!-- 					<div id="intro_modify"> -->
+<!-- 						<button>회원 등급 / 관심목록 / 결제수단 / 포인트 출금</button> -->
+<!-- 					</div> -->
 
-					<div class="text_area">
-						<textarea></textarea>
-						<button>확인</button>
-					</div>
-				</div>
+<!-- 					<div class="text_area"> -->
+<!-- 						<textarea></textarea> -->
+<!-- 						<button>확인</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 		<!-- 프로필 영역 끝 -->
