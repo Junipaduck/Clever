@@ -55,7 +55,7 @@ font-size: 15px;
 <body>
 	<!-- 헤더 시작 -->
 	<header>
-		<jsp:include page="../inc/header.jsp" />
+		<jsp:include page="../auction/auction_header.jsp" />
 	</header>
 
 	<!-- main_content 영역 -->
@@ -112,7 +112,7 @@ font-size: 15px;
 														<div class="tb-center">${community.community_readcount }</div>
 													</td>
 													<td>
-														<div class="tb-center"><a href="community_detail?community_idx=${community.community_idx }">${community.community_title }</a></div>
+														<div class="tb-center"><a href="community_detail?community_idx=${community.community_idx }&community_div=${community.community_div }">${community.community_title }</a></div>
 													</td>
 													<td>
 														<div class="tb-center">${community.community_date }</div>
