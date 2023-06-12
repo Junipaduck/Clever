@@ -10,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>클레버 - 마이페이지</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
 
 	<!--아이콘-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -176,7 +175,7 @@ div.right {
 	<!-- 가계부 -->
 	<div id="my_accountbook" style="margin-top: 30px;">
 	<div style="display: flex; flex-direction: row; height: 400px;">
-	<div id="top_x_div" style="flex-grow: 1; width1: 50%; height: 400px;">
+	<div id="top_x_div" style="flex-grow: 1; width1: 50%; height: 400px; margin-left: 65px;">
 	<!-- 					<div id="top_x_div" style="width: 100px; height: 400px;"></div> -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
@@ -549,7 +548,7 @@ div.right {
 					</div>
 				</div>
 
-				<div id="auctionbid_menu_area" class="common_menu">
+				<div id="auction_menu_area" class="common_menu">
 					<div>
 						<p>
 							경매 참여내역 <span>0</span>
@@ -564,7 +563,110 @@ div.right {
 						<i class="bi bi-chevron-down under_direction under"></i>
 					</div>
 					<div>
-						<p>경매 참여한 상품이 없습니다.</p>
+			<div class="modal_return_area hidden">
+            <div class="return_bg bg"></div>
+            <div class="return_modal">
+                <h2>알림</h2>
+                <p>반품신청 하시겠습니까?</p>
+                <div class="btn_area">
+                    <button type="button" class="btn_no">아니요</button>
+                    <button type="button" class="btn_yes">네</button>
+                </div>
+            </div>
+        </div>
+        <!--상품수령 모달-->
+        <div class="modal_decide_area hidden">
+            <div class="decide_bg bg"></div>
+            <div class="decide_modal">
+                <div class="decide_content">
+                    <h2>상품을 수령하셨나요?</h2>
+                    <p>
+                        구매확정 후에는 취소할 수 없습니다.<br>
+                        만약 상품 수령 전에 미리 구매확정을 할 경우 사기 위험에 노출될 수 있습니다.<br>
+                        (불법적 금융대출 목적으로 이용 시 금융거래에 불이익을 받을 수 있습니다.)
+                    </p>
+                </div>
+                <div class="btn_area">
+                    <button type="button" class="btn_no">아니요</button>
+                    <button type="button" class="btn_yes">네</button>
+                </div>
+            </div>
+        </div>
+        <!--리뷰 모달-->
+        <div class="modal_review_area hidden">
+            <div class="review_bg bg"></div>
+            <div class="review_modal">
+                <h2>알림</h2>
+                <p>
+                    후기는 앱에서만 작성할 수 있습니다 <br>
+                    작성하시겠습니까?
+                </p>
+                <div class="btn_area">
+                    <button type="button" class="btn_no">아니요</button>
+                    <button type="button" class="btn_yes">네</button>
+                </div>
+            </div>
+        </div>
+		<div id="main_content">
+           <!--필터-->
+           <nav class="filter_nav">
+               <div class="status_filter">
+                   <button type="button" class="all_buy_status active">전체 상태</button>
+                   <button type="button" class="buying_status">진행중</button>
+                   <button type="button" class="bought_status">완료</button>
+                   <button type="button" class="cancle_status">취소/환불</button>
+               </div>
+               <div class="pay_filter">
+                   <button type="button" class="pay_filter">
+                       <svg width="20" height="20" fill="#000" viewBox="0 0 20 20">
+                           <path d="M0 3a1 1 0 011-1h3.185A2.995 2.995 0 017 0a2.995 2.995 0 012.815 2H19a1 1 0 010 2H9.815A2.995 2.995 0 017 6a2.995 2.995 0 01-2.815-2H1a1 1 0 01-1-1zm20 14a1 1 0 01-1 1H9.815A2.995 2.995 0 017 20a2.995 2.995 0 01-2.815-2H1a1 1 0 010-2h3.185A2.995 2.995 0 017 14a2.995 2.995 0 012.815 2H19a1 1 0 011 1zm0-7a1 1 0 01-1 1h-3.185A2.995 2.995 0 0113 13a2.995 2.995 0 01-2.815-2H1a1 1 0 010-2h9.185A2.995 2.995 0 0113 7a2.995 2.995 0 012.815 2H19a1 1 0 011 1zM6 3a1 1 0 102 0 1 1 0 00-2 0zm2 14a1 1 0 10-2 0 1 1 0 002 0zm6-7a1 1 0 10-2 0 1 1 0 002 0z" fill-rule="evenodd" fill="#000">
+                           </path>
+                       </svg>
+                   </button>
+               </div>
+           </nav>
+           <!--상품 내용-->
+           <c:forEach items="${auctionList }" var="auctionList">
+           <div class="goods">
+               <div class="goods_one">
+                   <a href="product_detail?product_idx=${auctionList.auction_idx }">
+                       <div class="goods_image">
+                           <c:forEach items="${auctionfileList }" var="auctionfileList">
+	                        <c:set var="length" value="${fn:length(auctionfileList.file_name) }" />
+							<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
+							<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
+							<c:choose>
+	                            <c:when test="${auctionfileList.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매 등록 대기중' }">
+		                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+		                                 <span class="goods_front">
+                            				   경매 진행 중
+                         			     </span>
+	                            </c:when>
+	                            <c:when test="${auctionfileList.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매 마감' }">
+		                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+			                          <span class="goods_front">
+                               		  	<i class="far fa-check-circle"></i><br>
+                             			 경매마감
+                           			  </span>
+	                            </c:when>
+	                        </c:choose>
+                        </c:forEach>
+                       </div>
+                        <div class="goods_info">
+                           <h2 class="goods_title">${auctionList.buy_title }</h2>
+                           <p class="goods_price"><span class="bold">최종 낙찰가 : ${auctionList.auction_final_price }</span>원</p>
+                           <p class="goods_shop">상점명 / 번개페이 안전결제</p>
+                           <p class="goods_date">${auctionList.auction_date }</p>
+                       </div>
+                   	</a>
+                        	<div class="btn_area">
+                       			<button type="button" class="btn_buy_decide">결제하기</button>
+                      			<button type="button" class="btn_return">채팅</button>
+                   	   		</div>
+                </div>
+            </div>
+			</c:forEach>
+            </div>
 					</div>
 				</div>
 

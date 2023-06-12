@@ -34,6 +34,11 @@ public class MypageService {
 		return mapper.selectProductDibsList(sId);
 	}
 
+	// 경매 등록 내역
+	public List<HashMap<String, String>> selectAuctionList(String sId) {
+		return mapper.selectAuctionList(sId);
+	}
+	
 	// 경매 찜 조회
 	public List<HashMap<String, String>> selectAutionDibsList(String sId) {
 		return mapper.selectAutionDibsList(sId);
@@ -49,5 +54,7 @@ public class MypageService {
 		
 		return mapper.selectGoodsList(sId);
 	}
+
+	
 	
 }
