@@ -33,7 +33,7 @@
 			WHERE d.member_id = #{sId} AND d.dibs_type = 'product'; 
 	</select>
 	
-	<!-- 중고거래 판매 전체 내역 select -->
+	<!-- 내 경매 전체 내역 select -->
 	<select id="selectAuctionList" resultType="HashMap">
 		SELECT *
 			FROM auction
