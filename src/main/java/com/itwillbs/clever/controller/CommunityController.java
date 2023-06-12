@@ -51,7 +51,11 @@ public class CommunityController {
 		int communityUpload = communityService.insertCommunity(map,id);
 		if(communityUpload > 0) {
 			model.addAttribute("msg", "등록 성공!");
-			model.addAttribute("target", "community");
+			if(map.get("community_div").equals("auction")) {
+				model.addAttribute("target", "community_auction");
+			} else {
+				model.addAttribute("target", "community");
+			}
 			return "success";
 		} else {
 			model.addAttribute("msg", "등록 실패!");
