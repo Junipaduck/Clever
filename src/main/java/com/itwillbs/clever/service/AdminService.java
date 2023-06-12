@@ -123,6 +123,11 @@ public class AdminService {
 		return mapper.selectAskList();
 	}
 
+	public List<HashMap<String, String>> getProductList() {
+		
+		return mapper.selectProductList();
+	}
+
 
 
 

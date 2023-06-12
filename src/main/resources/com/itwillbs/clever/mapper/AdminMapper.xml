@@ -93,6 +93,15 @@
 			FROM 
 				asked
 	</select>
+	
+	<!-- product 도넛 차트 -->
+	<select id="selectProductList" resultType="HashMap">
+		SELECT 
+			product_Lcategory, COUNT(product_Lcategory) AS 'count'
+				FROM product p 
+					GROUP BY 
+						product_Lcategory
+	</select>
 </mapper>
 
 

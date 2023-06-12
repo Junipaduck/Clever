@@ -45,6 +45,8 @@ public interface AdminMapper {
 	// 1:1 문의 조회
 	List<HashMap<String, String>> selectAskList();
 
+	List<HashMap<String, String>> selectProductList();
+
 
 
 

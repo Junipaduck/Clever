@@ -128,10 +128,11 @@ function show_name(e){
                             <img id="menu" src="${pageContext.request.contextPath }/resources/images/market/hamburger.png" alt="메뉴">
                         </div>
                         <div class="col-md-4 sell_center">
-                            <p>
+                            <p style="width: 320px">
 	                            <a href="./" style="color: black;">중고거래　</a>
 	                            <a href="auction" style="color: black;">경매하기　</a>
-	                            <a href="goodsStore.ad" style="color: black;">스토어　</a>
+	                            <a href="goodsStore.ad" style="color: black;">굿즈 스토어　</a>
+	                            <a href="community_auction" style="color: black;">경매 커뮤니티　</a>
 	                        </p>
                         </div>
                         <!-- 메뉴 호버 -->

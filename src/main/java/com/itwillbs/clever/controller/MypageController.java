@@ -44,29 +44,41 @@ public class MypageController {
 		}
 		
 		MemberVO member = memberService.selectMember(sId);
-		
 		model.addAttribute("member", member);
 		
+		// 중고거래 판매 내역
 		List<HashMap<String, String>> productSellList = mypageService.selectProductSellList(sId);
 		model.addAttribute("productSellList", productSellList);
 
+		// 중고거래 판매 날짜(sell 테이블)
 		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
 		model.addAttribute("productSellDate", productSellDate);
 		
+		// 중고거래 구매 내역
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
 		model.addAttribute("productBuyList", productBuyList);
 		
+		// 중고거래 파일 이미지
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
 		
+		// 중고거래 찜 내역
 		List<HashMap<String, String>> productdibsList = mypageService.selectProductDibsList(sId);
 		model.addAttribute("productdibsList", productdibsList);
 		
+		// 경매 등록 내역
+		List<HashMap<String, String>> auctionList = mypageService.selectAuctionList(sId); 
+		model.addAttribute("auctionList", auctionList);
+
+		// 경매 파일 이미지
+		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); //파일테이블에서 경매 찜 목록의 첫번째등록한 이미지만 select
+		model.addAttribute("auctionfileList", auctionfileList);
+		
+		// 경매 찜 내역
 		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibsList(sId);
 		model.addAttribute("auctionDibsList", auctionDibsList);
 		
-		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
-		model.addAttribute("auctionfileList", auctionfileList);
+		
 		
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
