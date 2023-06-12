@@ -94,5 +94,11 @@ public class ChattingController {
 		return null;
 	}
 	
+	// 채팅방 나가기
+	@GetMapping("deleteRoom")
+	public String deleteRoom() {
+		return null;
+	}
+	
 	
 }

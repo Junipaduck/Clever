@@ -158,10 +158,11 @@ public class WebSocketHandler extends TextWebSocketHandler implements Initializi
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
 	        s.sendMessage(new TextMessage(senderId + ":" + messageContent));
 	        System.out.println("메세지 전송 성공");
-	        int result = chattingService.insertMessage(productIdx, chatRoomId, buyerId, sellerId, messageContent, senderId);
-	        if (result > 0) {
-	            System.out.println("채팅 메세지 저장");
-	        }
+	    }
+	    
+	    int result = chattingService.insertMessage(productIdx, chatRoomId, buyerId, sellerId, messageContent, senderId);
+	    if (result > 0) {
+	    	System.out.println("채팅 메세지 저장");
 	    }
 	    
 	    
