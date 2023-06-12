@@ -3,17 +3,31 @@
 <mapper namespace="com.itwillbs.clever.mapper.CustomerCenterMapper">
 
 	<!-- 자주묻는질문의 카테고리 조회 (회원/계정, 스토어, 포인트 등등) -->
+	<!-- 검색기능 추가 -->
 	<select id="FAQcategory" resultType="map">
 		SELECT
 				*
 			FROM
 				FAQ
-			<if test="!param.equals('ALL')"> <!-- param의 값이 ALL이 아닌 경우에만 where절을 쓰고, ALL인 경우에는 where절 생략하고 전체조회 -->
+				<!-- 이 주석을 풀면 매핑과 검색이 안먹고.. 주석을 치면 카테고리 선택이 안되네 -->
+<!-- 			<if test="!param.equals('ALL')"> -->
+<!-- 				WHERE -->
+<!-- 					FAQ_category = #{param}  -->
+<!-- 			</if> -->
+			<if test="!searchKeyword.equals('')">
 				WHERE
-					FAQ_category = #{param} 
+	 			<choose>
+		 			<when test="searchType.equals('FAQ_subject')">
+						FAQ_subject LIKE '%${searchKeyword}%' 
+					</when>
+					<when test="searchType.equals('FAQ_content')">
+						FAQ_content LIKE '%${searchKeyword}%'
+					</when>
+	 			</choose>
 			</if>
 			ORDER BY FAQ_idx DESC;
 	</select>
+	
 	
 	<!-- 자주묻는질문 리스트 조회 -->
 	<select id="FAQlist" resultType="map">

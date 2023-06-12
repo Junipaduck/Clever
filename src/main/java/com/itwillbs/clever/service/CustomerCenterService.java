@@ -15,8 +15,8 @@ public class CustomerCenterService {
 	private CustomerCenterMapper mapper;
 	
 	// 자주묻는질문 카테고리
-	public List FAQcategory(String param) {
-		return mapper.FAQcategory(param);
+	public List FAQcategory(String param, String searchType, String searchKeyword) {
+		return mapper.FAQcategory(param, searchType, searchKeyword);
 	}
 
 	// 자주묻는질문 list 조회

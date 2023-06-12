@@ -60,11 +60,11 @@
 <script type="text/javascript">
 
 /* 검색창에 엔터키 치는 기능 */
-// function faqEnter(event) {
-//     if (event.keyCode === 13) {
-//       faqSearch('keyword');
-//     }
-//   }
+function faqEnter(event) {
+    if (event.keyCode === 13) {
+      faqSearch('keyword');
+    }
+  }
 
 
 $(document).ready(function() {
@@ -114,7 +114,7 @@ $(document).ready(function() {
 			<div class="bbs-cate">
 				<ul>
 					<li><a href="noticeMain.ad">공지사항</a></li>
-					<li><a href="FAQ?param=ALL">자주묻는질문</a></li>
+					<li><a href="FAQ">자주묻는질문</a></li>
 					<li><a href="centerAsked" data-link="jo112">1:1문의</a></li>
 				</ul>
 			</div>
@@ -128,7 +128,7 @@ $(document).ready(function() {
 						<div class="faqtopwrap">
 							<div id="faq-category">
 								<ul class="faq-menu">
-									<li><a href="FAQ?param=ALL">전체보기</a></li>
+									<li><a href="FAQ">전체보기</a></li>
 									<li><a href="FAQ?param=회원/계정">회원/계정</a></li>
 									<li><a href="FAQ?param=거래분쟁/운영정책">거래분쟁/운영정책</a></li>
 									<li><a href="FAQ?param=스토어">스토어</a></li>
@@ -147,24 +147,23 @@ $(document).ready(function() {
 
 									<fieldset>
 										<legend>FAQ 검색 폼</legend>
-										<form action="FAQ?param=ALL"></form>
-										<select class="MS_input_select select-category"
-											id="search-category" name="searchType">
-											<option value="FAQ_subject" <c:if test="${param.searchKeyword eq 'store_name'}">selected</c:if>>제목</option>
-											<option value="FAQ_content"<c:if test="${param.searchKeyword eq 'store_name'}">selected</c:if>>내용</option>
-<!-- 											<option value="ALL">전체검색</option> -->
-<!-- 											<option value="1">회원/계정</option> -->
-<!-- 											<option value="2">거래분쟁/운영정책</option> -->
-<!-- 											<option value="3">스토어</option> -->
-<!-- 											<option value="4">포인트</option> -->
-<!-- 											<option value="5">중고거래</option> -->
-<!-- 											<option value="6">경매</option> -->
-										</select> <span class="keyword"> <input id='faqSearch'
-											class="MS_input_txt"
-											onKeyPress="faqEnter(event);" aria-label="Search" name="searchKeyword" value="${param.searchKeyword }"/>
-										</span> <a class="searchbt" href="javascript:faqSearch('keyword')" onKeyPress="faqEnter(event);"><img
-											src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif"
-											alt="검색" title="검색"></a>
+										<form action="FAQ">
+											<select class="MS_input_select select-category"
+												id="search-category" name="searchType">
+												<option value="FAQ_subject" <c:if test="${param.searchKeyword eq 'FAQ_subject'}">selected</c:if>>제목</option>
+												<option value="FAQ_content"<c:if test="${param.searchKeyword eq 'FAQ_content'}">selected</c:if>>내용</option>
+	<!-- 											<option value="ALL">전체검색</option> -->
+	<!-- 											<option value="1">회원/계정</option> -->
+	<!-- 											<option value="2">거래분쟁/운영정책</option> -->
+	<!-- 											<option value="3">스토어</option> -->
+	<!-- 											<option value="4">포인트</option> -->
+	<!-- 											<option value="5">중고거래</option> -->
+	<!-- 											<option value="6">경매</option> -->
+											</select> <span class="keyword">
+											<input id='faqSearch' class="MS_input_txt" onKeyPress="faqEnter(event);" aria-label="Search" name="searchKeyword" value="${param.searchKeyword }"/>
+											</span> <a class="searchbt" href="javascript:faqSearch('keyword')" onKeyPress="faqEnter(event);">
+											<img src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif" alt="검색" title="검색"></a>
+										</form>
 									</fieldset>
 									<dl class="best-keyword" style="display: none;">
 										<dt>

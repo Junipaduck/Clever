@@ -8,7 +8,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface CustomerCenterMapper {
 
-	List FAQcategory(String param);
+	List FAQcategory(@Param("param") String param
+					, @Param("searchType") String searchType 
+					, @Param("searchKeyword") String searchKeyword);
 
 	List FAQlist(int fAQ_idx);
 

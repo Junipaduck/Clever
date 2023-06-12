@@ -21,9 +21,12 @@ public class CustomerCenterController {
 	private CustomerCenterService customerCenterService;
 	
 	// 자주묻는질문
+	// 검색기능 추가
 	@GetMapping("/FAQ")
-	public String FAQ(@RequestParam Map<String, String> map, Model model) {
-		List FAQcategory = customerCenterService.FAQcategory(map.get("param"));
+	public String FAQ(@RequestParam Map<String, String> map, Model model
+						,@RequestParam(defaultValue = "") String searchType
+						,@RequestParam(defaultValue = "") String searchKeyword) {
+		List FAQcategory = customerCenterService.FAQcategory(map.get("param"), searchType, searchKeyword);
 		model.addAttribute("FAQcategory", FAQcategory);
 		return "customer_center/FAQ";
 	}

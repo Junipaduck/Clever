@@ -79,7 +79,7 @@
 			<div class="bbs-cate">
 				<ul>
 					<li><a href="noticeMain.ad">공지사항</a></li>
-					<li><a href="FAQ?param=ALL">자주묻는질문</a></li>
+					<li><a href="FAQ">자주묻는질문</a></li>
 					<li><a href="centerAsked" data-link="jo112">고객문의</a></li>
 				</ul>
 			</div>
