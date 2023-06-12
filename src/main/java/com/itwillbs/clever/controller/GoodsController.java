@@ -53,7 +53,14 @@ public class GoodsController {
 	
 	// 굿즈 등록
 	@PostMapping(value = "/goodsRegisterPro.ad")
-	public String goodsRegisterPro(GoodsVO goods, HttpSession session, Model model, MultipartFile[] file) {
+	public String goodsRegisterPro(GoodsVO goods
+								  , @RequestParam("image1") MultipartFile file1
+								  , @RequestParam("image2") MultipartFile file2
+								  , @RequestParam("image3") MultipartFile file3
+								  , @RequestParam("image4") MultipartFile file4
+								  , @RequestParam("image5") MultipartFile file5
+								  , @RequestParam("image6") MultipartFile file6
+								  , HttpSession session, Model model) {
 		
 		int insertCount = goodsService.insertGoods(goods);
 		
@@ -62,11 +69,12 @@ public class GoodsController {
 		paramMap.put("file_div", "goods");
 		paramMap.put("file_num", goodsService.selectMax());
 		
-		FileUpload.upload(file, session, paramMap);
+//		FileUpload.upload(file, session, paramMap);
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg", "굿즈 등록이 완료되었습니다.");
-			return "redirect:/storeList.ad";
+			model.addAttribute("target", "storeList.ad");
+			return "success";
 		} else {
 			model.addAttribute("msg", "굿즈 등록 실패!");
 			return "fail_back";
