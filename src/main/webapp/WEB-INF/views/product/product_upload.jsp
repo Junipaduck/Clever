@@ -114,10 +114,18 @@ $(function() {
                                 <div>
                                     이미지 등록
 <!--                                     <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);"> -->
-                               		<input type="file" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
-                                    <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                               		<input type="file" id="image1" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" id="image2" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image3" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image7" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image8" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image9" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image10" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image11" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image12" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
