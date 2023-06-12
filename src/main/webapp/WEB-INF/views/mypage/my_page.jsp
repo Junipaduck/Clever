@@ -675,6 +675,10 @@ div.right {
 											<p class="goods_date">${auctionBidList.auction_date }</p>
 										</div>
 									</a>
+									<div class="btn_area">
+									<button type="button" class="">결제하기</button>
+									<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+									</div>
 								</div>
 							</div>
 						</c:forEach>
