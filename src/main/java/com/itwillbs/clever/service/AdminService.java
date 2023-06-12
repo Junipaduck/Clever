@@ -117,6 +117,12 @@ public class AdminService {
 		return mapper.deleteProduct(product_idx);
 	}
 
+	// 1:1 문의 조회
+	public List<HashMap<String, String>> getAskList() {
+		
+		return mapper.selectAskList();
+	}
+
 
 
 

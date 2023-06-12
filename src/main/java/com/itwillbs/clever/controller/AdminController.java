@@ -30,6 +30,9 @@ public class AdminController {
 	private GoodsService goodsService;
 	
 	@Autowired
+	private CustomerCenterService customerCenterService;
+	
+	@Autowired
 	FileUpload fileUpload;
 	
 	@Value("${client_id}")
@@ -188,6 +191,14 @@ public class AdminController {
 		model.addAttribute("client_id", client_id);
 		
 		return "admin/admin_info";
+	}
+	
+	// 1:1 문의 목록 조회
+	@GetMapping(value = "/adminAskedList.ad")
+	public String adminAskList(Model model) {
+		List<HashMap<String, String>> askList = adminService.getAskList();
+		model.addAttribute("askList", askList);
+		return "admin/admin_ask_list";
 	}
 }
 
