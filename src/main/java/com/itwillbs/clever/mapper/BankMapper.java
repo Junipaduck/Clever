@@ -16,6 +16,6 @@ public interface BankMapper {
 	AccountVO selectAccount(String id);
 
 	// 포인트 적립
-	int updateMemberPoint(String id);
+	int updateMemberPoint(@Param("id") String id, @Param("point") int point);
 
 }

@@ -29,9 +29,9 @@ public class BankService {
 	}
 
 	// 포인트 적립
-	public int updateMemberPoint(String id) {
+	public int updateMemberPoint(String id, int point) {
 		
-		return mapper.updateMemberPoint(id);
+		return mapper.updateMemberPoint(id, point);
 	}
 	
 }
