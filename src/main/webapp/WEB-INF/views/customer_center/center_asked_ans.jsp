@@ -54,7 +54,7 @@
 				<p>1 : 1 문의 답변 폼</p>
 			</div>
 		</div>
-		<form action="askedAnsFormPro" name="askedAnsFormPro" method="post">
+		<form action="adminAskedFormPro.ad" name="adminAskedFormPro" method="post">
 			<input type="hidden" name="asked_idx" value="${param.asked_idx }">
 			<textarea id="summernote" name="editordata"></textarea>
 			<div class="btn_submit_area">
