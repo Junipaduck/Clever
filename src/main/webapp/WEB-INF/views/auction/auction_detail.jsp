@@ -467,7 +467,9 @@
             	<div id="contentCover2">
 					<div id="chatWrap" style="width: 400px; height: 500px">
 			            <div id="chatHeader">입찰 내역</div>
-			            	<div id="chatLog2">
+			            	<div id="LogPrice" style="text-align : center; font-weight: bold; " >
+			            		<div id="chatLog2">
+			            	</div>
 		            	</div>
 					</div>
 				</div>
@@ -657,10 +659,10 @@ chatSocket.onopen = function(e) {
 	var user = '${sessionScope.sId}';
 	var str = user + "님이 입장하셨습니다. \n";
 	var priceMap = document.getElementById("priceMap").value
-	var userPrice = "\n" + user + "님의 이전 입찰 금액은 : " + priceMap + "원 입니다.";
+	var userPrice = user + "님의 이전 입찰 금액은 : "+ priceMap + "원 입니다.";
 		
 	$("#chatLog2").append(str);
-	$("#chatLog2").append(userPrice);
+	$("#LogPrice").append(userPrice);
 }
 
 // 소켓 연결 끊김 
