@@ -47,25 +47,39 @@
 		<jsp:include page="../inc/header.jsp" />
 	</header>
 
+
+			<div style="display: flex; justify-content: space-between; margin: 100px 0 0 0; align-items: center">
+				<div class="log-tit animated con-tit">
+					<p>공지사항</p>
+				</div>
+			</div>
+			<div class="bbs-cate">
+				<ul>
+					<li><a href="noticeMain.ad">공지사항</a></li>
+					<li><a href="FAQ?param=ALL">자주묻는질문</a></li>
+					<li><a href="centerAsked" data-link="jo112">1:1문의</a></li>
+				</ul>
+			</div>
+			
 	<!-- main_content 영역 -->
 
 	<div id="contentWrapper">
 		<div id="contentWrap">
 
 
-			<div
-				style="display: flex; justify-content: space-between; margin: 183px 0 0 0; align-items: center">
-				<div class="log-tit animated con-tit">
-					<p>공지사항</p>
-				</div>
-			</div>
+<!-- 			<div -->
+<!-- 				style="display: flex; justify-content: space-between; margin: 183px 0 0 0; align-items: center"> -->
+<!-- 				<div class="log-tit animated con-tit"> -->
+<!-- 					<p>공지사항</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 
 
 					<div class="bbs-table-list">
 
 						<!-- 자주묻는 질문 시작 -->
-						<div id="faqWrap">
+						<div id="faqWrap" style="margin-top: -50px;">
 							<div class="page-body">
 								<div id="faqTable">
 									<table summary="분류 제목">
