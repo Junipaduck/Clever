@@ -551,9 +551,7 @@
 		var priceInput;
 		var currentPrice = document.getElementById("currentPrice").innerText; 
 		var regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
- 		alert(regexPrice);
  		regexPrice += regexPrice * percent;
-		alert(regexPrice);
 		regexPrice = Math.floor(regexPrice/10) * 10; //10원 단위 짜르기
 		$('#price').val(comma(regexPrice));
 		
@@ -571,8 +569,6 @@
 
 //메세지 전송
 function sendMessage() {
-	
-	alert(checkPrice);
 	
 	if(checkPrice==false) {
 		return;
@@ -594,13 +590,10 @@ function sendMessage() {
 		"chat_id" : userId,
 // 		"message_date" : ,
 		"auction_idx": auction_idx,
-		"message_content" : message.value
+		"message_content" : message.value 
 		
 	};
 
-	alert(chatMessage);
-	alert(JSON.stringify(chatMessage));
-	
 	// 소켓으로 내용 보내기
 	chatSocket.send(JSON.stringify(chatMessage));
 	message.value = "";		// text입력창 초기화
@@ -613,6 +606,11 @@ chatSocket.onmessage = function(e) {
 	// 전달받은 메세지를 JS객체로 변환
 // 	const chatMessage = JSON.parse(e.data);
 	
+	var immediately_price = parseInt(document.getElementById("immediately_price").value)
+	
+	
+// 	alert("메시지 받는 타이밍 : " + immediately_price);
+	
 	var receive = e.data.split(":");
 	const data = {
 			"id" : receive[0],
@@ -621,7 +619,8 @@ chatSocket.onmessage = function(e) {
 	}
 	console.log('id : ' + data.id);
 	console.log('message : ' + data.message);
-	alert("테스트트트" + data.auction_idx);
+	
+	var message_price = parseInt(uncomma(data.message));
 	
 	// 채팅방 화면에 채팅 내용 출력
 	if (data.id == userId && auction_idx==data.auction_idx) {
@@ -643,6 +642,11 @@ chatSocket.onmessage = function(e) {
 	if(auction_idx==data.auction_idx){
 		currentPrice = document.getElementById("currentPrice");
 		currentPrice.innerText = "현재가격 : " + data.message + " 원";
+	}
+	
+	if(immediately_price==message_price) {
+		alert(data.id +"님이 낙찰 !! 경매가 종료되었습니다.");
+		location.reload();
 	}
 	
 };

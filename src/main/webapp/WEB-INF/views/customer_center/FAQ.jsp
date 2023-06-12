@@ -56,7 +56,34 @@
 
 </head>
 <body>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
+
+/* 검색창에 엔터키 치는 기능 */
+// function faqEnter(event) {
+//     if (event.keyCode === 13) {
+//       faqSearch('keyword');
+//     }
+//   }
+
+
+$(document).ready(function() {
+  $('.accordion-button').click(function() {
+    // 현재 클릭한 아코디언 요소
+    var currentAccordion = $(this);
+    
+    // 해당 아코디언 요소의 상태 변경
+    currentAccordion.toggleClass('collapsed');
+    
+    // 현재 아코디언 상태에 따라 열리거나 닫힘 처리
+    var collapseTarget = currentAccordion.attr('data-bs-target');
+    if (currentAccordion.hasClass('collapsed')) {
+      $(collapseTarget).collapse('hide');
+    } else {
+      $(collapseTarget).collapse('show');
+    }
+  });
+});
 </script>
 <!-- 부트스트랩 스크립트 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -120,21 +147,22 @@
 
 									<fieldset>
 										<legend>FAQ 검색 폼</legend>
-										<form action="FAQ"></form>
+										<form action="FAQ?param=ALL"></form>
 										<select class="MS_input_select select-category"
-											id="search-category">
-											<option value="">전체검색</option>
-											<option value="1">회원/계정</option>
-											<option value="2">거래분쟁/운영정책</option>
-											<option value="3">스토어</option>
-											<option value="4">포인트</option>
-											<option value="5">중고거래</option>
-											<option value="6">경매</option>
+											id="search-category" name="searchType">
+											<option value="FAQ_subject" <c:if test="${param.searchKeyword eq 'store_name'}">selected</c:if>>제목</option>
+											<option value="FAQ_content"<c:if test="${param.searchKeyword eq 'store_name'}">selected</c:if>>내용</option>
+<!-- 											<option value="ALL">전체검색</option> -->
+<!-- 											<option value="1">회원/계정</option> -->
+<!-- 											<option value="2">거래분쟁/운영정책</option> -->
+<!-- 											<option value="3">스토어</option> -->
+<!-- 											<option value="4">포인트</option> -->
+<!-- 											<option value="5">중고거래</option> -->
+<!-- 											<option value="6">경매</option> -->
 										</select> <span class="keyword"> <input id='faqSearch'
 											class="MS_input_txt"
-											onKeyPress='javascript:faqEnter(event);' type='text'
-											value='' />
-										</span> <a class="searchbt" href="javascript:faqSearch('keyword')"><img
+											onKeyPress="faqEnter(event);" aria-label="Search" name="searchKeyword" value="${param.searchKeyword }"/>
+										</span> <a class="searchbt" href="javascript:faqSearch('keyword')" onKeyPress="faqEnter(event);"><img
 											src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif"
 											alt="검색" title="검색"></a>
 									</fieldset>
@@ -193,22 +221,24 @@
 <!-- 								</tbody> -->
 
 									<!-- 부트스트랩 아코디언 시작 -->
-									<c:forEach items="${FAQcategory }" var="FAQcategory">
 									<div class="accordion" id="accordionExample" style="width: 1350px; margin: auto; margin-top:10px;">
-									  <div class="accordion-item">
-									    <h2 class="accordion-header">
-									      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									        Q. ${FAQcategory.FAQ_subject }
-									      </button>
-									    </h2>
-									    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-									      <div class="accordion-body">
-									      	${FAQcategory.FAQ_content }
-									      </div>
-									    </div>
-									  </div>
+										<c:forEach items="${FAQcategory }" var="FAQcategory" varStatus="loop">
+										  <div class="accordion-item">
+										  	<div class="card-header border-bottom">
+											    <h2 class="accordion-header">
+											      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${FAQcategory.FAQ_idx}" aria-expanded="true" aria-controls="collapse_${FAQcategory.FAQ_idx}">
+											        Q. ${FAQcategory.FAQ_subject }
+											      </button>
+											    </h2>
+											 </div>
+										    <div id="collapse_${FAQcategory.FAQ_idx}" class="collapse" aria-labelledby="heading_${FAQcategory.FAQ_idx}" data-bs-parent="#accordionExample">
+										      <div class="accordion-body">
+										      	${FAQcategory.FAQ_content }
+										      </div>
+										    </div>
+										  </div>
+										</c:forEach>
 									</div>
-									</c:forEach>
 									<!-- //부트스트랩 아코디언 끝 -->
 									
 									
@@ -322,37 +352,3 @@
 	src="${pageContext.request.contextPath }/resources/js/customer_center/wp_astg_2.0_shop.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

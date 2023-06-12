@@ -60,7 +60,17 @@
 			AS UNSIGNED))AS char) AS max_price FROM log_message 
 				WHERE logRoom_idx  = #{auction_idx}
 					GROUP BY buyer_id 
-						ORDER BY max_price DESC limit 1;
+						ORDER BY max_price ASC limit 1;
 	</select>
+	
+	<select id="selectAuctionMessage" resultType="int">
+		SELECT COUNT(*) FROM log_message
+			WHERE logRoom_idx = #{logRoomIdx} AND buyer_id = #{chatId}
+	</select>
+	
+	<update id="updateMessage">
+		UPDATE log_message SET message_content = #{messageContent}
+			WHERE logRoom_idx = #{logRoomIdx} AND buyer_id = #{chatId};
+	</update>
 
 </mapper>
