@@ -2,6 +2,8 @@ package com.itwillbs.clever.service;
 
 import java.util.*;
 
+import javax.servlet.http.*;
+
 import org.json.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
@@ -39,6 +41,9 @@ public class BankApiClient {
 	
 	@Autowired
 	private BankValueGenerator valueGenerator;
+	
+	@Autowired
+	private GoodsService goodsService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BankApiClient.class);
 	
@@ -171,6 +176,9 @@ public class BankApiClient {
 	
 	// 출금 이체 요청 - POST(Content-type : application/json)
 	public AccountWithdrawResponseVO withdraw(Map<String, String> map) {
+		
+
+		
 		// 출금 이체 API(핀테크 번호 사용) URL
 		String url = baseUrl + "/v2.0/transfer/withdraw/fin_num";
 		
@@ -197,9 +205,11 @@ public class BankApiClient {
 		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
 		
 		
-		jo.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
+		jo.put("req_client_name", map.get("user_name")); // req_client_name(요청고객성명)
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("user_name"));
 		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
-		jo.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
+		jo.put("req_client_num", map.get("id").toUpperCase()); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("id").toUpperCase());
 		jo.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
 		
 		// 아래 3개 정보는 피싱 등의 사고 발생 시 지급 정지를 위한 정보 설정(검증하지 않음)

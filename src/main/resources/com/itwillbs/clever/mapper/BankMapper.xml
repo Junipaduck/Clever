@@ -42,7 +42,7 @@
 		UPDATE
 			member
 				SET
-					member_point = member_point + #{point}
+					charge_point = charge_point + #{point}
 						WHERE
 							member_id = #{id}
 	</update>

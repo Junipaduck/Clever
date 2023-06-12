@@ -22,6 +22,9 @@ public class PointController {
 	@Autowired
 	private BankApiClient apiService;
 	
+	@Autowired
+	private GoodsService goodsService;
+	
 	
 	// appdata.properties 의 값 자동 주입
 	@Value("${baseUrl}")
@@ -111,6 +114,10 @@ public class PointController {
 		
 		System.out.println(account);
 		
+		String id = (String)session.getAttribute("sId");
+		
+		MemberVO member = goodsService.selectMemberPoint(id);
+		model.addAttribute("member", member);
 		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
@@ -146,6 +153,7 @@ public class PointController {
 		
 		System.out.println("포인트 테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("포인트 넘어오나~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + point);
+		
 		
 		
 		int updateCount = bankService.updateMemberPoint(id, point);

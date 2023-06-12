@@ -69,17 +69,7 @@ td, tr, th{
 	
 	<!-- 송금 대상 정보 입력 -->
 	<h1>포인트 적립</h1>
-	<table border="1" style="border-collapse: collapse; text-align:center; margin-bottom: 50px;">
-			<tr style="background-color: pink;">
-			<th>현재 보유 포인트</th>
-		</tr>
-		<tr>
-			<td>${member.charge_point }</td>
-		</tr>
-	</table>
 	<form action="point_withdraw" method="post">
-		<input type="hidden" name="id" value="${member.member_id }">
-		<input type="hidden" name="user_name" value="${user_name }">
 		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->
 		<input type="hidden" name="recv_client_name" value="${sessionScope.sId }">
 		<input type="hidden" name="recv_client_bank_code" value="${account.bank_code_tran }">

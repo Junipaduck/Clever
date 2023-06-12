@@ -22,7 +22,7 @@ CREATE TABLE member (
   		member_rank VARCHAR(10) NOT null,
   		member_point VARCHAR(20) NOT null
   		);
-
+ALTER TABLE `member`  ADD COLUMN charge_point int; 
 */
 
 @Data
@@ -44,6 +44,7 @@ public class MemberVO {
 	private String member_date;
 	private String member_rank;
 	private int member_point;
+	private int charge_point;
 }
 
 
