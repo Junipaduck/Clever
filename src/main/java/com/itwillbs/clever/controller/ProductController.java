@@ -336,7 +336,41 @@ public class ProductController {
 	
 	// 중고상품 수정 Pro
 	@PostMapping("/productModifyPro")
-	public String productModifyPro(Model model, @RequestParam Map<String, String> map, ProductVO product) {
+	public String productModifyPro(Model model, @RequestParam Map<String, String> map, ProductVO product
+									, @RequestParam("image1") MultipartFile file1
+									, @RequestParam("image2") MultipartFile file2
+									, @RequestParam("image3") MultipartFile file3
+									, @RequestParam("image4") MultipartFile file4
+									, @RequestParam("image5") MultipartFile file5
+									, @RequestParam("image6") MultipartFile file6
+									, @RequestParam("image7") MultipartFile file7
+									, @RequestParam("image8") MultipartFile file8
+									, @RequestParam("image9") MultipartFile file9
+									, @RequestParam("image10") MultipartFile file10
+									, @RequestParam("image11") MultipartFile file11
+									, @RequestParam("image12") MultipartFile file12
+									, HttpSession session) {
+		
+		MultipartFile[] fArr = {file1,file2,file3,file4,file5,file6,file7,file8,file9,file10,file11,file12};
+		ArrayList<MultipartFile> file = new ArrayList<MultipartFile>();
+		System.out.println(fArr); 
+		for(int i = 0; i < fArr.length; i++) {
+			if(!fArr[i].getOriginalFilename().equals("")) {
+				file.add(fArr[i]);
+			}
+		}
+		if(!file.isEmpty()) {
+			int product_idx = Integer.parseInt(map.get("product_idx")) ;
+			int deleteCnt = productService.deleteProductFile(product_idx);
+			System.out.println("이까지 오나?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			if(deleteCnt > 0) {
+				System.out.println("이까지 오나?");
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("file_div", "product");
+				paramMap.put("file_num", map.get("product_idx"));
+				FileUpload.upload(file, session, paramMap);
+			}
+		}
 		
 		// map.get("input태그의 name값")
 		map.put("product_subject", map.get("product_subject"));

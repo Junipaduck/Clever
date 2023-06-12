@@ -68,7 +68,8 @@ div #test_area ul { /* 카테고리 css */
                                     		<c:otherwise>
                                     			<div class="col-2"><a href="myPage.me">${sessionScope.sId }님</a></div>
                                     			<div class="col-2"><a href="logout.me" onclick="return confirmLogout()">로그아웃</a></div>
-		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div>
+<!-- 		                                        <div class="col-2" style="text-align: left;"><a href="CustomerCenter.ad">고객센터</a></div> -->
+		                                        <div class="col-2" style="text-align: left;"><a href="noticeMain.ad">고객센터</a></div>
 		                                        	<c:if test="${sessionScope.sId eq 'admin' }">
 			                                        	<div class="col-3" style="text-align: left;"><a href="adminMain.ad">관리자페이지</a></div>
 		                                        	</c:if>

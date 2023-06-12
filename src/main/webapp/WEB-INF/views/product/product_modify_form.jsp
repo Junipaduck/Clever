@@ -84,54 +84,6 @@ display: flex;
 </head>
 <body>
 <script src="js/jquery-3.6.4.js"></script>
-<script type="text/javascript">
-    // from태그가 실행될 때 이 js코드가 실행되며, 
-    // 카테고리가 선택되면 selected_category라는 이름의 span태그에 값이 들어가는데,
-    // 그 값을 input hidden 태그 (name이 product_category인 것)의 value에 넣는다는 의미
-    $(function() {
-    	$("#formform").on("submit", function() {
-    		$("#product_category").val($(".selected_category").text()); 
-    	});
-    });
-       	  
-         	function deleteListItem(button) { // => 이미지를 삭제하는 x아이콘을 눌렀을때 실행되는 것들
-        	  		/* 1. 뷰 삭제작업 - <li>태그를 listItem에 저장하고 removeChild를 호출하여 <li>태그를 삭제시킴 */
-         	    var listItem = button.parentNode;
-         	    listItem.parentNode.removeChild(listItem);
-         	    
-         	    /* 2. DB삭제작업 - (file테이블의 이미지 삭제) */
-           	$.ajax({
-           	    url: 'productModifyPro', // 이동할 컨트롤러의 서블릿 url
-           	    type: 'POST',
-            	data: {
-            		fileVO: {
-                     file_name: $("#fileName-${loop.index}").val()
-                 }
-				},
-           	    success: function(response) { 
-           	        alert("파일 삭제 요청 성공!");
-
-           	        // 성공한 후에 delete 구문을 실행
-           	        $.ajax({
-           	            url: 'deleteFile', // delete 구문을 처리하는 컨트롤러의 URL
-           	            type: 'POST',
-           	            success: function(deleteResponse) {
-           	                alert("delete 구문 실행 성공!");
-           	            },
-           	            error: function() {
-           	                alert("delete 구문 실행 실패!");
-           	            }
-           	        });
-           	    },
-           	    error: function() {
-           	        // 요청이 실패했을 때 실행할 동작
-           	        alert("파일 삭제 요청 실패!");
-           	    }
-           	});
-              	 
-              	 
-  	}// onclick function 끝!
-</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../inc/header.jsp" />
@@ -157,7 +109,19 @@ display: flex;
                             <div class="goods_images">
                                 <div>
                                     이미지 등록
-                                    <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+<!--                                     <input type="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);"> -->
+ 										  <input type="file" id="image1" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" id="image2" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image3" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image7" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image8" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image9" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image10" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image11" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image12" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap">
 <%--                                		 <c:forEach items="${filesList }" var="filesItem"> <!-- 사진 select 하는 forEach문 --> --%>

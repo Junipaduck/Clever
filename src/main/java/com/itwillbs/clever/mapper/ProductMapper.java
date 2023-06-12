@@ -63,4 +63,6 @@ public interface ProductMapper {
 	List getSmallCategorys(String param);
 
 	List selectProductSearch(String product_search);
+
+	int deleteProductFile(int product_idx);
 }

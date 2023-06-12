@@ -133,4 +133,9 @@ public class ProductService {
 	public List selectProductSearch(String product_search) {
 		return mapper.selectProductSearch(product_search);
 	}
+
+	// 중고상품 수정 시 파일 삭제
+	public int deleteProductFile(int product_idx) {
+		return mapper.deleteProductFile(product_idx);
+	}
 }

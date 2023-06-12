@@ -106,16 +106,16 @@ $(document).ready(function() {
 			<link type="text/css" rel="stylesheet"
 				href="/shopimages/jo112/template/unit/48/unit_csboard_top2.css" />
 			<div
-				style="display: flex; justify-content: space-between; margin: 183px 0 0 0; align-items: center">
+				style="display: flex; justify-content: space-between; margin: -40px 0 0 0; align-items: center;">
 				<div class="log-tit animated con-tit">
-					<p>고객센터</p>
+					<p>자주묻는질문</p>
 				</div>
 			</div>
 			<div class="bbs-cate">
 				<ul>
 					<li><a href="noticeMain.ad">공지사항</a></li>
-					<li><a href="FAQ?param=회원/계정">자주묻는질문</a></li>
-					<li><a href="1:1문의매핑주소" data-link="jo112">고객문의</a></li>
+					<li><a href="FAQ?param=ALL">자주묻는질문</a></li>
+					<li><a href="centerAsked" data-link="jo112">1:1문의</a></li>
 				</ul>
 			</div>
 

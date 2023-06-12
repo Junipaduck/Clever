@@ -78,17 +78,11 @@ div.right {
 				<div>
 					<p>${member.member_name}님</p>
 					<p>
-						<img
-							src="${pageContext.request.contextPath }/resources/images/market/star.png"
-							alt="별점"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/star.png"
-							alt="별점"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/star.png"
-							alt="별점"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/star.png"
-							alt="별점"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/star.png"
-							alt="별점">
+						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점"> 
+						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점"> 
+						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> 
+						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> 
+						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">
 					</p>
 				</div>
 				<div>
@@ -104,20 +98,16 @@ div.right {
 						<h2>${member.member_id}님</h2>
 						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
 					</div>
-
 					<div>
 						<p>
 							<span>OK</span> 계좌 인증 완료
 						</p>
 					</div>
 				</div>
-
 				<div id="my_store_right_mid">
 					<div>
 						<p>
-							<img
-								src="${pageContext.request.contextPath }/resources/images/market/store_open.png"
-								alt="상점 오픈일">
+							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일">
 						</p>
 						<p>
 							여긴뭐해요 <span>0 일 전</span>
@@ -125,9 +115,7 @@ div.right {
 					</div>
 					<div>
 						<p>
-							<img
-								src="${pageContext.request.contextPath }/resources/images/market/people.png"
-								alt="상점 방문수">
+							<img src="${pageContext.request.contextPath }/resources/images/market/people.png" alt="상점 방문수">
 						</p>
 						<p>
 							거래후기 <span>0 명</span>
@@ -135,9 +123,7 @@ div.right {
 					</div>
 					<div>
 						<p>
-							<img
-								src="${pageContext.request.contextPath }/resources/images/market/product_sell.png"
-								alt="상품판매">
+							<img src="${pageContext.request.contextPath }/resources/images/market/product_sell.png" alt="상품판매">
 						</p>
 						<p>
 							내물건판매 <span>0 회</span>
@@ -145,9 +131,7 @@ div.right {
 					</div>
 					<div>
 						<p>
-							<img
-								src="${pageContext.request.contextPath }/resources/images/market/parcel_service.png"
-								alt="택배발송">
+							<img src="${pageContext.request.contextPath }/resources/images/market/parcel_service.png" alt="택배발송">
 						</p>
 						<p>
 							경매참여 <span>0 회</span>
@@ -303,8 +287,7 @@ div.right {
 								<div class="status_filter">
 									<button type="button" class="all_buy_status active">전체	상태</button>
 									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">완료</button>
-									<button type="button" class="cancle_status">취소/환불</button>
+									<button type="button" class="bought_status">거래완료</button>
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -558,6 +541,7 @@ div.right {
 											<p class="goods_date">${productdibsList.product_date }</p>
 										</div>
 									</a>
+									<button type="button" class=""> 찜 취소 </button>
 								</div>
 							</div>
 						</c:forEach>
@@ -585,8 +569,7 @@ div.right {
 							<!--필터-->
 							<nav class="filter_nav">
 								<div class="status_filter">
-									<button type="button" class="all_buy_status active">전체
-										상태</button>
+									<button type="button" class="all_buy_status active">전체 상태</button>
 									<button type="button" class="buying_status">진행중</button>
 									<button type="button" class="bought_status">완료</button>
 									<button type="button" class="cancle_status">취소/환불</button>
@@ -605,7 +588,7 @@ div.right {
 							<c:forEach items="${auctionList }" var="auctionList">
 								<div class="goods">
 									<div class="goods_one">
-										<a href="product_detail?product_idx=${auctionList.auction_idx }">
+										<a href="auction_detail?auction_idx=${auctionList.auction_idx }&param=${auctionList.auction_Scategory }">
 											<div class="goods_image">
 												<c:forEach items="${auctionfileList }" var="auctionfileList">
 													<c:set var="length"	value="${fn:length(auctionfileList.file_name) }" />
@@ -651,7 +634,54 @@ div.right {
 						</div>
 					</div>
 				</div>
-				<!-- 내 경매 시작 -->
+				<!-- 내 경매 끝 -->
+
+				<!-- 경매낙찰내역 시작 -->
+					<div id="auctionbid_menu_area" class="common_menu">
+					<div>
+						<p>
+							경매 낙찰 내역 <span>0</span>
+						</p>
+					</div>
+					<div>
+						<c:forEach items="${auctionBidList }" var="auctionBidList">
+							<div class="goods">
+								<div class="goods_one">
+									<a href="auction_detail?auction_idx=${auctionBidList.auction_idx }&param=${auctionBidList.auction_Scategory }">
+										<div class="goods_image">
+											<c:forEach items="${auctionfileList }" var="auctionfileList">
+												<c:set var="length"	value="${fn:length(auctionfileList.file_name) }" />
+												<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
+												<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
+												<c:choose>
+													<c:when test="${auctionfileList.file_num eq auctionBidList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													</c:when>
+													<c:when	test="${auctionfileList.file_num eq auctionBidList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+														<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
+														경매 낙찰
+														</span>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</div>
+										<div class="goods_info">
+											<h2 class="goods_title">${auctionBidList.auction_title }</h2>
+											<p class="goods_price">
+												<span class="bold">낙찰가 : ${auctionBidList.auction_final_price }</span>원
+											</p>
+											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_date">${auctionBidList.auction_date }</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>				
+				<!-- 경매낙찰내역 시작 -->
+			
 				
 				<!-- 경매 찜 시작 -->
 				<div id="auctionLike_menu_area" class="common_menu">
@@ -692,6 +722,7 @@ div.right {
 											<p class="goods_date">${auctionDibsList.auction_date }</p>
 										</div>
 									</a>
+									<button type="button" class=""> 찜 취소 </button>
 								</div>
 							</div>
 						</c:forEach>
