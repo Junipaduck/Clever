@@ -10,6 +10,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
+import org.springframework.web.servlet.*;
 
 import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
@@ -67,6 +68,17 @@ public class AdminController {
 		int reportCount = adminService.getReportCount();
 		model.addAttribute("reportCount", reportCount);
 		
+		// 일대일문의 조회
+		List<HashMap<String, String>> askList = adminService.getAskList();
+		model.addAttribute("askList", askList);
+		
+		List<HashMap<String, String>> productList = adminService.getProductList();
+		model.addAttribute("productList", productList);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("productList", productList);
+		
+//		return new ModelAndView("admin/admin_main", "map", map);
 		return "admin/admin_main";
 	}
 	
