@@ -33,7 +33,32 @@
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
+<style type="text/css">
+/* 클래스 이름에 77붙은것은 무한스크롤 관련 CSS임 */
+.element77, .outer-container77 {
+   width: 1500px;
+	height: 800px;
+	margin: 0 auto;
+ }
 
+ .outer-container77 {
+   position: relative;
+   overflow: hidden;
+/*   border: 5px solid purple; */
+ }
+
+ .inner-container77 {
+   position: absolute;
+   left: 0;
+   overflow-x: hidden;
+   overflow-y: scroll;
+ }
+
+ .inner-container77::-webkit-scrollbar77 {
+   display: none;
+ }
+ 
+</style>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -102,10 +127,15 @@
                     <div class="category_box"></div>
                 </div>
 
+	         
+		<!-- 스크롤 코드 시작 (아래 div태그 3줄) -->	
+		 <div class="outer-container77">
+	       <div class="inner-container77">
+	         <div class="element77">
+	         
                 <!--상품 영역-->
                 <section class="main_goods">
-                    <div class="goods_wrap">
-                    
+                    <div class="goods_wrap col-lg-9 col-md-9"> <!-- 무한스크롤때문에 col-lg-9 col-md-9 이 코드 추가함 -->
                    		<!-- 상품 1개 카드 -->
                         <c:forEach items="${productList }" var="productList">
 	                        <div class="goods">
@@ -144,9 +174,13 @@
 	                        </div>
                         </c:forEach>
                         <!-- //상품 1개 카드 -->
-                        
                     </div>
                 </section>
+                
+                </div>
+		      </div>
+		    </div>
+		   <!-- 스크롤 코드 끝(윗 div태그 3줄) -->
             </div>
         </div>
         <!-- // main_content 영역 -->
