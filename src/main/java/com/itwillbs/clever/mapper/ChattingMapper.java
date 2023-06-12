@@ -25,6 +25,8 @@ public interface ChattingMapper {
 
 	List<ChatMessageVO> selectRoomInfo(String roomId);
 
+	int updateChatRoom(String chatRoom_id);
+
 	
 
 

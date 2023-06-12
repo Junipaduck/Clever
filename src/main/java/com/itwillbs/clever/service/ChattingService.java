@@ -50,6 +50,11 @@ public class ChattingService {
 		return mapper.selectRoomInfo(roomId);
 	}
 
+	// 채팅방 나가기
+	public int updateChatRoom(String chatRoom_id) {
+		return mapper.updateChatRoom(chatRoom_id);
+	}
+
 
 
 
