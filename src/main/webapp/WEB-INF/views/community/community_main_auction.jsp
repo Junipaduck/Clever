@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>클레버 - 공지사항</title>
+<title>클레버 - 경매커뮤니티</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -56,14 +56,14 @@
 			<div
 				style="display: flex; justify-content: space-between; margin: 183px 0 0 0; align-items: center">
 				<div class="log-tit animated con-tit">
-					<p>커뮤니티</p>
+					<p>경매 커뮤니티</p>
 				</div>
 			</div>
 
 
 
 					<div class="bbs-table-list">
-						<input type="button" onclick="location.href='community_form?community_div=product'" value="등록하기" style="margin-left: 1420px;">
+						<input type="button" onclick="location.href='community_form_auction?community_div=auction'" value="등록하기" style="margin-left: 1420px;">
 						<!-- 자주묻는 질문 시작 -->
 						<div id="faqWrap">
 							<div class="page-body" style="width: 1040px; margin-left: auto; margin-right: auto;">
@@ -93,7 +93,7 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${communityList }" var="community">
-												<tr uid="6">
+												<tr id="6">
 													<td>
 														<div class="tb-center">${community.community_idx }</div>
 													</td>

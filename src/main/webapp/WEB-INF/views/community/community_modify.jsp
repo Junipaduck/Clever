@@ -123,12 +123,12 @@ function startEndDate() {
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="community_formPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
-                <input type="hidden" value="product" name="community_div">    
+                <form action="community_modifyPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
+                <input type="hidden" value="${communityList[0].community_idx }" name="community_idx">
                     <div class="goods_title_area">
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
-                            <input type="text" name="community_title" id="community_title" maxlength="50"
+                            <input type="text" value="${communityList[0].community_title }" name="community_title" id="community_title" maxlength="50"
                                 placeholder="제목을 입력해주세요." oninput="countTitleLength(event);">
                             <span class="goods_title_length"><span></span>/50</span>
                         </div>
@@ -137,13 +137,13 @@ function startEndDate() {
                         <p>내용<span class="red">*</span></p>
                         <div>
                             <textarea name="community_content" id="community_content" cols="30" rows="10"
-                            maxlength="2000" oninput="countInfoLength(event)"></textarea>
+                            maxlength="2000" oninput="countInfoLength(event)">${communityList[0].community_content }</textarea>
                         </div>
                     </div>
 		        <div class="btn_submit_area">
 			        <div class="inner_submit">
 			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-			            <input type="submit" class="btn_goods_submit" value="등록하기">
+			            <input type="submit" class="btn_goods_submit" value="수정하기">
 			        </div>
 		    	</div>
                 </form>

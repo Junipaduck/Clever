@@ -279,7 +279,7 @@ public class AuctionController {
 									, @RequestParam("image5") MultipartFile file5
 									, @RequestParam("image6") MultipartFile file6
 									, HttpSession session, Model model) {
-		MultipartFile[] file;
+		MultipartFile[] file = {file1,};
 		for(int i = 1; i < 6; i++) {
 			
 		}

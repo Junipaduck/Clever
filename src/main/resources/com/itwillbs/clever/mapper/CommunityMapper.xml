@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.clever.mapper.CommunityMapper">
+	<insert id="insertCommunity">
+	INSERT INTO community values(
+	NULL,
+	#{map.community_title},
+	#{map.community_content},
+	0,
+	now(),
+	#{id},
+	#{map.community_div}
+	)
+	
+	</insert>
+	<select id="communityList" resultType="map">
+	SELECT * FROM community WHERE community_div = 'product'
+	</select>
+	<select id="communityAuctionList" resultType="map">
+	SELECT * FROM community WHERE community_div = 'auction'
+	</select>
+	<select id="selectDetail" resultType="map">
+	SELECT * FROM community WHERE community_idx = #{community_idx}
+	</select>
+	
+	<insert id="insertTinyReplyCommunity">
+	<selectKey keyProperty="reply_num" resultType="int" order="BEFORE">
+		SELECT IFNULL(MAX(reply_num), 0) FROM tiny_reply_community
+	</selectKey>
+		INSERT
+			INTO tiny_reply_community
+			VALUES (
+				#{reply_num} + 1
+				, #{map.community_idx }
+				, #{map.reply_name }
+				, #{map.reply_content }
+				, #{reply_num} + 1
+				, 0
+				, 0
+				, now()
+			)
+	
+	
+	</insert>
+	
+	<select id="getTinyReplyCommunityList" resultType="com.itwillbs.clever.vo.CommunityTinyVO">
+		SELECT *
+			FROM tiny_reply_community
+				WHERE community_idx = #{community_idx}
+				ORDER BY 
+					reply_re_ref ASC
+					, reply_re_seq ASC
+	</select>
+	
+	<delete id="deleteTinyReplyCommunity">
+	DELETE FROM tiny_reply_community WHERE reply_num = #{map.reply_num }
+	</delete>
+	
+	<insert id="registTinyReReplyCommunity">
+	<selectKey keyProperty="reply_num" resultType="int" order="BEFORE">
+		SELECT IFNULL(MAX(reply_num), 0) FROM tiny_reply_community
+	</selectKey>
+	INSERT
+			INTO tiny_reply_community
+			VALUES (
+				#{reply_num } + 1
+				, #{map.community_idx }
+				, #{map.reply_name }
+				, #{map.reply_content }
+				, #{map.reply_re_ref }
+				, #{map.reply_re_lev } + 1
+				, #{map.reply_re_seq } + 1
+				, now()
+			)
+	</insert>
+	
+	<update id="readcountUp">
+	UPDATE community SET community_readcount = community_readcount + 1 WHERE community_idx = #{community_idx }
+	</update>
+	
+	<update id="communityModify">
+	UPDATE community SET community_title = #{map.community_title }, community_content = #{map.community_content } WHERE community_idx = #{map.community_idx}
+	</update>
+	
+	<delete id="communityDelete">
+	DELETE FROM community WHERE community_idx = #{map.community_idx }
+	</delete>
+	<delete id="communityTinyDelete">
+	DELETE FROM tiny_reply_community WHERE community_idx = #{map.community_idx }
+	</delete>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -48,72 +48,10 @@
 body {
 font-family: 'SUITE-Regular';
 }
-.eHGbgX {
-    width: 1.5rem;
-    height: 1.5rem;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 12px 12px;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTYuODQ4IDZsMy43NzYtMy43NzZhLjYuNiAwIDEgMC0uODQ4LS44NDhMNiA1LjE1IDIuMjI0IDEuMzc2YS42LjYgMCAwIDAtLjg0OC44NDhMNS4xNTIgNiAxLjM3NiA5Ljc3NWEuNi42IDAgMSAwIC44NDguODQ5TDYgNi44NDhsMy43NzYgMy43NzZhLjU5OC41OTggMCAwIDAgMS4wMjQtLjQyNS42LjYgMCAwIDAtLjE3Ni0uNDI0TDYuODQ4IDZ6IiBvcGFjaXR5PSIuNjQiLz4KPC9zdmc+Cg==);
-    background-color: rgba(30, 29, 41, 0.32);
-    border-radius: 50%;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-}
-.iiYIYa {
-    width: 202px; 
-    height: 202px; 
-    border: 1px solid rgb(230, 229, 239); 
-    margin-right: 1rem; 
-    margin-bottom: 1rem; 
-    list-style-type: none; 
-    position: relative;
-    display: flex;
-    cursor: pointer;
-}
-
-.preview_wrap {
-	display: flex;
-	}
-.goods_Scategory {
-display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    overflow-y: auto;
-}
 </style>
 
 </head>
 <body>
-<script type="text/javascript">
-$(function() {
-    $( "#testDatepicker" ).datepicker({
-    });
-});
-$(function() {
-	$("#formform").on("submit", function() {
-		$("#auction_category").val($(".selected_category").text()); 
-			startEndDate();
-		if(!startEndDateStats){
-			return false;
-		}
-	});
-});
-function startEndDate() {
-	startEndDateStats = false;
-	var start = $("#auction_start_date").val() + " " + $("#auction_start_time").val();
-	var end = $("#auction_end_date").val() + " " + $("#auction_end_time").val();
-	if(start > end){
-		alert("경매 시작일 보다 경매 마감일이 더 빠릅니다.");
-		return;
-	} else {
-		startEndDateStats = true;
-	}
-}
-</script>
 	<!-- 헤더 시작 -->
 	<header>
 		<jsp:include page="../auction/auction_header.jsp" />
@@ -124,7 +62,7 @@ function startEndDate() {
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
                 <form action="community_formPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
-                <input type="hidden" value="product" name="community_div">    
+                   <input type="hidden" value="auction" name="community_div"> 
                     <div class="goods_title_area">
                         <p>제목<span class="red">*</span></p>
                         <div class="goods_title">
