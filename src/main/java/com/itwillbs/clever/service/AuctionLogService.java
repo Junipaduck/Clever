@@ -40,6 +40,10 @@ public class AuctionLogService {
 	public void updateMessage(int logRoomIdx, String chatId, String messageContent) {
 		mapper.updateMessage(logRoomIdx, chatId, messageContent);
 	}
+
+	public HashMap<String, String> seletAuctionPrice(int auction_idx, String sId) {
+		return mapper.seletAuctionPrice(auction_idx, sId);
+	}
 	
 	
 
