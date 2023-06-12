@@ -62,14 +62,23 @@ public class GoodsController {
 								  , @RequestParam("image6") MultipartFile file6
 								  , HttpSession session, Model model) {
 		
+		
 		int insertCount = goodsService.insertGoods(goods);
+		
+		
+		
+		MultipartFile[] file = new MultipartFile[5];
+		for(int i = 0; i < file.length; i++) {
+			if(!file[i].isEmpty() && file[i] != null) {
+				
+			}
+		}
 		
 		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("file_div", "goods");
 		paramMap.put("file_num", goodsService.selectMax());
-		
-//		FileUpload.upload(file, session, paramMap);
+		FileUpload.upload(file, session, paramMap);
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg", "굿즈 등록이 완료되었습니다.");

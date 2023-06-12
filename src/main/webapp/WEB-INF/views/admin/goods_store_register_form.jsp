@@ -134,7 +134,7 @@ display: flex;
             <!--판매 폼-->
             <section class="goods_form">
                 <h2>기본정보 <span class="red">* 필수항목</span></h2>
-                <form action="goodsRegisterPro.ad" method="POST" class="frm_selling_goods" enctype="multipart/form-data">
+                <form action="goodsRegisterPro.ad" method="POST" class="frm_selling_goods" id="formform" enctype="multipart/form-data">
 <%--                 	<input type="hidden" name="member_id" value="${sessionScope.sId }">  --%>
                     <div class="goods_images_area">
                          <p>상품이미지<span class="red">*</span>
@@ -144,12 +144,12 @@ display: flex;
                             <div class="goods_images">
                                  <div>
                                     이미지 등록
-                                    <input type="file" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
-                                    <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+         							<input type="file" id="image1" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" id="image2" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image3" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
