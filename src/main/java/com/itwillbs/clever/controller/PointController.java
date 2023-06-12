@@ -122,7 +122,7 @@ public class PointController {
 	
 	@PostMapping("point_withdraw")
 	public String pointWithdraw(
-			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+			@RequestParam Map<String, String> map, HttpSession session, Model model, int point) {
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		
 		String id = (String)session.getAttribute("sId");		
@@ -145,15 +145,19 @@ public class PointController {
 		}
 		
 		System.out.println("포인트 테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("포인트 넘어오나~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + point);
 		
-		int updateCount = bankService.updateMemberPoint(id);
+		
+		int updateCount = bankService.updateMemberPoint(id, point);
 		if(updateCount > 0) {
 			model.addAttribute("msg", "포인트 적립 성공!");
 			model.addAttribute("target", "pointCharge");
 			return "success";
+		} else {
+			model.addAttribute("msg", "포인트 적립 실패!");
+			return "fail_back";
 		}
 		
-		return "bank/withdraw_result";
 	}
 	
 }

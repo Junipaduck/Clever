@@ -71,6 +71,11 @@ td, tr, th{
 	<h1>포인트 적립</h1>
 	<form action="point_withdraw" method="post">
 		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->
+		<input type="hidden" name="recv_client_name" value="${sessionScope.sId }">
+		<input type="hidden" name="recv_client_bank_code" value="${account.bank_code_tran }">
+		<input type="hidden" name="recv_client_account_num" value="${account_num_masked }">
+		<input type="hidden" name="recv_client_fintech_use_num" value="${account.fintech_use_num }">
+		<input type="hidden" name="tran_amt" value="10000">
 		<table border="1">
 			<tr>
 <!-- 				<th>예금주명</th> -->
@@ -81,11 +86,7 @@ td, tr, th{
 				<th></th>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="recv_client_name" value="${sessionScope.sId }"></td>
-				<td><input type="hidden" name="recv_client_bank_code" value="${account.bank_code_tran }"></td>
-				<td><input type="hidden" name="recv_client_account_num" value="${account_num_masked }"></td>
-				<td><input type="hidden" name="recv_client_fintech_use_num" value="${account.fintech_use_num }"></td>
-				<td><input type="text" name="tran_amt"></td>
+				<td><input type="text" name="point"></td>
 				<td><input type="submit" value="충전하기"></td>
 			</tr>
 		</table>
