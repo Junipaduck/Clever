@@ -148,6 +148,8 @@ display: flex;
                                     <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>

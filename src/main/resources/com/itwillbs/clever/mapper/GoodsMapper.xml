@@ -22,10 +22,7 @@
 	
 	<!-- 	file 테이블의 file_num(= product테이블의 product_idx)의 max값을 select함 -->
 	<select id="selectMax" resultType="int">
-		SELECT
-			MAX(goods_idx)
-		FROM
-			goods;
+		SELECT IFNULL(MAX(goods_idx), 0) FROM goods
 	</select>
 	
 	<!-- 굿즈 목록 조회 -->
