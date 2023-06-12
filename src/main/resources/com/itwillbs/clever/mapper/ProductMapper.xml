@@ -167,11 +167,12 @@
 	</update>
 	
 	
-	<!-- 중고상품 파일삭제 (수정중) -->
-	<delete id="deleteFile" parameterType="int">
-		DELETE from file where file_div = 'product' and file_name = #{file_name}
+	<!-- 중고상품 파일삭제-->
+	<delete id="deleteProductFile">
+		DELETE FROM file WHERE file_num = #{product_idx} AND file_div = 'product'
 	</delete>
 	
+	<!-- 중고상품 삭제하기 -->
 	<delete id="deleteProduct">
 		DELETE FROM product WHERE product_idx = #{product_idx}
 	</delete>

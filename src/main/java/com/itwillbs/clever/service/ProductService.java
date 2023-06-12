@@ -129,4 +129,9 @@ public class ProductService {
 		return mapper.getSmallCategorys(param);
 	}
 	// 카테고리 이동 관련 (7개) 끝
+
+	// 중고상품 수정 시 파일 삭제
+	public int deleteProductFile(int product_idx) {
+		return mapper.deleteProductFile(product_idx);
+	}
 }
