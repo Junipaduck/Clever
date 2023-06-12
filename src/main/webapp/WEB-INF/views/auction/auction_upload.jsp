@@ -147,6 +147,12 @@ function startEndDate() {
                                     <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -174,8 +180,8 @@ function startEndDate() {
                         <div>
                             <div class="goods_category" style="height: 401.818182px;">
                                 <div class="goods_Lcategory">
-                                    <div>패션의류</div>
-                                    <div>패션잡화</div>
+                                    <div>패션/의류</div>
+                                    <div>패션/잡화</div>
                                     <div>취미/컬렉션</div>
                                     <div>디지털</div>
                                     <div>스포츠/레저</div>
@@ -407,21 +413,27 @@ function startEndDate() {
                         </div>
                     </div>
                     <div class="goods_price_area">
-                        <p>즉시 구매 액<span class="red">*</span></p>
+                        <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
                             <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
+<!--                     <div class="goods_price_area"> -->
+<!--                         <p>입찰 시작 액<span class="red">*</span></p> -->
+<!--                         <div class="goods_price"> -->
+<!--                             <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="goods_price_area"> -->
+<!--                         <p>입찰 최소 증가 액<span class="red">*</span></p> -->
+<!--                         <div class="goods_price"> -->
+<!--                             <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
                     <div class="goods_price_area">
-                        <p>입찰 시작 액<span class="red">*</span></p>
+                        <p>즉시 구매가<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
-                        </div>
-                    </div>
-                    <div class="goods_price_area">
-                        <p>입찰 최소 증가 액<span class="red">*</span></p>
-                        <div class="goods_price">
-                            <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">

@@ -6,10 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +26,7 @@ public class FileUpload {
 	@Autowired
 	private ProductMapper mapper;
 	
-	public void upload(MultipartFile[] file, HttpSession session, Map<String, Object> paramMap) {
+	public void upload(ArrayList<MultipartFile> file, HttpSession session, Map<String, Object> paramMap) {
 		
 		if (file != null) {
 			String uploadDir = "/resources/fileUpload"; //프로젝트상의 가상 업로드 경로

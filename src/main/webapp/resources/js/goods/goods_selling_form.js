@@ -18,7 +18,7 @@ $(document).ready(function ( ) {
             document.querySelector("div.goods_Mcategory").classList.add("hidden");
             document.querySelector("div.goods_Scategory").classList.add("hidden");
 
-            if(lcategory.innerText === "패션의류"){
+            if(lcategory.innerText === "패션/의류"){
 				document.querySelector("div.goods_Mcategory_acc").classList.add("hidden");
 				document.querySelector("div.goods_Mcategory_hobby").classList.add("hidden");
 				document.querySelector("div.goods_Mcategory_digital").classList.add("hidden");
@@ -30,7 +30,7 @@ $(document).ready(function ( ) {
                 const classList = document.querySelector("div.goods_Mcategory_cloth").classList;
                 classList.remove("hidden");
             } 
-            else if(lcategory.innerText === "패션잡화"){
+            else if(lcategory.innerText === "패션/잡화"){
                 document.querySelector("div.goods_Mcategory_cloth").classList.add("hidden");
 				document.querySelector("div.goods_Mcategory_hobby").classList.add("hidden");
 				document.querySelector("div.goods_Mcategory_digital").classList.add("hidden");
@@ -1233,15 +1233,11 @@ function setImages(event){
     
     		const currentInputName = event.target.name;
 		  const currentInput = document.getElementsByName(currentInputName)[0];
-//		  alert(currentInputName);
-//		  alert(currentInput);
 		
 		  currentInput.setAttribute("hidden", true);
 //		
 		  const nextInputName = "image" + (parseInt(currentInputName.substring(5)) + 1);
 		  const nextInput = document.getElementsByName(nextInputName)[0];
-//		  alert(nextInputName);
-//		  alert(nextInput);
 //		
 		  if (nextInput) {
 		    nextInput.removeAttribute("hidden");
@@ -1250,6 +1246,7 @@ function setImages(event){
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
             alert("너 들어갔니?");
+            document.getElementById(currentInputName).value = null;
             break;
         } else {
 	        var reader = new FileReader();
