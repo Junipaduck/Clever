@@ -358,6 +358,17 @@ div.right {
 												</c:choose>
 											</div>
 										</a>
+										<c:choose>
+											<c:when test="${productSellList.sale_status eq '판매중'}">
+												<div class="btn_area">
+													<button type="button" class="">배송 완료</button>
+													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+												</div>
+											</c:when>
+											<c:when test="${productSellList.sale_status eq '판매완료'}">
+												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+											</c:when>
+										</c:choose>
 									</div>
 								</div>
 							</c:forEach>
@@ -623,10 +634,17 @@ div.right {
 												<p class="goods_date">경매 시작 시간 : ${auctionList.auction_date }</p>
 											</div>
 										</a>
-										<div class="btn_area">
-											<button type="button" class="btn_buy_decide">결제하기</button>
-											<button type="button" class="btn_return">채팅</button>
-										</div>
+										<c:choose>
+											<c:when test="${auctionList.auction_status eq '경매 등록 대기중' }">
+												<div class="btn_area">
+													<button type="button" class="">판매 확정</button>
+													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+												</div>
+											</c:when>
+											<c:when test="${auctionList.auction_status eq '경매 마감' }">
+												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+											</c:when>
+										</c:choose>
 									</div>
 								</div>
 							</c:forEach>
