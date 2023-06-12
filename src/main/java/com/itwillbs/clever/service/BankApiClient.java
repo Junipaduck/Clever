@@ -205,11 +205,13 @@ public class BankApiClient {
 		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
 		
 		
-		jo.put("req_client_name", map.get("user_name")); // req_client_name(요청고객성명)
+//		jo.put("req_client_name", map.get("user_name")); // req_client_name(요청고객성명) // 0612 최보아
+		jo.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("user_name"));
 		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
-		jo.put("req_client_num", map.get("id").toUpperCase()); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("id").toUpperCase());
+//		jo.put("req_client_num", map.get("id").toUpperCase()); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!) // 0612 최보아
+		jo.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
+//		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("id").toUpperCase()); // 0612 최보아
 		jo.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
 		
 		// 아래 3개 정보는 피싱 등의 사고 발생 시 지급 정지를 위한 정보 설정(검증하지 않음)
@@ -269,7 +271,7 @@ public class BankApiClient {
 		// --------------------------------------------------------------------
 		// JSONObject 객체를 활용하여 요청 파라미터를 JSON 객체 형식으로 생성
 		JSONObject jo = new JSONObject();
-		jo.put("cntr_account_num", "99999999999999"); // cntr_account_num(약정 계좌)
+		jo.put("cntr_account_num", "222123456789"); // cntr_account_num(약정 계좌)
 		jo.put("cntr_account_type", "N"); // cntr_account_type(계좌형태 - 계좌를 의미하는 "N" 전달)
 		
 		jo.put("wd_pass_phrase", "NONE"); // 입금이체용 암호문구(테스트 계좌는 "NONE" 값 설정)

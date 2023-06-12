@@ -109,7 +109,7 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		return "bank/bank_user_info";
+		return "product/bank_user_info";
 	}
 	
 	// 유저 계좌 정보 조회 0609 강지훈 추가
@@ -177,7 +177,7 @@ public class BankController {
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
 		
-		return "bank/bank_account_detail";
+		return "product/member_bank_account_detail";
 		
 	}
 	
@@ -247,7 +247,7 @@ public class BankController {
 			return "fail_back";
 		}
 		
-		return "bank/withdraw_result";
+		return "product/withdraw_result";
 	}
 	
 

@@ -39,59 +39,42 @@ td, tr, th{
 
 </head>
 <body>
-		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
-            <header class="header" role="banner" >
-		        <div class="header_inner">
-		            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
-		        </div>
-		    </header>
-		  
-<h1>${user_name } 고객님의 계좌 상세정보</h1>
-	<table border="1">
-		<tr>
-			<th>은행명</th>
+      	 <h1>핀테크 사용자 정보</h1>
+	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3>
+	<table border="1" style="border-collapse: collapse;">
+		<tr style="background-color: pink;">
+			<th>계좌별칭</th>
 			<th>계좌번호</th>
-			<th>상품명</th>
-			<th>계좌잔액</th>
-			<th>출금가능금액</th>
+			<th>은행명</th>
+			<th>예금주명</th>
+			<th>계좌상태</th>
+			<th>핀테크이용번호</th>
+			<th></th>
 		</tr>
-		<tr>
-			<td>${account.bank_name }</td>
-			<td>${account_num_masked }</td>
-			<td>${account.product_name }</td>
-			<td>${account.balance_amt }</td>
-			<td>${account.available_amt }</td>
-		</tr>
-	</table>
-	
-	<hr>
-	
-	<!-- 송금 대상 정보 입력 -->
-	<h1>송금 대상 정보 입력(임시)</h1>
-	<form action="bank_withdraw" method="post">
-		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->
-		<table border="1">
+		<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
+		<%-- account 객체(AccountVO)로부터 각 데이터를 꺼내서 테이블에 출력 --%>
+		<c:forEach var="account" items="${userInfo.res_list }">
 			<tr>
-				<th>예금주명</th>
-				<th>은행코드</th>
-				<th>계좌번호</th>
-				<th>핀테크이용번호</th>
-				<th>송금할 금액</th>
-				<th></th>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="recv_client_name" value="${sessionScope.sId }"></td>
-				<td><input type="hidden" name="recv_client_bank_code" value="${account.bank_code_tran }"></td>
-				<td><input type="hidden" name="recv_client_account_num" value="${account_num_masked }"></td>
-				<td><input type="hidden" name="recv_client_fintech_use_num" value="${account.fintech_use_num }"></td>
-				<td><input type="hidden" name="tran_amt" value="10000"></td>
+				<td>${account.account_alias }</td>
+				<td>${account.account_num_masked }</td>
+				<td>${account.bank_name }(${account.bank_code_std })</td>
+				<td>${account.account_holder_name }</td>
+				<td></td>
+				<td>${account.fintech_use_num }</td>
 				<td>
-						<input type="submit" value="송금(출금이체)">
+					<form action="bank_accountDetail" method="post">
+						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
+						<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+						<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
+						<input type="hidden" name="user_name" value="${userInfo.user_name }">
+						<input type="submit" value="상세조회 &#127875;">
+					</form>
 				</td>
 			</tr>
-		</table>
-	</form>
-			    
+		</c:forEach>
+	</table>
+            
+            
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />

@@ -435,7 +435,7 @@ public class ProductController {
 			model.addAttribute("target", "loginForm.me");
 			return "success";
 		} else {
-			return "product/product_pay_form";
+			return "product/bank_user_info";
 		}
 	
 	}
