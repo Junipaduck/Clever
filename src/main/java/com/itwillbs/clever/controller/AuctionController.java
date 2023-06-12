@@ -175,8 +175,6 @@ public class AuctionController {
 		}
 		
 		
-		
-		
 		model.addAttribute("fileList", fileList);
 		model.addAttribute("bigCategorys", bigCategorys);
 		model.addAttribute("midCategorys", midCategorys);
@@ -196,6 +194,18 @@ public class AuctionController {
 		detailmap.put("date", strArr[0]);
 		detailmap.put("dibsCount", dibsCount);
 		model.addAttribute("detailmap", detailmap);
+		
+		HashMap<String, String> priceMap = new HashMap<String, String>();
+		
+		int MessageCount = auctionLogService.selectAuctionMessage(auction_idx, sId);
+		
+		if(MessageCount>=1) {
+			priceMap = auctionLogService.seletAuctionPrice(auction_idx, sId);
+		} else {
+			priceMap.put("message_content", "0");
+		}
+		
+		model.addAttribute("selectAuctionPrice", priceMap);
 		
 		
 		// 찜하기
@@ -376,7 +386,7 @@ public class AuctionController {
 	@ResponseBody
 	@GetMapping("auction_confirmed")
 	public String auction_confirmed(int auction_idx, HttpSession session) {
-		System.out.println("여기들어나!!!!!!!!!!!!!!!");
+//		System.out.println("여기들어나!!!!!!!!!!!!!!!");
 //		System.out.println("에이이이이젲제제에에엑스 : " + auction_idx );
 		List<HashMap<String, String>> list =  auctionLogService.auctionConfirmed(auction_idx);
 		

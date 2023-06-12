@@ -23,5 +23,7 @@ public interface AuctionLogMapper {
 
 	void updateMessage(@Param("logRoomIdx")int logRoomIdx, @Param("chatId")String chatId, @Param("messageContent")String messageContent);
 
+	HashMap<String, String> seletAuctionPrice(@Param("logRoomIdx")int auction_idx, @Param("sId")String sId);
+
 	
 }

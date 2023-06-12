@@ -67,10 +67,15 @@
 		SELECT COUNT(*) FROM log_message
 			WHERE logRoom_idx = #{logRoomIdx} AND buyer_id = #{chatId}
 	</select>
-	
+		
 	<update id="updateMessage">
-		UPDATE log_message SET message_content = #{messageContent}
+		UPDATE log_message SET message_content = #{messageContent} 
 			WHERE logRoom_idx = #{logRoomIdx} AND buyer_id = #{chatId};
 	</update>
+	
+	<select id="seletAuctionPrice" resultType="map">
+		SELECT message_content FROM log_message
+			WHERE logRoom_idx = #{logRoomIdx} AND buyer_id = #{sId}
+	</select>
 
 </mapper>

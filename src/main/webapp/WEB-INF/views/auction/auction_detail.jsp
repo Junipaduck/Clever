@@ -71,6 +71,7 @@
     	<input type="hidden" id="currentAjax" name="currentAjax" value="0">
     	<input type="hidden" id="immediately_price" name="immediately_price" value="${detailmap.immediately_price }">
     	<input type="hidden" id=buyer_id name="buyer_id" value="${detailmap.buyer_id }">
+    	<input type="hidden" id=priceMap name="priceMap" value="${selectAuctionPrice.message_content }">
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
@@ -649,15 +650,18 @@ chatSocket.onmessage = function(e) {
 		alert(data.id +"님이 낙찰 !! 경매가 종료되었습니다.");
 		location.reload();
 	}
-	
 };
 
 // 소켓 연결
 chatSocket.onopen = function(e) {
 	console.log('${sessionScope.sId}' + " 입장");
 	var user = '${sessionScope.sId}';
-	var str = user + "님이 입장하셨습니다.";
+	var str = user + "님이 입장하셨습니다. \n";
+	var priceMap = document.getElementById("priceMap").value
+	var userPrice = "\n" + user + "님의 이전 입찰 금액은 : " + priceMap + "원 입니다.";
+		
 	$("#chatLog2").append(str);
+	$("#chatLog2").append(userPrice);
 }
 
 // 소켓 연결 끊김 
