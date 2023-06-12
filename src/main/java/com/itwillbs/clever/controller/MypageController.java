@@ -69,7 +69,12 @@ public class MypageController {
 		// 경매 등록 내역
 		List<HashMap<String, String>> auctionList = mypageService.selectAuctionList(sId); 
 		model.addAttribute("auctionList", auctionList);
-
+		
+		// 경매 낙찰 내역
+		List<HashMap<String, String>> auctionBidList = mypageService.selectAuctionBidList(sId); 
+		model.addAttribute("auctionBidList", auctionBidList);
+		System.out.println("경매낙찰 확인 " + auctionBidList);
+		
 		// 경매 파일 이미지
 		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); //파일테이블에서 경매 찜 목록의 첫번째등록한 이미지만 select
 		model.addAttribute("auctionfileList", auctionfileList);
@@ -77,8 +82,6 @@ public class MypageController {
 		// 경매 찜 내역
 		List<HashMap<String, String>> auctionDibsList = mypageService.selectAutionDibsList(sId);
 		model.addAttribute("auctionDibsList", auctionDibsList);
-		
-		
 		
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);

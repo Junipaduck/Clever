@@ -94,7 +94,7 @@ $(document).ready(function(){
     $(".auctionbid_menu").click(function(){
         common();
         $('.common_menu').css('display', 'none');
-        $('#auctionbid_menu').css('display', 'block');
+        $('#auctionbid_menu_area').css('display', 'block');
         fn_border(this);
         $('.sales_menu').css('borderLeft', '1px solid rgb(238, 238, 238)');
         $('.follower_menu').css('borderRight', '1px solid rgb(238, 238, 238)');
