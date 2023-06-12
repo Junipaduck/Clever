@@ -50,22 +50,21 @@ font-family: 'SUITE-Regular';
 }
 	/* -- 댓글 달기 --  */
 	#replyArea {
-		width: 500px;
+		width: 770px;
 		height: 150px;
-		margin: auto;
+		margin-left: 165px;
 		margin-top: 20px;
 	}
 	#replyArea textarea {
-		width: 400px;
+		width: 690px;
 		height: 50px;
-		vertical-align: middle;
+ 		vertical-align: middle;
 		resize: none;
 	}
 	
 	#replyArea input {
 		width: 80px;
 		height: 55px;
-		vertical-align: middle;
 		
 	}
 	
@@ -74,7 +73,7 @@ font-family: 'SUITE-Regular';
 		height: 100px;
 		font-size: 12px;
 /* 		white-space: nowrap; */
-/* 		overflow: hidden; */
+ 		overflow: auto; 
 /* 		text-overflow: ellipsis; */
 	}
 	
@@ -207,8 +206,7 @@ function communityDelete(community_idx) {
 					<input type="submit" disabled="disabled" value="댓글 쓰기">
 				</c:when>
 				<c:otherwise>
-					<textarea id="replyTextarea" name="reply_content" ></textarea>
-					<input type="submit" value="댓글 쓰기">
+					<textarea id="replyTextarea" name="reply_content" ></textarea><input type="submit" value="댓글 쓰기">
 				</c:otherwise>
 			</c:choose>
 		
@@ -254,6 +252,14 @@ function communityDelete(community_idx) {
 	</section>
 	<c:if test="${sessionScope.sId eq communityList[0].member_id }">
 			<input type="button" value="수정" onclick="location.href='community_modify?community_idx=${communityList[0].community_idx }'"><input type="button" value="삭제" onclick="communityDelete(${communityList[0].community_idx });">
+			<c:choose>
+				<c:when test="${communityList[0].community_div eq 'auction'}">
+					<input type="button" value="목록" onclick="location.href='community_auction'">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="목록" onclick="location.href='community'">
+				</c:otherwise>
+			</c:choose>
 	</c:if>
     </div>
 	<!-- 풋터 시작 -->

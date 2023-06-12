@@ -31,7 +31,7 @@
 
 <!-- customer_center 외부 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/board_list.jo112.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/common.css?after">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/footer.1.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
@@ -101,7 +101,7 @@
 														<div class="tb-center">${community.community_readcount }</div>
 													</td>
 													<td>
-														<div class="tb-center"><a href="community_detail?community_idx=${community.community_idx }">${community.community_title }</a></div>
+														<div class="tb-center"><a href="community_detail?community_idx=${community.community_idx }&community_div=${community.community_div }">${community.community_title }</a></div>
 													</td>
 													<td>
 														<div class="tb-center">${community.community_date }</div>
