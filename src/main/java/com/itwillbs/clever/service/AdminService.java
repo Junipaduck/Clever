@@ -104,6 +104,20 @@ public class AdminService {
 		
 		return mapper.selectReportList();
 	}
+	
+	// 신고 카운트 조회
+	public List<HashMap<String, String>> getReportProList() {
+		
+		return mapper.selectReportProList();
+	}
+
+	// 신고 처리
+	public int reportPro(int product_idx) {
+		
+		return mapper.deleteProduct(product_idx);
+	}
+
+
 
 
 

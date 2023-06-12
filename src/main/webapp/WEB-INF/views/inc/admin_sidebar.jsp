@@ -33,7 +33,7 @@
                     </li>
 
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    	<i class="icon icon-plug"></i><span class="nav-text">신고 처리 결과</span></a>
+                    	<i class="icon icon-plug"></i><span class="nav-text">신고 처리</span></a>
                         <ul aria-expanded="false">
                             <li><a href="adminReportPro.ad">신고 처리 현황</a></li>
                         </ul>

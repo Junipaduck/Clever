@@ -72,5 +72,42 @@ public class GoodsService {
 		return mapper.selectFiles();
 	}
 
+	// 굿즈 포인트 결제창에서 정보 조회
+	public MemberVO getMemberInfo(String id) {
+		
+		return mapper.selectMemberInfo(id);
+	}
+
+	// 굿즈 구매 처리
+	public int buyGoods(String id, int goods_price) {
+		
+		return mapper.buyGoods(id, goods_price);
+	}
+
+	// goods_price 조회
+	public GoodsVO selectGoodsPrice(int goods_idx) {
+		
+		return mapper.selectGoodsPrice(goods_idx);
+	}
+
+	// 멤버 포인트 조회
+	public MemberVO selectMemberPoint(String id) {
+		
+		return mapper.selectMemberPoint(id);
+	}
+
+	// 굿즈 구매 정보 insert
+	public int insertBuyGoods(String id, String buy_title, String buy_price, int goods_idx) {
+		
+		return mapper.insertBuyGoods(id, buy_title, buy_price, goods_idx);
+	}
+
+	// 굿즈 재고 차감
+	public int updateStock(int goods_idx) {
+		
+		return mapper.updateStock(goods_idx);
+	}
+
+
 	
 }

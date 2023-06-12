@@ -104,7 +104,18 @@ public class AuctionService {
 		return mapper.deleteAutionFile(auction_idx);
 	}
 
+	public void updateConfirmed(String buyer_id, int auction_idx) {
+		mapper.updateConfirmed(buyer_id, auction_idx);
+	}
+
+	public HashMap<String, String> selectAcution(int auctionIdx) {
+		// TODO Auto-generated method stub
+		return mapper.selectAcution(auctionIdx);
 	
-	
-	
+	}
+
+	public void updateDate(int auctionIdx, String chatId) {
+		mapper.updateDate(auctionIdx, chatId);
+	}
+
 }

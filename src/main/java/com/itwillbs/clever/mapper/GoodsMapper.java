@@ -2,6 +2,8 @@ package com.itwillbs.clever.mapper;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.*;
+
 import com.itwillbs.clever.vo.*;
 
 public interface GoodsMapper {
@@ -32,6 +34,25 @@ public interface GoodsMapper {
 
 	// 굿즈 파일 전체 셀렉트
 	List<HashMap<String, String>> selectFiles();
+
+	// 결제창 멤버 정보 조회
+	MemberVO selectMemberInfo(String id);
+
+	// 굿즈 결제 처리
+	int buyGoods(@Param("id") String id, @Param("goods_price") int goods_price);
+
+	// 굿즈 가격 조회
+	GoodsVO selectGoodsPrice(int goods_idx);
+
+	// 멤버 포인트 조회
+	MemberVO selectMemberPoint(String id);
+
+	// 굿즈 구매 정보 insert
+	int insertBuyGoods(@Param("id") String id, @Param("buy_title") String buy_title, @Param("buy_price") String buy_price, @Param("goods_idx") int goods_idx);
+
+	// 굿즈 재고 차감
+	int updateStock(int goods_idx);
+
 
 
 }

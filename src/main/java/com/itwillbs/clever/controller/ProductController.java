@@ -15,6 +15,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,11 +30,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwillbs.clever.common.util.FileUpload;
+import com.itwillbs.clever.service.BankApiService;
+import com.itwillbs.clever.service.BankService;
 import com.itwillbs.clever.service.ProductService;
+import com.itwillbs.clever.vo.AccountDetailVO;
 import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
+import com.itwillbs.clever.vo.ResponseUserInfoVO;
 
 import kotlin.reflect.jvm.internal.impl.load.java.JavaClassFinder.Request;
 
@@ -46,6 +52,18 @@ public class ProductController {
 	@Autowired
 	FileUpload FileUpload;
 	
+	// 계좌이체 관련 
+	@Autowired
+	private BankApiService apiService;
+	
+	// 계좌이체 관련
+	@Autowired
+	private BankService bankService;
+	
+	// 로거 코드
+	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
+	
+	
 	// 상품 리스트 
 	@GetMapping("/product_list")
 	public String productList(@RequestParam Map<String, String> map, Model model) {
@@ -54,39 +72,6 @@ public class ProductController {
 
 		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		model.addAttribute("fileList", fileList);
-		
-//		List productList2 = auctionService.getProductList(map.get("param"));
-//		List fileList = auctionService.selectFiles();
-//		String bigCategory = auctionService.getBigCategory(map.get("param"));
-//		List bigCategorys = auctionService.getBigCategorys();
-//		List midCategorys = auctionService.getMidCategorys(map.get("param"));
-//		System.out.println(midCategorys);
-//		List smallCategorys = auctionService.getSmallCategorys(map.get("param"));
-//		System.out.println("???????" + smallCategorys);
-//		if(bigCategory == null) {
-//			List midCategory = auctionService.getMidCategory(map.get("param"));
-//			System.out.println("midCategory : " + midCategory);
-//			if(midCategory.size() < 1) {
-//				List smallCategory = auctionService.getSmallCategory(map.get("param"));
-//				System.out.println("smallCategory : " + smallCategory);
-//				model.addAttribute("smallCategory", smallCategory);
-//			} else {
-//				model.addAttribute("midCategory", midCategory);
-//			}
-//		} else {
-//			System.out.println("bigCategory : " + bigCategory);
-//			model.addAttribute("bigCategory", bigCategory);
-//		}
-//		
-//		
-//		
-//		
-//		model.addAttribute("fileList", fileList);
-//		model.addAttribute("bigCategorys", bigCategorys);
-//		model.addAttribute("midCategorys", midCategorys);
-//		model.addAttribute("smallCategorys", smallCategorys);
-//		model.addAttribute("productList2", productList2);
-//		model.addAttribute("categoryParam", map.get("param"));
 		
 		return "product/product_list";
 	}
@@ -131,6 +116,38 @@ public class ProductController {
 		model.addAttribute("result", dibsCheck);
 		
 		return "product/product_detail";
+	}
+	
+	// 중고상품 카테고리 이동
+	@GetMapping(value = "product_category")
+	public String product_category(@RequestParam Map<String, String> map, Model model) {
+		List productList = productService.getProductList(map.get("param"));
+		String bigCategory = productService.getBigCategory(map.get("param"));
+		List bigCategorys = productService.getBigCategorys();
+		List midCategorys = productService.getMidCategorys(map.get("param"));
+		List smallCategorys = productService.getSmallCategorys(map.get("param"));
+		List<HashMap<String, String>> fileList = productService.selectFile(); // 첫번째에 등록된 사진파일 가져오기
+		
+		if(bigCategory == null) { // 만약 대 카테고리가 비어있으면, 중 카테고리를 가져오고, 
+			List midCategory = productService.getMidCategory(map.get("param"));
+			if(midCategory.size() < 1) { // 그랬을 때 중 카테고리가 비어있으면 , 소 카테고리를 가져온다
+				List smallCategory = productService.getSmallCategory(map.get("param"));
+				model.addAttribute("smallCategory", smallCategory);
+			} else {
+				model.addAttribute("midCategory", midCategory);
+			}
+		} else {
+			model.addAttribute("bigCategory", bigCategory);
+		}
+		
+		model.addAttribute("bigCategorys", bigCategorys);
+		model.addAttribute("midCategorys", midCategorys);
+		model.addAttribute("smallCategorys", smallCategorys);
+		model.addAttribute("productList", productList);
+		model.addAttribute("categoryParam", map.get("param"));
+		model.addAttribute("fileList", fileList); 
+		
+		return "product/product_category";
 	}
 	
 	// 찜하기 상호작용 ajax 
@@ -360,9 +377,11 @@ public class ProductController {
 		}
 	}	
 	
-	// 중고상품 구매하기 페이지
+	
+// 중고상품 계좌이체 관련 코드 시작 ========================================================================================	
+	// 중고상품 상세페이지에서 [바로구매] 버튼 클릭 시 나오는 새창페이지
 	@GetMapping("/payProduct")
-	public String buyProduct(Model model, @RequestParam int product_idx) {
+	public String buyProduct(Model model, @RequestParam int product_idx, HttpSession session) {
 		// 중고상품 상세보기 select
 		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
 		model.addAttribute("productDetail", productDetail);
@@ -371,11 +390,91 @@ public class ProductController {
 		List<HashMap<String, String>> fileList = productService.selectFile(); 
 		model.addAttribute("fileList", fileList);
 		
-		return "product/product_pay_form";
+		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("access_token : " + access_token);
+		System.out.println("user_seq_no : " + user_seq_no);
+		
+		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
+		if(access_token == null) {
+			model.addAttribute("msg", "계좌 인증 필수!");
+			return "fail_back";
+		}
+		
+		// 사용자 정보 조회(REST API 요청)		
+		// BankApiService - requestUserInfo() 메서드 호출
+		// => 파라미터 : 엑세스토큰, 사용자번호   리턴타입 : ResponseUserInfoVO(userInfo)
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+		System.out.println(userInfo);
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("userInfo", userInfo);
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("target", "loginForm.me");
+			return "success";
+		} else {
+			return "product/product_pay_form";
+		}
+	
+	}
+	
+	// product_pay_form.jsp 에서 [계좌선택] 버튼 클릭 시 나오는 member_bank_accountDetail.jsp
+	@PostMapping("member_bank_accountDetail")
+	public String getAccountDetail(
+			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
+		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
+		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// 세션 객체의 엑세스 토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ member_bank_accountDetail : " + map);
+		
+		// BankApiService - requestAccountDetail() 메서드를 호출하여
+		// 계좌 상세정보 조회 요청
+		// => 파라미터 : Map 객체   리턴타입 : AccountDetailVO(account)
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		
+		// 응답코드(rsp_code)가 "A0000" 가 아니면 에러 상황이므로 에러 처리
+		// => "정보 조회 실패!" 출력 후 이전페이지로 돌아가기(fail_bank)
+		// => 출력메세지에 응답메세지(rsp_message) 도 함께 출력
+		if(account == null) {
+			model.addAttribute("msg", "정보 조회 실패");
+			return "fail_back";
+		} else if(!account.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", "정보 조회 실패 - " + account.getRsp_message());
+			return "fail_back";
+		}
+		
+		System.out.println(account);
+		
+		// AccountDetailVO 객체 저장
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+		
+		return "product/member_bank_account_detail";
+		
 	}
 	
 	
-} //끝
+	
+	// 중고상품 계좌이체 Pro
+//	@PostMapping("/withdrawProduct")
+//	public String withdrawProduct(Model model, ProductVO product) {
+//		return "product/product_pay_result";
+//	}
+	
+// 중고상품 계좌이체 관련 코드 끝 ========================================================================================	
+	
+	
+} // 컨트롤러 끝
 
 
 

@@ -47,4 +47,18 @@ public interface ProductMapper {
 
 	String sellerInfoCount(ProductVO product);
 	
+	// 카테고리 관련 (7개)
+	List getProductList(String param);
+
+	String getBigCategory(String param);
+
+	List getMidCategory(String param);
+
+	List getSmallCategory(String param);
+
+	List getBigCategorys();
+
+	List getMidCategorys(String param);
+
+	List getSmallCategorys(String param);
 }

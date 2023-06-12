@@ -26,6 +26,14 @@ public class BankApiClient {
 	@Value("${client_secret}")
 	private String client_secret;
 	
+	@Value("${client_bank_code}")
+	private String client_bank_code;
+	
+	@Value("${client_account_num}")
+	private String client_account_num;
+	
+	
+	
 //	@Autowired
 	private RestTemplate restTemplate;
 	
@@ -184,11 +192,12 @@ public class BankApiClient {
 		jo.put("fintech_use_num", map.get("fintech_use_num")); // fintech_use_num(출금계좌 핀테크 이용번호)
 		jo.put("wd_print_content", "000에게송금"); // wd_print_content(출금계좌 인자내역, 내 통장에 표시할 내역)
 //		jo.put("tran_amt", 10000); // tran_amt(거래금액 = 출금액)
+		
 		jo.put("tran_amt", map.get("tran_amt")); // 입력받은 금액 사용
 		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
+		
+		
 		jo.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
-//		jo.put("req_client_bank_code", false); // req_client_bank_code(요청고객계좌 개설기관 표준코드) - 생략 가능
-//		jo.put("req_client_account_num", false); // req_client_account_num(요청고객계좌 계좌번호) - 생략 가능 
 		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
 		jo.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
 		jo.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
@@ -198,10 +207,14 @@ public class BankApiClient {
 //		jo.put("recv_client_bank_code", "004"); // recv_client_bank_code(최종수취 고객계좌 개설기관 표준코드(검증X))
 //		jo.put("recv_client_account_num", "99999999999999"); // recv_client_account_num(최종수취 고객 계좌번호(검증X))
 		
-		jo.put("recv_client_name", map.get("recv_client_name")); // 입력받은 데이터
-		jo.put("recv_client_bank_code", map.get("recv_client_bank_code")); // 입력받은 데이터
-		jo.put("recv_client_account_num", map.get("recv_client_account_num")); // 입력받은 데이터
+		jo.put("recv_client_name", "클레버"); // 입력받은 데이터
+		jo.put("recv_client_bank_code", client_bank_code); // 입력받은 데이터
+		jo.put("recv_client_account_num", client_account_num); // 입력받은 데이터
 		
+//		jo.put("recv_client_name", map.get("recv_client_name")); // 입력받은 데이터
+//		jo.put("recv_client_bank_code", map.get("recv_client_bank_code")); // 입력받은 데이터
+//		jo.put("recv_client_account_num", map.get("recv_client_account_num")); // 입력받은 데이터
+//		
 		
 		// HttpEntity 객체 생성(파라미터 : JSONObject 객체, HttpHeaders 객체)
 		HttpEntity<String> httpEntity = new HttpEntity<String>(jo.toString(), httpHeaders);

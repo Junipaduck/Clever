@@ -86,14 +86,16 @@ $(document).ready(function() {
 	
 	
 	//방 나누기 + 메세지나누기
-	$("#roomSelect .roomEl").on("click", function(e) {
+// 	$("#roomSelect .roomEl").on("click", function(e) {
+	$(document).on("click", "#roomSelect .roomEl", function(e) {
 	    // 처음 나오는 A채팅방의 메세지 제거
 	    $(".roomEl.selected").removeClass("selected");
 	
 	    // 목록에서 B채팅방 선택
 	    $(this).addClass("selected");
 	
-	    roomId = $(this).data("id");
+// 	    roomId = $(this).data("id");
+	    roomId = this.id;		// (0610) data-id 사용하지 않고 그냥 id사용해서 코드 변경함
 	    console.log('roomId : ' + roomId);
 	    productIdx = roomId.substring(roomId.indexOf("P")+1, roomId.indexOf("S"));
 	    console.log('productIdx : ' + productIdx);
@@ -171,35 +173,36 @@ $(document).ready(function() {
 			
 		// 채팅 내용 있을 때	
 		} else {
-		const chatMessage = {		// js객체로 생성
-			"chatRoom_id": roomId,
-			"buyer_id" : buyerId,
-	 		"senderId" : userId, //하나가 잠깐 추가함
-			"seller_id" : sellerId,
-	// 		"message_date" : ,
-			"product_idx": productIdx,
-			"message_content" : message.value
-		};
-	
-		console.log(chatMessage);
-		console.log(JSON.stringify(chatMessage));
-	
-		// 소켓으로 내용 보내기
-		chatSocket.send(JSON.stringify(chatMessage));
-		message.value = "";		// text입력창 초기화
+			const chatMessage = {		// js객체로 생성
+				"chatRoom_id": roomId,
+				"buyer_id" : buyerId,
+		 		"senderId" : userId, //하나가 잠깐 추가함
+				"seller_id" : sellerId,
+		// 		"message_date" : ,
+				"product_idx": productIdx,
+				"message_content" : message.value
+			};
 		
-		// 새로운 채팅방일 경우 엔터키 누를때 채팅목록 생성
-        var idValue = $(".roomEl").attr("id");
-        console.log("idValue: " + idValue);
-        console.log(roomId);
-        if(idValue != roomId) {
-            var strTitle = '<div class="roomEl active" style="width: 440px;" id="' + idValue + '">' + productSubject + '</div>';
-            $("#roomSelect").append(strTitle);
-
-        }
+			console.log(chatMessage);
+			console.log(JSON.stringify(chatMessage));
 		
+			// 소켓으로 내용 보내기
+			chatSocket.send(JSON.stringify(chatMessage));
+			message.value = "";		// text입력창 초기화
+			
+			// 새로운 채팅방일 경우 엔터키 누를때 채팅목록 생성
+	//         var idValue = $(".roomEl").attr("id");
+	        var idValue = $(".roomEl:last").attr("id");		// (0610최보아).roomEl 클래스 가진 요소들 중 마지막 요소의 id가져오기
+	        console.log("idValue: " + idValue);
+	        console.log(roomId);
+	        if(idValue != roomId) {
+	            var strTitle = '<div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="' + roomId + '">'
+	            				 + productSubject
+	            				 + '<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" style="width: 40px; position: absolute; left: 730px;">'
+	            				 + '</div>';
+	            $("#roomSelect").append(strTitle);
+	        }
 		}
-	
 	}
 	
 	// 서버에서 메시지를 받았을 때
@@ -262,22 +265,25 @@ $(document).ready(function() {
 	// 소켓 연결
 	chatSocket.onopen = function(e) {
 		console.log('${sessionScope.sId}' + " 입장");
-		var user = '${sessionScope.sId}';
-		var str = user + "님이 입장하셨습니다.";
-		$("#chatLog").append(str);
+// 		var user = '${sessionScope.sId}';
+// 		var str = user + "님이 입장하셨습니다.";
+// 		$("#chatLog").append(str);
 	}
 	
 	// 소켓 연결 끊김 - (0601최보아) 나중에 상대방이 채팅방 나가면 상대방 아이디랑 함께 출력해줘야함
 	chatSocket.onclose = function(e) {
 		console.log('${sessionScope.sId}' + " 퇴장");
-		var user = '${sessionScope.sId}';
-		var str = user + " 님이 퇴장하셨습니다.ㅜ";
-		$("#chatLog").append(str);
+// 		var user = '${sessionScope.sId}';
+// 		var str = user + " 님이 퇴장하셨습니다.ㅜ";
+// 		$("#chatLog").append(str);
 	}
 	
 }); // document 끝
+
 </script>
+
 </head>
+
 <body>
 <!-- 헤더 시작 -->
 <header>
@@ -286,65 +292,72 @@ $(document).ready(function() {
 <!-- main_content 영역 -->
 <div id="main_content">
 	<div class="page-navigation">
-	<div id="contentWrap">
-<!--     <nav> -->
-<!-- 		<span id="nav-header"> -->
-<!--             chat App -->
-<!--         </span> -->
-<!--         <span id="logoutBtn">로그아웃</span> -->
-<!--     </nav> -->
-    <div id="contentCover">
-        <div id="roomWrap" style="margin-left:-100px;">
-            <div id="roomList" style="width: 440px;">
-                <div id="roomHeader" style="width: 440px;">채팅 방 목록</div>
-<%--                 	<c:if test="${chatList.size() == 0 }"> --%>
-<!--                 		<div id="roomSelect" > -->
-<!-- 	                    	<div class="roomEl active" style="width: 440px;" data-id="1">채팅 상대가 없습니다.</div> -->
-<!--                 		</div> -->
-<%--                 	</c:if> --%>
+		<div id="contentWrap">
+	<!--     <nav> -->
+	<!-- 		<span id="nav-header"> -->
+	<!--             chat App -->
+	<!--         </span> -->
+	<!--         <span id="logoutBtn">로그아웃</span> -->
+	<!--     </nav> -->
+		    <div id="contentCover">
+		        <div id="roomWrap" style="margin-left:-100px;">
+		            <div id="roomList" style="width: 440px;">
+		                <div id="roomHeader" style="width: 440px;">채팅 방 목록</div>
+		<%--                 	<c:if test="${chatList.size() == 0 }"> --%>
+		<!--                 		<div id="roomSelect" > -->
+		<!-- 	                    	<div class="roomEl active" style="width: 440px;" data-id="1">채팅 상대가 없습니다.</div> -->
+		<!--                 		</div> -->
+		<%--                 	</c:if> --%>
 		                <div id="roomSelect" >
 		                	<c:forEach items="${chatList }" var="chatList">
-			                    <div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" data-id="${chatList.chatRoom_id}">${chatList.product_subject }<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" style="width: 40px;">
+			                    <div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="${chatList.chatRoom_id}">
+			                    	${chatList.product_subject }
+			                    	<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" style="width: 40px; position: absolute; left: 730px;">
 			                    </div>
 <%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>
 		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
 		<!-- 	                    <div class="roomEl" data-id="3">엠스톤 키보드</div> -->
 		                    </c:forEach>
 		                </div>
-            </div>
-        </div>
-        <div id="chatWrap" style="margin-right:100px; margin-bottom:50px;">
-            <div id="chatHeader"></div>
-            <div id="chatLog">
-            <!-- 채팅 내용 출력 화면 -->
-            </div>
-            <form id="chatForm">
-            	<input type="text" style="display:none;"/> <!-- 의미없는 텍스트 박스 - 엔터키 입력 시 메세지 전송을 위해 필요함(form안에 text박스가 하나만 있으면 안됨) -->
-                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요">
-                <input type="button" id="btnSend" value="보내기">
-            </form>
-        </div>
-<!--         <div id="memberWrap"> -->
-<!--             <div id="memberList"> -->
-<!--                 <div id="memberHeader">채팅중인 멤버</div> -->
-<%--                 <div id="memberSelect">나 : ${sessionScope.sId }</div> --%>
-<!--                 <div id="targetUser">상대 : </div> -->
-<!--             </div> -->
-<!--         </div> -->
-    </div>
-</div>
-	
-	
-	
-	
+		            </div>
+		        </div>
+		        <div id="chatWrap" style="margin-right:100px; margin-bottom:50px;">
+			        <c:choose>
+			        	<c:when test="${product.size() > 0 }">	<!-- 제품상세페이지에서 넘어올 때 제목 출력 -->
+				        	<c:forEach items="${product }" var="product">
+				            	<div id="chatHeader">${product.product_subject }</div>
+				            </c:forEach>
+				        </c:when>
+				        <c:otherwise>
+				        	<div id="chatHeader">채팅방을 선택해주세요</div>	<!-- 헤더에서 넘어올 때 제목 출력 -->
+						</c:otherwise>
+					</c:choose>
+		            <div id="chatLog">
+		            	<!-- 채팅 내용 출력 화면 -->
+		            </div>
+		            <form id="chatForm">
+		            	<input type="text" style="display:none;"/> <!-- 의미없는 텍스트 박스 - 엔터키 입력 시 메세지 전송을 위해 필요함(form안에 text박스가 하나만 있으면 안됨) -->
+		                <input type="text" autocomplete="off" size="30" id="message" placeholder="메시지를 입력하세요">
+		                <input type="button" id="btnSend" value="보내기">
+		            </form>
+		        </div>
+		<!--         <div id="memberWrap"> -->
+		<!--             <div id="memberList"> -->
+		<!--                 <div id="memberHeader">채팅중인 멤버</div> -->
+		<%--                 <div id="memberSelect">나 : ${sessionScope.sId }</div> --%>
+		<!--                 <div id="targetUser">상대 : </div> -->
+		<!--             </div> -->
+		<!--         </div> -->
+		    </div>
+		</div>
 	</div>
 </div>
 <!-- // main_content 영역 -->
 
-	<!-- 풋터 시작 -->
-	<footer>
-		<jsp:include page="../inc/footer.jsp" />
-	</footer>
+<!-- 풋터 시작 -->
+<footer>
+	<jsp:include page="../inc/footer.jsp" />
+</footer>
 
 
 		

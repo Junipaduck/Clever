@@ -24,128 +24,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
-
-
- <style type="text/css">
- 
-      div.container{
-    }
- 
-      div.insert{
-    }
- 
-    div.create{
-    width: 800px;
-    text-align: center;
-    padding: 30px;
-/*     border-bottom: 1px solid black; */
-    margin: auto;
-    }
- 
-    table{
-    height: 300px;
-    width: 900px;
-    border-top: 3px solid black;
-    margin-right: auto;
-    margin-left: auto;
-    }
- 
-    td{
-    border-bottom: 1px dotted black;
-    }
- 
-    caption{
-    text-align: left;
-    }
- 
-    .col1 {
-    background-color: #e8e8e8;
-    padding: 10px;
-    text-align: right;
-    font-weight: bold;
-    font-size: 0.8em;
-    }
- 
-    .col2 {
-    text-align: left;
-    padding: 5px;
-    }
- 
-    .but1 {
-    height: 25px;
-    width: 80px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but2 {
-    height: 27px;
-    width: 120px;
-    color: white;
-    background-color: #2445f0;
-    border-color: #2445f0;
-    }
- 
-    .but3 {
-    height: 35px;
-    width: 150px;
-    background-color: #2445f0;
-    border: 2px solid #2445f0;
-    }
- 
-    .but4{
-    height: 35px;
-    width: 150px;
-    background-color: white;
-    border: 2px solid black;
-    }
-    
-    .but1:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
- 
-    .but2:hover {
-    background-color: #2445f0;
-    color: black;
-    border: 2px solid #2445f0;
-    }
- 
-    .but3:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
- 
-    .but4:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
-    
-    .num{
-    color: red;
-    }
- 
- 	.accButton button {
-    padding: 0px 0.5rem;
-    height: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: rgb(255, 80, 88);
-    background-color: rgb(244, 244, 250);
-    border: none;
-    outline: none;
-	}
-	.accButton button.active{
-    color: #fff;
-    background: rgb(255, 80, 88);
- 	}
-  </style>
-  
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -155,16 +33,125 @@
 
 
 	<!-- 중간 작업공간 시작 ============================================================== -->
-	<h1>확인용</h1>
+	<div class="container text-center">
+	<h1>　</h1>
+	</div>
+	
+	
+	 <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="">
+                        <div class="container text-center">
+                            <h4>계좌 상세정보</h4>
+                            <p class="mb-0">${user_name } 고객님의 계좌 상세정보</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container text-center">
+				<h1>　</h1>
+				</div>
+                <!-- form 시작 -->
+                        <div class="card" style="width: 900px;margin: auto;">
+                            <div class="card-header">
+                                <h4 class="card-title">${account_num_masked } 계좌 정보</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form action="goodsRegisterPro.ad" method="post">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">은행명</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" placeholder="${account.bank_name }" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">상품명</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" placeholder="${account.product_name }" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">계좌잔액</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" placeholder="${account.balance_amt }" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">출금가능금액</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" placeholder="${account.available_amt }" readonly="readonly">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            	</div>
+		<!-- form 끝 -->
+		
+				&nbsp;&nbsp;&nbsp;
+                <!-- form 시작 -->
+                        <div class="card" style="width: 900px;margin: auto;">
+                            <div class="card-header">
+                                <h4 class="card-title">송금</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+                                    <form action="bank_withdraw" method="post">
+                                    <input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">예금주명</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_name" placeholder="예금주명">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">은행코드</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_bank_code" placeholder="은행코드">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">계좌번호</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_account_num" placeholder="계좌번호">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">핀테크이용번호</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="recv_client_fintech_use_num" placeholder="핀테크이용번호">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">송금할 금액</label>
+                                            <div class="col-sm-10">
+                                            	<input type="text" class="form-control" name="tran_amt" placeholder="송금할 금액">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-primary">송금(출금이체)</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            	</div>
 				  		
+	
+	<div class="container text-center">
+	<h1>　</h1>
+	</div>
+
+
+
+
 
 	<!-- 중간 작업공간 끝 ============================================================== -->
-	
-	
-	
-	
-	
-	
+		
 	<!-- 푸터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -173,7 +160,6 @@
 	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
-	
-	
+		
 </body>
 </html>

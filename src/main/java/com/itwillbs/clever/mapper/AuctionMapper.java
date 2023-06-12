@@ -52,4 +52,10 @@ public interface AuctionMapper {
 
 	int deleteAutionFile(int auction_idx);
 
+	void updateConfirmed(@Param("buyer_id") String buyer_id, @Param("auction_idx")int auction_idx);
+
+	HashMap<String, String> selectAcution(int auctionIdx);
+
+	void updateDate(@Param("auctionIdx")int auctionIdx, @Param("chatId")String chatId);
+
 }

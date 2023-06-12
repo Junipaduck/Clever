@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itwillbs.clever.mapper.CustomerCenterMapper">
+
+	<!-- 자주묻는질문의 카테고리 조회 (회원/계정, 스토어, 포인트 등등) -->
+	<select id="FAQcategory" resultType="map">
+		SELECT
+				*
+			FROM
+				FAQ
+			<if test="!param.equals('ALL')"> <!-- param의 값이 ALL이 아닌 경우에만 where절을 쓰고, ALL인 경우에는 where절 생략하고 전체조회 -->
+				WHERE
+					FAQ_category = #{param} 
+			</if>
+			ORDER BY FAQ_idx DESC;
+	</select>
+	
+	<!-- 자주묻는질문 리스트 조회 -->
+	<select id="FAQlist" resultType="map">
+		SELECT * FROM FAQ WHERE FAQ_idx = #{FAQ_idx} 
+	</select>
+	
+	<!-- 자주묻는질문 관리자용 insert -->
+	<insert id="insertFAQ">
+	<selectKey keyProperty="FAQ_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(FAQ_idx), 0) FROM FAQ
+	</selectKey>
+		INSERT into FAQ
+			values (
+					#{FAQ_idx} + 1
+					, #{FAQ_category}
+					, #{FAQ_subject}
+					, #{FAQ_content}
+					);
+	</insert>
+	
+	
+	<!-- 1:1 문의 list 조회 -->
+	<select id="myAskedList" resultType="map">
+		SELECT *
+			FROM asked
+			WHERE member_id = '${sId}'
+	</select>
+	
+	<!-- 1:1 문의 내용 조회 -->
+	<select id="myAskedDetail" resultType="map">
+		SELECT *
+			FROM asked
+			WHERE asked_idx = #{asked_idx}
+	</select>
+	
+	<!-- 1:1 답변 조회 -->
+	<select id="myAskedAns" resultType="map">
+		SELECT *
+			FROM asked_ans
+			WHERE asked_idx = #{asked_idx}
+	</select>
+	
+	<!-- 1:1 문의 등록 -->
+	<insert id="insertAsked">
+		<selectKey keyProperty="asked_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(asked_idx), 0) FROM asked
+		</selectKey>
+		INSERT
+			INTO 
+				asked
+			VALUES (
+				#{asked_idx} + 1
+				,#{member_id}
+				,#{asked_subject}
+				,#{asked_content}
+				,'N'
+			)
+	</insert>
+	
+	<!-- 1:1 답변 등록 -->
+	<insert id="insertAskedAns">
+		<selectKey keyProperty="ans_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(ans_idx), 0) FROM asked_ans
+		</selectKey>
+		INSERT
+			INTO 
+				asked_ans
+			VALUES (
+				#{ans_idx} + 1
+				,#{asked_idx}
+				,#{ans_content}
+			)
+	</insert>
+	<update id="updateAskedAns">
+		UPDATE
+			asked
+			SET
+				asked_status = 'Y'
+			WHERE asked_idx = #{asked_idx}
+	</update>
+
+</mapper>

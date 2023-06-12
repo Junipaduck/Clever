@@ -103,6 +103,8 @@ public class NoticeController {
 		model.addAttribute("noticeDetail", noticeDetail);
 		return "notice/notice_detail";
 	}
+	
+	
 
 }
 

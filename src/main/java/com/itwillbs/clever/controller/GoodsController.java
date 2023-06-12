@@ -14,6 +14,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
+import com.google.protobuf.*;
 import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
@@ -156,16 +157,76 @@ public class GoodsController {
 	
 	// 굿즈 결제 페이지 
 	@GetMapping(value = "/payGoods")
-	public String payGoods(@RequestParam int goods_idx, Model model) {
+	public String payGoods(@RequestParam int goods_idx, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 굿즈 상세 정보
 		List<HashMap<String, String>> goodsDetail = goodsService.getGoodsDetail(goods_idx);
 		model.addAttribute("goodsDetail", goodsDetail);
 		
 		List<HashMap<String, String>> fileList = goodsService.selectFile();
 		model.addAttribute("fileList", fileList);
 		
+		// 구매자 정보 조회
+		MemberVO member = goodsService.getMemberInfo(id);
+		model.addAttribute("member", member);
+		
 		return "goods/goods_pay_form";
 	}
 	
+	
+	// 굿즈 결제 처리
+	@GetMapping(value = "/buyGoods.ad")
+	public String buyGoods(@RequestParam int goods_idx, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		GoodsVO goods = goodsService.selectGoodsPrice(goods_idx);
+		MemberVO member = goodsService.selectMemberPoint(id);
+		model.addAttribute("goods", goods);
+		model.addAttribute("member", member);
+		
+		System.out.println("여기에 가격이 찍히나??" + goods.getGoods_price() + "포인트 : " + member.getMember_point());
+		
+		int point = member.getMember_point();
+		int goods_price = Integer.parseInt(goods.getGoods_price());
+		String buy_title = goods.getGoods_name();
+		String buy_price = goods.getGoods_price();
+		
+		
+		if(point > goods_price) { // 포인트가 굿즈 가격보다 높을 때 
+			int updateCount = goodsService.buyGoods(id, goods_price); // 포인트에서 굿즈 가격 차감
+			
+			
+			if(updateCount > 0) { // 포인트 차감 성공 시 
+				
+				// 결제 내역  buyGoods 에 insert
+				int insertCount = goodsService.insertBuyGoods(id, buy_title, buy_price, goods_idx);
+				// 굿즈 재고 차감
+				int updateGoods = goodsService.updateStock(goods_idx);
+				
+				if(insertCount > 0 && updateGoods > 0) { // 결제내역 insert 성공시
+					return "goods/goods_pay_pro";
+				} else {
+					model.addAttribute("msg", "결제 내역 insert 실패!");
+					return "fail_back";
+				}
+				
+				
+			} else {
+				model.addAttribute("msg", "결제 실패!");
+				return "fail_back";
+			}
+			
+		} else { // 포인트가 부족할 때 
+			model.addAttribute("msg", "포인트가 부족합니다!");
+			return "fail_back";
+		}
+		
+		
+		
+	}
 }
 
 

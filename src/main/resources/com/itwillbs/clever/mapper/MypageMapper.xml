@@ -2,14 +2,61 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.itwillbs.clever.mapper.MypageMapper">
 
-	<!-- 중고거래 판매내역 select -->
-	<select id="selectOnSaleProduct" resultType="HashMap">
+	<!-- 중고거래 판매 전체 내역 select -->
+	<select id="selectProductSellList" resultType="HashMap">
 		SELECT *
 			FROM product
 			WHERE member_id = #{sId}
 			ORDER BY product_idx DESC;
 	</select>
 	
+	<!-- 중고거래 판매정보 select -->
+	<select id="selectProductSellDate" resultType="HashMap">
+		SELECT *
+			FROM sell
+			WHERE sell_id = #{sId}
+			ORDER BY sell_idx DESC;
+	</select>
 	
+	<!-- 중고거래 구매정보 select -->
+	<select id="selectProductBuyList" resultType="HashMap">
+		SELECT *
+			FROM buy 
+			WHERE buy_id = #{sId};
+	</select>
 	
+	<!-- 중고거래 찜 내역 select -->
+	<select id="selectProductDibsList" resultType="HashMap"> 
+		SELECT p.product_idx, p.product_subject, p.product_price, p.product_date, d.dibs_type, d.type_num
+			FROM product p 
+			JOIN dibs d ON p.product_idx = d.type_num  
+			WHERE d.member_id = #{sId} AND d.dibs_type = 'product'; 
+	</select>
+	
+	<!-- 경매 찜 내역 select -->
+	<select id="selectAutionDibsList" resultType="HashMap"> 
+		SELECT a.auction_idx, a.auction_title, a.auction_final_price, a.auction_date, d.dibs_type, d.type_num
+			FROM auction a  
+			JOIN dibs d ON a.auction_idx = d.type_num  
+			WHERE d.member_id = #{sId} AND d.dibs_type = 'auction';
+	</select>
+	
+	<!-- 경매 찜에 띄워줄 첫번째에 업로드한 사진 select -->
+	<select id="selectAuctionFile" resultType="HashMap">
+		SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'auction'
+							GROUP BY file_num);
+	</select>
+	
+	<!-- 굿즈 구매 내역 조회 -->
+	<select id="selectGoodsList" resultType="HashMap">
+		SELECT *
+			FROM buyGoods
+				WHERE 
+					buy_id = #{sId}	
+	</select>
 </mapper>

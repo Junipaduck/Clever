@@ -9,6 +9,7 @@ import java.util.*;
 
 import javax.servlet.http.*;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
@@ -17,6 +18,7 @@ import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
+import com.google.gson.JsonArray;
 import com.itwillbs.clever.common.util.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
@@ -121,14 +123,12 @@ public class AuctionController {
 		
 		
 		
-		
 		model.addAttribute("fileList", fileList);
 		model.addAttribute("bigCategorys", bigCategorys);
 		model.addAttribute("midCategorys", midCategorys);
 		model.addAttribute("smallCategorys", smallCategorys);
 		model.addAttribute("productList", productList);
 		model.addAttribute("categoryParam", map.get("param"));
-		
 		
 		return "auction/auction_list";
 	}
@@ -361,6 +361,21 @@ public class AuctionController {
 		model.addAttribute("auction_member_search", auction_member_search);
 		model.addAttribute("fileList", fileList);
 		return "auction/auction_search";
+	}
+	
+	@ResponseBody
+	@GetMapping("auction_confirmed")
+	public String auction_confirmed(int auction_idx, HttpSession session) {
+//		System.out.println("에이이이이젲제제에에엑스 : " + auction_idx );
+		List<HashMap<String, String>> list =  auctionLogService.auctionConfirmed(auction_idx);
+		
+		auctionService.updateConfirmed((String)list.get(0).get("buyer_id") , auction_idx);
+		
+		System.out.println("쿼리 다녀온 친구 !!!!!!!!!! : " + list);
+		
+		JSONArray jsonArr = new JSONArray(list);
+		
+		return jsonArr.toString();
 	}
 	
 }

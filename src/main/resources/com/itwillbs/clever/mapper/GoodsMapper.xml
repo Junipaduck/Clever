@@ -93,6 +93,66 @@
 				WHERE 
 					goods_idx = #{goods_idx}	
 	</select>
+	
+	<!-- 결제창 멤버 정보 조회 -->
+	<select id="selectMemberInfo" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT * 
+			FROM member
+			WHERE
+				member_id = #{id}	
+	</select>
+	
+	<!-- 굿즈 가격 조회 -->
+	<select id="selectGoodsPrice" resultType="com.itwillbs.clever.vo.GoodsVO">
+		SELECT *
+			FROM goods
+				WHERE
+					goods_idx = #{goods_idx}
+	</select>
+	
+	<!--  세션 아이디 포인트 조회 -->
+	<select id="selectMemberPoint" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT *
+			FROM member
+				WHERE
+					member_id = #{id}
+	</select>
+	
+	<update id="buyGoods">
+		UPDATE member
+			SET 
+				member_point = member_point - #{goods_price}
+					WHERE
+						member_id = #{id} 
+	</update>
+	
+	<!-- 굿즈 재고 차감 -->
+	<update id="updateStock">
+		UPDATE goods
+			SET
+				goods_stock = goods_stock - 1
+				WHERE
+					goods_idx = #{goods_idx}
+	</update>
+	
+	<insert id="insertBuyGoods">
+	    <selectKey keyProperty="buy_idx" resultType="int" order="BEFORE">
+	        SELECT IFNULL(MAX(buy_idx), 0) FROM buyGoods
+	    </selectKey>
+		    INSERT 
+		    	INTO buyGoods (buy_idx, buy_id, buy_title, buy_price, buy_date, goods_idx, buy_status)
+		    		VALUES 
+		    			(
+	    				#{buy_idx} + 1
+	    				, #{id}
+	    				, #{buy_title}
+	    				, #{buy_price}
+	    				, now() 
+	    				, #{goods_idx}
+	    				, 'O'
+	    				)
+	</insert>
+	
 </mapper>
 
 
