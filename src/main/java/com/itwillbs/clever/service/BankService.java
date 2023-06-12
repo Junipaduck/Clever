@@ -27,6 +27,12 @@ public class BankService {
 	public AccountVO getAccount(String id) {
 		return mapper.selectAccount(id);
 	}
+
+	// 포인트 적립
+	public int updateMemberPoint(String id) {
+		
+		return mapper.updateMemberPoint(id);
+	}
 	
 }
 

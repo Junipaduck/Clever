@@ -54,31 +54,42 @@ public class GoodsController {
 	// 굿즈 등록
 	@PostMapping(value = "/goodsRegisterPro.ad")
 	public String goodsRegisterPro(GoodsVO goods
-								  , @RequestParam("image1") MultipartFile file1
-								  , @RequestParam("image2") MultipartFile file2
-								  , @RequestParam("image3") MultipartFile file3
-								  , @RequestParam("image4") MultipartFile file4
-								  , @RequestParam("image5") MultipartFile file5
-								  , @RequestParam("image6") MultipartFile file6
-								  , HttpSession session, Model model) {
+									, @RequestParam("image1") MultipartFile file1
+									, @RequestParam("image2") MultipartFile file2
+									, @RequestParam("image3") MultipartFile file3
+									, @RequestParam("image4") MultipartFile file4
+									, @RequestParam("image5") MultipartFile file5
+									, @RequestParam("image6") MultipartFile file6
+									, @RequestParam("image7") MultipartFile file7
+									, @RequestParam("image8") MultipartFile file8
+									, @RequestParam("image9") MultipartFile file9
+									, @RequestParam("image10") MultipartFile file10
+									, @RequestParam("image11") MultipartFile file11
+									, @RequestParam("image12") MultipartFile file12
+								    , HttpSession session, Model model) {
 		
+		
+		MultipartFile[] fArr = {file1,file2,file3,file4,file5,file6,file7,file8,file9,file10,file11,file12};
+		ArrayList<MultipartFile> file = new ArrayList<MultipartFile>();
+		System.out.println(fArr); 
+		for(int i = 0; i < fArr.length; i++) {
+			if(!fArr[i].getOriginalFilename().equals("")) {
+				file.add(fArr[i]);
+			}
+		}
+		System.out.println(file);
 		
 		int insertCount = goodsService.insertGoods(goods);
 		
 		
-		
-		MultipartFile[] file = new MultipartFile[5];
-		for(int i = 0; i < file.length; i++) {
-			if(!file[i].isEmpty() && file[i] != null) {
-				
-			}
-		}
 		
 		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("file_div", "goods");
 		paramMap.put("file_num", goodsService.selectMax());
 		FileUpload.upload(file, session, paramMap);
+
+
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg", "굿즈 등록이 완료되었습니다.");

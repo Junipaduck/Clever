@@ -15,4 +15,7 @@ public interface BankMapper {
 	// 계좌 정보 조회
 	AccountVO selectAccount(String id);
 
+	// 포인트 적립
+	int updateMemberPoint(String id);
+
 }

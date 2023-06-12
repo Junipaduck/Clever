@@ -36,6 +36,16 @@
 		WHERE id = #{id}
 	</select>
 	
+	
+	<!-- 포인트 적립 -->
+	<update id="updateMemberPoint">
+		UPDATE
+			member
+				SET
+					member_point = member_point + 10000
+						WHERE
+							member_id = #{id}
+	</update>
 </mapper>
 
 
