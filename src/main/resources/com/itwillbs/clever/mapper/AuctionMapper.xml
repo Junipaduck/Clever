@@ -134,8 +134,6 @@
 		UPDATE auction
 		 	SET 
 				auction_title = #{auction_title}
-				, auction_min_bid = #{auction_min_bid}
-				, auction_min_increase = #{auction_min_increase}
 				, auction_price = #{auction_price}
 				, auction_Lcategory = #{auction_Lcategory}
 				, auction_Mcategory = #{auction_Mcategory}
@@ -145,6 +143,7 @@
 				, auction_end = #{auction_end}
 				, auction_address = #{auction_address}
 				, auction_content = #{auction_content}
+				, immediately_price = #{immediately_price}
 					WHERE auction_idx = #{auction_idx}
 	</update>
 	
@@ -162,6 +161,14 @@
 	
 	<delete id="deleteAutionFile">
 	DELETE FROM file WHERE file_num = #{auction_idx} AND file_div = 'auction'
+	</delete>
+	
+	<delete id="logMessage">
+	DELETE FROM log_message WHERE logRoom_idx = #{auction_idx}
+	</delete>
+	
+	<delete id="logRoom">
+	DELETE FROM log_room WHERE auction_idx = #{auction_idx}
 	</delete>
 	
 	<update id="updateConfirmed">

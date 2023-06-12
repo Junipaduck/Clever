@@ -97,6 +97,8 @@ public class AuctionService {
 	}
 
 	public int deleteAution(int auction_idx) {
+		mapper.logRoom(auction_idx);
+		mapper.logMessage(auction_idx);
 		return mapper.deleteAution(auction_idx);
 	}
 
@@ -117,5 +119,6 @@ public class AuctionService {
 	public void updateDate(int auctionIdx, String chatId) {
 		mapper.updateDate(auctionIdx, chatId);
 	}
+
 
 }

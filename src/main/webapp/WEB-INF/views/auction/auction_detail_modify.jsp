@@ -142,10 +142,18 @@ function startEndDate() {
                                 <div>
                                     이미지 등록
 <!--                                     <input type="file" name="auction_images" accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);"> -->
-                                    <input type="file" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
-                                    <input type="file" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image1" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" id="image2" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image3" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -406,21 +414,27 @@ function startEndDate() {
                         </div>
                     </div>
                     <div class="goods_price_area">
-                        <p>즉시 구매 액<span class="red">*</span></p>
+                        <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
                             <p><input type="text" value="${detailmap.auction_price }" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
+<!--                     <div class="goods_price_area"> -->
+<!--                         <p>입찰 시작 액<span class="red">*</span></p> -->
+<!--                         <div class="goods_price"> -->
+<!--                             <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="goods_price_area"> -->
+<!--                         <p>입찰 최소 증가 액<span class="red">*</span></p> -->
+<!--                         <div class="goods_price"> -->
+<!--                             <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
                     <div class="goods_price_area">
-                        <p>입찰 시작 액<span class="red">*</span></p>
+                        <p>즉시 구매가<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" value="${detailmap.auction_min_bid }" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
-                        </div>
-                    </div>
-                    <div class="goods_price_area">
-                        <p>입찰 최소 증가 액<span class="red">*</span></p>
-                        <div class="goods_price">
-                            <p><input type="text" value="${detailmap.auction_min_increase }" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.immediately_price }" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">

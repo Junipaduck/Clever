@@ -58,4 +58,9 @@ public interface AuctionMapper {
 
 	void updateDate(@Param("auctionIdx")int auctionIdx, @Param("chatId")String chatId);
 
+	void logMessage(int auction_idx);
+
+	void logRoom(int auction_idx);
+
+
 }
