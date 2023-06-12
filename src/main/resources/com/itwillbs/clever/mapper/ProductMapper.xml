@@ -246,6 +246,13 @@
 	</select>
 	<!-- // 카테고리 관련 (7개) -->
 	
+	<!-- 중고상품 검색 -->
+	<select id="selectProductSearch" resultType="map">
+		SELECT *
+			FROM product
+				WHERE product_subject LIKE '%${product_search }%'
+	</select>
+	
 </mapper> <!-- 매퍼끝 -->
 
 

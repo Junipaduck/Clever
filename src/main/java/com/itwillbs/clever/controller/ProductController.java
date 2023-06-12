@@ -493,6 +493,24 @@ public class ProductController {
 // 중고상품 계좌이체 관련 코드 끝 ========================================================================================	
 	
 	
+	// 중고상품 검색
+	@GetMapping("product_searchPro")
+	public String product_searchPro(@RequestParam Map<String, String> map, Model model) {
+		List productItem_search = productService.selectProductSearch(map.get("product_search"));
+		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+	
+		
+		model.addAttribute("product_search", map.get("product_search"));
+		model.addAttribute("productItem_search", productItem_search);
+		model.addAttribute("fileList", fileList);
+		
+		System.out.println("product_search : " + map.get("product_search"));
+		System.out.println("productItem_search" + productItem_search);
+		System.out.println("fileList" + fileList);
+		
+		return "product/product_list_search";
+	}
+	
 } // 컨트롤러 끝
 
 

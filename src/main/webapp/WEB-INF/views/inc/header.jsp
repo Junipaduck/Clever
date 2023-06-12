@@ -33,6 +33,14 @@ div #test_area ul { /* 카테고리 css */
 	function pointCharge() {
 		window.open("pointCharge", "포인트 충전 새창", "width=800, height=1200");
 	}
+	function show_name(e){
+		   var code = e.code;
+		   let search = $("#product_search").val();
+		   console.log('검색');
+		   if(code == 'Enter'){
+		       location.href = 'product_searchPro?product_search='+ search;
+		   }
+		}
 </script>
 
 <!-- header 영역 -->
@@ -90,10 +98,20 @@ div #test_area ul { /* 카테고리 css */
                             </a>
                         </div>
                         <div class="col-6 top_searh_area">
-                            <div id="top_searh">
-                                <input type="text" placeholder="상품명, 지역명, @상점명 입력">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
-                            </div>
+                        	<c:choose>
+                        		<c:when test="${not empty product_search }">
+		                            <div id="top_searh">
+		                                <input type="text" value="${product_search }" id="product_search" name="product_search" placeholder="상품명 입력"  onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<div id="top_searh">
+		                                <input type="text" id="product_search" name="product_search" placeholder="상품명 입력"  onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="col-1 b_h_left_menu">
                             <a href="product_upload?member_id=${sessionScope.sId }"> 

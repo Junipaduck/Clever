@@ -61,4 +61,6 @@ public interface ProductMapper {
 	List getMidCategorys(String param);
 
 	List getSmallCategorys(String param);
+
+	List selectProductSearch(String product_search);
 }

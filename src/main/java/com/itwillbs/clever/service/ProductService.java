@@ -129,4 +129,8 @@ public class ProductService {
 		return mapper.getSmallCategorys(param);
 	}
 	// 카테고리 이동 관련 (7개) 끝
+
+	public List selectProductSearch(String product_search) {
+		return mapper.selectProductSearch(product_search);
+	}
 }
