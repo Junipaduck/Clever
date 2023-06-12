@@ -63,7 +63,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     	<i class="icon icon-layout-25"></i><span class="nav-text">게시판관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="table-bootstrap-basic.html">게시판뭐하지</a></li>
+                            <li><a href="adminAskedList.ad">1:1문의</a></li>
                             <li><a href="table-datatable-basic.html">게시판뭐하지</a></li>
                         </ul>
                     </li>

@@ -32,6 +32,15 @@ public class AuctionLogService {
 	public List<HashMap<String, String>> auctionConfirmed(int auction_idx) {
 		return mapper.auctionConfirmed(auction_idx);
 	}
+
+	public int selectAuctionMessage(int logRoomIdx, String chatId) {
+		return mapper.selectAuctionMessage(logRoomIdx, chatId);
+	}
+
+	public void updateMessage(int logRoomIdx, String chatId, String messageContent) {
+		mapper.updateMessage(logRoomIdx, chatId, messageContent);
+	}
+	
 	
 
 }

@@ -34,10 +34,11 @@
 		SELECT * 
 			FROM chat_room
 			WHERE 
-				chatRoom_id 
-				LIKE 
-					CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
-					OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${sId}'));
+				(status = 'Y') AND
+				(chatRoom_id 
+					LIKE 
+						CONCAT('%S', (SELECT member_idx FROM member WHERE member_id = '${sId}'), 'B%')
+						OR chatRoom_id LIKE CONCAT('%B', (SELECT member_idx FROM member WHERE member_id = '${sId}')));
 
 		<!-- 또 수정 -->
 <!-- 			SELECT * -->
@@ -101,6 +102,16 @@
 			WHERE
 				chatRoom_id = #{roomId}
 	</select>
+	
+	<!-- 채팅방 나가기 -->
+	<update id="updateChatRoom">
+		UPDATE
+			chat_room
+			SET 
+				status = 'N'
+			WHERE
+				chatRoom_id = #{chatRoom_id}
+	</update>
 
 
 </mapper>

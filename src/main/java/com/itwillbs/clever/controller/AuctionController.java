@@ -366,6 +366,7 @@ public class AuctionController {
 	@ResponseBody
 	@GetMapping("auction_confirmed")
 	public String auction_confirmed(int auction_idx, HttpSession session) {
+		System.out.println("여기들어나!!!!!!!!!!!!!!!");
 //		System.out.println("에이이이이젲제제에에엑스 : " + auction_idx );
 		List<HashMap<String, String>> list =  auctionLogService.auctionConfirmed(auction_idx);
 		

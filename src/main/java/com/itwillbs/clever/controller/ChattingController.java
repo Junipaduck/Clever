@@ -1,7 +1,6 @@
 package com.itwillbs.clever.controller;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -92,6 +91,23 @@ public class ChattingController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// 채팅방 나가기
+	@GetMapping("deleteRoom")
+	public String deleteRoom(@RequestParam String chatRoom_id, Model model) {
+		System.out.println("삭제할 chatRoom_id : " + chatRoom_id);
+		
+		int updateCount = chattingService.updateChatRoom(chatRoom_id);
+		if(updateCount < 0 ) {
+			model.addAttribute("msg", "채팅방 나가기 실패");
+			return "fail_back";
+		} else {
+			model.addAttribute("msg", "채팅방 나가기 성공");
+			model.addAttribute("target", "myChatting");
+			return "success";
+		}
+		
 	}
 	
 	

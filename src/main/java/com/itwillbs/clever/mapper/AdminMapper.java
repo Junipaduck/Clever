@@ -42,6 +42,9 @@ public interface AdminMapper {
 	// 신고 처리
 	int deleteProduct(int product_idx);
 
+	// 1:1 문의 조회
+	List<HashMap<String, String>> selectAskList();
+
 
 
 

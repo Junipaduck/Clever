@@ -30,6 +30,9 @@ public class AdminController {
 	private GoodsService goodsService;
 	
 	@Autowired
+	private CustomerCenterService customerCenterService;
+	
+	@Autowired
 	FileUpload fileUpload;
 	
 	@Value("${client_id}")
@@ -189,6 +192,32 @@ public class AdminController {
 		
 		return "admin/admin_info";
 	}
+	
+	// 1:1 문의 목록 조회
+	@GetMapping(value = "/adminAskedList.ad")
+	public String adminAskList(Model model) {
+		List<HashMap<String, String>> askList = adminService.getAskList();
+		model.addAttribute("askList", askList);
+		return "admin/admin_ask_list";
+	}
+	
+	@PostMapping("adminAskedFormPro.ad")
+	public String askedPro(@RequestParam Map<String, String> map, Model model, @RequestParam int asked_idx) {
+		map.put("ans_content", map.get("editordata"));
+		map.put("asked_idx", map.get("asked_idx"));
+		
+		int insertCount = customerCenterService.insertAskedAns(map);
+		if(insertCount < 0 ) {
+			model.addAttribute("msg", "답변 등록 실패");
+			return "fail_back";
+		} else {
+			customerCenterService.updateAskedAns(map);
+			model.addAttribute("msg", "답변 등록 성공");
+			model.addAttribute("target", "adminAskedList.ad");
+			return "success";
+		}
+	}
+	
 }
 
 
