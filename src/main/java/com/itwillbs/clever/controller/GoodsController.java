@@ -165,6 +165,34 @@ public class GoodsController {
 		
 	}
 	
+	// 굿즈 삭제 처리
+	@GetMapping(value = "/deleteGoods.ad")
+	public String deleteGoodsList(Model model) {
+		
+		List<HashMap<String, String>> goodsList = goodsService.getGoodsList();
+		model.addAttribute("goodsList", goodsList);
+		
+		List<HashMap<String, String>> fileList = goodsService.selectFile();
+		model.addAttribute("fileList", fileList);
+		System.out.println("파일 확인 ------------------------" + fileList);
+		return "admin/goods_store_delete_list";
+	}
+	
+	@GetMapping(value = "/deleteGoodsPro.ad")
+	public String deleteGoodsPro(@RequestParam int goods_idx, Model model) {
+		int deleteCount = goodsService.deleteGoods(goods_idx);
+		int deletefileCount = goodsService.deleteGoodsFile(goods_idx);
+		
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "삭제 성공!");
+			model.addAttribute("target", "deleteGoods.ad");
+			return "success";
+		} else {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+	}
+	
 //	@PostMapping(value = "/deleteGoodsFile")
 //	@ResponseBody
 //	public String deleteGoodsFile(FileVO file, @RequestParam String file_name, Model model) {
@@ -280,8 +308,6 @@ public class GoodsController {
 			model.addAttribute("msg", "포인트가 부족합니다!");
 			return "fail_back";
 		}
-		
-		
 		
 	}
 }

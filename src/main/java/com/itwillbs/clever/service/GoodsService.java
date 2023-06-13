@@ -114,6 +114,12 @@ public class GoodsService {
 		return mapper.deleteGoodsFile(goods_idx);
 	}
 
+	// 굿즈 삭제
+	public int deleteGoods(int goods_idx) {
+		
+		return mapper.deleteGoods(goods_idx);
+	}
+
 
 	
 }

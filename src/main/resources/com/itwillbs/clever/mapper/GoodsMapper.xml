@@ -150,6 +150,13 @@
 	    				)
 	</insert>
 	
+	
+	<delete id="deleteGoods">
+		DELETE
+			FROM goods
+				WHERE
+					goods_idx = #{goods_idx}
+	</delete>
 </mapper>
 
 

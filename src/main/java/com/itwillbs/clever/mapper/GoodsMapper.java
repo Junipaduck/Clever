@@ -56,6 +56,9 @@ public interface GoodsMapper {
 	// 굿즈 수정 시 파일 삭제
 	int deleteGoodsFile(int goods_idx);
 
+	// 굿즈 삭제
+	int deleteGoods(int goods_idx);
+
 
 
 }
