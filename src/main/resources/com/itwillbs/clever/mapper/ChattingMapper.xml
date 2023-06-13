@@ -72,6 +72,7 @@
 					FROM product 
 					WHERE product_idx = #{productIdx})
 				, 'Y'
+				, 0
 			)
 	</insert>
 	
