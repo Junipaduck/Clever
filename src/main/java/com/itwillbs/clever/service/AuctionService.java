@@ -120,5 +120,37 @@ public class AuctionService {
 		mapper.updateDate(auctionIdx, chatId);
 	}
 
+	public String depositList(String sId, int auction_idx) {
+		return mapper.depositList(sId,auction_idx);
+	}
+
+	public int depositInsert(String id, int auction_idx) {
+		return mapper.depositInsert(id,auction_idx);
+	}
+
+	public String buyer(int auction_idx) {
+		return mapper.buyer(auction_idx);
+	}
+
+	public int pointWithDraw(String id) {
+		return mapper.pointWithDraw(id);
+	}
+
+	public int getMemberPoint(String id) {
+		return mapper.getMemberPoint(id);
+	}
+
+	public List<HashMap<String, String>> getMemberList(String buyer) {
+		return mapper.getMemberList(buyer);
+	}
+
+	public void memberPointReturn(Object id) {
+		mapper.memberPointReturn(id);
+	}
+
+	public int deleteMember(String buyer, int auction_idx) {
+		return mapper.deleteMember(buyer, auction_idx);
+	}
+
 
 }

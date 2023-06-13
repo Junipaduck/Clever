@@ -173,7 +173,8 @@
 	
 	<update id="updateConfirmed">
 		UPDATE auction 
-			SET buyer_id = #{buyer_id} 
+			SET buyer_id = #{buyer_id},
+				auction_status = '경매 마감'
 				WHERE auction_idx = #{auction_idx}
 	</update>
 	
@@ -186,5 +187,47 @@
 		UPDATE auction SET auction_end = now(), buyer_id=#{chatId}
 			WHERE auction_idx = #{auctionIdx};
 	</update>
+	
+	<select id="depositList" resultType="string">
+		SELECT member_id FROM deposit WHERE member_id = #{sId} AND auction_idx = #{auction_idx}
+	</select>
+	
+	<insert id="depositInsert">
+		INSERT INTO deposit VALUES(
+		#{auction_idx}
+		, #{id}
+		, 3000
+		)
+	</insert>
+	
+	<select id="buyer" resultType="String">
+		SELECT buyer_id
+		 	FROM auction
+		  		WHERE auction_idx = #{auction_idx }
+	</select>
+	
+	<select id="getMemberPoint" resultType="int">
+		SELECT charge_point
+		 	FROM member
+		  		WHERE member_id = #{id }
+	</select>
+	
+	<select id="getMemberList" resultType="hashmap">
+		SELECT member_id
+		 	FROM deposit
+		  		WHERE member_id != #{buyer}
+	</select>
+	
+	<update id="pointWithDraw">
+		UPDATE member SET charge_point = charge_point - 3000 WHERE member_id = #{id}
+	</update>
+	
+	<update id="memberPointReturn">
+		UPDATE member SET charge_point = charge_point + 3000 WHERE member_id = #{id}
+	</update>
+	
+	<delete id="deleteMember">
+		DELETE FROM deposit WHERE member_id != #{buyer} AND auction_idx = #{auction_idx }
+	</delete>
 	
 </mapper>

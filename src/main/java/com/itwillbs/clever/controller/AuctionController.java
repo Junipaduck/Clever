@@ -54,7 +54,6 @@ public class AuctionController {
 //			imminentList.get(i).
 //		}
 //		
-//		System.out.println("시발 : " + imminentList.get(2));	
 			
 		model.addAttribute("imminentList", imminentList);
 		System.out.println(imminentList);
@@ -144,7 +143,7 @@ public class AuctionController {
 			model.addAttribute("target","loginForm.me");
 			return "success";
 		}
-		
+		String member_id = auctionService.depositList(sId, auction_idx);
 		List<LogRoomVO> logList = auctionLogService.selectLogList(auction_idx);
 		
 		int logRoomIdx = 0;
@@ -180,6 +179,7 @@ public class AuctionController {
 		model.addAttribute("midCategorys", midCategorys);
 		model.addAttribute("smallCategorys", smallCategorys);
 		model.addAttribute("categoryParam", param);
+		model.addAttribute("member_id", member_id);
 		
 		model.addAttribute("fileList", fileList);
 		System.out.println(fileList);
@@ -434,6 +434,48 @@ public class AuctionController {
 		JSONArray jsonArr = new JSONArray(list);
 		
 		return jsonArr.toString();
+	}
+	
+	@GetMapping("deposit")
+	public String deposit(HttpSession session, @RequestParam int auction_idx, Model model, @RequestParam String param) {
+		String id = (String)session.getAttribute("sId");
+		int getMemberPoint = auctionService.getMemberPoint(id);
+		int depositCnt = 0;
+		if(getMemberPoint >= 3000) {
+			int pointWithDraw = auctionService.pointWithDraw(id);
+			if(pointWithDraw > 0) {
+				depositCnt = auctionService.depositInsert(id,auction_idx);
+			} 
+		} else {
+			model.addAttribute("msg", "포인트를 확인해주세요!");
+			return "fail_back";
+		}
+		
+		if(depositCnt > 0) {
+			model.addAttribute("msg", "보증금 등록 성공!");
+			model.addAttribute("target", "auction_detail?auction_idx=" + auction_idx + "&param=" + param);
+			return "success";
+		} else {
+			model.addAttribute("msg", "보증금 등록 실패!");
+			return "fail_back";
+		}
+	}
+	
+	@GetMapping("depositReturn")
+	public String depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
+//		String id = (String)session.getAttribute("sId");
+		String buyer = auctionService.buyer(auction_idx);
+		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer);
+		System.out.println("제발 다시!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! : " + memberList.size());
+		if(!memberList.isEmpty()) {
+			for(int i = 0; i < memberList.size() - 1; i++) {
+				auctionService.memberPointReturn(memberList.get(i).get("member_id"));
+			}
+			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);
+		}
+		
+		
+		return "redirect://auction";
 	}
 	
 }

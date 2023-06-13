@@ -225,6 +225,7 @@
 	                           		  			 			for(let auction of data) {
 	                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
 	                           		  			 			}
+	                           		  			 			location.href = "depositReturn?auction_idx=" + auction_idx;
 	                           		  			 		},
 	                           		  			 		error:function(error){
 	                           		  			 			console.log(error);
@@ -496,6 +497,12 @@
 	$(function() {
 		auctionStart();
 		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
+		$("#deposit").on("click", function() {
+			var result = confirm("해당 경매에 입장하시겠습니까? 보증금은 3000원 입니다.");
+			if(result){
+				location.href = "deposit?auction_idx=" + ${detailmap.auction_idx } + "&param=${categoryParam }";
+			}
+		});
 		
 	});
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
@@ -697,54 +704,65 @@ function auctionStart() {
 	var auction_end = new Date("${detailmap.auction_end}");
 	var auction_buyer_id = document.getElementById("buyer_id").value;
 	var nowDate = new Date();
+	var member_id = "${member_id}";
+	
 	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'&& userId != seller){
-		$("#detail_content_info_state").append(
-				'<div style="height: 50px;">'   
-				+ '<span style="font-size: 20px">· 입찰가 : </span>'
-				+ '<input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, \'$1\');" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">'
-				+ '&nbsp;'
-				+ '<span style="font-size: 20px">원</span>'
-				+ '</div>'
-				+ '<div>'
-				+ '<div class="container text-center detail_content_info_btn">'
-				+ '<div class="row g-2">'
-				+ '<div class="col-4" style="width: 50%">'
-				+ '<div class="p-3 info_btn2" onclick="auctionAddPrice(0.05)">현재 입찰 5% 가격</div>'
-				+ '</div>'
-				+ '<div class="col-4" style="width: 50%">'
-				+ '<div class="p-3 info_btn3" onclick="auctionAddPrice(0.1)">현재 입찰 10% 가격</div>'
-				+ '</div>'
-				+ '</div>'
-				+ '</div>'
-				+ '</div>'
-				+ '<div class="container text-center detail_content_info_btn" style="margin-top: 20px ">'
-				+ '<div class="row g-2">'
-				+ '<div class="col-4">'
-				+ '<div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>'
-				+ '</div>'
-				+ '<div class="col-4">'
-				+ '<div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>'
-				+ '</div>'
-				+ '<div class="col-4">'
-				+ '<c:if test="${result.dibs_check != null }">'
-				+ '<a class="dibs">'
-				+ '<c:if test="${result.dibs_check == 0}">'
-				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
-				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
-				+ '</div>'
-				+ '</c:if>'	
-				+ '<c:if test="${result.dibs_check == 1}">'
-				+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
-				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
-				+ '</div>'
-				+ '</c:if>'
-				+ '</a>'
-				+ '</c:if>'
-				+ '</div>'
-				+ '</div>'
-				+ '</div>'
-				+ '</div>'
-		);
+		if(member_id == null || member_id == ""){
+			$("#detail_content_info_state").append(
+					'<div class="col-4">'
+					+ '<div class="p-3 info_btn3" id="deposit" >입찰하기</div>'
+					+ '</div>'
+					);
+		} else {
+			$("#detail_content_info_state").append(
+					'<div style="height: 50px;">'   
+					+ '<span style="font-size: 20px">· 입찰가 : </span>'
+					+ '<input type="text" id="price" name="price" value="" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, \'$1\');" style="border-radius : 10px; width: 350px; height: 50px; font-size: 25px;" placeholder="입찰가를 입력하세요">'
+					+ '&nbsp;'
+					+ '<span style="font-size: 20px">원</span>'
+					+ '</div>'
+					+ '<div>'
+					+ '<div class="container text-center detail_content_info_btn">'
+					+ '<div class="row g-2">'
+					+ '<div class="col-4" style="width: 50%">'
+					+ '<div class="p-3 info_btn2" onclick="auctionAddPrice(0.05)">현재 입찰 5% 가격</div>'
+					+ '</div>'
+					+ '<div class="col-4" style="width: 50%">'
+					+ '<div class="p-3 info_btn3" onclick="auctionAddPrice(0.1)">현재 입찰 10% 가격</div>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+					+ '<div class="container text-center detail_content_info_btn" style="margin-top: 20px ">'
+					+ '<div class="row g-2">'
+					+ '<div class="col-4">'
+					+ '<div class="p-3 info_btn2" id="btnSend" onclick="showPrice();">입찰하기</div>'
+					+ '</div>'
+					+ '<div class="col-4">'
+					+ '<div class="p-3 info_btn3" id="btnSend2" >즉시구매</div>'
+					+ '</div>'
+					+ '<div class="col-4">'
+					+ '<c:if test="${result.dibs_check != null }">'
+					+ '<a class="dibs">'
+					+ '<c:if test="${result.dibs_check == 0}">'
+					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
+					+ '</div>'
+					+ '</c:if>'	
+					+ '<c:if test="${result.dibs_check == 1}">'
+					+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
+					+ '</div>'
+					+ '</c:if>'
+					+ '</a>'
+					+ '</c:if>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+			);
+		}
+		
 	} else if(auction_end < nowDate) {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
 	}
