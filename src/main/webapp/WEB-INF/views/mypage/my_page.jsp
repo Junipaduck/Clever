@@ -379,11 +379,6 @@ div.right {
 						<p>
 							구매내역 <span>2</span>
 						</p>
-						<!-- 테스트용 -->
-						<c:forEach items="${goodsList }" var="goodsList">
-							상품명 : ${goodsList.buy_title }
-							구매일 : ${goodsList.buy_date }
-						</c:forEach>
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
