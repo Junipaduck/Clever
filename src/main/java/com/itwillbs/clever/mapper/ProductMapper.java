@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
+import com.itwillbs.clever.vo.MemberVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
 
@@ -66,6 +67,9 @@ public interface ProductMapper {
 
 	int deleteProductFile(int product_idx);
 
+//	List<HashMap<String, String>> selectDibsProduct();
+	
+	//0614 보아 시작!!!!!!!!!!!!
 	List<HashMap<String, String>> selectDibsProduct();
 
 	int updateSaleStatus(int product_idx);
@@ -79,6 +83,11 @@ public interface ProductMapper {
 	int buyerDeposit(@Param("buy_price") String buy_price, @Param("buy_seller") String buy_seller);
 
 	int updateMemAdMoney(@Param("sId") String sId, @Param("product_price") int product_price);
+
+	String selectMemberInterest(@Param("sId") String sId, @Param("member") MemberVO member);
+
+	List<HashMap<String, String>> selectIntCtgr(@Param("selectMemberInterest") String selectMemberInterest, @Param("product") ProductVO product);
+
 
 //	List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct);
 }

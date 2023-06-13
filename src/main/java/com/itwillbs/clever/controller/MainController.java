@@ -2,11 +2,16 @@ package com.itwillbs.clever.controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
+import com.itwillbs.clever.vo.MemberVO;
+import com.itwillbs.clever.vo.ProductVO;
 
 @Controller
 public class MainController {
@@ -14,13 +19,31 @@ public class MainController {
 	@Autowired ProductService productService;
 	
 	@GetMapping(value = "/")
-	public String main(Map<String, String> map) {
+	public String main(Map<String, String> map, Model model,HttpSession session, MemberVO member, ProductVO product) {
+		//0614 보아 시작!!!!!!!!!!!!
 		List<HashMap<String, String>> selectDibsProduct = productService.selectDibsProduct();
 		System.out.println("selectDibsProduct" + selectDibsProduct);
-//		System.out.println(selectDibsProduct.get("product_idx"));
+		model.addAttribute("selectDibsProduct", selectDibsProduct);
+//			System.out.println(selectDibsProduct.get("product_idx"));
 		
+		List<HashMap<String, String>> fileList = productService.selectFile();
+		model.addAttribute("fileList", fileList);
+		//0614 보아 끝!!!!!!!!!!!!
 		
-//		List<HashMap<String, String>> selectMainProduct = productService.selectMainProduct(selectDibsProduct);
+		// 0614배하나
+		String sId = (String)session.getAttribute("sId");
+		
+		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 최신업로드 순으로 select리스트
+//		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		String selectMemberInterest = productService.selectMemberInterest(sId, member); // member가 회원가입할때 넣었던 member_interest컬럼 select
+		List<HashMap<String, String>> selectIntCtgr = productService.selectIntCtgr(selectMemberInterest, product); // sId의 interest에 맞는 카테고리의 상품들 select
+		System.out.println("sId의 관심카테고리는 ? : " + selectMemberInterest);
+		
+		model.addAttribute("productList", productList);
+//		model.addAttribute("fileList", fileList);
+		model.addAttribute("selectMemberInterest", selectMemberInterest);
+		model.addAttribute("selectIntCtgr", selectIntCtgr);
+		// //0614배하나
 		
 		return "index";
 	}

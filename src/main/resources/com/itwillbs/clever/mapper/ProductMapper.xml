@@ -138,6 +138,17 @@
 		SELECT * FROM file f WHERE file_div = 'product';
 	</select>
 	
+	<!-- 0613배하나 추가 sId의 관심카테고리 select -->
+	<select id="selectMemberInterest" resultType="String">
+	 	SELECT member_interest from member where member_id = #{sId}
+	</select>
+	
+	<!-- 0613배하나 추가 sId의 관심카테고리와 같은 상품들 select -->
+	<select id="selectIntCtgr" resultType="HashMap">
+		SELECT product_Mcategory, product_idx, product_subject, product_price, sale_status
+			FROM product
+			where product_Mcategory = #{selectMemberInterest} 
+	</select>
 	
 	<!-- 판매자정보 select -->
 	<select id="sellerInfoCount" resultType="String">
@@ -254,20 +265,22 @@
 				WHERE product_subject LIKE '%${product_search }%'
 	</select>
 	
-	<!-- 찜 순위에 따른 상품 조회 -->
+	<!-- 0614 보아 시작!!!!!!!!!!!! -->
+	<!-- 메인화면 상품조회 -->
 	<select id="selectDibsProduct" resultType="map">
 		SELECT 
-				p.product_idx,  COUNT(*) AS count
+				p.*
 			FROM 
 				dibs d
 			JOIN 
 				product p 
-			ON 
-				d.type_num = p.product_idx
+				ON d.type_num = p.product_idx
 			WHERE 
 				d.dibs_type = 'product'
-			GROUP BY p.product_idx
-			ORDER BY count DESC;
+			GROUP BY 
+				p.product_idx
+			ORDER BY 
+				COUNT(*) DESC;
 	</select>
 	
 	<!-- 상품구매시 판매상품 sale_status 업데이트 -->
@@ -340,6 +353,8 @@
 			WHERE 
 				member_id = 'admin'
 	</update>
+	
+	
 	
 	<!-- 메인화면 상품조회 -->
 <!-- 	<select id="selectMainProduct" parameterType="java.util.ArrayList" resultType="map"> -->
