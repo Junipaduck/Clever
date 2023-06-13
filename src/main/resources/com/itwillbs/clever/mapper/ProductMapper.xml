@@ -255,8 +255,19 @@
 	</select>
 	
 	<!-- 찜 순위에 따른 상품 조회 -->
-	<select id="countProduct">
-	
+	<select id="selectDibsProduct" resultType="map">
+		SELECT 
+				p.product_idx,  COUNT(*) AS count
+			FROM 
+				dibs d
+			JOIN 
+				product p 
+			ON 
+				d.type_num = p.product_idx
+			WHERE 
+				d.dibs_type = 'product'
+			GROUP BY p.product_idx
+			ORDER BY count DESC;
 	</select>
 	
 	

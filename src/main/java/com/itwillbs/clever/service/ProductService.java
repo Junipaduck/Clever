@@ -140,8 +140,7 @@ public class ProductService {
 	}
 
 	// 찜 순위에 따른 상품 조회
-	public int countProduct() {
-//		return mapper.countProduct();
-		return 0;
+	public List<HashMap<String, String>> selectDibsProduct() {
+		return mapper.selectDibsProduct();
 	}
 }

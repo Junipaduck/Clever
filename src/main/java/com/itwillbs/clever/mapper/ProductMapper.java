@@ -66,5 +66,5 @@ public interface ProductMapper {
 
 	int deleteProductFile(int product_idx);
 
-	int countProduct();
+	List<HashMap<String, String>> selectDibsProduct();
 }
