@@ -137,7 +137,7 @@
                                         </tfoot>
                                     </table>
                                     <div>
-                                    <button type="button" class="btn btn-primary" onclick="">등급 생성</button>
+                                    <button type="button" class="btn btn-primary" onclick="admin">등급 생성</button>
                                     </div>
                                 </div>
                             </div>
