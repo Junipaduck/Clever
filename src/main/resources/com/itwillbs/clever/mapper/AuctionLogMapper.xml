@@ -56,8 +56,8 @@
 	</insert>
 
 	<select id="auctionConfirmed" resultType="HashMap">
-		SELECT buyer_id, logRoom_idx, CAST(MAX(CAST(REPLACE(message_content,',','') 
-			AS UNSIGNED))AS char) AS max_price FROM log_message 
+		SELECT buyer_id, logRoom_idx, MAX(CAST(REPLACE(message_content,',','') 
+			AS UNSIGNED)) AS max_price FROM log_message 
 				WHERE logRoom_idx = #{auction_idx}
 					GROUP BY buyer_id
 						ORDER BY max_price DESC limit 1;
