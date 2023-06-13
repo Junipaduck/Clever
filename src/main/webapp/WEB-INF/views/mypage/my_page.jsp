@@ -62,6 +62,22 @@ div.right {
 
 
 <body>
+
+<script type="text/javascript">
+	
+/* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
+function payAuction(idx){
+	window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
+}
+ 	
+$(function() {
+	$(document).on("click", ".payAuction", function() {
+ 		var idx = $(this).attr("title");
+ 		payAuction(idx);
+ 	})
+ });
+</script>
+
 	<!-- 헤더 시작 -->
 	<jsp:include page="../inc/mypage_header.jsp" />
 
@@ -684,7 +700,7 @@ div.right {
 										</div>
 									</a>
 									<div class="btn_area">
-									<button type="button" class="">결제하기</button>
+									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button>
 									<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 									</div>
 								</div>
