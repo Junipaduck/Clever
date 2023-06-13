@@ -75,11 +75,16 @@ public class AdminController {
 		List<HashMap<String, String>> askList = adminService.getAskList();
 		model.addAttribute("askList", askList);
 		
+		// 중고 상품 차트 계산 
 		List<HashMap<String, String>> productList = adminService.getProductList();
 		model.addAttribute("productList", productList);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("productList", productList);
+		
+		// 경매 상품 차트 계산 
+		List<HashMap<String, String>> auctionList = adminService.getAuctionChartList();
+		model.addAttribute("auctionList", auctionList);
 		
 //		return new ModelAndView("admin/admin_main", "map", map);
 		return "admin/admin_main";

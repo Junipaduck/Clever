@@ -112,6 +112,14 @@
 							WHERE file_div = 'auction'
 								GROUP BY file_num);
 	</select>
+	
+	<select id="selectAuctionChartList" resultType="HashMap">
+		SELECT 
+			auction_Lcategory, COUNT(auction_Lcategory) AS 'count'
+				FROM auction a 
+					GROUP BY 
+						auction_Lcategory
+	</select>
 </mapper>
 
 

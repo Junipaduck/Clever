@@ -164,10 +164,10 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">상품 카테고리별 분석</h4>
+                                        <h4 class="card-title">중고상품 카테고리별 분석</h4>
                                     </div>
                                     <div class="card-body">
-    									<div id="piechart_3d" style="width: 700px; height: 500px;"></div>
+    									<div id="product_chart" style="width: 700px; height: 500px;"></div>
 									    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 									    <script type="text/javascript">
 									      google.charts.load("current", {packages:["corechart"]});
@@ -188,15 +188,49 @@
 									          is3D: true,
 									        };
 									
-									        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+									        var chart = new google.visualization.PieChart(document.getElementById('product_chart'));
 									        chart.draw(data, options);
 									      }
 									    </script>
                                     </div>
                                 </div>
                             </div>
+<!-- 도넛차트 -->
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">경매상품 카테고리별 분석</h4>
+                                    </div>
+                                    <div class="card-body">
+    									<div id="auction_chart" style="width: 700px; height: 500px;"></div>
+									    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+									    <script type="text/javascript">
+									      google.charts.load("current", {packages:["corechart"]});
+									      google.charts.setOnLoadCallback(drawChart);
+									      function drawChart() {
+									        var data = google.visualization.arrayToDataTable([
+									          ['상품카테고리', '상품카테고리'],
+									          ["${auctionList[0].auction_Lcategory}", ${auctionList[0].count}],
+									          ["${auctionList[1].auction_Lcategory}", ${auctionList[1].count}],
+									          ["${auctionList[2].auction_Lcategory}", ${auctionList[2].count}],
+									        ]);
+									
+									        var options = {
+									          title: '경매 상품 카테고리별 등록 수',
+									          is3D: true,
+									        };
+									
+									        var chart = new google.visualization.PieChart(document.getElementById('auction_chart'));
+									        chart.draw(data, options);
+									      }
+									    </script>
+                                    </div>
+                                </div>
                         </div>
+                 	</div>
                  </div>
+
 
 				<!-- 최근 신고 접수 내역 -->
                 <div class="row">
