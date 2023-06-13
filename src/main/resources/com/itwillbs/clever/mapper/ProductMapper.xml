@@ -254,6 +254,12 @@
 				WHERE product_subject LIKE '%${product_search }%'
 	</select>
 	
+	<!-- 찜 순위에 따른 상품 조회 -->
+	<select id="countProduct">
+	
+	</select>
+	
+	
 </mapper> <!-- 매퍼끝 -->
 
 

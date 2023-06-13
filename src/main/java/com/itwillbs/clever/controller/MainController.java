@@ -1,13 +1,20 @@
 package com.itwillbs.clever.controller;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.itwillbs.clever.service.*;
 
 @Controller
 public class MainController {
 	
+	@Autowired ProductService productService;
+	
 	@GetMapping(value = "/")
 	public String main() {
+		int count = productService.countProduct();
+		
 		return "index";
 	}
 	

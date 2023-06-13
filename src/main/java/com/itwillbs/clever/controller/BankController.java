@@ -112,7 +112,12 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		return "product/bank_user_info"; // "bank/bank_user_info" 에서 잠깐 변경함
+		String sId = (String)session.getAttribute("sId");
+		if(sId.equals("admin")) {
+			return "bank/bank_user_info";
+		} else {
+			return "product/bank_user_info"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		}
 	}
 	
 	// 유저 계좌 정보 조회 0609 강지훈 추가
@@ -185,7 +190,12 @@ public class BankController {
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("member", getMemberId);
 		
-		return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		if(sId.equals("admin")) {
+			return "bank/bank_account_detail";
+		} else {
+			return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		}
+		
 		
 	}
 	
@@ -254,8 +264,13 @@ public class BankController {
 			model.addAttribute("msg", result.getRsp_message());
 			return "fail_back";
 		}
+		String sId = (String)session.getAttribute("sId");
 		
-		return "product/withdraw_result"; // "bank/withdraw_result" 에서 잠깐 변경함
+		if(sId.equals("admin")) {
+			return "bank/withdraw_result";
+		} else {
+			return "product/withdraw_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		}
 	}
 	
 

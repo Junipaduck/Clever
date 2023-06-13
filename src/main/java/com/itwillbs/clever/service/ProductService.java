@@ -138,4 +138,10 @@ public class ProductService {
 	public int deleteProductFile(int product_idx) {
 		return mapper.deleteProductFile(product_idx);
 	}
+
+	// 찜 순위에 따른 상품 조회
+	public int countProduct() {
+//		return mapper.countProduct();
+		return 0;
+	}
 }

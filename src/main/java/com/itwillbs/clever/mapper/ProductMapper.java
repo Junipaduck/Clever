@@ -65,4 +65,6 @@ public interface ProductMapper {
 	List selectProductSearch(String product_search);
 
 	int deleteProductFile(int product_idx);
+
+	int countProduct();
 }
