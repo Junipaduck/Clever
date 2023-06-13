@@ -66,7 +66,7 @@
 	                            </c:forEach>
 	                            <td>${goodsDetail.goods_name }</td>
 	                            <td>${goodsDetail.goods_price }원</td>
-	                            <td>포인트 결제</td>
+	                            <td>적립금 결제</td>
 	                            <td></td>
 	                        </tr>
 	                    </tbody>

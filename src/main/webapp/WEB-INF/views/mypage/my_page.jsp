@@ -102,7 +102,10 @@ $(function() {
 				</div>
 				<div>
 					<p>
-						<a href="#">${member.member_point} 포인트</a>
+						<a href="#">적립금 : ${member.member_point}</a>
+					</p>
+					<p>
+						<a href="#">충전포인트 : ${member.charge_point}</a>
 					</p>
 				</div>
 			</div>
@@ -112,11 +115,21 @@ $(function() {
 					<div>
 						<h2>${member.member_id}님</h2>
 						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
+						<button onclick="location.href='bank_memberInfo'">계좌관리</button>
 					</div>
 					<div>
-						<p>
-							<span>OK</span> 계좌 인증 완료
-						</p>
+						<c:choose>
+							<c:when test="${member.account_auth eq 'Y' }">
+								<p>
+									<span>OK</span> 계좌 인증 완료
+								</p>
+							</c:when>
+							<c:otherwise>
+								<p>
+									<span>NO</span> 계좌 미인증
+								</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div id="my_store_right_mid">
