@@ -55,5 +55,11 @@ public class NoticeService {
 		
 		return mapper.selectNoticeDetail(notice_idx);
 	}
+
+	// 공지사항 조회수 증가 
+	public int updateReadCount(int notice_idx) {
+		
+		return mapper.updateReadCount(notice_idx);
+	}
 	
 }

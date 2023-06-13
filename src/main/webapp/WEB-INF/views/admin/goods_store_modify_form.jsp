@@ -141,25 +141,22 @@ display: flex;
                         <div>
                             <div class="goods_images">
 	                                <div>
-	                                    이미지 등록
-	                                    <input type="file" id="file" name="file"  accept="image/jpg, image/jpeg, image/png" multiple onchange="setImages(event);">
+             							이미지 등록
+                                    <input type="file" id="image1" name="image1" accept="image/jpg, image/jpeg, image/png"  onchange="setImages(event);">
+                                    <input type="file" id="image2" name="image2" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image3" name="image3" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image6" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
 	                                </div>
                                 <div class="preview_wrap">
-                                
-
-							    <c:forEach items="${filesList }" var="filesItem" varStatus="loop">
-                               		<c:set var="length" value="${fn:length(filesItem.file_name) }" />
-								    <c:set var="index" value="${fn:indexOf(filesItem.file_name, '_') }" />
-								    <c:set var="file_name" value="${fn:substring(filesItem.file_name, index + 1, length) }" />
-								    <c:if test="${filesItem.file_num eq goods.goods_idx}">
-								        <li draggable="false" class="sc-gkFcWv iiYIYa">
-								            <img src="${pageContext.request.contextPath }/resources/upload/${file_name}" class="preview" id="preview-${loop.index}">
-								            <input type="hidden" id="fileName-${loop.index}" value="${filesItem.file_name}">
-								            ${filesItem.file_name}
-								            <button class="eHGbgX" type="button" onclick="deleteListItem(this)"></button>
-								        </li>
-								    </c:if>
-                               	</c:forEach>
+					
 								</div>
                             </div>
                             <div class="goods_images_notice">

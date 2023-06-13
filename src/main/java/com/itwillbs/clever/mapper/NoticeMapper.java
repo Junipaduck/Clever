@@ -24,4 +24,7 @@ public interface NoticeMapper {
 	// 공지사항 상세보기
 	List<HashMap<String, String>> selectNoticeDetail(int notice_idx);
 
+	// 공지사항 조회수 증가
+	int updateReadCount(int notice_idx);
+
 }

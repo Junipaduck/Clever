@@ -62,6 +62,13 @@
 				goods_idx = #{goods_idx}
 	</update>
 	
+	<!-- 굿즈 수정 시 파일 삭제 -->
+	<delete id="deleteGoodsFile">
+		DELETE 
+			FROM file
+				WHERE file_num = #{goods_idx} AND file_div = 'goods'
+	</delete>
+	
 		<!-- 굿즈 파일 셀렉트 -->
 	<select id="selectGoodsFiles" resultType="HashMap">
 		SELECT *
@@ -76,13 +83,6 @@
 				WHERE file_div = 'goods';	
 	</select>
 	
-	<!-- 굿즈 사진 삭제 -->
-	<delete id="deleteGoodsFile">
-		DELETE
-			FROM file
-				WHERE
-					file_div = 'goods' AND file_name = #{file_name}
-	</delete>
 	
 	<select id="selectGoodsDetail" resultType="HashMap">
 		SELECT *
@@ -150,6 +150,13 @@
 	    				)
 	</insert>
 	
+	
+	<delete id="deleteGoods">
+		DELETE
+			FROM goods
+				WHERE
+					goods_idx = #{goods_idx}
+	</delete>
 </mapper>
 
 

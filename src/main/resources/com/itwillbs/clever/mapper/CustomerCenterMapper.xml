@@ -5,27 +5,78 @@
 	<!-- 자주묻는질문의 카테고리 조회 (회원/계정, 스토어, 포인트 등등) -->
 	<!-- 검색기능 추가 -->
 	<select id="FAQcategory" resultType="map">
-		SELECT
-				*
-			FROM
-				FAQ
+		<!-- 만약 param.equals('')이면서 !searchKeyword.equals('') 인 경우에는 where절에 <choose><when>만 실행하고 
+				 만약 !param.equals('')이면서 !searchKeyword.equals('') 인 경우에는 where절에 <choose><when>과 FAQ_category = #{param}을 실행함 -->
+			
+		SELECT *
+		  FROM FAQ
+		 WHERE 1 = 1 <!-- 이렇게 하면 where절을 여러번 사용하지 않아도 됨 -->
+		  <if test='!"".equals(param)'> <!-- 널스트링이 아닐때 동일한 param값 -->
+		   AND FAQ_category = #{param}
+		  </if>
+		  <if test="!searchKeyword.equals('')">
+		  	<if test="searchType.equals('FAQ_subject')">
+		   	AND FAQ_subject LIKE '%${searchKeyword}%'
+		  	</if>
+		  	<if test="searchType.equals('FAQ_content')">
+		  	AND FAQ_content LIKE '%${searchKeyword}%'
+		  	</if>
+		  </if>
+		 ORDER BY FAQ_idx DESC; 
+		 
+		 
 				<!-- 이 주석을 풀면 매핑과 검색이 안먹고.. 주석을 치면 카테고리 선택이 안되네 -->
 <!-- 			<if test="!param.equals('ALL')"> -->
 <!-- 				WHERE -->
 <!-- 					FAQ_category = #{param}  -->
 <!-- 			</if> -->
-			<if test="!searchKeyword.equals('')">
-				WHERE
-	 			<choose>
-		 			<when test="searchType.equals('FAQ_subject')">
-						FAQ_subject LIKE '%${searchKeyword}%' 
-					</when>
-					<when test="searchType.equals('FAQ_content')">
-						FAQ_content LIKE '%${searchKeyword}%'
-					</when>
-	 			</choose>
-			</if>
-			ORDER BY FAQ_idx DESC;
+<!-- 			<if test="!searchKeyword.equals('')"> -->
+<!-- 				WHERE -->
+<!-- 	 			<choose> -->
+<!-- 		 			<when test="searchType.equals('FAQ_subject')"> -->
+<!-- 						FAQ_subject LIKE '%${searchKeyword}%'  -->
+<!-- 					</when> -->
+<!-- 					<when test="searchType.equals('FAQ_content')"> -->
+<!-- 						FAQ_content LIKE '%${searchKeyword}%' -->
+<!-- 					</when> -->
+<!-- 	 			</choose> -->
+<!-- 			</if> -->
+<!-- 			ORDER BY FAQ_idx DESC; -->
+			
+			
+<!-- 		SELECT -->
+<!-- 				* -->
+<!-- 			FROM -->
+<!-- 				FAQ -->
+<!-- 			<choose> -->
+<!-- 				<when test="param.equals('') AND !searchKeyword.equals('')"> -->
+<!-- 					WHERE -->
+<!-- 					<choose> -->
+<!-- 						<when test="searchType.equals('FAQ_subject')"> -->
+<!-- 							FAQ_subject LIKE '%${searchKeyword}%' -->
+<!-- 						</when> -->
+<!-- 						<when test="searchType.equals('FAQ_content')"> -->
+<!-- 							FAQ_content LIKE '%${searchKeyword}%' -->
+<!-- 						</when> -->
+<!-- 					</choose> -->
+<!-- 				</when> -->
+<!-- 				<when test="!param.equals('') AND !searchKeyword.equals('')"> -->
+<!-- 					WHERE FAQ_category = #{param} -->
+<!-- 					AND -->
+<!-- 					<choose> -->
+<!-- 						<when test="searchType.equals('FAQ_subject')"> -->
+<!-- 							FAQ_subject LIKE '%${searchKeyword}%' -->
+<!-- 						</when> -->
+<!-- 						<when test="searchType.equals('FAQ_content')"> -->
+<!-- 							FAQ_content LIKE '%${searchKeyword}%' -->
+<!-- 						</when> -->
+<!-- 					</choose> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			ORDER BY FAQ_idx DESC; -->
+			
+		
+			
 	</select>
 	
 	

@@ -56,7 +56,7 @@
 
 </head>
 <body>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.4.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
 /* 검색창에 엔터키 치는 기능 */
@@ -64,8 +64,7 @@ function faqEnter(event) {
     if (event.keyCode === 13) {
       faqSearch('keyword');
     }
-  }
-
+}
 
 $(document).ready(function() {
   $('.accordion-button').click(function() {
@@ -84,6 +83,7 @@ $(document).ready(function() {
     }
   });
 });
+
 </script>
 <!-- 부트스트랩 스크립트 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -128,7 +128,7 @@ $(document).ready(function() {
 						<div class="faqtopwrap">
 							<div id="faq-category">
 								<ul class="faq-menu">
-									<li><a href="FAQ">전체보기</a></li>
+									<li id="test"><a href="FAQ">전체보기</a></li>
 									<li><a href="FAQ?param=회원/계정">회원/계정</a></li>
 									<li><a href="FAQ?param=거래분쟁/운영정책">거래분쟁/운영정책</a></li>
 									<li><a href="FAQ?param=스토어">스토어</a></li>
@@ -160,6 +160,7 @@ $(document).ready(function() {
 	<!-- 											<option value="5">중고거래</option> -->
 	<!-- 											<option value="6">경매</option> -->
 											</select> <span class="keyword">
+											<input type="hidden" name="param" value="${param.param}">
 											<input id='faqSearch' class="MS_input_txt" onKeyPress="faqEnter(event);" aria-label="Search" name="searchKeyword" value="${param.searchKeyword }"/>
 											</span> <a class="searchbt" href="javascript:faqSearch('keyword')" onKeyPress="faqEnter(event);">
 											<img src="https://cdn3-aka.makeshop.co.kr/design/jo112/phps/common/btn_search.gif" alt="검색" title="검색"></a>
@@ -246,17 +247,17 @@ $(document).ready(function() {
 						</div>
 					</div>
 					<!-- .page-body -->
-					<div>
-						<ol class="paging">
-							<li><strong>1</strong></li>
-							<li><a href="/shop/faq.html?page=2">2</a></li>
-							<li><a href="/shop/faq.html?page=3">3</a></li>
-							<li><a href="/shop/faq.html?page=4">4</a></li>
-							<li class="last"><a href="/shop/faq.html?page=4"><img
-									src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif"
-									alt="끝" title="" /></a></li>
-						</ol>
-					</div>
+<!-- 					<div> -->
+<!-- 						<ol class="paging"> -->
+<!-- 							<li><strong>1</strong></li> -->
+<!-- 							<li><a href="/shop/faq.html?page=2">2</a></li> -->
+<!-- 							<li><a href="/shop/faq.html?page=3">3</a></li> -->
+<!-- 							<li><a href="/shop/faq.html?page=4">4</a></li> -->
+<!-- 							<li class="last"><a href="/shop/faq.html?page=4"><img -->
+<!-- 									src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif" -->
+<!-- 									alt="끝" title="" /></a></li> -->
+<!-- 						</ol> -->
+<!-- 					</div> -->
 				</div>
 				<!-- #faqWrap -->
 

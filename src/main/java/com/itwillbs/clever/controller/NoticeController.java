@@ -99,6 +99,9 @@ public class NoticeController {
 	// 공지사항 상세보기
 	@GetMapping(value = "/noticeDetail.ad")
 	public String noticeDetail(@RequestParam int notice_idx, Model model) {
+		
+		int updateReadCount = noticeService.updateReadCount(notice_idx);
+		
 		List<HashMap<String, String>> noticeDetail = noticeService.getNoticeDetail(notice_idx);
 		model.addAttribute("noticeDetail", noticeDetail);
 		return "notice/notice_detail";

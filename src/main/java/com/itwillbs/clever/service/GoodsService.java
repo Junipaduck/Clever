@@ -38,9 +38,9 @@ public class GoodsService {
 	}
 
 	// 굿즈 수정 
-	public int updateGoods(GoodsVO goods) {
+	public int updateGoods(Map<String, String> map) {
 		
-		return mapper.updateGoods(goods);
+		return mapper.updateGoods(map);
 	}
 
 	// 파일테이블에서 굿즈 이미지 조회
@@ -106,6 +106,18 @@ public class GoodsService {
 	public int updateStock(int goods_idx) {
 		
 		return mapper.updateStock(goods_idx);
+	}
+
+	// 굿즈 수정 시 파일 삭제 
+	public int deleteGoodsFile(int goods_idx) {
+		
+		return mapper.deleteGoodsFile(goods_idx);
+	}
+
+	// 굿즈 삭제
+	public int deleteGoods(int goods_idx) {
+		
+		return mapper.deleteGoods(goods_idx);
 	}
 
 

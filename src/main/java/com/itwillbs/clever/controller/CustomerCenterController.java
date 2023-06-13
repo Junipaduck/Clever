@@ -26,7 +26,9 @@ public class CustomerCenterController {
 	public String FAQ(@RequestParam Map<String, String> map, Model model
 						,@RequestParam(defaultValue = "") String searchType
 						,@RequestParam(defaultValue = "") String searchKeyword) {
-		List FAQcategory = customerCenterService.FAQcategory(map.get("param"), searchType, searchKeyword);
+		
+		String param = map.get("param") == null ? "" : map.get("param"); // param이 없으면 널스트링으로 저장, 아니면 param값 저장
+		List FAQcategory = customerCenterService.FAQcategory(param, searchType, searchKeyword);
 		model.addAttribute("FAQcategory", FAQcategory);
 		return "customer_center/FAQ";
 	}

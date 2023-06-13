@@ -56,7 +56,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     	<i class="icon icon-form"></i><span class="nav-text">상품삭제</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./form-element.html">상품뭐하지</a></li>
+                            <li><a href="deleteGoods.ad">상품삭제현황</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">게시판</li>
