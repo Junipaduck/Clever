@@ -78,5 +78,7 @@ public interface ProductMapper {
 
 	int buyerDeposit(@Param("buy_price") String buy_price, @Param("buy_seller") String buy_seller);
 
+	int updateMemAdMoney(@Param("sId") String sId, @Param("product_price") int product_price);
+
 //	List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct);
 }

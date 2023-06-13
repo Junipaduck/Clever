@@ -285,7 +285,7 @@
 		UPDATE 
 				member 
 			SET 
-				member_balance = member_balance - #{product_price}
+				member_balance = member_balance - #{product_price} 
 			WHERE 
 				member_id = #{sId}
 	</update>
@@ -331,6 +331,14 @@
 				member_balance = member_balance + #{buy_price}
 			WHERE 
 				member_id = #{buy_seller}
+	</update>
+	<update id="updateMemAdMoney">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{product_price} 
+			WHERE 
+				member_id = 'admin'
 	</update>
 	
 	<!-- 메인화면 상품조회 -->

@@ -164,6 +164,10 @@ public class ProductService {
 		return mapper.buyerDeposit(buy_price, buy_seller);
 	}
 
+	public int updateMemAdMoney(String sId, int product_price) {
+		return mapper.updateMemAdMoney(sId, product_price);
+	}
+
 	
 
 //	public List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct) {

@@ -27,7 +27,7 @@
 	
 	<!-- 송금 대상 정보 입력 -->
 	<h1>입금받을 대상의 정보 입력(임시)</h1>
-	<form action="bank_deposit" method="post">
+	<form action="product_bank_deposit" method="post">
 		<!-- 실제 송금 과정은 나(출금계좌예금주) -> 기관 -> 상대방(받는계좌예금주) 형태로 이루어지므로
 		나의 핀테크 이용번호를 입금 과정에서 함께 사용하므로 포함해서 전달함 -->
 <%-- 		<input type="hidden" name="fintech_use_num" value="${fintech_use_num }"> --%>
