@@ -80,6 +80,8 @@ td, tr, th{
 				<th></th>
 			</tr>
 			<tr>
+				<td><input type="hidden" name="id" value="${member.member_id }"></td>
+				<td><input type="hidden" name="user_name" value="${user_name }"></td>
 				<td><input type="hidden" name="recv_client_name" value="${sessionScope.sId }"></td>
 				<td><input type="hidden" name="recv_client_bank_code" value="${account.bank_code_tran }"></td>
 				<td><input type="hidden" name="recv_client_account_num" value="${account_num_masked }"></td>

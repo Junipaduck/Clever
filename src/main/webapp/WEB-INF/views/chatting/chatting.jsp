@@ -75,16 +75,6 @@ $(document).ready(function() {
 	// //chat이라는 요청주소로 통신할수있는 webSocket 객체 생성 --> /spring/chat
 	// var chatSocket = new SockJS(contextPath + "/chatting");
 	
-	// // 페이지 로딩 완료시 채팅창을 맨 아래로 내리기. 즉시 실행함수. IIFE
-	// (function() {
-	//  const displayChatting = document.getElementsByClassName("display-chatting")[0];
-	
-	//  if (displayChatting != null) {
-	//      displayChatting.scrollTop = displayChatting.scrollHeight;
-	//  }
-	// })();
-	
-	
 	//방 나누기 + 메세지나누기
 // 	$("#roomSelect .roomEl").on("click", function(e) {
 	$(document).on("click", "#roomSelect .roomEl", function(e) {
@@ -125,11 +115,11 @@ $(document).ready(function() {
 	                if (message.senderId === userId) {
 	                    str = "<div class='myMsg'>";
 	                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
-	                    str += "</div></div>";
+	                    str += "<div>" + message.message_date +"</div></div><br></div>";
 	                } else {
 	                    str = "<div class='anotherMsg'>";
 	                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
-	                    str += "</div></div>";
+	                    str += "<div>" + message.message_date +"</div></div><br></div>";
 	                }
 	                
 	                $("#chatLog").append(str);
@@ -218,47 +208,51 @@ $(document).ready(function() {
 		}
 		console.log('id : ' + data.id);
 		console.log('message : ' + data.message);
+		let chatTime = getCurrentTime();
 	
 		// 채팅방 화면에 채팅 내용 출력
 		if (data.id == userId) {
 			var str = "<div class='myMsg'>";
 			str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
-			str += "</div></div>";
+			str += "<div>" + chatTime +"</div></div><br></div>";
 			
 			$("#chatLog").append(str);
 		} else {
 			var str = "<div class='anotherMsg'>";
 			str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
-			str += "</div></div>";
+			str += "<div>" + chatTime +"</div></div><br></div>";
 			
 			$("#chatLog").append(str);
 		}
+		
+		const displayChatting = document.getElementById('chatLog');
+		console.log(displayChatting);
 	
-	// 	// 채팅창을 제일밑으로 내리기
-	// 	displayChatting.scrollTop = displayChatting.scrollHeight;
-	// 	// scrollTop : 스크롤 이동
-	// 	// scrollHeight : 스크롤이되는 요소의 전체 높이.
+		// 채팅창을 제일밑으로 내리기
+		displayChatting.scrollTop = displayChatting.scrollHeight;
+		// scrollTop : 스크롤 이동
+		// scrollHeight : 스크롤이되는 요소의 전체 높이.
 	
 	};
 	
 	
-	// function getCurrentTime() {
-	// 	const now = new Date();
+	function getCurrentTime() {
+		const now = new Date();
 	
-	// 	const time = now.getFullYear() + "년 " +
-	// 					addZero(now.getMonth() + 1) + "월 " +
-	// 					addZero(now.getDate()) + "일 " +
-	// 					addZero(now.getHours()) + ":" +
-	// 					addZero(now.getMinutes()) + ":" +
-	// 					addZero(now.getSeconds()) + " ";
+		const time = now.getFullYear() + "-" +
+						addZero(now.getMonth() + 1) + "-" +
+						addZero(now.getDate()) + "-" +
+						addZero(now.getHours()) + ":" +
+						addZero(now.getMinutes()) + ":" +
+						addZero(now.getSeconds()) + " ";
 	
-	// 	return time;
-	// }
+		return time;
+	}
 	
 	// 10보다 작은수가 매개변수로 들어오는경우 앞에 0을 붙여서 반환해주는함수.
-	// function addZero(number) {
-	// 	return number < 10 ? "0" + number : number;
-	// }
+	function addZero(number) {
+		return number < 10 ? "0" + number : number;
+	}
 	
 	
 	

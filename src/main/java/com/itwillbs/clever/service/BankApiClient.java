@@ -205,13 +205,13 @@ public class BankApiClient {
 		jo.put("tran_dtime", valueGenerator.getTranDTime()); // tran_dtime(요청일시 - BankValueGenerator 클래스 활용)
 		
 		
-//		jo.put("req_client_name", map.get("user_name")); // req_client_name(요청고객성명) // 0612 최보아
-		jo.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
+		jo.put("req_client_name", map.get("user_name")); // req_client_name(요청고객성명) // 0612 최보아
+//		jo.put("req_client_name", "양선정"); // req_client_name(요청고객성명)
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("user_name"));
 		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // req_client_fintech_use_num(요청고객 핀테크 이용번호)
-//		jo.put("req_client_num", map.get("id").toUpperCase()); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!) // 0612 최보아
-		jo.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
-//		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("id").toUpperCase()); // 0612 최보아
+		jo.put("req_client_num", map.get("id").toUpperCase()); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!) // 0612 최보아
+//		jo.put("req_client_num", "ADMIN"); // req_client_num(요청고객회원번호 = 아이디(문자 사용 시 대문자 필수!)
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~찍히나/////////////////////////" + map.get("id").toUpperCase()); // 0612 최보아
 		jo.put("transfer_purpose", "TR"); // transfer_purpose(이체용도 - 송금을 의미하는 "TR" 전달)
 		
 		// 아래 3개 정보는 피싱 등의 사고 발생 시 지급 정지를 위한 정보 설정(검증하지 않음)

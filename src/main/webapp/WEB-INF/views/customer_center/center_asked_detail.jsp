@@ -135,7 +135,7 @@
 						<a href="javascript:history.back()" class="CMbutton1" style="background-color: #0085f5; color: white;">돌아가기</a>
 					</dd>
 				</dl>
-<input type="button" onclick="location.href='askedAnsForm?asked_idx=${param.asked_idx }'" value="답변하기">
+			<%-- <input type="button" onclick="location.href='askedAnsForm?asked_idx=${param.asked_idx }'" value="답변하기"> --%>
 	
 			</div>
 			<!-- #contentWrap -->
