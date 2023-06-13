@@ -18,7 +18,7 @@ public interface GoodsMapper {
 	HashMap<String, String> selectGoods(int goods_idx);
 	
 	// 굿즈 수정
-	int updateGoods(GoodsVO goods);
+	int updateGoods(Map<String, String> map);
 
 	// 관리자 굿즈 페이지 굿즈 이미지 조회
 	List<HashMap<String, String>> selectFile();
@@ -52,6 +52,9 @@ public interface GoodsMapper {
 
 	// 굿즈 재고 차감
 	int updateStock(int goods_idx);
+
+	// 굿즈 수정 시 파일 삭제
+	int deleteGoodsFile(int goods_idx);
 
 
 

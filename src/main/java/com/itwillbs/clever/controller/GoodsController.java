@@ -68,6 +68,7 @@ public class GoodsController {
 									, @RequestParam("image12") MultipartFile file12
 								    , HttpSession session, Model model) {
 		
+		int insertCount = goodsService.insertGoods(goods);
 		
 		MultipartFile[] fArr = {file1,file2,file3,file4,file5,file6,file7,file8,file9,file10,file11,file12};
 		ArrayList<MultipartFile> file = new ArrayList<MultipartFile>();
@@ -78,9 +79,6 @@ public class GoodsController {
 			}
 		}
 		System.out.println(file);
-		
-		int insertCount = goodsService.insertGoods(goods);
-		
 		
 		
 		//---------- 파일 업로드 관련 작업 시작 -----------------------------------------------------------
@@ -117,18 +115,49 @@ public class GoodsController {
 	}
 	
 	@PostMapping(value = "/storeModifyPro.ad")
-	public String storeModifyPro(GoodsVO goods, HttpSession session, Model model) {
+	public String storeModifyPro(@RequestParam Map<String, String> map
+								, @RequestParam("image1") MultipartFile file1
+								, @RequestParam("image2") MultipartFile file2
+								, @RequestParam("image3") MultipartFile file3
+								, @RequestParam("image4") MultipartFile file4
+								, @RequestParam("image5") MultipartFile file5
+								, @RequestParam("image6") MultipartFile file6
+								, @RequestParam("image7") MultipartFile file7
+								, @RequestParam("image8") MultipartFile file8
+								, @RequestParam("image9") MultipartFile file9
+								, @RequestParam("image10") MultipartFile file10
+								, @RequestParam("image11") MultipartFile file11
+								, @RequestParam("image12") MultipartFile file12
+								, HttpSession session
+								, Model model) {
 		
+		MultipartFile[] fArr = {file1,file2,file3,file4,file5,file6,file7,file8,file9,file10,file11,file12};
+		ArrayList<MultipartFile> file = new ArrayList<MultipartFile>();
+		System.out.println(fArr); 
+		for(int i = 0; i < fArr.length; i++) {
+			if(!fArr[i].getOriginalFilename().equals("")) {
+				file.add(fArr[i]);
+			}
+		}
+		if(!file.isEmpty()) {
+			int goods_idx = Integer.parseInt(map.get("goods_idx"));
+			int deleteCount = goodsService.deleteGoodsFile(goods_idx);
+			System.out.println("이까지 오나?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			if(deleteCount > 0) {
+				Map<String, Object> paramMap = new HashMap<String, Object>();
+				paramMap.put("file_div", "goods");
+				paramMap.put("file_num", map.get("goods_idx"));
+				FileUpload.upload(file, session, paramMap);
+			}
+		}
 		
-//		for(int i=0; i<file.length; i++) {
-//			System.out.println("file 배열 for문" + file[i]);
-//		}
-		
-		int updateCount = goodsService.updateGoods(goods);
+		int updateCount = goodsService.updateGoods(map);
 		
 		
 		if(updateCount > 0) {
-			return "redirect:/storeList.ad";
+			model.addAttribute("msg", "수정이 완료되었습니다!");
+			model.addAttribute("target", "storeList.ad");
+			return "success";
 		} else {
 			model.addAttribute("msg", "굿즈 수정 실패!");
 			return "fail_back";
@@ -136,19 +165,19 @@ public class GoodsController {
 		
 	}
 	
-	@PostMapping(value = "/deleteGoodsFile")
-	@ResponseBody
-	public String deleteGoodsFile(FileVO file, @RequestParam String file_name, Model model) {
-		System.out.println("파일 넘어 오나요? " + file_name + ", " + file.getFile_name());
-		
-		int deleteCount = goodsService.deleteGoodsFile(file);
-		if(deleteCount > 0) {
-			return "redirect:/storeModify.ad";
-		} else {
-			model.addAttribute("msg", "파일 삭제 실패!");
-			return "fail_back";
-		}
-	}
+//	@PostMapping(value = "/deleteGoodsFile")
+//	@ResponseBody
+//	public String deleteGoodsFile(FileVO file, @RequestParam String file_name, Model model) {
+//		System.out.println("파일 넘어 오나요? " + file_name + ", " + file.getFile_name());
+//		
+//		int deleteCount = goodsService.deleteGoodsFile(file);
+//		if(deleteCount > 0) {
+//			return "redirect:/storeModify.ad";
+//		} else {
+//			model.addAttribute("msg", "파일 삭제 실패!");
+//			return "fail_back";
+//		}
+//	}
 	
 	
 	// 현재 판매 중인 굿즈 목록 조회
