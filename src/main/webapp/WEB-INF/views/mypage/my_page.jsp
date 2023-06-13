@@ -87,7 +87,10 @@ div.right {
 				</div>
 				<div>
 					<p>
-						<a href="#">${member.member_point} 포인트</a>
+						<a href="#">적립금 ${member.member_point}</a>
+					</p>
+					<p>
+						<a href="#">포인트 ${member.charge_point}</a>
 					</p>
 				</div>
 			</div>
@@ -97,10 +100,18 @@ div.right {
 					<div>
 						<h2>${member.member_id}님</h2>
 						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
+						<button onclick="location.href='bank_memberInfo'">내 계좌 관리</button>
 					</div>
 					<div>
 						<p>
-							<span>OK</span> 계좌 인증 완료
+							<c:choose>
+								<c:when test="${member.account_auth eq 'Y'}">
+									<span>OK</span> 계좌 인증 완료
+								</c:when>
+								<c:otherwise>
+									<span>NO</span> 계좌 미인증
+								</c:otherwise>
+							</c:choose>
 						</p>
 					</div>
 				</div>
