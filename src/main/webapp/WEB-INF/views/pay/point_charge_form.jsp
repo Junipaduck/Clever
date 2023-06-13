@@ -42,43 +42,11 @@
      	  <!-- 결제할 상품의 정보 -->
 			<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
 			<input type="hidden" name="product_idx" value="${param.product_idx }">    
-	        <c:forEach items="${productDetail }" var="productDetail">
 	          <section class="goods_manage_area">
-	            <header class="header" role="banner" >
-			        <div class="header_inner">
-			            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
-			        </div>
-			    </header>
+
 			    <h4>1. 결제할 상품의 정보를 확인해주세요😊</h4>
-	               <table style="margin-bottom: 50px;">
-	                   <thead>
-	                       <tr>
-	                           <th></th>
-	                           <th></th>
-	                           <th>가격</th>
-	                           <th>결제방식</th>
-	                           <th>판매자 ID</th>
-	                       </tr>
-	                   </thead>
-	                   <tbody>
-	                       <tr>
-	                      	 	<c:forEach items="${fileList }" var="fileList"> <!-- 첫번째사진 select 하는 forEach문 -->
-	                             	<c:set var="length" value="${fn:length(fileList.file_name) }" />
-								<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
-								<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
-									<c:if test="${fileList.file_num eq productDetail.product_idx }">
-	                            		<td><img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 사진"></td>
-	                           		</c:if>
-	                           </c:forEach>
-	                           <td>${productDetail.product_subject }</td>
-	                           <td>${productDetail.product_price }원</td>
-	                           <td>계좌이체</td>
-	                           <td>${productDetail.member_id }</td>
-	                       </tr>
-                   	 </tbody>
-              	 </table>
+	
            	 </section>
-           	</c:forEach>
            <!-- // 결제할 상품의 정보 --> 
 	            	 
 	            	 
@@ -92,7 +60,7 @@
 				<th>계좌번호</th>
 				<th>은행명</th>
 				<th>예금주명</th>
-				<th>핀테크이용번호</th>
+<!-- 				<th>핀테크이용번호</th> -->
 				<th></th>
 			</tr>
 			<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
@@ -103,7 +71,7 @@
 					<td>${account.account_num_masked }</td>
 					<td>${account.bank_name }(${account.bank_code_std })</td>
 					<td>${account.account_holder_name }</td>
-					<td>${account.fintech_use_num }</td>
+<%-- 					<td>${account.fintech_use_num }</td> --%>
 					<td>
 						<!-- 수업때는 form의 매핑명이 bank_accountDetail 이었는데 지금 관리자에서 사용하고 있으므로 이름을 바꿨습니다. -->
 						<form action="point_bank_accountDetail" method="post"> 

@@ -128,9 +128,16 @@ public class AdminService {
 		return mapper.selectProductList();
 	}
 
+	public List<HashMap<String, String>> selectAuctionFile() {
+		
+		return mapper.selectAuctionFile();
+	}
 
-
-
+	// 관리자 메인 페이지 경매 상품 카테고리 차트 조회
+	public List<HashMap<String, String>> getAuctionChartList() {
+		
+		return mapper.selectAuctionChartList();
+	}
 
 		
 	}

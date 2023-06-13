@@ -1,13 +1,22 @@
 package com.itwillbs.clever.controller;
 
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.itwillbs.clever.service.*;
 
 @Controller
 public class MainController {
 	
+	@Autowired ProductService productService;
+	
 	@GetMapping(value = "/")
-	public String main() {
+	public String main(Map<String, String> map) {
+		List<HashMap<String, String>> selectDibsProduct = productService.selectDibsProduct();
+		
 		return "index";
 	}
 	
