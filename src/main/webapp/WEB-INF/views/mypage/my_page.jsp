@@ -62,6 +62,33 @@ div.right {
 
 
 <body>
+<script type="text/javascript">
+
+/* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
+function payAuction(idx){
+    window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
+}
+
+$(function() {
+    $(document).on("click", ".payAuction", function() {
+         var idx = $(this).attr("title");
+         payAuction(idx);
+     })
+ });
+ 
+/* [구매확정]버튼 */
+// function buyConfirm(idx){
+//     window.open("buyConfirm?product_price="+idx, "바로구매새창", "width=800, height=1200" );
+// }
+
+// $(function() {
+//     $(document).on("click", ".payAuction", function() {
+//          var idx = $(this).attr("title");
+//          payAuction(idx);
+//      })
+//  });
+
+</script>
 	<!-- 헤더 시작 -->
 	<jsp:include page="../inc/mypage_header.jsp" />
 
@@ -485,9 +512,12 @@ div.right {
 											</div>
 										</a>
 										<c:choose>
-											<c:when test="${productBuyList.buy_status eq '배송완료' }">
+											<c:when test="${productBuyList.buy_status eq '구매확정' }">
 												<div class="btn_area">
-													<button type="button" class="btn_buy_decide">구매확정</button>
+<%-- 													<button type="button" class="btn_buy_decide" value="${param.buy_price }">구매확정</button> <!-- 0613배하나 --> --%>
+<%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" onclick="location.href='buyConfirm'">구매확정</button> <!-- 0613배하나 --> --%>
+<%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" >구매확정</button> <!-- 0613배하나 --> --%>
+														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}">구매확정</a>
 													<button type="button" class="btn_return">반품신청</button>
 												</div>
 											</c:when>

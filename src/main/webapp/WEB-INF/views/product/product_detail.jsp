@@ -39,7 +39,7 @@
 	
 	/* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
 	function payProduct(){
-		    window.open("payProduct?product_idx=${param.product_idx}", "바로구매새창", "width=800, height=1200" );
+		    window.open("payProduct?product_idx=${param.product_idx}&product_price=${param.product_price}", "바로구매새창", "width=800, height=1200" );
 	}
 	
 	/* 찜하기 AJAX 찜하기 버튼 누르면 상호작용 */

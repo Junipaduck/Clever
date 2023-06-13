@@ -16,6 +16,11 @@ public class MainController {
 	@GetMapping(value = "/")
 	public String main(Map<String, String> map) {
 		List<HashMap<String, String>> selectDibsProduct = productService.selectDibsProduct();
+		System.out.println("selectDibsProduct" + selectDibsProduct);
+//		System.out.println(selectDibsProduct.get("product_idx"));
+		
+		
+//		List<HashMap<String, String>> selectMainProduct = productService.selectMainProduct(selectDibsProduct);
 		
 		return "index";
 	}

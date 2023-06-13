@@ -143,4 +143,30 @@ public class ProductService {
 	public List<HashMap<String, String>> selectDibsProduct() {
 		return mapper.selectDibsProduct();
 	}
+
+	public int updateSaleStatus(int product_idx) {
+		return mapper.updateSaleStatus(product_idx);
+	}
+
+	public int buyerWithdraw(String sId, int product_price) {
+		return mapper.buyerWithdraw(sId, product_price);
+	}
+
+	public int depositAdMoney(String sId, int product_price) {
+		return mapper.depositAdMoney(sId, product_price);
+	}
+
+	public int withdrawAdMoney(String buy_price, String buy_seller) {
+		return mapper.withdrawAdMoney(buy_price, buy_seller);
+	}
+
+	public int buyerDeposit(String buy_price, String buy_seller) {
+		return mapper.buyerDeposit(buy_price, buy_seller);
+	}
+
+	
+
+//	public List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct) {
+//		return mapper.selectMainProduct(selectDibsProduct);
+//	}
 }

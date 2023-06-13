@@ -111,7 +111,7 @@
                     			<!-- 상품 1개 카드 -->
 		                        <c:forEach items="${productItem_search }" var="productList">
 			                        <div class="goods">
-			                            <a href="product_detail?product_idx=${productList.product_idx }&product_Mcategory=${productList.product_Mcategory}">
+			                            <a href="product_detail?product_idx=${productList.product_idx }&product_Mcategory=${productList.product_Mcategory}&product_price=${productList.product_price}">
 		<!--                                		<div class="goods_image"> -->
 		<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지"> --%>
 		<!-- 	                                </div> -->

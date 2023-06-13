@@ -32,6 +32,8 @@
 		나의 핀테크 이용번호를 입금 과정에서 함께 사용하므로 포함해서 전달함 -->
 <%-- 		<input type="hidden" name="fintech_use_num" value="${fintech_use_num }"> --%>
 		<input type="hidden" name="fintech_use_num" value="${result.fintech_use_num }">
+		<input type="hidden" name="product_idx" value="${param.product_idx }">
+		<input type="hidden" name="product_price" value="${param.product_price }">
 		<table border="1">
 			<tr>
 				<th>예금주명</th>

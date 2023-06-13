@@ -270,6 +270,84 @@
 			ORDER BY count DESC;
 	</select>
 	
+	<!-- 상품구매시 판매상품 sale_status 업데이트 -->
+	<update id="updateSaleStatus">
+		UPDATE 
+				product 
+			SET 
+				sale_status = '판매완료' 
+			WHERE 
+				product_idx = #{product_idx}
+	</update>
+	
+	<!-- 상품구매시 구매자 계좌 출금 -->
+	<update id="buyerWithdraw">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance - #{product_price}
+			WHERE 
+				member_id = #{sId}
+	</update>
+	<insert id="depositAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+<!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{sId}
+				,#{product_price}
+				,'d'
+				,now()
+				,#{admin_account_balance} + #{product_price}
+			)
+	</insert>
+	
+	<!-- 구매확정 버튼 눌렀을 때, 관리자계좌 테이블에 출금 insert -->
+	<insert id="withdrawAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{buy_seller}
+				,#{buy_price}
+				,'w'
+				,now()
+				,#{admin_account_balance} - #{buy_price}
+			)
+	</insert>	
+	
+	<!-- 구매확정시 판매자에게 돈 입금 -->
+	<update id="buyerDeposit">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{buy_price}
+			WHERE 
+				member_id = #{buy_seller}
+	</update>
+	
+	<!-- 메인화면 상품조회 -->
+<!-- 	<select id="selectMainProduct" parameterType="java.util.ArrayList" resultType="map"> -->
+<!-- 		SELECT * -->
+<!-- 			FROM -->
+<!-- 				product -->
+<!-- 			WHERE product_idx IN ( -->
+<!-- 				<foreach collection="array" item="item" index="index" separator=","> -->
+<!-- 					${item} -->
+<!-- 				</foreach> -->
+<!-- 			) -->
+				
+			
+			
+<!-- 	</select> -->
+	
 	
 </mapper> <!-- 매퍼끝 -->
 

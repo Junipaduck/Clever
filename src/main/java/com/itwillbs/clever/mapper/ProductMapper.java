@@ -67,4 +67,16 @@ public interface ProductMapper {
 	int deleteProductFile(int product_idx);
 
 	List<HashMap<String, String>> selectDibsProduct();
+
+	int updateSaleStatus(int product_idx);
+
+	int buyerWithdraw(@Param("sId") String sId, @Param("product_price") int product_price);
+
+	int depositAdMoney(@Param("sId") String sId, @Param("product_price") int product_price);
+
+	int withdrawAdMoney(@Param("buy_price") String buy_price, @Param("buy_seller") String buy_seller);
+
+	int buyerDeposit(@Param("buy_price") String buy_price, @Param("buy_seller") String buy_seller);
+
+//	List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct);
 }
