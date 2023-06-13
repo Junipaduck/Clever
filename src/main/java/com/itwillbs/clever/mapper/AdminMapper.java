@@ -47,6 +47,9 @@ public interface AdminMapper {
 
 	List<HashMap<String, String>> selectProductList();
 
+	// 옥션 파일 조회
+	List<HashMap<String, String>> selectAuctionFile();
+
 
 
 

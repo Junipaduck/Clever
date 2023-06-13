@@ -128,9 +128,10 @@ public class AdminService {
 		return mapper.selectProductList();
 	}
 
-
-
-
+	public List<HashMap<String, String>> selectAuctionFile() {
+		
+		return mapper.selectAuctionFile();
+	}
 
 		
 	}

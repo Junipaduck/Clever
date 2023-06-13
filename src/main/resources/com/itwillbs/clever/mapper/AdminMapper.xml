@@ -102,6 +102,16 @@
 					GROUP BY 
 						product_Lcategory
 	</select>
+	
+	<select id="selectAuctionFile" resultType="HashMap">
+		SELECT *
+			FROM file f 
+				WHERE file_idx in 
+					(SELECT MIN(file_idx) AS file_idx
+						FROM file
+							WHERE file_div = 'auction'
+								GROUP BY file_num);
+	</select>
 </mapper>
 
 
