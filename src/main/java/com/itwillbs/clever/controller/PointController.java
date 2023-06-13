@@ -158,11 +158,11 @@ public class PointController {
 		
 		int updateCount = bankService.updateMemberPoint(id, point);
 		if(updateCount > 0) {
-			model.addAttribute("msg", "포인트 적립 성공!");
+			model.addAttribute("msg", "포인트 충전 성공!");
 			model.addAttribute("target", "pointCharge");
 			return "success";
 		} else {
-			model.addAttribute("msg", "포인트 적립 실패!");
+			model.addAttribute("msg", "포인트 충전 실패!");
 			return "fail_back";
 		}
 		

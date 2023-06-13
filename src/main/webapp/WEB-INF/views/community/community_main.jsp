@@ -81,6 +81,9 @@
 													<div class="tb-center">글번호</div>
 												</th>
 												<th scope="col">
+													<div class="tb-center">작성자</div>
+												</th>
+												<th scope="col">
 													<div class="tb-center">조회수</div>
 												</th>
 												<th scope="col">
@@ -96,6 +99,9 @@
 												<tr uid="6">
 													<td>
 														<div class="tb-center">${community.community_idx }</div>
+													</td>
+													<td>
+														<div class="tb-center">${community.member_id }</div>
 													</td>
 													<td>
 														<div class="tb-center">${community.community_readcount }</div>

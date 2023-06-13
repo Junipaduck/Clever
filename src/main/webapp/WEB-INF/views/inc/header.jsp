@@ -74,9 +74,10 @@ div #test_area ul { /* 카테고리 css */
 			                                        	<div class="col-3" style="text-align: left;"><a href="adminMain.ad">관리자페이지</a></div>
 		                                        	</c:if>
 							                    <div class="col-1 b_h_left_menu">
+<!-- 							                    	<button type="submit" class="btn btn-primary">포인트충전</button> -->
 						                            <a href=""> 
 						                                <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="포인트 충전" onclick="pointCharge()">
-						                                포인트 충전
+						                            	포인트
 						                            </a>
 						                        </div>
                                     		</c:otherwise>
