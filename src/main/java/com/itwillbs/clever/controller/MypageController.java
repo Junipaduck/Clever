@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,8 @@ public class MypageController {
 	
 	@Autowired
 	private BankApiService apiService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@Value("${client_id}")
 	private String client_id;
@@ -141,8 +145,78 @@ public class MypageController {
     	}
 	}
 	
-// 중고상품 계좌이체 관련 코드 시작 ========================================================================================	
-	// 중고상품 상세페이지에서 [바로구매] 버튼 클릭 시 나오는 새창페이지
+	// 마이페이지 유저 계좌 정보 조회 
+	@GetMapping("/bank_memberInfo")
+	public String requestmemberInfo(HttpSession session, Model model) {
+		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("access_token : " + access_token);
+		System.out.println("user_seq_no : " + user_seq_no);
+		
+		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
+		if(access_token == null) {
+			model.addAttribute("msg", "계좌 인증 필수!");
+			return "fail_back";
+		}
+		
+		// 사용자 정보 조회(REST API 요청)		
+		// BankApiService - requestUserInfo() 메서드 호출
+		// => 파라미터 : 엑세스토큰, 사용자번호   리턴타입 : ResponseUserInfoVO(userInfo)
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+		System.out.println(userInfo);
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("userInfo", userInfo);
+		
+		return "mypage/bank_memberInfo";
+	}
+	
+	// 마이페이지 유저 계좌 상세정보 조회(잔액조회 API) 
+	@PostMapping("Member_accountDetail")
+	public String MemberAccountDetail(
+			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
+		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
+		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// 세션 객체의 엑세스 토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ bank_accountDetail : " + map);
+		
+		// BankApiService - requestAccountDetail() 메서드를 호출하여
+		// 계좌 상세정보 조회 요청
+		// => 파라미터 : Map 객체   리턴타입 : AccountDetailVO(account)
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		
+		// 응답코드(rsp_code)가 "A0000" 가 아니면 에러 상황이므로 에러 처리
+		// => "정보 조회 실패!" 출력 후 이전페이지로 돌아가기(fail_bank)
+		// => 출력메세지에 응답메세지(rsp_message) 도 함께 출력
+		if(account == null) {
+			model.addAttribute("msg", "정보 조회 실패");
+			return "fail_back";
+		} else if(!account.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", "정보 조회 실패 - " + account.getRsp_message());
+			return "fail_back";
+		}
+		
+		System.out.println(account);
+		
+		// AccountDetailVO 객체 저장
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+		
+		return "mypage/member_account_detail";
+		
+	}   
+	
+	
+// 경매 계좌이체 관련 코드 시작 ========================================================================================	
+	// 마이페이지 낙찰된 경매 탭에서 [결제하기] 버튼 클릭 시 나오는 새창페이지
 	@GetMapping("/payAuction")
 	public String buyProduct(Model model, @RequestParam int auction_idx, HttpSession session) {
 		// 중고상품 상세보기 select
@@ -181,6 +255,48 @@ public class MypageController {
 		} else {
 			return "mypage/bank_user_info";
 		}
+	}
+	
+	// product_pay_form.jsp 에서 [계좌선택] 버튼 클릭 시 나오는 member_bank_accountDetail.jsp
+	@PostMapping("auction_bank_accountDetail")
+	public String getAccountDetail(
+			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
+		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
+		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// 세션 객체의 엑세스 토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ member_bank_accountDetail : " + map);
+		
+		// BankApiService - requestAccountDetail() 메서드를 호출하여
+		// 계좌 상세정보 조회 요청
+		// => 파라미터 : Map 객체   리턴타입 : AccountDetailVO(account)
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		
+		// 응답코드(rsp_code)가 "A0000" 가 아니면 에러 상황이므로 에러 처리
+		// => "정보 조회 실패!" 출력 후 이전페이지로 돌아가기(fail_bank)
+		// => 출력메세지에 응답메세지(rsp_message) 도 함께 출력
+		if(account == null) {
+			model.addAttribute("msg", "정보 조회 실패");
+			return "fail_back";
+		} else if(!account.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", "정보 조회 실패 - " + account.getRsp_message());
+			return "fail_back";
+		}
+		
+		System.out.println(account);
+		
+		// AccountDetailVO 객체 저장
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+		
+		return "mypage/auction_bank_account_detail";
+		
 	}
 	
 }

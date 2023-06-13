@@ -709,7 +709,7 @@ $(function() {
 										</div>
 									</a>
 									<div class="btn_area">
-									<button type="button" class="">결제하기</button>
+									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button>
 									<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 									</div>
 								</div>
