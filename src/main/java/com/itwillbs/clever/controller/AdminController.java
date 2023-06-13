@@ -100,6 +100,16 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
+	// 회원 등급 조회 0613 강지훈추가
+	@GetMapping(value = "/adminMemberGrade.ad")
+	public String memberGradeList(Model model) {
+		
+		List<HashMap<String, String>> memberGradeList  = adminService.selectMemberGrade();
+		model.addAttribute("memberGradeList", memberGradeList);
+		
+		return "admin/admin_member_grade";
+	}
+	
 	// 경매 목록 조회
 	@GetMapping(value = "/adminAuction.ad")
 	public String autionList(HttpSession session, Model model) {

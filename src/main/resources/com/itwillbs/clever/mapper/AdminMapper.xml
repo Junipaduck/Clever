@@ -9,6 +9,12 @@
 			WHERE member_id != 'admin'
 	</select>
 	
+	<!-- 회원 등급 조회 -->
+	<select id="selectMemberGrade" resultType="HashMap">
+		SELECT *
+			FROM grade
+	</select>
+	
 	<!-- 경매 목록 조회 -->
 	<select id="selectAuctionList" resultType="HashMap">
 		SELECT *
