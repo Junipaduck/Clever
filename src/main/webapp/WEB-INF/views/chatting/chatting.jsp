@@ -125,11 +125,11 @@ $(document).ready(function() {
 	                if (message.senderId === userId) {
 	                    str = "<div class='myMsg'>";
 	                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
-	                    str += "</div></div>";
+	                    str += "<div>" + message.message_date +"</div></div><br></div>";
 	                } else {
 	                    str = "<div class='anotherMsg'>";
 	                    str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
-	                    str += "</div></div>";
+	                    str += "<div>" + message.message_date +"</div></div><br></div>";
 	                }
 	                
 	                $("#chatLog").append(str);
@@ -218,18 +218,22 @@ $(document).ready(function() {
 		}
 		console.log('id : ' + data.id);
 		console.log('message : ' + data.message);
+		let chatTime = getCurrentTime();
 	
+// 		str = "<div class='myMsg'>";
+//         str += "<span class='msg'>"+ message.senderId +" : <b>"  + message.message_content + "</b></span>";
+//         str += "<div>" + message.message_date +"</div></div><br></div>";
 		// 채팅방 화면에 채팅 내용 출력
 		if (data.id == userId) {
 			var str = "<div class='myMsg'>";
 			str += "<span class='msg'><b>"+ data.id + " : "  + data.message + "</b></span>";
-			str += "</div></div>";
+			str += "<div>" + chatTime +"</div></div><br></div>";
 			
 			$("#chatLog").append(str);
 		} else {
 			var str = "<div class='anotherMsg'>";
 			str += "<span class='msg'>"+ data.id +" : <b>"  + data.message + "</b></span>";
-			str += "</div></div>";
+			str += "<div>" + chatTime +"</div></div><br></div>";
 			
 			$("#chatLog").append(str);
 		}
@@ -242,23 +246,23 @@ $(document).ready(function() {
 	};
 	
 	
-	// function getCurrentTime() {
-	// 	const now = new Date();
+	function getCurrentTime() {
+		const now = new Date();
 	
-	// 	const time = now.getFullYear() + "년 " +
-	// 					addZero(now.getMonth() + 1) + "월 " +
-	// 					addZero(now.getDate()) + "일 " +
-	// 					addZero(now.getHours()) + ":" +
-	// 					addZero(now.getMinutes()) + ":" +
-	// 					addZero(now.getSeconds()) + " ";
+		const time = now.getFullYear() + "-" +
+						addZero(now.getMonth() + 1) + "-" +
+						addZero(now.getDate()) + "-" +
+						addZero(now.getHours()) + ":" +
+						addZero(now.getMinutes()) + ":" +
+						addZero(now.getSeconds()) + " ";
 	
-	// 	return time;
-	// }
+		return time;
+	}
 	
 	// 10보다 작은수가 매개변수로 들어오는경우 앞에 0을 붙여서 반환해주는함수.
-	// function addZero(number) {
-	// 	return number < 10 ? "0" + number : number;
-	// }
+	function addZero(number) {
+		return number < 10 ? "0" + number : number;
+	}
 	
 	
 	
