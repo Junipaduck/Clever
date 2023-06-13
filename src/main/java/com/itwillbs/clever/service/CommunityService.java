@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import com.itwillbs.clever.mapper.*;
+import com.itwillbs.clever.vo.MemberVO;
 
 @Service
 public class CommunityService {
@@ -66,6 +67,13 @@ public class CommunityService {
 
 	public List communityAuctionList() {
 		return mapper.communityAuctionList();
+	}
+
+
+	// 글 작성시 포인트 적립
+	public int getMemberPoint(String id) {
+		
+		return mapper.updateMemberPoint(id);
 	}
 
 }

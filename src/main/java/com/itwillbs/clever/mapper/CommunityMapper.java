@@ -4,6 +4,8 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.*;
 
+import com.itwillbs.clever.vo.MemberVO;
+
 public interface CommunityMapper {
 
 	int insertCommunity(@Param("map") Map<String, String> map,@Param("id") String id);
@@ -28,6 +30,9 @@ public interface CommunityMapper {
 	int communityTinyDelete(@Param("map") Map<String, String> map);
 
 	List communityAuctionList();
+
+	// 글 작성 시 포인트 적립
+	int updateMemberPoint(String id);
 	
 
 }
