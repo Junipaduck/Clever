@@ -140,8 +140,8 @@ public class AuctionService {
 		return mapper.getMemberPoint(id);
 	}
 
-	public List<HashMap<String, String>> getMemberList(String buyer) {
-		return mapper.getMemberList(buyer);
+	public List<HashMap<String, String>> getMemberList(String buyer, int auction_idx) {
+		return mapper.getMemberList(buyer, auction_idx);
 	}
 
 	public void memberPointReturn(Object id) {

@@ -215,7 +215,7 @@
 	<select id="getMemberList" resultType="hashmap">
 		SELECT member_id
 		 	FROM deposit
-		  		WHERE member_id != #{buyer}
+		  		WHERE member_id != #{buyer} AND auction_idx = #{auction_idx}
 	</select>
 	
 	<update id="pointWithDraw">

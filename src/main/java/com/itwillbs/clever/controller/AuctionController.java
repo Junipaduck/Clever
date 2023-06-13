@@ -465,10 +465,10 @@ public class AuctionController {
 	public String depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
 //		String id = (String)session.getAttribute("sId");
 		String buyer = auctionService.buyer(auction_idx);
-		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer);
+		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer, auction_idx);
 		System.out.println("제발 다시!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! : " + memberList.size());
 		if(!memberList.isEmpty()) {
-			for(int i = 0; i < memberList.size() - 1; i++) {
+			for(int i = 0; i < memberList.size(); i++) {
 				auctionService.memberPointReturn(memberList.get(i).get("member_id"));
 			}
 			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);

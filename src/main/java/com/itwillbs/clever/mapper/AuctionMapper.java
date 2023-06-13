@@ -72,7 +72,7 @@ public interface AuctionMapper {
 
 	int getMemberPoint(String id);
 
-	List<HashMap<String, String>> getMemberList(String buyer);
+	List<HashMap<String, String>> getMemberList(@Param("buyer") String buyer,@Param("auction_idx") int auction_idx);
 
 	void memberPointReturn(Object id);
 
