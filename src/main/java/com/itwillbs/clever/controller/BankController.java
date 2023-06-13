@@ -21,6 +21,9 @@ public class BankController {
 	@Autowired
 	private BankService bankService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
 	
 	// 사용자 인증 요청에 대한 응답 처리 및 엑세스 토큰 발급 요청 후 결과 처리
@@ -109,7 +112,7 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		return "product/bank_user_info";
+		return "product/bank_user_info"; // "bank/bank_user_info" 에서 잠깐 변경함
 	}
 	
 	// 유저 계좌 정보 조회 0609 강지훈 추가
@@ -142,7 +145,7 @@ public class BankController {
 	// 계좌 상세정보 조회(2.3.1. 잔액조회 API)
 	@PostMapping("bank_accountDetail")
 	public String getAccountDetail(
-			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+			@RequestParam Map<String, String> map, HttpSession session, Model model, MemberVO member) {
 		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
 		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
 		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
@@ -172,12 +175,17 @@ public class BankController {
 		
 		System.out.println(account);
 		
+		// 0613배하나 (2줄추가)
+		String sId = (String) session.getAttribute("sId");
+		MemberVO getMemberId = memberService.selectMember(sId);
+		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
+		model.addAttribute("member", getMemberId);
 		
-		return "product/member_bank_account_detail";
+		return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
 		
 	}
 	
@@ -247,7 +255,7 @@ public class BankController {
 			return "fail_back";
 		}
 		
-		return "product/withdraw_result";
+		return "product/withdraw_result"; // "bank/withdraw_result" 에서 잠깐 변경함
 	}
 	
 
