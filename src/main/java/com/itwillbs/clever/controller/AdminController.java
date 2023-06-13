@@ -34,6 +34,9 @@ public class AdminController {
 	private CustomerCenterService customerCenterService;
 	
 	@Autowired
+	private AuctionService auctionService;
+	
+	@Autowired
 	FileUpload fileUpload;
 	
 	@Value("${client_id}")
@@ -72,11 +75,16 @@ public class AdminController {
 		List<HashMap<String, String>> askList = adminService.getAskList();
 		model.addAttribute("askList", askList);
 		
+		// 중고 상품 차트 계산 
 		List<HashMap<String, String>> productList = adminService.getProductList();
 		model.addAttribute("productList", productList);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("productList", productList);
+		
+		// 경매 상품 차트 계산 
+		List<HashMap<String, String>> auctionList = adminService.getAuctionChartList();
+		model.addAttribute("auctionList", auctionList);
 		
 //		return new ModelAndView("admin/admin_main", "map", map);
 		return "admin/admin_main";
@@ -92,12 +100,28 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
+	// 회원 등급 조회 0613 강지훈추가
+	@GetMapping(value = "/adminMemberGrade.ad")
+	public String memberGradeList(Model model) {
+		
+		List<HashMap<String, String>> memberGradeList  = adminService.selectMemberGrade();
+		model.addAttribute("memberGradeList", memberGradeList);
+		
+		return "admin/admin_member_grade";
+	}
+	
 	// 경매 목록 조회
 	@GetMapping(value = "/adminAuction.ad")
 	public String autionList(HttpSession session, Model model) {
 		
+		// 경매 목록 조회
 		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
 		model.addAttribute("auctionList", auctionList);
+		
+		// 사진 조회
+		
+		List<HashMap<String, String>> fileList = adminService.selectAuctionFile();
+		model.addAttribute("fileList", fileList);
 		
 		return "admin/auction_list";
 	}
@@ -108,6 +132,10 @@ public class AdminController {
 		
 		List<HashMap<String, String>> auctionAuthList = adminService.getAuctionAuthList();
 		model.addAttribute("auctionAuthList", auctionAuthList);
+		
+		// 사진 조회
+		List<HashMap<String, String>> fileList = adminService.selectAuctionFile();
+		model.addAttribute("fileList", fileList);
 		
 		return "admin/auction_auth_list";
 	}

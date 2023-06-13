@@ -1,5 +1,7 @@
 package com.itwillbs.clever.mapper;
 
+import java.util.*;
+
 import org.apache.ibatis.annotations.*;
 
 import com.itwillbs.clever.vo.*;
@@ -16,6 +18,11 @@ public interface BankMapper {
 	AccountVO selectAccount(String id);
 
 	// 포인트 적립
-	int updateMemberPoint(@Param("id") String id, @Param("point") int point);
+	int updateMemberPoint(@Param("id") String id, @Param("charge_point") int charge_point, @Param("account_amt") int account_amt);
+
+	// 멤버 잔액 조회 
+	MemberVO selectMemberInfo(String id);
+
+	int insertPointHistory(Map<String, String> map);
 
 }

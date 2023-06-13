@@ -2,6 +2,7 @@ package com.itwillbs.clever.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,12 @@ public class MypageController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private AuctionService auctionService;
+	
+	@Autowired
+	private BankApiService apiService;
 	
 	@Value("${client_id}")
 	private String client_id;
@@ -132,6 +139,48 @@ public class MypageController {
     		model.addAttribute("msg", "변경할 비밀번호가 동일하지 않습니다!");
     		return "fail_back";
     	}
+	}
+	
+// 중고상품 계좌이체 관련 코드 시작 ========================================================================================	
+	// 중고상품 상세페이지에서 [바로구매] 버튼 클릭 시 나오는 새창페이지
+	@GetMapping("/payAuction")
+	public String buyProduct(Model model, @RequestParam int auction_idx, HttpSession session) {
+		// 중고상품 상세보기 select
+		Map detailmap = auctionService.detailList(auction_idx);
+		model.addAttribute("detailmap", detailmap);
+		
+		//파일테이블에서 경매 목록의 첫번째등록한 이미지만 select
+		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); 
+		model.addAttribute("auctionfileList", auctionfileList);
+		
+		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("access_token : " + access_token);
+		System.out.println("user_seq_no : " + user_seq_no);
+		
+		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
+		if(access_token == null) {
+			model.addAttribute("msg", "계좌 인증 필수!");
+			return "fail_back";
+		}
+		
+		// 사용자 정보 조회(REST API 요청)		
+		// BankApiService - requestUserInfo() 메서드 호출
+		// => 파라미터 : 엑세스토큰, 사용자번호   리턴타입 : ResponseUserInfoVO(userInfo)
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+		System.out.println(userInfo);
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("userInfo", userInfo);
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("target", "loginForm.me");
+			return "success";
+		} else {
+			return "mypage/bank_user_info";
+		}
 	}
 	
 }

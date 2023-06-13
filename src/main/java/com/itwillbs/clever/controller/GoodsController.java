@@ -292,7 +292,9 @@ public class GoodsController {
 				int updateGoods = goodsService.updateStock(goods_idx);
 				
 				if(insertCount > 0 && updateGoods > 0) { // 결제내역 insert 성공시
-					return "goods/goods_pay_pro";
+					model.addAttribute("msg", "적립금 사용 성공! 구매 완료!");
+					model.addAttribute("target", "goodsPayPro.ad");
+					return "success";
 				} else {
 					model.addAttribute("msg", "결제 내역 insert 실패!");
 					return "fail_back";
@@ -305,10 +307,15 @@ public class GoodsController {
 			}
 			
 		} else { // 포인트가 부족할 때 
-			model.addAttribute("msg", "포인트가 부족합니다!");
+			model.addAttribute("msg", "적립금이 부족합니다!");
 			return "fail_back";
 		}
 		
+	}
+	
+	@GetMapping(value = "/goodsPayPro.ad")
+	public String goodsPayPro() {
+		return "goods/goods_pay_pro";
 	}
 }
 

@@ -18,6 +18,7 @@ public class CommunityController {
 	@Autowired
 	private CommunityService communityService;
 	
+	
 	@GetMapping(value = "community")
 	public String community(Model model) {
 		List communityList = communityService.communityList();
@@ -51,11 +52,22 @@ public class CommunityController {
 		int communityUpload = communityService.insertCommunity(map,id);
 		if(communityUpload > 0) {
 			model.addAttribute("msg", "등록 성공!");
-			if(map.get("community_div").equals("auction")) {
-				model.addAttribute("target", "community_auction");
+			
+			// 글 작성 시 포인트 100점 적립
+			int updateCount = communityService.getMemberPoint(id);
+			if(updateCount > 0) {
+				if(map.get("community_div").equals("auction")) {
+					model.addAttribute("msg", "글 작성 적립금 100점 적립 완료!");
+					model.addAttribute("target", "community_auction");
+				} else {
+					model.addAttribute("msg", "글 작성 적립금 100점 적립 완료!");
+					model.addAttribute("target", "community");
+				}
 			} else {
-				model.addAttribute("target", "community");
+				model.addAttribute("msg", "포인트 적립 실패!");
+				return "fail_back";
 			}
+			
 			return "success";
 		} else {
 			model.addAttribute("msg", "등록 실패!");

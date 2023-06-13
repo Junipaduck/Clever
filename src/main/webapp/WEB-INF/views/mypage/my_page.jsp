@@ -62,6 +62,7 @@ div.right {
 
 
 <body>
+<<<<<<< HEAD
 <script type="text/javascript">
 
 /* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
@@ -89,6 +90,24 @@ $(function() {
 //  });
 
 </script>
+=======
+
+<script type="text/javascript">
+	
+/* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
+function payAuction(idx){
+	window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
+}
+ 	
+$(function() {
+	$(document).on("click", ".payAuction", function() {
+ 		var idx = $(this).attr("title");
+ 		payAuction(idx);
+ 	})
+ });
+</script>
+
+>>>>>>> branch 'main' of https://github.com/Junipaduck/Clever
 	<!-- 헤더 시작 -->
 	<jsp:include page="../inc/mypage_header.jsp" />
 
@@ -114,7 +133,10 @@ $(function() {
 				</div>
 				<div>
 					<p>
-						<a href="#">${member.member_point} 포인트</a>
+						<a href="#">적립금 ${member.member_point}</a>
+					</p>
+					<p>
+						<a href="#">포인트 ${member.charge_point}</a>
 					</p>
 				</div>
 			</div>
@@ -124,10 +146,18 @@ $(function() {
 					<div>
 						<h2>${member.member_id}님</h2>
 						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
+						<button onclick="location.href='bank_memberInfo'">내 계좌 관리</button>
 					</div>
 					<div>
 						<p>
-							<span>OK</span> 계좌 인증 완료
+							<c:choose>
+								<c:when test="${member.account_auth eq 'Y'}">
+									<span>OK</span> 계좌 인증 완료
+								</c:when>
+								<c:otherwise>
+									<span>NO</span> 계좌 미인증
+								</c:otherwise>
+							</c:choose>
 						</p>
 					</div>
 				</div>
@@ -395,11 +425,6 @@ $(function() {
 						<p>
 							구매내역 <span>2</span>
 						</p>
-						<!-- 테스트용 -->
-						<c:forEach items="${goodsList }" var="goodsList">
-							상품명 : ${goodsList.buy_title }
-							구매일 : ${goodsList.buy_date }
-						</c:forEach>
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
@@ -708,7 +733,7 @@ $(function() {
 										</div>
 									</a>
 									<div class="btn_area">
-									<button type="button" class="">결제하기</button>
+									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button>
 									<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 									</div>
 								</div>

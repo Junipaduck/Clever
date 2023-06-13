@@ -89,7 +89,14 @@
 	DELETE FROM tiny_reply_community WHERE community_idx = #{map.community_idx }
 	</delete>
 
-	
+	<update id="updateMemberPoint">
+		UPDATE
+			member
+				SET 
+					member_point = member_point + 100
+						WHERE
+							member_id = #{id}
+	</update>
 </mapper>
 
 
