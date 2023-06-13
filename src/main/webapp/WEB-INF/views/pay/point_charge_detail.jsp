@@ -88,7 +88,7 @@ td, tr, th{
 		<input type="hidden" name="tran_amt" value="10000">
 		<input type="text" name="member_id" value="${member.member_id }">
 		<input type="text" name="point_status" value="충전(출금)">
-		<input type="text" name="account_amt" value="${account.balance_amt }">
+		<input type="text" name="account_amt" value="${member.member_balance }">
 		
 		<table border="1">
 			<tr>
