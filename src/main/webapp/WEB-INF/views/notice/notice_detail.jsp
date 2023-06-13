@@ -7,38 +7,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>클레버 - 공지사항</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
+<title>Clever - 경매상품등록</title>
+<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
-<!--아이콘-->
+<!-- 아이콘 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <!-- 부트스트랩 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-	crossorigin="anonymous">
-<!-- 부트스트랩 icon -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!--css-->
+<!-- 공통 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
-<!-- 내 상점 페이지 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/market_my_store.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 
-<!-- customer_center 외부 css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/board_list.jo112.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/footer.1.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/unit_csboard_top2.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/faq.css">
-
-
+<!-- CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_selling_form.css?after">
+<!-- 햄버거 메뉴 호버시 -->
+<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/goods/goods_selling_form.js?after"></script>
+<!-- 데이트피커 cdn -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/datepicker.css">
+ 
+<!-- 타임피커 cdn -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/timepicker.css">
+<style type="text/css">
+@import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+font-family: 'SUITE-Regular';
+}
+</style>
 
 </head>
 <body>
@@ -47,184 +58,44 @@
 		<jsp:include page="../inc/header.jsp" />
 	</header>
 
-	<!-- main_content 영역 -->
-
-	<div id="contentWrapper">
-		<div id="contentWrap">
-
-
-			<div
-				style="display: flex; justify-content: space-between; margin: 183px 0 0 0; align-items: center">
-				<div class="log-tit animated con-tit">
-					<p>공지사항</p>
-				</div>
-			</div>
-
-
-	<input type="hidden" name="notice_idx" value="${param.notice_idx }">
-					<div class="bbs-table-list">
-
-						<!-- 자주묻는 질문 시작 -->
-						<div id="faqWrap">
-							<div class="page-body">
-								<div id="faqTable">
-									<table summary="분류 제목">
-										<caption>질문/답변</caption>
-										<colgroup>
-											<col width="100" />
-											<col width="200" />
-											<col width="*" />
-										</colgroup>
-										<c:forEach items="${noticeDetail }" var="noticeDetail">
-										<thead>
-											<tr>
-												<th scope="col">
-													<div class="tb-center">글번호</div>
-												</th>
-												<th scope="col">
-													<div class="tb-center">${noticeDetail.notice_idx }</div>
-												</th>
-												<th></th>
-												<th></th>
-											</tr>
-											<tr>
-												<th scope="col">
-													<div class="tb-center">조회수</div>
-												</th>
-												<th>
-													<div class="tb-center">${noticeDetail.notice_readcount }</div>
-												</th>
-												<th></th>
-												<th></th>
-											</tr>
-											<tr>
-												<th scope="col">
-													<div class="tb-center">제목</div>
-												</th>
-												<th>
-													<div class="tb-center">${noticeDetail.notice_title }</div>
-												</th>
-												<th></th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-												<tr>
-													<td scope="col">
-														<div class="tb-left" style="font-weight: 400;">${noticeDetail.notice_content }</div>
-													</td>
-												</tr>
-										</tbody>
-										</c:forEach>
-									</table>
-								</div>
-								<input type="button" value="등록하기" style="margin-left: 1300px;">
-							</div>
-							<!-- .page-body -->
-<!-- 							<div> -->
-<!-- 								<ol class="paging"> -->
-<!-- 									<li><strong>1</strong></li> -->
-<!-- 									<li><a href="/shop/faq.html?page=2">2</a></li> -->
-<!-- 									<li><a href="/shop/faq.html?page=3">3</a></li> -->
-<!-- 									<li><a href="/shop/faq.html?page=4">4</a></li> -->
-<!-- 									<li class="last"><a href="/shop/faq.html?page=4"><img -->
-<!-- 											src="/images/d3/modern_simple/btn/btn_bmatch_paging_last.gif" -->
-<!-- 											alt="끝" title="" /></a></li> -->
-<!-- 								</ol> -->
-<!-- 							</div> -->
-						</div>
-						<!-- #faqWrap -->
-
-					</div>
-					<!-- #contentWrap -->
-				</div>
-				<!-- #contentWrapper-->
-				<hr />
-				</div>
-
-
-
-				<!-- main_content 영역 끝 -->
-
-				<!-- 푸터 시작 -->
-				<jsp:include page="../inc/footer.jsp" />
-
-
-				<!-- js -->
-				<script
-					src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/market/market_intro_modify.js"></script>
-
-				<!-- customer_center 외부 js -->
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/all.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/analytics.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/bigin.sdk.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/board_list.jo112.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/bookmark.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/click.euc-kr.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/common.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/cookie.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/detailpage.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/fbevents.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/flash.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/footer.1.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/genesis.common.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/gtm.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.bxslider.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/jquery-1.7.2.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/kp.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/lazyload.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/ld.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/mslog.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/owl.carousel.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/prototype.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/referer_cookie.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/remind.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/rightbanner.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/script.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/slick.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/swiper.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/unit_csboard_top2.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/util-min-2.0.1.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/wcslog.js"></script>
-				<script
-					src="${pageContext.request.contextPath }/resources/js/customer_center/wp_astg_2.0_shop.js"></script>
+<!--메인 컨텐츠 -->
+        <div id="main_content">
+            <!--판매 폼-->
+            <input type="hidden" name="notice_idx" value="${param.notice_idx }">
+            <section class="goods_form">
+                <h2>기본정보</h2>
+                <form action="community_formPro" class="frm_selling_goods" id="formform" enctype="multipart/form-data" method="post">
+                    <div class="goods_title_area">
+                        등록일 | ${noticeDetail[0].notice_date }
+                        <br>
+                        조회수 | ${noticeDetail[0].notice_readcount }
+                    </div>
+                    <c:forEach items="${noticeDetail }" var="noticeDetail">
+                    <div class="goods_title_area">
+                        <p>제목</p>
+                        <div class="goods_title">
+                            <input type="text" value="${noticeDetail.notice_title }" maxlength="50" readonly="readonly">
+                        </div>
+                    </div>
+                    
+                    <div class="goods_info_area">
+                        <p>설명</p>
+                        <div>
+                            <textarea cols="30" rows="10" readonly="readonly">${noticeDetail.notice_content }</textarea>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </form>
+                <br>
+            	<button type="submit" class="btn btn-primary" onclick="location.href='noticeModifyForm.ad?notice_idx=${noticeDetail[0].notice_idx}'">수정하기</button>
+            </section>
+    </div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<!-- 푸터 시작 -->
+	<footer>
+		<jsp:include page="../inc/footer.jsp" />
+	</footer>
 </body>
 </html>
 
