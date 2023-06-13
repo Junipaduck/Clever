@@ -129,8 +129,10 @@ public class PointController {
 	
 	@PostMapping("point_withdraw")
 	public String pointWithdraw(
-			@RequestParam Map<String, String> map, HttpSession session, Model model, int point) {
+			@RequestParam Map<String, String> map, HttpSession session, Model model, int charge_point, String point_status) {
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		
+		System.out.println("--------------------------------------map" + map);
 		
 		String id = (String)session.getAttribute("sId");		
 		map.put("access_token", (String)session.getAttribute("access_token"));
@@ -152,12 +154,28 @@ public class PointController {
 		}
 		
 		System.out.println("포인트 테스트~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("포인트 넘어오나~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + point);
+		System.out.println("포인트 넘어오나~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + charge_point);
 		
+		// 로그인 한 사람의 잔액 조회 
+		MemberVO member = bankService.getMemberInfo(id);
+		int account_amt = member.getMember_balance();
 		
+		System.out.println("잔액 찍히나?????????????????????????   " + account_amt);
 		
-		int updateCount = bankService.updateMemberPoint(id, point);
+		int updateCount = bankService.updateMemberPoint(id, charge_point, account_amt);
 		if(updateCount > 0) {
+			
+//			map.put("point_status", point_status);
+			// 포인트 히스토리 insert
+			int insertCount = bankService.insertPointHistory(map);
+			
+			if(insertCount > 0) {
+				model.addAttribute("msg", "포인트 내역 insert 완료!");
+			} else {
+				model.addAttribute("msg", "포인트 내역 insert 실패!");
+				return "fail_back";
+			}
+			
 			model.addAttribute("msg", "포인트 충전 성공!");
 			model.addAttribute("target", "pointCharge");
 			return "success";

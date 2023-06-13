@@ -86,6 +86,10 @@ td, tr, th{
 		<input type="hidden" name="recv_client_account_num" value="${account_num_masked }">
 		<input type="hidden" name="recv_client_fintech_use_num" value="${account.fintech_use_num }">
 		<input type="hidden" name="tran_amt" value="10000">
+		<input type="text" name="member_id" value="${member.member_id }">
+		<input type="text" name="point_status" value="충전(출금)">
+		<input type="text" name="account_amt" value="${account.balance_amt }">
+		
 		<table border="1">
 			<tr>
 <!-- 				<th>예금주명</th> -->
@@ -96,7 +100,7 @@ td, tr, th{
 				<th></th>
 			</tr>
 			<tr>
-				<td><input type="text" name="point"></td>
+				<td><input type="text" name="charge_point"></td>
 				<td><input type="submit" value="충전하기"></td>
 			</tr>
 		</table>

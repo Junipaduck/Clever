@@ -45,6 +45,7 @@ public class MemberVO {
 	private String member_rank;
 	private int member_point;
 	private int charge_point;
+	private int member_balance;
 }
 
 
