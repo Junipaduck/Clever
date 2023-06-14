@@ -29,6 +29,7 @@ public class FileUpload {
 	public void upload(ArrayList<MultipartFile> file, HttpSession session, Map<String, Object> paramMap) {
 		
 		if (file != null) {
+//			String uploadDir = "http://c3d2212t2file.itwillbs.com/files/webapps/Clever/resources/fileUpload/"; //프로젝트상의 가상 업로드 경로
 			String uploadDir = "/resources/fileUpload"; //프로젝트상의 가상 업로드 경로
 			String saveDir = session.getServletContext().getRealPath(uploadDir); //실제 업로드 경로
 			System.out.println("saveDir : " + saveDir);

@@ -87,7 +87,9 @@ font-family: 'SUITE-Regular';
                     </c:forEach>
                 </form>
                 <br>
-            	<button type="submit" class="btn btn-primary" onclick="location.href='noticeModifyForm.ad?notice_idx=${noticeDetail[0].notice_idx}'">수정하기</button>
+                <c:if test="${sessionScope.sId eq 'admin' }">
+	            	<button type="submit" class="btn btn-primary" onclick="location.href='noticeModifyForm.ad?notice_idx=${noticeDetail[0].notice_idx}'">수정하기</button>
+                </c:if>
             </section>
     </div>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
