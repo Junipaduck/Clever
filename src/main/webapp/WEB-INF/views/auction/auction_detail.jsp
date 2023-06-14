@@ -69,9 +69,14 @@
     <!-- main_content 영역 -->
     	<input type="hidden" id="inputInt" name="inputInt" value="${detailmap.auction_final_price }">
     	<input type="hidden" id="currentAjax" name="currentAjax" value="0">
+<!--     	<input type="hidden" id="dateUpdateCheck" name="dateUpdateCheck" value="false"> -->
+    	<input type="hidden" id="auctionDateAddCount" name="auctionDateAddCount" value="${detailmap.date_addCount }">
     	<input type="hidden" id="immediately_price" name="immediately_price" value="${detailmap.immediately_price }">
-    	<input type="hidden" id=buyer_id name="buyer_id" value="${detailmap.buyer_id }">
-    	<input type="hidden" id=priceMap name="priceMap" value="${selectAuctionPrice.message_content }">
+    	<input type="hidden" id="buyer_id" name="buyer_id" value="${detailmap.buyer_id }">
+    	<input type="hidden" id="priceMap" name="priceMap" value="${selectAuctionPrice.message_content }">
+    	<input type="hidden" id="startPrice" name="startPrice" value="${detailmap.auction_price }">
+    	<input type="hidden" id="seller_id" name="seller_id" value="${detailmap.member_id }">
+    	
         <div id="main_content">
             <br>
             <!-- 카테고리 -->
@@ -199,6 +204,13 @@
 	                            let url = window.location.href;
 	                        	var auction_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
  	                        	var currentAjax =  document.getElementById("currentAjax").value;
+	                        	var auctionDateAddCount = document.getElementById("auctionDateAddCount").value;
+	                        	var currentPrice = parseInt(document.getElementById("inputInt").value);  
+	                        	var startPrice = parseInt(document.getElementById("startPrice").value);  
+	                        	var seller_id = document.getElementById("seller_id").value;
+	                        	var session_id = "${sessionScope.sId}";
+	                        	var dateUpdateCheck = false;
+	                        	
 	                                	function getTime() {
 	                                	  var element;
 	                                	  const endDay = new Date('${detailmap.auction_end}');
@@ -213,26 +225,48 @@
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("timeOut");
 	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "경매 종료"; 
-	                                		  	if(currentAjax==0){
-	                           		  			 	$.ajax({
-	                           		  			 		url : "auction_confirmed",
-	                           		  			 		type: 'GET',
-	                           		  			 		data: {'auction_idx':auction_idx},
-	                           		  			 		dataType : "json",
-	                           		  			 		success:function(data){
-	                           		  			 			currentAjax = 1;
-	                           		  			 			for(let auction of data) {
-	                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
-	                           		  			 			}
-	                           		  			 			location.href = "depositReturn?auction_idx=" + auction_idx;
-	                           		  			 		},
-	                           		  			 		error:function(error){
-	                           		  			 			console.log(error);
-	                           		  			 		}
-	                           		  			 		
-	                           		  			 	});
-	                                	  	}
+	                                		  element.innerHTML = "경매 종료";
+	                                		  if(currentPrice==startPrice && dateUpdateCheck == false){
+	                                			  if(seller_id==session_id){
+		                                			  if(auctionDateAddCount<4) {
+		                                				  dateUpdateCheck = true;
+		                                				  if(window.confirm("3일 연장하시겠습니까?")){
+			                                				  $.ajax({
+			 	                           		  			 		url : "auction_dateAdd",
+			 	                           		  			 		type: 'GET',
+			 	                           		  			 		data: {'auction_idx':auction_idx},
+			 	                           		  			 		success:function(){
+			 	                           		  			 			auctionDateAddCount++;
+			 	                           		  			 			alert(session_id + "님의 경매가 3일 연장되었습니다. 현재 연장 횟수 : " + auctionDateAddCount + "/3회");
+			 	                           		  			 		},
+			 	                           		  			 		error:function(error){
+			 	                           		  			 			console.log(error);
+			 	                           		  			 		}
+			 	                           		  			 	});
+		                                				  }
+		                                			  }
+	                                			  }
+	                                		  } else {
+	                                			  if(currentAjax==0 && dateUpdateCheck==false){
+		                           		  			 	$.ajax({
+		                           		  			 		url : "auction_confirmed",
+		                           		  			 		type: 'GET',
+		                           		  			 		data: {'auction_idx':auction_idx},
+		                           		  			 		dataType : "json",
+		                           		  			 		success:function(data){
+		                           		  			 			currentAjax = 1;
+		                           		  			 			for(let auction of data) {
+		                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
+		                           		  			 			}
+		                           		  			 			location.href = "depositReturn?auction_idx=" + auction_idx;
+		                           		  			 		},
+		                           		  			 		error:function(error){
+		                           		  			 			console.log(error);
+		                           		  			 		}
+		                           		  			 		
+		                           		  			 	});
+		                                	  		}
+	                                		  }
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -514,10 +548,13 @@
 	var logList = "${logList}";
 	var logRoom_idx = "${logRoomIdx}";
 	var message; //메시지 객체 들고오는 변수
-	var checkPrice = false; //정상 값이 입력되었는지 판별
+	var checkPrice; //정상 값이 입력되었는지 판별
 	var userPrice; // 사용자가 이전 입찰한 금액을 저장할 변수
 	var user; // 사용자 ID 저장 변수
 	var priceMap; // 처음 로드에 이전 입찰한 금액을 DB로 받아오는 변수
+	var currentPrice; // 현재가격 객체 들어가는 변수
+	var regexPrice; //현재 가격 객체(currentPrice)에 정규표현식을 적용후 인트 값 변화 변수
+	
 // 	const previousRecordPrice = document.getElementById("previousRecordPrice"); //
 	
 	var regex = /[^0-9]/g;
@@ -546,11 +583,12 @@
 			return;
 		}
 		
-		var currentPrice = document.getElementById("currentPrice").innerText; 
-		var regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
+		currentPrice = document.getElementById("currentPrice").innerText; 
+		regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
 		var priceInputInt = parseInt(uncomma(priceInput));  //현재 입력한 값 인트타입 변환
 		
 		if(regexPrice>=priceInputInt) {
+			checkPrice = false;
 			alert("현재 가격보다 높게 입력하세요 !!");
 			return;
 		}
@@ -572,7 +610,6 @@
 		$('#price').val(comma(regexPrice));
 		
 	}
-	
 	
 	
 // 엔터키 눌렀을 때 메세지 전송

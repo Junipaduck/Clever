@@ -466,7 +466,6 @@ public class AuctionController {
 //		String id = (String)session.getAttribute("sId");
 		String buyer = auctionService.buyer(auction_idx);
 		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer, auction_idx);
-		System.out.println("제발 다시!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! : " + memberList.size());
 		if(!memberList.isEmpty()) {
 			for(int i = 0; i < memberList.size(); i++) {
 				auctionService.memberPointReturn(memberList.get(i).get("member_id"));
@@ -474,8 +473,17 @@ public class AuctionController {
 			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);
 		}
 		
-		
 		return "redirect://auction";
 	}
+	
+	@ResponseBody
+	@GetMapping("auction_dateAdd")
+	public void auction_dateAdd(int auction_idx, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		auctionService.updateDateAdd(id, auction_idx);
+		
+	}
+	
 	
 }

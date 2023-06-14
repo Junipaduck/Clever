@@ -62,9 +62,9 @@ public interface AuctionMapper {
 
 	void logRoom(int auction_idx);
 
-	String depositList(@Param("sId") String sId,@Param("auction_idx") int auction_idx);
+	String depositList(@Param("sId") String sId, @Param("auction_idx") int auction_idx);
 
-	int depositInsert(@Param("id") String id,@Param("auction_idx") int auction_idx);
+	int depositInsert(@Param("id") String id, @Param("auction_idx") int auction_idx);
 
 	String buyer(int auction_idx);
 
@@ -72,11 +72,13 @@ public interface AuctionMapper {
 
 	int getMemberPoint(String id);
 
-	List<HashMap<String, String>> getMemberList(@Param("buyer") String buyer,@Param("auction_idx") int auction_idx);
+	List<HashMap<String, String>> getMemberList(@Param("buyer") String buyer, @Param("auction_idx") int auction_idx);
 
 	void memberPointReturn(Object id);
 
 	int deleteMember(@Param("buyer") String buyer,@Param("auction_idx") int auction_idx);
+
+	void updateDateAdd(@Param("id")String id, @Param("auction_idx")int auction_idx);
 
 
 }
