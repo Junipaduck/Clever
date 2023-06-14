@@ -238,6 +238,7 @@
 			 	                           		  			 		success:function(){
 			 	                           		  			 			auctionDateAddCount++;
 			 	                           		  			 			alert(session_id + "님의 경매가 3일 연장되었습니다. 현재 연장 횟수 : " + auctionDateAddCount + "/3회");
+			 	                           		  			 			location.reload();
 			 	                           		  			 		},
 			 	                           		  			 		error:function(error){
 			 	                           		  			 			console.log(error);

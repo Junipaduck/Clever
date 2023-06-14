@@ -231,7 +231,7 @@
 	</delete>
 	
 	<update id="updateDateAdd">
-		UPDATE auction SET auction_end = DATE_ADD(auction_end, INTERVAL 3 DAY), date_addCount = date_addCount + 1
+		UPDATE auction SET auction_end = DATE_ADD(now(), INTERVAL 3 DAY), date_addCount = date_addCount + 1
 			WHERE member_id = #{id} AND auction_idx = #{auction_idx};
 	</update>
 	
