@@ -145,4 +145,13 @@
 			WHERE 
 				member_id = 'admin'
 	</update>
+	
+	<!-- 해당 아이디 신고 전체 내역 select -->
+	<select id="selectReportList" resultType="HashMap">
+		SELECT *
+			FROM report
+			WHERE seller_id = #{sId}
+			ORDER BY report_idx DESC;
+	</select>
+	
 </mapper>

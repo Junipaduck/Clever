@@ -156,6 +156,12 @@ public class AdminService {
 		return mapper.selectAdminPointList();
 	}
 
+	// 개인회원 입출금 내역 
+	public List<HashMap<String, String>> getMemberAccountList() {
+		
+		return mapper.selectMemberAccountList();
+	}
+
 		
 	}
 

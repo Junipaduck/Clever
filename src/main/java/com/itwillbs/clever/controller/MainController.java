@@ -38,6 +38,7 @@ public class MainController {
 		String selectMemberInterest = productService.selectMemberInterest(sId, member); // member가 회원가입할때 넣었던 member_interest컬럼 select
 		List<HashMap<String, String>> selectIntCtgr = productService.selectIntCtgr(selectMemberInterest, product); // sId의 interest에 맞는 카테고리의 상품들 select
 		System.out.println("sId의 관심카테고리는 ? : " + selectMemberInterest);
+		System.out.println(selectIntCtgr);
 		
 		model.addAttribute("productList", productList);
 //		model.addAttribute("fileList", fileList);
