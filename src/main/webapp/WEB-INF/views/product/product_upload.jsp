@@ -153,8 +153,8 @@ $(function() {
                         <div>
                             <div class="goods_category" style="height: 401.818182px;">
                                 <div class="goods_Lcategory">
-                                    <div>패션의류</div>
-                                    <div>패션잡화</div>
+                                    <div>패션/의류</div>
+                                    <div>패션/잡화</div>
                                     <div>취미/컬렉션</div>
                                     <div>디지털</div>
                                     <div>스포츠/레저</div>
