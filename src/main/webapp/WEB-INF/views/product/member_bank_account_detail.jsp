@@ -116,7 +116,7 @@ td, tr, th{
 <!-- 				<th>송금할 금액</th> -->
 <!-- 				<th></th> -->
 <!-- 			</tr> -->
-<%-- 				<input type="hidden" name="account_num_masked" value="${account.account_num_masked }"> --%>
+				<input type="hidden" name="account_num_masked" value="${account_num_masked }">
 				<input type="hidden" name="id" value="${member.member_id }">
 				<input type="hidden" name="user_name" value="${user_name }">
 				<input type="hidden" name="recv_client_name" value="${sessionScope.sId }">
