@@ -201,7 +201,7 @@ $(document).ready(function() {
 	        if(!foundMatch) {
 	            var strTitle = '<div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="' + roomId + '">'
 	            				 + productSubject
-	            				 + '<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href=\'deleteRoom?chatRoom_id=' + roomId + '\'" style="width: 40px; position: absolute; left: 730px;">'
+	            				 + '<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href=\'deleteRoom?chatRoom_id=' + roomId + '\'" style="width: 40px; position: absolute; left: 950px;">'
 	            				 + '</div>';
 	            $("#roomSelect").append(strTitle);
 	        }
@@ -319,7 +319,7 @@ $(document).ready(function() {
 		                	<c:forEach items="${chatList }" var="chatList">
 			                    <div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="${chatList.chatRoom_id}">
 			                    	${chatList.product_subject }
-			                    	<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href='deleteRoom?chatRoom_id=${chatList.chatRoom_id}'" style="width: 40px; position: absolute; left: 730px;">
+			                    	<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href='deleteRoom?chatRoom_id=${chatList.chatRoom_id}'" style="width: 40px; position: absolute; left: 950px;">
 			                    </div>
 <%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>
 		<!-- 	                    <div class="roomEl" data-id="2">JSP책 판매</div> -->
