@@ -2,6 +2,7 @@ package com.itwillbs.clever.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -43,5 +44,9 @@ public interface MypageMapper {
 	List<HashMap<String, String>> selectDWHistory(String sId);
 
 	List<HashMap<String, String>> selectMemberGrade(String sId);
+
+	int insertReview(Map<String, String> map);
+
+	List<HashMap<String, String>> selectReviewCheck(String sId);
 	
 }

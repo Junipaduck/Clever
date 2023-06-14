@@ -2,6 +2,7 @@ package com.itwillbs.clever.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,6 +100,15 @@ public class MypageService {
 	// 멤버 등급 조회
 	public List<HashMap<String, String>> selectMemberGrade(String sId) {
 		return mapper.selectMemberGrade(sId);
+	}
+
+	// 후기 작성 
+	public int insertReview(Map<String, String> map) {
+		return mapper.insertReview(map);
+	}
+
+	public List<HashMap<String, String>> selectReviewCheck(String sId) {
+		return mapper.selectReviewCheck(sId);
 	}
 	
 	

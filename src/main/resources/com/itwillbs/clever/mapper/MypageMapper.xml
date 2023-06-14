@@ -94,6 +94,7 @@
 			WHERE 
 				member_id = #{sId}
 	</update>
+	
 	<insert id="depositAdMoney">
 		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
 <!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
@@ -166,6 +167,28 @@
 		SELECT member_rank
 			FROM member
 			WHERE member_id = #{sId}
+	</select>
+	
+	<!-- 후기 작성 insert -->
+	<insert id="insertReview">
+		<selectKey keyProperty="review_idx" resultType="int" order="BEFORE">
+	 			SELECT IFNULL(MAX(review_idx), 0) FROM review
+		</selectKey>
+		INSERT 
+			INTO review 
+			VALUES(
+				#{review_idx} + 1
+				,#{review_id}
+				,#{review_seller}
+				,#{review_content}
+				,now()
+			)
+	</insert>
+	
+	<select id="selectReviewCheck" resultType="HashMap">
+		SELECT *
+			FROM review
+			WHERE review_id = #{sId}
 	</select>
 	
 </mapper>

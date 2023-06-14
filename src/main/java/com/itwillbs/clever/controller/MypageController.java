@@ -109,6 +109,10 @@ public class MypageController {
 		List<HashMap<String, String>> memberGrade = mypageService.selectMemberGrade(sId);
 		model.addAttribute("memberGrade", memberGrade);
 		
+		// 후기 조회
+		List<HashMap<String, String>> reviewCheck = mypageService.selectReviewCheck(sId);
+		model.addAttribute("reviewCheck", reviewCheck);
+		
 		return "mypage/my_page";
 	}
 		
@@ -154,6 +158,36 @@ public class MypageController {
     		model.addAttribute("msg", "변경할 비밀번호가 동일하지 않습니다!");
     		return "fail_back";
     	}
+	}
+	
+	// 후기 페이지 매핑
+	@GetMapping("/review.me")
+	public String review(HttpSession session, Model model) {
+		
+		return "mypage/review_write";
+	}
+	
+	// 후기 작성
+	@PostMapping(value = "/reviewPro")
+	 public String reviewPro(HttpSession session, Model model, @RequestParam Map<String, String> map, @RequestParam String review_content) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		map.put("review_id", sId);
+		map.put("review_seller", map.get("review_seller"));
+		
+		System.out.println("뭐라노시발" + review_content);
+		map.put("review_content", review_content); //내용
+		
+		int insertCount = mypageService.insertReview(map);
+		if(insertCount < 0 ) {
+			model.addAttribute("msg", "리뷰 등록 실패");
+			return "fail_back";
+		} else {
+			model.addAttribute("msg", "리뷰 등록 성공");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		}
 	}
 	
 	// 마이페이지 유저 계좌 정보 조회 

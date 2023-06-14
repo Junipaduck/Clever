@@ -569,7 +569,7 @@ $(function() {
 												</div>
 											</c:when>
 											<c:when test="${productBuyList.buy_status eq '구매확정' }">
-												<button type="button" class="btn_review_modal">후기작성</button>
+												<button type="button" onclick="location.href='review.me?review_seller=${productBuyList.buy_seller}'">후기작성</button>
 											</c:when>
 										</c:choose>
 									</div>
