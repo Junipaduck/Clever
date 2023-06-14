@@ -332,8 +332,8 @@ public class ProductController {
 		model.addAttribute("productDetail", productDetail);
 		
 		// 중고상품 파일이미지 select
-		List<HashMap<String, String>> filesList = productService.selectFiles(); // 중고상품 이미지 모두 select
-		model.addAttribute("filesList", filesList);
+//		List<HashMap<String, String>> filesList = productService.selectFiles(); // 중고상품 이미지 모두 select
+//		model.addAttribute("filesList", filesList);
 				
 		return "product/product_modify_form";
 	}
@@ -407,17 +407,17 @@ public class ProductController {
 	
 	
 	//중고수정페이지에서 이미지파일삭제 (아직 안됨ㅠㅠ 쿼리에 하드코딩하면 실행되는데, where 절에 필요한 파라미터를 ajax의 data로 전달받는게 어렵네)
-	@PostMapping("/deleteFile")
-    @ResponseBody
-    public ResponseEntity<String> deleteQuery(FileVO file, @RequestParam String file_name) {
-        // delete 구문 실행
-        // 적절한 데이터베이스 연동 로직을 수행하여 해당 데이터를 삭제
-		System.out.println("잠좀자자!!!!!!!!!!!!!!" + file_name + ", " + file.getFile_name());
-		productService.deleteFile(file);
-		
-        // delete 구문이 성공적으로 실행되었다고 가정하고 성공 응답 반환
-        return ResponseEntity.ok("Delete 구문 실행 성공");
-    }
+//	@PostMapping("/deleteFile")
+//    @ResponseBody
+//    public ResponseEntity<String> deleteQuery(FileVO file, @RequestParam String file_name) {
+//        // delete 구문 실행
+//        // 적절한 데이터베이스 연동 로직을 수행하여 해당 데이터를 삭제
+//		System.out.println("잠좀자자!!!!!!!!!!!!!!" + file_name + ", " + file.getFile_name());
+//		productService.deleteFile(file);
+//		
+//        // delete 구문이 성공적으로 실행되었다고 가정하고 성공 응답 반환
+//        return ResponseEntity.ok("Delete 구문 실행 성공");
+//    }
 	
 	
 	// 중고상품 삭제하기
