@@ -47,7 +47,7 @@ td, tr, th{
 		    </header>
 		  
 <!-- fintech 수업의 bank_account_detail.jsp 파일의 내용을 가져옴 -->		    
-	<h4>3. ${user_name } 고객님이 선택하신 출금할 계좌의 정보를 확인해주세요😊</h4>
+	<h4>${user_name } 고객님이 선택하신 출금할 계좌의 정보를 확인해주세요😊</h4>
 	<table border="1" style="border-collapse: collapse; text-align:center; margin-bottom: 50px;">
 			<tr style="background-color: pink;">
 			<th>은행명</th>
@@ -60,8 +60,8 @@ td, tr, th{
 			<td>${account.bank_name }</td>
 			<td>${account_num_masked }</td>
 			<td>${account.product_name }</td>
-			<td>${account.balance_amt }</td>
-			<td>${account.available_amt }</td>
+			<td>${member.member_balance }</td>
+			<td>${member.member_balance }</td>
 		</tr>
 	</table>
 	

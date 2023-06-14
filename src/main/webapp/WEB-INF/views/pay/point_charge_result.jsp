@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clever - 바로구매</title>
+<title>Clever - 포인트충전</title>
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
