@@ -25,6 +25,11 @@ public class MypageService {
 		return mapper.selectProductSellDate(sId);
 	}
 	
+	// 내 판매 내역 수량 조회
+	public int getSellCount(String sId) {
+		return mapper.getSellCount(sId);
+	}
+	
 	// 중고거래 구매내역 조회
 	public List<HashMap<String, String>> selectProductBuyList(String sId) {
 		return mapper.selectProductBuyList(sId);
@@ -110,6 +115,5 @@ public class MypageService {
 	public List<HashMap<String, String>> selectReviewCheck(String sId) {
 		return mapper.selectReviewCheck(sId);
 	}
-	
-	
+
 }
