@@ -213,6 +213,12 @@ public class ProductService {
 		return mapper.updateBuyerPoint(sId);
 	}
 
+	// 상세 페이지 판매자 리뷰 조회
+	public List<HashMap<String, String>> selectReview(int product_idx) {
+		
+		return mapper.selectReview(product_idx);
+	}
+
 	
 
 }

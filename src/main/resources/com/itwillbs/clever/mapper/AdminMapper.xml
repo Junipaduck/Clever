@@ -170,6 +170,16 @@
 						ON m.member_id = p.member_id
 							GROUP BY m.member_id	
 	</select>
+	
+	<!-- 등업 -->
+	<update id="memberGradeUpdate">
+		UPDATE member
+			SET 
+				member_rank = '실버'
+				, member_point = member_point + 5000
+					WHERE 
+						member_id = #{member_id}
+	</update>
 </mapper>
 
 

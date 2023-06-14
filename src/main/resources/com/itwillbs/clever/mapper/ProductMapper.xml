@@ -446,6 +446,16 @@
 			)
 	</insert>
 	
+	<!-- 상품 상세페이지 판매자 리뷰 조회 -->
+	<select id="selectReview" resultType="HashMap">
+		SELECT 
+			r.review_content
+			, r.review_date
+			, r.review_seller
+				FROM review r
+					WHERE 
+						r.review_seller = (SELECT member_id FROM product p WHERE product_idx = #{product_idx})
+	</select>
 	
 </mapper> <!-- 매퍼끝 -->
 

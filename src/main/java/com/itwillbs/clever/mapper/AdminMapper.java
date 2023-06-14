@@ -68,6 +68,9 @@ public interface AdminMapper {
 	// 등급 산정을 위한 카운트 조회
 	List<HashMap<String, String>> selectCountList();
 
+	// 등업
+	int memberGradeUpdate(String member_id);
+
 
 
 

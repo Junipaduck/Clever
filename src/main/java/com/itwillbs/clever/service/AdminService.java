@@ -168,6 +168,12 @@ public class AdminService {
 		return mapper.selectCountList();
 	}
 
+	// 등업
+	public int updateGrade(String member_id) {
+		
+		return mapper.memberGradeUpdate(member_id);
+	}
+
 		
 	}
 

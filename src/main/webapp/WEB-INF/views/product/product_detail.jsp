@@ -400,15 +400,21 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <p>판매자후기 <span>0</span></p>
+                                    <p>판매자후기</p>
                                     <div>
-                                        <p>
-                                            등록된 후기가 없습니다.<br>
-                                            첫 후기를 등록해보세요!
-                                        </p>
-                                        <button>
-                                            후기작성
-                                        </button>
+                                    	<c:forEach items="${reviewList }" var="reviewList">
+	                                    	<c:choose>
+	                                    		<c:when test="${empty reviewList.review_seller }">
+	                                    			<p>아직 작성된 후기가 없습니다!</p>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+			                                        <p>${reviewList.review_content }</p>
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+                                    	</c:forEach>
+<%--                                         <button type="button" onclick="location.href=review.me?review_seller=${selectSellerId}"> --%>
+<!--                                             후기작성 -->
+<!--                                         </button> -->
                                     </div>
                                 </div>
                                 <div>

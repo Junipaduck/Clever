@@ -124,6 +124,11 @@ public class ProductController {
 		} 
 		model.addAttribute("result", dibsCheck);
 		
+		
+		// 중고 상품 상세보기에서 리뷰 작성 코드 
+		List<HashMap<String, String>> reviewList = productService.selectReview(product_idx);
+		model.addAttribute("reviewList", reviewList);
+		
 		return "product/product_detail";
 	}
 	
@@ -557,6 +562,9 @@ public class ProductController {
 		
 		return "product/product_list_search";
 	}
+	
+	// 중고상품 상세페이지에서 리뷰 작성 페이지로 이동
+	
 	
 } // 컨트롤러 끝
 

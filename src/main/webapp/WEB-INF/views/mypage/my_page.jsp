@@ -309,27 +309,7 @@ $(function() {
 				</div>
 				<!-- 판매 내역 끝 -->
 				
-				<!-- 구매 내역 시작  -->
-				<div id="purchases_menu_area" class="common_menu">
-					<div>
-						<p>
-							구매내역 <span>2</span>
-						</p>
-						<!-- 테스트용 -->
-						<c:forEach items="${goodsList }" var="goodsList">
-							상품명 : ${goodsList.buy_title }
-							구매일 : ${goodsList.buy_date }
-						</c:forEach>
-						<ul class="goods_cate">
-							<li>전체</li>
-							<li class="hidden_menu">전체</li>
-							<li class="hidden_menu">거래중</li>
-							<li class="hidden_menu">거래완료</li>
-							<li class="hidden_menu">숨김내역</li>
-						</ul>
-						<i class="bi bi-chevron-down under_direction under"></i>
-					</div>
-					<div>
+
 
 						<!-- 구매 내역 메인 컨텐츠 -->
 						<!--반품 모달-->

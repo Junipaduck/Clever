@@ -140,6 +140,25 @@ public class AdminController {
 		return "admin/admin_member_grade";
 	}
 	
+	// 회원 등업 처리 
+	@GetMapping(value = "/memberGradeUpdate.ad")
+	public String memberGradeUpdate(@RequestParam String member_id, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		int updateCount = adminService.updateGrade(member_id);
+		
+		if(updateCount > 0) {
+			model.addAttribute("msg", "등업 성공! 적립금 5000점 적립 완료!");
+			model.addAttribute("target", "adminMemberGrade.ad");
+			return "success";
+		} else {
+			model.addAttribute("msg", "등업 실패!");
+			return "fail_back";
+		}
+		
+	}
+	
 	// 경매 목록 조회
 	@GetMapping(value = "/adminAuction.ad")
 	public String autionList(HttpSession session, Model model) {

@@ -17,7 +17,16 @@
     <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+	function upgradeGrade(member_idx, count, member_id){
+		if(count > 10){
+			confirm(member_id + "회원의 누적 판매량은 " + count + "회 입니다. 등급을 올리시겠습니까?");
+			location.href = "memberGradeUpdate.ad?member_id=" + member_id
+		} else {
+			alert("등업 기준 미충족! " + member_id + "회원의 누적 판매량은 " + count + "회 입니다.");
+		}
+	}
+</script>
 <body>
 
     <!--*******************
@@ -113,7 +122,7 @@
 	                                                <td>${countList.member_rank }</td>
 	                                                <td>${countList.count }</td>
 	                                                <td>
-	                                                	<button type="button" class="btn btn-primary" onclick="location.href='storeModify.ad?goods_idx=${goodsList.goods_idx}'">등업하기</button>
+	                                                	<button type="button" class="btn btn-primary" onclick="upgradeGrade('${countList.member_idx}', '${countList.count }', '${countList.member_id }')">등업하기</button>
 	                                                </td>
 	                                            </tr>
                                         	</c:forEach>
