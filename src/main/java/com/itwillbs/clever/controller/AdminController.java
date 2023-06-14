@@ -92,7 +92,15 @@ public class AdminController {
 	
 	// 회원 목록 조회 
 	@GetMapping(value = "/adminMember.ad")
-	public String memberList(HttpSession httpSession, Model model) {
+	public String memberList(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		List<HashMap<String, String>> memberList = adminService.selectMember();
 		model.addAttribute("memberList", memberList);
@@ -114,6 +122,14 @@ public class AdminController {
 	@GetMapping(value = "/adminAuction.ad")
 	public String autionList(HttpSession session, Model model) {
 		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		// 경매 목록 조회
 		List<HashMap<String, String>> auctionList = adminService.getAuctionList();
 		model.addAttribute("auctionList", auctionList);
@@ -130,6 +146,14 @@ public class AdminController {
 	@GetMapping(value = "/auctionAuth.ad")
 	public String auctionAuth(HttpSession session, Model model) {
 		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		List<HashMap<String, String>> auctionAuthList = adminService.getAuctionAuthList();
 		model.addAttribute("auctionAuthList", auctionAuthList);
 		
@@ -141,7 +165,15 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "auctionAuthPro.ad")
-	public String auctionAuthPro(@RequestParam int auction_idx, HttpServletResponse response, Model model) {
+	public String auctionAuthPro(@RequestParam int auction_idx, HttpServletResponse response, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		int isAuthSuccess = adminService.auctionAuth(auction_idx);
 		
@@ -157,7 +189,15 @@ public class AdminController {
 	
 	// 신고 목록 조회 
 	@GetMapping(value = "/adminReport.ad")
-	public String reportList(Model model) {
+	public String reportList(Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		List<HashMap<String, String>> reportList = adminService.getReportList();
 		model.addAttribute("reportList", reportList);
@@ -169,7 +209,15 @@ public class AdminController {
 	
 	//신고 처리 결과 페이지 
 	@GetMapping(value = "/adminReportPro.ad")
-	public String reportProPage(Model model) {
+	public String reportProPage(Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		List<HashMap<String, String>> rList = adminService.getReportProList();
 		model.addAttribute("rList", rList);
@@ -179,7 +227,15 @@ public class AdminController {
 	
 	// 신고 처리 로직
 	@GetMapping(value = "/reportPro.ad")
-	public String reportPro(@RequestParam int product_idx, Model model) {
+	public String reportPro(@RequestParam int product_idx, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		int deleteCount = adminService.reportPro(product_idx);
 		
@@ -221,7 +277,15 @@ public class AdminController {
 	
 	// 관리자 정보 페이지 이동 (계좌관리, 관리자 정보 관리 용)
 	@GetMapping(value = "/adminInfo.ad")
-	public String adminInfo(Model model) {
+	public String adminInfo(Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		HashMap<String, String> adminInfo = adminService.getAdminInfo();
 		
@@ -234,15 +298,33 @@ public class AdminController {
 	}
 	
 	// 1:1 문의 목록 조회
-	@GetMapping(value = "/adminAskedList.ad")
-	public String adminAskList(Model model) {
+	@GetMapping(value = "/adminAskedFormPro.ad")
+	public String adminAskList(Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		List<HashMap<String, String>> askList = adminService.getAskList();
 		model.addAttribute("askList", askList);
 		return "admin/admin_ask_list";
 	}
 	
 	@PostMapping("adminAskedFormPro.ad")
-	public String askedPro(@RequestParam Map<String, String> map, Model model, @RequestParam int asked_idx) {
+	public String askedPro(@RequestParam Map<String, String> map, Model model, @RequestParam int asked_idx, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		map.put("ans_content", map.get("editordata"));
 		map.put("asked_idx", map.get("asked_idx"));
 		

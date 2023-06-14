@@ -47,7 +47,16 @@ public class GoodsController {
 	
 	// 굿즈 등록 페이지 
 	@GetMapping(value = "/storeRegister.ad")
-	public String storeRegister() {
+	public String storeRegister(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
 		return "admin/goods_store_register_form";
 	}
 	
@@ -67,6 +76,14 @@ public class GoodsController {
 									, @RequestParam("image11") MultipartFile file11
 									, @RequestParam("image12") MultipartFile file12
 								    , HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		int insertCount = goodsService.insertGoods(goods);
 		
@@ -102,7 +119,15 @@ public class GoodsController {
 	
 	// 굿즈 등록 수정 페이지 
 	@GetMapping(value = "/storeModify.ad")
-	public String storeModify(@RequestParam int goods_idx, Model model) {
+	public String storeModify(@RequestParam int goods_idx, Model model, HttpSession session) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
 		
 		HashMap<String, String> goods = goodsService.getGoods(goods_idx);
 		model.addAttribute("goods", goods);
