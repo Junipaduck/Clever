@@ -555,7 +555,7 @@ $(function() {
 <%-- 													<button type="button" class="btn_buy_decide" value="${param.buy_price }">구매확정</button> <!-- 0613배하나 --> --%>
 <%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" onclick="location.href='buyConfirm'">구매확정</button> <!-- 0613배하나 --> --%>
 <%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" >구매확정</button> <!-- 0613배하나 --> --%>
-														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}">구매확정</a>
+														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}&product_idx=${productBuyList.product_idx}">구매확정</a>
 												</div>
 											</c:when>
 											<c:when test="${productBuyList.buy_status eq '구매확정' }">
