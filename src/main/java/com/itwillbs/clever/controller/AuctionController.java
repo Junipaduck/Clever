@@ -65,6 +65,13 @@ public class AuctionController {
 		return "auction/auction";
 	}
 	
+	// 로그아웃 기능
+		@GetMapping(value = "auction_logout")
+		public String logout(HttpSession session) {
+			session.invalidate(); // 세션 초기화 
+			return "redirect:/auction"; // 로그아웃 후 메인화면으로 리다이렉트 이동 
+		}
+	
 	@GetMapping(value = "auction_loginForm")
 	public String auction_loginForm() {
 		return "auction/auction_login_form";
