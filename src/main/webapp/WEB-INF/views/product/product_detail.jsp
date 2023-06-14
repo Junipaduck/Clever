@@ -381,9 +381,19 @@
                                 </div>
                                 <div>
                                     <div>
-                                    	<!-- 2개만 보여주도록 foreach할때 begin=0 end=1로 설정하기! -->
-                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
-                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
+                                        	<!-- 2개만 보여주도록 foreach할때 begin=0 end=1로 설정하기! -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" style="width: 130px; height: 150px;" alt="판매중인상품"> --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" style="width: 130px; height: 150px;" alt="판매중인상품"> --%>
+                                        	 	 <c:forEach items="${SellerFileList }" var="SellerFileList" begin="0" end="1"> 
+					                               		<c:set var="length" value="${fn:length(SellerFileList.file_name) }" />
+														<c:set var="index" value="${fn:indexOf(SellerFileList.file_name, '_') }" />
+														<c:set var="file_name" value="${fn:substring(SellerFileList.file_name, index + 1, length) }" />
+<%--                                         	 	 			<c:forEach items="${productList }" var="productList">  --%>
+<%-- 																<a href="product_detail?product_idx=${productList.product_idx }&product_Mcategory=${productList.product_Mcategory}&product_price=${productList.product_price}"> --%>
+							                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}"  style="width: 130px; height: 150px;" >
+<!-- 							                                     </a> -->
+<%-- 							                                </c:forEach> --%>
+                               						</c:forEach>
                                     </div>
                                     <div>
                                         <p style="margin-top: 41px;">판매중인 <span>${sellerInfoCount}개</span> 상품</p>

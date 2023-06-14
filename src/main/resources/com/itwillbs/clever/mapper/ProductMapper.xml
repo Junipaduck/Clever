@@ -169,6 +169,29 @@
 			member_id IN (select member_id from product where product_idx = #{product_idx})
 	</select>
 	
+	<!-- 판매자아이디 select -->
+	<select id="selectSellerId" resultType="String">
+		select member_id from product where product_idx = #{product_idx}
+	</select>
+	
+	<!-- 판매자 판매상품 이미지 select  -->
+	<select id="SellerFileList" resultType="map">
+		SELECT f.* 
+			FROM file f 
+				JOIN product p 
+					ON f.file_num = p.product_idx 
+						WHERE p.member_id = #{selectSellerId}
+						AND file_idx in 
+							(SELECT MIN(file_idx) AS file_idx
+								FROM file
+									WHERE file_div = 'product'
+										GROUP BY file_num)
+											ORDER BY file_num DESC;
+	</select>
+
+
+	
+	
 	<!-- 중고상품 수정하기 update -->
 	<update id="updateProduct">
 		UPDATE

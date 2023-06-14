@@ -94,6 +94,10 @@ public interface ProductMapper {
 
 	int updateStatus(String product_idx);
 
+	List<HashMap<String, String>> SellerFileList(String selectSellerId);
+
+	String selectSellerId(int product_idx);
+
 	
 
 
