@@ -199,6 +199,26 @@
 	                            let url = window.location.href;
 	                        	var auction_idx = url.substring(url.indexOf("=")+1,url.indexOf("&"))
  	                        	var currentAjax =  document.getElementById("currentAjax").value;
+	                                	function getTime2() {
+	                                	  var element;
+	                                	  const endDay = new Date('${detailmap.auction_start}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("timeOut2");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "";
+	                                		  getTime(); 
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
 	                                	function getTime() {
 	                                	  var element;
 	                                	  const endDay = new Date('${detailmap.auction_end}');
@@ -238,10 +258,11 @@
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => getTime(), 1000);
+	                                		return setInterval(() => getTime2(), 1000);
 										}());
 	                               </script>
                                <div id="timeOut" style="color: red; text-align: left; font-size: 20px"></div>
+                               <div id="timeOut2" style="color: blue; text-align: left; font-size: 20px"></div>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -276,7 +297,7 @@
                                 </p>
                             </div>
                             <jsp:useBean id="now" class="java.util.Date" />
-							<fmt:formatDate value="${now}" type="time" var="today" />
+							<fmt:formatDate value="${now}" var="today" />
 <%-- 							<fmt:parseDate value="" var="auction_start" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
                         </div>
                     </div>
@@ -479,14 +500,14 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
-       		<c:if test="${sessionScope.sId eq detailmap.member_id }">
-	       		<div class="btn_submit_area">
-			        <div class="inner_submit">
-			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-			            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
-			            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_delete?auction_idx=${detailmap.auction_idx}'">
-			        </div>
-		    	</div>
+       		<c:if test="${sessionScope.sId eq detailmap.member_id and detailmap.auction_start < today}">
+		       		<div class="btn_submit_area">
+				        <div class="inner_submit">
+				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+				            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
+				            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_delete?auction_idx=${detailmap.auction_idx}'">
+				        </div>
+			    	</div>
 	    	</c:if>
 	<!-- 풋터 시작 -->
 	<footer>
@@ -724,6 +745,21 @@ function auctionStart() {
 					'<div class="col-4">'
 					+ '<div class="p-3 info_btn3" id="deposit" >입찰하기</div>'
 					+ '</div>'
+					+ '<div class="col-4">'
+					+ '<c:if test="${result.dibs_check != null }">'
+					+ '<a class="dibs">'
+					+ '<c:if test="${result.dibs_check == 0}">'
+					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
+					+ '</div>'
+					+ '</c:if>'	
+					+ '<c:if test="${result.dibs_check == 1}">'
+					+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
+					+ '</div>'
+					+ '</c:if>'
+					+ '</a>'
+					+ '</c:if>'
 					);
 		} else {
 			$("#detail_content_info_state").append(
@@ -777,6 +813,24 @@ function auctionStart() {
 		
 	} else if(auction_end < nowDate) {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
+	} else {
+		$("#detail_content_info_state").append(
+				'<div class="col-4">'
+				+ '<c:if test="${result.dibs_check != null }">'
+				+ '<a class="dibs">'
+				+ '<c:if test="${result.dibs_check == 0}">'
+				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
+				+ '</div>'
+				+ '</c:if>'	
+				+ '<c:if test="${result.dibs_check == 1}">'
+				+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
+				+ '</div>'
+				+ '</c:if>'
+				+ '</a>'
+				+ '</c:if>'
+				);
 	}
 	
 	/* 찜하기 AJAX 찜하기 버튼 누르면 상호작용 */

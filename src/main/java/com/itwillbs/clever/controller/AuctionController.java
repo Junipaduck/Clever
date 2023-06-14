@@ -83,7 +83,7 @@ public class AuctionController {
 				if(isSuccess) {
 					//로그인 성공 시 세션 객체에 아이디 저장 
 					session.setAttribute("sId", member.getMember_id());
-					return "redirect:/auction"; // 로그인 성공 시 -> main 페이지로 리다이렉트 이동 
+					return "redirect://auction"; // 로그인 성공 시 -> main 페이지로 리다이렉트 이동 
 				} else {
 					model.addAttribute("msg","로그인 실패!");
 					return "fail_back";
@@ -136,11 +136,11 @@ public class AuctionController {
 	
 	@GetMapping(value = "auction_detail")
 	public String auction_detail(HttpSession session, Model model, @RequestParam int auction_idx, @RequestParam String param) {
-		
+		Date nowDate = new Date();
 		String sId = (String)session.getAttribute("sId");
 		if(sId == null) {
 			model.addAttribute("msg","로그인 후 이용해주세요!");
-			model.addAttribute("target","loginForm.me");
+			model.addAttribute("target","auction_loginForm");
 			return "success";
 		}
 		String member_id = auctionService.depositList(sId, auction_idx);
@@ -180,6 +180,7 @@ public class AuctionController {
 		model.addAttribute("smallCategorys", smallCategorys);
 		model.addAttribute("categoryParam", param);
 		model.addAttribute("member_id", member_id);
+		model.addAttribute("nowDate", nowDate);
 		
 		model.addAttribute("fileList", fileList);
 		System.out.println(fileList);
@@ -308,11 +309,15 @@ public class AuctionController {
 	@GetMapping(value = "auction_upload")
 	public String auction_upload(Model model, HttpSession session) {
 //		System.out.println(map);
+		String id = (String)session.getAttribute("sId");
+		Map<String, String> member = auctionService.getMember(id);
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("target", "loginForm.me");
+			model.addAttribute("target", "auction_loginForm");
 			return "success";
 		}
+		model.addAttribute("member", member);
+		
 		return "auction/auction_upload";
 	}
 	

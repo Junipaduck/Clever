@@ -78,5 +78,7 @@ public interface AuctionMapper {
 
 	int deleteMember(@Param("buyer") String buyer,@Param("auction_idx") int auction_idx);
 
+	Map<String, String> getMember(String id);
+
 
 }

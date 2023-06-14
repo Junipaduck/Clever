@@ -152,5 +152,9 @@ public class AuctionService {
 		return mapper.deleteMember(buyer, auction_idx);
 	}
 
+	public Map<String, String> getMember(String id) {
+		return mapper.getMember(id);
+	}
+
 
 }

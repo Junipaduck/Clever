@@ -97,6 +97,8 @@ $(function() {
 	$("#formform").on("submit", function() {
 		$("#auction_category").val($(".selected_category").text()); 
 			startEndDate();
+			isStatus();
+			
 		if(!startEndDateStats){
 			return false;
 		}
@@ -108,10 +110,95 @@ function startEndDate() {
 	var end = $("#auction_end_date").val() + " " + $("#auction_end_time").val();
 	if(start > end){
 		alert("경매 시작일 보다 경매 마감일이 더 빠릅니다.");
-		return;
+		return false;
+	} else if(start == end){
+		alert("경매 시작일 과 경매 마감일이 동일합니다.");
+		return false;
 	} else {
 		startEndDateStats = true;
 	}
+}
+function isStatus() {
+	var image1 = $("#image1").val();
+	var image2 = $("#image2").val();
+	var image3 = $("#image3").val();
+	var image4 = $("#image4").val();
+	var image5 = $("#image5").val();
+	var image6 = $("#image6").val();
+	var image7 = $("#image7").val();
+	var image8 = $("#image8").val();
+	var image9 = $("#image9").val();
+	var image10 = $("#image10").val();
+	var image11 = $("#image11").val();
+	var image12 = $("#image12").val();
+	var auction_title = $("#auction_title").val();
+	var auction_category = $("#auction_category").val();
+	var auction_address = $("#auction_address").val();
+	var auction_product_status = $("#auction_product_status").val();
+	var auction_price = $("#auction_price").val();
+	var immediately_price = $("#immediately_price").val();
+	var auction_content = $("#auction_content").val();
+	var auction_start_time = $("#auction_start_time").val();
+	var auction_start_date = $("#auction_start_date").val();
+	var auction_end_time = $("#auction_end_time").val();
+	var auction_end_date = $("#auction_end_date").val();
+	
+	if(image1 == ""  && image2 == ""  &&
+	   image3 == ""  && image4 == ""  &&
+	   image5 == ""  && image6 == ""  &&
+	   image7 == ""  && image8 == ""  &&
+	   image9 == ""  && image10 == "" &&
+	   image11 == "" && image12 == ""){
+		$("#image1").focus();
+		return false;
+	} else if(auction_title == ""){
+		$("#auction_title").focus();
+		return false;
+	} else if(auction_category == ""){
+		$("#auction_category").focus();
+		return false;
+	} else if(auction_address == ""){
+		$("#auction_address").focus();
+		return false;
+	} else if(auction_product_status == ""){
+		$("#auction_product_status").focus();
+		return false;
+	} else if(auction_price == ""){
+		$("#auction_price").focus();
+		return false;
+	} else if(immediately_price == ""){
+		$("#immediately_price").focus();
+		return false;
+	} else if(auction_content == ""){
+		$("#auction_content").focus();
+		return false;
+	} else if(auction_start_time == ""){
+		$("#auction_start_time").focus();
+		return false;
+	} else if(auction_start_date == ""){
+		$("#auction_start_date").focus();
+		return false;
+	} else if(auction_end_time == ""){
+		$("#auction_end_time").focus();
+		return false;
+	} else if(auction_start_time == ""){
+		$("#auction_start_time").focus();
+		return false;
+	} else if(auction_end_date == ""){
+		$("#auction_end_date").focus();
+		return false;
+	} else if(auction_price > immediately_price || auction_price == immediately_price){
+		alert("즉시 구매가가 경매 시작가 보다 큰지 확인해주세요.");
+		return false;
+	} else {
+		return true;
+	}
+	
+}
+function myAddress() {
+// 	document.getElementById("auction_address").innerText = "머이야";
+	document.getElementById("auction_address").value = "${member.member_address}";
+
 }
 </script>
 	<!-- 헤더 시작 -->
@@ -147,12 +234,12 @@ function startEndDate() {
                                     <input type="file" id="image4" name="image4" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" id="image5" name="image5" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                     <input type="file" id="image6" name="image6" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
-                                    <input type="file" id="image6" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image7" name="image7" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image8" name="image8" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image9" name="image9" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image10" name="image10" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image11" name="image11" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
+                                    <input type="file" id="image12" name="image12" accept="image/jpg, image/jpeg, image/png" hidden="true"  onchange="setImages(event);">
                                 </div>
                                 <div class="preview_wrap"></div>
                             </div>
@@ -372,14 +459,14 @@ function startEndDate() {
                             </div>
                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
                             <p>선택한 카테고리 : <span class="selected_category"></span></p>
-                            <input type="hidden" id="auction_category" name="auction_category" value="">
+                            <input type="hidden" id="auction_category" name="auction_category">
                         </div>
                     </div>
                     <div class="goods_location_area">
                         <p>거래지역<span class="red">*</span></p>
                         <div class="goods_location">
                             <div class="location_button_area">
-                                <button onclick="return false;">내위치</button>
+                                <button type="button" onclick="myAddress();">내위치</button>
                                 <button id="btnAddress" onclick="return false;">주소검색</button>
                                 <!-- 주소 입력 받는 api -->
 						               <!-- 주소 API 스크립트 -->
@@ -396,7 +483,6 @@ function startEndDate() {
 										    });
 										}
 										</script>
-                                <button onclick="return false;">지역설정안함</button>
                             </div>
                             <input type="text" id="auction_address" name="auction_address" readonly>
                         </div>
@@ -404,18 +490,18 @@ function startEndDate() {
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="auction_product_status" value="used" id="used" >
+                            <input type="radio" name="auction_product_status" value="미개봉" id="auction_product_status" >
                             <label for="used">미개봉</label>
-                            <input type="radio" name="auction_product_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="거의 새 것" id="auction_product_status">
                             <label for="new">거의 새 것</label>
-                            <input type="radio" name="auction_product_status" value="new" id="new">
+                            <input type="radio" name="auction_product_status" value="사용감 있음" id="auction_product_status">
                             <label for="new">사용감 있음</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" id="auction_price" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
 <!--                     <div class="goods_price_area"> -->
@@ -433,7 +519,7 @@ function startEndDate() {
                     <div class="goods_price_area">
                         <p>즉시 구매가<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" id="immediately_price" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
@@ -534,7 +620,7 @@ function startEndDate() {
                     <div class="goods_info_area">
                         <p>설명<span class="red">*</span></p>
                         <div>
-                            <textarea name="auction_content" id="goodsInfo" cols="30" rows="10"
+                            <textarea name="auction_content" id="auction_content" cols="30" rows="10"
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
                         </div>
                     </div>
@@ -545,9 +631,7 @@ function startEndDate() {
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
-		                            <input type="radio" name="status" value="account" id="account">
-		                            <label for="account">계좌 이체</label>
-		                            <input type="radio" name="status" value="point" id="point">
+		                            <input type="radio" name="status" value="point" id="point" checked="checked">
 		                            <label for="point">포인트 결제</label>
 		                        </div>
                             </div>

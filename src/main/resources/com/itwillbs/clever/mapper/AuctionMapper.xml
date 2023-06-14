@@ -31,6 +31,7 @@
 				, #{id }
 				, 'N'
 				, #{map.immediately_price }
+				, 0
 				)
 	</insert>
 	
@@ -230,4 +231,7 @@
 		DELETE FROM deposit WHERE member_id != #{buyer} AND auction_idx = #{auction_idx }
 	</delete>
 	
+	<select id="getMember" resultType="map">
+		SELECT * FROM member WHERE member_id = #{id}
+	</select>
 </mapper>

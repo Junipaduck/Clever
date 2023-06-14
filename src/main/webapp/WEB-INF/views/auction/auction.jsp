@@ -306,7 +306,27 @@ height: 90px;
                                     <span class="goods_date_before"> <fmt:formatNumber type="number" maxFractionDigits="3" value="${imminent.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
-	                                	function getTime${imminent.auction_idx}() {
+	                                	function imminentGetTime${imminent.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${imminent.auction_start}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("imminentTimeOut${imminent.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "";
+	                                		  imminentGetTime2${imminent.auction_idx}();                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function imminentGetTime2${imminent.auction_idx}() {
 	                                	  var element;
 	                                	  const endDay = new Date('${imminent.auction_end}');
 	                                	  const currDay = new Date();
@@ -318,7 +338,7 @@ height: 90px;
 	                                	  const diffMin = Math.floor(diff / (1000 * 60));
 	                                	  diff -= diffMin * (1000 * 60);
 	                                	  const diffSec = Math.floor(diff / 1000);
-	                                	  element = document.getElementById("timeOut${imminent.auction_idx}");
+	                                	  element = document.getElementById("imminentTimeOut2${imminent.auction_idx}");
 	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
 	                                	  } else {
@@ -326,10 +346,11 @@ height: 90px;
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => getTime${imminent.auction_idx}(), 1000);
+	                                		return setInterval(() => imminentGetTime${imminent.auction_idx}(), 1000);
 										}());
 	                               </script>
-                               <div id="timeOut${imminent.auction_idx}" style="color: red; text-align: right;"></div>
+                               <div id="imminentTimeOut${imminent.auction_idx}" style="color: blue; text-align: right;"></div>
+                               <div id="imminentTimeOut2${imminent.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
@@ -362,7 +383,7 @@ height: 90px;
 	                                <script type="text/javascript">
 	                                	function hotGetTime${hot.auction_idx}() {
 	                                	  var element;
-	                                	  const endDay = new Date('${hot.auction_end}');
+	                                	  const endDay = new Date('${hot.auction_start}');
 	                                	  const currDay = new Date();
 	                                	  let diff = endDay - currDay;
 	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
@@ -374,6 +395,26 @@ height: 90px;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("hotTimeOut${hot.auction_idx}");
 	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "";
+	                                		  hotGetTime2${hot.auction_idx}();                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function hotGetTime2${hot.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${hot.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("hotTimeOut2${hot.auction_idx}");
+	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
@@ -383,7 +424,8 @@ height: 90px;
 	                                		return setInterval(() => hotGetTime${hot.auction_idx}(), 1000);
 										}());
 	                               </script>
-                               <div id="hotTimeOut${hot.auction_idx}" style="color: red; text-align: right;"></div>
+                               <div id="hotTimeOut${hot.auction_idx}" style="color: blue; text-align: right;"></div>
+                               <div id="hotTimeOut2${hot.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
@@ -415,7 +457,7 @@ height: 90px;
 	                                <script type="text/javascript">
 	                                	function currentGetTime${current.auction_idx}() {
 	                                	  var element;
-	                                	  const endDay = new Date('${current.auction_end}');
+	                                	  const endDay = new Date('${current.auction_start}');
 	                                	  const currDay = new Date();
 	                                	  let diff = endDay - currDay;
 	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
@@ -427,6 +469,26 @@ height: 90px;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("currentTimeOut${current.auction_idx}");
 	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "";
+	                                		  currentGetTime2${current.auction_idx}();                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function currentGetTime2${current.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${current.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("currentTimeOut2${current.auction_idx}");
+	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
@@ -436,7 +498,8 @@ height: 90px;
 	                                		return setInterval(() => currentGetTime${current.auction_idx}(), 1000);
 										}());
 	                               </script>
-                               <div id="currentTimeOut${current.auction_idx}" style="color: red; text-align: right;"></div>
+                               <div id="currentTimeOut${current.auction_idx}" style="color: blue; text-align: right;"></div>
+                               <div id="currentTimeOut2${current.auction_idx}" style="color: red; text-align: right;"></div>
                             </div>
                         </a>
                     </div>
