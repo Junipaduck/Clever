@@ -81,7 +81,7 @@
                                 <h4 class="card-title">1:1문의 조회</h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="color: black;">
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>

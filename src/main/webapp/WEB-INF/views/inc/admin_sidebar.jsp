@@ -45,7 +45,6 @@
                     	<i class="icon icon-form"></i><span class="nav-text">상품목록</span></a>
                         <ul aria-expanded="false">
                             <li><a href="storeList.ad">판매중인 상품</a></li>
-                            <li><a href="storeModify.ad">품절된 상품</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -65,7 +64,6 @@
                     	<i class="icon icon-layout-25"></i><span class="nav-text">게시판관리</span></a>
                         <ul aria-expanded="false">
                             <li><a href="adminAskedList.ad">1:1문의</a></li>
-                            <li><a href="table-datatable-basic.html">게시판뭐하지</a></li>
                         </ul>
                     </li>
 

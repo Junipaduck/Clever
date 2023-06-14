@@ -60,7 +60,7 @@
 		<!-- 사이드바 끝 -->
 
 		<!-- 바디 시작 -->
-        <div class="content-body">
+        <div class="content-body" style="color: black;">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
@@ -141,7 +141,32 @@
                                         <h4 class="card-title">상품 거래량</h4>
                                     </div>
                                     <div class="card-body">
-                                        <canvas id="barChart_1"></canvas>
+    									<div id=curve_chart style="width: 900px; height: 500px"></div>
+									    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+									    <script type="text/javascript">
+									      google.charts.load('current', {'packages':['corechart']});
+									      google.charts.setOnLoadCallback(drawChart);
+
+									      function drawChart() {
+									        var data = google.visualization.arrayToDataTable([
+									          ['Year', '입금', '출금'],
+									          ['2004',  ${memberAccountList[0].tram_amt},      400],
+									          ['2005',  ${memberAccountList[1].tram_amt},      460],
+									          ['2006',  ${memberAccountList[2].tram_amt},       1120],
+									          ['2007',  ${memberAccountList[3].tram_amt},      540]
+									        ]);
+
+									        var options = {
+									          title: 'Company Performance',
+									          curveType: 'function',
+									          legend: { position: 'bottom' }
+									        };
+
+									        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+									        chart.draw(data, options);
+									      }
+									    </script>
                                     </div>
                                 </div>
                             </div>
@@ -319,12 +344,19 @@
                             <div class="card-body">
                                 <div class="widget-timeline">
                                     <ul class="timeline">
-                                    	<c:forEach items="${pointList }" var="pointList">
+                                    	<c:forEach items="${memberAccountList }" var="memberAccountList">
 	                                        <li>
 	                                            <div class="timeline-badge primary"></div>
 	                                            <a class="timeline-panel text-muted" href="#">
-	                                                <span>${pointList.point_date }</span>
-	                                                <h6 class="m-t-5">${pointList.member_id }님 ${pointList.charge_point }원 충전</h6>
+	                                                <span>${memberAccountList.tran_date }</span>
+	                                                <c:choose>
+	                                                	<c:when test="${memberAccountList.tran_type eq 'd' }">
+	                                                		<h6 class="m-t-5">${memberAccountList.member_id }님 ${memberAccountList.tran_amount }원 입금</h6>
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                		<h6 class="m-t-5">${memberAccountList.member_id }님 ${memberAccountList.tran_amount }원 출금</h6>
+	                                                	</c:otherwise>
+	                                                </c:choose>
 	                                            </a>
 	                                        </li>
                                     	</c:forEach>

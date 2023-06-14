@@ -89,7 +89,7 @@
                                 <h4 class="card-title">판매중인 굿즈 목록</h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="color: black;">
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>

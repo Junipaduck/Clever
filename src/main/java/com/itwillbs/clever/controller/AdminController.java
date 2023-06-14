@@ -90,6 +90,10 @@ public class AdminController {
 		List<HashMap<String, String>> pointList = adminService.getPointList();
 		model.addAttribute("pointList", pointList);
 		
+		// 회원 입금 내역
+		List<HashMap<String, String>> memberAccountList = adminService.getMemberAccountList();
+		model.addAttribute("memberAccountList", memberAccountList);
+		
 //		return new ModelAndView("admin/admin_main", "map", map);
 		return "admin/admin_main";
 	}
@@ -302,7 +306,7 @@ public class AdminController {
 	}
 	
 	// 1:1 문의 목록 조회
-	@GetMapping(value = "/adminAskedFormPro.ad")
+	@GetMapping(value = "/adminAskedList.ad")
 	public String adminAskList(Model model, HttpSession session) {
 		
 		String id = (String)session.getAttribute("sId");
@@ -375,6 +379,7 @@ public class AdminController {
 		
 	}
 	
+
 }
 
 
