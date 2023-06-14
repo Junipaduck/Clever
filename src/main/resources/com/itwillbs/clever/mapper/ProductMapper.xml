@@ -71,6 +71,15 @@
 			ORDER BY product_idx DESC;
 	</select>
 	
+	<!-- 중고상품 찜 횟수 select -->
+	<select id="countDibs" resultType="int">
+		SELECT count(*)
+			FROM 
+				dibs
+			WHERE 
+				dibs_type = 'product' AND type_num = #{product_idx};
+	</select>
+	
 	
 	<!-- 중고상품 판매자 신고 insert -->
 	<insert id="insertProductReport">

@@ -114,8 +114,9 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	        s.sendMessage(new TextMessage(jo.getString("chat_id") + ":" + messageContent + ":" + jo.getString("auction_idx")));
 	    }
 	    
-	    
 	    int selectCount = auctionLogService.selectAuctionMessage(auctionIdx, chatId);
+	    int dbPrice = Integer.parseInt(selectAuctionList.get("immediately_price"));
+	    int messagePrice = Integer.parseInt(messageContent.replace(",", ""));
 	    
 	    System.out.println("★★★★★★★★★★★★★★" + selectCount);
 	    
@@ -125,13 +126,7 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    	int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
 	    }
 	    
-	    
-	    
 	    auctionService.updatePrice(auctionIdx, Integer.parseInt(messageContent.replace(",", "")));
-	    
-	    
-	    int dbPrice = Integer.parseInt(selectAuctionList.get("immediately_price"));
-	    int messagePrice = Integer.parseInt(messageContent.replace(",", ""));
 	    
 	    if(dbPrice <= messagePrice) {
 	    	auctionService.updateDate(auctionIdx, chatId);
