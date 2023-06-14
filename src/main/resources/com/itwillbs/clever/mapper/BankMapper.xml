@@ -85,6 +85,13 @@
 				WHERE
 					member_id = 'admin'		
 	</select>
+	
+	<select id="selectMemberPoint" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT *
+			FROM member
+				WHERE 
+					member_id = #{id}
+	</select>
 </mapper>
 
 

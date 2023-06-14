@@ -38,10 +38,65 @@
 			            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
 			        </div>
 			    </header>
-					<h1>결제가 완료되었습니다!</h1>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+					<h1 style="text-align: center;">결제가 완료되었습니다😊</h1>
+					<h1 style="text-align: center;">구매내역은 마이페이지에서 확인해주세요!<button class="btn btn-primary" type="button" onclick="location.href='myPage.me'">마이페이지로 이동</button></h1>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
+			    <br>
       </section>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
 	</footer></body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

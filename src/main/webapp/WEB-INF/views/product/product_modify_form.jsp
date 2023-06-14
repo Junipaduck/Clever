@@ -82,6 +82,19 @@ display: flex;
 
 </style>
 </head>
+<script type="text/javascript">
+$(function() {
+	$("#formform").on("submit", function() {
+		$("#product_category").val($(".selected_category").text()); 
+			startEndDate();
+			
+		if(!startEndDateStats){
+			return false;
+		}
+		return isStatus();
+	});
+});
+</script>
 <body>
 <script src="js/jquery-3.6.4.js"></script>
 	<!-- 헤더 시작 -->
@@ -369,7 +382,7 @@ display: flex;
                             </div>
                             <p class="hidden"><span>⊘</span> 상세 카테고리를 확인해주세요</p>
                             <p>선택한 카테고리 : <span class="selected_category">${productDetail.product_Lcategory } > ${productDetail.product_Mcategory } > ${productDetail.product_Scategory }</span></p>
-                            <input type="hidden" id="product_category" name="product_category" value="">
+                            <input type="hidden" id="product_category" name="product_category">
                         </div>
                     </div>
                     <div class="goods_location_area">
@@ -463,8 +476,8 @@ display: flex;
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
-		                            <input type="radio" name="sale_pay" value="계좌이체" id="sale_pay1">
-		                            <label for="account">계좌이체</label>
+		                            <input type="radio" name="sale_pay" value="클레버페이" id="sale_pay1">
+		                            <label for="account">클레버페이</label>
 <!-- 		                            <input type="radio" name="sale_pay" value="카드결제" id="sale_pay2"> -->
 <!-- 		                            <label for="point">카드결제</label> -->
 		                            <input type="radio" name="sale_pay" value="만나서결제" id="sale_pay3">

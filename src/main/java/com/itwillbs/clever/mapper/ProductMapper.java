@@ -92,6 +92,8 @@ public interface ProductMapper {
 
 	Object selectMemberInfo(String sId);
 
+	int updateStatus(String product_idx);
+
 	
 
 

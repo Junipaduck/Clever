@@ -187,6 +187,11 @@ public class ProductService {
 		return mapper.selectMemberInfo(sId);
 	}
 
+	// 마이페이지 - 구매확정 시 상태 업데이트
+	public int updateStatus(String product_idx) {
+		return mapper.updateStatus(product_idx);
+	}
+
 	
 
 }

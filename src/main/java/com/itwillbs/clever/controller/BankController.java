@@ -479,9 +479,11 @@ public class BankController {
 								) {
 		String buy_price = map.get("buy_price");
 		String buy_seller = map.get("buy_seller");
+		String product_idx = map.get("product_idx");
 //		System.out.println("아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ buy_price : " + buy_price + "      판매자아이디 : " + buy_seller );
 		int updateAdMoney = productService.withdrawAdMoney(buy_price, buy_seller);
 		int updateMoney = productService.buyerDeposit(buy_price, buy_seller);
+		int updateStatus = productService.updateStatus(product_idx);
 		
 		return "redirect:/myPage.me";
 	}

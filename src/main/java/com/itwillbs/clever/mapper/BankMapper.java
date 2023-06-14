@@ -31,4 +31,7 @@ public interface BankMapper {
 	// 관리자 잔액 조회
 	MemberVO getAdminInfo(String id);
 
+	// 세션 아이디 포인트 조회
+	MemberVO selectMemberPoint(String id);
+
 }
