@@ -73,10 +73,10 @@ div #test_area ul { /* 카테고리 css */
 		                                        	<c:if test="${sessionScope.sId eq 'admin' }">
 			                                        	<div class="col-3" style="text-align: left;"><a href="adminMain.ad">관리자페이지</a></div>
 		                                        	</c:if>
-							                    <div class="col-1 b_h_left_menu">
+							                    <div class="col-2">
 <!-- 							                    	<button type="submit" class="btn btn-primary">포인트충전</button> -->
 						                            <a href=""> 
-						                                <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="포인트 충전" onclick="pointCharge()">
+						                                <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="포인트 충전" onclick="pointCharge()" style="width: 23px; height: 26px">
 						                            	포인트
 						                            </a>
 						                        </div>
