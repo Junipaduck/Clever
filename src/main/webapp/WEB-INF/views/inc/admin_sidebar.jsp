@@ -21,6 +21,7 @@
                     	<i class="icon icon-app-store"></i><span class="nav-text">회원관리</span></a>
                         <ul aria-expanded="false">
                             <li><a href="adminMember.ad">회원목록</a></li>
+                            <li><a href="adminMemberGrade.ad">회원 등급</a></li>
                         </ul>
                     </li>
 					<!-- 차트 목록 있던 자리 -->

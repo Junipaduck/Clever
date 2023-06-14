@@ -25,6 +25,11 @@ public class AdminService {
 		return mapper.selectMember();
 	}
 	
+	// 관리자 회원 등급 조회
+	public List<HashMap<String, String>> selectMemberGrade() {
+		return mapper.selectMemberGrade();
+	}
+	
 	// 관리자 경매 목록 조회
 	public List<HashMap<String, String>> getAuctionList() {
 		

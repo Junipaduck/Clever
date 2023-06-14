@@ -42,10 +42,35 @@
 		UPDATE
 			member
 				SET
-					charge_point = charge_point + #{point}
+					charge_point = charge_point + #{charge_point}
+					, member_balance = member_balance - #{charge_point} 
 						WHERE
 							member_id = #{id}
 	</update>
+	
+	<!-- 멤버 잔액 조회 -->
+	<select id="selectMemberInfo" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT *
+			FROM member
+				WHERE 
+					member_id = #{id}	
+	</select>
+	
+	<!-- 포인트 히스토리  -->
+	<insert id="insertPointHistory">
+		<selectKey keyProperty="point_idx" resultType="int" order="BEFORE">
+				SELECT IFNULL(MAX(point_idx), 0) FROM point
+		</selectKey>
+			INSERT INTO point 
+				VALUES (
+					#{point_idx} + 1
+					, #{member_id}
+					, #{charge_point}
+					, now()
+					, #{point_status}
+					, #{account_amt}
+				)
+	</insert>
 </mapper>
 
 

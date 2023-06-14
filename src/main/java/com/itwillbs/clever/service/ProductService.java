@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.clever.mapper.ProductMapper;
 import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
+import com.itwillbs.clever.vo.MemberVO;
 import com.itwillbs.clever.vo.ProductVO;
 import com.itwillbs.clever.vo.ReportVO;
 
@@ -139,8 +140,42 @@ public class ProductService {
 		return mapper.deleteProductFile(product_idx);
 	}
 
+	public int updateSaleStatus(int product_idx) {
+		return mapper.updateSaleStatus(product_idx);
+	}
+
+	public int buyerWithdraw(String sId, int product_price) {
+		return mapper.buyerWithdraw(sId, product_price);
+	}
+
+	public int depositAdMoney(String sId, int product_price) {
+		return mapper.depositAdMoney(sId, product_price);
+	}
+
+	public int withdrawAdMoney(String buy_price, String buy_seller) {
+		return mapper.withdrawAdMoney(buy_price, buy_seller);
+	}
+
+	public int buyerDeposit(String buy_price, String buy_seller) {
+		return mapper.buyerDeposit(buy_price, buy_seller);
+	}
+
+	public int updateMemAdMoney(String sId, int product_price) {
+		return mapper.updateMemAdMoney(sId, product_price);
+	}
+
+	public String selectMemberInterest(String sId, MemberVO member) {
+		return mapper.selectMemberInterest(sId, member);
+	}
+
+	public List<HashMap<String, String>> selectIntCtgr(String selectMemberInterest, ProductVO product) {
+		return mapper.selectIntCtgr(selectMemberInterest, product);
+	}
+
+	//0614 보아 시작!!!!!!!!!!!!
 	// 찜 순위에 따른 상품 조회
 	public List<HashMap<String, String>> selectDibsProduct() {
 		return mapper.selectDibsProduct();
 	}
+
 }

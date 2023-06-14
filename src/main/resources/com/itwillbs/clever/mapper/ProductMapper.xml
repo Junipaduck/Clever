@@ -138,6 +138,17 @@
 		SELECT * FROM file f WHERE file_div = 'product';
 	</select>
 	
+	<!-- 0613배하나 추가 sId의 관심카테고리 select -->
+	<select id="selectMemberInterest" resultType="String">
+	 	SELECT member_interest from member where member_id = #{sId}
+	</select>
+	
+	<!-- 0613배하나 추가 sId의 관심카테고리와 같은 상품들 select -->
+	<select id="selectIntCtgr" resultType="HashMap">
+		SELECT product_Mcategory, product_idx, product_subject, product_price, sale_status
+			FROM product
+			where product_Mcategory = #{selectMemberInterest} 
+	</select>
 	
 	<!-- 판매자정보 select -->
 	<select id="sellerInfoCount" resultType="String">
@@ -254,21 +265,111 @@
 				WHERE product_subject LIKE '%${product_search }%'
 	</select>
 	
-	<!-- 찜 순위에 따른 상품 조회 -->
+	<!-- 0614 보아 시작!!!!!!!!!!!! -->
+	<!-- 메인화면 상품조회 -->
 	<select id="selectDibsProduct" resultType="map">
 		SELECT 
-				p.product_idx,  COUNT(*) AS count
+				p.*
 			FROM 
 				dibs d
 			JOIN 
 				product p 
-			ON 
-				d.type_num = p.product_idx
+				ON d.type_num = p.product_idx
 			WHERE 
 				d.dibs_type = 'product'
-			GROUP BY p.product_idx
-			ORDER BY count DESC;
+			GROUP BY 
+				p.product_idx
+			ORDER BY 
+				COUNT(*) DESC;
 	</select>
+	
+	<!-- 상품구매시 판매상품 sale_status 업데이트 -->
+	<update id="updateSaleStatus">
+		UPDATE 
+				product 
+			SET 
+				sale_status = '판매완료' 
+			WHERE 
+				product_idx = #{product_idx}
+	</update>
+	
+	<!-- 상품구매시 구매자 계좌 출금 -->
+	<update id="buyerWithdraw">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance - #{product_price} 
+			WHERE 
+				member_id = #{sId}
+	</update>
+	<insert id="depositAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+<!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{sId}
+				,#{product_price}
+				,'d'
+				,now()
+				,#{admin_account_balance} + #{product_price}
+			)
+	</insert>
+	
+	<!-- 구매확정 버튼 눌렀을 때, 관리자계좌 테이블에 출금 insert -->
+	<insert id="withdrawAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{buy_seller}
+				,#{buy_price}
+				,'w'
+				,now()
+				,#{admin_account_balance} - #{buy_price}
+			)
+	</insert>	
+	
+	<!-- 구매확정시 판매자에게 돈 입금 -->
+	<update id="buyerDeposit">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{buy_price}
+			WHERE 
+				member_id = #{buy_seller}
+	</update>
+	<update id="updateMemAdMoney">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{product_price} 
+			WHERE 
+				member_id = 'admin'
+	</update>
+	
+	
+	
+	<!-- 메인화면 상품조회 -->
+<!-- 	<select id="selectMainProduct" parameterType="java.util.ArrayList" resultType="map"> -->
+<!-- 		SELECT * -->
+<!-- 			FROM -->
+<!-- 				product -->
+<!-- 			WHERE product_idx IN ( -->
+<!-- 				<foreach collection="array" item="item" index="index" separator=","> -->
+<!-- 					${item} -->
+<!-- 				</foreach> -->
+<!-- 			) -->
+				
+			
+			
+<!-- 	</select> -->
 	
 	
 </mapper> <!-- 매퍼끝 -->

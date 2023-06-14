@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/chatting/chatting.css">
 <!-- js -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/js/chatting/chatting.js"></script> --%>
 <!-- <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script type="text/javascript">
@@ -182,10 +182,23 @@ $(document).ready(function() {
 			
 			// 새로운 채팅방일 경우 엔터키 누를때 채팅목록 생성
 	//         var idValue = $(".roomEl").attr("id");
-	        var idValue = $(".roomEl:last").attr("id");		// (0610최보아).roomEl 클래스 가진 요소들 중 마지막 요소의 id가져오기
+// 	        var idValue = $(".roomEl:last").attr("id");		// (0610최보아).roomEl 클래스 가진 요소들 중 마지막 요소의 id가져오기
+// 	        var idValue = $(".roomEl");		// (0613최보아).roomEl 클래스 가진 요소들 모두랑 비교해야 함
+	        var roomElements = $(".roomEl");		// (0613최보아).roomEl 클래스 가진 요소들 모두랑 비교해야 함
+	        var foundMatch = false;
+	        var idValue;
+	        roomElements.each(function() {
+	            idValue = $(this).attr("id");	// 현재 요소의 id값 가져오기
+	            console.log("idValue: " + idValue);
+	            console.log(roomId);
+	            if (idValue == roomId) {
+	                foundMatch = true;
+	                return false;	// 종료
+	            }
+	        });
 	        console.log("idValue: " + idValue);
 	        console.log(roomId);
-	        if(idValue != roomId) {
+	        if(!foundMatch) {
 	            var strTitle = '<div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="' + roomId + '">'
 	            				 + productSubject
 	            				 + '<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href=\'deleteRoom?chatRoom_id=' + roomId + '\'" style="width: 40px; position: absolute; left: 730px;">'
@@ -264,7 +277,7 @@ $(document).ready(function() {
 // 		$("#chatLog").append(str);
 	}
 	
-	// 소켓 연결 끊김 - (0601최보아) 나중에 상대방이 채팅방 나가면 상대방 아이디랑 함께 출력해줘야함
+	// 소켓 연결 끊김
 	chatSocket.onclose = function(e) {
 		console.log('${sessionScope.sId}' + " 퇴장");
 // 		var user = '${sessionScope.sId}';

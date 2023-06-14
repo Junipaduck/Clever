@@ -8,6 +8,7 @@ import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.clever.service.*;
@@ -23,6 +24,9 @@ public class BankController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
 	
@@ -87,7 +91,7 @@ public class BankController {
 		return "success";
 	}
 	
-	// 사용자 정보 조회
+	// 사용자 정보 조회 - 관리자
 	@GetMapping("/bank_userInfo")
 	public String requestUserInfo(HttpSession session, Model model) {
 		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
@@ -112,22 +116,18 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		String sId = (String)session.getAttribute("sId");
-		if(sId.equals("admin")) {
 			return "bank/bank_user_info";
-		} else {
-			return "product/bank_user_info"; // "bank/bank_account_detail" 에서 잠깐 변경함
-		}
 	}
 	
-	// 유저 계좌 정보 조회 0609 강지훈 추가
-	@GetMapping("/bank_memberInfo")
-	public String requestmemberInfo(HttpSession session, Model model) {
+	@GetMapping("/product_bank_userInfo")
+	public String requestUserInfo(HttpSession session, Model model, @RequestParam int product_price) {
+		System.out.println("돈넘어오나!!!!!!!!!!!!!!!!!" + product_price);
 		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
 		String access_token = (String)session.getAttribute("access_token");
 		String user_seq_no =  (String)session.getAttribute("user_seq_no");
 		System.out.println("access_token : " + access_token);
 		System.out.println("user_seq_no : " + user_seq_no);
+		
 		
 		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
 		if(access_token == null) {
@@ -144,13 +144,15 @@ public class BankController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
-		return "mypage/bank_memberInfo";
+			return "product/bank_user_info"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	
-	// 계좌 상세정보 조회(2.3.1. 잔액조회 API)
+	// 계좌 상세정보 조회(2.3.1. 잔액조회 API) - 관리자
 	@PostMapping("bank_accountDetail")
-	public String getAccountDetail(
-			@RequestParam Map<String, String> map, HttpSession session, Model model, MemberVO member) {
+	public String getAccountDetail(@RequestParam Map<String, String> map, 
+			HttpSession session, 
+			Model model, 
+			MemberVO member) {
 		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
 		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
 		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
@@ -190,19 +192,19 @@ public class BankController {
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("member", getMemberId);
 		
-		if(sId.equals("admin")) {
-			return "bank/bank_account_detail";
-		} else {
-			return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
-		}
+		return "bank/bank_account_detail";
 		
 		
 	}
-	
-	// 유저 계좌 상세정보 조회(잔액조회 API) 0609 강지훈 추가
-	@PostMapping("Member_accountDetail")
-	public String MemberAccountDetail(
-			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+	// 계좌 상세정보 조회(2.3.1. 잔액조회 API)
+	@PostMapping("product_bank_accountDetail")
+	public String getAccountDetail(@RequestParam Map<String, String> map, 
+									HttpSession session, 
+									Model model, 
+									MemberVO member, 
+									@RequestParam int product_idx, 
+									@RequestParam int product_price) {
+		System.out.println("0613확인!!!!!!!!!!!!!!!!!!!!!!!!" + product_price);
 		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
 		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
 		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
@@ -232,20 +234,26 @@ public class BankController {
 		
 		System.out.println(account);
 		
+		// 0613배하나 (2줄추가)
+		String sId = (String) session.getAttribute("sId");
+		MemberVO getMemberId = memberService.selectMember(sId);
+		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
+		model.addAttribute("member", getMemberId);
 		
-		return "mypage/member_account_detail";
-		
-	}   
+			return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
+	}
 	
-	// 2.5.1. 출금이체
+	
+	// 2.5.1. 출금이체 - 관리자
 	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
 	@PostMapping("bank_withdraw")
-	public String withdraw(
-			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+	public String withdraw(@RequestParam Map<String, String> map, 
+			HttpSession session, 
+			Model model) {
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
 		logger.info("★★★★★★ 출금 요청 정보 : " + map);
@@ -266,20 +274,48 @@ public class BankController {
 		}
 		String sId = (String)session.getAttribute("sId");
 		
-		if(sId.equals("admin")) {
-			return "bank/withdraw_result";
-		} else {
-			return "product/withdraw_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		return "bank/withdraw_result";
+	}
+	// 2.5.1. 출금이체
+	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
+	@PostMapping("product_bank_withdraw")
+	public String withdraw(@RequestParam Map<String, String> map, 
+							HttpSession session, 
+							Model model, 
+							@RequestParam int product_idx, 
+							@RequestParam int product_price) {
+		System.out.println("0613확인!!!!!!!!!!!!!!!!!!!!!!!!" + product_idx);
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 출금 요청 정보 : " + map);
+		
+		// BankApiService - withdraw() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountWithdrawResponseVO(result)
+		AccountWithdrawResponseVO result = apiService.withdraw(map);
+		logger.info("★★★★★★ 출금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountWithdrawResponseVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
 		}
+		String sId = (String)session.getAttribute("sId");
+		
+		return "product/withdraw_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	
 
 	
-	// 2.5.2. 입금이체
+	// 2.5.2. 입금이체 - 관리자
 	// 입금 정보 전달받기 - Map
 	@PostMapping("bank_deposit")
-	public String deposit(
-			@RequestParam Map<String, String> map, HttpSession session, Model model) {
+	public String deposit(@RequestParam Map<String, String> map, 
+			HttpSession session, 
+			Model model) {
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
 		logger.info("★★★★★★ 입금 요청 정보 : " + map);
@@ -292,17 +328,72 @@ public class BankController {
 		// Model 객체에 AccountDepositResponseListVO 객체 저장(속성명 : result)
 		model.addAttribute("result", result);
 		
+		
+		
 		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
 		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
 		if(!result.getRsp_code().equals("A0000")) {
 			model.addAttribute("msg", result.getRsp_message());
 			return "fail_back";
-		}
+		} 
+			return "bank/deposit_result";
+	}
+	// 2.5.2. 입금이체
+	// 입금 정보 전달받기 - Map
+	@PostMapping("product_bank_deposit")
+	public String deposit(@RequestParam Map<String, String> map, 
+							HttpSession session, 
+							Model model, 
+							@RequestParam int product_idx, 
+							@RequestParam int product_price) {
+		// 세션 객체의 엑세스토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ 입금 요청 정보 : " + map);
 		
-		return "bank/deposit_result";
+		// BankApiService - deposit() 메서드 호출하여 출금이체 요청
+		// 파라미터 : Map 객체   리턴타입 : AccountDepositResponseListVO(result)
+		AccountDepositListResponseVO result = apiService.deposit(map);
+		logger.info("★★★★★★ 입금 요청 처리 결과 : " + result);
+		
+		// Model 객체에 AccountDepositResponseListVO 객체 저장(속성명 : result)
+		model.addAttribute("result", result);
+		
+		
+		
+		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
+		// 응답메세지(rsp_message) 를 화면에 출력 후 이전페이지로 돌아가기
+		if(!result.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", result.getRsp_message());
+			return "fail_back";
+		} else {
+			String sId = (String)session.getAttribute("sId");
+			int updateCnt = productService.updateSaleStatus(product_idx);
+			int updateMemAdMoney = productService.updateMemAdMoney(sId, product_price);
+			int updateMoney = productService.buyerWithdraw(sId, product_price);
+			int updateAdMoney = productService.depositAdMoney(sId, product_price);
+			
+			
+			return "product/product_deposit_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		}
+	}
+	 
+	@GetMapping("/buyConfirm")
+	public String payConfirm(HttpSession session
+							, Model model
+//							, @RequestParam int buy_price
+							,@RequestParam Map<String, String> map
+								) {
+		String buy_price = map.get("buy_price");
+		String buy_seller = map.get("buy_seller");
+//		System.out.println("아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ buy_price : " + buy_price + "      판매자아이디 : " + buy_seller );
+		int updateAdMoney = productService.withdrawAdMoney(buy_price, buy_seller);
+		int updateMoney = productService.buyerDeposit(buy_price, buy_seller);
+		
+		return "redirect:/myPage.me";
 	}
 	
-}
+	
+} //컨트롤러끝 
 
 
 

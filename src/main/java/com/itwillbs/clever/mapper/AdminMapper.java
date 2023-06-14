@@ -8,6 +8,9 @@ public interface AdminMapper {
 
 	// 관리자 페이지 전체 회원 목록 조회
 	List<HashMap<String, String>> selectMember();
+	
+	// 관리자 페이지 회원 등급 조회
+	List<HashMap<String, String>> selectMemberGrade();
 
 	// 관리자 페이지 전체 경매 목록 조회
 	List<HashMap<String, String>> selectAuctionList();
@@ -52,7 +55,6 @@ public interface AdminMapper {
 
 	// 관리자 페이지 옥션 차트 리스트 조회
 	List<HashMap<String, String>> selectAuctionChartList();
-
 
 
 

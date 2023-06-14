@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -121,98 +121,152 @@
                 </div>
             </div>
 
-            <!--상품 영역-->
+
             <section class="main_goods">
-                <h2>오늘의 상품 추천</h2>
+          		  <c:choose>
+               		<c:when test="${not empty sessionScope.sId}">
+               			<h2>${sessionScope.sId }님 맞춤 상품 ❤️</h2>
+               		</c:when>
+               		<c:otherwise>
+               			<h4>로그인 후 더 많은 정보를 볼 수 있습니다 🎶</h4>
+               		</c:otherwise>
+                 </c:choose>
+                
+                <!--상품 영역-->
+                    <div class="goods_wrap col-lg-12 col-md-12"> 
+                   		<!-- 상품 1개 카드 -->
+                        <c:forEach items="${selectIntCtgr }" var="selectIntCtgr" begin="1" end="5">
+	                        <div class="goods">
+	                            <a href="product_detail?product_idx=${selectIntCtgr.product_idx }&product_Mcategory=${selectIntCtgr.product_Mcategory}&product_price=${selectIntCtgr.product_price}">
+<!--                                		<div class="goods_image"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지"> --%>
+<!-- 	                                </div> -->
+
+										<c:forEach items="${fileList }" var="fileList">
+					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+											<c:choose>
+					                            <c:when test="${fileList.file_num eq selectIntCtgr.product_idx && selectIntCtgr.sale_status eq '판매중' }">
+						                            <div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                            </div>
+					                            </c:when>
+					                            <c:when test="${fileList.file_num eq selectIntCtgr.product_idx && selectIntCtgr.sale_status eq '판매완료' }">
+					                            	<div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                               	<img src="${pageContext.request.contextPath }/resources/images/soldOut.png" alt="판매완료" style="width: 170px; height: 120px; margin-bottom: 77px;">
+						                            </div>
+					                            </c:when>
+					                        </c:choose>
+				                        </c:forEach>
+				                        
+	                                <div class="goods_info">
+	                                    <p class="goods_title">${selectIntCtgr.product_subject }</p>
+	                                    <div class="goods_price_date">
+	                                        <span class="goods_price">${selectIntCtgr.product_price }원</span>
+	                                        <span class="goods_date_before">${selectIntCtgr.sale_status }</span>
+	                                    </div>
+	                                </div>
+	                            </a>
+	                        </div>
+                        </c:forEach>
+                        <!-- //상품 1개 카드 -->
+                    </div>
+                </section>
+                
+                
+                <!--상품 영역-->
+            <section class="main_goods">
+                <h2>클레버 인기 상품 👍</h2>
+                <!-- 0614 보아 시작!!!!!!!!!!!! -->
                 <div class="goods_wrap">
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                                <img src="${pageContext.request.contextPath }/resources/images/market/thunder_pay_mark.svg" alt="번개페이">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">핸드메이드 롱코트 브라운</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">15,000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="https://media.bunjang.co.kr/product/178183200_1_1669084670_w360.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">JSP책 팝니다</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">9000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="https://img2.quasarzone.com/editor/2021/07/05/d5e46e5d97c11769965e45af8bd017ba.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">엠스톤 키보드</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">110,000원</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">상품명</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">상품명</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="goods">
-                        <a href="product_detail">
-                            <div class="goods_image">
-                                <img src="${pageContext.request.contextPath }/resources/images/goods_ex.jpg" width="194" height="194" alt="상품 이미지">
-                            </div>
-                            <div class="goods_info">
-                                <p class="goods_title">상품명</p>
-                                <div class="goods_price_date">
-                                    <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">4일 전</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
+	                <c:forEach items="${selectDibsProduct }" var="selectDibsProduct" begin="1" end="5">
+		                        <div class="goods">
+		                            <a href="product_detail?product_idx=${selectDibsProduct.product_idx }&product_Mcategory=${selectDibsProduct.product_Mcategory}&product_price=${selectDibsProduct.product_price}">
+	<!--                                		<div class="goods_image"> -->
+	<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지"> --%>
+	<!-- 	                                </div> -->
+	
+											<c:forEach items="${fileList }" var="fileList">
+						                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+												<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+												<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+												<c:choose>
+						                            <c:when test="${fileList.file_num eq selectDibsProduct.product_idx && selectDibsProduct.sale_status eq '판매중' }">
+							                            <div class="goods_image">
+							                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+							                            </div>
+						                            </c:when>
+						                            <c:when test="${fileList.file_num eq selectDibsProduct.product_idx && selectDibsProduct.sale_status eq '판매완료' }">
+						                            	<div class="goods_image">
+							                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+							                               	<img src="${pageContext.request.contextPath }/resources/images/soldOut.png" alt="판매완료" style="width: 170px; height: 120px; margin-bottom: 77px;">
+							                            </div>
+						                            </c:when>
+						                        </c:choose>
+					                        </c:forEach>
+					                        
+		                                <div class="goods_info">
+		                                    <p class="goods_title">${selectDibsProduct.product_subject }</p>
+		                                    <div class="goods_price_date">
+		                                        <span class="goods_price">${selectDibsProduct.product_price }원</span>
+		                                        <span class="goods_date_before">${selectDibsProduct.sale_status }</span>
+		                                    </div>
+		                                </div>
+		                            </a>
+		                        </div>
+	                        </c:forEach>
+                    <!-- 0614 보아 끝!!!!!!!!!!!! -->
                 </div> 
             </section>
+            
+            
+             <section class="main_goods">
+                <h2>클레버 최신 상품 🆕</h2>
+                <!--상품 영역-->
+                    <div class="goods_wrap col-lg-12 col-md-12"> 
+                   		<!-- 상품 1개 카드 -->
+                        <c:forEach items="${productList }" var="productList" begin="1" end="5">
+	                        <div class="goods">
+	                            <a href="product_detail?product_idx=${productList.product_idx }&product_Mcategory=${productList.product_Mcategory}&product_price=${productList.product_price}">
+<!--                                		<div class="goods_image"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat1.jpg" width="194" height="194" alt="상품 이미지"> --%>
+<!-- 	                                </div> -->
+
+										<c:forEach items="${fileList }" var="fileList">
+					                        <c:set var="length" value="${fn:length(fileList.file_name) }" />
+											<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
+											<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
+											<c:choose>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매중' }">
+						                            <div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                            </div>
+					                            </c:when>
+					                            <c:when test="${fileList.file_num eq productList.product_idx && productList.sale_status eq '판매완료' }">
+					                            	<div class="goods_image">
+						                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+						                               	<img src="${pageContext.request.contextPath }/resources/images/soldOut.png" alt="판매완료" style="width: 170px; height: 120px; margin-bottom: 77px;">
+						                            </div>
+					                            </c:when>
+					                        </c:choose>
+				                        </c:forEach>
+				                        
+	                                <div class="goods_info">
+	                                    <p class="goods_title">${productList.product_subject }</p>
+	                                    <div class="goods_price_date">
+	                                        <span class="goods_price">${productList.product_price }원</span>
+	                                        <span class="goods_date_before">${productList.sale_status }</span>
+	                                    </div>
+	                                </div>
+	                            </a>
+	                        </div>
+                        </c:forEach>
+                        <!-- //상품 1개 카드 -->
+                    </div>
+                </section>
+            
         </div>
         <!-- // main_content 영역 -->
 	<!-- 풋터 시작 -->

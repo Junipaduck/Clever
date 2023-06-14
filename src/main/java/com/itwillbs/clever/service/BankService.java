@@ -1,5 +1,7 @@
 package com.itwillbs.clever.service;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -29,9 +31,23 @@ public class BankService {
 	}
 
 	// 포인트 적립
-	public int updateMemberPoint(String id, int point) {
+	public int updateMemberPoint(String id, int point, int account_amt) {
 		
-		return mapper.updateMemberPoint(id, point);
+		return mapper.updateMemberPoint(id, point, account_amt);
+	}
+
+	// 멤버 잔액 조회
+	public MemberVO getMemberInfo(String id) {
+		
+		return mapper.selectMemberInfo(id);
+	}
+
+	// 포인트 히스토리
+	public int insertPointHistory(Map<String, String> map) {
+		
+		System.out.println("map~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + map);
+		
+		return mapper.insertPointHistory(map);
 	}
 	
 }

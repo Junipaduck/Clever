@@ -62,7 +62,7 @@ td, tr, th{
 				<td></td>
 				<td>${account.fintech_use_num }</td>
 				<td>
-					<form action="bank_accountDetail" method="post">
+					<form action="auction_bank_accountDetail" method="post">
 						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
 						<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
 						<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">

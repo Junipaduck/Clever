@@ -62,22 +62,21 @@ div.right {
 
 
 <body>
-
 <script type="text/javascript">
-	
+
 /* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
 function payAuction(idx){
-	window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
+    window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
 }
- 	
-$(function() {
-	$(document).on("click", ".payAuction", function() {
- 		var idx = $(this).attr("title");
- 		payAuction(idx);
- 	})
- });
-</script>
 
+$(function() {
+    $(document).on("click", ".payAuction", function() {
+         var idx = $(this).attr("title");
+         payAuction(idx);
+     })
+ });
+ 
+</script>
 	<!-- 헤더 시작 -->
 	<jsp:include page="../inc/mypage_header.jsp" />
 
@@ -103,10 +102,10 @@ $(function() {
 				</div>
 				<div>
 					<p>
-						<a href="#">적립금 ${member.member_point}</a>
+						<a href="#">적립금 : ${member.member_point}</a>
 					</p>
 					<p>
-						<a href="#">포인트 ${member.charge_point}</a>
+						<a href="#">충전포인트 : ${member.charge_point}</a>
 					</p>
 				</div>
 			</div>
@@ -116,19 +115,21 @@ $(function() {
 					<div>
 						<h2>${member.member_id}님</h2>
 						<button onclick="location.href='memberModify.me'">내 정보 수정</button>
-						<button onclick="location.href='bank_memberInfo'">내 계좌 관리</button>
+						<button onclick="location.href='bank_memberInfo'">계좌관리</button>
 					</div>
 					<div>
-						<p>
-							<c:choose>
-								<c:when test="${member.account_auth eq 'Y'}">
+						<c:choose>
+							<c:when test="${member.account_auth eq 'Y' }">
+								<p>
 									<span>OK</span> 계좌 인증 완료
-								</c:when>
-								<c:otherwise>
+								</p>
+							</c:when>
+							<c:otherwise>
+								<p>
 									<span>NO</span> 계좌 미인증
-								</c:otherwise>
-							</c:choose>
-						</p>
+								</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div id="my_store_right_mid">
@@ -395,6 +396,11 @@ $(function() {
 						<p>
 							구매내역 <span>2</span>
 						</p>
+						<!-- 테스트용 -->
+						<c:forEach items="${goodsList }" var="goodsList">
+							상품명 : ${goodsList.buy_title }
+							구매일 : ${goodsList.buy_date }
+						</c:forEach>
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
@@ -507,9 +513,12 @@ $(function() {
 											</div>
 										</a>
 										<c:choose>
-											<c:when test="${productBuyList.buy_status eq '배송완료' }">
+											<c:when test="${productBuyList.buy_status eq '구매확정' }">
 												<div class="btn_area">
-													<button type="button" class="btn_buy_decide">구매확정</button>
+<%-- 													<button type="button" class="btn_buy_decide" value="${param.buy_price }">구매확정</button> <!-- 0613배하나 --> --%>
+<%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" onclick="location.href='buyConfirm'">구매확정</button> <!-- 0613배하나 --> --%>
+<%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" >구매확정</button> <!-- 0613배하나 --> --%>
+														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}">구매확정</a>
 													<button type="button" class="btn_return">반품신청</button>
 												</div>
 											</c:when>
