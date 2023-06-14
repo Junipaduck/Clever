@@ -193,8 +193,8 @@
 	                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/place.png" alt="주소">${productDetail.sale_location }</span>
 	                                </p>
 	                                 <p>
-	                                    <span>· 상품태그</span>
-	                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="상품태그"> ${productDetail.product_tag }</span>
+	                                    <span>· 거래상태</span>
+	                                    <span><img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="거래상태"> ${productDetail.sale_status}</span>
 	                                </p>
 	                            </div>
 	                            <div>
@@ -345,8 +345,8 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="p-3 detailed_information_tag">
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="상품태그"> <span>상품태그</span>
-                                                <p>${productDetail.product_tag }</p>
+                                                <img src="${pageContext.request.contextPath }/resources/images/goods/tag.png" alt="거래상태"> <span>거래상태</span>
+                                                <p>${productDetail.sale_status }</p>
                                             </div>
                                         </div>
                                     </div>
