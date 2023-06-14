@@ -58,12 +58,12 @@
 		 				alert("상품 찜 하셨습니다.");
 		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/hearton.png");
 		 				$('#dibsback').attr("style","background-color: #333333");
-		 				var result = confirm('찜목록으로 이동하시겠습니까?');
-		 				if (result) {
-		 					//yes
-		 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
-		 					location.href='myPage.me'; 
-		 	 			} 
+// 		 				var result = confirm('찜목록으로 이동하시겠습니까?');
+// 		 				if (result) {
+// 		 					//yes
+// 		 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
+// 		 					location.href='myPage.me'; 
+// 		 	 			} 
 		 			}
 		 			else if(data == -1){
 		 				alert("로그인이 필요한 서비스입니다. ");
