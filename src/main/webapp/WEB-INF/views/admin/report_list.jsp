@@ -70,7 +70,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="color: black;">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
@@ -105,8 +105,8 @@
                                                 <th>신고사유</th>
                                                 <th>판매자 정보</th>
                                                 <th>신고자 정보</th>
-                                                <th>누적 신고 수</th>
-                                                <th>신고 처리 상태</th>
+<!--                                                 <th>누적 신고 수</th> -->
+<!--                                                 <th>신고 처리 상태</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -117,10 +117,10 @@
 	                                                <td>${reportList.report_content }</td>
 	                                                <td>${reportList.seller_id }</td>
 	                                                <td>${reportList.reporter_id }</td>
-	                                                <td>${reportList.report_count }</td>
-	                                                <td>
-	                                                	<button type="button" class="btn btn-primary" onclick="reportPro('${reportList.report_idx}', '${reportList.product_idx }', '${reportList.report_count}')">처리하기</button>
-	                                                </td>
+<%-- 	                                                <td>${reportList.total_reports }</td> --%>
+<!-- 	                                                <td> -->
+<%-- 	                                                	<button type="button" class="btn btn-primary" onclick="reportPro('${reportList.report_idx}', '${reportList.product_idx }', '${reportList.report_count}')">처리하기</button> --%>
+<!-- 	                                                </td> -->
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
@@ -131,8 +131,8 @@
                                                 <th>신고사유</th>
                                                 <th>판매자 정보</th>
                                                 <th>신고자 정보</th>
-                                                <th>누적 신고 수</th>
-                                                <th>신고 처리 상태</th>
+<!--                                                 <th>누적 신고 수</th> -->
+<!--                                                 <th>신고 처리 상태</th> -->
                                             </tr>
                                         </tfoot>
                                     </table>

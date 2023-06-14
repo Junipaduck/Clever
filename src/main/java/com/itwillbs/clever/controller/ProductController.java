@@ -98,6 +98,16 @@ public class ProductController {
 		String sellerInfoCount = productService.sellerInfoCount(product);
 		model.addAttribute("sellerInfoCount", sellerInfoCount);
 		
+		// 판매자 아이디 조회
+		String selectSellerId = productService.selectSellerId(product_idx);
+		model.addAttribute("selectSellerId", selectSellerId);
+
+		List<HashMap<String, String>> SellerFileList = productService.SellerFileList(selectSellerId); //판매자의 판매중인 사진 조회
+		model.addAttribute("SellerFileList", SellerFileList);
+		
+		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 select리스트
+		model.addAttribute("productList", productList);
+		
 		// 찜하기
 		String sId = (String)session.getAttribute("sId");
 		DibsVO dibs = new DibsVO();
@@ -153,7 +163,6 @@ public class ProductController {
 		@ResponseBody
 		@GetMapping("/dibsCheck")
 		public int DibsCheck(int type_num, String member_id , HttpSession session, Model model, String dibs_type) {
-			System.out.println("시발아!" + dibs_type);
 			int result = -1;
 			String sId = (String)session.getAttribute("sId");
 			if(sId == null) {

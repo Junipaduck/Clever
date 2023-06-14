@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ser.std.MapProperty;
 import com.itwillbs.clever.mapper.ProductMapper;
 import com.itwillbs.clever.vo.DibsVO;
 import com.itwillbs.clever.vo.FileVO;
@@ -190,6 +191,14 @@ public class ProductService {
 	// 마이페이지 - 구매확정 시 상태 업데이트
 	public int updateStatus(String product_idx) {
 		return mapper.updateStatus(product_idx);
+	}
+
+	public List<HashMap<String, String>> SellerFileList(String selectSellerId) {
+		return mapper.SellerFileList(selectSellerId);
+	}
+
+	public String selectSellerId(int product_idx) {
+		return mapper.selectSellerId(product_idx);
 	}
 
 	

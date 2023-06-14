@@ -82,7 +82,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">관리자</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="color: black;">
                                 <div class="basic-form">
                                     <form action="goodsRegisterPro.ad" method="post">
                                         <div class="form-group row">

@@ -135,7 +135,7 @@
                 <!--상품 영역-->
                     <div class="goods_wrap col-lg-12 col-md-12"> 
                    		<!-- 상품 1개 카드 -->
-                        <c:forEach items="${selectIntCtgr }" var="selectIntCtgr" begin="1" end="5">
+                        <c:forEach items="${selectIntCtgr }" var="selectIntCtgr" begin="0" end="4">
 	                        <div class="goods">
 	                            <a href="product_detail?product_idx=${selectIntCtgr.product_idx }&product_Mcategory=${selectIntCtgr.product_Mcategory}&product_price=${selectIntCtgr.product_price}">
 <!--                                		<div class="goods_image"> -->
@@ -181,7 +181,7 @@
                 <h2>클레버 인기 상품 👍</h2>
                 <!-- 0614 보아 시작!!!!!!!!!!!! -->
                 <div class="goods_wrap">
-	                <c:forEach items="${selectDibsProduct }" var="selectDibsProduct" begin="1" end="5">
+	                <c:forEach items="${selectDibsProduct }" var="selectDibsProduct" begin="0" end="4">
 		                        <div class="goods">
 		                            <a href="product_detail?product_idx=${selectDibsProduct.product_idx }&product_Mcategory=${selectDibsProduct.product_Mcategory}&product_price=${selectDibsProduct.product_price}">
 	<!--                                		<div class="goods_image"> -->
@@ -227,7 +227,7 @@
                 <!--상품 영역-->
                     <div class="goods_wrap col-lg-12 col-md-12"> 
                    		<!-- 상품 1개 카드 -->
-                        <c:forEach items="${productList }" var="productList" begin="1" end="5">
+                        <c:forEach items="${productList }" var="productList" begin="0" end="4">
 	                        <div class="goods">
 	                            <a href="product_detail?product_idx=${productList.product_idx }&product_Mcategory=${productList.product_Mcategory}&product_price=${productList.product_price}">
 <!--                                		<div class="goods_image"> -->
