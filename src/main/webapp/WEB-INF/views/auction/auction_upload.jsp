@@ -97,11 +97,11 @@ $(function() {
 	$("#formform").on("submit", function() {
 		$("#auction_category").val($(".selected_category").text()); 
 			startEndDate();
-			isStatus();
 			
 		if(!startEndDateStats){
 			return false;
 		}
+		return isStatus();
 	});
 });
 function startEndDate() {
@@ -189,6 +189,7 @@ function isStatus() {
 		return false;
 	} else if(auction_price > immediately_price || auction_price == immediately_price){
 		alert("즉시 구매가가 경매 시작가 보다 큰지 확인해주세요.");
+		$("#auction_price").focus();
 		return false;
 	} else {
 		return true;

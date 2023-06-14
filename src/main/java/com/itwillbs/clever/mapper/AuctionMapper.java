@@ -82,4 +82,8 @@ public interface AuctionMapper {
 
 	Map<String, String> getMember(String id);
 
+	List<String> sellerAutions(String member_id);
+
+	int sellerInfoCount(String member_id);
+
 }

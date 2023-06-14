@@ -459,45 +459,39 @@
                             <div class="store_info_area">
                                 <div>
                                     <p>
-                                        상점정보
+                                        판매자정보
                                     </p>
                                 </div>
                                 <div>
                                     <div>
                                         <div>
-                                            <img src="${pageContext.request.contextPath }/resources/images/goods/store.svg" alt="상점명">
+                                            <img src="${pageContext.request.contextPath }/resources/images/goods/store.svg" alt="판매자아이디">
                                         </div>
                                         <div>
-                                            <p>
-                                                상점명
+                                            <p style="font-weight: bold;">
+                                                ${detailmap.member_id }
                                             </p>
-                                            <p>
                                                 <p>
-                                                    상품 <span>0</span>
+                                                    판매중인 상품 <span>${sellerInfoCount}개</span>
                                                 </p>
-                                                <p>
-                                                    팔로워 <span>0</span>
-                                                </p>
-                                            </p>
                                         </div>
                                         <div id="store_follow">
-                                            <button>
-                                                <img src="${pageContext.request.contextPath }/resources/images/goods/follow.png" alt="팔로우">팔로우
-                                            </button>
+                                            	<button onclick="location.href='chatting?product_idx=${param.product_idx}'" style="background-color: #0085f5; color: white;"> 채팅하기</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/test_img.jpg" alt="상품 더보기">
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/test_img.jpg" alt="상품 더보기">
+                                    	<!-- 2개만 보여주도록 foreach할때 begin=0 end=1로 설정하기! -->
+                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat2.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
+                                        <img src="${pageContext.request.contextPath }/resources/fileUpload/hana_cat3.jpg" style="width: 130px; height: 150px;" alt="판매중인상품">
                                     </div>
                                     <div>
-                                        <p><span>0개</span> 상품 더보기 ></p>
+                                        <p style="margin-top: 41px;">판매중인 <span>${sellerInfoCount}개</span> 상품</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <p>상점후기 <span>0</span></p>
+                                    <p>판매자후기 <span>0</span></p>
                                     <div>
                                         <p>
                                             등록된 후기가 없습니다.<br>
@@ -509,10 +503,6 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button>
-                                        <img src="${pageContext.request.contextPath }/resources/images/goods/talk.png" alt="번개톡"> 번개톡
-                                    </button>
-                                    <button>바로구매</button>
                                 </div>
                             </div>
                         </div>
@@ -782,8 +772,6 @@ function auctionStart() {
 			$("#detail_content_info_state").append(
 					'<div class="col-4">'
 					+ '<div class="p-3 info_btn3" id="deposit" >입찰하기</div>'
-					+ '</div>'
-					+ '<div class="col-4">'
 					+ '<c:if test="${result.dibs_check != null }">'
 					+ '<a class="dibs">'
 					+ '<c:if test="${result.dibs_check == 0}">'
