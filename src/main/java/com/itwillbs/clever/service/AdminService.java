@@ -144,6 +144,12 @@ public class AdminService {
 		return mapper.selectAuctionChartList();
 	}
 
+	// 포인트 입출금 내역
+	public List<HashMap<String, String>> getPointList() {
+		
+		return mapper.selectPointList();
+	}
+
 		
 	}
 

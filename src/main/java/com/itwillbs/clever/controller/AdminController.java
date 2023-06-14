@@ -86,6 +86,10 @@ public class AdminController {
 		List<HashMap<String, String>> auctionList = adminService.getAuctionChartList();
 		model.addAttribute("auctionList", auctionList);
 		
+		// 포인트 충전 입출금 내역
+		List<HashMap<String, String>> pointList = adminService.getPointList();
+		model.addAttribute("pointList", pointList);
+		
 //		return new ModelAndView("admin/admin_main", "map", map);
 		return "admin/admin_main";
 	}
@@ -338,6 +342,26 @@ public class AdminController {
 			model.addAttribute("target", "adminAskedList.ad");
 			return "success";
 		}
+	}
+	
+	@GetMapping(value = "/adminLogout.ad")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping(value = "/adminPointAccount.ad")
+	public String adminAccount(HttpSession session, Model model) {
+		
+		// 포인트 충전 입출금 내역
+		List<HashMap<String, String>> pointList = adminService.getPointList();
+		model.addAttribute("pointList", pointList);
+		
+		// 관리자 잔액 조회
+		HashMap<String, String> adminInfo = adminService.getAdminInfo();
+		model.addAttribute("adminInfo", adminInfo);
+		
+		return "admin/admin_point_account";
 	}
 	
 }

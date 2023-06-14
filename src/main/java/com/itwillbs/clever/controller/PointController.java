@@ -167,6 +167,9 @@ public class PointController {
 			
 //			map.put("point_status", point_status);
 			// 포인트 히스토리 insert
+			
+			int updateAdminBalance = bankService.updateAdminBalance(charge_point);
+			
 			int insertCount = bankService.insertPointHistory(map);
 			
 			if(insertCount > 0) {

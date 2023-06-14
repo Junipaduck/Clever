@@ -292,18 +292,20 @@
                     <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">최근 입금 내역</h4>
+                                <h4 class="card-title">최근 포인트 충전 내역</h4>
                             </div>
                             <div class="card-body">
                                 <div class="widget-timeline">
                                     <ul class="timeline">
-                                        <li>
-                                            <div class="timeline-badge primary"></div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>10 minutes ago</span>
-                                                <h6 class="m-t-5">000님 5000원 충전</h6>
-                                            </a>
-                                        </li>
+                                    	<c:forEach items="${pointList }" var="pointList">
+	                                        <li>
+	                                            <div class="timeline-badge primary"></div>
+	                                            <a class="timeline-panel text-muted" href="#">
+	                                                <span>${pointList.point_date }</span>
+	                                                <h6 class="m-t-5">${pointList.member_id }님 ${pointList.charge_point }원 충전</h6>
+	                                            </a>
+	                                        </li>
+                                    	</c:forEach>
                                     </ul>
                                 </div>
                             </div>

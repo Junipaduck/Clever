@@ -56,6 +56,9 @@ public interface AdminMapper {
 	// 관리자 페이지 옥션 차트 리스트 조회
 	List<HashMap<String, String>> selectAuctionChartList();
 
+	// 포인트 입출금 내역
+	List<HashMap<String, String>> selectPointList();
+
 
 
 

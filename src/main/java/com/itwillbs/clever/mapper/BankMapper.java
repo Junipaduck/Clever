@@ -25,4 +25,7 @@ public interface BankMapper {
 
 	int insertPointHistory(Map<String, String> map);
 
+	// admin balance 업데이트
+	int updateAdminBalance(int charge_point);
+
 }

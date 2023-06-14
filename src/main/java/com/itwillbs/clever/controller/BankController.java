@@ -31,6 +31,9 @@ public class BankController {
 	@Autowired
 	private MypageService mypageService;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
 	
 	// 사용자 인증 요청에 대한 응답 처리 및 엑세스 토큰 발급 요청 후 결과 처리
@@ -188,6 +191,10 @@ public class BankController {
 		// 0613배하나 (2줄추가)
 		String sId = (String) session.getAttribute("sId");
 		MemberVO getMemberId = memberService.selectMember(sId);
+
+		// 0614 양선정 추가
+		HashMap<String, String> admin = adminService.getAdminInfo();
+		model.addAttribute("admin", admin);
 		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);

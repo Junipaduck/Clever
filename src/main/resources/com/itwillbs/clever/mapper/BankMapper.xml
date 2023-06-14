@@ -71,6 +71,15 @@
 					, #{account_amt}
 				)
 	</insert>
+	
+	<!-- admin balance 업데이트 -->
+	<update id="updateAdminBalance">
+		UPDATE member
+			SET 
+				member_balance = member_balance + #{charge_point}
+					WHERE
+						member_id = 'admin' -- admin 잔액에 포인트 만큼 입금
+	</update>
 </mapper>
 
 
