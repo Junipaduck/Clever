@@ -354,7 +354,12 @@
 				member_id = 'admin'
 	</update>
 	
-	
+	<!-- 결제페이지에서 회원정보 조회 -->
+	<select id="selectMemberInfo" resultType="map">
+		SELECT *
+			FROM member
+			WHERE member_id = #{sId}
+	</select>
 	
 	<!-- 메인화면 상품조회 -->
 <!-- 	<select id="selectMainProduct" parameterType="java.util.ArrayList" resultType="map"> -->

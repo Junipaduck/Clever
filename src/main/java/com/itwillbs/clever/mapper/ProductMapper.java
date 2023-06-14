@@ -88,6 +88,8 @@ public interface ProductMapper {
 
 	List<HashMap<String, String>> selectIntCtgr(@Param("selectMemberInterest") String selectMemberInterest, @Param("product") ProductVO product);
 
+	Object selectMemberInfo(String sId);
+
 
 //	List<HashMap<String, String>> selectMainProduct(List<HashMap<String, String>> selectDibsProduct);
 }

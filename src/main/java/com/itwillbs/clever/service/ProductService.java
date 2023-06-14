@@ -178,4 +178,8 @@ public class ProductService {
 		return mapper.selectDibsProduct();
 	}
 
+	public Object selectMemberInfo(String sId) {
+		return mapper.selectMemberInfo(sId);
+	}
+
 }

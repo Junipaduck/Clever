@@ -168,7 +168,7 @@ public class BankController {
 		// 계좌 상세정보 조회 요청
 		// => 파라미터 : Map 객체   리턴타입 : AccountDetailVO(account)
 		AccountDetailVO account = apiService.requestAccountDetail(map);
-		
+		System.out.println("account : " + account);
 		// 응답코드(rsp_code)가 "A0000" 가 아니면 에러 상황이므로 에러 처리
 		// => "정보 조회 실패!" 출력 후 이전페이지로 돌아가기(fail_bank)
 		// => 출력메세지에 응답메세지(rsp_message) 도 함께 출력
@@ -188,10 +188,11 @@ public class BankController {
 		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
+		System.out.println("0614- 여기!!!!!!!!!!!!!!!!!!!!!");
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("member", getMemberId);
-		
+		System.out.println("나오난아ㅏㅏㅇ아ㅏ아아ㅏ아!!!!!!!!!!!!!!!!!" + map.get("account_num_masked"));
 		return "bank/bank_account_detail";
 		
 		
@@ -244,7 +245,14 @@ public class BankController {
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("member", getMemberId);
 		
-			return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
+		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
+		model.addAttribute("productDetail", productDetail);
+		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("fileList", fileList);
+//		 productService.selectMemberInfo(sId);
+//		model.addAttribute("selectMemberInfo", productService.selectMemberInfo(sId));
+		
+		return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	
 	
@@ -304,7 +312,12 @@ public class BankController {
 			return "fail_back";
 		}
 		String sId = (String)session.getAttribute("sId");
-		
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+//		model.addAttribute("member", getMemberId);
+		model.addAttribute("selectMemberInfo", productService.selectMemberInfo(sId));
 		return "product/withdraw_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	

@@ -74,58 +74,58 @@
         <div id="background_main">
             <div id="main_content">
                 <!-- 카테고리 -->
-                <div id="category">
-                    <p id="home">
-                        <span>
-                            <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home">
-                        </span>
-                        <span>홈</span>
-                    </p>
+<!--                 <div id="category"> -->
+<!--                     <p id="home"> -->
+<!--                         <span> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home"> --%>
+<!--                         </span> -->
+<!--                         <span>홈</span> -->
+<!--                     </p> -->
                     
-                    <p id="entire">
-                        <span>
-                            <i class="bi bi-chevron-right"></i>
-                        </span>
-                        <span>
-                            <ul class="entire_bar">
-                                <li><a href="#">카테고리 선택</a></li>
-                                <li class="hidden_menu"><a href="#">의류/잡화</a></li>
-                                <li class="hidden_menu"><a href="#">디지털/가전</a></li>
-                                <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li>
-                                <li class="hidden_menu"><a href="#">뷰티/미용</a></li>
-                                <li class="hidden_menu"><a href="#">식품</a></li>
-                                <li class="hidden_menu"><a href="#">반려동물용품</a></li>
-                                <li class="hidden_menu"><a href="#">기타</a></li>
-                                <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li>
-                            </ul>
-                            <i class="bi bi-chevron-down under_direction"></i>
-                        </span>
-                    </p>
-                    <p id="category_clothes">
-                        <span>
-                            <i class="bi bi-chevron-right"></i>
-                        </span>
-                        <span>
-                            <ul class="category_clothes_bar">
-                                <li><a href="#">남성의류</a></li>
-                                <li class="hidden_menu"><a href="#">여성의류</a></li>
-                            </ul>
-                            <i class="bi bi-chevron-down under_direction"></i>
-                        </span>
-                    </p>
-                </div>
+<!--                     <p id="entire"> -->
+<!--                         <span> -->
+<!--                             <i class="bi bi-chevron-right"></i> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <ul class="entire_bar"> -->
+<!--                                 <li><a href="#">카테고리 선택</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">의류/잡화</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">디지털/가전</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">뷰티/미용</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">식품</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">반려동물용품</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">기타</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">도서/티켓/문구</a></li> -->
+<!--                             </ul> -->
+<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
+<!--                         </span> -->
+<!--                     </p> -->
+<!--                     <p id="category_clothes"> -->
+<!--                         <span> -->
+<!--                             <i class="bi bi-chevron-right"></i> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <ul class="category_clothes_bar"> -->
+<!--                                 <li><a href="#">남성의류</a></li> -->
+<!--                                 <li class="hidden_menu"><a href="#">여성의류</a></li> -->
+<!--                             </ul> -->
+<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
+<!--                         </span> -->
+<!--                     </p> -->
+<!--                 </div> -->
                 
-                <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
-                <div class="category_under">
-                    <div class="category_box">
-                        <a href="전체보기">전체보기
-                            <span><i class="bi bi-chevron-right"></i></span></a>
-                    </div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"><a href="#">하위 카테고리</a></div>
-                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
-                    <div class="category_box"></div>
-                </div>
+<!--                 하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X) -->
+<!--                 <div class="category_under"> -->
+<!--                     <div class="category_box"> -->
+<!--                         <a href="전체보기">전체보기 -->
+<!--                             <span><i class="bi bi-chevron-right"></i></span></a> -->
+<!--                     </div> -->
+<!--                     <div class="category_box"><a href="#">하위 카테고리</a></div> -->
+<!--                     <div class="category_box"><a href="#">하위 카테고리</a></div> -->
+<!--                     <div class="category_box"></div> 자리 남아도 5개 유지 -->
+<!--                     <div class="category_box"></div> -->
+<!--                 </div> -->
 
 	         
 		<!-- 스크롤 코드 시작 (아래 div태그 3줄) -->	
