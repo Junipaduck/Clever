@@ -352,7 +352,7 @@ $(function() {
                         <p>거래지역<span class="red">*</span></p>
                         <div class="goods_location">
                             <div class="location_button_area">
-                                <button onclick="return false;">내위치</button>
+<!--                                 <button onclick="return false;">내위치</button> -->
                                 <button id="btnAddress" onclick="return false;">주소검색</button>
                                 <!-- 주소 입력 받는 api -->
 						               <!-- 주소 API 스크립트 -->
@@ -369,7 +369,7 @@ $(function() {
 										    });
 										}
 										</script>
-                                <button onclick="return false;">지역설정안함</button>
+<!--                                 <button onclick="return false;">지역설정안함</button> -->
                             </div>
                             <input type="text" id="sale_location" name="sale_location" readonly>
                         </div>
@@ -387,10 +387,10 @@ $(function() {
                         <p>가격<span class="red">*</span></p>
                         <div class="goods_price">
                             <p><input type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)" style="width: 700px;">원</p>
-                            <input type="checkbox" name="deliveryPrice" id="deliveryPrice">
-                            <label for="deliveryPrice">배송비 포함</label>
-                             <input type="checkbox" name="priceOffer" id="priceOffer">
-                            <label for="deliveryPrice">가격제안받기</label>
+<!--                             <input type="checkbox" name="deliveryPrice" id="deliveryPrice"> -->
+<!--                             <label for="deliveryPrice">배송비 포함</label> -->
+<!--                              <input type="checkbox" name="priceOffer" id="priceOffer"> -->
+<!--                             <label for="deliveryPrice">가격제안받기</label> -->
                         </div>
                     </div>
                     <div class="goods_info_area">
@@ -400,25 +400,25 @@ $(function() {
                             maxlength="2000" oninput="countInfoLength(event)"></textarea>
                         </div>
                     </div>
-                    <div class="goods_tag_area">
-                        <p>연관태그</p>
-                        <div>
-                            <div class="goods_tag">
-                                <div class="tag_button hidden" onclick="tagDelete(event);">
-                                    <button onclick="return false;">#태그1</button>
-                                    <button onclick="return false;" ><i class="fas fa-times"></i></button>
-                                </div>
-                                <input type="text" name="product_tag" id="product_tag" 
-                                    placeholder="연관태그를 입력해주세요. (최대5개)"
-                                >
-                            </div>
-                            <p>
-                                - 태그는 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있습니다.<br>
-                                - 태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.<br>
-                                - 상품과 직접 관련이 없는 다른 상품명, 브랜드, 스팸성 키워드 등을 입력하면 노출이 중단되거나 상품이 삭제될 수 있습니다.<br>
-                            </p>
-                        </div>
-                    </div>
+<!--                     <div class="goods_tag_area"> -->
+<!--                         <p>연관태그</p> -->
+<!--                         <div> -->
+<!--                             <div class="goods_tag"> -->
+<!--                                 <div class="tag_button hidden" onclick="tagDelete(event);"> -->
+<!--                                     <button onclick="return false;">#태그1</button> -->
+<!--                                     <button onclick="return false;" ><i class="fas fa-times"></i></button> -->
+<!--                                 </div> -->
+<!--                                 <input type="text" name="product_tag" id="product_tag"  -->
+<!--                                     placeholder="연관태그를 입력해주세요. (최대5개)" -->
+<!--                                 > -->
+<!--                             </div> -->
+<!--                             <p> -->
+<!--                                 - 태그는 띄어쓰기로 구분되며 최대 9자까지 입력할 수 있습니다.<br> -->
+<!--                                 - 태그는 검색의 부가정보로 사용 되지만, 검색 결과 노출을 보장하지는 않습니다.<br> -->
+<!--                                 - 상품과 직접 관련이 없는 다른 상품명, 브랜드, 스팸성 키워드 등을 입력하면 노출이 중단되거나 상품이 삭제될 수 있습니다.<br> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                     </div> -->
 <!--                     <div class="goods_count_area"> -->
 <!--                         <p>수량</p> -->
 <!--                         <div><input type="text" name="goodsCount" value="1" oninput="valueIsNumber(event)">개</div>  -->
@@ -430,10 +430,10 @@ $(function() {
                             <p>옵션</p>
                             <div class="goods_option">
                                 <div class="goods_status">
-		                            <input type="radio" name="sale_pay" value="계좌이체" id="sale_pay1">
-		                            <label for="account">계좌이체</label>
-		                            <input type="radio" name="sale_pay" value="카드결제" id="sale_pay2">
-		                            <label for="point">카드결제</label>
+		                            <input type="radio" name="sale_pay" value="클레버페이" id="sale_pay1">
+		                            <label for="account">클레버페이</label>
+<!-- 		                            <input type="radio" name="sale_pay" value="카드결제" id="sale_pay2"> -->
+<!-- 		                            <label for="point">카드결제</label> -->
 		                            <input type="radio" name="sale_pay" value="만나서결제" id="sale_pay3">
 		                            <label for="point">만나서결제</label>
 		                        </div>
@@ -443,11 +443,12 @@ $(function() {
                     
                     <div class="col-4" style="margin-left: 650px;">
 <!--                         <div class="p-3 info_btn3" style="text-align: center;">바로구매</div> -->
-                        <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px" onclick="javascript:history.back()">돌아가기</div>
+<!--                         <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px" onclick="javascript:history.back()">돌아가기</div> -->
                     </div>
 			        <div class="btn_submit_area">
 				        <div class="inner_submit" style="margin-left: 650px;">
 				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
+				            <div class="p-3 info_btn1"style="text-align: center; margin-left: 30px; width: 165px; height: 56px;" onclick="javascript:history.back()">돌아가기</div>
 				            <input type="submit" class="p-3 info_btn3" value="등록하기">
 				        </div>
 			    	</div>
