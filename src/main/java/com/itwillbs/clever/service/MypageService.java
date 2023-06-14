@@ -60,8 +60,29 @@ public class MypageService {
 		return mapper.selectGoodsList(sId);
 	}
 
-	
+	public int updateAuctionStatus(int auction_idx) {
+		return mapper.updateAuctionStatus(auction_idx);
+	}
 
+	public int buyerWithdraw(String sId, int auction_final_price) {
+		return mapper.buyerWithdraw(sId, auction_final_price);
+	}
+
+	public int depositAdMoney(String sId, int auction_final_price) {
+		return mapper.depositAdMoney(sId, auction_final_price);
+	}
+
+	public int withdrawAdMoney(String auction_final_price, String member_id) {
+		return mapper.withdrawAdMoney(auction_final_price, member_id);
+	}
+
+	public int buyerDeposit(String auction_final_price, String member_id) {
+		return mapper.buyerDeposit(auction_final_price, member_id);
+	}
+
+	public int updateMemAdMoney(String sId, int auction_final_price) {
+		return mapper.updateMemAdMoney(sId, auction_final_price);
+	}
 	
 	
 }

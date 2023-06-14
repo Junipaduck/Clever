@@ -290,10 +290,14 @@ public class MypageController {
 		
 		System.out.println(account);
 		
+		String sId = (String) session.getAttribute("sId");
+		MemberVO getMemberId = memberService.selectMember(sId);
+		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
+		model.addAttribute("member", getMemberId);
 		
 		return "mypage/auction_bank_account_detail";
 		

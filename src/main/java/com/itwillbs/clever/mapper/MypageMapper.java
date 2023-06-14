@@ -3,6 +3,8 @@ package com.itwillbs.clever.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface MypageMapper {
 
 	List<HashMap<String, String>> selectProductSellList(String sId);
@@ -24,8 +26,26 @@ public interface MypageMapper {
 	// 굿즈 구매 내역 조회
 	List<HashMap<String, String>> selectGoodsList(String sId);
 
+	int updateAuctionStatus(int auction_idx);
 
+//	int updateMemAdMoney(String sId, int auction_final_price);
+//
+//	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price")int auction_final_price);
+//
+//	int depositAdMoney(String sId, int auction_final_price);
+//
+//	int withdrawAdMoney(String auction_final_price, String member_id);
+//
+//	int buyerDeposit(String auction_final_price, String member_id);
+	
+	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
 
+	int depositAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
 
+	int withdrawAdMoney(@Param("auction_final_price") String auction_final_price, @Param("member_id") String member_id);
+
+	int buyerDeposit(@Param("auction_final_price") String auction_final_price, @Param("member_id") String member_id);
+
+	int updateMemAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
 	
 }

@@ -74,4 +74,75 @@
 				WHERE 
 					buy_id = #{sId}	
 	</select>
+	
+	<!-- 경매 낙찰 결제시 판매상품 sale_status 업데이트 -->
+	<update id="updateAuctionStatus">
+		UPDATE 
+				auction
+			SET 
+				auction_status = '결제완료' 
+			WHERE 
+				auction_idx = #{auction_idx}
+	</update>
+	
+	<!-- 상품구매시 구매자 계좌 출금 -->
+	<update id="buyerWithdraw">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance - #{auction_final_price} 
+			WHERE 
+				member_id = #{sId}
+	</update>
+	<insert id="depositAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+<!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{sId}
+				,#{auction_final_price}
+				,'d'
+				,now()
+				,#{admin_account_balance} + #{auction_final_price}
+			)
+	</insert>
+	
+	<!-- 구매확정 버튼 눌렀을 때, 관리자계좌 테이블에 출금 insert -->
+	<insert id="withdrawAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{member_id}
+				,#{auction_final_price}
+				,'w'
+				,now()
+				,#{admin_account_balance} - #{auction_final_price}
+			)
+	</insert>	
+	
+	<!-- 구매확정시 판매자에게 돈 입금 -->
+	<update id="buyerDeposit">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{auction_final_price}
+			WHERE 
+				member_id = #{member_id}
+	</update>
+	<update id="updateMemAdMoney">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{auction_final_price} 
+			WHERE 
+				member_id = 'admin'
+	</update>
 </mapper>

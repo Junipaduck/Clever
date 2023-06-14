@@ -67,6 +67,8 @@ td, tr, th{
 						<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
 						<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
 						<input type="hidden" name="user_name" value="${userInfo.user_name }">
+						<input type="hidden" name="auction_idx" value="${param.auction_idx }">
+						<input type="hidden" name="auction_final_price" value="${param.auction_final_price }">
 						<input type="submit" value="상세조회 &#127875;">
 					</form>
 				</td>
