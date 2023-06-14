@@ -71,16 +71,16 @@ font-weight: 500;
                         <span>
                             <ul class="entire_bar">
                                 <c:if test="${not empty bigCategory }">
-	                                <li><a href="auction_list?param=${bigCategory }">${bigCategory }</a></li>
+	                                <li><a href="auction_list?param=${bigCategory }&status=경매중">${bigCategory }</a></li>
                                 </c:if>
                                 <c:if test="${not empty midCategory }">
-	                                <li><a href="auction_list?param=${midCategory[0].bigCategory }">${midCategory[0].bigCategory }</a></li>
+	                                <li><a href="auction_list?param=${midCategory[0].bigCategory }&status=경매중">${midCategory[0].bigCategory }</a></li>
                                 </c:if>
                                 <c:if test="${not empty smallCategory }">
-	                                <li><a href="auction_list?param=${smallCategory[0].bigCategory }">${smallCategory[0].bigCategory }</a></li>
+	                                <li><a href="auction_list?param=${smallCategory[0].bigCategory }&status=경매중">${smallCategory[0].bigCategory }</a></li>
                                 </c:if>
                                 <c:forEach items="${bigCategorys }" var="big">
-                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${big.bigCategory }">${big.bigCategory }</a></li>
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${big.bigCategory }&status=경매중">${big.bigCategory }</a></li>
                                 </c:forEach>
                                 
                             </ul>
@@ -100,7 +100,7 @@ font-weight: 500;
 		                                <li><a href="#">${smallCategory[0].midCategory }</a></li>
 	                                </c:if>
                                 <c:forEach items="${midCategorys }" var="mid">
-                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${mid.midCategory }">${mid.midCategory }</a></li>
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${mid.midCategory }&status=경매중">${mid.midCategory }</a></li>
                                 </c:forEach>
 	                            </ul>
 	                            <i class="bi bi-chevron-down under_direction"></i>
@@ -115,7 +115,7 @@ font-weight: 500;
 	                            <ul class="category_acc_bar">
 		                                <li><a href="#">${smallCategory[0].smallCategory }</a></li>
 	                            <c:forEach items="${smallCategorys }" var="smalls">
-                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${smalls.smallCategory }">${smalls.smallCategory }</a></li>
+                               		<li id="big" class="hidden_menu"><a href="auction_list?param=${smalls.smallCategory }&status=경매중">${smalls.smallCategory }</a></li>
                                 </c:forEach>
 	                            </ul>
 	                            <i class="bi bi-chevron-down under_direction"></i>

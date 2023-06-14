@@ -89,4 +89,6 @@ public interface AuctionMapper {
 
 	List getRelationList(String param);
 
+	void statusUpdate(int auction_idx);
+
 }

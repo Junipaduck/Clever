@@ -110,47 +110,47 @@ height: 90px;
 			<!-- 대대분류 -->
 			<ul class="tablist">
 				<li class="dep1">
-				   <a href="auction_list?param=패션/의류"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
+				   <a href="auction_list?param=패션/의류&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
 				  <div align="center" style="margin-top: 77px">패션/의류</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=패션/잡화"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
+				   <a href="auction_list?param=패션/잡화&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
 				  <div align="center" id="textDiv">패션/잡화</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=취미/컬렉션"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
+				   <a href="auction_list?param=취미/컬렉션&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
 				  <div align="center" id="textDiv">취미/컬렉션</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=디지털"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
+				   <a href="auction_list?param=디지털&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
 				  <div align="center" id="textDiv">디지털</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=스포츠/레저"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
+				   <a href="auction_list?param=스포츠/레저&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
 				  <div align="center" id="textDiv">스포츠/레저</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=뷰티"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
+				   <a href="auction_list?param=뷰티&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
 				  <div align="center" id="textDiv">뷰티</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=생활가전"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
+				   <a href="auction_list?param=생활가전&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
 				  <div align="center" id="textDiv">생활가전</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=자동차/공구"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
+				   <a href="auction_list?param=자동차/공구&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
 				  <div align="center" id="textDiv">자동차/공구</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="auction_list?param=도서/기타"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
+				   <a href="auction_list?param=도서/기타&status=경매중"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
 				  <div align="center" id="textDiv">도서/기타</div>
 				</li>
 			</ul>		
@@ -160,11 +160,11 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=여성의류">여성의류</a></li>
+                    <li class=""><a href="auction_list?param=여성의류&status=경매중">여성의류</a></li>
                 
-                    <li class=""><a href="auction_list?param=남성의류">남성의류</a></li>
+                    <li class=""><a href="auction_list?param=남성의류&status=경매중">남성의류</a></li>
                 
-                    <li class=""><a href="auction_list?param=언더웨어">언더웨어</a></li>
+                    <li class=""><a href="auction_list?param=언더웨어&status=경매중">언더웨어</a></li>
                 
 				</ul>
 			</div>
@@ -172,27 +172,13 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=신발">신발</a></li>
+                    <li class=""><a href="auction_list?param=신발&status=경매중">신발</a></li>
                 
-                    <li class=""><a href="auction_list?param=가방/잡화">가방/잡화</a></li>
+                    <li class=""><a href="auction_list?param=가방/잡화&status=경매중">가방/잡화</a></li>
                 
-                    <li class=""><a href="auction_list?param=쥬얼리/시계">쥬얼리/시계</a></li>
+                    <li class=""><a href="auction_list?param=쥬얼리/시계&status=경매중">쥬얼리/시계</a></li>
                 
-                    <li class=""><a href="auction_list?param=수입명품">수입명품</a></li>
-                
-				</ul>
-			</div>
-			
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="auction_list?param=반려동물용품">반려동물용품</a></li>
-                
-                    <li class=""><a href="auction_list?param=악기/취미">악기/취미</a></li>
-                
-                    <li class=""><a href="auction_list?param=문구/사무용품">문구/사무용품</a></li>
-                
-                    <li class=""><a href="auction_list?param=꽃/이벤트용품">꽃/이벤트용품</a></li>
+                    <li class=""><a href="auction_list?param=수입명품&status=경매중">수입명품</a></li>
                 
 				</ul>
 			</div>
@@ -200,13 +186,27 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=노트북/데스크탑">노트북/데스크탑</a></li>
+                    <li class=""><a href="auction_list?param=반려동물용품&status=경매중">반려동물용품</a></li>
                 
-                    <li class=""><a href="auction_list?param=모니터/프린터">모니터/프린터</a></li>
+                    <li class=""><a href="auction_list?param=악기/취미&status=경매중">악기/취미</a></li>
                 
-                    <li class=""><a href="auction_list?param=PC주변기기">PC주변기기</a></li>
+                    <li class=""><a href="auction_list?param=문구/사무용품&status=경매중">문구/사무용품</a></li>
                 
-                    <li class=""><a href="auction_list?param=저장장치">저장장치</a></li>
+                    <li class=""><a href="auction_list?param=꽃/이벤트용품&status=경매중">꽃/이벤트용품</a></li>
+                
+				</ul>
+			</div>
+			
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="auction_list?param=노트북/데스크탑&status=경매중">노트북/데스크탑</a></li>
+                
+                    <li class=""><a href="auction_list?param=모니터/프린터&status=경매중">모니터/프린터</a></li>
+                
+                    <li class=""><a href="auction_list?param=PC주변기기&status=경매중">PC주변기기</a></li>
+                
+                    <li class=""><a href="auction_list?param=저장장치&status=경매중">저장장치</a></li>
                 
 				</ul>
 			</div>
@@ -215,24 +215,14 @@ height: 90px;
 				<ul>
             
                 
-                    <li class=""><a href="auction_list?param=스포츠의류/운동화">스포츠의류/운동화</a></li>
+                    <li class=""><a href="auction_list?param=스포츠의류/운동화&status=경매중">스포츠의류/운동화</a></li>
                 
                 
-                    <li class=""><a href="auction_list?param=등산/아웃도어/캠핑/낚시">등산/아웃도어/캠핑/낚시</a></li>
+                    <li class=""><a href="auction_list?param=등산/아웃도어/캠핑/낚시&status=경매중">등산/아웃도어/캠핑/낚시</a></li>
                 
-                    <li class=""><a href="auction_list?param=스포츠 용품">스포츠 용품</a></li>
+                    <li class=""><a href="auction_list?param=스포츠 용품&status=경매중">스포츠 용품</a></li>
                 
-                    <li class=""><a href="auction_list?param=자전거/보드/기타레저">자전거/보드/기타레저</a></li>
-                
-				</ul>
-			</div>
-			
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="auction_list?param=화장품/향수">화장품/향수</a></li>
-                
-                    <li class=""><a href="auction_list?param=바디/헤어">바디/헤어</a></li>
+                    <li class=""><a href="auction_list?param=자전거/보드/기타레저&status=경매중">자전거/보드/기타레저</a></li>
                 
 				</ul>
 			</div>
@@ -240,13 +230,9 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=가구/DIY">가구/DIY</a></li>
+                    <li class=""><a href="auction_list?param=화장품/향수&status=경매중">화장품/향수</a></li>
                 
-                    <li class=""><a href="auction_list?param=조명/인테리어">조명/인테리어</a></li>
-                
-                    <li class=""><a href="auction_list?param=침구/커튼">침구/커튼</a></li>
-                
-                    <li class=""><a href="auction_list?param=생활용품">생활용품</a></li>
+                    <li class=""><a href="auction_list?param=바디/헤어&status=경매중">바디/헤어</a></li>
                 
 				</ul>
 			</div>
@@ -254,9 +240,13 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=자동차용품">자동차용품</a></li>
+                    <li class=""><a href="auction_list?param=가구/DIY&status=경매중">가구/DIY</a></li>
                 
-                    <li class=""><a href="auction_list?param=공구/안전/산업용품">공구/안전/산업용품</a></li>
+                    <li class=""><a href="auction_list?param=조명/인테리어&status=경매중">조명/인테리어</a></li>
+                
+                    <li class=""><a href="auction_list?param=침구/커튼&status=경매중">침구/커튼</a></li>
+                
+                    <li class=""><a href="auction_list?param=생활용품&status=경매중">생활용품</a></li>
                 
 				</ul>
 			</div>
@@ -264,13 +254,23 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="auction_list?param=도서/교육/음반">도서/교육/음반</a></li>
+                    <li class=""><a href="auction_list?param=자동차용품&status=경매중">자동차용품</a></li>
                 
-                    <li class=""><a href="auction_list?param=백화점/제화상품권">백화점/제화상품권</a></li>
+                    <li class=""><a href="auction_list?param=공구/안전/산업용품&status=경매중">공구/안전/산업용품</a></li>
                 
-                    <li class=""><a href="auction_list?param=여행/항공권">여행/항공권</a></li>
+				</ul>
+			</div>
+			
+			<div class="tabpanel">
+				<ul>
+            
+                    <li class=""><a href="auction_list?param=도서/교육/음반&status=경매중">도서/교육/음반</a></li>
                 
-                    <li class=""><a href="auction_list?param=e쿠폰/모바일상품권">e쿠폰/모바일상품권</a></li>
+                    <li class=""><a href="auction_list?param=백화점/제화상품권&status=경매중">백화점/제화상품권</a></li>
+                
+                    <li class=""><a href="auction_list?param=여행/항공권&status=경매중">여행/항공권</a></li>
+                
+                    <li class=""><a href="auction_list?param=e쿠폰/모바일상품권&status=경매중">e쿠폰/모바일상품권</a></li>
                 
 				</ul>
 			</div>
@@ -320,8 +320,12 @@ height: 90px;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("imminentTimeOut${imminent.auction_idx}");
 	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "";
-	                                		  imminentGetTime2${imminent.auction_idx}();                    		  
+	                                		  element.innerHTML = "경매시작";
+	                                		  $.ajax({
+                        		  			 		url : "auction_statusUpdate",
+                        		  			 		type: 'GET',
+                        		  			 		data: {'auction_idx':${imminent.auction_idx}},
+                        		  			 	});
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -346,7 +350,14 @@ height: 90px;
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => imminentGetTime${imminent.auction_idx}(), 1000);
+	                                		var auction_start = new Date('${imminent.auction_start}');
+	                                		var auction_end = new Date('${imminent.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => imminentGetTime${imminent.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => imminentGetTime2${imminent.auction_idx}(), 1000);
+	                                		}
 										}());
 	                               </script>
                                <div id="imminentTimeOut${imminent.auction_idx}" style="color: blue; text-align: right;"></div>
@@ -395,8 +406,12 @@ height: 90px;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("hotTimeOut${hot.auction_idx}");
 	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "";
-	                                		  hotGetTime2${hot.auction_idx}();                    		  
+	                                		  element.innerHTML = "경매 시작";
+	                                		  $.ajax({
+                      		  			 		url : "auction_statusUpdate",
+                      		  			 		type: 'GET',
+                      		  			 		data: {'auction_idx':${hot.auction_idx}},
+                      		  			 	});
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -421,7 +436,14 @@ height: 90px;
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => hotGetTime${hot.auction_idx}(), 1000);
+	                                		var auction_start = new Date('${hot.auction_start}');
+	                                		var auction_end = new Date('${hot.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => hotGetTime${hot.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => hotGetTime2${hot.auction_idx}(), 1000);
+	                                		}
 										}());
 	                               </script>
                                <div id="hotTimeOut${hot.auction_idx}" style="color: blue; text-align: right;"></div>
@@ -469,8 +491,12 @@ height: 90px;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("currentTimeOut${current.auction_idx}");
 	                                	  if(diffDays < 0){
-	                                		  element.innerHTML = "";
-	                                		  currentGetTime2${current.auction_idx}();                    		  
+	                                		  element.innerHTML = "경매 시작";
+	                                		  $.ajax({
+	                      		  			 		url : "auction_statusUpdate",
+	                      		  			 		type: 'GET',
+	                      		  			 		data: {'auction_idx':${current.auction_idx}},
+	                      		  			 	});
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -495,7 +521,14 @@ height: 90px;
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => currentGetTime${current.auction_idx}(), 1000);
+	                                		var auction_start = new Date('${current.auction_start}');
+	                                		var auction_end = new Date('${current.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => currentGetTime${current.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => currentGetTime2${current.auction_idx}(), 1000);
+	                                		}
 										}());
 	                               </script>
                                <div id="currentTimeOut${current.auction_idx}" style="color: blue; text-align: right;"></div>

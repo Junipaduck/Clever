@@ -173,5 +173,9 @@ public class AuctionService {
 		return mapper.getRelationList(param);
 	}
 
+	public void statusUpdate(int auction_idx) {
+		mapper.statusUpdate(auction_idx);
+	}
+
 
 }

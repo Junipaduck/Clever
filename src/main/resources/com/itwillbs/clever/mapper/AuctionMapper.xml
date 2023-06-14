@@ -257,4 +257,8 @@
 			WHERE member_id = #{id} AND auction_idx = #{auction_idx};
 	</update>
 	
+	<update id="statusUpdate">
+		UPDATE auction SET auction_status = '경매중' WHERE auction_idx = #{auction_idx}
+	</update>
+	
 </mapper>

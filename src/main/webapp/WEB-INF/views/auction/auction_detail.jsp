@@ -202,7 +202,7 @@
                             <script type="text/javascript">
                             
 	                            let url = window.location.href;
-	                        	
+	                            
 	                                	function getTime2() {
 	                                	  var element;
 	                                	  const endDay = new Date('${detailmap.auction_start}');
@@ -218,7 +218,12 @@
 	                                	  element = document.getElementById("timeOut2");
 	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "";
-	                                		  getTime(); 
+		                                		  $.ajax({
+	                          		  			 		url : "auction_statusUpdate",
+	                          		  			 		type: 'GET',
+	                          		  			 		data: {'auction_idx':auction_idx},
+	                          		  			 	});
+		                                		  location.reload();
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
@@ -293,7 +298,14 @@
 	                                	  }
 	                                	}
 	                                	(function() {
+	                                		var auction_start = new Date('${detailmap.auction_start}');
+	                                		var auction_end = new Date('${detailmap.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
 	                                		return setInterval(() => getTime2(), 1000);
+	                                		} else if(auction_end > nowDate){
+	                                		return setInterval(() => getTime(), 1000);
+	                                		}
 										}());
 	                               </script>
                                <div id="timeOut" style="color: red; text-align: left; font-size: 20px"></div>

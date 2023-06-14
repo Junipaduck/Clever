@@ -492,10 +492,14 @@ public class AuctionController {
 	@ResponseBody
 	@GetMapping("auction_dateAdd")
 	public void auction_dateAdd(int auction_idx, HttpSession session) {
-		
 		String id = (String)session.getAttribute("sId");
 		auctionService.updateDateAdd(id, auction_idx);
-		
+	}
+	
+	@ResponseBody
+	@GetMapping("auction_statusUpdate")
+	public void auction_statusUpdate(@RequestParam int auction_idx) {
+		auctionService.statusUpdate(auction_idx);
 	}
 	
 	
