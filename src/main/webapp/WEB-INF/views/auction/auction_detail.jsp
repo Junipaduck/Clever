@@ -757,7 +757,8 @@ function auctionStart() {
 	var auction_buyer_id = document.getElementById("buyer_id").value;
 	var nowDate = new Date();
 	var member_id = "${member_id}";
-	
+	var sId = "${sessionScope.sId}";
+	var id = "${detailmap.member_id}";
 	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'&& userId != seller){
 		if(member_id == null || member_id == ""){
 			$("#detail_content_info_state").append(
@@ -839,7 +840,7 @@ function auctionStart() {
 		
 	} else if(auction_end < nowDate) {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
-	} else {
+	} else if(id != sId){
 		$("#detail_content_info_state").append(
 				'<div class="col-4" style="width: 50%">'
 				+ '<c:if test="${result.dibs_check != null }">'

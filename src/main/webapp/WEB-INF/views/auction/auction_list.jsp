@@ -168,7 +168,7 @@ font-weight: 500;
                 <div class="goods_wrap">
                     <c:forEach items="${productList }" var="product"> 
                     <div class="goods">
-                        <a href="auction_detail?auction_idx=${product.auction_idx}">
+                        <a href="auction_detail?auction_idx=${product.auction_idx}&param=${product.auction_Scategory}">
                         <c:forEach items="${fileList }" var="file">
                         
                             <c:if test="${file.file_num eq product.auction_idx }">

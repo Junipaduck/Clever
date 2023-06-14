@@ -145,6 +145,7 @@ public class AuctionController {
 			return "success";
 		}
 		String member_id = auctionService.depositList(sId, auction_idx);
+		System.out.println(member_id + "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
 		List<LogRoomVO> logList = auctionLogService.selectLogList(auction_idx);
 		
 		int logRoomIdx = 0;
