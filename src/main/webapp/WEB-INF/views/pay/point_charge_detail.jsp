@@ -68,7 +68,7 @@ td, tr, th{
 	<hr>
 	
 	<!-- 송금 대상 정보 입력 -->
-	<h1>포인트 적립</h1>
+	<h1>포인트 충전</h1>
 	<table border="1" style="border-collapse: collapse; text-align:center; margin-bottom: 50px;">
 			<tr style="background-color: pink;">
 			<th>현재 보유 포인트</th>
@@ -86,9 +86,9 @@ td, tr, th{
 		<input type="hidden" name="recv_client_account_num" value="${account_num_masked }">
 		<input type="hidden" name="recv_client_fintech_use_num" value="${account.fintech_use_num }">
 		<input type="hidden" name="tran_amt" value="10000">
-		<input type="text" name="member_id" value="${member.member_id }">
-		<input type="text" name="point_status" value="충전(출금)">
-		<input type="text" name="account_amt" value="${member.member_balance }">
+		<input type="hidden" name="member_id" value="${member.member_id }">
+		<input type="hidden" name="point_status" value="충전(출금)">
+		<input type="hidden" name="account_amt" value="${member.member_balance }">
 		
 		<table border="1">
 			<tr>
@@ -96,11 +96,23 @@ td, tr, th{
 <!-- 				<th>은행코드</th> -->
 <!-- 				<th>계좌번호</th> -->
 <!-- 				<th>핀테크이용번호</th> -->
-				<th>적립할 포인트</th>
+				<th>충전할 포인트</th>
 				<th></th>
 			</tr>
 			<tr>
-				<td><input type="text" name="charge_point"></td>
+				<td>
+					<select name="charge_point" id="charge_point">
+						<option value="선택" selected="selected">충전금액을 선택하세요</option>
+						<option value="1000">1000원</option>
+						<option value="5000">5000원</option>
+						<option value="10000">10000원</option>
+						<option value="20000">20000원</option>
+						<option value="30000">30000원</option>
+						<option value="40000">40000원</option>
+						<option value="50000">50000원</option>
+					</select>
+<!-- 				<input type="text" name="charge_point"> -->
+				</td>
 				<td><input type="submit" value="충전하기"></td>
 			</tr>
 		</table>

@@ -44,23 +44,9 @@
 
 	<!-- 회원 정보 불러오기 -->	
 	<select id="selectMember" resultType="com.itwillbs.clever.vo.MemberVO">
-		SELECT 
-		 member_idx,
-		 member_name,
-		 member_id,
-		 member_passwd,
-		 member_phone,
-		 member_address,
-		 member_birth,
-		 member_email,
-		 member_interest,
-		 email_auth,
-		 account_auth,
-		 member_date,
-		 member_rank,
-		 member_point
-		 FROM member
-		WHERE member_id = #{sId}
+		SELECT *
+		 	FROM member
+				WHERE member_id = #{sId}
 	</select>
 
 	<!-- 회원정보 수정 페이지에서 생일, 주소 split을 위한 select -->
