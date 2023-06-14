@@ -23,4 +23,5 @@ account_amt int
 	private Date point_date;
 	private String point_status;
 	private int account_amt;
+	private int admin_account_amt;
 }

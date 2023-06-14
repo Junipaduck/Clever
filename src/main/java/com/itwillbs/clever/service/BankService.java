@@ -55,6 +55,12 @@ public class BankService {
 		
 		return mapper.updateAdminBalance(charge_point);
 	}
+
+	// 관리자 잔액 조회
+	public MemberVO getAdminInfo(String id) {
+		
+		return mapper.getAdminInfo(id);
+	}
 	
 }
 

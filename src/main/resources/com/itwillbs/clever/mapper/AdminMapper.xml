@@ -136,9 +136,15 @@
 			, point_date
 			, point_status
 			, account_amt
+			, admin_account_amt
 				FROM point
 					ORDER BY point_date ASC
 						LIMIT 10
+	</select>
+	
+	<select id="selectAdminPointList" resultType="HashMap">
+		SELECT *
+			FROM point
 	</select>
 </mapper>
 

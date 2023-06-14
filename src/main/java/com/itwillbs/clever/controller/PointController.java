@@ -119,6 +119,10 @@ public class PointController {
 		MemberVO member = goodsService.selectMemberPoint(id);
 		model.addAttribute("member", member);
 		
+		//관리자 잔액 insert를 위해 
+		MemberVO admin = bankService.getAdminInfo(id);
+		model.addAttribute("admin", admin);
+		
 		// AccountDetailVO 객체 저장
 		model.addAttribute("account", account);
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
@@ -159,6 +163,12 @@ public class PointController {
 		// 로그인 한 사람의 잔액 조회 
 		MemberVO member = bankService.getMemberInfo(id);
 		int account_amt = member.getMember_balance();
+		
+		// 관리자 잔액 조회
+		MemberVO admin = bankService.getAdminInfo(id);
+		int admin_account_amt = admin.getMember_balance();
+		
+		
 		
 		System.out.println("잔액 찍히나?????????????????????????   " + account_amt);
 		
