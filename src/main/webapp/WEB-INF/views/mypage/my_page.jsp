@@ -95,12 +95,23 @@ $(function() {
 		<div id="my_store_area">
 			<div class="my_store_left">
 				<div>
-					<img
-						src="${pageContext.request.contextPath }/resources/images/market/store.svg"
-						alt="내 상점">
+					<c:forEach items="${memberGrade }" var="memberGrade">
+						<c:choose>
+							<c:when test="${memberGrade.member_rank eq '브론즈' }">
+								<img src="${pageContext.request.contextPath }/resources/images/브론즈.png" alt="브론즈">
+							</c:when>
+							<c:when test="${memberGrade.member_rank eq '실버' }">
+								<img src="${pageContext.request.contextPath }/resources/images/실버.png" alt="실버">
+							</c:when>
+							<c:when test="${memberGrade.member_rank eq '골드' }">
+								<img src="${pageContext.request.contextPath }/resources/images/골드.png" alt="골드">
+							</c:when>
+						</c:choose>
+					</c:forEach>
 				</div>
 				<div>
 					<p>${member.member_name}님</p>
+					<p>등급 : ${member.member_rank}</p>
 <!-- 					<p> -->
 <%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
 <%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
@@ -146,21 +157,32 @@ $(function() {
 					<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px">나의 신고 내역 <br>
 					<div>
 					<c:forEach items="${reportList }" var="reportList">
-							<c:choose>
-								<c:when test="${not empty reportList.seller_id }">
-									신고 사유 : ${reportList.report_content } <br>
-								</c:when>
-								<c:otherwise>
-									신고 내역이 없습니다.
-    							</c:otherwise>
-							</c:choose>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty reportList.seller_id }">
+								신고 사유 : ${reportList.report_content } <br>
+							</c:when>
+							<c:otherwise>
+								신고 내역이 없습니다.
+   							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 					</div>					
 				</div>
 				<div class='right-box'>
 					<img src="${pageContext.request.contextPath }/resources/images/moneyimage.png" style="width: 30px; margin-bottom: 8px">&ensp;나의 입출금 내역 <br>
+					<div>
+					<c:forEach items="${dwHistory }" var="dwHistory" begin="0" end="4" step="1">
+						<c:choose>
+							<c:when test="${dwHistory.tran_type eq 'd' }">
+								입금 (+${dwHistory.tran_amount })<br>
+							</c:when>
+							<c:otherwise>
+								출금 (-${dwHistory.tran_amount })<br>
+   							</c:otherwise>
+							</c:choose>
+					</c:forEach>
+					</div>		
 				</div>
-				
 <!-- 					<div> -->
 <!-- 						<p> -->
 <%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일"> --%>
@@ -194,7 +216,6 @@ $(function() {
 <!-- 						</p> -->
 <!-- 					</div> -->
 				</div>
-
 <!-- 				<div id="my_store_right_bot"> -->
 <!-- 					<div id="intro_modify"> -->
 <!-- 						<button>회원 등급 / 관심목록 / 결제수단 / 포인트 출금</button> -->

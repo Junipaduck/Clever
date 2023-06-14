@@ -191,6 +191,11 @@ public class AuctionController {
 		int readCount = auctionService.readCountUp(auction_idx);
 		int dibsCount = auctionService.dibsCount(auction_idx);
 		Map detailmap = auctionService.detailList(auction_idx);
+		List<String> sellerAutions = auctionService.sellerAutions((String)detailmap.get("member_id"));
+		int sellerInfoCount = auctionService.sellerInfoCount((String)detailmap.get("member_id"));
+		model.addAttribute("sellerAutions", sellerAutions);
+		model.addAttribute("sellerInfoCount", sellerInfoCount);
+		
 		String[] strArr = detailmap.get("auction_date").toString().split("T");
 		detailmap.put("date", strArr[0]);
 		detailmap.put("dibsCount", dibsCount);

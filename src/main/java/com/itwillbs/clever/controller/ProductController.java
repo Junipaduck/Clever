@@ -77,6 +77,10 @@ public class ProductController {
 		// 중고상품 상세보기 select
 		List<HashMap<String, String>> productDetail = productService.selectProductDetail(product_idx);
 		model.addAttribute("productDetail", productDetail);
+		// 중고상품 찜 횟수 select
+		int countDibs = productService.countDibs(product_idx);
+		model.addAttribute("countDibs", countDibs);
+		System.out.println("countDibs" + countDibs);
 		
 		// 중고상품 파일이미지 select
 		List<HashMap<String, String>> filesList = productService.selectFiles(); // 중고상품 이미지 모두 select

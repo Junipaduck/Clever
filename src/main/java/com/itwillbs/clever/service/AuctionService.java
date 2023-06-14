@@ -161,5 +161,13 @@ public class AuctionService {
 		
 	}
 
+	public List<String> sellerAutions(String member_id) {
+		return mapper.sellerAutions(member_id);
+	}
+
+	public int sellerInfoCount(String member_id) {
+		return mapper.sellerInfoCount(member_id);
+	}
+
 
 }

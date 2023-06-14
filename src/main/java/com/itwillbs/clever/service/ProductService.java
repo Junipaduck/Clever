@@ -44,6 +44,11 @@ public class ProductService {
 	public List<HashMap<String, String>> selectProductDetail(int product_idx) {
 		return mapper.selectProductDetail(product_idx);
 	}
+	
+	// 중고상품 찜 select
+	public int countDibs(int product_idx) {
+		return mapper.countDibs(product_idx);
+	}
 
 	// 중고 판매자 신고 insert
 	public int insertProductReport(ReportVO report) {
@@ -181,5 +186,7 @@ public class ProductService {
 	public Object selectMemberInfo(String sId) {
 		return mapper.selectMemberInfo(sId);
 	}
+
+	
 
 }

@@ -156,19 +156,19 @@
 	                            <div id="detail_content_info_mid">
 	                                <p style="width: 80px;">
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/heart.png" alt="찜">
-	                                    <span>17</span>
+	                                    <span>${countDibs }</span>
 	                                </p>
-	                                <p style="width: 80px;">
-	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회">
-	                                    <span>76</span>
-	                                </p>
+<!-- 	                                <p style="width: 80px;"> -->
+<%-- 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/eye.png" alt="조회"> --%>
+<!-- 	                                    <span>76</span> -->
+<!-- 	                                </p> -->
 	                                <p style="width: 150px;">
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="업로드날짜">
 	                                    <span>${productDetail.product_date }</span>
 	                                </p>
-	                                <p>
+	                                <p style="position: absolute;margin-left: 400px;">
 		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}&seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
-	                                    <span>신고하기</span>
+	                                    <span>신고</span>
 	                                </p>
 	                            </div>
 	                            <div id="detail_content_info_state">
