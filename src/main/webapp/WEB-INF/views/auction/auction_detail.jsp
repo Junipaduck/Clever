@@ -550,7 +550,6 @@
 				location.href = "deposit?auction_idx=" + ${detailmap.auction_idx } + "&param=${categoryParam }";
 			}
 		});
-		
 	});
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
@@ -600,6 +599,7 @@
 		regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
 		var priceInputInt = parseInt(uncomma(priceInput));  //현재 입력한 값 인트타입 변환
 		var immediately_price = parseInt(document.getElementById("immediately_price").value) //즉시 구매가
+		immediately_price = immediately_price * 0.1 + immediately_price
 		
 		if(regexPrice>=priceInputInt) {
 			checkPrice = false;
@@ -607,7 +607,7 @@
 			return;
 		}
 		
-		if(priceInputInt>immediately_price) {
+		if(priceInputInt>immediately_price ) {
 			checkPrice = false;
 			alert("즉시 구매가 보다 높음");
 			return;
@@ -720,7 +720,7 @@ chatSocket.onmessage = function(e) {
 		currentPrice.innerText = "현재가격 : " + data.message + " 원";
 	}
 	
-	if(immediately_price==message_price) {
+	if(immediately_price<=message_price || (immediately_price*0.1+immediately_price) >= message_price ) {
 		alert(data.id +"님이 낙찰 !! 경매가 종료되었습니다.");
 		location.reload();
 	}
@@ -778,12 +778,17 @@ function auctionStart() {
 	if(auction_start < nowDate && auction_end > nowDate && auction_buyer_id =='N'&& userId != seller){
 		if(member_id == null || member_id == ""){
 			$("#detail_content_info_state").append(
-					'<div class="col-4">'
+					'<div>'
+					+ '<div class="container text-center detail_content_info_btn">'
+					+ '<div class="row g-2">'
+					+'<div class="col-4" style="width: 50%">'
 					+ '<div class="p-3 info_btn3" id="deposit" >입찰하기</div>'
+					+ '</div>'
+					+ '<div class="col-4" style="width: 50%">'
 					+ '<c:if test="${result.dibs_check != null }">'
 					+ '<a class="dibs">'
 					+ '<c:if test="${result.dibs_check == 0}">'
-					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback"  >'
 					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
 					+ '</div>'
 					+ '</c:if>'	
@@ -794,6 +799,10 @@ function auctionStart() {
 					+ '</c:if>'
 					+ '</a>'
 					+ '</c:if>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
 					);
 		} else {
 			$("#detail_content_info_state").append(
@@ -827,12 +836,12 @@ function auctionStart() {
 					+ '<c:if test="${result.dibs_check != null }">'
 					+ '<a class="dibs">'
 					+ '<c:if test="${result.dibs_check == 0}">'
-					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC; display: flex;justify-content: center;" id="dibsback">'
 					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
 					+ '</div>'
 					+ '</c:if>'	
 					+ '<c:if test="${result.dibs_check == 1}">'
-					+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+					+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC; display: flex;justify-content: center;" id="dibsback">'
 					+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
 					+ '</div>'
 					+ '</c:if>'
@@ -849,16 +858,16 @@ function auctionStart() {
 		$("#detail_content").append("<br><br><br><h1 style='color: red; font-size: 60px' align='center'>경매 종료 되었습니다</h1>");
 	} else {
 		$("#detail_content_info_state").append(
-				'<div class="col-4">'
+				'<div class="col-4" style="width: 50%">'
 				+ '<c:if test="${result.dibs_check != null }">'
 				+ '<a class="dibs">'
 				+ '<c:if test="${result.dibs_check == 0}">'
-				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC" id="dibsback" >'
+				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC; display: flex;justify-content: center;" id="dibsback">'
 				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/w_heart.svg" alt="찜"> 찜 '
 				+ '</div>'
 				+ '</c:if>'	
 				+ '<c:if test="${result.dibs_check == 1}">'
-				+ '<div class="p-3 info_btn1" style="background-color: #333333;" id="dibsback">'
+				+ '<div class="p-3 info_btn1" style="background-color: #CCCCCC; display: flex;justify-content: center;" id="dibsback">'
 				+ '<img id="dibsImage" src="${pageContext.request.contextPath }/resources/images/goods/hearton.png" alt="찜"> 찜'
 				+ '</div>'
 				+ '</c:if>'
