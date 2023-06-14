@@ -350,13 +350,20 @@ $(function() {
 						        <td class="col1">관심카테고리</td>
 						        <td class="col2"><select name="member_interest" id="member_interest">
 						            <option value="slc1" selected>선택</option>
-						            <option value="의류/잡화">의류/잡화</option>
-						            <option value="디지털/가전">디지털/가전</option>
-						            <option value="도서/티켓/문구">도서/티켓/문구</option>
-						            <option value="뷰티/미용">뷰티/미용</option>
-						            <option value="식품">식품</option>
+						            <option value="여성의류">여성의류</option>
+						            <option value="남성의류">남성의류</option>
+						            <option value="언더웨어">언더웨어</option>
+						            <option value="신발">신발</option>
+						            <option value="가방/잡화">가방/잡화</option>
+						            <option value="쥬얼리/시계">쥬얼리/시계</option>
 						            <option value="반려동물용품">반려동물용품</option>
-						            <option value="기타">기타</option>
+						            <option value="악기/취미">악기/취미</option>
+						            <option value="문구/사무용품">문구/사무용품</option>
+						            <option value="PC주변기기">PC주변기기</option>
+						            <option value="화장품/향수">화장품/향수</option>
+						            <option value="스포츠용품">스포츠용품</option>
+						            <option value="생활용품">생활용품</option>
+						            <option value="자동차용품">자동차용품</option>
 						        </select>
 						    </tr>
 					    </table>
