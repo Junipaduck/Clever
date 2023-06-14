@@ -354,7 +354,7 @@ public class AdminController {
 	public String adminAccount(HttpSession session, Model model) {
 		
 		// 포인트 충전 입출금 내역
-		List<HashMap<String, String>> pointList = adminService.getPointList();
+		List<HashMap<String, String>> pointList = adminService.selectPointList();
 		model.addAttribute("pointList", pointList);
 		
 		// 관리자 잔액 조회

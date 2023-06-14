@@ -89,6 +89,7 @@ td, tr, th{
 		<input type="hidden" name="member_id" value="${member.member_id }">
 		<input type="hidden" name="point_status" value="충전(출금)">
 		<input type="hidden" name="account_amt" value="${member.member_balance }">
+		<input type="hidden" name="admin_account_amt" value="${admin.member_balance }"> 
 		
 		<table border="1">
 			<tr>

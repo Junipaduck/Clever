@@ -97,7 +97,7 @@
 	                                                <td>${pointList.member_id }</td>
 	                                                <td>${pointList.charge_point }원 ${pointList.point_status }</td>
 	                                                <td>${pointList.point_date }</td>
-	                                                <td>${adminInfo.member_balance }원</td>
+	                                                <td>${pointList.admin_account_amt }원 (+${pointList.charge_point })</td>
 												</tr>
                                         	</c:forEach>
                                         </tbody>

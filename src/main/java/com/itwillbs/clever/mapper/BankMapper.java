@@ -28,4 +28,7 @@ public interface BankMapper {
 	// admin balance 업데이트
 	int updateAdminBalance(int charge_point);
 
+	// 관리자 잔액 조회
+	MemberVO getAdminInfo(String id);
+
 }
