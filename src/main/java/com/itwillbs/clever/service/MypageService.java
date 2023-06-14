@@ -59,7 +59,8 @@ public class MypageService {
 		
 		return mapper.selectGoodsList(sId);
 	}
-
+	
+	// 경매 결제 부분 시작
 	public int updateAuctionStatus(int auction_idx) {
 		return mapper.updateAuctionStatus(auction_idx);
 	}
@@ -83,9 +84,21 @@ public class MypageService {
 	public int updateMemAdMoney(String sId, int auction_final_price) {
 		return mapper.updateMemAdMoney(sId, auction_final_price);
 	}
-
+	//경매 결제 부분 끝
+	
+	// 신고내역 조회
 	public List<HashMap<String, String>> selectReportList(String sId) {
 		return mapper.selectReportList(sId);
+	}
+
+	// 입출금 내역 조회
+	public List<HashMap<String, String>> selectDWHistory(String sId) {
+		return mapper.selectDWHistory(sId);
+	}
+	
+	// 멤버 등급 조회
+	public List<HashMap<String, String>> selectMemberGrade(String sId) {
+		return mapper.selectMemberGrade(sId);
 	}
 	
 	

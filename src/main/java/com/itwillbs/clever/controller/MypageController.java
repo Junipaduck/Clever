@@ -101,6 +101,14 @@ public class MypageController {
 		List<HashMap<String, String>> reportList = mypageService.selectReportList(sId);
 		model.addAttribute("reportList", reportList);
 		
+		// 회원 입출금 내역
+		List<HashMap<String, String>> dwHistory = mypageService.selectDWHistory(sId);
+		model.addAttribute("dwHistory", dwHistory);
+		
+		// 회원 등급 조회
+		List<HashMap<String, String>> memberGrade = mypageService.selectMemberGrade(sId);
+		model.addAttribute("memberGrade", memberGrade);
+		
 		return "mypage/my_page";
 	}
 		

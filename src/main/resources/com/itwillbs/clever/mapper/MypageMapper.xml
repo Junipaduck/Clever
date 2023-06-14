@@ -154,4 +154,18 @@
 			ORDER BY report_idx DESC;
 	</select>
 	
+	<!-- 입출금 전체 내역 select -->
+	<select id="selectDWHistory" resultType="HashMap">
+		SELECT *
+			FROM admin_account
+			WHERE member_id = #{sId}
+	</select>
+	
+	<!-- 멤버 등급 select -->
+	<select id="selectMemberGrade" resultType="HashMap">
+		SELECT member_rank
+			FROM member
+			WHERE member_id = #{sId}
+	</select>
+	
 </mapper>

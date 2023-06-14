@@ -39,5 +39,9 @@ public interface MypageMapper {
 	int updateMemAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
 
 	List<HashMap<String, String>> selectReportList(String sId);
+
+	List<HashMap<String, String>> selectDWHistory(String sId);
+
+	List<HashMap<String, String>> selectMemberGrade(String sId);
 	
 }
