@@ -65,6 +65,9 @@ public class MypageController {
 		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
 		model.addAttribute("productSellDate", productSellDate);
 		
+		int sellCount = mypageService.getSellCount(sId);
+		model.addAttribute("sellCount", sellCount);
+		
 		// 중고거래 구매 내역
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
 		model.addAttribute("productBuyList", productBuyList);

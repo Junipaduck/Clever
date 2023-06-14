@@ -10,12 +10,19 @@
 			ORDER BY product_idx DESC;
 	</select>
 	
-	<!-- 중고거래 판매정보 select -->
+	<!-- 중고거래 판매날짜 정보 select -->
 	<select id="selectProductSellDate" resultType="HashMap">
 		SELECT *
 			FROM sell
 			WHERE sell_id = #{sId}
 			ORDER BY sell_idx DESC;
+	</select>
+	
+	<!-- 내 판매 내역 수량 조회 select -->
+	<select id="getSellCount" resultType="int">
+		SELECT COUNT(*)
+			FROM product
+			WHERE member_id = #{sId}
 	</select>
 	
 	<!-- 중고거래 구매정보 select -->

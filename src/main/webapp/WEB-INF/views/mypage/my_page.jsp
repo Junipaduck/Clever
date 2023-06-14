@@ -165,7 +165,7 @@ $(function() {
 				<div class='left-box'>
 					<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px">나의 신고 내역 <br>
 					<div>
-					<c:forEach items="${reportList }" var="reportList">
+					<c:forEach items="${reportList }" var="reportList" begin="0" end="4" step="1">
 						<c:choose>
 							<c:when test="${not empty reportList.seller_id }">
 								신고 사유 : ${reportList.report_content } <br>
@@ -183,156 +183,26 @@ $(function() {
 					<c:forEach items="${dwHistory }" var="dwHistory" begin="0" end="4" step="1">
 						<c:choose>
 							<c:when test="${dwHistory.tran_type eq 'd' }">
-								입금 (+${dwHistory.tran_amount })<br>
+								출금 (-${dwHistory.tran_amount })<br>
 							</c:when>
 							<c:otherwise>
-								출금 (-${dwHistory.tran_amount })<br>
+								입금 (+${dwHistory.tran_amount })<br>
    							</c:otherwise>
 							</c:choose>
 					</c:forEach>
 					</div>		
 				</div>
-<!-- 					<div> -->
-<!-- 						<p> -->
-<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일"> --%>
-<!-- 						</p> -->
-<!-- 						<p> -->
-<!-- 							여긴뭐해요 <span>0 일 전</span> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
-<!-- 					<div> -->
-<!-- 						<p> -->
-<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/people.png" alt="상점 방문수"> --%>
-<!-- 						</p> -->
-<!-- 						<p> -->
-<!-- 							거래후기 <span>0 명</span> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
-<!-- 					<div> -->
-<!-- 						<p> -->
-<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/product_sell.png" alt="상품판매"> --%>
-<!-- 						</p> -->
-<!-- 						<p> -->
-<!-- 							내물건판매 <span>0 회</span> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
-<!-- 					<div> -->
-<!-- 						<p> -->
-<%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/parcel_service.png" alt="택배발송"> --%>
-<!-- 						</p> -->
-<!-- 						<p> -->
-<!-- 							경매참여 <span>0 회</span> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
 				</div>
-<!-- 				<div id="my_store_right_bot"> -->
-<!-- 					<div id="intro_modify"> -->
-<!-- 						<button>회원 등급 / 관심목록 / 결제수단 / 포인트 출금</button> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="text_area"> -->
-<!-- 						<textarea></textarea> -->
-<!-- 						<button>확인</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 지워야함 -->
 			</div>
 		</div>
 		<!-- 프로필 영역 끝 -->
-
-		<!-- 가계부 -->
-		<div id="my_accountbook" style="margin-top: 30px;">
-			<div style="display: flex; flex-direction: row; height: 400px;">
-				<div id="top_x_div"	style="flex-grow: 1; width1: 50%; height: 400px; margin-left: 65px;">
-					<script type="text/javascript"
-						src="https://www.gstatic.com/charts/loader.js"></script>
-					<script type="text/javascript">
-						google.charts.load('current', {
-							'packages' : [ 'bar' ]
-						});
-						google.charts.setOnLoadCallback(drawStuff);
-
-						function drawStuff() {
-							var data = new google.visualization.arrayToDataTable(
-									[ [ '월별 지출 그래프', '원' ], [ '1월', 10000 ],
-											[ '2월', 20000 ], [ '3월', 30000 ],
-											[ '4월', 40000 ], [ '5월', 8000 ],
-											[ '6월', 60000 ], [ '7월', 70000 ],
-											[ '8월', 8000 ], [ '9월', 150000 ],
-											[ '10월', 80000 ], [ '11월', 40000 ],
-											[ '12월', 20000 ], ]);
-
-							var options = {
-								width : 400,
-								legend : {
-									position : 'none'
-								},
-								chart : {
-									title : '월별 구매 내역',
-								// 		            subtitle: 'popularity by percentage' },
-								},
-								bar : {
-									groupWidth : "10%"
-								}
-							};
-
-							var chart = new google.charts.Bar(document
-									.getElementById('top_x_div'));
-							// Convert the Classic options to Material options.
-							chart.draw(data, google.charts.Bar
-									.convertOptions(options));
-						};
-					</script>
-				</div>
-
-				<div id="top_x_div2" style="flex-grow: 1; height: 400px;">
-					<script type="text/javascript">
-						google.charts.load('current', {
-							'packages' : [ 'bar' ]
-						});
-						google.charts.setOnLoadCallback(drawStuff2);
-
-						function drawStuff2() {
-							var data2 = new google.visualization.arrayToDataTable(
-									[ [ '월별 지출 그래프', '원' ], [ '1월', 10000 ],
-											[ '2월', 20000 ], [ '3월', 30000 ],
-											[ '4월', 40000 ], [ '5월', 8000 ],
-											[ '6월', 60000 ], [ '7월', 70000 ],
-											[ '8월', 8000 ], [ '9월', 150000 ],
-											[ '10월', 80000 ], [ '11월', 40000 ],
-											[ '12월', 20000 ], ]);
-
-							var options2 = {
-								width : 400,
-								legend : {
-									position : 'none'
-								},
-								chart : {
-									title : '월별 판매 내역',
-								},
-								bar : {
-									groupWidth : "10%"
-								}
-							};
-
-							var chart = new google.charts.Bar(document
-									.getElementById('top_x_div2'));
-							chart.draw(data2, google.charts.Bar
-									.convertOptions(options2));
-						};
-					</script>
-				</div>
-			</div>
-
-		</div>
-		<!-- 가계부 끝 -->
 
 		<!-- 하단 내역 부분 -->
 		<div id="my_store_menu">
 			<div class="container text-center menu_bar">
 				<div class="row">
 					<div class="col my_store_menus sales_menu">
-						판매내역 <span>0</span>
+						판매내역 <span>${sellCount }</span>
 					</div>
 					<div class="col my_store_menus purchases_menu">
 						구매내역 <span>0</span>
@@ -356,7 +226,7 @@ $(function() {
 				<div id="sales_menu_area" class="common_menu">
 					<div>
 						<p>
-							판매내역 <span>1</span>
+							판매내역 <span>${sellCount }</span>
 						</p>
 						<ul class="goods_cate">
 							<li>전체</li>

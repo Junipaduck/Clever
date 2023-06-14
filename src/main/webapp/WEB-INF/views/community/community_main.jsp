@@ -37,7 +37,38 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/unit_csboard_top2.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/faq.css">
+<style type="text/css">
+@import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2");
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+font-family: 'SUITE-Regular';
+font-size: 15px;
+}
+/* Gradient - ugly css is ugly */
+.btn-gradient {
+  margin: 5px;
+}
+.btn-gradient.mini
+ {
+  padding: 4px 12px;  
+  font-size: 12px;
+}
 
+.btn-gradient.cyan {
+  background: rgba(27,188,194,1);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(27,188,194,1)), to(rgba(24,163,168,1)));
+  background: -webkit-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: -moz-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: -o-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  background: linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1bbcc2', endColorstr='#18a3a8', GradientType=0);
+}
+</style>
 
 
 </head>
@@ -63,7 +94,7 @@
 
 
 					<div class="bbs-table-list">
-						<input type="button" onclick="location.href='community_form?community_div=product'" value="등록하기" style="margin-left: 1420px;">
+						<input type="button" onclick="location.href='community_form?community_div=product'" value="등록하기" style="margin-left: 1400px;" class="btn-gradient cyan mini">
 						<!-- 자주묻는 질문 시작 -->
 						<div id="faqWrap">
 							<div class="page-body" style="width: 1040px; margin-left: auto; margin-right: auto;">
