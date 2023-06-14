@@ -28,16 +28,6 @@ public interface MypageMapper {
 
 	int updateAuctionStatus(int auction_idx);
 
-//	int updateMemAdMoney(String sId, int auction_final_price);
-//
-//	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price")int auction_final_price);
-//
-//	int depositAdMoney(String sId, int auction_final_price);
-//
-//	int withdrawAdMoney(String auction_final_price, String member_id);
-//
-//	int buyerDeposit(String auction_final_price, String member_id);
-	
 	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
 
 	int depositAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
@@ -47,5 +37,7 @@ public interface MypageMapper {
 	int buyerDeposit(@Param("auction_final_price") String auction_final_price, @Param("member_id") String member_id);
 
 	int updateMemAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
+
+	List<HashMap<String, String>> selectReportList(String sId);
 	
 }

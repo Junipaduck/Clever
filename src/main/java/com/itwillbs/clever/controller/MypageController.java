@@ -97,6 +97,9 @@ public class MypageController {
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
 		model.addAttribute("goodsList", goodsList);
 			
+		// 신고 당한 내역
+		List<HashMap<String, String>> reportList = mypageService.selectReportList(sId);
+		model.addAttribute("reportList", reportList);
 		
 		return "mypage/my_page";
 	}

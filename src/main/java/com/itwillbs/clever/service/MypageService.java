@@ -83,6 +83,10 @@ public class MypageService {
 	public int updateMemAdMoney(String sId, int auction_final_price) {
 		return mapper.updateMemAdMoney(sId, auction_final_price);
 	}
+
+	public List<HashMap<String, String>> selectReportList(String sId) {
+		return mapper.selectReportList(sId);
+	}
 	
 	
 }
