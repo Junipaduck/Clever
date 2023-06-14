@@ -357,7 +357,7 @@ height: 90px;
                                 <p class="goods_title">${hot.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${hot.auction_final_price }</span>
+                                    <span class="goods_date_before"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hot.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
 	                                	function hotGetTime${hot.auction_idx}() {
@@ -410,7 +410,7 @@ height: 90px;
                                 <p class="goods_title">${current.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${current.auction_final_price }</span>
+                                    <span class="goods_date_before"><fmt:formatNumber type="number" maxFractionDigits="3" value="${current.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
 	                                	function currentGetTime${current.auction_idx}() {

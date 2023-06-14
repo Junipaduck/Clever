@@ -152,17 +152,14 @@ font-weight: 500;
                 <section class="main_goods">
                 <h2 align="center">${categoryParam } 카테고리의 상품들</h2>
                 <div class="goods_wrap">
-                    <c:forEach items="${productList }" var="product" end="4"> 
+                    <c:forEach items="${productList }" var="product"> 
                     <div class="goods">
                         <a href="auction_detail?auction_idx=${product.auction_idx}">
                         <c:forEach items="${fileList }" var="file">
                         
-                        <c:set var="length" value="${fn:length(file.file_name) }" />
-						<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-						<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
                             <c:if test="${file.file_num eq product.auction_idx }">
 	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 	                            </div>
                             </c:if>
                         </c:forEach>
@@ -170,7 +167,7 @@ font-weight: 500;
                                 <p class="goods_title">${product.auction_title } </p>
                                 <div class="goods_price_date">
                                     <span class="goods_price">가격</span>
-                                    <span class="goods_date_before">${product.auction_price }</span>
+                                    <span class="goods_date_before"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
 	                                	function getTime${product.auction_idx}() {
