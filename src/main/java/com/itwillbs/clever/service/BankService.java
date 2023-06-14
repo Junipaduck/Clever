@@ -49,6 +49,18 @@ public class BankService {
 		
 		return mapper.insertPointHistory(map);
 	}
+
+	// admin balance 업데이트
+	public int updateAdminBalance(int charge_point) {
+		
+		return mapper.updateAdminBalance(charge_point);
+	}
+
+	// 관리자 잔액 조회
+	public MemberVO getAdminInfo(String id) {
+		
+		return mapper.getAdminInfo(id);
+	}
 	
 }
 

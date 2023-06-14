@@ -381,7 +381,7 @@ height: 90px;
                                     <span class="goods_date_before"><fmt:formatNumber type="number" maxFractionDigits="3" value="${hot.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
-	                                	function hotGetTime${hot.auction_idx}() {
+	                                function hotGetTime${hot.auction_idx}() {
 	                                	  var element;
 	                                	  const endDay = new Date('${hot.auction_start}');
 	                                	  const currDay = new Date();

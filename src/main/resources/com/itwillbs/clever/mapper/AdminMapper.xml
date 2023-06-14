@@ -126,6 +126,26 @@
 					GROUP BY 
 						auction_Lcategory
 	</select>
+	
+	<!-- 포인트 입출금 내역 -->
+	<select id="selectPointList" resultType="HashMap">
+		SELECT 
+			point_idx
+			, member_id
+			, charge_point
+			, point_date
+			, point_status
+			, account_amt
+			, admin_account_amt
+				FROM point
+					ORDER BY point_date ASC
+						LIMIT 10
+	</select>
+	
+	<select id="selectAdminPointList" resultType="HashMap">
+		SELECT *
+			FROM point
+	</select>
 </mapper>
 
 

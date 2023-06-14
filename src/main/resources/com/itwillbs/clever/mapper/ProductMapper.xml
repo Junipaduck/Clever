@@ -147,7 +147,7 @@
 	<select id="selectIntCtgr" resultType="HashMap">
 		SELECT product_Mcategory, product_idx, product_subject, product_price, sale_status
 			FROM product
-			where product_Mcategory = #{selectMemberInterest} 
+			where product_Mcategory = #{selectMemberInterest} AND sale_status = '판매중'
 	</select>
 	
 	<!-- 판매자정보 select -->
@@ -276,7 +276,7 @@
 				product p 
 				ON d.type_num = p.product_idx
 			WHERE 
-				d.dibs_type = 'product'
+				d.dibs_type = 'product' AND p.sale_status = '판매중'
 			GROUP BY 
 				p.product_idx
 			ORDER BY 
@@ -354,7 +354,12 @@
 				member_id = 'admin'
 	</update>
 	
-	
+	<!-- 결제페이지에서 회원정보 조회 -->
+	<select id="selectMemberInfo" resultType="map">
+		SELECT *
+			FROM member
+			WHERE member_id = #{sId}
+	</select>
 	
 	<!-- 메인화면 상품조회 -->
 <!-- 	<select id="selectMainProduct" parameterType="java.util.ArrayList" resultType="map"> -->

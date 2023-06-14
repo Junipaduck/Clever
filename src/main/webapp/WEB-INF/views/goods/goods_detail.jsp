@@ -98,11 +98,20 @@
 	                                    <img src="${pageContext.request.contextPath }/resources/images/goods/time.png" alt="업로드날짜">
 	                                    <span>${goodsDetail.goods_date }</span>
 	                                </p>
+
 	                            </div>
 	                            <div id="detail_content_info_state">
 									<p>
 	                                    <span>· 상품설명</span>
 	                                    <span>${goodsDetail.goods_content }</span>
+	                                </p>
+									<p>
+	                                    <span>· 현재 재고</span>
+	                                    <span>${goodsDetail.goods_stock }</span>
+	                                </p>
+									<p>
+	                                    <span>· 등록일</span>
+	                                    <span>${goodsDetail.goods_date }</span>
 	                                </p>
 	                            <div>
 	                             	<!-- 버튼영역 -->

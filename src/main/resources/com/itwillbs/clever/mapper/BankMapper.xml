@@ -58,19 +58,33 @@
 	
 	<!-- 포인트 히스토리  -->
 	<insert id="insertPointHistory">
-		<selectKey keyProperty="point_idx" resultType="int" order="BEFORE">
-				SELECT IFNULL(MAX(point_idx), 0) FROM point
-		</selectKey>
 			INSERT INTO point 
 				VALUES (
-					#{point_idx} + 1
+					null
 					, #{member_id}
 					, #{charge_point}
 					, now()
 					, #{point_status}
 					, #{account_amt}
+					, #{admin_account_amt} + #{charge_point}
 				)
 	</insert>
+	
+	<!-- admin balance 업데이트 -->
+	<update id="updateAdminBalance">
+		UPDATE member
+			SET 
+				member_balance = member_balance + #{charge_point}
+					WHERE
+						member_id = 'admin' -- admin 잔액에 포인트 만큼 입금
+	</update>
+	
+	<select id="getAdminInfo" resultType="com.itwillbs.clever.vo.MemberVO">
+		SELECT *
+			FROM member
+				WHERE
+					member_id = 'admin'		
+	</select>
 </mapper>
 
 

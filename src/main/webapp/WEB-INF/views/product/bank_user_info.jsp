@@ -39,16 +39,16 @@ td, tr, th{
 
 </head>
 <body>
-      	 <h1>핀테크 사용자 정보</h1>
-	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3>
+<!--       	 <h1>핀테크 사용자 정보</h1> -->
+<%-- 	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3> --%>
 	<table border="1" style="border-collapse: collapse;">
 		<tr style="background-color: pink;">
 			<th>계좌별칭</th>
 			<th>계좌번호</th>
 			<th>은행명</th>
 			<th>예금주명</th>
-			<th>계좌상태</th>
-			<th>핀테크이용번호</th>
+<!-- 			<th>계좌상태</th> -->
+<!-- 			<th>핀테크이용번호</th> -->
 			<th></th>
 		</tr>
 		<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
@@ -59,8 +59,8 @@ td, tr, th{
 				<td>${account.account_num_masked }</td>
 				<td>${account.bank_name }(${account.bank_code_std })</td>
 				<td>${account.account_holder_name }</td>
-				<td></td>
-				<td>${account.fintech_use_num }</td>
+<!-- 				<td></td> -->
+<%-- 				<td>${account.fintech_use_num }</td> --%>
 				<td>
 					<form action="product_bank_accountDetail" method="post">
 						<input type="hidden" name="access_token" value="${sessionScope.access_token }">

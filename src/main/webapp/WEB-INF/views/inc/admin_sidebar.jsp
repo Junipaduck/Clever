@@ -87,7 +87,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     	<i class="icon icon-single-copy-06"></i><span class="nav-text">입출금내역</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./page-register.html">질문뭐하지</a></li>
+                            <li><a href="adminPointAccount.ad">포인트 입출금내역</a></li>
+                            <li><a href="adminMemberAccount.ad">회원거래 입출금내역</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">경매관리</li>

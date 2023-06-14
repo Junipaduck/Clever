@@ -68,10 +68,10 @@ td, tr, th{
 	
 	<!-- 송금 대상 정보 입력 -->
 	<h1>송금 대상 정보 입력(임시)</h1>
-	<form action="product_bank_withdraw" method="post">
+	<form action="auction_bank_withdraw" method="post">
 		<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->
-		<input type="hidden" name="product_idx" value="${param.product_idx }">
-		<input type="hidden" name="product_price" value="${param.product_price }">
+		<input type="hidden" name="auction_idx" value="${param.auction_idx }">
+		<input type="hidden" name="auction_final_price" value="${param.auction_final_price }">
 		<table border="1">
 			<tr>
 				<th>예금주명</th>

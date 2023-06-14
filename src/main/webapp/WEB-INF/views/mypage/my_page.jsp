@@ -65,14 +65,15 @@ div.right {
 <script type="text/javascript">
 
 /* [바로구매]버튼을 클릭하면 계좌이체를 할 수 있는 새창이 띄워짐 */
-function payAuction(idx){
-    window.open("payAuction?auction_idx="+idx, "바로구매새창", "width=800, height=1200" );
+function payAuction(idx, price){
+    window.open("payAuction?auction_idx="+idx+"&auction_final_price="+price, "바로구매새창", "width=800, height=1200" );
 }
 
 $(function() {
     $(document).on("click", ".payAuction", function() {
          var idx = $(this).attr("title");
-         payAuction(idx);
+         var price = $(this).attr("value");
+         payAuction(idx, price);
      })
  });
  
@@ -708,10 +709,31 @@ $(function() {
 											<p class="goods_date">${auctionBidList.auction_date }</p>
 										</div>
 									</a>
-									<div class="btn_area">
-									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button>
-									<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
-									</div>
+									
+									<c:choose>
+											<c:when test="${auctionBidList.auction_status eq '경매 마감' }">
+												<div class="btn_area">
+													<button type="button" class="payAuction" value="${auctionBidList.auction_final_price }" title="${auctionBidList.auction_idx }">결제하기</button>
+													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+												</div>
+											</c:when>
+											<c:when test="${auctionBidList.auction_status eq '결제완료' }">
+												<a href="buyAuctionConfirm?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }">구매확정</a>
+												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+											</c:when>
+											<c:when test="${auctionBidList.auction_status eq '거래 종료' }">
+												<button type="button" class=""> 후기 </button>
+												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+											</c:when>
+										</c:choose>
+									
+<!-- 									<div class="btn_area"> -->
+<%-- 									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button> --%>
+<%-- 									<a href="buyAuctionConfirm?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }">구매확정</a> --%>
+<!-- 									<button type="button" class="" onclick="location.href='myChatting'">채팅</button> -->
+<!-- 									</div> -->
+									
+									
 								</div>
 							</div>
 						</c:forEach>

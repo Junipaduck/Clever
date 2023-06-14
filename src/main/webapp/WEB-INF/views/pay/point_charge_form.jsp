@@ -44,7 +44,7 @@
 			<input type="hidden" name="product_idx" value="${param.product_idx }">    
 	          <section class="goods_manage_area">
 
-			    <h4>1. 결제할 상품의 정보를 확인해주세요😊</h4>
+<!-- 			    <h4>1. 결제할 상품의 정보를 확인해주세요😊</h4> -->
 	
            	 </section>
            <!-- // 결제할 상품의 정보 --> 
@@ -52,7 +52,8 @@
 	            	 
 	            	 
 	   <!-- fintech 수업의 bank_user_info.jsp 에서 가져옴 -->
-		<h4>2. 출금할 계좌를 선택해주세요🤑</h4>
+		<h4>포인트 충전 출금 계좌를 선택해주세요🤑</h4>
+		<h5>선택하신 계좌에서 현금이 출금될 예정입니다.</h5>
 		* ${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })
 		<table border="1" style="border-collapse: collapse; text-align:center; margin-bottom: 50px;">
 			<tr style="background-color: pink;">

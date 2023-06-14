@@ -234,4 +234,10 @@
 	<select id="getMember" resultType="map">
 		SELECT * FROM member WHERE member_id = #{id}
 	</select>
+	
+	<update id="updateDateAdd">
+		UPDATE auction SET auction_end = DATE_ADD(now(), INTERVAL 3 DAY), date_addCount = date_addCount + 1
+			WHERE member_id = #{id} AND auction_idx = #{auction_idx};
+	</update>
+	
 </mapper>

@@ -144,6 +144,18 @@ public class AdminService {
 		return mapper.selectAuctionChartList();
 	}
 
+	// 포인트 입출금 내역 - 메인페이지 limit 걸어 놓음
+	public List<HashMap<String, String>> getPointList() {
+		
+		return mapper.selectPointList();
+	}
+
+	// 포인트 입출금 내역 - 입출금내역 페이지
+	public List<HashMap<String, String>> selectPointList() {
+		
+		return mapper.selectAdminPointList();
+	}
+
 		
 	}
 
