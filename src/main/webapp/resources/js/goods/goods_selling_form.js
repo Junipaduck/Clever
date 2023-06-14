@@ -1245,7 +1245,7 @@ function setImages(event){
 		
     for(var image of event.target.files){
         if(cnt >= 4){ // 이미지 파일 4개 카운팅 되면 나감
-            alert("너 들어갔니?");
+            alert("이미지 갯수를 확인해주세요!");
             document.getElementById(currentInputName).value = null;
             break;
         } else {

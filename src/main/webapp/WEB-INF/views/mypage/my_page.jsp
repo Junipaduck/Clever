@@ -41,14 +41,14 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.cs
 </head>
 
 <style>
-div.left {
-	width: 50%; // 원하는 사이즈 만큼 조절 float : left;
-	position: relative;
+.left-box {
+  float: left;
+  width: 50%;
 }
 
-div.right {
-	width: 50%; // 원하는 사이즈 만큼 조절 float : right;
-	position: relative;
+.right-box {
+  float: right;
+  width: 50%;
 }
 
 .goods_info {
@@ -57,6 +57,11 @@ div.right {
 
 .goods_info h2.goods_title {
 	padding-bottom: 0px;
+}
+
+#my_store_right_mid > div {
+    display: inline-block;
+    margin-right: 0px;
 }
 </style>
 
@@ -76,6 +81,9 @@ $(function() {
          payAuction(idx, price);
      })
  });
+ 
+//  document.getElementById("reportDiv").style.display="none";
+//  document.getElementById("reportDiv").style.display="block";
  
 </script>
 	<!-- 헤더 시작 -->
@@ -134,8 +142,25 @@ $(function() {
 					</div>
 				</div>
 				<div id="my_store_right_mid">
+				<div class='left-box'>
+					<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px">나의 신고 내역 <br>
+					<div>
+					<c:forEach items="${reportList }" var="reportList">
+							<c:choose>
+								<c:when test="${not empty reportList.seller_id }">
+									신고 사유 : ${reportList.report_content } <br>
+								</c:when>
+								<c:otherwise>
+									신고 내역이 없습니다.
+    							</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</div>					
+				</div>
+				<div class='right-box'>
+					<img src="${pageContext.request.contextPath }/resources/images/moneyimage.png" style="width: 30px; margin-bottom: 8px">&ensp;나의 입출금 내역 <br>
+				</div>
 				
-					
 <!-- 					<div> -->
 <!-- 						<p> -->
 <%-- 							<img src="${pageContext.request.contextPath }/resources/images/market/store_open.png" alt="상점 오픈일"> --%>

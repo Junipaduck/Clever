@@ -311,27 +311,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-xxl-6 col-md-6">
+                    <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">음 여긴 뭐하지</h4>
+                                <h4 class="card-title">최근 입금 내역</h4>
                             </div>
                             <div class="card-body">
-                                <div class="recent-comment m-t-15">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="${pageContext.request.contextPath }/resources/images/avatar/4.png" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading text-primary">양선정</h4>
-                                            <p>배고파요</p>
-                                            <p class="comment-date">10분전</p>
-                                        </div>
-                                    </div>
+                                <div class="widget-timeline">
+                                    <ul class="timeline">
+                                    	<c:forEach items="${pointList }" var="pointList">
+	                                        <li>
+	                                            <div class="timeline-badge primary"></div>
+	                                            <a class="timeline-panel text-muted" href="#">
+	                                                <span>${pointList.point_date }</span>
+	                                                <h6 class="m-t-5">${pointList.member_id }님 ${pointList.charge_point }원 충전</h6>
+	                                            </a>
+	                                        </li>
+                                    	</c:forEach>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">

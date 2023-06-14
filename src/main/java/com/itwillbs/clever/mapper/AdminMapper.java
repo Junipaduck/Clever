@@ -62,6 +62,9 @@ public interface AdminMapper {
 	// 포인트 입출금 내역 - 입출급내역
 	List<HashMap<String, String>> selectAdminPointList();
 
+	// 회원 입출금 내역
+	List<HashMap<String, String>> selectMemberAccountList();
+
 
 
 

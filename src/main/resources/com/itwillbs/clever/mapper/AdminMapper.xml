@@ -55,7 +55,9 @@
 	<!-- 경매 등록 승인 -->
 	<update id="updateAuthStatus">
 		UPDATE auction
-			SET auction_auth_status = 'Y'
+			SET 
+				auction_auth_status = 'Y'
+				, auction_status = '경매중'
 				WHERE auction_idx = ${auction_idx}; 
 	</update>
 	
@@ -145,6 +147,13 @@
 	<select id="selectAdminPointList" resultType="HashMap">
 		SELECT *
 			FROM point
+	</select>
+	
+	<select id="selectMemberAccountList" resultType="HashMap">
+		SELECT *
+			FROM admin_account
+				WHERE
+					member_id != 'admin'
 	</select>
 </mapper>
 

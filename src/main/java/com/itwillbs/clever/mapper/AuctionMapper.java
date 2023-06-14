@@ -80,5 +80,6 @@ public interface AuctionMapper {
 
 	void updateDateAdd(@Param("id")String id, @Param("auction_idx")int auction_idx);
 
+	Map<String, String> getMember(String id);
 
 }

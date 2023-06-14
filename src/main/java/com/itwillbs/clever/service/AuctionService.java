@@ -152,6 +152,10 @@ public class AuctionService {
 		return mapper.deleteMember(buyer, auction_idx);
 	}
 
+	public Map<String, String> getMember(String id) {
+		return mapper.getMember(id);
+	}
+	
 	public void updateDateAdd(String id, int auction_idx) {
 		mapper.updateDateAdd(id, auction_idx);
 		

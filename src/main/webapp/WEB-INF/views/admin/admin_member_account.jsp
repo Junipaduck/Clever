@@ -87,25 +87,37 @@
                                             <tr>
                                                 <th>고객명</th>
                                                 <th>금액</th>
-                                                <th>입급일</th>
+                                                <th>타입</th>
+                                                <th>날짜</th>
                                                 <th>잔액</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="${pointList }" var="pointList">
+                                        	<c:forEach items="${memberAccountList }" var="memberAccountList">
 	                                            <tr>
-	                                                <td>${pointList.member_id }</td>
-	                                                <td>${pointList.charge_point }원 ${pointList.point_status }</td>
-	                                                <td>${pointList.point_date }</td>
-	                                                <td>${adminInfo.member_balance }원</td>
+	                                                <td>${memberAccountList.member_id }</td>
+	                                                <td>${memberAccountList.tran_amount }원 ${pointList.point_status }</td>
+	                                                <td>
+	                                                	<c:choose>
+	                                                		<c:when test="${memberAccountList.tran_type eq 'd' }">
+	                                                			입금 (+${memberAccountList.tran_amount })
+	                                                		</c:when>
+	                                                		<c:otherwise>
+																출금 (-${memberAccountList.tran_amount })	                                                		
+	                                                		</c:otherwise>
+	                                                	</c:choose>
+	                                                </td>
+	                                                <td>${memberAccountList.tran_date }</td>
+	                                                <td>${memberAccountList.admin_account_balance }원</td>
 												</tr>
                                         	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>입금자명</th>
+                                                <th>고객명</th>
                                                 <th>금액</th>
-                                                <th>종류</th>
+                                                <th>타입</th>
+                                                <th>날짜</th>
                                                 <th>잔액</th>
                                             </tr>
                                         </tfoot>

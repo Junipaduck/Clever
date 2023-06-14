@@ -51,7 +51,7 @@
 							 <div id="wrap" class="wrap">
 							    <header class="header" role="banner" >
 							        <div class="header_inner">
-							            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px;"></a>
+							            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2_Auction.png" width="250px;" height="80px;" style="margin-top: 50px;"></a>
 							        </div>
 							    </header>
 							

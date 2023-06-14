@@ -39,10 +39,16 @@ td, tr, th{
 
 </head>
 <body>
+			<header class="header" role="banner" >
+		        <div class="header_inner">
+		            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
+		        </div>
+		    </header>
 <!--       	 <h1>핀테크 사용자 정보</h1> -->
 <%-- 	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3> --%>
+	<h4>1. ${userInfo.user_name }고객님 출금할 계좌를 선택해주세요✔️</h4>
 	<table border="1" style="border-collapse: collapse;">
-		<tr style="background-color: pink;">
+		<tr style="background-color: #002fb9; color: white;">
 			<th>계좌별칭</th>
 			<th>계좌번호</th>
 			<th>은행명</th>
@@ -63,19 +69,22 @@ td, tr, th{
 <%-- 				<td>${account.fintech_use_num }</td> --%>
 				<td>
 					<form action="product_bank_accountDetail" method="post">
+<%-- 						<input type="hidden" name="account_holder_name" value="${account.account_holder_name }"> --%>
 						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
 						<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
 						<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
 						<input type="hidden" name="user_name" value="${userInfo.user_name }">
 						<input type="hidden" name="product_idx" value="${param.product_idx}">
 						<input type="hidden" name="product_price" value="${param.product_price}">
-						<input type="submit" value="상세조회 &#127875;">
+<!-- 						<input type="submit" value="상세조회 &#127875;"> -->
+						<button class="btn btn-primary" type="submit" style="width: 100px; height: 37px;">상세조회</button>
 					</form>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-            
+           
+        <div style="margin-top:50px;"></div>
             
 	<!-- 풋터 시작 -->
 	<footer>

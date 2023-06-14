@@ -34,13 +34,25 @@ public class CommunityController {
 	}
 	
 	@GetMapping(value = "community_form")
-	public String community_form() {
+	public String community_form(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg","로그인 후 이용해주세요!");
+			model.addAttribute("target","loginForm.me");
+			return "success";
+		}
 		
 		return "community/community_form";
 	}
 	
 	@GetMapping(value = "community_form_auction")
-	public String community_form_auction() {
+	public String community_form_auction(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg","로그인 후 이용해주세요!");
+			model.addAttribute("target","auction_loginForm");
+			return "success";
+		}
 		
 		return "community/community_form_auction";
 	}
@@ -125,7 +137,13 @@ public class CommunityController {
 	}
 	
 	@GetMapping(value = "community_modify")
-	public String community_modify(@RequestParam Map<String, String> map, Model model) {
+	public String community_modify(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg","로그인 후 이용해주세요!");
+			model.addAttribute("target","loginForm.me");
+			return "success";
+		}
 		List communityList = communityService.selectDetail(map.get("community_idx"));
 		model.addAttribute("communityList", communityList);
 		return "community/community_modify";

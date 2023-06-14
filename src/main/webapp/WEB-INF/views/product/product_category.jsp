@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클레버 - 경매리스트</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<title>clever - 중고상품</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -55,102 +55,103 @@ font-weight: 500;
         <div id="background_main">
             <div id="main_content">
                 <!-- 카테고리 -->
-                <div id="category">
-                    <p id="home">
-                        <span>
-                            <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home">
-                        </span>
-                        <a href="auction"><span>홈</span></a>
-                    </p>
-                    <p id="entire">
-                        <span>
-                            <i class="bi bi-chevron-right"></i>
-                        </span>
-                        <span>
-                            <ul class="entire_bar">
-                                <c:if test="${not empty bigCategory }">
-	                                <li><a href="product_category?param=${bigCategory }">${bigCategory }</a></li>
-                                </c:if>
-                                <c:if test="${not empty midCategory }">
-	                                <li><a href="product_category?param=${midCategory[0].bigCategory }">${midCategory[0].bigCategory }</a></li>
-                                </c:if>
-                                <c:if test="${not empty smallCategory }">
-	                                <li><a href="product_category?param=${smallCategory[0].bigCategory }">${smallCategory[0].bigCategory }</a></li>
-                                </c:if>
-                                <c:forEach items="${bigCategorys }" var="big">
-                               		<li id="big" class="hidden_menu"><a href="product_category?param=${big.bigCategory }">${big.bigCategory }</a></li>
-                                </c:forEach>
+<!--                 <div id="category"> -->
+<!--                     <p id="home"> -->
+<!--                         <span> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/market/home.png" alt="home"> --%>
+<!--                         </span> -->
+<!--                         <a href="auction"><span>홈</span></a> -->
+<!--                     </p> -->
+<!--                     <p id="entire"> -->
+<!--                         <span> -->
+<!--                             <i class="bi bi-chevron-right"></i> -->
+<!--                         </span> -->
+<!--                         <span> -->
+<!--                             <ul class="entire_bar"> -->
+<%--                                 <c:if test="${not empty bigCategory }"> --%>
+<%-- 	                                <li><a href="product_category?param=${bigCategory }">${bigCategory }</a></li> --%>
+<%--                                 </c:if> --%>
+<%--                                 <c:if test="${not empty midCategory }"> --%>
+<%-- 	                                <li><a href="product_category?param=${midCategory[0].bigCategory }">${midCategory[0].bigCategory }</a></li> --%>
+<%--                                 </c:if> --%>
+<%--                                 <c:if test="${not empty smallCategory }"> --%>
+<%-- 	                                <li><a href="product_category?param=${smallCategory[0].bigCategory }">${smallCategory[0].bigCategory }</a></li> --%>
+<%--                                 </c:if> --%>
+<%--                                 <c:forEach items="${bigCategorys }" var="big"> --%>
+<%--                                		<li id="big" class="hidden_menu"><a href="product_category?param=${big.bigCategory }">${big.bigCategory }</a></li> --%>
+<%--                                 </c:forEach> --%>
                                 
-                            </ul>
-                            <i class="bi bi-chevron-down under_direction"></i>
-                        </span>
-                    </p>
-	                    <p id="category_clothes">
-	                        <span>
-	                            <i class="bi bi-chevron-right"></i>
-	                        </span>
-	                        <span>
-	                            <ul class="category_clothes_bar">
-	                                <c:if test="${not empty midCategory }">
-		                                <li><a href="#">${midCategory[0].midCategory }</a></li>
-	                                </c:if>
-	                                <c:if test="${not empty smallCategory }">
-		                                <li><a href="#">${smallCategory[0].midCategory }</a></li>
-	                                </c:if>
-                                <c:forEach items="${midCategorys }" var="mid">
-                               		<li id="big" class="hidden_menu"><a href="product_category?param=${mid.midCategory }">${mid.midCategory }</a></li>
-                                </c:forEach>
-	                            </ul>
-	                            <i class="bi bi-chevron-down under_direction"></i>
-	                        </span>
-	                    </p>
-                    <c:if test="${not empty midCategory or not empty smallCategory }">
-	                    <p id="category_clothes">
-	                        <span>
-	                            <i class="bi bi-chevron-right"></i>
-	                        </span>
-	                        <span>
-	                            <ul class="category_acc_bar">
-		                                <li><a href="#">${smallCategory[0].smallCategory }</a></li>
-	                            <c:forEach items="${smallCategorys }" var="smalls">
-                               		<li id="big" class="hidden_menu"><a href="product_category?param=${smalls.smallCategory }">${smalls.smallCategory }</a></li>
-                                </c:forEach>
-	                            </ul>
-	                            <i class="bi bi-chevron-down under_direction"></i>
-	                        </span>
-	                    </p>
-                    </c:if>
+<!--                             </ul> -->
+<!--                             <i class="bi bi-chevron-down under_direction"></i> -->
+<!--                         </span> -->
+<!--                     </p> -->
+<!-- 	                    <p id="category_clothes"> -->
+<!-- 	                        <span> -->
+<!-- 	                            <i class="bi bi-chevron-right"></i> -->
+<!-- 	                        </span> -->
+<!-- 	                        <span> -->
+<!-- 	                            <ul class="category_clothes_bar"> -->
+<%-- 	                                <c:if test="${not empty midCategory }"> --%>
+<%-- 		                                <li><a href="#">${midCategory[0].midCategory }</a></li> --%>
+<%-- 	                                </c:if> --%>
+<%-- 	                                <c:if test="${not empty smallCategory }"> --%>
+<%-- 		                                <li><a href="#">${smallCategory[0].midCategory }</a></li> --%>
+<%-- 	                                </c:if> --%>
+<%--                                 <c:forEach items="${midCategorys }" var="mid"> --%>
+<%--                                		<li id="big" class="hidden_menu"><a href="product_category?param=${mid.midCategory }">${mid.midCategory }</a></li> --%>
+<%--                                 </c:forEach> --%>
+<!-- 	                            </ul> -->
+<!-- 	                            <i class="bi bi-chevron-down under_direction"></i> -->
+<!-- 	                        </span> -->
+<!-- 	                    </p> -->
+<%--                     <c:if test="${not empty midCategory or not empty smallCategory }"> --%>
+<!-- 	                    <p id="category_clothes"> -->
+<!-- 	                        <span> -->
+<!-- 	                            <i class="bi bi-chevron-right"></i> -->
+<!-- 	                        </span> -->
+<!-- 	                        <span> -->
+<!-- 	                            <ul class="category_acc_bar"> -->
+<%-- 		                                <li><a href="#">${smallCategory[0].smallCategory }</a></li> --%>
+<%-- 	                            <c:forEach items="${smallCategorys }" var="smalls"> --%>
+<%--                                		<li id="big" class="hidden_menu"><a href="product_category?param=${smalls.smallCategory }">${smalls.smallCategory }</a></li> --%>
+<%--                                 </c:forEach> --%>
+<!-- 	                            </ul> -->
+<!-- 	                            <i class="bi bi-chevron-down under_direction"></i> -->
+<!-- 	                        </span> -->
+<!-- 	                    </p> -->
+<%--                     </c:if> --%>
                     
-                </div>
+<!--                 </div> -->
                 
                 <!--하위 카테고리 (중분류 선택된 경우만 표시, 하위카테고리 선택시 표시 X)-->
-                <div class="category_under">
-                    <div class="category_box">
-                        현재 카테고리
-                            <span><i class="bi bi-chevron-right"></i></span>
-                    </div>
-                    <c:if test="${not empty bigCategory }">
-	                    <div class="category_box">${bigCategory }</div>
-	                    <div class="category_box"></div>
-	                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
-	                    <div class="category_box"></div>
-                    </c:if>
-                    <c:if test="${not empty midCategory }">
-	                    <div class="category_box">${midCategory[0].midCategory } ></div>
-	                    <div class="category_box">${midCategory[0].bigCategory }</div>
-	                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
-	                    <div class="category_box"></div>
-                    </c:if>
-                    <c:if test="${not empty smallCategory }">
-	                    <div class="category_box">${smallCategory[0].bigCategory } ></div>
-	                    <div class="category_box">${smallCategory[0].midCategory} ></div>
-	                    <div class="category_box">${smallCategory[0].smallCategory }</div> <!--자리 남아도 5개 유지-->
-	                    <div class="category_box"></div>
-                    </c:if>
-                </div>
+<!--                 <div class="category_under"> -->
+<!--                     <div class="category_box"> -->
+<!--                         현재 카테고리 -->
+<!--                             <span><i class="bi bi-chevron-right"></i></span> -->
+<!--                     </div> -->
+<%--                     <c:if test="${not empty bigCategory }"> --%>
+<%-- 	                    <div class="category_box">${bigCategory }</div> --%>
+<!-- 	                    <div class="category_box"></div> -->
+<!-- 	                    <div class="category_box"></div> 자리 남아도 5개 유지 -->
+<!-- 	                    <div class="category_box"></div> -->
+<%--                     </c:if> --%>
+<%--                     <c:if test="${not empty midCategory }"> --%>
+<%-- 	                    <div class="category_box">${midCategory[0].midCategory } ></div> --%>
+<%-- 	                    <div class="category_box">${midCategory[0].bigCategory }</div> --%>
+<!-- 	                    <div class="category_box"></div> 자리 남아도 5개 유지 -->
+<!-- 	                    <div class="category_box"></div> -->
+<%--                     </c:if> --%>
+<%--                     <c:if test="${not empty smallCategory }"> --%>
+<%-- 	                    <div class="category_box">${smallCategory[0].bigCategory } ></div> --%>
+<%-- 	                    <div class="category_box">${smallCategory[0].midCategory} ></div> --%>
+<%-- 	                    <div class="category_box">${smallCategory[0].smallCategory }</div> <!--자리 남아도 5개 유지--> --%>
+<!-- 	                    <div class="category_box"></div> -->
+<%--                     </c:if> --%>
+<!--                 </div> -->
 
                 <section class="main_goods">
                 <h2 align="center">${categoryParam } 카테고리의 상품들</h2>
+                <br>
                 <div class="goods_wrap">
                     <c:forEach items="${productList }" var="product" end="4"> 
                     <div class="goods">
