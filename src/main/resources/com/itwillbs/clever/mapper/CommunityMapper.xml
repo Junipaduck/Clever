@@ -97,6 +97,11 @@
 						WHERE
 							member_id = #{id}
 	</update>
+	
+	<select id="selectGrade" resultType="HashMap">
+		SELECT *
+			FROM member	
+	</select>
 </mapper>
 
 

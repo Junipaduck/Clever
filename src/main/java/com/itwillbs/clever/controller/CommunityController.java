@@ -23,6 +23,10 @@ public class CommunityController {
 	public String community(Model model) {
 		List communityList = communityService.communityList();
 		model.addAttribute("communityList", communityList);
+		
+		List<HashMap<String, String>> grade = communityService.selectGrade();
+		model.addAttribute("grade", grade);
+		
 		return "community/community_main";
 	}
 	

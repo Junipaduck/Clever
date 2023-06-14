@@ -33,6 +33,9 @@ public interface CommunityMapper {
 
 	// 글 작성 시 포인트 적립
 	int updateMemberPoint(String id);
+
+	// 등급
+	List<HashMap<String, String>> selectGrade();
 	
 
 }

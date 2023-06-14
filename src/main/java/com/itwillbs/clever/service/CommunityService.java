@@ -76,4 +76,10 @@ public class CommunityService {
 		return mapper.updateMemberPoint(id);
 	}
 
+
+	public List<HashMap<String, String>> selectGrade() {
+		
+		return mapper.selectGrade();
+	}
+
 }
