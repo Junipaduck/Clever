@@ -62,7 +62,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body" style="color: black;">
+        <div class="content-body">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
@@ -92,55 +92,50 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>회원번호</th>
-                                                <th>이름</th>
-                                                <th>아이디</th>
-                                                <th>연락처</th>
-                                                <th>주소</th>
-                                                <th>생년월일(성별)</th>
-                                                <th>이메일</th>
-                                                <th>관심분야</th>
-                                                <th>등급</th>
-                                                <th>적립금</th>
-                                                <th>가입일</th>
-                                                <th>등급</th>
+                                                <th>등급 레벨</th>
+                                                <th>등급 이름</th>
+                                                <th>등급 이미지</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="${memberList }" var="memberList">
+                                        	<c:forEach items="${memberGradeList }" var="memberGradeList">
 	                                            <tr>
-	                                                <td>${memberList.member_idx }</td>
-	                                                <td>${memberList.member_name }</td>
-	                                                <td>${memberList.member_id }</td>
-	                                                <td>${memberList.member_phone }</td>
-	                                                <td>${memberList.member_address }</td>
-	                                                <td>${memberList.member_birth }</td>
-	                                                <td>${memberList.member_email }</td>
-	                                                <td>${memberList.member_interest }</td>
-	                                                <td>${memberList.member_rank }</td>
-	                                                <td>${memberList.member_point }</td>
-	                                                <td>${memberList.member_date }</td>
-	                                                <td>${memberList.member_rank }</td>
+	                                                <td>${memberGradeList.grade_idx }</td>
+	                                                <td>${memberGradeList.grade_name }</td>
+									                <td>
+										               <c:forEach items="${memberGrade }" var="memberGrade">
+															<c:choose>
+																<c:when test="${memberGradeList.grade eq '브론즈' }">
+																	<img src="${pageContext.request.contextPath }/resources/images/브론즈.png" alt="브론즈">
+																</c:when>
+																<c:when test="${memberGradeList.grade eq '실버' }">
+																	<img src="${pageContext.request.contextPath }/resources/images/실버.png" alt="실버">
+																</c:when>
+																<c:when test="${memberGradeList.grade eq '골드' }">
+																	<img src="${pageContext.request.contextPath }/resources/images/골드.png" alt="골드">
+																</c:when>
+															</c:choose>
+														</c:forEach> 
+	                                                </td>
+	                                                <td>
+	                                                	<button type="button" class="btn btn-primary" onclick="">수정하기</button>
+	                                                </td>
+	                                                <td>
+	                                                	<form action="gradeDelete.ad">
+	                                                		<button type="button" class="btn btn-primary" onclick="">삭제하기</button>
+	                                                	</form>
+	                                                </td>
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>회원번호</th>
-                                                <th>이름</th>
-                                                <th>아이디</th>
-                                                <th>연락처</th>
-                                                <th>주소</th>
-                                                <th>생년월일(성별)</th>
-                                                <th>이메일</th>
-                                                <th>관심분야</th>
-                                                <th>등급</th>
-                                                <th>적립금</th>
-                                                <th>가입일</th>
-                                                <th>등급</th>
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <div>
+                                    <button type="button" class="btn btn-primary" onclick="admin">등급 생성</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -118,10 +118,24 @@ public class AdminController {
 	
 	// 회원 등급 조회 0613 강지훈추가
 	@GetMapping(value = "/adminMemberGrade.ad")
-	public String memberGradeList(Model model) {
+	public String memberGradeList(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		// 관리자 페이지 접근 제한 설정! 로그인 하지 않았거나 아이디가 admin이 아닐 시 접근 불가. 
+		if(id == null || !id.equals("admin")) {
+			model.addAttribute("msg", "접근 권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		List<HashMap<String, String>> memberList = adminService.selectMember();
+		model.addAttribute("memberList", memberList);
 		
 		List<HashMap<String, String>> memberGradeList  = adminService.selectMemberGrade();
 		model.addAttribute("memberGradeList", memberGradeList);
+		
+		List<HashMap<String, String>> countList = adminService.selectCountList();
+		model.addAttribute("countList", countList);
 		
 		return "admin/admin_member_grade";
 	}

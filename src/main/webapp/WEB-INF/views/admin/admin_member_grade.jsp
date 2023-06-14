@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>회원 목록 조회</title>
+    <title>회원 등급 관리</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
     <!-- Datatable -->
@@ -62,12 +62,12 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="color: black;">
             <div class="container-fluid">
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>전체 회원 목록 조회</h4>
+                            <h4>회원 등급 관리</h4>
                             <span class="ml-1"></span>
                         </div>
                     </div>
@@ -92,53 +92,45 @@
                                     <table id="example" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>등급 레벨</th>
-                                                <th>등급 이름</th>
-                                                <th>등급 이미지</th>
-<!--                                                 <th>연락처</th> -->
-<!--                                                 <th>주소</th> -->
-<!--                                                 <th>생년월일(성별)</th> -->
-<!--                                                 <th>이메일</th> -->
-<!--                                                 <th>관심분야</th> -->
-<!--                                                 <th>등급</th> -->
-<!--                                                 <th>포인트</th> -->
-<!--                                                 <th>가입일</th> -->
+                                                <th>회원번호</th>
+                                                <th>이름</th>
+                                                <th>아이디</th>
+                                                <th>적립금</th>
+                                                <th>가입일</th>
+                                                <th>등급</th>
+                                                <th>상품판매량</th>
+                                                <th>등업</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="${memberGradeList }" var="memberGradeList">
+                                        	<c:forEach items="${countList }" var="countList">
 	                                            <tr>
-	                                                <td>${memberGradeList.grade_idx }</td>
-	                                                <td>${memberGradeList.grade_name }</td>
-	                                                <td></td>
+	                                                <td>${countList.member_idx }</td>
+	                                                <td>${countList.member_name }</td>
+	                                                <td>${countList.member_id }</td>
+	                                                <td>${countList.member_point }</td>
+	                                                <td>${countList.member_date }</td>
+	                                                <td>${countList.member_rank }</td>
+	                                                <td>${countList.count }</td>
 	                                                <td>
-	                                                	<button type="button" class="btn btn-primary" onclick="">수정하기</button>
+	                                                	<button type="button" class="btn btn-primary" onclick="location.href='storeModify.ad?goods_idx=${goodsList.goods_idx}'">등업하기</button>
 	                                                </td>
-	                                                <td>
-	                                                	<form action="gradeDelete.ad">
-	                                                		<button type="button" class="btn btn-primary" onclick="">삭제하기</button>
-	                                                	</form>
-	                                                </td>
-<%-- 	                                                <td>${memberList.member_id }</td> --%>
-<%-- 	                                                <td>${memberList.member_phone }</td> --%>
-<%-- 	                                                <td>${memberList.member_address }</td> --%>
-<%-- 	                                                <td>${memberList.member_birth }</td> --%>
-<%-- 	                                                <td>${memberList.member_email }</td> --%>
-<%-- 	                                                <td>${memberList.member_interest }</td> --%>
-<%-- 	                                                <td>${memberList.member_rank }</td> --%>
-<%-- 	                                                <td>${memberList.member_point }</td> --%>
-<%-- 	                                                <td>${memberList.member_date }</td> --%>
 	                                            </tr>
                                         	</c:forEach>
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>회원번호</th>
+                                                <th>이름</th>
+                                                <th>아이디</th>
+                                                <th>적립금</th>
+                                                <th>가입일</th>
+                                                <th>등급</th>
+                                                <th>상품판매량</th>
+                                                <th>등업</th>
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <div>
-                                    <button type="button" class="btn btn-primary" onclick="admin">등급 생성</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>

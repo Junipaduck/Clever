@@ -162,6 +162,12 @@ public class AdminService {
 		return mapper.selectMemberAccountList();
 	}
 
+	// 회원 등급 산정을 위한 카운트 조회
+	public List<HashMap<String, String>> selectCountList() {
+		
+		return mapper.selectCountList();
+	}
+
 		
 	}
 

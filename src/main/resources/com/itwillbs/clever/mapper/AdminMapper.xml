@@ -155,6 +155,21 @@
 				WHERE
 					member_id != 'admin'
 	</select>
+	
+	<select id="selectCountList" resultType="HashMap">
+		SELECT 
+			m.member_idx
+			, m.member_name
+			, m.member_id
+			, m.member_point
+			, m.member_date
+			, m.member_rank
+			, COUNT(p.product_idx) AS count
+				FROM member m
+					LEFT JOIN product p 
+						ON m.member_id = p.member_id
+							GROUP BY m.member_id	
+	</select>
 </mapper>
 
 

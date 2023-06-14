@@ -131,29 +131,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- 차트 -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">상품 거래량</h4>
-                                    </div>
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-  							<div class="col-lg-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">경매 거래량</h4>
-                                    </div>
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-                </div>
 
 <!-- 도넛차트 -->
                 <div class="row">
