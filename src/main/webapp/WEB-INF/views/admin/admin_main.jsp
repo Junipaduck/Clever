@@ -141,32 +141,6 @@
                                         <h4 class="card-title">상품 거래량</h4>
                                     </div>
                                     <div class="card-body">
-    									<div id=curve_chart style="width: 900px; height: 500px"></div>
-									    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-									    <script type="text/javascript">
-									      google.charts.load('current', {'packages':['corechart']});
-									      google.charts.setOnLoadCallback(drawChart);
-
-									      function drawChart() {
-									        var data = google.visualization.arrayToDataTable([
-									          ['Year', '입금', '출금'],
-									          ['2004',  ${memberAccountList[0].tram_amt},      400],
-									          ['2005',  ${memberAccountList[1].tram_amt},      460],
-									          ['2006',  ${memberAccountList[2].tram_amt},       1120],
-									          ['2007',  ${memberAccountList[3].tram_amt},      540]
-									        ]);
-
-									        var options = {
-									          title: 'Company Performance',
-									          curveType: 'function',
-									          legend: { position: 'bottom' }
-									        };
-
-									        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-									        chart.draw(data, options);
-									      }
-									    </script>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +150,6 @@
                                         <h4 class="card-title">경매 거래량</h4>
                                     </div>
                                     <div class="card-body">
-                                        <canvas id="barChart_2"></canvas>
                                     </div>
                                 </div>
                             </div>
