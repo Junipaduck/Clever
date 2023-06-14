@@ -26,7 +26,7 @@
 				, #{map.auction_price }
 				, 0
 				, #{map.auction_content	}
-				, "경매 등록 대기중"
+				, "경매등록대기중"
 				, now()
 				, #{id }
 				, 'N'
@@ -87,7 +87,12 @@
 	<select id="getProductList" resultType="map">
 		SELECT *
 			FROM auction
-				WHERE auction_Lcategory = #{param} or auction_Mcategory = #{param} or auction_Scategory = #{param}
+				WHERE (auction_Lcategory = #{param }
+				 or auction_Mcategory = #{param }
+				 or auction_Scategory = #{param })
+				 <if test="status != null and !status.equals('')">
+				 AND auction_status = #{status}
+				 </if>
 	</select>
 	
 	<select id="getCategorys">
@@ -175,7 +180,7 @@
 	<update id="updateConfirmed">
 		UPDATE auction 
 			SET buyer_id = #{buyer_id},
-				auction_status = '경매 마감'
+				auction_status = '경매마감'
 				WHERE auction_idx = #{auction_idx}
 	</update>
 	
@@ -241,6 +246,10 @@
 	
 	<select id="sellerInfoCount" resultType="int">
 		SELECT count(auction_idx) FROM auction WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="getRelationList" resultType="map">
+		SELECT * FROM auction WHERE auction_Lcategory = (SELECT DISTINCT auction_Lcategory FROM auction a WHERE auction_Scategory = '반팔티셔츠')
 	</select>
 	
 	<update id="updateDateAdd">

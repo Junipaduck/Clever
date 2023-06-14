@@ -3,6 +3,7 @@ package com.itwillbs.clever.mapper;
 import java.util.*;
 
 import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.*;
 
 public interface AuctionMapper {
 
@@ -24,7 +25,7 @@ public interface AuctionMapper {
 
 	List selectMemberSearch(String auction_search);
 
-	List getProductList(String param);
+	List getProductList(@Param("param") String param,@Param("status") String status);
 
 	String getBigCategory(String param);
 
@@ -85,5 +86,7 @@ public interface AuctionMapper {
 	List<String> sellerAutions(String member_id);
 
 	int sellerInfoCount(String member_id);
+
+	List getRelationList(String param);
 
 }

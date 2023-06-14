@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Clever - 경매상품등록</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!-- 아이콘 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -97,9 +97,11 @@ $(function() {
 	$("#formform").on("submit", function() {
 		$("#auction_category").val($(".selected_category").text()); 
 			startEndDate();
+			
 		if(!startEndDateStats){
 			return false;
 		}
+		return isStatus();
 	});
 });
 function startEndDate() {
@@ -108,10 +110,76 @@ function startEndDate() {
 	var end = $("#auction_end_date").val() + " " + $("#auction_end_time").val();
 	if(start > end){
 		alert("경매 시작일 보다 경매 마감일이 더 빠릅니다.");
-		return;
+		return false;
+	} else if(start == end){
+		alert("경매 시작일 과 경매 마감일이 동일합니다.");
+		return false;
 	} else {
 		startEndDateStats = true;
 	}
+}
+function isStatus() {
+	var auction_title = $("#auction_title").val();
+	var auction_category = $("#auction_category").val();
+	var auction_address = $("#auction_address").val();
+	var auction_product_status = $("#auction_product_status").val();
+	var auction_price = $("#auction_price").val();
+	var immediately_price = $("#immediately_price").val();
+	var auction_content = $("#auction_content").val();
+	var auction_start_time = $("#auction_start_time").val();
+	var auction_start_date = $("#auction_start_date").val();
+	var auction_end_time = $("#auction_end_time").val();
+	var auction_end_date = $("#auction_end_date").val();
+	
+	if(auction_title == ""){
+		$("#auction_title").focus();
+		return false;
+	} else if(auction_category == ""){
+		$("#auction_category").focus();
+		return false;
+	} else if(auction_address == ""){
+		$("#auction_address").focus();
+		return false;
+	} else if(auction_product_status == ""){
+		$("#auction_product_status").focus();
+		return false;
+	} else if(auction_price == ""){
+		$("#auction_price").focus();
+		return false;
+	} else if(immediately_price == ""){
+		$("#immediately_price").focus();
+		return false;
+	} else if(auction_content == ""){
+		$("#auction_content").focus();
+		return false;
+	} else if(auction_start_time == ""){
+		$("#auction_start_time").focus();
+		return false;
+	} else if(auction_start_date == ""){
+		$("#auction_start_date").focus();
+		return false;
+	} else if(auction_end_time == ""){
+		$("#auction_end_time").focus();
+		return false;
+	} else if(auction_start_time == ""){
+		$("#auction_start_time").focus();
+		return false;
+	} else if(auction_end_date == ""){
+		$("#auction_end_date").focus();
+		return false;
+	} else if(auction_price > immediately_price || auction_price == immediately_price){
+		alert("즉시 구매가가 경매 시작가 보다 큰지 확인해주세요.");
+		$("#auction_price").focus();
+		return false;
+	} else {
+		return true;
+	}
+	
+}
+function myAddress() {
+// 	document.getElementById("auction_address").innerText = "머이야";
+	document.getElementById("auction_address").value = "${member.member_address}";
+
 }
 </script>
 	<!-- 헤더 시작 -->

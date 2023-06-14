@@ -344,58 +344,28 @@
             <div id="related_goods" style="margin-top: 150px">
                 <div>
                     <h3>연관 상품</h3>
-                    <p>AD<span><img src="${pageContext.request.contextPath }/resources/images/goods/i.svg" alt="AD"></span></p>
                 </div>
                 <div class="container text-center" id="related_goods_imgs">
                     <div class="row g-2">
+                    <c:forEach items="${relationList }" var="relation" end="5">
                         <div class="col-2 goods_list">
                             <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/cashmere_coat.jpg" alt="연관상품 캐시미어 코트">
-                                    <p>연관 상품 목록</p>
+                                <a href="auction_detail?auction_idx=${relation.auction_idx }&param=${relation.auction_Scategory }">
+                                    <c:forEach items="${fileList2 }" var="file">
+			                        <c:set var="length" value="${fn:length(file.file_name) }" />
+									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
+									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+			                            <c:if test="${file.file_num eq relation.auction_idx }">
+				                            <div class="goods_image">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+				                            </div>
+			                            </c:if>
+			                        </c:forEach>
+                                    <p>${relation.auction_title }</p>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/hood_coat.jpg" alt="연관상품 후드코트">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/wool_coat.jpg" alt="연관상품 울코트">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/long_padded.jpg" alt="연관상품 롱패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/short_padded.jpg" alt="연관상품 숏패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-2 goods_list">
-                            <div class="related_goods_img">
-                                <a href="#">
-                                    <img src="${pageContext.request.contextPath }/resources/images/goods/cream_short_padded.jpg" alt="연관상품 크림색 숏패딩">
-                                    <p>연관 상품 목록</p>
-                                </a>
-                            </div>
-                        </div>
+                    </c:forEach>
                     </div>
                 </div>
             </div>
@@ -551,6 +521,7 @@
 			}
 		});
 	});
+	// war 파일 구울 때 열어야 하는거 
 // 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";

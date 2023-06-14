@@ -48,8 +48,8 @@ public class AuctionService {
 		return mapper.selectMemberSearch(auction_search);
 	}
 
-	public List getProductList(String param) {
-		return mapper.getProductList(param);
+	public List getProductList(String param, String status) {
+		return mapper.getProductList(param,status);
 	}
 
 	public String getBigCategory(String param) {
@@ -167,6 +167,10 @@ public class AuctionService {
 
 	public int sellerInfoCount(String member_id) {
 		return mapper.sellerInfoCount(member_id);
+	}
+
+	public List getRelationList(String param) {
+		return mapper.getRelationList(param);
 	}
 
 

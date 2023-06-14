@@ -97,7 +97,8 @@ public class AuctionController {
 	
 	@GetMapping(value = "auction_list")
 	public String auction_list(@RequestParam Map<String, String> map, Model model) {
-		List productList = auctionService.getProductList(map.get("param"));
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + map.get("status"));
+		List productList = auctionService.getProductList(map.get("param"),map.get("status"));
 		List fileList = auctionService.selectFiles();
 		String bigCategory = auctionService.getBigCategory(map.get("param"));
 		List bigCategorys = auctionService.getBigCategorys();
@@ -152,6 +153,7 @@ public class AuctionController {
 		}
 		
 		List fileList = auctionService.selectFilesIdx(auction_idx);
+		List fileList2 = auctionService.selectFiles();
 		String bigCategory = auctionService.getBigCategory(param);
 		List bigCategorys = auctionService.getBigCategorys();
 		List midCategorys = auctionService.getMidCategorys(param);
@@ -172,9 +174,9 @@ public class AuctionController {
 			System.out.println("bigCategory : " + bigCategory);
 			model.addAttribute("bigCategory", bigCategory);
 		}
+		List relationList = auctionService.getRelationList(param);
 		
-		
-		model.addAttribute("fileList", fileList);
+		model.addAttribute("relationList", relationList);
 		model.addAttribute("bigCategorys", bigCategorys);
 		model.addAttribute("midCategorys", midCategorys);
 		model.addAttribute("smallCategorys", smallCategorys);
@@ -183,6 +185,7 @@ public class AuctionController {
 		model.addAttribute("nowDate", nowDate);
 		
 		model.addAttribute("fileList", fileList);
+		model.addAttribute("fileList2", fileList2);
 		System.out.println(fileList);
 		model.addAttribute("logList", logList);
 		model.addAttribute("logRoomIdx", logRoomIdx);

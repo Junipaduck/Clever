@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>클레버 - 경매리스트</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -23,12 +23,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/market_category.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goods_history.css">
 
 <!--js-->
 <script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/goods/goods_detail_menu.js"></script>
+<script	src="${pageContext.request.contextPath }/resources/js/goods/goods_history_common.js"></script>
 <style type="text/css">
 .goods_info  {
 height: 90px;
@@ -136,8 +138,8 @@ font-weight: 500;
 	                    <div class="category_box"></div>
                     </c:if>
                     <c:if test="${not empty midCategory }">
-	                    <div class="category_box">${midCategory[0].midCategory } ></div>
 	                    <div class="category_box">${midCategory[0].bigCategory }</div>
+	                    <div class="category_box">${midCategory[0].midCategory } ></div>
 	                    <div class="category_box"></div> <!--자리 남아도 5개 유지-->
 	                    <div class="category_box"></div>
                     </c:if>
@@ -151,6 +153,18 @@ font-weight: 500;
 
                 <section class="main_goods">
                 <h2 align="center">${categoryParam } 카테고리의 상품들</h2>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!--필터-->
+				<nav class="filter_nav" style="justify-content: flex-end;">
+					<div class="status_filter">
+						<button type="button" class="all_buy_status active" onclick="location.href='auction_list?param=${categoryParam}&status=경매중'">경매중</button>
+						<button type="button" class="buying_status" onclick="location.href='auction_list?param=${categoryParam}&status=경매등록대기중'">경매전</button>
+						<button type="button" class="bought_status" onclick="location.href='auction_list?param=${categoryParam}&status=경매마감'">경매 완료</button>
+					</div>
+				</nav>
                 <div class="goods_wrap">
                     <c:forEach items="${productList }" var="product"> 
                     <div class="goods">

@@ -30,10 +30,10 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <!-- auction -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/auction/used.css?after">
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/auction/used.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/auction/used.js?after"></script>
 <!-- 경매 남은 시간 함수 -->
 <style type="text/css">
-.dep1 img {
+.dep1 a img {
 width: 81px;
 height: 187px;
 margin-left: 13px;
@@ -41,6 +41,9 @@ margin-right: 13px;
 }
 .goods_info  {
 height: 90px;
+}
+#textDiv {
+	margin-top: 100px;
 }
 </style>
 </head>
@@ -107,48 +110,48 @@ height: 90px;
 			<!-- 대대분류 -->
 			<ul class="tablist">
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
-				  <div align="center">패션의류</div>
+				   <a href="auction_list?param=패션/의류"><img src="${pageContext.request.contextPath }/resources/images/auction/패션의류.png" alt="패션의류"></a><br>
+				  <div align="center" style="margin-top: 77px">패션/의류</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
-				  <div align="center">패션잡화</div>
+				   <a href="auction_list?param=패션/잡화"><img src="${pageContext.request.contextPath }/resources/images/auction/패션잡화.png" alt="패션잡화"></a>
+				  <div align="center" id="textDiv">패션/잡화</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
-				  <div align="center">취미/컬렉션</div>
+				   <a href="auction_list?param=취미/컬렉션"><img src="${pageContext.request.contextPath }/resources/images/auction/취미컬렉션.png" alt="취미/컬렉션"></a>
+				  <div align="center" id="textDiv">취미/컬렉션</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
-				  <div align="center">디지털</div>
+				   <a href="auction_list?param=디지털"><img src="${pageContext.request.contextPath }/resources/images/auction/디지털.png" alt="디지털"></a>
+				  <div align="center" id="textDiv">디지털</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
-				  <div align="center">스포츠/레저</div>
+				   <a href="auction_list?param=스포츠/레저"><img src="${pageContext.request.contextPath }/resources/images/auction/스포츠레저.png" alt="스포츠/레저"></a>
+				  <div align="center" id="textDiv">스포츠/레저</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
-				  <div align="center">뷰티</div>
+				   <a href="auction_list?param=뷰티"><img src="${pageContext.request.contextPath }/resources/images/auction/뷰티.png" alt="뷰티"></a>
+				  <div align="center" id="textDiv">뷰티</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
-				  <div align="center">생활가전</div>
+				   <a href="auction_list?param=생활가전"><img src="${pageContext.request.contextPath }/resources/images/auction/생활가전.png" alt="생활가전"></a>
+				  <div align="center" id="textDiv">생활가전</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
-				  <div align="center">자동차/공구</div>
+				   <a href="auction_list?param=자동차/공구"><img src="${pageContext.request.contextPath }/resources/images/auction/자동차공구.png" alt="자동차/공구"></a>
+				  <div align="center" id="textDiv">자동차/공구</div>
 				</li>
     
 				<li class="dep1">
-				   <a href="#"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
-				  <div align="center">도서/기타</div>
+				   <a href="auction_list?param=도서/기타"><img src="${pageContext.request.contextPath }/resources/images/auction/도서기타.png" alt="도서/기타"></a>
+				  <div align="center" id="textDiv">도서/기타</div>
 				</li>
 			</ul>		
 			<!-- //대대분류 -->
@@ -157,25 +160,11 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=12000000">여성의류</a></li>
+                    <li class=""><a href="auction_list?param=여성의류">여성의류</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=13000000">남성의류</a></li>
+                    <li class=""><a href="auction_list?param=남성의류">남성의류</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=40000000">언더웨어</a></li>
-                
-				</ul>
-			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=30000000">신발</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=16000000">가방/잡화</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=17000000">쥬얼리/시계</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=52000000">수입명품</a></li>
+                    <li class=""><a href="auction_list?param=언더웨어">언더웨어</a></li>
                 
 				</ul>
 			</div>
@@ -183,165 +172,109 @@ height: 90px;
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=31000000">출산/육아</a></li>
+                    <li class=""><a href="auction_list?param=신발">신발</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=20000000">장난감/완구</a></li>
+                    <li class=""><a href="auction_list?param=가방/잡화">가방/잡화</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=32000000">유아동의류</a></li>
+                    <li class=""><a href="auction_list?param=쥬얼리/시계">쥬얼리/시계</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=49000000">유아동신발/잡화</a></li>
+                    <li class=""><a href="auction_list?param=수입명품">수입명품</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=27000000">가구/DIY</a></li>
+                    <li class=""><a href="auction_list?param=반려동물용품">반려동물용품</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=23000000">조명/인테리어</a></li>
+                    <li class=""><a href="auction_list?param=악기/취미">악기/취미</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=75000000">침구/커튼</a></li>
+                    <li class=""><a href="auction_list?param=문구/사무용품">문구/사무용품</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=28000000">생활용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=44000000">주방용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=51000000">신선식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=19000000">건강식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=38000000">커피/음료</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=64000000">가공식품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=39000000">생필품</a></li>
+                    <li class=""><a href="auction_list?param=꽃/이벤트용품">꽃/이벤트용품</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=33000000">건강/의료용품</a></li>
+                    <li class=""><a href="auction_list?param=노트북/데스크탑">노트북/데스크탑</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=45000000">반려동물용품</a></li>
+                    <li class=""><a href="auction_list?param=모니터/프린터">모니터/프린터</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=46000000">악기/취미</a></li>
+                    <li class=""><a href="auction_list?param=PC주변기기">PC주변기기</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=10000000">문구/사무용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=99000000">꽃/이벤트용품</a></li>
+                    <li class=""><a href="auction_list?param=저장장치">저장장치</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=02000000">카메라</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=14000000">음향기기</a></li>
+                    <li class=""><a href="auction_list?param=스포츠의류/운동화">스포츠의류/운동화</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=15000000">게임</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=07000000">모바일/태블릿</a></li>
+                    <li class=""><a href="auction_list?param=등산/아웃도어/캠핑/낚시">등산/아웃도어/캠핑/낚시</a></li>
+                
+                    <li class=""><a href="auction_list?param=스포츠 용품">스포츠 용품</a></li>
+                
+                    <li class=""><a href="auction_list?param=자전거/보드/기타레저">자전거/보드/기타레저</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=22000000">노트북/데스크탑</a></li>
+                    <li class=""><a href="auction_list?param=화장품/향수">화장품/향수</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=01000000">모니터/프린터</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=50000000">PC주변기기</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=43000000">저장장치</a></li>
+                    <li class=""><a href="auction_list?param=바디/헤어">바디/헤어</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=21000000">휘트니스/수영</a></li>
+                    <li class=""><a href="auction_list?param=가구/DIY">가구/DIY</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=37000000">스포츠의류/운동화</a></li>
+                    <li class=""><a href="auction_list?param=조명/인테리어">조명/인테리어</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=08000000">골프</a></li>
+                    <li class=""><a href="auction_list?param=침구/커튼">침구/커튼</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=48000000">등산/아웃도어</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=72000000">캠핑/낚시</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=73000000">구기/라켓</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=76000000">자전거/보드/기타레저</a></li>
+                    <li class=""><a href="auction_list?param=생활용품">생활용품</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=18000000">화장품/향수</a></li>
+                    <li class=""><a href="auction_list?param=자동차용품">자동차용품</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=05000000">바디/헤어</a></li>
+                    <li class=""><a href="auction_list?param=공구/안전/산업용품">공구/안전/산업용품</a></li>
                 
 				</ul>
 			</div>
-    
+			
 			<div class="tabpanel">
 				<ul>
             
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=29000000">영상가전</a></li>
+                    <li class=""><a href="auction_list?param=도서/교육/음반">도서/교육/음반</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=34000000">계절가전</a></li>
+                    <li class=""><a href="auction_list?param=백화점/제화상품권">백화점/제화상품권</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=03000000">주방가전</a></li>
+                    <li class=""><a href="auction_list?param=여행/항공권">여행/항공권</a></li>
                 
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=71000000">생활/미용가전</a></li>
-                
-				</ul>
-			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=04000000">자동차용품</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=55000000">공구/안전/산업용품</a></li>
+                    <li class=""><a href="auction_list?param=e쿠폰/모바일상품권">e쿠폰/모바일상품권</a></li>
                 
 				</ul>
 			</div>
-    
-			<div class="tabpanel">
-				<ul>
-            
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=36000000">도서/교육/음반</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=41000000">백화점/제화상품권</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=24000000">여행/항공권</a></li>
-                
-                    <li class=""><a href="/corner/UsedMarket.aspx?category=86000000">e쿠폰/모바일상품권</a></li>
-                
-				</ul>
-			</div>
-    
 			<!-- //대분류 -->
-			
-			<!-- 중소분류 -->
-			<div class="used_locbar popular_locbar">
-			   
-			</div>
-			<!-- categoryBox -->
-			
-			<!-- //categoryBox -->
-			<!-- //중소분류 -->
 		</div>
 		<!-- //카테고리 -->	
     </div>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>번개장터 | 상품관리</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
