@@ -63,6 +63,15 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.cs
     display: inline-block;
     margin-right: 0px;
 }
+
+.btn_confirm {
+    display: flex;
+    line-height: 1;
+}
+.btn_confirm {
+    color: #fff;
+}
+
 </style>
 
 
@@ -553,9 +562,10 @@ $(function() {
 											<c:when test="${productBuyList.buy_status eq '결제완료' }">
 												<div class="btn_area">
 <%-- 													<button type="button" class="btn_buy_decide" value="${param.buy_price }">구매확정</button> <!-- 0613배하나 --> --%>
-<%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" onclick="location.href='buyConfirm'">구매확정</button> <!-- 0613배하나 --> --%>
 <%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" >구매확정</button> <!-- 0613배하나 --> --%>
-														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}&product_idx=${productBuyList.product_idx}">구매확정</a>
+<%-- 													<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}&product_idx=${productBuyList.product_idx}">구매확정</a> --%>
+<%-- 													<input type="button" class="btn_confirm" value="구매확정" onclick="location.href='buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}&product_idx=${productBuyList.product_idx}'"> --%>
+													<button type="button" onclick="location.href='buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}&product_idx=${productBuyList.product_idx}'">구매확정</button>
 												</div>
 											</c:when>
 											<c:when test="${productBuyList.buy_status eq '구매확정' }">
