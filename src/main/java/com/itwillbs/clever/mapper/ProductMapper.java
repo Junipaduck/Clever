@@ -98,6 +98,12 @@ public interface ProductMapper {
 
 	String selectSellerId(int product_idx);
 
+	Map<String, String> selectByInfo(int product_idx);
+
+	int insertBuyProduct(@Param("selectByInfo") Map<String, String> selectByInfo, @Param("sId") String sId);
+
+	int updateBuyerPoint(String sId);
+
 	
 
 

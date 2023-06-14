@@ -374,6 +374,7 @@
 				member 
 			SET 
 				member_balance = member_balance + #{buy_price}
+				,member_point = member_point + 500
 			WHERE 
 				member_id = #{buy_seller}
 	</update>
@@ -384,6 +385,16 @@
 				member_balance = member_balance + #{product_price} 
 			WHERE 
 				member_id = 'admin'
+	</update>
+	
+	<!-- 구매자가 구매확정 누르면 포인트 적립 -->
+	<update id="updateBuyerPoint">
+		UPDATE 
+				member 
+			SET 
+				member_point = member_point + 500
+			WHERE 
+				member_id = #{sId}
 	</update>
 	
 	<!-- 결제페이지에서 회원정보 조회 -->
@@ -414,6 +425,26 @@
 			
 			
 <!-- 	</select> -->
+	
+	<!-- 상품구매시 구매정보 조회 -->
+	<select id="selectByInfo" resultType="map">
+		select * from product where product_idx = #{product_idx}
+	</select>
+	
+	<!-- buy 테이블에 인서트 -->
+	<insert id="insertBuyProduct">
+			INSERT INTO buy
+			VALUES (
+				null
+				,#{sId}
+				,#{selectByInfo.product_subject}
+				,#{selectByInfo.product_price}
+				,now()
+				,#{selectByInfo.member_id}
+				,#{selectByInfo.product_idx}
+				,'결제완료'
+			)
+	</insert>
 	
 	
 </mapper> <!-- 매퍼끝 -->

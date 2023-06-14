@@ -424,7 +424,11 @@ public class BankController {
 			int updateMemAdMoney = productService.updateMemAdMoney(sId, product_price);
 			int updateMoney = productService.buyerWithdraw(sId, product_price);
 			int updateAdMoney = productService.depositAdMoney(sId, product_price);
+//			List<HashMap<String, String>> selectByInfo = productService.selectByInfo(product_idx);
 			
+			Map<String, String> selectByInfo = productService.selectByInfo(product_idx);
+			
+			int insertBuyProduct = productService.insertBuyProduct(selectByInfo, sId);
 			
 			return "product/product_deposit_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
 		}
@@ -484,6 +488,8 @@ public class BankController {
 		int updateAdMoney = productService.withdrawAdMoney(buy_price, buy_seller);
 		int updateMoney = productService.buyerDeposit(buy_price, buy_seller);
 		int updateStatus = productService.updateStatus(product_idx);
+		String sId = (String)session.getAttribute("sId");
+		int updateBuyerPoint = productService.updateBuyerPoint(sId); 
 		
 		return "redirect:/myPage.me";
 	}

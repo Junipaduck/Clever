@@ -201,6 +201,18 @@ public class ProductService {
 		return mapper.selectSellerId(product_idx);
 	}
 
+	public Map<String, String> selectByInfo(int product_idx) {
+		return mapper.selectByInfo(product_idx);
+	}
+
+	public int insertBuyProduct(Map<String, String> selectByInfo, String sId) {
+		return mapper.insertBuyProduct(selectByInfo, sId);
+	}
+
+	public int updateBuyerPoint(String sId) {
+		return mapper.updateBuyerPoint(sId);
+	}
+
 	
 
 }

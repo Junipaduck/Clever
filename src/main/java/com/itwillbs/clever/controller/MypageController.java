@@ -176,7 +176,6 @@ public class MypageController {
 		map.put("review_id", sId);
 		map.put("review_seller", map.get("review_seller"));
 		
-		System.out.println("뭐라노시발" + review_content);
 		map.put("review_content", review_content); //내용
 		
 		int insertCount = mypageService.insertReview(map);
