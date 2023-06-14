@@ -351,7 +351,7 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = "/adminPointAccount.ad")
-	public String adminAccount(HttpSession session, Model model) {
+	public String adminPointAccount(HttpSession session, Model model) {
 		
 		// 포인트 충전 입출금 내역
 		List<HashMap<String, String>> pointList = adminService.selectPointList();
@@ -362,6 +362,17 @@ public class AdminController {
 		model.addAttribute("adminInfo", adminInfo);
 		
 		return "admin/admin_point_account";
+	}
+	
+	@GetMapping(value = "/adminMemberAccount.ad")
+	public String adminMemberAccount(HttpSession session, Model model) {
+		
+		// 개인 회원 입출금 내역
+		List<HashMap<String, String>> memberAccountList = adminService.getMemberAccountList();
+		model.addAttribute("memberAccountList", memberAccountList);
+		
+		return "admin/admin_member_account";
+		
 	}
 	
 }

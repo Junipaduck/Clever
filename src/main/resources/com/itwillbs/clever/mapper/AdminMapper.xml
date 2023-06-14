@@ -146,6 +146,13 @@
 		SELECT *
 			FROM point
 	</select>
+	
+	<select id="selectMemberAccountList" resultType="HashMap">
+		SELECT *
+			FROM admin_account
+				WHERE
+					member_id != 'admin'
+	</select>
 </mapper>
 
 
