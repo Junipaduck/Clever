@@ -393,8 +393,8 @@ $(function() {
 														<c:when
 															test="${fileList.file_num eq productSellList.product_idx && productSellList.sale_status eq '판매완료' }">
 															<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
-															<span class="goods_front"> <i
-																class="far fa-check-circle"></i><br> 거래완료
+															<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
+															거래완료
 															</span>
 														</c:when>
 													</c:choose>
@@ -418,17 +418,9 @@ $(function() {
 												</c:choose>
 											</div>
 										</a>
-										<c:choose>
-											<c:when test="${productSellList.sale_status eq '판매중'}">
-												<div class="btn_area">
-													<button type="button" class="">배송 완료</button>
-													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
-												</div>
-											</c:when>
-											<c:when test="${productSellList.sale_status eq '판매완료'}">
-												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
-											</c:when>
-										</c:choose>
+										<div class="btn_area">
+											<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
+										</div>
 									</div>
 								</div>
 							</c:forEach>
@@ -535,13 +527,10 @@ $(function() {
 													<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
 													<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
 													<c:choose>
-														<c:when test="${fileList.file_num eq productBuyList.product_idx && productBuyList.buy_status eq '배송완료' }">
+														<c:when test="${fileList.file_num eq productBuyList.product_idx && productBuyList.buy_status eq '결제완료' }">
 															<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
-															<span class="goods_front"> <i class="fas fa-box"></i><br>
-																배송완료
-															</span>
 														</c:when>
-														<c:when test="${fileList.file_num eq productBuyList.product_idx && productBuyList.buy_status eq '거래완료' }">
+														<c:when test="${fileList.file_num eq productBuyList.product_idx && productBuyList.buy_status eq '구매확정' }">
 															<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
 															<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
 															거래완료
@@ -560,16 +549,15 @@ $(function() {
 											</div>
 										</a>
 										<c:choose>
-											<c:when test="${productBuyList.buy_status eq '구매확정' }">
+											<c:when test="${productBuyList.buy_status eq '결제완료' }">
 												<div class="btn_area">
 <%-- 													<button type="button" class="btn_buy_decide" value="${param.buy_price }">구매확정</button> <!-- 0613배하나 --> --%>
 <%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" onclick="location.href='buyConfirm'">구매확정</button> <!-- 0613배하나 --> --%>
 <%-- 													<button type="button" value="${productBuyList.buy_price }" id="buyConfirm" >구매확정</button> <!-- 0613배하나 --> --%>
 														<a href="buyConfirm?buy_price=${productBuyList.buy_price }&buy_seller=${productBuyList.buy_seller}">구매확정</a>
-													<button type="button" class="btn_return">반품신청</button>
 												</div>
 											</c:when>
-											<c:when test="${productBuyList.buy_status eq '거래완료' }">
+											<c:when test="${productBuyList.buy_status eq '구매확정' }">
 												<button type="button" class="btn_review_modal">후기작성</button>
 											</c:when>
 										</c:choose>
