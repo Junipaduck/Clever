@@ -61,6 +61,14 @@ public class BankService {
 		
 		return mapper.getAdminInfo(id);
 	}
+
+	// 세션 아이디 포인트 조회
+	public MemberVO getMemberPoint(String id) {
+		
+		return mapper.selectMemberPoint(id);
+	}
+
+
 	
 }
 

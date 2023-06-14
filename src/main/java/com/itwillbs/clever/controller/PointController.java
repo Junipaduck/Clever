@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import com.itwillbs.clever.service.*;
 import com.itwillbs.clever.vo.*;
 
+import retrofit2.http.*;
+
 @Controller
 public class PointController {
 	
@@ -131,6 +133,19 @@ public class PointController {
 		return "pay/point_charge_detail";
 	}
 	
+	
+	@GetMapping(value = "/pointResult.ad")
+	public String pointResult(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		MemberVO member = bankService.getMemberPoint(id);
+		model.addAttribute("member", member);
+		
+		
+		return "pay/point_charge_result";
+	}
+	
 	@PostMapping("point_withdraw")
 	public String pointWithdraw(
 			@RequestParam Map<String, String> map, HttpSession session, Model model, int charge_point, String point_status) {
@@ -190,7 +205,7 @@ public class PointController {
 			}
 			
 			model.addAttribute("msg", "포인트 충전 성공!");
-			model.addAttribute("target", "pointCharge");
+			model.addAttribute("target", "pointResult.ad");
 			return "success";
 		} else {
 			model.addAttribute("msg", "포인트 충전 실패!");

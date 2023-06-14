@@ -30,60 +30,64 @@
 <script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/market/market_manage.js"></script>
-
-<style type="text/css">
-td, tr, th{ 
-    padding: 5px;
-}
-</style>
-
 </head>
 <body>
-	<header class="header" role="banner" >
+
+    <header class="header" role="banner" >
         <div class="header_inner">
             <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
         </div>
     </header>
-	<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
-	<input type="hidden" name="product_idx" value="${param.product_idx }">    
-	<h4 style="text-align: center;">${userInfo.user_name }고객님 포인트 충전 출금 계좌를 선택해주세요✔️</h4>
-	<h5 style="text-align: center;">선택하신 계좌에서 현금이 출금될 예정입니다.</h5>
-	<table border="1" style="border-collapse: collapse; margin: auto;">
-		<tr style="background-color: #002fb9; color: white;">
-			<th>계좌별칭</th>
-			<th>계좌번호</th>
-			<th>은행명</th>
-			<th>예금주명</th>
-<!-- 			<th>계좌상태</th> -->
-<!-- 			<th>핀테크이용번호</th> -->
-			<th></th>
-		</tr>
-		<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
-		<%-- account 객체(AccountVO)로부터 각 데이터를 꺼내서 테이블에 출력 --%>
-		<c:forEach var="account" items="${userInfo.res_list }">
-			<tr>
-				<td>${account.account_alias }</td>
-				<td>${account.account_num_masked }</td>
-				<td>${account.bank_name }(${account.bank_code_std })</td>
-				<td>${account.account_holder_name }</td>
-<!-- 				<td></td> -->
-<%-- 				<td>${account.fintech_use_num }</td> --%>
-				<td>
-					<form action="point_bank_accountDetail" method="post">
-<%-- 						<input type="hidden" name="account_holder_name" value="${account.account_holder_name }"> --%>
+	
+     	  <!-- 결제할 상품의 정보 -->
+			<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }"> <!-- 핀테크 이용번호 전달 -->    
+			<input type="hidden" name="product_idx" value="${param.product_idx }">    
+	          <section class="goods_manage_area">
+
+<!-- 			    <h4>1. 결제할 상품의 정보를 확인해주세요😊</h4> -->
+	
+           	 </section>
+           <!-- // 결제할 상품의 정보 --> 
+	            	 
+	            	 
+	            	 
+	   <!-- fintech 수업의 bank_user_info.jsp 에서 가져옴 -->
+		<h4>포인트 충전 출금 계좌를 선택해주세요🤑</h4>
+		<h5>선택하신 계좌에서 현금이 출금될 예정입니다.</h5>
+		* ${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })
+		<table border="1" style="border-collapse: collapse; text-align:center; margin-bottom: 50px;">
+			<tr style="background-color: pink;">
+				<th>계좌별칭</th>
+				<th>계좌번호</th>
+				<th>은행명</th>
+				<th>예금주명</th>
+<!-- 				<th>핀테크이용번호</th> -->
+				<th></th>
+			</tr>
+			<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
+			<%-- account 객체(AccountVO)로부터 각 데이터를 꺼내서 테이블에 출력 --%>
+			<c:forEach var="account" items="${userInfo.res_list }">
+				<tr>
+					<td>${account.account_alias }</td>
+					<td>${account.account_num_masked }</td>
+					<td>${account.bank_name }(${account.bank_code_std })</td>
+					<td>${account.account_holder_name }</td>
+<%-- 					<td>${account.fintech_use_num }</td> --%>
+					<td>
+						<!-- 수업때는 form의 매핑명이 bank_accountDetail 이었는데 지금 관리자에서 사용하고 있으므로 이름을 바꿨습니다. -->
+						<form action="point_bank_accountDetail" method="post"> 
+	<%-- 						<input type="hidden" name="access_token" value="${sessionScope.access_token }"> --%>
 							<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
 							<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
 							<input type="hidden" name="user_name" value="${userInfo.user_name }">
-<!-- 						<input type="submit" value="상세조회 &#127875;"> -->
-						<button class="btn btn-primary" type="submit" style="width: 100px; height: 37px;">계좌선택</button>
-					</form>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-           
-        <div style="margin-top:50px;"></div>
-            
+							<input type="submit" value="계좌선택 &#127875;">
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	   <!-- //fintech수업 -->
+	
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
