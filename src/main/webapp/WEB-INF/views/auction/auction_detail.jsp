@@ -581,16 +581,24 @@
 		
 		if(priceInput==""||priceInput==null||priceInput[0]=='0'){
 			alert("금액을 확인하세요");
+			checkPrice = false;
 			return;
 		}
 		
 		currentPrice = document.getElementById("currentPrice").innerText; 
 		regexPrice = parseInt(currentPrice.replace(regex, "")); //정규표현식을 이용하여 현재가격 문자 추출
 		var priceInputInt = parseInt(uncomma(priceInput));  //현재 입력한 값 인트타입 변환
+		var immediately_price = parseInt(document.getElementById("immediately_price").value) //즉시 구매가
 		
 		if(regexPrice>=priceInputInt) {
 			checkPrice = false;
 			alert("현재 가격보다 높게 입력하세요 !!");
+			return;
+		}
+		
+		if(priceInputInt>immediately_price) {
+			checkPrice = false;
+			alert("즉시 구매가 보다 높음");
 			return;
 		}
 		
