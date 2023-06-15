@@ -553,17 +553,9 @@ function payAuction(idx, price, id, title){
 												<p class="goods_date">경매 시작 시간 : ${auctionList.auction_date }</p>
 											</div>
 										</a>
-										<c:choose>
-											<c:when test="${auctionList.auction_status eq '경매등록대기중' }">
-												<div class="btn_area">
-													<button type="button" class="">판매 확정</button>
-													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
-												</div>
-											</c:when>
-											<c:when test="${auctionList.auction_status eq '경매마감' }">
+											<div class="btn_area">
 												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
-											</c:when>
-										</c:choose>
+											</div>
 									</div>
 								</div>
 							</c:forEach>

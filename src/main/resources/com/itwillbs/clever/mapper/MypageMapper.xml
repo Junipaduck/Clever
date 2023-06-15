@@ -277,4 +277,10 @@
 	</delete>
 	
 	
+	<select id="selectDwHistory" resultType="map">
+		SELECT *
+			FROM admin_account
+			WHERE member_id = #{sId}
+	</select>
+	
 </mapper>

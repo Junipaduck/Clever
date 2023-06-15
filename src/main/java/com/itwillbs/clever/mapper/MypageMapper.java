@@ -70,4 +70,6 @@ public interface MypageMapper {
 
 	int deleteGoods(@Param("sId")String sId,  @Param("buy_idx") int buy_idx);
 
+	List<HashMap<String, String>> selectDwHistory(String sId);
+
 }

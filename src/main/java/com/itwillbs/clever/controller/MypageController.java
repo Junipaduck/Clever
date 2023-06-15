@@ -112,6 +112,11 @@ public class MypageController {
 		// 후기 조회
 		List<HashMap<String, String>> reviewCheck = mypageService.selectReviewCheck(sId);
 		model.addAttribute("reviewCheck", reviewCheck);
+
+		// 후기 조회
+		List<HashMap<String, String>> dwHistory = mypageService.selectDwHistory(sId);
+		model.addAttribute("dwHistory", dwHistory);
+		
 		
 		
 		return "mypage/my_page";

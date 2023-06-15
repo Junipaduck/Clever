@@ -152,4 +152,8 @@ public class MypageService {
 		return mapper.deleteGoods(sId, buy_idx);
 	}
 
+	public List<HashMap<String, String>> selectDwHistory(String sId) {
+		return mapper.selectDwHistory(sId);
+	}
+
 }
