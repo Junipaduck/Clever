@@ -68,6 +68,14 @@ public class MemberService {
 	public boolean isDupilcateMember(String member_id) {
 		return mapper.isDuplicateMember(member_id);
 	}
+
+	public String getPassword(String sId) {
+		return mapper.getPassword(sId);
+	}
+
+	public int deleteMember(String sId) {
+		return mapper.deleteMember(sId);
+	}
 	
 	
 	

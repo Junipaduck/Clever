@@ -171,10 +171,34 @@ public class MemberController {
 		return "redirect:/"; // 로그아웃 후 메인화면으로 리다이렉트 이동 
 	}
 
+	// 회원탈퇴
+	@GetMapping("/DeleteMember")
+	public String deleteMember() {
+		return "member/member_quit";
+	}
 	
-	
-
-	
-	
+	@PostMapping(value = "/DeleteMemberPro")
+    public String deleteMemberPro(HttpSession session,Model model, @RequestParam String member_passwd) {
+    	String sId = (String)session.getAttribute("sId");
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    	if(encoder.matches(member_passwd, memberService.getPassword(sId))) { // 파라미터로 받아온 패스워드와 저장되어있는 비밀번호를 비교
+    		// 맞다면
+    		int deleteCnt = memberService.deleteMember(sId); // 회원탈퇴 진행
+    		if(deleteCnt > 0) { // 회원탈퇴가 되었을 때 세션을 지우고 메인으로 리다이렉트
+    			session.invalidate();
+    			model.addAttribute("msg", "회원 탈퇴 완료!");
+    			model.addAttribute("target","./");
+    			return "success";
+    		} else { // 패스워드를 비교했을 때 다르다면
+    			model.addAttribute("msg", "회원 탈퇴 실패!");
+    			return "fail_back";
+    		}
+    	} else { // 비밀번호를 잘못 입력했을 때
+    		model.addAttribute("msg", "비밀 번호가 틀렸습니다!");
+    		return "fail_back";
+    		
+    	}
+    	
+    }
 	
 }

@@ -282,8 +282,10 @@ window.onload = function(){
 					    
 					  </div>
 					 
-					  <div class="create">
+					  <div class="create" style="margin-rigtht: 0px;">
 					        <input class="but4" type="submit" value="수정">
+					        <input class="but4" type="button" onclick="history.back()" value="돌아가기">
+					        <input class="but4" type="button" value="회원탈퇴" onclick="location.href='DeleteMember?member_id=${member.member_id }'" style="margin-left: 676px; margin-top: 17px;">
 					  </div>
 					  </div>
 				  </form>

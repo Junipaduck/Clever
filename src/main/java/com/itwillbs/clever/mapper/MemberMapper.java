@@ -31,5 +31,9 @@ public interface MemberMapper {
 	int updateMemberFindPasswd(MemberVO member);
 
 	boolean isDuplicateMember(String member_id);
+
+	String getPassword(String sId);
+
+	int deleteMember(String sId);
 	
 }

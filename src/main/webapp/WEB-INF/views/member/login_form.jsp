@@ -171,9 +171,9 @@
 							
 							            </ul>
 							            
-							            <img src="${pageContext.request.contextPath }/resources/images/kakaoBtn.png" onclick="location.href='kakaoLogin.me'" width="50px;" style="margin-right: 40px;">
-							            <img src="${pageContext.request.contextPath }/resources/images/naverBtn.png" onclick="location.href='naverLogin.me'" width="50px;" style="margin-left: 10px;">
-							            <br>카카오로그인　　네이버로그인
+<%-- 							            <img src="${pageContext.request.contextPath }/resources/images/kakaoBtn.png" onclick="location.href='kakaoLogin.me'" width="50px;" style="margin-right: 40px;"> --%>
+<%-- 							            <img src="${pageContext.request.contextPath }/resources/images/naverBtn.png" onclick="location.href='naverLogin.me'" width="50px;" style="margin-left: 10px;"> --%>
+<!-- 							            <br>카카오로그인　　네이버로그인 -->
 							            
 							            <!--배너-->
 							            <div id="gladbanner" class="banner_wrap">

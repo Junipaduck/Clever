@@ -34,6 +34,18 @@
 	WHERE member_id = #{member_id}
 	</select>
 
+	<select id="getPassword" resultType="string">
+	SELECT member_passwd
+			FROM member
+				WHERE member_id = #{sId}
+	</select>
+
+	<delete id="deleteMember">
+		DELETE 
+            FROM member 
+            WHERE member_id = #{sId};
+	</delete>
+
 	<!-- 로그인 -->
 	<select id="isSuccessMember" parameterType="String" resultType="boolean">
 		SELECT IF(COUNT(*) = 1, 1, 0)
