@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Clever - 경매상품등록</title>
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/market/favicon.ico">
+<title>Clever - 커뮤니티 상세페이지</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!-- 아이콘 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -152,10 +152,10 @@ function reReplyWrite(community_idx, reply_num, reply_re_ref, reply_re_lev, repl
 		);
 	}
 }
-function communityDelete(community_idx) {
+function communityDelete(community_idx, community_div) {
 	let result = confirm("삭제하시겠습니까?");
 	if(result){
-		location.href = 'community_delete?community_idx=' + community_idx
+		location.href = 'community_delete?community_idx=' + community_idx + '&community_div=' + community_div;
 	}
 	
 }
@@ -251,7 +251,7 @@ function communityDelete(community_idx) {
 		</div>
 	</section>
 	<c:if test="${sessionScope.sId eq communityList[0].member_id }">
-			<input type="button" value="수정" onclick="location.href='community_modify?community_idx=${communityList[0].community_idx }'"><input type="button" value="삭제" onclick="communityDelete(${communityList[0].community_idx });">
+			<input type="button" value="수정" onclick="location.href='community_modify?community_idx=${communityList[0].community_idx }'"><input type="button" value="삭제" onclick="communityDelete('${communityList[0].community_idx }','${communityList[0].community_div }');">
 			<c:choose>
 				<c:when test="${communityList[0].community_div eq 'auction'}">
 					<input type="button" value="목록" onclick="location.href='community_auction'">

@@ -171,10 +171,17 @@ public class CommunityController {
 	@GetMapping(value = "community_delete")
 	public String community_delete(@RequestParam Map<String, String> map, Model model) {
 		int communityDeleteCnt = communityService.communityDelete(map);
-		
+		String community_div = map.get("community_div");
+		System.out.println("좀떠라 시발!!!!!!!");
+		System.out.println("community_div : " + community_div);
 		if(communityDeleteCnt > 0) {
 			model.addAttribute("msg", "삭제되었습니다.");
-			model.addAttribute("target", "community");
+			if(community_div.equals("product")) {
+				model.addAttribute("target", "community");
+			} else {
+				model.addAttribute("target", "community_auction");
+			}
+			
 			return "success";
 		} else {
 			model.addAttribute("msg", "삭제 실패!");
