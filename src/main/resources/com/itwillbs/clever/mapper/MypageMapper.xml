@@ -200,4 +200,46 @@
 			)
 	</insert>
 	
+	<!-- 구매확정 버튼 눌렀을 때, 관리자계좌 테이블에 출금 insert -->
+	<insert id="withdrawAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{auction_buy_seller}
+				,#{auction_buy_price}
+				,'w'
+				,now()
+				,#{admin_account_balance} - #{auction_buy_price}
+			)
+	</insert>	
+	
+	<!-- 구매확정시 판매자에게 돈 입금 -->
+	<update id="buyerDeposit">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{auction_buy_price}
+				,member_point = member_point + 500
+			WHERE 
+				member_id = #{auction_buy_seller}
+	</update>
+	
+	<!-- 마이페이지에서 구매확정 시 auction_buy 상태 업데이트 -->
+	<update id="updateStatus">
+		UPDATE auction_buy
+			SET auction_buy_status = '구매확정'
+			WHERE auction_idx = #{auction_idx}
+	</update>
+	
+	<!-- 마이페이지에서 구매확정 시 auction 상태 업데이트 -->
+	<update id="updateAStatus">
+		UPDATE auction
+			SET auction_status = '구매확정'
+			WHERE auction_idx = #{auction_idx}
+	</update>
+	
 </mapper>

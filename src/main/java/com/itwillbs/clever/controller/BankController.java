@@ -590,6 +590,24 @@ public class BankController {
 		return "redirect:/myPage.me";
 	}
 	
+	@GetMapping("/auctionBuyConfirm")
+	public String auctionPayConfirm(HttpSession session
+							, Model model
+							,@RequestParam Map<String, String> map
+								) {
+		String auction_buy_price = map.get("buy_price");
+		String auction_buy_seller = map.get("buy_seller");
+		String auction_idx = map.get("auction_idx");
+//		System.out.println("아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ buy_price : " + buy_price + "      판매자아이디 : " + buy_seller );
+		int updateAdMoney = mypageService.withdrawAdMoney(auction_buy_price, auction_buy_seller);
+		int updateMoney = mypageService.buyerDeposit(auction_buy_price, auction_buy_seller);
+		int updateAStatus = mypageService.updateAStatus(auction_idx);
+		int updateStatus = mypageService.updateStatus(auction_idx);
+		String sId = (String)session.getAttribute("sId");
+		
+		return "redirect:/myPage.me";
+	}
+	
 	
 } //컨트롤러끝 
 
