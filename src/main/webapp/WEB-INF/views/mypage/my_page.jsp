@@ -240,8 +240,8 @@ function payAuction(idx, price, id, title){
 							<nav class="filter_nav">
 								<div class="status_filter">
 									<button type="button" class="all_buy_status active">전체	상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">거래완료</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">거래완료</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -315,9 +315,9 @@ function payAuction(idx, price, id, title){
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
-							<li class="hidden_menu">거래중</li>
-							<li class="hidden_menu">거래완료</li>
-							<li class="hidden_menu">숨김내역</li>
+<!-- 							<li class="hidden_menu">거래중</li> -->
+<!-- 							<li class="hidden_menu">거래완료</li> -->
+<!-- 							<li class="hidden_menu">숨김내역</li> -->
 						</ul>
 						<i class="bi bi-chevron-down under_direction under"></i>
 					</div>
@@ -371,11 +371,10 @@ function payAuction(idx, price, id, title){
 							<!--필터-->
 							<nav class="filter_nav">
 								<div class="status_filter">
-									<button type="button" class="all_buy_status active">전체
-										상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">완료</button>
-									<button type="button" class="cancle_status">취소/환불</button>
+									<button type="button" class="all_buy_status active">전체상태</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">완료</button> -->
+<!-- 									<button type="button" class="cancle_status">취소/환불</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -498,9 +497,9 @@ function payAuction(idx, price, id, title){
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
-							<li class="hidden_menu">참여중</li>
-							<li class="hidden_menu">경매완료</li>
-							<li class="hidden_menu">숨김내역</li>
+<!-- 							<li class="hidden_menu">참여중</li> -->
+<!-- 							<li class="hidden_menu">경매완료</li> -->
+<!-- 							<li class="hidden_menu">숨김내역</li> -->
 						</ul>
 						<i class="bi bi-chevron-down under_direction under"></i>
 					</div>
@@ -510,9 +509,9 @@ function payAuction(idx, price, id, title){
 							<nav class="filter_nav">
 								<div class="status_filter">
 									<button type="button" class="all_buy_status active">전체 상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">완료</button>
-									<button type="button" class="cancle_status">취소/환불</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">완료</button> -->
+<!-- 									<button type="button" class="cancle_status">취소/환불</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
