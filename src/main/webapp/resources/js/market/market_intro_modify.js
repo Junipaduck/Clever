@@ -111,3 +111,14 @@ $(document).ready(function(){
         $('.follower_menu').css('borderRight', '1px solid rgb(238, 238, 238)');
     })
 })
+
+$(document).ready(function(){
+    $(".auctiongoods_menu").click(function(){
+        common();
+        $('.common_menu').css('display', 'none');
+        $('#auctiongoods_menu_area').css('display', 'block');
+        fn_border(this);
+        $('.sales_menu').css('borderLeft', '1px solid rgb(238, 238, 238)');
+        $('.follower_menu').css('borderRight', '1px solid rgb(238, 238, 238)');
+    })
+})

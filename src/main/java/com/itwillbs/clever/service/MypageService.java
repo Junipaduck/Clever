@@ -25,11 +25,6 @@ public class MypageService {
 		return mapper.selectProductSellDate(sId);
 	}
 	
-	// 내 판매 내역 수량 조회
-	public int getSellCount(String sId) {
-		return mapper.getSellCount(sId);
-	}
-	
 	// 중고거래 구매내역 조회
 	public List<HashMap<String, String>> selectProductBuyList(String sId) {
 		return mapper.selectProductBuyList(sId);
@@ -62,7 +57,6 @@ public class MypageService {
 
 	// 굿즈 구매 내역
 	public List<HashMap<String, String>> selectGoodsList(String sId) {
-		
 		return mapper.selectGoodsList(sId);
 	}
 	
@@ -134,6 +128,10 @@ public class MypageService {
 
 	public int updateAStatus(String auction_idx) {
 		return mapper.updateAStatus(auction_idx);
+	}
+
+	public List<HashMap<String, String>> selectGoodsFile() {
+		return mapper.selectGoodsFile();
 	}
 
 }

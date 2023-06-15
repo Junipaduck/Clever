@@ -65,8 +65,8 @@ public class MypageController {
 		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
 		model.addAttribute("productSellDate", productSellDate);
 		
-		int sellCount = mypageService.getSellCount(sId);
-		model.addAttribute("sellCount", sellCount);
+//		int sellCount = mypageService.getSellCount(sId);
+//		model.addAttribute("sellCount", sellCount);
 		
 		// 중고거래 구매 내역
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
@@ -99,6 +99,10 @@ public class MypageController {
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
 		model.addAttribute("goodsList", goodsList);
+
+		// 중고거래 파일 이미지
+		List<HashMap<String, String>> goodsFile = mypageService.selectGoodsFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("goodsFile", goodsFile);
 			
 		// 신고 당한 내역
 		List<HashMap<String, String>> reportList = mypageService.selectReportList(sId);
@@ -111,6 +115,7 @@ public class MypageController {
 		// 후기 조회
 		List<HashMap<String, String>> reviewCheck = mypageService.selectReviewCheck(sId);
 		model.addAttribute("reviewCheck", reviewCheck);
+		
 		
 		return "mypage/my_page";
 	}
