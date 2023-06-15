@@ -125,7 +125,10 @@
 										</tbody>
 									</table>
 								</div>
-								<input type="button" value="등록하기" style="margin-left: 1300px;">
+								<br>
+								<c:if test="${sessionScope.sId eq 'admin' }">
+		            				<button type="button" class="btn btn-primary" onclick="location.href='noticeForm.ad'">등록하기</button>
+								</c:if>
 							</div>
 							<!-- .page-body -->
 <!-- 							<div> -->

@@ -119,7 +119,7 @@
 <%-- 															<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" /> --%>
 									                            <c:if test="${fileList.file_num eq goodsList.goods_idx }">
 										                            <div class="goods_image">
-										                                <img src="files/webapps${pageContext.request.contextPath }/resources/fileUpload${fileList.file_path}/${fileList.file_name}" width="100" height="100" alt="상품 이미지">
+	                                									<img src="${pageContext.request.contextPath }/resources/fileUpload${fileList.file_path}/${fileList.file_name}" width="194" height="194" alt="상품 이미지">
 <%-- 										                                <img src="http://c3d2212t2file.itwillbs.com/files/webapps/Clever/resources/fileUpload/${file_name}" width="100" height="100" alt="상품 이미지"> --%>
 										                            </div>
 									                            </c:if>

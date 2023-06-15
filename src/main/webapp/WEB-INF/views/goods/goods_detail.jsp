@@ -57,12 +57,12 @@
 							                                    </div>
 							                                    
 							                                    	<c:forEach items="${filesList}" var="filesItem" varStatus="loop"> <!-- 첫번째사진을 제외한 나머지를 select하는 forEach문 -->
-																	    <c:set var="length" value="${fn:length(filesItem.file_name)}" />
-																	    <c:set var="index" value="${fn:indexOf(filesItem.file_name, '_')}" />
-																	    <c:set var="file_name" value="${fn:substring(filesItem.file_name, index + 1, length)}" />
+<%-- 																	    <c:set var="length" value="${fn:length(filesItem.file_name)}" /> --%>
+<%-- 																	    <c:set var="index" value="${fn:indexOf(filesItem.file_name, '_')}" /> --%>
+<%-- 																	    <c:set var="file_name" value="${fn:substring(filesItem.file_name, index + 1, length)}" /> --%>
 																	    <c:if test="${filesItem.file_num eq goodsDetail.goods_idx and loop.index ne 0}">
 																	        <div class="carousel-item">
-																	            <img src="${pageContext.request.contextPath}/resources/upload/${file_name}" class="d-block w-100" width="184" height="470">
+	                                											<img src="${pageContext.request.contextPath }/resources/fileUpload${fileList.file_path}/${fileList.file_name}" width="194" height="194" alt="상품 이미지">
 																	        </div>
 																	    </c:if>
 																	</c:forEach>
