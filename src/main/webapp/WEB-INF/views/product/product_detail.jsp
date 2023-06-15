@@ -169,8 +169,10 @@
 	                                    <span>${productDetail.product_date }</span>
 	                                </p>
 	                                <p style="position: absolute;margin-left: 400px;">
-		          						<img src="${pageContext.request.contextPath }/resources/images/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}&seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
-	                                    <span>신고</span>
+	                                	<c:if test="${sessionScope.sId ne productDetail.member_id}">
+			          						<img src="${pageContext.request.contextPath }/resources/fileUpload/report.png" style="width: 30px; margin-bottom: 8px" onclick="location.href='productReport?product_idx=${productDetail.product_idx}&seller_id=${productDetail.member_id}&reporter_id=${sessionScope.sId }'">
+		                                    <span>신고</span>
+	                                	</c:if>
 	                                </p>
 	                            </div>
 	                            <div id="detail_content_info_state">
