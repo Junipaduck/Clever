@@ -153,6 +153,8 @@
 			FROM admin_account
 				WHERE
 					member_id != 'admin'
+						ORDER BY tran_date
+							LIMIT 10
 	</select>
 	
 	<select id="selectCountList" resultType="HashMap">
