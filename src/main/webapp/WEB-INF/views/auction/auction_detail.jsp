@@ -272,30 +272,31 @@
 		                                				  }
 		                                			  }
 	                                			  }
+	                                		  } 
 	                                		  } else {
-	                                			  if(currentAjax==0 && dateUpdateCheck==false){
-		                           		  			 	$.ajax({
-		                           		  			 		url : "auction_confirmed",
-		                           		  			 		type: 'GET',
-		                           		  			 		data: {'auction_idx':auction_idx},
-		                           		  			 		dataType : "json",
-		                           		  			 		success:function(data){
-		                           		  			 			currentAjax = 1;
-		                           		  			 			for(let auction of data) {
-		                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
-		                           		  			 			}
-		                           		  			 			location.href = "depositReturn?auction_idx=" + auction_idx;
-		                           		  			 		},
-		                           		  			 		error:function(error){
-		                           		  			 			console.log(error);
-		                           		  			 		}
-		                           		  			 		
-		                           		  			 	});
-		                                	  		}
-	                                		  }
-	                                	  } else {
-		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-	                                	  }
+			                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+		                                	  }
+                                			  if(currentAjax==0 && dateUpdateCheck==false){
+	                           		  			 	$.ajax({
+	                           		  			 		url : "auction_confirmed",
+	                           		  			 		type: 'GET',
+	                           		  			 		data: {'auction_idx':auction_idx},
+	                           		  			 		dataType : "json",
+	                           		  			 		success:function(data){
+	                           		  			 			currentAjax = 1;
+	                           		  			 			for(let auction of data) {
+	                           		  			 				alert(auction.buyer_id + "님이" + comma(auction.max_price) + "에 낙찰 받으셨습니다.");
+	                           		  			 			}
+	                           		  			 			location.href = "depositReturn?auction_idx=" + auction_idx;
+	                           		  			 		},
+	                           		  			 		error:function(error){
+	                           		  			 			console.log(error);
+	                           		  			 		}
+	                           		  			 		
+	                           		  			 	});
+	                                	  		}
+	                                		  
+	                                	  
 	                                	}
 	                                	(function() {
 	                                		var auction_start = new Date('${detailmap.auction_start}');
@@ -458,7 +459,7 @@
                                                 </p>
                                         </div>
                                         <div id="store_follow">
-                                            	<button onclick="location.href='chatting?product_idx=${param.product_idx}'" style="background-color: #0085f5; color: white;"> 채팅하기</button>
+                                            	<button style="background-color: #0085f5; color: white;">${detailmap.member_id } : 상점입니다.</button>
                                         </div>
                                     </div>
                                 </div>
@@ -666,7 +667,7 @@ chatSocket.onmessage = function(e) {
 // 	const chatMessage = JSON.parse(e.data);
 	
 	var immediately_price = parseInt(document.getElementById("immediately_price").value)
-	
+	var immediately_price2 = immediately_price + (immediately_price * 0.1) ;
 	
 // 	alert("메시지 받는 타이밍 : " + immediately_price);
 	
@@ -703,7 +704,7 @@ chatSocket.onmessage = function(e) {
 		currentPrice.innerText = "현재가격 : " + data.message + " 원";
 	}
 	
-	if(immediately_price<=message_price || (immediately_price*0.1+immediately_price) >= message_price ) {
+	if(immediately_price<=message_price && immediately_price2 >= message_price) {
 		alert(data.id +"님이 낙찰 !! 경매가 종료되었습니다.");
 		location.reload();
 	}

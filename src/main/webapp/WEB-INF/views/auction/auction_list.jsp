@@ -184,9 +184,9 @@ font-weight: 500;
                                     <span class="goods_date_before"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.auction_final_price }" /></span>
                                 </div>
 	                                <script type="text/javascript">
-	                                	function getTime${product.auction_idx}() {
+	                                function getTime${product.auction_idx}() {
 	                                	  var element;
-	                                	  const endDay = new Date('${product.auction_end}');
+	                                	  const endDay = new Date('${product.auction_start}');
 	                                	  const currDay = new Date();
 	                                	  let diff = endDay - currDay;
 	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
@@ -198,16 +198,48 @@ font-weight: 500;
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("timeOut${product.auction_idx}");
 	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매시작";
+	                                		  $.ajax({
+                      		  			 		url : "auction_statusUpdate",
+                      		  			 		type: 'GET',
+                      		  			 		data: {'auction_idx':${product.auction_idx}},
+                      		  			 	});
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function getTime2${product.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${product.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("timeOut2${product.auction_idx}");
+	                                	  if(diffDays < 0){
 	                                		  element.innerHTML = "경매 종료";                    		  
 	                                	  } else {
 		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 	                                	  }
 	                                	}
 	                                	(function() {
-	                                		return setInterval(() => getTime${product.auction_idx}(), 1000);
+	                                		var auction_start = new Date('${product.auction_start}');
+	                                		var auction_end = new Date('${product.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => getTime${product.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => getTime2${product.auction_idx}(), 1000);
+	                                		}
 										}());
 	                               </script>
-                               <div id="timeOut${product.auction_idx}" style="color: red; text-align: right;"></div>
+                               <div id="timeOut2${product.auction_idx}" style="color: red; text-align: right;"></div>
+                               <div id="timeOut${product.auction_idx}" style="color: blue; text-align: right;"></div>
                             </div>
                         </a>
                     </div>

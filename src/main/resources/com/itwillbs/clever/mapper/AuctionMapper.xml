@@ -249,7 +249,7 @@
 	</select>
 	
 	<select id="getRelationList" resultType="map">
-		SELECT * FROM auction WHERE auction_Lcategory = (SELECT DISTINCT auction_Lcategory FROM auction a WHERE auction_Scategory = '반팔티셔츠')
+		SELECT * FROM auction WHERE auction_Lcategory = (SELECT DISTINCT auction_Lcategory FROM auction a WHERE auction_Scategory = #{param})
 	</select>
 	
 	<update id="updateDateAdd">
