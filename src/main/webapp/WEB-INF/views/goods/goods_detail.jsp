@@ -53,7 +53,7 @@
 														<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
 															<c:if test="${fileList.file_num eq goodsDetail.goods_idx }">
 							                                    <div class="carousel-item active">
-							                                        <img src="${pageContext.request.contextPath }/resources/upload/${file_name}" class="d-block w-100" width="184" height="470" >
+	                                								<img src="${pageContext.request.contextPath }/resources/fileUpload${fileList.file_path}/${fileList.file_name}" class="d-block w-100" width="184" height="470" alt="상품 이미지">
 							                                    </div>
 							                                    
 							                                    	<c:forEach items="${filesList}" var="filesItem" varStatus="loop"> <!-- 첫번째사진을 제외한 나머지를 select하는 forEach문 -->
