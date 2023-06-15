@@ -153,6 +153,35 @@ public class BankController {
 			return "product/bank_user_info"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	
+	// 경매 결제시 계좌 확인
+	@GetMapping("/auction_bank_userInfo")
+	public String auctionrequestUserInfo(HttpSession session, Model model, @RequestParam int auction_final_price) {
+		System.out.println("경매 돈 넘어오나 : " + auction_final_price);
+		// 세션에 저장된 엑세스 토큰 및 사용자 번호 변수에 저장
+		String access_token = (String)session.getAttribute("access_token");
+		String user_seq_no =  (String)session.getAttribute("user_seq_no");
+		System.out.println("access_token : " + access_token);
+		System.out.println("user_seq_no : " + user_seq_no);
+		
+		
+		// access_token 이 null 일 경우 "계좌 인증 필수" 메세지 출력 후 이전페이지로 돌아가기
+		if(access_token == null) {
+			model.addAttribute("msg", "계좌 인증 필수!");
+			return "fail_back";
+		}
+		
+		// 사용자 정보 조회(REST API 요청)		
+		// BankApiService - requestUserInfo() 메서드 호출
+		// => 파라미터 : 엑세스토큰, 사용자번호   리턴타입 : ResponseUserInfoVO(userInfo)
+		ResponseUserInfoVO userInfo = apiService.requestUserInfo(access_token, user_seq_no);
+		System.out.println(userInfo);
+		
+		// Model 객체에 ResponseUserInfoVO 객체 저장
+		model.addAttribute("userInfo", userInfo);
+		
+		return "mypage/bank_user_info"; 
+	}
+	
 	// 계좌 상세정보 조회(2.3.1. 잔액조회 API) - 관리자
 	@PostMapping("bank_accountDetail")
 	public String getAccountDetail(@RequestParam Map<String, String> map, 
@@ -265,6 +294,65 @@ public class BankController {
 		return "product/member_bank_account_detail"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
 	
+	// 경매 계좌 상세보기
+	// 계좌 상세정보 조회(2.3.1. 잔액조회 API)
+	@PostMapping("auction_bank_accountDetail")
+	public String auctiongetAccountDetail(@RequestParam Map<String, String> map, 
+									HttpSession session, 
+									Model model, 
+									MemberVO member, 
+									@RequestParam int auction_idx, 
+									@RequestParam int auction_final_price) {
+		System.out.println("0613확인!!!!!!!!!!!!!!!!!!!!!!!!" + auction_final_price);
+		// 미로그인 또는 엑세스토큰 없을 경우 "fail_back" 페이지를 통해
+		// "권한이 없습니다!" 출력 후 이전페이지로 돌아가기
+		if(session.getAttribute("sId") == null || session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "권한이 없습니다!");
+			return "fail_back";
+		}
+		
+		// 세션 객체의 엑세스 토큰을 Map 객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		logger.info("★★★★★★ bank_accountDetail : " + map);
+		
+		// BankApiService - requestAccountDetail() 메서드를 호출하여
+		// 계좌 상세정보 조회 요청
+		// => 파라미터 : Map 객체   리턴타입 : AccountDetailVO(account)
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		
+		// 응답코드(rsp_code)가 "A0000" 가 아니면 에러 상황이므로 에러 처리
+		// => "정보 조회 실패!" 출력 후 이전페이지로 돌아가기(fail_bank)
+		// => 출력메세지에 응답메세지(rsp_message) 도 함께 출력
+		if(account == null) {
+			model.addAttribute("msg", "정보 조회 실패");
+			return "fail_back";
+		} else if(!account.getRsp_code().equals("A0000")) {
+			model.addAttribute("msg", "정보 조회 실패 - " + account.getRsp_message());
+			return "fail_back";
+		}
+		
+		System.out.println(account);
+		
+		// 0613배하나 (2줄추가)
+		String sId = (String) session.getAttribute("sId");
+		MemberVO getMemberId = memberService.selectMember(sId);
+		
+		// AccountDetailVO 객체 저장
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+		model.addAttribute("member", getMemberId);
+		
+		// 경매상품 특정 idx
+		List<HashMap<String, String>> auctionDetail = mypageService.selectAuctionDetail(auction_idx);
+		model.addAttribute("auctionDetail", auctionDetail);
+		
+		// 경매 파일 이미지
+		List<HashMap<String, String>> auctionfileList = mypageService.selectAuctionFile(); //파일테이블에서 경매 찜 목록의 첫번째등록한 이미지만 select
+		model.addAttribute("auctionfileList", auctionfileList);
+		
+		return "mypage/member_bank_account_detail"; 
+	}
 	
 	// 2.5.1. 출금이체 - 관리자
 	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
@@ -294,6 +382,7 @@ public class BankController {
 		
 		return "bank/withdraw_result";
 	}
+	
 	// 2.5.1. 출금이체
 	// 핀테크 이용번호(fintech_use_num) 전달받기 - Map
 	@PostMapping("product_bank_withdraw")
@@ -339,7 +428,7 @@ public class BankController {
 							Model model, 
 							@RequestParam int auction_idx, 
 							@RequestParam int auction_final_price) {
-		System.out.println("경매 출금 이체 확인 " + auction_idx + " & " + auction_final_price);
+		System.out.println("경매 이체 확인 : " + auction_idx);
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
 		logger.info("★★★★★★ 출금 요청 정보 : " + map);
@@ -359,9 +448,15 @@ public class BankController {
 			return "fail_back";
 		}
 		String sId = (String)session.getAttribute("sId");
-		
-		return "mypage/withdraw_result";
+		AccountDetailVO account = apiService.requestAccountDetail(map);
+		model.addAttribute("account", account);
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("user_name", map.get("user_name"));
+//			model.addAttribute("member", getMemberId);
+		model.addAttribute("selectMemberInfo", mypageService.selectMemberInfo(sId));
+		return "mypage/withdraw_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
 	}
+	
 	
 	// 2.5.2. 입금이체 - 관리자
 	// 입금 정보 전달받기 - Map
@@ -442,8 +537,6 @@ public class BankController {
 							Model model, 
 							@RequestParam int auction_idx, 
 							@RequestParam int auction_final_price) {
-		System.out.println("제발 입금 이체 확인 " + auction_idx + " & " + auction_final_price);
-		
 		// 세션 객체의 엑세스토큰을 Map 객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
 		logger.info("★★★★★★ 입금 요청 정보 : " + map);
@@ -455,7 +548,6 @@ public class BankController {
 		
 		// Model 객체에 AccountDepositResponseListVO 객체 저장(속성명 : result)
 		model.addAttribute("result", result);
-		
 		
 		
 		// 만약, 응답코드(rsp_code) 가 "A0000" 이 아니면, 처리 실패이므로
@@ -470,10 +562,14 @@ public class BankController {
 			int updateMoney = mypageService.buyerWithdraw(sId, auction_final_price);
 			int updateAdMoney = mypageService.depositAdMoney(sId, auction_final_price);
 			
+			Map<String, String> selectByInfo = mypageService.selectByInfo(auction_idx);
 			
-			return "mypage/auction_deposit_result"; // "bank/bank_account_detail" 에서 잠깐 변경함
+			int insertBuyProduct = mypageService.insertBuyAuction(selectByInfo, sId);
+			
+			return "mypage/auction_deposit_result"; 
 		}
 	}
+	
 	
 	@GetMapping("/buyConfirm")
 	public String payConfirm(HttpSession session
@@ -494,16 +590,6 @@ public class BankController {
 		return "redirect:/myPage.me";
 	}
 	
-	@GetMapping("/buyAuctionConfirm")
-	public String buyAuctionConfirm(HttpSession session, Model model ,@RequestParam Map<String, String> map) {
-		String auction_final_price = map.get("auction_final_price");
-		String member_id = map.get("member_id");
-		int updateAdMoney = mypageService.withdrawAdMoney(auction_final_price, member_id);
-		int updateMoney = mypageService.buyerDeposit(auction_final_price, member_id);
-//		int updateCnt = mypageService.updateAuctionStatus(auction_idx);
-		
-		return "redirect:/myPage.me";
-	}
 	
 } //컨트롤러끝 
 

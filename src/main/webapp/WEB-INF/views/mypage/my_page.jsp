@@ -628,8 +628,8 @@ function payAuction(idx, price, id, title){
 													<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 												</div>
 											</c:when>
-											<c:when test="${auctionBidList.auction_status eq '결제완료' }">
-												<a href="buyAuctionConfirm?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }&auction_idx=${auctionBidList.auction_idx}">구매확정</a>
+											<c:when test="${auctionBidList.auction_status eq '판매완료' }">
+												<a href="product_bank_userInfo?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }&auction_idx=${auctionBidList.auction_idx}">구매확정</a>
 												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 											</c:when>
 											<c:when test="${auctionBidList.auction_status eq '거래종료' }">
@@ -637,14 +637,11 @@ function payAuction(idx, price, id, title){
 												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 											</c:when>
 										</c:choose>
-									
 <!-- 									<div class="btn_area"> -->
 <%-- 									<button type="button" class="payAuction" title="${auctionBidList.auction_idx }">결제하기</button> --%>
 <%-- 									<a href="buyAuctionConfirm?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }">구매확정</a> --%>
 <!-- 									<button type="button" class="" onclick="location.href='myChatting'">채팅</button> -->
 <!-- 									</div> -->
-									
-									
 								</div>
 							</div>
 						</c:forEach>

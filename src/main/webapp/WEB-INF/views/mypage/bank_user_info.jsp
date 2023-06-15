@@ -14,111 +14,77 @@
 <!--아이콘-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<!-- 부트스트랩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<!-- 부트스트랩 icon -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<!-- 부트스트랩 js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!--부트스트랩-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!--css-->
+<!-- 공통 CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/index.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
-<!-- customer_center 외부 css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/board_list.jo112.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/footer.1.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/header.1.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/unit_csboard_top2.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/customer_center/faq.css">
- 
- <style type="text/css">
- .but4{
-    height: 35px;
-    width: 150px;
-    background-color: white;
-    border: 2px solid black;
-    margin:auto;
-    display: block;
- }
- 
- .but4:hover {
-    background-color: #2445f0;
-    color: white;
-    border: 2px solid #2445f0;
-    }
- </style>
- </head>
-<body>
 
-	<div class="container text-center">
-	<h1>　</h1>
-	</div>
-	<div class="container text-center">
-	<h1>${userInfo.user_name } 고객님의 계좌 목록</h1> <!-- (사용자 일련번호 : ${userInfo.user_seq_no }) -->
-	</div>
-			
-	<div class="bbs-table-list">
-						<!-- 자주묻는 질문 시작 -->
-						<div id="faqWrap">
-							<div class="page-body">
-								<div id="faqTable">
-									<table >
-										<thead>
-											<tr>
-												<th scope="col">
-													<div class="tb-center">계좌 이름</div>
-												</th>
-												<th scope="col">
-													<div class="tb-center">계좌번호</div>
-												</th>
-												<th scope="col">
-													<div class="tb-center">은행명</div>
-												</th>
-												<th scope="col">
-													<div class="tb-center">예금주 명</div>
-												</th>
-												<th scope="col">
-													<div class="tb-center"></div>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${userInfo.res_list }" var="account">
-												<tr uid="6">
-													<td>
-														<div class="tb-center"><input type="text" value="${account.account_alias }" readonly="readonly" style="text-align:center; border:none;"></div>
-													</td>
-													<td>
-														<div class="tb-center"><input type="text" value="${account.account_num_masked }" readonly="readonly" style="text-align:center; border:none;">	</div>
-													</td>
-													<td>
-														<div class="tb-center"><input type="text" value="${account.bank_name }(${account.bank_code_std })" readonly="readonly" style="text-align:center; border:none;"></div>
-													</td>
-													<td>
-														<div class="tb-center"><input type="text" value="${account.account_holder_name }" readonly="readonly" style="text-align:center; border:none;">	</div>
-													</td>
-													<td>
-														<form action="auction_bank_accountDetail" method="post">
-														  	<input type="hidden" name="access_token" value="${sessionScope.access_token }">
-															<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
-															<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
-															<input type="hidden" name="user_name" value="${userInfo.user_name }">
-															<input type="hidden" name="auction_idx" value="${param.auction_idx }">
-															<input type="hidden" name="auction_final_price" value="${param.auction_final_price }">
-															<input class="but4" type="submit" value="계좌상세정보">
-														</form>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-				</div>            
+<!--CSS-->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/market_manage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/market/join.css">
+
+<!-- 햄버거 메뉴 호버시 -->
+<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/market/market_manage.js"></script>
+
+<style type="text/css">
+td, tr, th{ 
+    padding: 5px;
+}
+</style>
+
+</head>
+<body>
+			<header class="header" role="banner" >
+		        <div class="header_inner">
+		            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
+		        </div>
+		    </header>
+<!--       	 <h1>핀테크 사용자 정보</h1> -->
+<%-- 	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3> --%>
+	<h4>1. ${userInfo.user_name }고객님 출금할 계좌를 선택해주세요✔️</h4>
+	<table border="1" style="border-collapse: collapse;">
+		<tr style="background-color: #002fb9; color: white;">
+			<th>계좌별칭</th>
+			<th>계좌번호</th>
+			<th>은행명</th>
+			<th>예금주명</th>
+<!-- 			<th>계좌상태</th> -->
+<!-- 			<th>핀테크이용번호</th> -->
+			<th></th>
+		</tr>
+		<%-- userInfo 객체의 res_list 객체 반복(account 변수에 저장) --%>
+		<%-- account 객체(AccountVO)로부터 각 데이터를 꺼내서 테이블에 출력 --%>
+		<c:forEach var="account" items="${userInfo.res_list }">
+			<tr>
+				<td>${account.account_alias }</td>
+				<td>${account.account_num_masked }</td>
+				<td>${account.bank_name }(${account.bank_code_std })</td>
+				<td>${account.account_holder_name }</td>
+<!-- 				<td></td> -->
+<%-- 				<td>${account.fintech_use_num }</td> --%>
+				<td>
+					<form action="auction_bank_accountDetail" method="post">
+<%-- 						<input type="hidden" name="account_holder_name" value="${account.account_holder_name }"> --%>
+						<input type="hidden" name="access_token" value="${sessionScope.access_token }">
+						<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num }">
+						<input type="hidden" name="account_num_masked" value="${account.account_num_masked }">
+						<input type="hidden" name="user_name" value="${userInfo.user_name }">
+						<input type="hidden" name="auction_idx" value="${param.auction_idx}">
+						<input type="hidden" name="auction_final_price" value="${param.auction_final_price}">
+<!-- 						<input type="submit" value="상세조회 &#127875;"> -->
+						<button class="btn btn-primary" type="submit" style="width: 100px; height: 37px;">상세조회</button>
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+           
+        <div style="margin-top:50px;"></div>
             
 	<!-- 풋터 시작 -->
 	<footer>

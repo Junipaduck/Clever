@@ -29,26 +29,30 @@ public interface MypageMapper {
 	// 굿즈 구매 내역 조회
 	List<HashMap<String, String>> selectGoodsList(String sId);
 
-	int updateAuctionStatus(int auction_idx);
-
-	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
-
-	int depositAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
-
-	int withdrawAdMoney(@Param("auction_final_price") String auction_final_price, @Param("member_id") String member_id);
-
-	int buyerDeposit(@Param("auction_final_price") String auction_final_price, @Param("member_id") String member_id);
-
-	int updateMemAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
-
 	List<HashMap<String, String>> selectReportList(String sId);
-
-	List<HashMap<String, String>> selectDWHistory(String sId);
 
 	List<HashMap<String, String>> selectMemberGrade(String sId);
 
 	int insertReview(Map<String, String> map);
 
 	List<HashMap<String, String>> selectReviewCheck(String sId);
+	
+	List<HashMap<String, String>> selectAuctionDetail(int auction_idx);
+	
+	Object selectMemberInfo(String sId);
 
+	int updateAuctionStatus(int auction_idx);
+
+	int updateMemAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
+
+	int buyerWithdraw(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
+
+	int depositAdMoney(@Param("sId") String sId, @Param("auction_final_price") int auction_final_price);
+
+	Map<String, String> selectByInfo(int auction_idx);
+
+	int insertBuyAuction(@Param("selectByInfo") Map<String, String> selectByInfo, @Param("sId") String sId);
+
+	
+	
 }

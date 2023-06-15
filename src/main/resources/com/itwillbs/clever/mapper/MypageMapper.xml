@@ -82,91 +82,12 @@
 					buy_id = #{sId}	
 	</select>
 	
-	<!-- 경매 낙찰 결제시 판매상품 sale_status 업데이트 -->
-	<update id="updateAuctionStatus">
-		UPDATE 
-				auction
-			SET 
-				auction_status = '결제완료' 
-			WHERE 
-				auction_idx = #{auction_idx}
-	</update>
-	
-	<!-- 상품구매시 구매자 계좌 출금 -->
-	<update id="buyerWithdraw">
-		UPDATE 
-				member 
-			SET 
-				member_balance = member_balance - #{auction_final_price} 
-			WHERE 
-				member_id = #{sId}
-	</update>
-	
-	<insert id="depositAdMoney">
-		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
-<!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
-			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
-		</selectKey>
-		INSERT 
-			INTO admin_account 
-			VALUES(
-				null
-				,#{sId}
-				,#{auction_final_price}
-				,'d'
-				,now()
-				,#{admin_account_balance} + #{auction_final_price}
-			)
-	</insert>
-	
-	<!-- 구매확정 버튼 눌렀을 때, 관리자계좌 테이블에 출금 insert -->
-	<insert id="withdrawAdMoney">
-		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
-			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
-		</selectKey>
-		INSERT 
-			INTO admin_account 
-			VALUES(
-				null
-				,#{member_id}
-				,#{auction_final_price}
-				,'w'
-				,now()
-				,#{admin_account_balance} - #{auction_final_price}
-			)
-	</insert>	
-	
-	<!-- 구매확정시 판매자에게 돈 입금 -->
-	<update id="buyerDeposit">
-		UPDATE 
-				member 
-			SET 
-				member_balance = member_balance + #{auction_final_price}
-			WHERE 
-				member_id = #{member_id}
-	</update>
-	<update id="updateMemAdMoney">
-		UPDATE 
-				member 
-			SET 
-				member_balance = member_balance + #{auction_final_price} 
-			WHERE 
-				member_id = 'admin'
-	</update>
-	
 	<!-- 해당 아이디 신고 전체 내역 select -->
 	<select id="selectReportList" resultType="HashMap">
 		SELECT *
 			FROM report
 			WHERE seller_id = #{sId}
 			ORDER BY report_idx DESC;
-	</select>
-	
-	<!-- 입출금 전체 내역 select -->
-	<select id="selectDWHistory" resultType="HashMap">
-		SELECT *
-			FROM admin_account
-			WHERE member_id = #{sId}
 	</select>
 	
 	<!-- 멤버 등급 select -->
@@ -197,5 +118,86 @@
 			FROM review
 			WHERE review_id = #{sId}
 	</select>
+	
+	<!-- 경매 상품 특정idx만 select -->
+	<select id="selectAuctionDetail" resultType="HashMap">
+		SELECT *
+			FROM auction
+			WHERE auction_idx = #{auction_idx}
+	</select>
+	
+	<!-- 결제페이지에서 회원정보 조회 -->
+	<select id="selectMemberInfo" resultType="map">
+		SELECT *
+			FROM member
+			WHERE member_id = #{sId}
+	</select>
+	
+	<!-- 상품구매시 판매상품 auction_status 업데이트 -->
+	<update id="updateAuctionStatus">
+		UPDATE 
+				auction 
+			SET 
+				auction_status = '판매완료' 
+			WHERE 
+				auction_idx = #{auction_idx}
+	</update>
+	
+	<update id="updateMemAdMoney">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance + #{auction_final_price} 
+			WHERE 
+				member_id = 'admin'
+	</update>
+	
+	<!-- 상품구매시 구매자 계좌 출금 -->
+	<update id="buyerWithdraw">
+		UPDATE 
+				member 
+			SET 
+				member_balance = member_balance - #{auction_final_price} 
+			WHERE 
+				member_id = #{sId}
+	</update>
+	
+	
+	<insert id="depositAdMoney">
+		<selectKey keyProperty="admin_account_balance" resultType="int" order="BEFORE">
+<!-- 	 			SELECT IFNULL(MAX(admin_account_idx), 0) FROM admin_account -->
+			SELECT admin_account_balance FROM admin_account ORDER BY admin_account_idx DESC LIMIT 1;
+		</selectKey>
+		INSERT 
+			INTO admin_account 
+			VALUES(
+				null
+				,#{sId}
+				,#{auction_final_price}
+				,'d'
+				,now()
+				,#{admin_account_balance} + #{auction_final_price}
+			)
+	</insert>
+	
+	<!-- 상품구매시 구매정보 조회 -->
+	<select id="selectByInfo" resultType="map">
+		select * from auction where auction_idx = #{auction_idx}
+	</select>
+	
+	<!-- auction_buy 테이블에 인서트 -->
+	<insert id="insertBuyAuction">
+			INSERT INTO auction_buy
+			VALUES (
+				null
+				,#{sId}
+				,#{selectByInfo.auction_title}
+				,#{selectByInfo.auction_final_price}
+				,now()
+				,#{selectByInfo.member_id}
+				,#{selectByInfo.auction_idx}
+				,'결제완료'
+			)
+	</insert>
 	
 </mapper>

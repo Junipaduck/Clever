@@ -66,9 +66,41 @@ public class MypageService {
 		return mapper.selectGoodsList(sId);
 	}
 	
-	// 경매 결제 부분 시작
+	// 신고내역 조회
+	public List<HashMap<String, String>> selectReportList(String sId) {
+		return mapper.selectReportList(sId);
+	}
+
+	// 멤버 등급 조회
+	public List<HashMap<String, String>> selectMemberGrade(String sId) {
+		return mapper.selectMemberGrade(sId);
+	}
+
+	// 후기 작성 
+	public int insertReview(Map<String, String> map) {
+		return mapper.insertReview(map);
+	}
+	
+	// 리뷰 체크?
+	public List<HashMap<String, String>> selectReviewCheck(String sId) {
+		return mapper.selectReviewCheck(sId);
+	}
+	
+	// 경매 상품 특정idx만 select
+	public List<HashMap<String, String>> selectAuctionDetail(int auction_idx) {
+		return mapper.selectAuctionDetail(auction_idx);
+	}
+
+	public Object selectMemberInfo(String sId) {
+		return mapper.selectMemberInfo(sId);
+	}
+
 	public int updateAuctionStatus(int auction_idx) {
 		return mapper.updateAuctionStatus(auction_idx);
+	}
+
+	public int updateMemAdMoney(String sId, int auction_final_price) {
+		return mapper.updateMemAdMoney(sId, auction_final_price);
 	}
 
 	public int buyerWithdraw(String sId, int auction_final_price) {
@@ -79,41 +111,12 @@ public class MypageService {
 		return mapper.depositAdMoney(sId, auction_final_price);
 	}
 
-	public int withdrawAdMoney(String auction_final_price, String member_id) {
-		return mapper.withdrawAdMoney(auction_final_price, member_id);
+	public Map<String, String> selectByInfo(int auction_idx) {
+		return mapper.selectByInfo(auction_idx);
 	}
 
-	public int buyerDeposit(String auction_final_price, String member_id) {
-		return mapper.buyerDeposit(auction_final_price, member_id);
-	}
-
-	public int updateMemAdMoney(String sId, int auction_final_price) {
-		return mapper.updateMemAdMoney(sId, auction_final_price);
-	}
-	//경매 결제 부분 끝
-	
-	// 신고내역 조회
-	public List<HashMap<String, String>> selectReportList(String sId) {
-		return mapper.selectReportList(sId);
-	}
-
-	// 입출금 내역 조회
-	public List<HashMap<String, String>> selectDWHistory(String sId) {
-		return mapper.selectDWHistory(sId);
-	}
-	
-	// 멤버 등급 조회
-	public List<HashMap<String, String>> selectMemberGrade(String sId) {
-		return mapper.selectMemberGrade(sId);
-	}
-
-	// 후기 작성 
-	public int insertReview(Map<String, String> map) {
-		return mapper.insertReview(map);
-	}
-
-	public List<HashMap<String, String>> selectReviewCheck(String sId) {
-		return mapper.selectReviewCheck(sId);
+	public int insertBuyAuction(Map<String, String> selectByInfo, String sId) {
+		return mapper.insertBuyAuction(selectByInfo, sId);
 	}
 
 }
