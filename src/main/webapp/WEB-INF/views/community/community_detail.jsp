@@ -252,15 +252,15 @@ function communityDelete(community_idx, community_div) {
 	</section>
 	<c:if test="${sessionScope.sId eq communityList[0].member_id }">
 			<input type="button" value="수정" onclick="location.href='community_modify?community_idx=${communityList[0].community_idx }'"><input type="button" value="삭제" onclick="communityDelete('${communityList[0].community_idx }','${communityList[0].community_div }');">
-			<c:choose>
-				<c:when test="${communityList[0].community_div eq 'auction'}">
-					<input type="button" value="목록" onclick="location.href='community_auction'">
-				</c:when>
-				<c:otherwise>
-					<input type="button" value="목록" onclick="location.href='community'">
-				</c:otherwise>
-			</c:choose>
 	</c:if>
+	<c:choose>
+		<c:when test="${communityList[0].community_div eq 'auction'}">
+			<input type="button" value="목록" onclick="location.href='community_auction'">
+		</c:when>
+		<c:otherwise>
+			<input type="button" value="목록" onclick="location.href='community'">
+		</c:otherwise>
+	</c:choose>
     </div>
 	<!-- 풋터 시작 -->
 	<footer>

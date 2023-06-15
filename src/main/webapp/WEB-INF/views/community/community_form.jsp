@@ -90,27 +90,23 @@ display: flex;
 <body>
 <script type="text/javascript">
 $(function() {
-    $( "#testDatepicker" ).datepicker({
-    });
-});
-$(function() {
 	$("#formform").on("submit", function() {
-		$("#auction_category").val($(".selected_category").text()); 
-			startEndDate();
-		if(!startEndDateStats){
-			return false;
-		}
+		return isStatus();
 	});
 });
-function startEndDate() {
-	startEndDateStats = false;
-	var start = $("#auction_start_date").val() + " " + $("#auction_start_time").val();
-	var end = $("#auction_end_date").val() + " " + $("#auction_end_time").val();
-	if(start > end){
-		alert("경매 시작일 보다 경매 마감일이 더 빠릅니다.");
-		return;
+
+
+function isStatus() {
+	var community_title = $("#community_title").val();
+	var community_content = $("#community_content").val();
+	if(community_title == ""){
+		$("#community_title").focus();
+		return false;
+	} else if(community_content == ""){
+		$("#community_content").focus();
+		return false;
 	} else {
-		startEndDateStats = true;
+	    return true;
 	}
 }
 </script>

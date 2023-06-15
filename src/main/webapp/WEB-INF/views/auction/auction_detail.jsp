@@ -515,7 +515,7 @@
 						'<div class="btn_submit_area">'
 						+ '<div class="inner_submit">'
 						+ '<input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = \'auction_detail_modify?auction_idx=${detailmap.auction_idx}\'" style=\"margin-right: 20px; background-color: blue;\">'
-						+ '<input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = \'auction_delete?auction_idx=${detailmap.auction_idx}\'">'
+						+ '<input type="button" class="btn_goods_submit" value="삭제하기" onclick="deleteAuction()">'
 						+ '</div>'
 						+ '</div>');
 			}	
@@ -539,6 +539,7 @@
 <script type="text/javascript">
 
 	$(function() {
+	alert("${result.dibs_check}");
 		auctionStart();
 		document.getElementById("auction_price").innerText = comma(${detailmap.auction_price }) + " 원";
 		$("#deposit").on("click", function() {
@@ -567,6 +568,15 @@
 // 	const previousRecordPrice = document.getElementById("previousRecordPrice"); //
 	
 	var regex = /[^0-9]/g;
+	
+	function deleteAuction(){
+	    var result = confirm("삭제 하시겠습니까?");
+	    var auction_idx = '${detailmap.auction_idx}';
+	    if(result){
+	       location.href = 'auction_delete?auction_idx=' + auction_idx;
+	    }
+	    
+	}
 	
 	function inputNumberFormat(obj) {
 		

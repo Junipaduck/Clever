@@ -227,7 +227,7 @@ public class AuctionController {
 		
 		// 찜하기
 		DibsVO dibs = new DibsVO();
-		dibs.setDibs_type("product");
+		dibs.setDibs_type("auction");
 		dibs.setType_num(auction_idx);
 		dibs.setMember_id(sId);		
 		
@@ -493,7 +493,7 @@ public class AuctionController {
 	}
 	
 	@GetMapping("depositReturn")
-	public void depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
+	public String depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
 //		String id = (String)session.getAttribute("sId");
 		String buyer = auctionService.buyer(auction_idx);
 		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer, auction_idx);
@@ -503,6 +503,7 @@ public class AuctionController {
 			}
 			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);
 		}
+		return "redirect/auction";
 	}
 	
 	@ResponseBody

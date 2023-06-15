@@ -49,6 +49,28 @@ body {
 font-family: 'SUITE-Regular';
 }
 </style>
+<script type="text/javascript">
+$(function() {
+	$("#formform").on("submit", function() {
+		return isStatus();
+	});
+});
+
+
+function isStatus() {
+	var community_title = $("#community_title").val();
+	var community_content = $("#community_content").val();
+	if(community_title == ""){
+		$("#community_title").focus();
+		return false;
+	} else if(community_content == ""){
+		$("#community_content").focus();
+		return false;
+	} else {
+	    return true;
+	}
+}
+</script>
 
 </head>
 <body>
