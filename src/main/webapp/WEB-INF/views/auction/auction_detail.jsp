@@ -364,7 +364,7 @@
                                     <c:forEach items="${fileList2 }" var="file">
 			                            <c:if test="${file.file_num eq relation.auction_idx }">
 				                            <div class="goods_image">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="488" height="488" alt="상품 이미지">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="164" height="164" alt="상품 이미지">
 				                            </div>
 			                            </c:if>
 			                        </c:forEach>

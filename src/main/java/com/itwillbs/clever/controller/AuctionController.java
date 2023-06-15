@@ -286,17 +286,18 @@ public class AuctionController {
 				file.add(fArr[i]);
 			}
 		}
+		System.out.println(file);
 		if(!file.isEmpty()) {
 			int auction_idx = Integer.parseInt(map.get("auction_idx")) ;
 			int deleteCnt = auctionService.deleteAutionFile(auction_idx);
 			System.out.println("이까지 오나?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			if(deleteCnt > 0) {
+//			if(deleteCnt > 0) {
 				System.out.println("이까지 오나?");
 				Map<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("file_div", "auction");
 				paramMap.put("file_num", map.get("auction_idx"));
 				upload.upload(file, session, paramMap);
-			}
+//			}
 		}
 		System.out.println("자 드가자~!" + map);
 		// 카테고리 분류
