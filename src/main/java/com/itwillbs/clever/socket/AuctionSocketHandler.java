@@ -106,7 +106,7 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
 	    	auctionLogService.OpenRoom(logRoomIdx, auctionIdx);
-	    	logRoomIdx = auctionIdx;
+//	    	logRoomIdx = auctionIdx;
 	        System.out.println("채팅방 생성 성공");
 	    }
 	    
