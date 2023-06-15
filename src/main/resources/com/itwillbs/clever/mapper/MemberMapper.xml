@@ -20,7 +20,6 @@
 				#{member_email}, 
 				#{member_interest},
 				'N',
-				'N',
 				now(),
 				'브론즈',
 				2000,
