@@ -175,7 +175,7 @@
 				                   <c:if test="${fn:length(fileList) > 1 }">
 				                   	<c:forEach items="${fileList }" var="file" begin="1">
 	                                    <div class="carousel-item ">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="488" height="488" alt="상품 이미지">
+			                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="488" height="488" alt="상품 이미지">
 	                                    </div>
 				                   	</c:forEach>
 				                   </c:if>
@@ -230,6 +230,7 @@
 	                        	var seller_id = document.getElementById("seller_id").value;
 	                        	var session_id = "${sessionScope.sId}";
 	                        	var dateUpdateCheck = false;
+	                        	var maram = false;
 	                                	function getTime() {
 	                                	  var element;
 	                                	  const endDay = new Date('${detailmap.auction_end}');
@@ -244,6 +245,7 @@
 	                                	  const diffSec = Math.floor(diff / 1000);
 	                                	  element = document.getElementById("timeOut");
 	                                	  if(diffDays < 0){
+	                                		  maram = true;
 	                                		  element.innerHTML = "경매 종료";
 	                                		  if(currentPrice==startPrice && dateUpdateCheck == false){
 	                                			  if(seller_id==session_id){
@@ -270,7 +272,7 @@
 	                                		  } else {
 			                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
 		                                	  }
-                                			  if(currentAjax==0 && dateUpdateCheck==false){
+                                			  if(currentAjax==0 && dateUpdateCheck==false && maram ==true){
 	                           		  			 	$.ajax({
 	                           		  			 		url : "auction_confirmed",
 	                           		  			 		type: 'GET',
@@ -296,9 +298,10 @@
 	                                		var auction_start = new Date('${detailmap.auction_start}');
 	                                		var auction_end = new Date('${detailmap.auction_end}');
 	                                		var nowDate = new Date();
+	                                		
 	                                		if(auction_start > nowDate){
 	                                		return setInterval(() => getTime2(), 1000);
-	                                		} else if(auction_end > nowDate){
+	                                		} else {
 	                                		return setInterval(() => getTime(), 1000);
 	                                		}
 										}());
@@ -359,12 +362,9 @@
                             <div class="related_goods_img">
                                 <a href="auction_detail?auction_idx=${relation.auction_idx }&param=${relation.auction_Scategory }">
                                     <c:forEach items="${fileList2 }" var="file">
-			                        <c:set var="length" value="${fn:length(file.file_name) }" />
-									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
 			                            <c:if test="${file.file_num eq relation.auction_idx }">
 				                            <div class="goods_image">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="488" height="488" alt="상품 이미지">
 				                            </div>
 			                            </c:if>
 			                        </c:forEach>

@@ -36,15 +36,15 @@
 	</insert>
 	
 	<select id="selectImminent" resultType="map">
-	SELECT * FROM auction ORDER BY auction_end ASC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_end ASC
 	
 	</select>
 	<select id="selectHotList" resultType="map">
-	SELECT * FROM auction ORDER BY auction_readcount DESC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_readcount DESC
 	
 	</select>
 	<select id="selectCurrent" resultType="map">
-	SELECT * FROM auction ORDER BY auction_date DESC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_date DESC
 	
 	</select>
 	<select id="selectMax" resultType="int">
@@ -71,17 +71,20 @@
 	<select id="selectDetailList" resultType="map">
 		SELECT * FROM auction
 			WHERE auction_idx = #{auction_idx}
+			AND auction_auth_status = 'Y'
 	</select>
 	
 	<select id="selectProductSearch" resultType="map">
 		SELECT *
 		 	FROM auction
 				WHERE auction_title LIKE '%${auction_search }%'
+				AND auction_auth_status = 'Y'
 	</select>
 	<select id="selectMemberSearch" resultType="map">
 		SELECT *
 		 	FROM auction
 				WHERE member_id LIKE '%${auction_search }%'
+				AND auction_auth_status = 'Y'
 	</select>
 	
 	<select id="getProductList" resultType="map">
@@ -92,9 +95,10 @@
 				 or auction_Scategory = #{param })
 				 <if test="status != null and !status.equals('')">
 					 <if test="status.equals('경매마감')">
-					 	AND auction_status = #{status} || auction_status = '판매완료'
+					 	AND auction_status = #{status} || auction_status = '판매완료' || auction_status ='구매확정'
 					 </if>
 				 </if>
+				 AND auction_auth_status = 'Y'
 	</select>
 	
 	<select id="getCategorys">

@@ -57,7 +57,6 @@
 		UPDATE auction
 			SET 
 				auction_auth_status = 'Y'
-				, auction_status = '경매중'
 				WHERE auction_idx = ${auction_idx}; 
 	</update>
 	
