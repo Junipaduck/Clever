@@ -46,6 +46,19 @@ font-size: 12px;
 font-weight: 500;
 }
 </style>
+<script type="text/javascript">
+window.onload = function() {
+let status = '${param.status}';
+	switch (status) {
+	case "경매등록대기중": $('.status_filter').find('.buying_status').addClass('active');  break;
+	case "경매중": $('.status_filter').find('.all_buy_status').addClass('active'); break;
+	case "경매마감": $('.status_filter').find('.bought_status').addClass('active'); break;
+	}
+}
+// $(document).load()function() {
+	
+// });
+</script>
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -160,7 +173,7 @@ font-weight: 500;
                 <!--필터-->
 				<nav class="filter_nav" style="justify-content: flex-end;">
 					<div class="status_filter">
-						<button type="button" class="all_buy_status active" onclick="location.href='auction_list?param=${categoryParam}&status=경매중'">경매중</button>
+						<button type="button" class="all_buy_status" onclick="location.href='auction_list?param=${categoryParam}&status=경매중'">경매중</button>
 						<button type="button" class="buying_status" onclick="location.href='auction_list?param=${categoryParam}&status=경매등록대기중'">경매전</button>
 						<button type="button" class="bought_status" onclick="location.href='auction_list?param=${categoryParam}&status=경매마감'">경매 완료</button>
 					</div>

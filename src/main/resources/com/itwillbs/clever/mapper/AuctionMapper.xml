@@ -91,7 +91,9 @@
 				 or auction_Mcategory = #{param }
 				 or auction_Scategory = #{param })
 				 <if test="status != null and !status.equals('')">
-				 AND auction_status = #{status}
+					 <if test="status.equals('경매마감')">
+					 	AND auction_status = #{status} || auction_status = '판매완료'
+					 </if>
 				 </if>
 	</select>
 	

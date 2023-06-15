@@ -510,5 +510,14 @@ public class AuctionController {
 		auctionService.statusUpdate(auction_idx);
 	}
 	
+	@ResponseBody
+	@GetMapping("auctionStatus")
+	public String auctionStatus(@RequestParam String param, @RequestParam String status) {
+		List<HashMap<String, String>> productList = auctionService.getProductList(param, status);
+		JSONArray jsonArr = new JSONArray(productList);
+		
+		return jsonArr.toString();
+	}
+	
 	
 }
