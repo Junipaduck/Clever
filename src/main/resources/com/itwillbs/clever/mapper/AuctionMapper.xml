@@ -36,15 +36,15 @@
 	</insert>
 	
 	<select id="selectImminent" resultType="map">
-	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_end ASC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' AND auction_status = "경매중" OR auction_status = "경매등록대기중" ORDER BY auction_end ASC
 	
 	</select>
 	<select id="selectHotList" resultType="map">
-	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_readcount DESC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' AND auction_status = "경매중" OR auction_status = "경매등록대기중" ORDER BY auction_readcount DESC
 	
 	</select>
 	<select id="selectCurrent" resultType="map">
-	SELECT * FROM auction WHERE auction_auth_status = 'Y' ORDER BY auction_date DESC
+	SELECT * FROM auction WHERE auction_auth_status = 'Y' AND auction_status = "경매중" OR auction_status = "경매등록대기중" ORDER BY auction_date DESC
 	
 	</select>
 	<select id="selectMax" resultType="int">
