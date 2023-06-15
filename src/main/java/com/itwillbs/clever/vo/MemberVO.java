@@ -39,7 +39,7 @@ public class MemberVO {
 	private String member_email;
 	private String member_email2;
 	private String member_interest;
-	private String email_auth;
+//	private String email_auth;
 	private String account_auth;
 	private String member_date;
 	private String member_rank;

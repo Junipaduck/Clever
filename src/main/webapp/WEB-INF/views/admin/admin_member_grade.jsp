@@ -18,12 +18,12 @@
 
 </head>
 <script type="text/javascript">
-	function upgradeGrade(member_idx, count, member_id){
-		if(count > 10){
-			confirm(member_id + "회원의 누적 판매량은 " + count + "회 입니다. 등급을 올리시겠습니까?");
+	function upgradeGrade(member_idx, count, member_id, account_auth){
+		if(account_auth == 'Y'){
+			confirm(member_id + "회원의 계좌 인증 여부 : " + account_auth + "(계좌 인증 완료) 입니다. 등급을 올리시겠습니까?");
 			location.href = "memberGradeUpdate.ad?member_id=" + member_id
 		} else {
-			alert("등업 기준 미충족! " + member_id + "회원의 누적 판매량은 " + count + "회 입니다.");
+			alert("등업 기준 미충족! " + member_id + "회원은 계좌 미인증 상태입니다! 확인해주세요.");
 		}
 	}
 </script>
@@ -108,6 +108,7 @@
                                                 <th>가입일</th>
                                                 <th>등급</th>
                                                 <th>상품판매량</th>
+                                                <th>계좌인증여부</th>
                                                 <th>등업</th>
                                             </tr>
                                         </thead>
@@ -121,8 +122,9 @@
 	                                                <td>${countList.member_date }</td>
 	                                                <td>${countList.member_rank }</td>
 	                                                <td>${countList.count }</td>
+	                                                <td>${countList.account_auth }</td>
 	                                                <td>
-	                                                	<button type="button" class="btn btn-primary" onclick="upgradeGrade('${countList.member_idx}', '${countList.count }', '${countList.member_id }')">등업하기</button>
+	                                                	<button type="button" class="btn btn-primary" onclick="upgradeGrade('${countList.member_idx}', '${countList.count }', '${countList.member_id }', '${countList.account_auth }')">등업하기</button>
 	                                                </td>
 	                                            </tr>
                                         	</c:forEach>
@@ -136,6 +138,7 @@
                                                 <th>가입일</th>
                                                 <th>등급</th>
                                                 <th>상품판매량</th>
+                                                <th>계좌인증여부</th>
                                                 <th>등업</th>
                                             </tr>
                                         </tfoot>

@@ -128,12 +128,12 @@ function Auth(auction_idx) {
 	                                                <td>${auctionAuthList.auction_content }</td>
 	                                                <td>
 	                                                	<c:forEach items="${fileList }" var="file">
-								                        <c:set var="length" value="${fn:length(file.file_name) }" />
-														<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-														<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
+<%-- 								                        <c:set var="length" value="${fn:length(file.file_name) }" /> --%>
+<%-- 														<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" /> --%>
+<%-- 														<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" /> --%>
 								                            <c:if test="${file.file_num eq auctionAuthList.auction_idx }">
 									                            <div class="goods_image">
-									                                <img src="${pageContext.request.contextPath }/resources/auctionUpload/${file_name}" width="100" height="100" alt="상품 이미지">
+	                                								<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 									                            </div>
 								                            </c:if>
 								                        </c:forEach>
