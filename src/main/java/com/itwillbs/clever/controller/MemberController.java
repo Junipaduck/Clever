@@ -67,6 +67,16 @@ public class MemberController {
         	return "fail_back";
         }
     }
+	@ResponseBody
+    @GetMapping(value = "MemberCheckDupIdPro.me")
+    public boolean MemberCheckDupIdPro(@RequestParam String member_id) {
+    	System.out.println("MemberCheckDupIdPro");
+    	System.out.println(member_id);
+    	boolean isDupilcateMember = memberService.isDupilcateMember(member_id); // 일치하는 값이 있을 시 true를 응답
+    	System.out.println(isDupilcateMember);
+    	return isDupilcateMember;
+    	
+    }
 	
 	// 아이디 찾기 페이지 포워딩
 	@GetMapping("/findId.me")

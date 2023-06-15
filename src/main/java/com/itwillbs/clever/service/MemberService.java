@@ -64,6 +64,10 @@ public class MemberService {
 	public int updateMemberFindPasswd(MemberVO member) {
 		return mapper.updateMemberFindPasswd(member);
 	}
+
+	public boolean isDupilcateMember(String member_id) {
+		return mapper.isDuplicateMember(member_id);
+	}
 	
 	
 	

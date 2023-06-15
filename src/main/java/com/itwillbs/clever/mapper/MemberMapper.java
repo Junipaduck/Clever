@@ -29,5 +29,7 @@ public interface MemberMapper {
 	MemberVO selectMemberFindPasswd(MemberVO member);
 
 	int updateMemberFindPasswd(MemberVO member);
+
+	boolean isDuplicateMember(String member_id);
 	
 }

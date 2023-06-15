@@ -168,16 +168,12 @@ window.onload = function(){
         }).open();
     });
 }
+
 $(function() {
 		let nameStatus = false;
 		let idStatus = false;
 		let passwdStatus = false;
 		let passwd2Status = false;
-		let birthStatus = false;
-		let phoneStatus = false;
-		let genderStatus = false;
-		let emailStatus = false;
-		let emailDupStatus = false;
 		$("#member_id").on("blur", function() {
 			
 			if($("#member_id").val() == ""){
@@ -267,31 +263,6 @@ $(function() {
 			}
 		});
 		
-		$("#member_birth").on("change", function() {
-			let birth = $("#member_birth").val();
-			let regexBirth = /^[0-9]{8}$/;
-			if(regexBirth.exec(birth)){
-				birthStatus = true;
-			}
-		});
-		
-		$("#member_phone").on("change", function() {
-			let phone = $("#member_phone").val();
-			let regexPhone = /^[0-9]{11}$/;
-			if(regexPhone.exec(phone)){
-				phoneStatus = true;
-			}
-		});
-		
-		$("#member_gender").on("change", function() {
-			let gender = $("#member_gender").val();
-			let gender2 = $("#member_gender2").val();
-			if(gender != null || gender2 != null){
-				genderStatus = true;
-			}
-		});
-		
-		
 		$("form").submit(function() {
 			if(!nameStatus){
 				alert("이름을 확인하세요!");
@@ -309,26 +280,50 @@ $(function() {
 				alert("패스워드가 일치하는지 확인하세요!");
 				$("#member_passwd2").focus();
 				return false;
-			} else if(!birthStatus){
-				alert("생년월일을 확인하세요!");
-				$("#member_birth").focus();
-				return false;
-			} else if(!phoneStatus){
-				alert("전화번호를 확인하세요!");
-				$("#member_phone").focus();
-				return false;
-			} else if(!genderStatus){
-				alert("성별을 확인하세요!");
-				$("#member_gender").focus();
-				return false;
-			} else if(!emailStatus){
-				alert("이메일을 확인하세요!");
-				$("#member_email").focus();
-				return false;
 			} else {
 				return true;
 			}
 		});
+		
+		$('#phone-Check-Btn').click(function() {
+			const phone = $('#member_phone').val(); // 폰번호 얻어오기!
+			console.log('완성된 이메일 : ' + phone); // 폰번호 오는지 확인
+			const phoneCheckInput = $('.phone-check-input') // 인증번호 입력하는곳 
+																	
+			$.ajax({
+				type : 'get',
+				url : "phoneCheck?phone=" + phone, // GET방식
+				success : function (data) {
+					console.log("데이타 : " +  data);
+					phoneCheckInput.attr('disabled',false);
+					code = data;
+					alert('인증번호가 전송되었습니다.')
+				}	
+			}); // end ajax
+		}); // end send phone
+		
+		// 인증번호 비교 
+		$('#member_phonecheck').keyup(function () {
+			const phoneInputCode = $(this).val();
+			const $resultPhoneMsg = $('#phone-check-warn');
+			
+			if(phoneInputCode === code){
+				$resultPhoneMsg.html('인증번호가 일치합니다.');
+				$resultPhoneMsg.css('color','green');
+				$('#phone-Check-Btn').attr('disabled',true);
+				$('#member_phone').attr('readonly',true);
+				$('#member_phonecheck').attr('readonly',true);
+				phoneCheckStatus = true;
+		        
+		        
+			}else{
+				$resultPhoneMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+				$resultPhoneMsg.css('color','red');
+				phoneCheckStatus = false;
+			}
+		});
+		
+		
 	});
 // 이메일 인증 ------------ 주석 지우지 말아주세요!!
 // $(function() {
@@ -381,49 +376,7 @@ $(function() {
 // 			}
 // 		});
 // 	});
-	
-	$(function() {
-		$('#phone-Check-Btn').click(function() {
-			const phone = $('#member_phone').val(); // 폰번호 얻어오기!
-			console.log('완성된 이메일 : ' + phone); // 폰번호 오는지 확인
-			const phoneCheckInput = $('.phone-check-input') // 인증번호 입력하는곳 
-																	
-			$.ajax({
-				type : 'get',
-				url : "phoneCheck?phone=" + phone, // GET방식
-				success : function (data) {
-					console.log("데이타 : " +  data);
-					phoneCheckInput.attr('disabled',false);
-					code = data;
-					alert('인증번호가 전송되었습니다.')
-				}	
-			}); // end ajax
-		}); // end send phone
 		
-		// 인증번호 비교 
-		$('#member_phonecheck').keyup(function () {
-			const phoneInputCode = $(this).val();
-			const $resultPhoneMsg = $('#phone-check-warn');
-			
-			if(phoneInputCode === code){
-				$resultPhoneMsg.html('인증번호가 일치합니다.');
-				$resultPhoneMsg.css('color','green');
-				$('#phone-Check-Btn').attr('disabled',true);
-				$('#member_phone').attr('readonly',true);
-				$('#member_phonecheck').attr('readonly',true);
-				phoneCheckStatus = true;
-		        
-		        
-			}else{
-				$resultPhoneMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-				$resultPhoneMsg.css('color','red');
-				phoneCheckStatus = false;
-			}
-		});
-	});
-
-
-});
 </script>	
 	
 	<!-- 중간 작업공간 시작 ============================================================== -->
@@ -448,7 +401,10 @@ $(function() {
 					    <table>
 						    <tr>
 						        <td class="col1">이름</td>
-						        <td class="col2"><input type="text" id="member_name" name="member_name"  maxlength="5"></td>
+						        <td class="col2">
+						        <input type="text" id="member_name" name="member_name"  maxlength="5">
+						        <small id="checkNameResult"></small>
+						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">아이디</td>
@@ -468,13 +424,16 @@ $(function() {
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호 확인</td>
-						        <td class="col2"><input type="password" id="member_passwd2" name="member_passwd2" maxlength="16"><small id="checkPasswd2Result"></small>
+						        <td class="col2">
+						        <input type="password" id="member_passwd2" name="member_passwd2" maxlength="16">
+						        <small id="checkPasswd2Result"></small>
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">이메일</td>
 						        <td class="col2">
 						            <input type="text" name="member_email" id="member_email">
+						            <small id="checkEmailResult"></small>
 <!-- 						            <input class='but1' type="button" value="이메일인증" id="mail-Check-Btn"> -->
 						        </td>
 						    </tr>
@@ -560,7 +519,7 @@ $(function() {
 		<jsp:include page="../inc/footer.jsp" />
 	</footer>
 	<!-- js -->
-	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/resources/js/market/jquery-3.6.0.min.js"></script> --%>
 	<script src="${pageContext.request.contextPath }/resources/js/market/menu_hover.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/market/login_modal.js"></script>
 </body>

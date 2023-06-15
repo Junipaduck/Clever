@@ -60,13 +60,15 @@ public class AdminService {
 // 인증 -----------------------------------------------------------------------------------------------------------------------------
 	
 	public void certifiedPhoneNumber(String phone, int randomNumber) {
-		String api_key = "NCSSDWHWSV57OMLH";
-	    String api_secret = "P4ZOPC9S0JKJZ6GBLUIW6QXWDHR1GCBQ";
+//		String api_key = "NCSSDWHWSV57OMLH";
+//	    String api_secret = "P4ZOPC9S0JKJZ6GBLUIW6QXWDHR1GCBQ";
+	    String api_key = "NCS1A41F0IBBCMH3";
+	    String api_secret = "PMLW2WP1ZKJECKSRJO23VAZFMI3CODNN";
 	    Message  coolsms = new Message(api_key, api_secret);
 
 	    HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", phone);    // 수신전화번호
-	    params.put("from", "01023645593");    // 발신전화번호
+	    params.put("from", "01048902740");    // 발신전화번호
 	    params.put("type", "SMS");
 	    params.put("text", "[Clever] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용 입력
 	    params.put("app_version", "test app 1.2"); 
