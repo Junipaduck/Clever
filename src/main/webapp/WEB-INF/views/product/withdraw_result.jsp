@@ -61,8 +61,8 @@ td, tr, th{
 			            <a href="./"><img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" width="250px;" height="80px;" style="margin-top: 50px; margin-bottom: 50px;"></a>
 			        </div>
 			    </header>
-	<h4>3. 본인계좌 최종확인 후 결제를 진행해주세요💸</h4>
-	<table border="1" >
+	<h4 style="text-align: center;">3. 본인계좌 최종확인 후 결제를 진행해주세요💸</h4>
+	<table border="1" style="margin: auto;">
 <%-- 		<c:forEach var="account" items="${userInfo.res_list }"> --%>
 			<tr style="background-color: #002fb9; color: white;">
 				<th>은행명</th>
@@ -109,7 +109,7 @@ td, tr, th{
 				<input type="hidden" name="recv_client_fintech_use_num" value="120211385488932372340264">
 				<input type="hidden" name="tran_amt" value="10000">
 <!-- 				<h5>결제하시겠습니까?<input type="button" value="이전" onclick="javascript:history.back()"><input type="submit" value="결제하기"></h5> -->
-						<h5>결제하시겠습니까?</h5>	
+						<h5 style="text-align: center;">결제하시겠습니까?</h5>	
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="float:left;">
 							  <button class="btn btn-primary me-md-2" type="button" onclick="javascript:history.back()" style="background-color: grey; border-color: grey; width: 80px; height: 37px;">이전</button>
 							  <button class="btn btn-primary" type="submit" style="width: 80px; height: 37px;">결제</button>

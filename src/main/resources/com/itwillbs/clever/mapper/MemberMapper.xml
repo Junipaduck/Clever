@@ -62,7 +62,6 @@
 		 SUBSTRING_INDEX(member_birth, '-', -1) as member_birth2,
 		 member_email,
 		 member_interest,
-		 email_auth,
 		 account_auth,
 		 member_date,
 		 member_rank,
