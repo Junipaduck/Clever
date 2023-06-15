@@ -106,8 +106,9 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    // chat_idx(채팅방 번호) 가 0이면 (= 채팅방이 존재하지 않으면) 새로운 채팅방 생성 
 	    if (logRoomIdx == 0 && selectChatList.isEmpty()) {
 	    	auctionLogService.OpenRoom(logRoomIdx, auctionIdx);
+
 	        System.out.println("채팅방 생성 성공");
-	    }
+	    } 
 	    
 	    for (WebSocketSession s : sessions) {
 	        System.out.println("채팅방 존재함! 메세지 전송!!!!!");
@@ -121,7 +122,7 @@ public class AuctionSocketHandler extends TextWebSocketHandler implements Initia
 	    System.out.println("★★★★★★★★★★★★★★" + selectCount);
 	    
 	    if(selectCount>=1) {
-	    	auctionLogService.updateMessage(logRoomIdx, chatId, messageContent);
+	    	auctionLogService.updateMessage(auctionIdx, chatId, messageContent);
 	    } else {
 	    	int result = auctionLogService.insertMessage(auctionIdx, logRoomIdx, chatId, messageContent);
 	    }

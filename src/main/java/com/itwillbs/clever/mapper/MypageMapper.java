@@ -12,8 +12,6 @@ public interface MypageMapper {
 
 	List<HashMap<String, String>> selectProductSellDate(String sId);
 	
-	int getSellCount(String sId);
-
 	List<HashMap<String, String>> selectProductBuyList(String sId);
 
 	List<HashMap<String, String>> selectProductDibsList(String sId);
@@ -60,5 +58,14 @@ public interface MypageMapper {
 	int updateStatus(String auction_idx);
 
 	int updateAStatus(String auction_idx);
+
+	List<HashMap<String, String>> selectGoodsFile();
+
+	int deletePDibs(@Param("sId")String sId, @Param("type_num") int type_num);
+
+	int deleteADibs(@Param("sId")String sId, @Param("type_num") int type_num);
+
+	// 멤버 잔액 조회
+	HashMap<String, String> getMemberInfo(String id);
 
 }

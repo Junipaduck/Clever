@@ -123,8 +123,10 @@ function isStatus() {
 	var auction_category = $("#auction_category").val();
 	var auction_address = $("#auction_address").val();
 	var auction_product_status = $("#auction_product_status").val();
-	var auction_price = $("#auction_price").val();
-	var immediately_price = $("#immediately_price").val();
+	var auction_price = parseInt($("#auction_price").val());
+	var immediately_price = parseInt($("#immediately_price").val());
+// 	var auction_price = $("#auction_price").val();
+// 	var immediately_price = $("#immediately_price").val();
 	var auction_content = $("#auction_content").val();
 	var auction_start_time = $("#auction_start_time").val();
 	var auction_start_date = $("#auction_start_date").val();
@@ -167,7 +169,9 @@ function isStatus() {
 	} else if(auction_end_date == ""){
 		$("#auction_end_date").focus();
 		return false;
-	} else if(auction_price > immediately_price || auction_price == immediately_price){
+	} else if(auction_price >= immediately_price){
+		alert(auction_price);
+		alert(immediately_price);
 		alert("즉시 구매가가 경매 시작가 보다 큰지 확인해주세요.");
 		$("#auction_price").focus();
 		return false;
@@ -473,36 +477,24 @@ function myAddress() {
                     <div class="goods_status_area">
                         <p>상태<span class="red">*</span></p>
                         <div class="goods_status">
-                            <input type="radio" name="auction_product_status" value="new" id="new" <c:if test="${detailmap.auction_product_status eq 'new' }" >checked</c:if>>
+                            <input type="radio" name="auction_product_status" value="미개봉" id="auction_product_status" <c:if test="${detailmap.auction_product_status eq '미개봉' }" >checked</c:if>>
                             <label for="used">미개봉</label>
-                            <input type="radio" name="auction_product_status" value="newUsed" id="newUsed" <c:if test="${detailmap.auction_product_status eq 'newUsed' }" >checked</c:if>>
+                            <input type="radio" name="auction_product_status" value="거의 새 것" id="auction_product_status" <c:if test="${detailmap.auction_product_status eq '거의 새 것' }" >checked</c:if>>
                             <label for="new">거의 새 것</label>
-                            <input type="radio" name="auction_product_status" value="used" id="used" <c:if test="${detailmap.auction_product_status eq 'used' }" >checked</c:if>>
+                            <input type="radio" name="auction_product_status" value="사용감 있음" id="auction_product_status" <c:if test="${detailmap.auction_product_status eq '사용감 있음' }" >checked</c:if>>
                             <label for="new">사용감 있음</label>
                         </div>
                     </div>
                     <div class="goods_price_area">
                         <p>입찰 시작 액<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" value="${detailmap.auction_price }" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.auction_price }" id="auction_price" name="auction_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
-<!--                     <div class="goods_price_area"> -->
-<!--                         <p>입찰 시작 액<span class="red">*</span></p> -->
-<!--                         <div class="goods_price"> -->
-<!--                             <p><input type="text" name="auction_min_bid" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                     <div class="goods_price_area"> -->
-<!--                         <p>입찰 최소 증가 액<span class="red">*</span></p> -->
-<!--                         <div class="goods_price"> -->
-<!--                             <p><input type="text" name="auction_min_increase" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
                     <div class="goods_price_area">
                         <p>즉시 구매가<span class="red">*</span></p>
                         <div class="goods_price">
-                            <p><input type="text" value="${detailmap.immediately_price }" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
+                            <p><input type="text" value="${detailmap.immediately_price }" id="immediately_price" name="immediately_price" placeholder="숫자만 입력해주세요" oninput="valueIsNumber(event)">&nbsp;&nbsp;&nbsp;원</p>
                         </div>
                     </div>
                     <div class="goods_price_area">
@@ -608,20 +600,6 @@ function myAddress() {
                         </div>
                     </div>
                     <!--번개페이 뻐른 판매-->
-                    <div class="fast_selling_area">
-                        <h2>빠른 판매</h2>
-                        <div class="goods_option_area">
-                            <p>옵션</p>
-                            <div class="goods_option">
-                                <div class="goods_status">
-		                            <input type="radio" name="status" value="account" id="account">
-		                            <label for="account">계좌 이체</label>
-		                            <input type="radio" name="status" value="point" id="point">
-		                            <label for="point">포인트 결제</label>
-		                        </div>
-                            </div>
-                        </div>
-                    </div>
 		        <div class="btn_submit_area">
 			        <div class="inner_submit">
 			            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->

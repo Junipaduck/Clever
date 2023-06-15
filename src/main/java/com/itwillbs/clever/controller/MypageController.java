@@ -65,9 +65,6 @@ public class MypageController {
 		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
 		model.addAttribute("productSellDate", productSellDate);
 		
-		int sellCount = mypageService.getSellCount(sId);
-		model.addAttribute("sellCount", sellCount);
-		
 		// 중고거래 구매 내역
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
 		model.addAttribute("productBuyList", productBuyList);
@@ -99,6 +96,10 @@ public class MypageController {
 		// 굿즈 구매 내역
 		List<HashMap<String, String>> goodsList = mypageService.selectGoodsList(sId);
 		model.addAttribute("goodsList", goodsList);
+
+		// 중고거래 파일 이미지
+		List<HashMap<String, String>> goodsFile = mypageService.selectGoodsFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+		model.addAttribute("goodsFile", goodsFile);
 			
 		// 신고 당한 내역
 		List<HashMap<String, String>> reportList = mypageService.selectReportList(sId);
@@ -111,6 +112,7 @@ public class MypageController {
 		// 후기 조회
 		List<HashMap<String, String>> reviewCheck = mypageService.selectReviewCheck(sId);
 		model.addAttribute("reviewCheck", reviewCheck);
+		
 		
 		return "mypage/my_page";
 	}
@@ -212,6 +214,8 @@ public class MypageController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
+
+		
 		return "mypage/bank_memberInfo";
 	}
 	
@@ -253,8 +257,51 @@ public class MypageController {
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
 		
+		// 멤버 잔액 조회 
+		String id = (String)session.getAttribute("sId");
+		HashMap<String, String> member = mypageService.getMemberInfo(id);
+		model.addAttribute("member", member);
+		
 		return "mypage/member_account_detail";
 		
 	}   
+	
+	// 마이페이지 중고거래 찜 취소
+	@GetMapping("/P_DibsCancel")
+	public String pDibsCancel(HttpSession session, Model model, @RequestParam int type_num) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int result = -1;
+		
+		result = mypageService.deletePDibs(sId, type_num);
+		if(result > 0) {
+			model.addAttribute("msg", "찜 취소");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		} else {
+			model.addAttribute("msg", "찜 취소 실패");
+			return "fail_back";
+		} 
+	}
+	
+	// 마이페이지 중고거래 찜 취소
+	@GetMapping("/A_DibsCancel")
+	public String aDibsCancel(HttpSession session, Model model, @RequestParam int type_num) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int result = -1;
+		
+		result = mypageService.deleteADibs(sId, type_num);
+		if(result > 0) {
+			model.addAttribute("msg", "찜 취소");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		} else {
+			model.addAttribute("msg", "찜 취소 실패");
+			return "fail_back";
+		} 
+	}
 	
 }

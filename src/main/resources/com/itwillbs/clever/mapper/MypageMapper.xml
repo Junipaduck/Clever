@@ -18,13 +18,6 @@
 			ORDER BY sell_idx DESC;
 	</select>
 	
-	<!-- 내 판매 내역 수량 조회 select -->
-	<select id="getSellCount" resultType="int">
-		SELECT COUNT(*)
-			FROM product
-			WHERE member_id = #{sId}
-	</select>
-	
 	<!-- 중고거래 구매정보 select -->
 	<select id="selectProductBuyList" resultType="HashMap">
 		SELECT *
@@ -242,4 +235,37 @@
 			WHERE auction_idx = #{auction_idx}
 	</update>
 	
+	<!-- 굿즈 구매내역에 띄워줄 첫번째에 업로드한 사진 select -->
+	<select id="selectGoodsFile" resultType="HashMap">
+		SELECT *
+		FROM file f 
+			WHERE file_idx in 
+				(SELECT MIN(file_idx) AS file_idx
+					FROM file
+						WHERE file_div = 'goods'
+							GROUP BY file_num);
+	</select>
+	
+	<!-- 마이페이지 중고거래 찜 삭제 -->
+	<delete id="deletePDibs">
+	DELETE
+		FROM dibs
+		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{sId}; 
+	</delete>
+	
+	<!-- 마이페이지 경매 찜 삭제 -->
+	<delete id="deleteADibs">
+	DELETE
+		FROM dibs
+		WHERE dibs_type = 'auction' AND type_num = #{type_num} AND member_id = #{sId}; 
+	</delete>
+	
+	
+	<!-- 멤버 잔액 조회 -->
+	<select id="getMemberInfo" resultType="HashMap">
+		SELECT *
+			FROM member
+				WHERE 
+					member_id = #{id}	
+	</select>
 </mapper>

@@ -57,7 +57,6 @@
 		UPDATE auction
 			SET 
 				auction_auth_status = 'Y'
-				, auction_status = '경매중'
 				WHERE auction_idx = ${auction_idx}; 
 	</update>
 	
@@ -165,6 +164,7 @@
 			, m.member_date
 			, m.member_rank
 			, COUNT(p.product_idx) AS count
+			, m.account_auth
 				FROM member m
 					LEFT JOIN product p 
 						ON m.member_id = p.member_id

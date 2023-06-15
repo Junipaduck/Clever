@@ -46,8 +46,8 @@ td, tr, th{
 		    </header>
 <!--       	 <h1>핀테크 사용자 정보</h1> -->
 <%-- 	<h3>${userInfo.user_name } 고객님의 계좌 목록(사용자 일련번호 : ${sessionScope.user_seq_no })</h3> --%>
-	<h4>1. ${userInfo.user_name }고객님 출금할 계좌를 선택해주세요✔️</h4>
-	<table border="1" style="border-collapse: collapse;">
+	<h4 style="text-align: center;">1. ${userInfo.user_name }고객님 출금할 계좌를 선택해주세요✔️</h4>
+	<table border="1" style="border-collapse: collapse; margin: auto;">
 		<tr style="background-color: #002fb9; color: white;">
 			<th>계좌별칭</th>
 			<th>계좌번호</th>

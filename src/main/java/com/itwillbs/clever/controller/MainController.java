@@ -1,10 +1,14 @@
 package com.itwillbs.clever.controller;
 
+import java.lang.System.*;
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
+import org.slf4j.*;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.mobile.device.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +22,27 @@ public class MainController {
 	
 	@Autowired ProductService productService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
+	
 	@GetMapping(value = "/")
-	public String main(Map<String, String> map, Model model,HttpSession session, MemberVO member, ProductVO product) {
+	public String main(Map<String, String> map, Model model,HttpSession session, MemberVO member, ProductVO product, HttpServletRequest request) {
+		
+		
+		// 디바이스 판별
+		Device device = DeviceUtils.getCurrentDevice(request);
+		
+		if(device != null) {
+			if(device.isNormal()) { // 
+				logger.info("@@@@@@@@@@@@@@@@@@@ pcpcpcpcpcpcpcpcp");
+				return "index";
+			} else if(device.isMobile()) {
+				logger.info("-------------------폰폰폰폰폰폰폰");
+				return "m_index";
+			} else if (device.isTablet()){
+				logger.info("#################태블릿");
+			}
+		}
+		
 		//0614 보아 시작!!!!!!!!!!!!
 		List<HashMap<String, String>> selectDibsProduct = productService.selectDibsProduct();
 		System.out.println("selectDibsProduct" + selectDibsProduct);

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>클레버 - 메인</title>
+<title>클레버 - 모바일</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/CleverLogo3.png">
 
 <!--아이콘-->
@@ -85,13 +85,22 @@
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
                         <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider3.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/메인2.png" class="d-block w-100" alt="..." style="width: 1024px;height: 298.55px;">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider4.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/메인1.png" class="d-block w-100" alt="..." style="width: 1024px;height: 298.55px;">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider5.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider6.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -117,8 +126,6 @@
           		  <c:choose>
                		<c:when test="${not empty sessionScope.sId}">
                			<h2>${sessionScope.sId }님 맞춤 상품 ❤️</h2>
-               			
-               			<h3>FileList : ${fileList} </h3>
                		</c:when>
                		<c:otherwise>
                			<h4>로그인 후 더 많은 정보를 볼 수 있습니다 🎶</h4>

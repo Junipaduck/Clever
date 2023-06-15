@@ -286,17 +286,18 @@ public class AuctionController {
 				file.add(fArr[i]);
 			}
 		}
+		System.out.println(file);
 		if(!file.isEmpty()) {
 			int auction_idx = Integer.parseInt(map.get("auction_idx")) ;
 			int deleteCnt = auctionService.deleteAutionFile(auction_idx);
 			System.out.println("이까지 오나?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			if(deleteCnt > 0) {
+//			if(deleteCnt > 0) {
 				System.out.println("이까지 오나?");
 				Map<String, Object> paramMap = new HashMap<String, Object>();
 				paramMap.put("file_div", "auction");
 				paramMap.put("file_num", map.get("auction_idx"));
 				upload.upload(file, session, paramMap);
-			}
+//			}
 		}
 		System.out.println("자 드가자~!" + map);
 		// 카테고리 분류
@@ -325,16 +326,25 @@ public class AuctionController {
 	@GetMapping(value = "auction_upload")
 	public String auction_upload(Model model, HttpSession session) {
 //		System.out.println(map);
-		String id = (String)session.getAttribute("sId");
-		Map<String, String> member = auctionService.getMember(id);
+		String sId = (String)session.getAttribute("sId");
+		Map<String, String> member = auctionService.getMember(sId);
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("target", "auction_loginForm");
 			return "success";
 		}
-		model.addAttribute("member", member);
+		String memberAccountAuth = productService.selectMemberAccountAuth(sId);
+		if(memberAccountAuth.equals("Y")) {
+			System.out.println("계좌인증완료된 회원입니다!!!!!!!!!");
+			model.addAttribute("member", member);
+			return "auction/auction_upload";
+		} else {
+			model.addAttribute("msg", "계좌인증을 완료해주세요.");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		}
 		
-		return "auction/auction_upload";
+		
 	}
 	
 	@PostMapping(value = "auction_upload_pro")

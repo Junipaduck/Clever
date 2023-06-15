@@ -97,7 +97,7 @@ function payAuction(idx, price, id, title){
  
 </script>
 	<!-- 헤더 시작 -->
-	<jsp:include page="../inc/mypage_header.jsp" />
+	<jsp:include page="../inc/header.jsp" />
 
 	<!-- main_content 영역 -->
 	<div id="main_content">
@@ -122,13 +122,6 @@ function payAuction(idx, price, id, title){
 				<div>
 					<p>${member.member_name}님</p>
 					<p>등급 : ${member.member_rank}</p>
-<!-- 					<p> -->
-<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
-<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png"	alt="별점">  --%>
-<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">  --%>
-<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점">  --%>
-<%-- 						<img src="${pageContext.request.contextPath }/resources/images/market/star.png" alt="별점"> --%>
-<!-- 					</p> -->
 				</div>
 				<div>
 					<p>
@@ -203,22 +196,25 @@ function payAuction(idx, price, id, title){
 			<div class="container text-center menu_bar">
 				<div class="row">
 					<div class="col my_store_menus sales_menu">
-						판매내역 <span>${sellCount }</span>
+						중고판매내역 
 					</div>
 					<div class="col my_store_menus purchases_menu">
-						구매내역 <span>0</span>
+						중고구매내역 
 					</div>
 					<div class="col my_store_menus secondhandLike_menu">
-						중고거래 찜 <span>0</span>
+						중고거래 찜 
 					</div>
 					<div class="col my_store_menus auction_menu">
-						내 경매 <span>0</span>
+						내 경매 
 					</div>
 					<div class="col my_store_menus auctionbid_menu">
-						경매 낙찰내역 <span>0</span>
+						경매 낙찰내역 
 					</div>
 					<div class="col my_store_menus auctionLike_menu">
-						경매 찜 <span>0</span>
+						경매 찜 
+					</div>
+					<div class="col my_store_menus auctiongoods_menu">
+						굿즈 구매내역 
 					</div>
 				</div>
 			</div>
@@ -227,7 +223,7 @@ function payAuction(idx, price, id, title){
 				<div id="sales_menu_area" class="common_menu">
 					<div>
 						<p>
-							판매내역 <span>${sellCount }</span>
+							판매내역 
 						</p>
 						<ul class="goods_cate">
 							<li>전체</li>
@@ -244,8 +240,8 @@ function payAuction(idx, price, id, title){
 							<nav class="filter_nav">
 								<div class="status_filter">
 									<button type="button" class="all_buy_status active">전체	상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">거래완료</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">거래완료</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -314,14 +310,14 @@ function payAuction(idx, price, id, title){
 				<div id="purchases_menu_area" class="common_menu">
 					<div>
 						<p>
-							구매내역 <span>2</span>
+							구매내역 
 						</p>
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
-							<li class="hidden_menu">거래중</li>
-							<li class="hidden_menu">거래완료</li>
-							<li class="hidden_menu">숨김내역</li>
+<!-- 							<li class="hidden_menu">거래중</li> -->
+<!-- 							<li class="hidden_menu">거래완료</li> -->
+<!-- 							<li class="hidden_menu">숨김내역</li> -->
 						</ul>
 						<i class="bi bi-chevron-down under_direction under"></i>
 					</div>
@@ -375,11 +371,10 @@ function payAuction(idx, price, id, title){
 							<!--필터-->
 							<nav class="filter_nav">
 								<div class="status_filter">
-									<button type="button" class="all_buy_status active">전체
-										상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">완료</button>
-									<button type="button" class="cancle_status">취소/환불</button>
+									<button type="button" class="all_buy_status active">전체상태</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">완료</button> -->
+<!-- 									<button type="button" class="cancle_status">취소/환불</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -449,7 +444,7 @@ function payAuction(idx, price, id, title){
 				<div id="secondhandLike_menu_area" class="common_menu">
 					<div>
 						<p>
-							중고거래 찜 <span>0</span>
+							중고거래 찜 
 						</p>
 					</div>
 					<div>
@@ -485,7 +480,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_date">${productdibsList.product_date }</p>
 										</div>
 									</a>
-									<button type="button" class=""> 찜 취소 </button>
+									<button type="button" name="product" onclick="location.href='P_DibsCancel?type_num=${productdibsList.product_idx}'">찜 취소</button>
 								</div>
 							</div>
 						</c:forEach>
@@ -497,14 +492,14 @@ function payAuction(idx, price, id, title){
 				<div id="auction_menu_area" class="common_menu">
 					<div>
 						<p>
-							내가 올린 경매 목록 <span>0</span>
+							내가 올린 경매 목록 
 						</p>
 						<ul class="goods_cate">
 							<li>전체</li>
 							<li class="hidden_menu">전체</li>
-							<li class="hidden_menu">참여중</li>
-							<li class="hidden_menu">경매완료</li>
-							<li class="hidden_menu">숨김내역</li>
+<!-- 							<li class="hidden_menu">참여중</li> -->
+<!-- 							<li class="hidden_menu">경매완료</li> -->
+<!-- 							<li class="hidden_menu">숨김내역</li> -->
 						</ul>
 						<i class="bi bi-chevron-down under_direction under"></i>
 					</div>
@@ -514,9 +509,9 @@ function payAuction(idx, price, id, title){
 							<nav class="filter_nav">
 								<div class="status_filter">
 									<button type="button" class="all_buy_status active">전체 상태</button>
-									<button type="button" class="buying_status">진행중</button>
-									<button type="button" class="bought_status">완료</button>
-									<button type="button" class="cancle_status">취소/환불</button>
+<!-- 									<button type="button" class="buying_status">진행중</button> -->
+<!-- 									<button type="button" class="bought_status">완료</button> -->
+<!-- 									<button type="button" class="cancle_status">취소/환불</button> -->
 								</div>
 								<div class="pay_filter">
 									<button type="button" class="pay_filter">
@@ -584,7 +579,7 @@ function payAuction(idx, price, id, title){
 					<div id="auctionbid_menu_area" class="common_menu">
 					<div>
 						<p>
-							경매 낙찰 내역 <span>0</span>
+							경매 낙찰 내역 
 						</p>
 					</div>
 					<div>
@@ -632,12 +627,12 @@ function payAuction(idx, price, id, title){
 												<div class="btn_area">
 <%-- 												<a href="product_bank_userInfo?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }&auction_idx=${auctionBidList.auction_idx}">구매확정</a> --%>
 												<button type="button" onclick="location.href='auctionBuyConfirm?buy_price=${auctionBidList.auction_final_price }&buy_seller=${auctionBidList.member_id}&auction_idx=${auctionBidList.auction_idx}'">구매확정</button>
-												<button type="button"  onclick="location.href='myChatting'">채팅</button>
+												<button type="button" onclick="location.href='myChatting'">채팅</button>
 												</div>
 											</c:when>
 											<c:when test="${auctionBidList.auction_status eq '구매확정' }">
 												<div class="btn_area">
-												<button type="button" class=""> 후기 </button>
+												<button type="button" onclick="location.href='review.me?review_seller=${auctionBidList.member_id}'">후기작성</button>
 												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 												</div>
 											</c:when>
@@ -654,7 +649,7 @@ function payAuction(idx, price, id, title){
 				<div id="auctionLike_menu_area" class="common_menu">
 					<div>
 						<p>
-							경매 찜 <span>0</span>
+							경매 찜 
 						</p>
 					</div>
 					<div>
@@ -689,13 +684,55 @@ function payAuction(idx, price, id, title){
 											<p class="goods_date">${auctionDibsList.auction_date }</p>
 										</div>
 									</a>
-									<button type="button" class=""> 찜 취소 </button>
+									<button type="button" name="auction" onclick="location.href='A_DibsCancel?type_num=${auctionDibsList.auction_idx}'">찜 취소</button>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
 				<!-- 경매 찜 끝 -->
+				
+				<!-- 굿즈 구매 내역 시작 -->
+				<div id="auctiongoods_menu_area" class="common_menu">
+					<div>
+						<p>
+							굿즈 구매내역 
+						</p>
+					</div>
+					<div>
+						<!--찜 상풍-->
+						<c:forEach items="${goodsList }" var="goodsList">
+							<div class="goods">
+								<div class="goods_one">
+									<a href="goodsDetail.ad?goods_idx=${goodsList.goods_idx }">
+										<div class="goods_image">
+											<c:forEach items="${goodsFile }" var="goodsFile">
+												<c:set var="length" value="${fn:length(goodsFile.file_name) }" />
+												<c:set var="index" value="${fn:indexOf(goodsFile.file_name, '_') }" />
+												<c:set var="file_name" value="${fn:substring(goodsFile.file_name, index + 1, length) }" />
+												<c:choose>
+													<c:when	test="${goodsFile.file_num eq goodsList.goods_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</div>
+										<div class="goods_info">
+											<h2 class="goods_title">${goodsList.buy_title }</h2>
+											<p class="goods_price">
+												<span class="bold">${goodsList.buy_price }</span>원
+											</p>
+											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_date">${goodsList.buy_date }</p>
+										</div>
+									</a>
+									<button type="button" class=""> 삭제 </button>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				<!-- 굿즈 구매 내역 끝 -->
 				
 			</div>
 		</div>

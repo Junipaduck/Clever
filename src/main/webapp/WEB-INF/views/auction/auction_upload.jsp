@@ -135,8 +135,8 @@ function isStatus() {
 	var auction_category = $("#auction_category").val();
 	var auction_address = $("#auction_address").val();
 	var auction_product_status = $("#auction_product_status").val();
-	var auction_price = $("#auction_price").val();
-	var immediately_price = $("#immediately_price").val();
+	var auction_price = parseInt($("#auction_price").val());
+	var immediately_price = parseInt($("#immediately_price").val());
 	var auction_content = $("#auction_content").val();
 	var auction_start_time = $("#auction_start_time").val();
 	var auction_start_date = $("#auction_start_date").val();

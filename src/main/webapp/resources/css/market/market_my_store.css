@@ -185,7 +185,7 @@
     border-left: 1px solid black;
 }
 
-.purchases_menu, .secondhandLike_menu, .auction_menu, .auctionbid_menu ,.auctionLike_menu {
+.purchases_menu, .secondhandLike_menu, .auction_menu, .auctionbid_menu , .auctionLike_menu, .auctiongoods_menu {
     border-right: 1px solid rgb(238, 238, 238);
     border-bottom: 1px solid black;
     background-color: #FAFAFA;
@@ -280,7 +280,7 @@
     color: #888;
 }
 
-#purchases_menu_area, #secondhandLike_menu_area, #auction_menu_area, #auctionLike_menu_area, #auctionbid_menu_area {
+#purchases_menu_area, #secondhandLike_menu_area, #auction_menu_area, #auctionLike_menu_area, #auctionbid_menu_area, #auctiongoods_menu_area {
     display: none;
 }
 /* // 내 상점 메뉴 */
