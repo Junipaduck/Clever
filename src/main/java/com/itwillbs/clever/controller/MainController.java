@@ -26,18 +26,17 @@ public class MainController {
 	
 	@GetMapping(value = "/")
 	public String main(Map<String, String> map, Model model,HttpSession session, MemberVO member, ProductVO product, HttpServletRequest request) {
-		
-		
 		// 디바이스 판별
 		Device device = DeviceUtils.getCurrentDevice(request);
+		String targetPageName = "";
 		
 		if(device != null) {
 			if(device.isNormal()) { // 
-				logger.info("@@@@@@@@@@@@@@@@@@@ pcpcpcpcpcpcpcpcp");
-				return "index";
+				logger.info("@@@@@@@@@@@@@@@@@@@ pcpcpcpcpcpcpcpcp222222");
+				targetPageName = "index";
 			} else if(device.isMobile()) {
 				logger.info("-------------------폰폰폰폰폰폰폰");
-				return "m_index";
+				targetPageName = "m_index";
 			} else if (device.isTablet()){
 				logger.info("#################태블릿");
 			}
@@ -47,29 +46,31 @@ public class MainController {
 		List<HashMap<String, String>> selectDibsProduct = productService.selectDibsProduct();
 		System.out.println("selectDibsProduct" + selectDibsProduct);
 		model.addAttribute("selectDibsProduct", selectDibsProduct);
-//			System.out.println(selectDibsProduct.get("product_idx"));
+//					System.out.println(selectDibsProduct.get("product_idx"));
 		
 		List<HashMap<String, String>> fileList = productService.selectFile();
-		model.addAttribute("fileList", fileList);	
+		model.addAttribute("fileList", fileList);
+		System.out.println("FileList : " + fileList);
+		logger.info("FileList : " + fileList);
 		//0614 보아 끝!!!!!!!!!!!!
 		
 		// 0614배하나
 		String sId = (String)session.getAttribute("sId");
 		
 		List<HashMap<String, String>> productList = productService.selectProduct(); //중고상품 최신업로드 순으로 select리스트
-//		List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
+//				List<HashMap<String, String>> fileList = productService.selectFile(); //파일테이블에서 중고상품의 첫번째등록한 이미지만 select
 		String selectMemberInterest = productService.selectMemberInterest(sId, member); // member가 회원가입할때 넣었던 member_interest컬럼 select
 		List<HashMap<String, String>> selectIntCtgr = productService.selectIntCtgr(selectMemberInterest, product); // sId의 interest에 맞는 카테고리의 상품들 select
 		System.out.println("sId의 관심카테고리는 ? : " + selectMemberInterest);
 		System.out.println(selectIntCtgr);
 		
 		model.addAttribute("productList", productList);
-//		model.addAttribute("fileList", fileList);
+//				model.addAttribute("fileList", fileList);
 		model.addAttribute("selectMemberInterest", selectMemberInterest);
 		model.addAttribute("selectIntCtgr", selectIntCtgr);
 		// //0614배하나
 		
-		return "index";
+		return targetPageName;
 	}
 	
 	@GetMapping(value = "1대1문의")
