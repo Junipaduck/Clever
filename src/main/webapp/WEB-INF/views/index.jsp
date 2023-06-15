@@ -117,8 +117,6 @@
           		  <c:choose>
                		<c:when test="${not empty sessionScope.sId}">
                			<h2>${sessionScope.sId }님 맞춤 상품 ❤️</h2>
-               			
-               			<h3>FileList : ${fileList} </h3>
                		</c:when>
                		<c:otherwise>
                			<h4>로그인 후 더 많은 정보를 볼 수 있습니다 🎶</h4>
