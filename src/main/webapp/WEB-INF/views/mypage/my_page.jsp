@@ -282,7 +282,7 @@ function payAuction(idx, price, id, title){
 												<p class="goods_price">
 													<span class="bold">${productSellList.product_price }</span>원
 												</p>
-												<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+												<p class="goods_shop">${productSellList.member_id }</p>
 												<c:choose>
 													<c:when test="${productSellList.sale_status eq '판매중'}">
 														<p class="goods_date">${productSellList.product_date }</p>
@@ -414,7 +414,7 @@ function payAuction(idx, price, id, title){
 												<p class="goods_price">
 													<span class="bold">${productBuyList.buy_price }</span>원
 												</p>
-												<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+												<p class="goods_shop">${productBuyList.buy_sellr }</p>
 												<p class="goods_date">${productBuyList.buy_date }</p>
 											</div>
 										</a>
@@ -476,7 +476,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_price">
 												<span class="bold">${productdibsList.product_price }</span>원
 											</p>
-											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_shop">${productdibsList.member_id }</p>
 											<p class="goods_date">${productdibsList.product_date }</p>
 										</div>
 									</a>
@@ -529,17 +529,14 @@ function payAuction(idx, price, id, title){
 									<div class="goods_one">
 										<a href="auction_detail?auction_idx=${auctionList.auction_idx }&param=${auctionList.auction_Scategory }">
 											<div class="goods_image">
-												<c:forEach items="${auctionfileList }" var="auctionfileList">
-													<c:set var="length"	value="${fn:length(auctionfileList.file_name) }" />
-													<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
-													<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
+												<c:forEach items="${auctionfileList }" var="file">
 													<c:choose>
-														<c:when	test="${auctionfileList.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매중' }">
-															<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+														<c:when	test="${file.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매중' }">
+															<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 															<span class="goods_front"> 경매 진행 중 </span>
 														</c:when>
-														<c:when test="${auctionfileList.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매마감' }">
-															<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+														<c:when test="${file.file_num eq auctionList.auction_idx && auctionList.auction_status eq '경매마감' }">
+															<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 															<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
 															경매 마감
 															</span>
@@ -552,7 +549,7 @@ function payAuction(idx, price, id, title){
 												<p class="goods_price">
 													<span class="bold">최종 낙찰가 : ${auctionList.auction_final_price }</span>원
 												</p>
-												<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+												<p class="goods_shop">${auctionList.member_id }</p>
 												<p class="goods_date">경매 시작 시간 : ${auctionList.auction_date }</p>
 											</div>
 										</a>
@@ -588,16 +585,13 @@ function payAuction(idx, price, id, title){
 								<div class="goods_one">
 									<a href="auction_detail?auction_idx=${auctionBidList.auction_idx }&param=${auctionBidList.auction_Scategory }">
 										<div class="goods_image">
-											<c:forEach items="${auctionfileList }" var="auctionfileList">
-												<c:set var="length"	value="${fn:length(auctionfileList.file_name) }" />
-												<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
-												<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
+											<c:forEach items="${auctionfileList }" var="file">
 												<c:choose>
-													<c:when test="${auctionfileList.file_num eq auctionBidList.auction_idx }">
-														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													<c:when test="${file.file_num eq auctionBidList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 													</c:when>
-													<c:when	test="${auctionfileList.file_num eq auctionBidList.auction_idx }">
-														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													<c:when	test="${file.file_num eq auctionBidList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 														<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
 														경매 낙찰
 														</span>
@@ -610,7 +604,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_price">
 												<span class="bold">낙찰가 : ${auctionBidList.auction_final_price }</span>원
 											</p>
-											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_shop">${auctionBidList.member_id }</p>
 											<p class="goods_date">${auctionBidList.auction_date }</p>
 										</div>
 									</a>
@@ -658,16 +652,13 @@ function payAuction(idx, price, id, title){
 								<div class="goods_one">
 									<a href="product_detail?product_idx=${auctionDibsList.auction_idx }">
 										<div class="goods_image">
-											<c:forEach items="${auctionfileList }" var="auctionfileList">
-												<c:set var="length"	value="${fn:length(auctionfileList.file_name) }" />
-												<c:set var="index" value="${fn:indexOf(auctionfileList.file_name, '_') }" />
-												<c:set var="file_name" value="${fn:substring(auctionfileList.file_name, index + 1, length) }" />
+											<c:forEach items="${auctionfileList }" var="file">
 												<c:choose>
-													<c:when test="${auctionfileList.file_num eq auctionDibsList.auction_idx }">
-														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													<c:when test="${file.file_num eq auctionDibsList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 													</c:when>
-													<c:when	test="${auctionfileList.file_num eq auctionDibsList.auction_idx }">
-														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													<c:when	test="${file.file_num eq auctionDibsList.auction_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 														<span class="goods_front"> <i class="far fa-check-circle"></i><br> 
 														거래완료
 														</span>
@@ -680,7 +671,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_price">
 												<span class="bold">${auctionDibsList.auction_final_price }</span>원
 											</p>
-											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_shop">${auctionDibsList.member_id }</p>
 											<p class="goods_date">${auctionDibsList.auction_date }</p>
 										</div>
 									</a>
@@ -722,7 +713,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_price">
 												<span class="bold">${goodsList.buy_price }</span>원
 											</p>
-											<p class="goods_shop">상점명 / 번개페이 안전결제</p>
+											<p class="goods_shop"></p>
 											<p class="goods_date">${goodsList.buy_date }</p>
 										</div>
 									</a>
