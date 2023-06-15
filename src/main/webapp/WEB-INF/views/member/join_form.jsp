@@ -168,63 +168,224 @@ window.onload = function(){
         }).open();
     });
 }
-
-// 이메일 인증
 $(function() {
-	let nameStatus = false;
-	let idStatus = false;
-	let passwdStatus = false;
-	let passwd2Status = false;
-	let birthStatus = false;
-	let phoneStatus = false;
-	let genderStatus = false;
-	let emailStatus = false;
-	let phoneCheckStatus = false;
-	
-	$(function() {
-		$('#mail-Check-Btn').click(function() {
-			const email = $('#member_email').val(); // 이메일 주소값 얻어오기!
-			console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
-			const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
-																	
-			$.ajax({
-				type : 'get',
-				url : "mailCheck?email=" + email, // GET방식
-				success : function (data) {
-					console.log("데이타 : " +  data);
-					checkInput.attr('disabled',false);
-					code = data;
-					alert('인증번호가 전송되었습니다.')
-				}	
-			}); // end ajax
-		}); // end send eamil
-		
-		// 인증번호 비교 
-		$('#member_emailcheck').keyup(function () {
-			const inputCode = $(this).val();
-			const $resultMsg = $('#mail-check-warn');
+		let nameStatus = false;
+		let idStatus = false;
+		let passwdStatus = false;
+		let passwd2Status = false;
+		let birthStatus = false;
+		let phoneStatus = false;
+		let genderStatus = false;
+		let emailStatus = false;
+		let emailDupStatus = false;
+		$("#member_id").on("blur", function() {
 			
-			if(inputCode === code){
-				$resultMsg.html('인증번호가 일치합니다.');
-				$resultMsg.css('color','green');
-				$('#mail-Check-Btn').attr('disabled',true);
-				$('#member_email').attr('readonly',true);
-				$('#member_emailcheck').attr('readonly',true);
-				emailStatus = true;
-		        
-		        
-			}else{
-				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-				$resultMsg.css('color','red');
-				emailStatus = false;
+			if($("#member_id").val() == ""){
+				idStatus = false;
+				$("#checkIdResult").html("아이디는 필수 항목입니다.").css('color','red');
+			} else {
+				let id = $("#member_id").val()
+				let regex = /^[\w]{4,8}$/;
+				if(!regex.exec(id)){
+					$("#checkIdResult").html("영문자, 숫자를 조합하여 4 ~ 8 글자로 만들어주세요.").css('color','red');
+					idStatus = false;
+				} else {
+					$.ajax({
+						url: "MemberCheckDupIdPro.me",
+						data: {
+							member_id: $("#member_id").val()
+						},
+						success: function(isDupilcateMember) {
+							if(isDupilcateMember == true){
+								$("#checkIdResult").html("중복된 아이디 입니다.").css('color','red');
+								idStatus = false;
+							} else {
+								$("#checkIdResult").html("사용 가능한 아이디 입니다.").css('color','green');
+								idStatus = true;
+							}
+						}
+					}); // ajax 끝
+				}
+			}
+		});
+		$("#member_name").on("change", function() {
+			let regex = /^[가-힣]{2,10}$/;
+			if(!regex.exec($("#member_name").val())) {
+				nameStatus = false;
+				$("#checkNameResult").html("한글 2 ~ 5자 필수!").css('color','red');
+				$("#member_name").select();
+			} else {
+				$("#checkNameResult").html("사용 가능!").css('color','green');
+				nameStatus = true;
+			}
+		});		
+		$("#member_passwd").on("change", function() {
+			let passwd = $("#member_passwd").val();
+			let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+			let engUpperRegex = /[A-Z]/;  // 대문자
+			let engLowerRegex = /[a-z]/;  // 대문자
+			let numberRegex = /[0-9]/;  // 대문자
+			let specRegex = /[!@#$%]/;  // 대문자
+			if(!lengthRegex.exec(passwd)){
+				passwdStatus = false;
+				$("#checkPasswdResult").html("영문자, 숫자, 특수문자 8 ~ 16자 필수").css('color','red');
+				$("#member_passwd").select();
+			} else {
+				let count = 0;
+				if(engUpperRegex.exec(passwd)){
+					count++
+				}
+				
+				if(engLowerRegex.exec(passwd)){
+					count++
+				} 
+				
+				if(numberRegex.exec(passwd)){
+					count++
+				}
+				if(specRegex.exec(passwd)) {
+					count++
+				}
+				switch (count) {
+				case 0: case 1: $("#checkPasswdResult").html("사용 불가능한 패스워드").css('color','red'); passwdStatus = false; break;
+				case 2: $("#checkPasswdResult").html("위험").css('color','red'); passwdStatus = true; break;
+				case 3: $("#checkPasswdResult").html("보통").css('color','blue'); passwdStatus = true; break;
+				case 4: $("#checkPasswdResult").html("안전").css('color','green'); passwdStatus = true; break;
+
+				}
+			}
+		});
+		$("#member_passwd2").on("change", function() {
+			let passwd2 = $("#member_passwd2").val();
+			let passwd = $("#member_passwd").val();
+			if(passwd2 == passwd){
+				passwd2Status = true;
+				$("#checkPasswd2Result").text("비밀번호 일치").css('color','green');
+			} else {
+				passwd2Status = false;
+				$("#checkPasswd2Result").text("비밀번호 불일치").css('color','red');
+			}
+		});
+		
+		$("#member_birth").on("change", function() {
+			let birth = $("#member_birth").val();
+			let regexBirth = /^[0-9]{8}$/;
+			if(regexBirth.exec(birth)){
+				birthStatus = true;
+			}
+		});
+		
+		$("#member_phone").on("change", function() {
+			let phone = $("#member_phone").val();
+			let regexPhone = /^[0-9]{11}$/;
+			if(regexPhone.exec(phone)){
+				phoneStatus = true;
+			}
+		});
+		
+		$("#member_gender").on("change", function() {
+			let gender = $("#member_gender").val();
+			let gender2 = $("#member_gender2").val();
+			if(gender != null || gender2 != null){
+				genderStatus = true;
+			}
+		});
+		
+		
+		$("form").submit(function() {
+			if(!nameStatus){
+				alert("이름을 확인하세요!");
+				$("#name").focus();
+				return false;
+			} else if(!idStatus){
+				alert("아이디를 확인하세요!");
+				$("#member_id").focus();
+				return false;
+			} else if(!passwdStatus){
+				alert("패스워드를 확인하세요!");
+				$("#member_passwd").focus();
+				return false;
+			} else if(!passwd2Status){
+				alert("패스워드가 일치하는지 확인하세요!");
+				$("#member_passwd2").focus();
+				return false;
+			} else if(!birthStatus){
+				alert("생년월일을 확인하세요!");
+				$("#member_birth").focus();
+				return false;
+			} else if(!phoneStatus){
+				alert("전화번호를 확인하세요!");
+				$("#member_phone").focus();
+				return false;
+			} else if(!genderStatus){
+				alert("성별을 확인하세요!");
+				$("#member_gender").focus();
+				return false;
+			} else if(!emailStatus){
+				alert("이메일을 확인하세요!");
+				$("#member_email").focus();
+				return false;
+			} else {
+				return true;
 			}
 		});
 	});
+// 이메일 인증 ------------ 주석 지우지 말아주세요!!
+// $(function() {
+// 	let nameStatus = false;
+// 	let idStatus = false;
+// 	let passwdStatus = false;
+// 	let passwd2Status = false;
+// 	let birthStatus = false;
+// 	let phoneStatus = false;
+// 	let genderStatus = false;
+// 	let emailStatus = false;
+// 	let phoneCheckStatus = false;
+	
+// 	$(function() {
+// 		$('#mail-Check-Btn').click(function() {
+// 			const email = $('#member_email').val(); // 이메일 주소값 얻어오기!
+// 			console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
+// 			const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+																	
+// 			$.ajax({
+// 				type : 'get',
+// 				url : "mailCheck?email=" + email, // GET방식
+// 				success : function (data) {
+// 					console.log("데이타 : " +  data);
+// 					checkInput.attr('disabled',false);
+// 					code = data;
+// 					alert('인증번호가 전송되었습니다.')
+// 				}	
+// 			}); // end ajax
+// 		}); // end send eamil
+		
+// 		// 인증번호 비교 
+// 		$('#member_emailcheck').keyup(function () {
+// 			const inputCode = $(this).val();
+// 			const $resultMsg = $('#mail-check-warn');
+			
+// 			if(inputCode === code){
+// 				$resultMsg.html('인증번호가 일치합니다.');
+// 				$resultMsg.css('color','green');
+// 				$('#mail-Check-Btn').attr('disabled',true);
+// 				$('#member_email').attr('readonly',true);
+// 				$('#member_emailcheck').attr('readonly',true);
+// 				emailStatus = true;
+		        
+		        
+// 			}else{
+// 				$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+// 				$resultMsg.css('color','red');
+// 				emailStatus = false;
+// 			}
+// 		});
+// 	});
 	
 	$(function() {
 		$('#phone-Check-Btn').click(function() {
-			const phone = $('#member_phone').val(); // 이메일 주소값 얻어오기!
-			console.log('완성된 이메일 : ' + phone); // 이메일 오는지 확인
+			const phone = $('#member_phone').val(); // 폰번호 얻어오기!
+			console.log('완성된 이메일 : ' + phone); // 폰번호 오는지 확인
 			const phoneCheckInput = $('.phone-check-input') // 인증번호 입력하는곳 
 																	
 			$.ajax({
@@ -237,7 +398,7 @@ $(function() {
 					alert('인증번호가 전송되었습니다.')
 				}	
 			}); // end ajax
-		}); // end send eamil
+		}); // end send phone
 		
 		// 인증번호 비교 
 		$('#member_phonecheck').keyup(function () {
@@ -293,34 +454,37 @@ $(function() {
 						        <td class="col1">아이디</td>
 						        <td class="col2">
 						            <input type="text" id="member_id" name="member_id" maxlength="10">
+						            <small id="checkIdResult"></small>
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호</td>
 						        <td class="col2">
 						            <input type="password" id="member_passwd" name="member_passwd" maxlength="16">
+						            <small id="checkPasswdResult"></small>
 						            <p>※비밀번호는 <span class="num">문자, 숫자, 특수문자(~!@#$%^&*)의 조합
 						            10 ~ 16자리</span>로 입력이 가능합니다.</p>
 						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">비밀번호 확인</td>
-						        <td class="col2"><input type="password" id="member_passwd2" name="member_passwd2" maxlength="16"></td>
+						        <td class="col2"><input type="password" id="member_passwd2" name="member_passwd2" maxlength="16"><small id="checkPasswd2Result"></small>
+						        </td>
 						    </tr>
 						    <tr>
 						        <td class="col1">이메일</td>
 						        <td class="col2">
 						            <input type="text" name="member_email" id="member_email">
-						            <input class='but1' type="button" value="이메일인증" id="mail-Check-Btn">
+<!-- 						            <input class='but1' type="button" value="이메일인증" id="mail-Check-Btn"> -->
 						        </td>
 						    </tr>
-						    <tr>
-						        <td class="col1">이메일 인증번호</td>
-						        <td class="col2">
-									<input type="text" id="member_emailcheck" name="member_emailcheck">
-									<span id="mail-check-warn"></span>
-						        </td>
-						    </tr>
+<!-- 						    <tr> -->
+<!-- 						        <td class="col1">이메일 인증번호</td> -->
+<!-- 						        <td class="col2"> -->
+<!-- 									<input type="text" id="member_emailcheck" name="member_emailcheck"> -->
+<!-- 									<span id="mail-check-warn"></span> -->
+<!-- 						        </td> -->
+<!-- 						    </tr> -->
 						     <tr>
 						        <td class="col1">휴대폰 번호</td>
 						        <td class="col2">

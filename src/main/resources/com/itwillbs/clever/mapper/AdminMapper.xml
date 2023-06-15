@@ -164,6 +164,7 @@
 			, m.member_date
 			, m.member_rank
 			, COUNT(p.product_idx) AS count
+			, m.account_auth
 				FROM member m
 					LEFT JOIN product p 
 						ON m.member_id = p.member_id
