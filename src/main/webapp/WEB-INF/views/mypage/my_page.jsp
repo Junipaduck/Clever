@@ -97,7 +97,7 @@ function payAuction(idx, price, id, title){
  
 </script>
 	<!-- 헤더 시작 -->
-	<jsp:include page="../inc/mypage_header.jsp" />
+	<jsp:include page="../inc/header.jsp" />
 
 	<!-- main_content 영역 -->
 	<div id="main_content">
