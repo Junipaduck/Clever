@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -54,6 +55,8 @@
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	
-	
-	
+	<!-- 모바일 요청에 대한 처리 클래스 추가 -->
+	<mvc:interceptors>
+		<beans:bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"/>
+	</mvc:interceptors>
 </beans:beans>

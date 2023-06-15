@@ -204,6 +204,15 @@
             <artifactId>sdk</artifactId>
             <version>4.2.7</version>
         </dependency>
+        
+        <!-- 모바일 디바이스 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.mobile/spring-mobile-device -->
+		<dependency>
+		    <groupId>org.springframework.mobile</groupId>
+		    <artifactId>spring-mobile-device</artifactId>
+		    <version>1.1.5.RELEASE</version>
+		</dependency>
+        
         							
 		<!-- Logging -->
 		<dependency>
