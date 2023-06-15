@@ -632,7 +632,7 @@ function payAuction(idx, price, id, title){
 											</c:when>
 											<c:when test="${auctionBidList.auction_status eq '구매확정' }">
 												<div class="btn_area">
-												<button type="button" class=""> 후기 </button>
+												<button type="button" onclick="location.href='review.me?review_seller=${auctionBidList.member_id}'">후기작성</button>
 												<button type="button" class="" onclick="location.href='myChatting'">채팅</button>
 												</div>
 											</c:when>
