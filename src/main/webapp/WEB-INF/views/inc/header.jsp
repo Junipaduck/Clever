@@ -402,18 +402,18 @@ div #test_area ul { /* 카테고리 css */
                 </div>
 
                 <div id="side_bar">
-                    <div id="heart">
-                        <p>찜한 상품</p>
-                        <p><img src="${pageContext.request.contextPath }/resources/images/market/heart.png" alt="찜 하트"> 0</p>
-                    </div>
-                    <div id="goods">
-                        <p>여기뭐하기로했더라</p>
-                        <p id="dotted"></p>
-                        <p>
-                            <img src="${pageContext.request.contextPath }/resources/images/market/eyes.png" alt="눈표시">
-                            <p>최근 본 상품<br>이<br>없습니다.</p>
-                        </p>
-                    </div>
+<!--                     <div id="heart"> -->
+<!--                         <p>찜한 상품</p> -->
+<%--                         <p><img src="${pageContext.request.contextPath }/resources/images/market/heart.png" alt="찜 하트"> 0</p> --%>
+<!--                     </div> -->
+<!--                     <div id="goods"> -->
+<!--                         <p>여기뭐하기로했더라</p> -->
+<!--                         <p id="dotted"></p> -->
+<!--                         <p> -->
+<%--                             <img src="${pageContext.request.contextPath }/resources/images/market/eyes.png" alt="눈표시"> --%>
+<!--                             <p>최근 본 상품<br>이<br>없습니다.</p> -->
+<!--                         </p> -->
+<!--                     </div> -->
 <!--                     <div id="QR_code"> -->
 <!--                         <p>앱 다운로드</p> -->
 <!--                         <p> -->
