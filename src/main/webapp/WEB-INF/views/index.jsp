@@ -85,10 +85,13 @@
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider1.jpg" class="d-block w-100" alt="...">
+                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider3.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider3.jpg" class="d-block w-100" alt="...">
+                        <img src="${pageContext.request.contextPath }/resources/images/메인2.png" class="d-block w-100" alt="..." style="width: 1024px;height: 298.55px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="${pageContext.request.contextPath }/resources/images/메인1.png" class="d-block w-100" alt="..." style="width: 1024px;height: 298.55px;">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
