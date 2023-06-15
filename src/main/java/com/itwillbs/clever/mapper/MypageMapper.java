@@ -65,4 +65,7 @@ public interface MypageMapper {
 
 	int deleteADibs(@Param("sId")String sId, @Param("type_num") int type_num);
 
+	// 멤버 잔액 조회
+	HashMap<String, String> getMemberInfo(String id);
+
 }

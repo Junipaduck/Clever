@@ -214,6 +214,8 @@ public class MypageController {
 		// Model 객체에 ResponseUserInfoVO 객체 저장
 		model.addAttribute("userInfo", userInfo);
 		
+
+		
 		return "mypage/bank_memberInfo";
 	}
 	
@@ -254,6 +256,11 @@ public class MypageController {
 		model.addAttribute("account", account);
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		model.addAttribute("user_name", map.get("user_name"));
+		
+		// 멤버 잔액 조회 
+		String id = (String)session.getAttribute("sId");
+		HashMap<String, String> member = mypageService.getMemberInfo(id);
+		model.addAttribute("member", member);
 		
 		return "mypage/member_account_detail";
 		

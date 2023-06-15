@@ -260,4 +260,12 @@
 		WHERE dibs_type = 'auction' AND type_num = #{type_num} AND member_id = #{sId}; 
 	</delete>
 	
+	
+	<!-- 멤버 잔액 조회 -->
+	<select id="getMemberInfo" resultType="HashMap">
+		SELECT *
+			FROM member
+				WHERE 
+					member_id = #{id}	
+	</select>
 </mapper>

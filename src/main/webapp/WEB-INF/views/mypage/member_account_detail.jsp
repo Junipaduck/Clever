@@ -74,13 +74,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">계좌잔액</label>
                                             <div class="col-sm-10">
-                                            	<input type="text" class="form-control" placeholder="${account.balance_amt }" readonly="readonly">
+                                            	<input type="text" class="form-control" placeholder="${member.member_balance }원" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">출금가능금액</label>
                                             <div class="col-sm-10">
-                                            	<input type="text" class="form-control" placeholder="${account.available_amt }" readonly="readonly">
+                                            	<input type="text" class="form-control" placeholder="${member.member_balance }원" readonly="readonly">
                                             </div>
                                         </div>
                                     </form>

@@ -88,19 +88,7 @@
                         <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider2.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
                         <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider3.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider4.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider5.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="${pageContext.request.contextPath }/resources/images/market/thunder_main_slider6.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

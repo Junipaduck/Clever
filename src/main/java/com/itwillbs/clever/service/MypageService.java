@@ -142,4 +142,10 @@ public class MypageService {
 		return mapper.deleteADibs(sId, type_num);
 	}
 
+	// 멤버 잔액 조회
+	public HashMap<String, String> getMemberInfo(String id) {
+		
+		return mapper.getMemberInfo(id);
+	}
+
 }
