@@ -27,7 +27,7 @@ public class MainController {
 //			System.out.println(selectDibsProduct.get("product_idx"));
 		
 		List<HashMap<String, String>> fileList = productService.selectFile();
-		model.addAttribute("fileList", fileList);
+		model.addAttribute("fileList", fileList);	
 		//0614 보아 끝!!!!!!!!!!!!
 		
 		// 0614배하나
