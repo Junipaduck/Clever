@@ -343,6 +343,7 @@
                             </div>
                             <jsp:useBean id="now" class="java.util.Date" />
 							<fmt:formatDate value="${now}" var="today" />
+							<fmt:formatDate value="${now}" type="time" var="todayTime" />
 <%-- 							<fmt:parseDate value="" var="auction_start" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
                         </div>
                     </div>
@@ -502,15 +503,34 @@
             
             <!-- // goods_info -->
         <!-- // main_content 영역 -->
-       		<c:if test="${sessionScope.sId eq detailmap.member_id and detailmap.auction_start < today}">
-		       		<div class="btn_submit_area">
-				        <div class="inner_submit">
-				            <!--폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요-->
-				            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;">
-				            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_delete?auction_idx=${detailmap.auction_idx}'">
-				        </div>
-			    	</div>
-	    	</c:if>
+        <script type="text/javascript">
+		window.onload = function() {
+			var sId = "${sessionScope.sId}";
+			var member_id = "${detailmap.member_id}";
+			var auction_start = new Date("${detailmap.auction_start}");
+			var gigi = new Date();
+// 			alert(auction_start);
+			if(sId == member_id && auction_start > gigi){
+				$("#goods_info").append(
+						'<div class="btn_submit_area">'
+						+ '<div class="inner_submit">'
+						+ '<input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = \'auction_detail_modify?auction_idx=${detailmap.auction_idx}\'" style=\"margin-right: 20px; background-color: blue;\">'
+						+ '<input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = \'auction_delete?auction_idx=${detailmap.auction_idx}\'">'
+						+ '</div>'
+						+ '</div>');
+			}	
+		}	
+        
+        </script>
+<%--        		<c:if test="${sessionScope.sId eq detailmap.member_id and detailmap.auction_start le today}"> --%>
+<!-- 		       		<div class="btn_submit_area"> -->
+<!-- 				        <div class="inner_submit"> -->
+<!-- 				            폼으로 등록 테스트 하실 때 type=submit으로 바꿔서 진행해주세요 -->
+<%-- 				            <input type="button" class="btn_goods_submit" value="수정하기" onclick="location.href = 'auction_detail_modify?auction_idx=${detailmap.auction_idx}'" style="margin-right: 20px; background-color: blue;"> --%>
+<%-- 				            <input type="button" class="btn_goods_submit" value="삭제하기" onclick="location.href = 'auction_delete?auction_idx=${detailmap.auction_idx}'"> --%>
+<!-- 				        </div> -->
+<!-- 			    	</div> -->
+<%-- 	    	</c:if> --%>
 	<!-- 풋터 시작 -->
 	<footer>
 		<jsp:include page="../inc/footer.jsp" />
@@ -529,8 +549,8 @@
 		});
 	});
 	// war 파일 구울 때 열어야 하는거 
-// 	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
-	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
+	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/auction_detail');
+// 	var chatSocket = new SockJS('http://localhost:8082/clever/auction_detail');
 	var userId = "${sessionScope.sId}";
 	var seller = "${detailmap.member_id}";
 	var auction_idx = "${param.auction_idx}";
@@ -587,7 +607,7 @@
 		
 		if(priceInputInt>immediately_price ) {
 			checkPrice = false;
-			alert("즉시 구매가 보다 높음");
+			alert("즉시 구매가 보다 높습니다.");
 			return;
 		}
 		

@@ -493,7 +493,7 @@ public class AuctionController {
 	}
 	
 	@GetMapping("depositReturn")
-	public String depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
+	public void depositReturn(HttpSession session, @RequestParam int auction_idx, Model model) {
 //		String id = (String)session.getAttribute("sId");
 		String buyer = auctionService.buyer(auction_idx);
 		List<HashMap<String, String>> memberList = auctionService.getMemberList(buyer, auction_idx);
@@ -503,8 +503,6 @@ public class AuctionController {
 			}
 			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);
 		}
-		
-		return "redirect://auction";
 	}
 	
 	@ResponseBody
