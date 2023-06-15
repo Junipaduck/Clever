@@ -65,9 +65,6 @@ public class MypageController {
 		List<HashMap<String, String>> productSellDate = mypageService.selectProductSellDate(sId);
 		model.addAttribute("productSellDate", productSellDate);
 		
-//		int sellCount = mypageService.getSellCount(sId);
-//		model.addAttribute("sellCount", sellCount);
-		
 		// 중고거래 구매 내역
 		List<HashMap<String, String>> productBuyList = mypageService.selectProductBuyList(sId);
 		model.addAttribute("productBuyList", productBuyList);
@@ -261,5 +258,43 @@ public class MypageController {
 		return "mypage/member_account_detail";
 		
 	}   
+	
+	// 마이페이지 중고거래 찜 취소
+	@GetMapping("/P_DibsCancel")
+	public String pDibsCancel(HttpSession session, Model model, @RequestParam int type_num) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int result = -1;
+		
+		result = mypageService.deletePDibs(sId, type_num);
+		if(result > 0) {
+			model.addAttribute("msg", "찜 취소");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		} else {
+			model.addAttribute("msg", "찜 취소 실패");
+			return "fail_back";
+		} 
+	}
+	
+	// 마이페이지 중고거래 찜 취소
+	@GetMapping("/A_DibsCancel")
+	public String aDibsCancel(HttpSession session, Model model, @RequestParam int type_num) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int result = -1;
+		
+		result = mypageService.deleteADibs(sId, type_num);
+		if(result > 0) {
+			model.addAttribute("msg", "찜 취소");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		} else {
+			model.addAttribute("msg", "찜 취소 실패");
+			return "fail_back";
+		} 
+	}
 	
 }

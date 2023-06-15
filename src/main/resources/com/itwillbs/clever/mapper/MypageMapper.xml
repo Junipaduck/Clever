@@ -246,4 +246,18 @@
 							GROUP BY file_num);
 	</select>
 	
+	<!-- 마이페이지 중고거래 찜 삭제 -->
+	<delete id="deletePDibs">
+	DELETE
+		FROM dibs
+		WHERE dibs_type = 'product' AND type_num = #{type_num} AND member_id = #{sId}; 
+	</delete>
+	
+	<!-- 마이페이지 경매 찜 삭제 -->
+	<delete id="deleteADibs">
+	DELETE
+		FROM dibs
+		WHERE dibs_type = 'auction' AND type_num = #{type_num} AND member_id = #{sId}; 
+	</delete>
+	
 </mapper>

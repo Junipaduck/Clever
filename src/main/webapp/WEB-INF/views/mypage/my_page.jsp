@@ -481,7 +481,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_date">${productdibsList.product_date }</p>
 										</div>
 									</a>
-									<button type="button" class=""> 찜 취소 </button>
+									<button type="button" name="product" onclick="location.href='P_DibsCancel?type_num=${productdibsList.product_idx}'">찜 취소</button>
 								</div>
 							</div>
 						</c:forEach>
@@ -628,7 +628,7 @@ function payAuction(idx, price, id, title){
 												<div class="btn_area">
 <%-- 												<a href="product_bank_userInfo?auction_final_price=${auctionBidList.auction_final_price }&member_id=${auctionBidList.member_id }&auction_idx=${auctionBidList.auction_idx}">구매확정</a> --%>
 												<button type="button" onclick="location.href='auctionBuyConfirm?buy_price=${auctionBidList.auction_final_price }&buy_seller=${auctionBidList.member_id}&auction_idx=${auctionBidList.auction_idx}'">구매확정</button>
-												<button type="button"  onclick="location.href='myChatting'">채팅</button>
+												<button type="button" onclick="location.href='myChatting'">채팅</button>
 												</div>
 											</c:when>
 											<c:when test="${auctionBidList.auction_status eq '구매확정' }">
@@ -685,7 +685,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_date">${auctionDibsList.auction_date }</p>
 										</div>
 									</a>
-									<button type="button" class=""> 찜 취소 </button>
+									<button type="button" name="auction" onclick="location.href='A_DibsCancel?type_num=${auctionDibsList.auction_idx}'">찜 취소</button>
 								</div>
 							</div>
 						</c:forEach>

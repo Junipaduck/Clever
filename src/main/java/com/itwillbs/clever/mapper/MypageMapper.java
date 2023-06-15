@@ -61,4 +61,8 @@ public interface MypageMapper {
 
 	List<HashMap<String, String>> selectGoodsFile();
 
+	int deletePDibs(@Param("sId")String sId, @Param("type_num") int type_num);
+
+	int deleteADibs(@Param("sId")String sId, @Param("type_num") int type_num);
+
 }

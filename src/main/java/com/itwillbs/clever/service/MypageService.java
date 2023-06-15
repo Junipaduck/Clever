@@ -133,5 +133,13 @@ public class MypageService {
 	public List<HashMap<String, String>> selectGoodsFile() {
 		return mapper.selectGoodsFile();
 	}
+	
+	public int deletePDibs(String sId, int type_num) {
+		return mapper.deletePDibs(sId, type_num);
+	}
+
+	public int deleteADibs(String sId, int type_num) {
+		return mapper.deleteADibs(sId, type_num);
+	}
 
 }
