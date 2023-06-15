@@ -119,4 +119,21 @@ public class MypageService {
 		return mapper.insertBuyAuction(selectByInfo, sId);
 	}
 
+	public int withdrawAdMoney(String auction_buy_price, String auction_buy_seller) {
+		return mapper.withdrawAdMoney(auction_buy_price, auction_buy_seller);
+	}
+
+	public int buyerDeposit(String auction_buy_price, String auction_buy_seller) {
+		return mapper.buyerDeposit(auction_buy_price, auction_buy_seller);
+	}
+
+	// 마이페이지 - 구매확정 시 상태 업데이트
+	public int updateStatus(String auction_idx) {
+		return mapper.updateStatus(auction_idx);
+	}
+
+	public int updateAStatus(String auction_idx) {
+		return mapper.updateAStatus(auction_idx);
+	}
+
 }

@@ -53,6 +53,12 @@ public interface MypageMapper {
 
 	int insertBuyAuction(@Param("selectByInfo") Map<String, String> selectByInfo, @Param("sId") String sId);
 
-	
-	
+	int withdrawAdMoney(@Param("auction_buy_price") String auction_buy_price, @Param("auction_buy_seller") String auction_buy_seller);
+
+	int buyerDeposit(@Param("auction_buy_price") String auction_buy_price, @Param("auction_buy_seller") String auction_buy_seller);
+
+	int updateStatus(String auction_idx);
+
+	int updateAStatus(String auction_idx);
+
 }
