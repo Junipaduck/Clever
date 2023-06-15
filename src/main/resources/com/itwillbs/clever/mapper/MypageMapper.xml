@@ -268,4 +268,13 @@
 				WHERE 
 					member_id = #{id}	
 	</select>
+	
+	<!-- 마이페이지 경매 찜 삭제 -->
+	<delete id="deleteGoods">
+	DELETE
+		FROM buyGoods
+		WHERE buy_idx = #{buy_idx} AND buy_id = #{sId} 
+	</delete>
+	
+	
 </mapper>

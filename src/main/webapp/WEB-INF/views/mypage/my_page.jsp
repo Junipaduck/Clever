@@ -726,7 +726,7 @@ function payAuction(idx, price, id, title){
 											<p class="goods_date">${goodsList.buy_date }</p>
 										</div>
 									</a>
-									<button type="button" class=""> 삭제 </button>
+									<button type="button" name="goods" onclick="location.href='DeleteGoods?buy_idx=${goodsList.buy_idx}'">굿즈 삭제</button>
 								</div>
 							</div>
 						</c:forEach>

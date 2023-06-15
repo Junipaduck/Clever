@@ -68,4 +68,6 @@ public interface MypageMapper {
 	// 멤버 잔액 조회
 	HashMap<String, String> getMemberInfo(String id);
 
+	int deleteGoods(@Param("sId")String sId,  @Param("buy_idx") int buy_idx);
+
 }

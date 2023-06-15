@@ -148,4 +148,8 @@ public class MypageService {
 		return mapper.getMemberInfo(id);
 	}
 
+	public int deleteGoods(String sId, int buy_idx) {
+		return mapper.deleteGoods(sId, buy_idx);
+	}
+
 }

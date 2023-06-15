@@ -285,7 +285,7 @@ public class MypageController {
 		} 
 	}
 	
-	// 마이페이지 중고거래 찜 취소
+	// 마이페이지 경매 찜 취소
 	@GetMapping("/A_DibsCancel")
 	public String aDibsCancel(HttpSession session, Model model, @RequestParam int type_num) {
 		
@@ -300,6 +300,23 @@ public class MypageController {
 			return "success";
 		} else {
 			model.addAttribute("msg", "찜 취소 실패");
+			return "fail_back";
+		} 
+	}
+	
+	// 굿즈 삭제
+	@GetMapping("/DeleteGoods")
+	public String deleteGoods(HttpSession session, Model model, @RequestParam int buy_idx) {
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		int result = mypageService.deleteGoods(sId, buy_idx);
+		if(result > 0) {
+			model.addAttribute("msg", "굿즈 삭제");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		} else {
+			model.addAttribute("msg", "굿즈 삭제 실패");
 			return "fail_back";
 		} 
 	}
