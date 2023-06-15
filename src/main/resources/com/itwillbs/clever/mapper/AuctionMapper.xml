@@ -93,11 +93,12 @@
 				WHERE (auction_Lcategory = #{param }
 				 or auction_Mcategory = #{param }
 				 or auction_Scategory = #{param })
-				 <if test="status != null and !status.equals('')">
+					<if test="!status.equals('경매마감')">
+					AND auction_status = #{status}
+					</if>
 					 <if test="status.equals('경매마감')">
 					 	AND auction_status = #{status} || auction_status = '판매완료' || auction_status ='구매확정'
 					 </if>
-				 </if>
 				 AND auction_auth_status = 'Y'
 	</select>
 	
