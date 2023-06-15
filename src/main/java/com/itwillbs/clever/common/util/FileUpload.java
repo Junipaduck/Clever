@@ -34,13 +34,13 @@ public class FileUpload {
 			String saveDir = session.getServletContext().getRealPath(uploadDir); //실제 업로드 경로
 			System.out.println("saveDir : " + saveDir);
 			String file_path = "";
+			Date date = new Date(); //java.util.Date 클래스 사용하기
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			for(MultipartFile f: file) {
 				try {
-					Date date = new Date(); //java.util.Date 클래스 사용하기
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-					
+					file_path = "";
 					file_path = "/" + sdf.format(date);
-					
+					saveDir = session.getServletContext().getRealPath(uploadDir);
 					saveDir = saveDir + file_path; //실제 업로드 경로와 서브 디렉토리 경로 결합하여 저장
 					System.out.println("saveDir : " + saveDir);
 					Path path = Paths.get(saveDir);

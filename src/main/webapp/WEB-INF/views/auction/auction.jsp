@@ -289,13 +289,9 @@ height: 90px;
                     <div class="goods">
                         <a href="auction_detail?auction_idx=${imminent.auction_idx}&param=${imminent.auction_Scategory}">
                         <c:forEach items="${fileList }" var="file">
-                        
-                        <c:set var="length" value="${fn:length(file.file_name) }" />
-						<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-						<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
                             <c:if test="${file.file_num eq imminent.auction_idx }">
 	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 	                            </div>
                             </c:if>
                         </c:forEach>
@@ -376,12 +372,9 @@ height: 90px;
                     <div class="goods">
                         <a href="auction_detail?auction_idx=${hot.auction_idx}&param=${hot.auction_Scategory}">
                             <c:forEach items="${fileList }" var="file">
-                            <c:set var="length" value="${fn:length(file.file_name) }" />
-							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-							<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
                             <c:if test="${file.file_num eq hot.auction_idx }">
 	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 	                            </div>
                             </c:if>
                         </c:forEach>
@@ -461,12 +454,9 @@ height: 90px;
                     <div class="goods">
                         <a href="auction_detail?auction_idx=${current.auction_idx}&param=${current.auction_Scategory}">
                             <c:forEach items="${fileList }" var="file">
-                            <c:set var="length" value="${fn:length(file.file_name) }" />
-							<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-							<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
                             <c:if test="${file.file_num eq current.auction_idx }">
 	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 	                            </div>
                             </c:if>
                         </c:forEach>

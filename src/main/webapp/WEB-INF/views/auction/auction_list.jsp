@@ -186,7 +186,7 @@ let status = '${param.status}';
                         
                             <c:if test="${file.file_num eq product.auction_idx }">
 	                            <div class="goods_image">
-	                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
+	                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path}/${file.file_name}" width="194" height="194" alt="상품 이미지">
 	                            </div>
                             </c:if>
                         </c:forEach>

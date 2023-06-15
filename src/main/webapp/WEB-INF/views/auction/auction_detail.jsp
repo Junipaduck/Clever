@@ -169,19 +169,13 @@
                                 </div>
                                 <div class="carousel-inner">
                         
-			                        <c:set var="length" value="${fn:length(fileList[0].file_name) }" />
-									<c:set var="index" value="${fn:indexOf(fileList[0].file_name, '_') }" />
-									<c:set var="file_name" value="${fn:substring(fileList[0].file_name, index + 1, length) }" />
 				                            <div class="carousel-item active">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100" style="height: 488px">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${fileList[0].file_path}/${fileList[0].file_name}" width="488" height="488" alt="상품 이미지">
 				                            </div>
 				                   <c:if test="${fn:length(fileList) > 1 }">
 				                   	<c:forEach items="${fileList }" var="file" begin="1">
-			                        <c:set var="length" value="${fn:length(file.file_name) }" />
-									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
 	                                    <div class="carousel-item ">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지" class="d-block w-100">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" width="488" height="488" alt="상품 이미지">
 	                                    </div>
 				                   	</c:forEach>
 				                   </c:if>
