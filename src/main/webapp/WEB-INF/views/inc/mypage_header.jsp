@@ -85,39 +85,47 @@
 		<div id="bot_header">
 			<div class="container text-center">
 				<div class="row justify-content-start">
-					<div class="col-3 header_logo">
-						<h1 class="hidden">로고</h1>
-						<a href="./"> <img
-							src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png"
-							alt="클레버 로고" width="130px;" height="40px;">
-						</a>
-					</div>
-					<div class="col-6 top_searh_area">
-						<div id="top_searh">
-							<input type="text" placeholder="상품명, 지역명 입력"> <img
-								src="${pageContext.request.contextPath }/resources/images/market/search.png"
-								alt="검색">
-						</div>
-					</div>
-					<div class="col-1 b_h_left_menu">
-						<a href="상품등록"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/sell.png"
-							alt="판매하기"> 판매하기
-						</a>
-					</div>
-					<div class="col-1 b_h_left_menu store">
-						<a href="myPage.me"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/my_store.png"
-							alt="마이페이지"> 마이페이지
-						</a>
-					</div>
-					<div class="col-1 b_h_left_menu">
-						<a href="myChatting"> <img
-							src="${pageContext.request.contextPath }/resources/images/market/talk.png"
-							alt="1:1문의"> 채팅
-						</a>
-					</div>
-				</div>
+                        <div class="col-3 header_logo">
+                            <h1 class="hidden">로고</h1>
+                            <a href="./">
+                                <img src="${pageContext.request.contextPath }/resources/images/CleverLogo2.png" alt="클레버 로고" width="130px;" height="40px;">
+                            </a>
+                        </div>
+                        <div class="col-6 top_searh_area">
+                        	<c:choose>
+                        		<c:when test="${not empty product_search }">
+		                            <div id="top_searh">
+		                                <input type="text" value="${product_search }" id="product_search" name="product_search" placeholder="상품명 입력"  onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<div id="top_searh">
+		                                <input type="text" id="product_search" name="product_search" placeholder="상품명 입력"  onkeypress="show_name(event)">
+		                                <img src="${pageContext.request.contextPath }/resources/images/market/search.png" alt="검색">
+		                            </div>
+	                            </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="col-1 b_h_left_menu">
+                            <a href="product_upload?member_id=${sessionScope.sId }"> 
+                                <img src="${pageContext.request.contextPath }/resources/images/market/sell.png" alt="판매하기">
+                                판매하기
+                            </a>
+                        </div>
+                        <div class="col-1 b_h_left_menu store">
+                            <a href="myPage.me">
+                                <img src="${pageContext.request.contextPath }/resources/images/market/my_store.png" alt="마이페이지">
+                                마이페이지
+                            </a>
+                        </div>
+                        <div class="col-1 b_h_left_menu">
+                            <a href="myChatting">
+                                <img src="${pageContext.request.contextPath }/resources/images/market/talk.png" alt="1:1문의">
+                                채팅
+                            </a>
+                        </div>
+                    </div>
 			</div>
 			<div class="container text-center hamburger_area">
 				<div class="row">

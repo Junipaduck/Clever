@@ -208,7 +208,8 @@ public class ProductController {
 		}
 		
 		String memberAccountAuth = productService.selectMemberAccountAuth(sId);
-		if(memberAccountAuth == "Y") {
+		if(memberAccountAuth.equals("Y")) {
+			System.out.println("계좌인증완료된 회원입니다!!!!!!!!!");
 			return "product/product_upload";
 		} else {
 			model.addAttribute("msg", "계좌인증을 완료해주세요.");
