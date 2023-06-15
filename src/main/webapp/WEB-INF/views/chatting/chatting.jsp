@@ -202,7 +202,7 @@ $(document).ready(function() {
 	        if(!foundMatch) {
 	            var strTitle = '<div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="' + roomId + '">'
 	            				 + productSubject
-	            				 + '<div style="display: inline-block; float: right;"><img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href=\'deleteRoom?chatRoom_id=' + roomId + '\'" style="width: 40px;"></div>'
+	            				 + '<div style="display: inline-block; float: right;"><img src="${pageContext.request.contextPath }/resources/fileUpload/나가기.png" id="btnClose" onclick="location.href=\'deleteRoom?chatRoom_id=' + roomId + '\'" style="width: 40px;"></div>'
 	            				 + '</div>';
 	            $("#roomSelect").append(strTitle);
 	        }
@@ -321,7 +321,7 @@ $(document).ready(function() {
 			                    <div class="roomEl active" style="width: 440px; border: 1px solid #0084FF;" id="${chatList.chatRoom_id}">
 			                    	${chatList.product_subject }
 			                    	<div style="display: inline-block; float: right;">
-			                    		<img src="${pageContext.request.contextPath }/resources/images/나가기.png" id="btnClose" onclick="location.href='deleteRoom?chatRoom_id=${chatList.chatRoom_id}'" style="width: 40px; ">
+			                    		<img src="${pageContext.request.contextPath }/resources/fileUpload/나가기.png" id="btnClose" onclick="location.href='deleteRoom?chatRoom_id=${chatList.chatRoom_id}'" style="width: 40px; ">
 			                    	</div>
 			                    </div>
 <%-- 								<input type="hidden" id="sellerId" value="${chatList.seller_id }"> --%>

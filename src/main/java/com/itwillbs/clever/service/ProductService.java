@@ -219,6 +219,11 @@ public class ProductService {
 		return mapper.selectReview(product_idx);
 	}
 
+	// 상품등록시 계좌인증 여부 확인
+	public String selectMemberAccountAuth(String sId) {
+		return mapper.selectMemberAccountAuth(sId);
+	}
+
 	
 
 }

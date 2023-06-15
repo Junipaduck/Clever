@@ -107,6 +107,8 @@ public interface ProductMapper {
 	// 상세페이지 판매자 리뷰 조회
 	List<HashMap<String, String>> selectReview(int product_idx);
 
+	String selectMemberAccountAuth(String sId);
+
 	
 
 

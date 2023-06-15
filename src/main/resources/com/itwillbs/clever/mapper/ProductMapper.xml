@@ -457,6 +457,13 @@
 						r.review_seller = (SELECT member_id FROM product p WHERE product_idx = #{product_idx})
 	</select>
 	
+	<!-- 상품 등록시 계좌인증여부 확인 -->
+	<select id="selectMemberAccountAuth" resultType="String">
+		SELECT account_auth
+			FROM member
+			WHERE member_id = #{sId}
+	</select>
+	
 </mapper> <!-- 매퍼끝 -->
 
 

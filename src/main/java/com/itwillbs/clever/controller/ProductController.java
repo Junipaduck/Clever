@@ -199,13 +199,22 @@ public class ProductController {
 	// 상품 등록하기
 	@GetMapping("/product_upload")
 	public String productUpload(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
 		
-		if(session.getAttribute("sId") == null) {
+		if(sId == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("target", "loginForm.me");
 			return "success";
 		}
-		return "product/product_upload";
+		
+		String memberAccountAuth = productService.selectMemberAccountAuth(sId);
+		if(memberAccountAuth == "Y") {
+			return "product/product_upload";
+		} else {
+			model.addAttribute("msg", "계좌인증을 완료해주세요.");
+			model.addAttribute("target", "myPage.me");
+			return "success";
+		}
 	}
 	
 	// 상품 관리하기
