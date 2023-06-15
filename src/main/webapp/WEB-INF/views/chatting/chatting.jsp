@@ -24,10 +24,10 @@
 $(document).ready(function() {
 	
 	// 로컬주소로 연결시 소켓 연결 주소
-	var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
+// 	var chatSocket = new SockJS('http://localhost:8082/clever/chatting');
 	//war파일(DB공용폴더)로 연결시 소켓 연결 주소
 	// war 파일 구울 때 열어야 하는거
-	//var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
+	var chatSocket = new SockJS('http://c3d2212t2.itwillbs.com/Clever/chatting');
 	//var chatSocket = new WebSocket('ws://localhost:8089/clever/chatting');
 	
 	
