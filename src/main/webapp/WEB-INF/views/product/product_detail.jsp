@@ -64,6 +64,7 @@
 // 		 	 				//찜 리스트 페이지 생성 후 -> 찜리스트 페이지 이동으로 변경 
 // 		 					location.href='myPage.me'; 
 // 		 	 			} 
+						location.reload();
 		 			}
 		 			else if(data == -1){
 		 				alert("로그인이 필요한 서비스입니다. ");
@@ -73,6 +74,7 @@
 		 				alert("상품 찜 취소하셨습니다. ");
 		 				$('#dibsImage').attr("src","${pageContext.request.contextPath }/resources/images/goods/w_heart.svg");
 		 				$('#dibsback').attr("style","background-color: #CCCCCC");
+		 				location.reload();
 		 			}
 		 		},
 		 		error:function(error){
