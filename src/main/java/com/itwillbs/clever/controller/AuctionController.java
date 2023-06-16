@@ -202,6 +202,7 @@ public class AuctionController {
 		int readCount = auctionService.readCountUp(auction_idx);
 		int dibsCount = auctionService.dibsCount(auction_idx);
 		Map detailmap = auctionService.detailList(auction_idx);
+		System.out.println("아이디 입니다." + (String)detailmap.get("member_id"));
 		List<String> sellerAutions = auctionService.sellerAutions((String)detailmap.get("member_id"));
 		int sellerInfoCount = auctionService.sellerInfoCount((String)detailmap.get("member_id"));
 		model.addAttribute("sellerAutions", sellerAutions);
@@ -503,7 +504,7 @@ public class AuctionController {
 			}
 			int deleteMemberCnt = auctionService.deleteMember(buyer, auction_idx);
 		}
-		return "redirect/auction";
+		return "redirect://auction";
 	}
 	
 	@ResponseBody
