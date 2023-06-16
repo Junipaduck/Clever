@@ -689,13 +689,10 @@ function payAuction(idx, price, id, title){
 								<div class="goods_one">
 									<a href="goodsDetail.ad?goods_idx=${goodsList.goods_idx }">
 										<div class="goods_image">
-											<c:forEach items="${goodsFile }" var="goodsFile">
-												<c:set var="length" value="${fn:length(goodsFile.file_name) }" />
-												<c:set var="index" value="${fn:indexOf(goodsFile.file_name, '_') }" />
-												<c:set var="file_name" value="${fn:substring(goodsFile.file_name, index + 1, length) }" />
+											<c:forEach items="${goodsFile }" var="file">
 												<c:choose>
-													<c:when	test="${goodsFile.file_num eq goodsList.goods_idx }">
-														<img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" alt="상품 이미지">
+													<c:when	test="${file.file_num eq goodsList.goods_idx }">
+														<img src="${pageContext.request.contextPath }/resources/fileUpload${file.file_path}/${file.file_name}" alt="상품 이미지">
 													</c:when>
 												</c:choose>
 											</c:forEach>
