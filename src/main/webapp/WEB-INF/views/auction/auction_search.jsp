@@ -288,12 +288,9 @@ height: 90px;
 			                    <div class="goods">
 			                        <a href="auction_detail?auction_idx=${auction_product.auction_idx}">
 			                            <c:forEach items="${fileList }" var="file">
-			                            <c:set var="length" value="${fn:length(file.file_name) }" />
-										<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-										<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
 			                            <c:if test="${file.file_num eq auction_product.auction_idx }">
 				                            <div class="goods_image">
-				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+				                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path }/${file.file_name}" width="194" height="194" alt="상품 이미지">
 				                            </div>
 			                            </c:if>
 			                        </c:forEach>
@@ -304,30 +301,62 @@ height: 90px;
 			                                    <span class="goods_date_before">${auction_product.auction_price }</span>
 			                                </div>
 				                                <script type="text/javascript">
-				                                	function auction_productGetTime${auction_product.auction_idx}() {
-				                                	  var element;
-				                                	  const endDay = new Date('${auction_product.auction_end}');
-				                                	  const currDay = new Date();
-				                                	  let diff = endDay - currDay;
-				                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-				                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-				                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-				                                	  diff -= diffHours * (1000 * 60 * 60);
-				                                	  const diffMin = Math.floor(diff / (1000 * 60));
-				                                	  diff -= diffMin * (1000 * 60);
-				                                	  const diffSec = Math.floor(diff / 1000);
-				                                	  element = document.getElementById("auction_productTimeOut${auction_product.auction_idx}");
-				                                	  if(diffDays < 0){
-				                                		  element.innerHTML = "경매 종료";                    		  
-				                                	  } else {
-					                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-				                                	  }
-				                                	}
-				                                	(function() {
-				                                		return setInterval(() => auction_productGetTime${auction_product.auction_idx}(), 1000);
-													}());
-				                               </script>
-			                               <div id="auction_productTimeOut${auction_product.auction_idx}" style="color: red; text-align: right;"></div>
+	                                	function auction_productGetTime${auction_product.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${auction_product.auction_start}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("auction_productTimeOut${auction_product.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매시작";
+	                                		  $.ajax({
+                        		  			 		url : "auction_statusUpdate",
+                        		  			 		type: 'GET',
+                        		  			 		data: {'auction_idx':${auction_product.auction_idx}},
+                        		  			 	});
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function auction_productGetTime2${auction_product.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${auction_product.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("auction_productTimeOut2${auction_product.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		var auction_start = new Date('${auction_product.auction_start}');
+	                                		var auction_end = new Date('${auction_product.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => auction_productGetTime${auction_product.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => auction_productGetTime2${auction_product.auction_idx}(), 1000);
+	                                		}
+										}());
+	                               </script>
+                               <div id="auction_productTimeOut${auction_product.auction_idx}" style="color: blue; text-align: right;"></div>
+                               <div id="auction_productTimeOut2${auction_product.auction_idx}" style="color: red; text-align: right;"></div>
 			                            </div>
 			                        </a>
 			                    </div>
@@ -352,12 +381,9 @@ height: 90px;
 		                    <div class="goods">
 		                        <a href="auction_detail?auction_idx=${auction_member.auction_idx}">
 		                            <c:forEach items="${fileList }" var="file">
-		                            <c:set var="length" value="${fn:length(file.file_name) }" />
-									<c:set var="index" value="${fn:indexOf(file.file_name, '_') }" />
-									<c:set var="file_name" value="${fn:substring(file.file_name, index + 1, length) }" />
 		                            <c:if test="${file.file_num eq auction_member.auction_idx }">
 			                            <div class="goods_image">
-			                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file_name}" width="194" height="194" alt="상품 이미지">
+			                                <img src="${pageContext.request.contextPath }/resources/fileUpload/${file.file_path }/${file.file_name}" width="194" height="194" alt="상품 이미지">
 			                            </div>
 		                            </c:if>
 		                        </c:forEach>
@@ -368,30 +394,62 @@ height: 90px;
 		                                    <span class="goods_date_before">${auction_member.auction_price }</span>
 		                                </div>
 			                                <script type="text/javascript">
-			                                	function auction_memberGetTime${auction_member.auction_idx}() {
-			                                	  var element;
-			                                	  const endDay = new Date('${auction_member.auction_end}');
-			                                	  const currDay = new Date();
-			                                	  let diff = endDay - currDay;
-			                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
-			                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
-			                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
-			                                	  diff -= diffHours * (1000 * 60 * 60);
-			                                	  const diffMin = Math.floor(diff / (1000 * 60));
-			                                	  diff -= diffMin * (1000 * 60);
-			                                	  const diffSec = Math.floor(diff / 1000);
-			                                	  element = document.getElementById("auction_memberTimeOut${auction_member.auction_idx}");
-			                                	  if(diffDays < 0){
-			                                		  element.innerHTML = "경매 종료";                    		  
-			                                	  } else {
-				                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
-			                                	  }
-			                                	}
-			                                	(function() {
-			                                		return setInterval(() => auction_memberGetTime${auction_member.auction_idx}(), 1000);
-												}());
-			                               </script>
-		                               <div id="auction_memberTimeOut${auction_member.auction_idx}" style="color: red; text-align: right;"></div>
+	                                	function auction_memberGetTime${auction_member.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${auction_member.auction_start}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("auction_memberTimeOut${auction_member.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매시작";
+	                                		  $.ajax({
+                        		  			 		url : "auction_statusUpdate",
+                        		  			 		type: 'GET',
+                        		  			 		data: {'auction_idx':${auction_member.auction_idx}},
+                        		  			 	});
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	function auction_memberGetTime2${auction_member.auction_idx}() {
+	                                	  var element;
+	                                	  const endDay = new Date('${auction_member.auction_end}');
+	                                	  const currDay = new Date();
+	                                	  let diff = endDay - currDay;
+	                                	  const diffDays = Math.floor((endDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+	                                	  diff -= diffDays * (1000 * 60 * 60 * 24);
+	                                	  const diffHours = Math.floor(diff / (1000 * 60 * 60));
+	                                	  diff -= diffHours * (1000 * 60 * 60);
+	                                	  const diffMin = Math.floor(diff / (1000 * 60));
+	                                	  diff -= diffMin * (1000 * 60);
+	                                	  const diffSec = Math.floor(diff / 1000);
+	                                	  element = document.getElementById("auction_memberTimeOut2${auction_member.auction_idx}");
+	                                	  if(diffDays < 0){
+	                                		  element.innerHTML = "경매 종료";                    		  
+	                                	  } else {
+		                                	  element.innerHTML = diffDays+"일 "+diffHours+"시 "+diffMin+"분 "+diffSec+"초";
+	                                	  }
+	                                	}
+	                                	(function() {
+	                                		var auction_start = new Date('${auction_member.auction_start}');
+	                                		var auction_end = new Date('${auction_member.auction_end}');
+	                                		var nowDate = new Date();
+	                                		if(auction_start > nowDate){
+	                                			return setInterval(() => auction_memberGetTime${auction_member.auction_idx}(), 1000);
+	                                		} else {
+	                                			return setInterval(() => auction_memberGetTime2${auction_member.auction_idx}(), 1000);
+	                                		}
+										}());
+	                               </script>
+                               <div id="auction_memberTimeOut${auction_member.auction_idx}" style="color: blue; text-align: right;"></div>
+                               <div id="auction_memberTimeOut2${auction_member.auction_idx}" style="color: red; text-align: right;"></div>
 		                            </div>
 		                        </a>
 		                    </div>
