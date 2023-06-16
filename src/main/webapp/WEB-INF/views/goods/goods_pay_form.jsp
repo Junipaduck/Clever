@@ -58,14 +58,16 @@ td, tr, th{
 				<th></th>
 			</tr>
             <tr>
+            	<td>
 	            <c:forEach items="${fileList }" var="fileList"> <!-- 첫번째사진 select 하는 forEach문 -->
 		            <c:set var="length" value="${fn:length(fileList.file_name) }" />
 					<c:set var="index" value="${fn:indexOf(fileList.file_name, '_') }" />
 					<c:set var="file_name" value="${fn:substring(fileList.file_name, index + 1, length) }" />
 					<c:if test="${fileList.file_num eq goodsDetail.goods_idx }">
-		            	<td><img src="${pageContext.request.contextPath }/resources/upload/${file_name}" alt="상품 사진" style="width: 200px;height: 200px;"></td>
+	                   <img src="${pageContext.request.contextPath }/resources/fileUpload${fileList.file_path}/${fileList.file_name}" class="d-block w-100" width="100" height="100" alt="상품 이미지">
 		            </c:if>
 	            </c:forEach>
+	            </td>
                   <td>${goodsDetail.goods_name }</td>
                   <td>${goodsDetail.goods_price }원</td>
                   <td>적립금 결제</td>

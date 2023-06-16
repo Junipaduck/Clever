@@ -114,7 +114,7 @@ function Auth(auction_idx) {
                                                 <th>경매 시작일</th>
                                                 <th>경매 종료일</th>
                                                 <th>경매 상태</th>
-                                                <th>즉시구매가</th>
+<!--                                                 <th>즉시구매가</th> -->
                                                 <th>관리자 승인 여부</th>
                                                 <th>등록 승인 하기</th>
                                             </tr>
@@ -141,7 +141,7 @@ function Auth(auction_idx) {
 	                                                <td>${auctionAuthList.auction_start }</td>
 	                                                <td>${auctionAuthList.auction_end }</td>
 	                                                <td>${auctionAuthList.auction_status }</td>
-	                                                <td>${auctionList.immediately_price }</td>
+<%-- 	                                                <td>${auctionList.immediately_price }</td> --%>
 	                                                <td>${auctionAuthList.auction_auth_status }</td>
 	                                                <td>
 	                                                	<button type="button" class="btn btn-primary" onclick="Auth('${auctionAuthList.auction_idx}')">승인하기</button>
